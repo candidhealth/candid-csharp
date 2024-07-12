@@ -1,0 +1,20 @@
+using System.Text.Json.Serialization;
+using Candid.Net.ImportInvoice.V1;
+using Candid.Net.Invoices.V2;
+
+#nullable enable
+
+namespace Candid.Net.ImportInvoice.V1;
+
+public record InvoiceItemInfoUpdate
+{
+    /// <summary>
+    /// The only supported update operations for invoice items is to either overwrite the entire list of invoice items
+    /// or to append new invoice items
+    /// </summary>
+    [JsonPropertyName("update_type")]
+    public required InvoiceItemUpdateType UpdateType { get; init; }
+
+    [JsonPropertyName("items")]
+    public IEnumerable<InvoiceItemCreate> Items { get; init; } = new List<InvoiceItemCreate>();
+}

@@ -1,0 +1,21 @@
+using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
+using Candid.Net;
+using Candid.Net.Core;
+
+#nullable enable
+
+namespace Candid.Net;
+
+[JsonConverter(typeof(StringEnumSerializer<PhoneNumberType>))]
+public enum PhoneNumberType
+{
+    [EnumMember(Value = "Home")]
+    Home,
+
+    [EnumMember(Value = "Mobile")]
+    Mobile,
+
+    [EnumMember(Value = "Work")]
+    Work
+}

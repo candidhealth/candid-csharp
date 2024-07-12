@@ -1,0 +1,88 @@
+using System.Text.Json.Serialization;
+using Candid.Net;
+using Candid.Net.EncounterProviders.V2;
+using Candid.Net.ServiceLines.V2;
+
+#nullable enable
+
+namespace Candid.Net.ServiceLines.V2;
+
+public record ServiceLineCreate
+{
+    [JsonPropertyName("modifiers")]
+    public IEnumerable<ProcedureModifier>? Modifiers { get; init; }
+
+    [JsonPropertyName("procedure_code")]
+    public required string ProcedureCode { get; init; }
+
+    /// <summary>
+    /// String representation of a Decimal that can be parsed by most libraries.
+    /// A ServiceLine quantity cannot contain more than one digit of precision.
+    /// Example: 1.1 is valid, 1.11 is not.
+    /// </summary>
+    [JsonPropertyName("quantity")]
+    public required string Quantity { get; init; }
+
+    [JsonPropertyName("units")]
+    public required ServiceLineUnits Units { get; init; }
+
+    /// <summary>
+    /// The total amount charged for this service line taking quantity into account. For example, if a single unit
+    /// costs 100 cents and 2 units were rendered, the charge_amount_cents should be 200. Should be greater than or
+    /// equal to 0.
+    /// </summary>
+    [JsonPropertyName("charge_amount_cents")]
+    public int? ChargeAmountCents { get; init; }
+
+    /// <summary>
+    /// Indices (zero-indexed) of all the diagnoses this service line references
+    /// </summary>
+    [JsonPropertyName("diagnosis_pointers")]
+    public IEnumerable<int> DiagnosisPointers { get; init; } = new List<int>();
+
+    [JsonPropertyName("drug_identification")]
+    public DrugIdentification? DrugIdentification { get; init; }
+
+    [JsonPropertyName("place_of_service_code")]
+    public FacilityTypeCode? PlaceOfServiceCode { get; init; }
+
+    /// <summary>
+    /// A free-form description to clarify the related data elements and their content. Maps to SV1-01, C003-07 on the 837-P.
+    /// </summary>
+    [JsonPropertyName("description")]
+    public string? Description { get; init; }
+
+    [JsonPropertyName("date_of_service")]
+    public DateOnly? DateOfService { get; init; }
+
+    [JsonPropertyName("end_date_of_service")]
+    public DateOnly? EndDateOfService { get; init; }
+
+    /// <summary>
+    /// The final provider who referred the services that were rendered.
+    /// All physicians who order services or refer Medicare beneficiaries must
+    /// report this data.
+    /// </summary>
+    [JsonPropertyName("referring_provider")]
+    public ReferringProvider? ReferringProvider { get; init; }
+
+    /// <summary>
+    /// The first provider who referred the services that were rendered.
+    /// All physicians who order services or refer Medicare beneficiaries must
+    /// report this data. This field cannot be populated unless referring_provider is first populated.
+    /// </summary>
+    [JsonPropertyName("initial_referring_provider")]
+    public InitialReferringProvider? InitialReferringProvider { get; init; }
+
+    /// <summary>
+    /// The provider who is supervising the rendering provider.
+    /// </summary>
+    [JsonPropertyName("supervising_provider")]
+    public SupervisingProvider? SupervisingProvider { get; init; }
+
+    /// <summary>
+    /// The provider who ordered the services that were rendered.
+    /// </summary>
+    [JsonPropertyName("ordering_provider")]
+    public OrderingProvider? OrderingProvider { get; init; }
+}
