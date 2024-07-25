@@ -31,7 +31,7 @@ public class V3Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<MatchResult?>(responseBody)!;
+            return JsonUtils.Deserialize<MatchResult?>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -51,7 +51,7 @@ public class V3Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<MatchTestResult>(responseBody)!;
+            return JsonUtils.Deserialize<MatchTestResult>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -124,7 +124,7 @@ public class V3Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<RatesPage>(responseBody)!;
+            return JsonUtils.Deserialize<RatesPage>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -198,7 +198,7 @@ public class V3Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<DimensionsPage>(responseBody)!;
+            return JsonUtils.Deserialize<DimensionsPage>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -218,7 +218,7 @@ public class V3Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<IEnumerable<Rate>>(responseBody)!;
+            return JsonUtils.Deserialize<IEnumerable<Rate>>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -239,7 +239,7 @@ public class V3Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<IEnumerable<Rate>>(responseBody)!;
+            return JsonUtils.Deserialize<IEnumerable<Rate>>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -273,7 +273,7 @@ public class V3Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<PayerThreshold>(responseBody)!;
+            return JsonUtils.Deserialize<PayerThreshold>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -298,7 +298,7 @@ public class V3Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<PayerThresholdsPage>(responseBody)!;
+            return JsonUtils.Deserialize<PayerThresholdsPage>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -319,7 +319,7 @@ public class V3Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<PayerThreshold>(responseBody)!;
+            return JsonUtils.Deserialize<PayerThreshold>(responseBody)!;
         }
         throw new Exception(responseBody);
     }

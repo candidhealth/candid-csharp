@@ -1,5 +1,4 @@
 using System.Net.Http;
-using System.Text.Json;
 using Candid.Net.Core;
 using Candid.Net.Guarantor.V1;
 
@@ -32,7 +31,7 @@ public class V1Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<Guarantor>(responseBody)!;
+            return JsonUtils.Deserialize<Guarantor>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -52,7 +51,7 @@ public class V1Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<Guarantor>(responseBody)!;
+            return JsonUtils.Deserialize<Guarantor>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -73,7 +72,7 @@ public class V1Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<Guarantor>(responseBody)!;
+            return JsonUtils.Deserialize<Guarantor>(responseBody)!;
         }
         throw new Exception(responseBody);
     }

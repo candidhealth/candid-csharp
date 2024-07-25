@@ -1,5 +1,4 @@
 using System.Net.Http;
-using System.Text.Json;
 using Candid.Net.Core;
 using Candid.Net.ExpectedNetworkStatus.V2;
 
@@ -37,7 +36,7 @@ public class V2Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<ExpectedNetworkStatusResponseV2>(responseBody)!;
+            return JsonUtils.Deserialize<ExpectedNetworkStatusResponseV2>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -62,7 +61,7 @@ public class V2Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<ComputeAllInNetworkProvidersResponse>(responseBody)!;
+            return JsonUtils.Deserialize<ComputeAllInNetworkProvidersResponse>(responseBody)!;
         }
         throw new Exception(responseBody);
     }

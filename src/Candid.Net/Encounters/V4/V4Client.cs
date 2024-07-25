@@ -57,7 +57,9 @@ public class V4Client
         }
         if (request.DiagnosesUpdatedSince != null)
         {
-            _query["diagnoses_updated_since"] = request.DiagnosesUpdatedSince.Value.ToString("o0");
+            _query["diagnoses_updated_since"] = request.DiagnosesUpdatedSince.Value.ToString(
+                Constants.DateTimeFormat
+            );
         }
         if (request.TagIds != null)
         {
@@ -96,7 +98,7 @@ public class V4Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<EncounterPage>(responseBody)!;
+            return JsonUtils.Deserialize<EncounterPage>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -113,7 +115,7 @@ public class V4Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<Encounter>(responseBody)!;
+            return JsonUtils.Deserialize<Encounter>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -131,7 +133,7 @@ public class V4Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<Encounter>(responseBody)!;
+            return JsonUtils.Deserialize<Encounter>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -149,7 +151,7 @@ public class V4Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<Encounter>(responseBody)!;
+            return JsonUtils.Deserialize<Encounter>(responseBody)!;
         }
         throw new Exception(responseBody);
     }

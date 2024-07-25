@@ -32,7 +32,7 @@ public class V1Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<ImportInvoice>(responseBody)!;
+            return JsonUtils.Deserialize<ImportInvoice>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -94,7 +94,7 @@ public class V1Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<ImportInvoicesPage>(responseBody)!;
+            return JsonUtils.Deserialize<ImportInvoicesPage>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -114,7 +114,7 @@ public class V1Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<ImportInvoice>(responseBody)!;
+            return JsonUtils.Deserialize<ImportInvoice>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -135,7 +135,7 @@ public class V1Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<ImportInvoice>(responseBody)!;
+            return JsonUtils.Deserialize<ImportInvoice>(responseBody)!;
         }
         throw new Exception(responseBody);
     }

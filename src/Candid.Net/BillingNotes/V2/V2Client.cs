@@ -1,5 +1,4 @@
 using System.Net.Http;
-using System.Text.Json;
 using Candid.Net.BillingNotes.V2;
 using Candid.Net.Core;
 
@@ -29,7 +28,7 @@ public class V2Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<BillingNote>(responseBody)!;
+            return JsonUtils.Deserialize<BillingNote>(responseBody)!;
         }
         throw new Exception(responseBody);
     }

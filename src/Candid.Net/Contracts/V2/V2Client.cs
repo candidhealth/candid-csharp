@@ -28,7 +28,7 @@ public class V2Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<ContractWithProviders>(responseBody)!;
+            return JsonUtils.Deserialize<ContractWithProviders>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -75,7 +75,7 @@ public class V2Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<ContractsPage>(responseBody)!;
+            return JsonUtils.Deserialize<ContractsPage>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -96,7 +96,7 @@ public class V2Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<ContractWithProviders>(responseBody)!;
+            return JsonUtils.Deserialize<ContractWithProviders>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -125,7 +125,7 @@ public class V2Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<ContractWithProviders>(responseBody)!;
+            return JsonUtils.Deserialize<ContractWithProviders>(responseBody)!;
         }
         throw new Exception(responseBody);
     }

@@ -73,7 +73,7 @@ public class V1Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<WriteOffsPage>(responseBody)!;
+            return JsonUtils.Deserialize<WriteOffsPage>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -93,7 +93,7 @@ public class V1Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<object>(responseBody)!;
+            return JsonUtils.Deserialize<object>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -115,7 +115,7 @@ public class V1Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<CreateWriteOffsResponse>(responseBody)!;
+            return JsonUtils.Deserialize<CreateWriteOffsResponse>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -135,7 +135,7 @@ public class V1Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<object>(responseBody)!;
+            return JsonUtils.Deserialize<object>(responseBody)!;
         }
         throw new Exception(responseBody);
     }

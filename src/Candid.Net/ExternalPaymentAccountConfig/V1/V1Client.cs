@@ -1,5 +1,4 @@
 using System.Net.Http;
-using System.Text.Json;
 using Candid.Net.Core;
 using Candid.Net.ExternalPaymentAccountConfig.V1;
 
@@ -40,7 +39,7 @@ public class V1Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<ExternalPaymentAccountConfigPage>(responseBody)!;
+            return JsonUtils.Deserialize<ExternalPaymentAccountConfigPage>(responseBody)!;
         }
         throw new Exception(responseBody);
     }

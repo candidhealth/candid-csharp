@@ -1,4 +1,3 @@
-using System.Text.Json;
 using Candid.Net;
 using Candid.Net.Core;
 
@@ -31,7 +30,7 @@ public class ServiceFacilityClient
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<EncounterServiceFacility>(responseBody)!;
+            return JsonUtils.Deserialize<EncounterServiceFacility>(responseBody)!;
         }
         throw new Exception(responseBody);
     }

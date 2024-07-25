@@ -1,5 +1,4 @@
 using System.Net.Http;
-using System.Text.Json;
 using Candid.Net.Core;
 using Candid.Net.PreEncounter.Patients.V1;
 
@@ -32,7 +31,7 @@ public class PatientsClient
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<Patient>(responseBody)!;
+            return JsonUtils.Deserialize<Patient>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -48,7 +47,7 @@ public class PatientsClient
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<Patient>(responseBody)!;
+            return JsonUtils.Deserialize<Patient>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -68,7 +67,7 @@ public class PatientsClient
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<IEnumerable<Patient>>(responseBody)!;
+            return JsonUtils.Deserialize<IEnumerable<Patient>>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -89,7 +88,7 @@ public class PatientsClient
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<Patient>(responseBody)!;
+            return JsonUtils.Deserialize<Patient>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -129,7 +128,7 @@ public class PatientsClient
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<IEnumerable<Patient>>(responseBody)!;
+            return JsonUtils.Deserialize<IEnumerable<Patient>>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -141,7 +140,7 @@ public class PatientsClient
     {
         var _query = new Dictionary<string, object>()
         {
-            { "since", request.Since.ToString("o0") },
+            { "since", request.Since.ToString(Constants.DateTimeFormat) },
         };
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
@@ -154,7 +153,7 @@ public class PatientsClient
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<IEnumerable<Patient>>(responseBody)!;
+            return JsonUtils.Deserialize<IEnumerable<Patient>>(responseBody)!;
         }
         throw new Exception(responseBody);
     }

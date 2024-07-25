@@ -66,7 +66,7 @@ public class V1Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<InsuranceRefundsPage>(responseBody)!;
+            return JsonUtils.Deserialize<InsuranceRefundsPage>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -87,7 +87,7 @@ public class V1Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<InsuranceRefund>(responseBody)!;
+            return JsonUtils.Deserialize<InsuranceRefund>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -110,7 +110,7 @@ public class V1Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<InsuranceRefund>(responseBody)!;
+            return JsonUtils.Deserialize<InsuranceRefund>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -135,7 +135,7 @@ public class V1Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<InsuranceRefund>(responseBody)!;
+            return JsonUtils.Deserialize<InsuranceRefund>(responseBody)!;
         }
         throw new Exception(responseBody);
     }

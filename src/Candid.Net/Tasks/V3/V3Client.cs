@@ -28,7 +28,7 @@ public class V3Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<TaskActions>(responseBody)!;
+            return JsonUtils.Deserialize<TaskActions>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -58,7 +58,7 @@ public class V3Client
         }
         if (request.UpdatedSince != null)
         {
-            _query["updated_since"] = request.UpdatedSince.Value.ToString("o0");
+            _query["updated_since"] = request.UpdatedSince.Value.ToString(Constants.DateTimeFormat);
         }
         if (request.EncounterId != null)
         {
@@ -99,7 +99,7 @@ public class V3Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<TaskPage>(responseBody)!;
+            return JsonUtils.Deserialize<TaskPage>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -116,7 +116,7 @@ public class V3Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<Task>(responseBody)!;
+            return JsonUtils.Deserialize<Task>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -134,7 +134,7 @@ public class V3Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<Task>(responseBody)!;
+            return JsonUtils.Deserialize<Task>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -152,7 +152,7 @@ public class V3Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<Task>(responseBody)!;
+            return JsonUtils.Deserialize<Task>(responseBody)!;
         }
         throw new Exception(responseBody);
     }

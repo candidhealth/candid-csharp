@@ -28,7 +28,7 @@ public class V3Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<OrganizationProviderV2>(responseBody)!;
+            return JsonUtils.Deserialize<OrganizationProviderV2>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -77,7 +77,7 @@ public class V3Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<OrganizationProviderPageV2>(responseBody)!;
+            return JsonUtils.Deserialize<OrganizationProviderPageV2>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -95,7 +95,7 @@ public class V3Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<OrganizationProviderV2>(responseBody)!;
+            return JsonUtils.Deserialize<OrganizationProviderV2>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -116,7 +116,7 @@ public class V3Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<OrganizationProviderV2>(responseBody)!;
+            return JsonUtils.Deserialize<OrganizationProviderV2>(responseBody)!;
         }
         throw new Exception(responseBody);
     }

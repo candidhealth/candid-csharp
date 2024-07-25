@@ -1,5 +1,4 @@
 using System.Net.Http;
-using System.Text.Json;
 using Candid.Net.Core;
 using Candid.Net.PreEncounter.Coverages.V1;
 
@@ -32,7 +31,7 @@ public class CoveragesClient
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<Coverage>(responseBody)!;
+            return JsonUtils.Deserialize<Coverage>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -53,7 +52,7 @@ public class CoveragesClient
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<Coverage>(responseBody)!;
+            return JsonUtils.Deserialize<Coverage>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -69,7 +68,7 @@ public class CoveragesClient
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<Coverage>(responseBody)!;
+            return JsonUtils.Deserialize<Coverage>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -89,7 +88,7 @@ public class CoveragesClient
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<IEnumerable<Coverage>>(responseBody)!;
+            return JsonUtils.Deserialize<IEnumerable<Coverage>>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -115,7 +114,7 @@ public class CoveragesClient
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<IEnumerable<Coverage>>(responseBody)!;
+            return JsonUtils.Deserialize<IEnumerable<Coverage>>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -127,7 +126,7 @@ public class CoveragesClient
     {
         var _query = new Dictionary<string, object>()
         {
-            { "since", request.Since.ToString("o0") },
+            { "since", request.Since.ToString(Constants.DateTimeFormat) },
         };
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
@@ -140,7 +139,7 @@ public class CoveragesClient
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<IEnumerable<Coverage>>(responseBody)!;
+            return JsonUtils.Deserialize<IEnumerable<Coverage>>(responseBody)!;
         }
         throw new Exception(responseBody);
     }

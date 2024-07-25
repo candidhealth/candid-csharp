@@ -78,7 +78,7 @@ public class V4Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<PatientPaymentsPage>(responseBody)!;
+            return JsonUtils.Deserialize<PatientPaymentsPage>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -98,7 +98,7 @@ public class V4Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<PatientPayment>(responseBody)!;
+            return JsonUtils.Deserialize<PatientPayment>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -121,7 +121,7 @@ public class V4Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<PatientPayment>(responseBody)!;
+            return JsonUtils.Deserialize<PatientPayment>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
@@ -145,7 +145,7 @@ public class V4Client
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonSerializer.Deserialize<PatientPayment>(responseBody)!;
+            return JsonUtils.Deserialize<PatientPayment>(responseBody)!;
         }
         throw new Exception(responseBody);
     }
