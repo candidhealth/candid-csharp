@@ -2,13 +2,13 @@ using System.Text.Json.Serialization;
 
 #nullable enable
 
-namespace Candid.Net.PreEncounter;
+namespace Candid.Net.PreEncounter.Patients.V1;
 
 public record ExternalProvenance
 {
-    [JsonPropertyName("externalId")]
+    [JsonPropertyName("external_id")]
     public required string ExternalId { get; init; }
 
-    [JsonPropertyName("systemName")]
+    [JsonPropertyName("system_name")]
     public required string SystemName { get; init; }
 }

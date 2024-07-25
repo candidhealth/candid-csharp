@@ -19,7 +19,7 @@ public record Address
     [JsonPropertyName("state")]
     public required string State { get; init; }
 
-    [JsonPropertyName("postalCode")]
+    [JsonPropertyName("postal_code")]
     public required string PostalCode { get; init; }
 
     [JsonPropertyName("country")]

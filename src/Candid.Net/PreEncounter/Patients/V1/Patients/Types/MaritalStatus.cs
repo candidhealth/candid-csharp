@@ -1,11 +1,11 @@
 using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
-using Candid.Net.PreEncounter;
+using Candid.Net.PreEncounter.Patients.V1;
 
 #nullable enable
 
-namespace Candid.Net.PreEncounter;
+namespace Candid.Net.PreEncounter.Patients.V1;
 
 [JsonConverter(typeof(StringEnumSerializer<MaritalStatus>))]
 public enum MaritalStatus

@@ -42,7 +42,7 @@ public partial class Candid
             {
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Candid.Net" },
-                { "X-Fern-SDK-Version", "0.23.0" },
+                { "X-Fern-SDK-Version", "0.24.0-2a6d412" },
             },
             clientOptions ?? new ClientOptions()
         );

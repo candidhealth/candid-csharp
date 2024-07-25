@@ -1,9 +1,10 @@
 using System.Text.Json.Serialization;
 using Candid.Net.PreEncounter;
+using Candid.Net.PreEncounter.Patients.V1;
 
 #nullable enable
 
-namespace Candid.Net.PreEncounter;
+namespace Candid.Net.PreEncounter.Patients.V1;
 
 public record MutablePatient
 {
@@ -13,16 +14,16 @@ public record MutablePatient
     /// <summary>
     /// Other names for the patient.
     /// </summary>
-    [JsonPropertyName("otherNames")]
+    [JsonPropertyName("other_names")]
     public IEnumerable<HumanName> OtherNames { get; init; } = new List<HumanName>();
 
     [JsonPropertyName("gender")]
     public required Gender Gender { get; init; }
 
-    [JsonPropertyName("birthDate")]
+    [JsonPropertyName("birth_date")]
     public required DateOnly BirthDate { get; init; }
 
-    [JsonPropertyName("maritalStatus")]
+    [JsonPropertyName("marital_status")]
     public MaritalStatus? MaritalStatus { get; init; }
 
     /// <summary>
@@ -34,31 +35,31 @@ public record MutablePatient
     /// <summary>
     /// The number of siblings the patient was born with. Leave unset if the patient was not part of a multiple birth.
     /// </summary>
-    [JsonPropertyName("multipleBirth")]
+    [JsonPropertyName("multiple_birth")]
     public int? MultipleBirth { get; init; }
 
     /// <summary>
     /// The primary address for the patient.
     /// </summary>
-    [JsonPropertyName("primaryAddress")]
+    [JsonPropertyName("primary_address")]
     public required Address PrimaryAddress { get; init; }
 
     /// <summary>
     /// Other addresses for the patient.
     /// </summary>
-    [JsonPropertyName("otherAddresses")]
+    [JsonPropertyName("other_addresses")]
     public IEnumerable<Address> OtherAddresses { get; init; } = new List<Address>();
 
     /// <summary>
     /// The primary phone number for the patient.
     /// </summary>
-    [JsonPropertyName("primaryTelecom")]
+    [JsonPropertyName("primary_telecom")]
     public required ContactPoint PrimaryTelecom { get; init; }
 
     /// <summary>
     /// Other phone numbers for the patient.
     /// </summary>
-    [JsonPropertyName("otherTelecoms")]
+    [JsonPropertyName("other_telecoms")]
     public IEnumerable<ContactPoint> OtherTelecoms { get; init; } = new List<ContactPoint>();
 
     [JsonPropertyName("photo")]
@@ -70,7 +71,7 @@ public record MutablePatient
     /// <summary>
     /// Information about the upstream system that owns this patient data. Leave unset if Candid owns patient data.
     /// </summary>
-    [JsonPropertyName("externalProvenance")]
+    [JsonPropertyName("external_provenance")]
     public ExternalProvenance? ExternalProvenance { get; init; }
 
     /// <summary>
@@ -79,7 +80,7 @@ public record MutablePatient
     [JsonPropertyName("contacts")]
     public IEnumerable<Contact> Contacts { get; init; } = new List<Contact>();
 
-    [JsonPropertyName("generalPractitioners")]
+    [JsonPropertyName("general_practitioners")]
     public IEnumerable<ExternalProvider> GeneralPractitioners { get; init; } =
         new List<ExternalProvider>();
 }

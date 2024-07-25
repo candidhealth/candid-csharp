@@ -1,22 +1,23 @@
 using System.Text.Json.Serialization;
 using Candid.Net.PreEncounter;
+using Candid.Net.PreEncounter.Coverages.V1;
 
 #nullable enable
 
-namespace Candid.Net.PreEncounter;
+namespace Candid.Net.PreEncounter.Coverages.V1;
 
 public record InsurancePlan
 {
-    [JsonPropertyName("memberId")]
+    [JsonPropertyName("member_id")]
     public required string MemberId { get; init; }
 
-    [JsonPropertyName("payerId")]
+    [JsonPropertyName("payer_id")]
     public required string PayerId { get; init; }
 
-    [JsonPropertyName("payerName")]
+    [JsonPropertyName("payer_name")]
     public required string PayerName { get; init; }
 
-    [JsonPropertyName("groupNumber")]
+    [JsonPropertyName("group_number")]
     public string? GroupNumber { get; init; }
 
     [JsonPropertyName("name")]
@@ -28,6 +29,6 @@ public record InsurancePlan
     [JsonPropertyName("period")]
     public Period? Period { get; init; }
 
-    [JsonPropertyName("insuranceCardImageLocator")]
+    [JsonPropertyName("insurance_card_image_locator")]
     public string? InsuranceCardImageLocator { get; init; }
 }

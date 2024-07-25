@@ -3,18 +3,12 @@ using Candid.Net.PreEncounter;
 
 #nullable enable
 
-namespace Candid.Net.PreEncounter;
+namespace Candid.Net.PreEncounter.Patients.V1;
 
-public record Contact
+public record ExternalProvider
 {
-    [JsonPropertyName("relationship")]
-    public IEnumerable<Relationship> Relationship { get; init; } = new List<Relationship>();
-
     [JsonPropertyName("name")]
     public required HumanName Name { get; init; }
-
-    [JsonPropertyName("gender")]
-    public Gender? Gender { get; init; }
 
     [JsonPropertyName("telecoms")]
     public IEnumerable<ContactPoint> Telecoms { get; init; } = new List<ContactPoint>();

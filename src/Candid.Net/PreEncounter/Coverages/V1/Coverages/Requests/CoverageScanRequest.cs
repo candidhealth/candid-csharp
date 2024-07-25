@@ -1,4 +1,4 @@
-namespace Candid.Net.PreEncounter;
+namespace Candid.Net.PreEncounter.Coverages.V1;
 
 public record CoverageScanRequest
 {

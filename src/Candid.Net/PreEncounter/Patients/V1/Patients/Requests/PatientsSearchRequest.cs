@@ -1,4 +1,4 @@
-namespace Candid.Net.PreEncounter;
+namespace Candid.Net.PreEncounter.Patients.V1;
 
 public record PatientsSearchRequest
 {

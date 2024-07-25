@@ -9,7 +9,7 @@ public record VersionConflictErrorBody
     [JsonPropertyName("code")]
     public required string Code { get; init; }
 
-    [JsonPropertyName("latestVersion")]
+    [JsonPropertyName("latest_version")]
     public required int LatestVersion { get; init; }
 
     [JsonPropertyName("message")]
