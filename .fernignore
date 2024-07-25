@@ -1,7 +1,11 @@
 # Specify files that shouldn't be modified by Fern
+
+# Oauth
 src/Candid.Net/Candid.cs
 src/Candid.Net/Core/OAuthTokenProvider.cs
-src/Candid.Net/Core/RawClient.cs
+
+# Namespace + Type conflict
 src/Candid.Net/Encounters/V4/Types/Encounter.cs
+Candid.Net.Test/Unit/Serialization/GuarantorTest.cs
 
 README.md
