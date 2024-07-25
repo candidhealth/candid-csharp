@@ -35,18 +35,30 @@ public partial class Candid
 {
     private RawClient _client;
 
-    public Candid(string token, ClientOptions? clientOptions = null)
+    public Candid(string clientId, string clientSecret, ClientOptions? clientOptions = null)
     {
-        _client = new RawClient(
-            new Dictionary<string, string>()
-            {
-                { "X-Fern-Language", "C#" },
-                { "X-Fern-SDK-Name", "Candid.Net" },
-                { "X-Fern-SDK-Version", "0.24.0-2a6d412" },
-            },
-            clientOptions ?? new ClientOptions()
+        clientOptions ??= new ClientOptions();
+        var headers = new Dictionary<string, string>()
+        {
+            { "X-Fern-Language", "C#" },
+            { "X-Fern-SDK-Name", "Candid.Net" },
+            { "X-Fern-SDK-Version", "0.24.0-2a6d412" },
+        };
+        var authRawClient = new RawClient(
+            headers,
+            new Dictionary<string, Func<string>>(),
+            clientOptions
         );
-        Auth = new AuthClient(_client);
+        Auth = new AuthClient(authRawClient);
+        var oAuthTokenProvider = new OAuthTokenProvider(clientId, clientSecret, Auth.V2);
+        _client = new RawClient(
+            headers,
+            new Dictionary<string, Func<string>>
+            {
+                { "Authorization", () => oAuthTokenProvider.GetAccessTokenAsync().Result }
+            },
+            clientOptions
+        );
         BillingNotes = new BillingNotesClient(_client);
         ClaimSubmission = new ClaimSubmissionClient(_client);
         Contracts = new ContractsClient(_client);
