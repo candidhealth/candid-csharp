@@ -2,5 +2,6 @@
 src/Candid.Net/Candid.cs
 src/Candid.Net/Core/OAuthTokenProvider.cs
 src/Candid.Net/Core/RawClient.cs
+src/Candid.Net/Encounters/V4/Types/Encounter.cs
 
 README.md
