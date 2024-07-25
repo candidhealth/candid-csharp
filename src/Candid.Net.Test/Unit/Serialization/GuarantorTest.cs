@@ -47,7 +47,7 @@ public class GuarantorTest
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
         };
 
-        var deserializedObject = JsonSerializer.Deserialize<Guarantor>(
+        var deserializedObject = JsonSerializer.Deserialize<Guarantor.V1.Guarantor>(
             inputJson,
             serializerOptions
         );
