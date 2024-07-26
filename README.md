@@ -32,7 +32,7 @@ Below are code snippets of how you can use the C# SDK.
 ```csharp
 using Candid.Net;
 
-var candid = new Candid("YOUR_TOKEN")
+var candid = new Candid("YOUR_CLIENT_ID", "YOUR_CLIENT_SECRET");
 
 var guarantor = candid.Guarantor.V1.GetAsync(Guid.Parse("guarantor-id")).Result;
 ```
