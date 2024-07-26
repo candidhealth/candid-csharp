@@ -1,0 +1,30 @@
+using Candid.Net.Core;
+
+#nullable enable
+
+namespace Candid.Net.Core;
+
+public class CandidEnvironment
+{
+    public static CandidEnvironment PRODUCTION = new CandidEnvironment
+    {
+        CandidApi = "https://api.joincandidhealth.com",
+        PreEncounter = "https://pre-api.joincandidhealth.com"
+    };
+
+    public static CandidEnvironment STAGING = new CandidEnvironment
+    {
+        CandidApi = "https://api-staging.joincandidhealth.com",
+        PreEncounter = "https://pre-api-staging.joincandidhealth.com"
+    };
+
+    /// <summary>
+    /// URL for the CandidApi service
+    /// </summary>
+    public string CandidApi { get; init; }
+
+    /// <summary>
+    /// URL for the PreEncounter service
+    /// </summary>
+    public string PreEncounter { get; init; }
+}

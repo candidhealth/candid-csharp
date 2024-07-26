@@ -8,10 +8,10 @@ namespace Candid.Net.PatientPayments.V4;
 public record PatientPayment
 {
     [JsonPropertyName("patient_payment_id")]
-    public required Guid PatientPaymentId { get; init; }
+    public required string PatientPaymentId { get; init; }
 
     [JsonPropertyName("organization_id")]
-    public required Guid OrganizationId { get; init; }
+    public required string OrganizationId { get; init; }
 
     [JsonPropertyName("source_internal_id")]
     public string? SourceInternalId { get; init; }
@@ -35,5 +35,5 @@ public record PatientPayment
     public IEnumerable<Allocation> Allocations { get; init; } = new List<Allocation>();
 
     [JsonPropertyName("invoice")]
-    public Guid? Invoice { get; init; }
+    public string? Invoice { get; init; }
 }

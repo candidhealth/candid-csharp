@@ -14,8 +14,8 @@ public record IndeterminateNetworkStatus
     public required Explanation Explanation { get; init; }
 
     [JsonPropertyName("routed_payer_uuid")]
-    public Guid? RoutedPayerUuid { get; init; }
+    public string? RoutedPayerUuid { get; init; }
 
     [JsonPropertyName("routed_billing_provider_id")]
-    public Guid? RoutedBillingProviderId { get; init; }
+    public string? RoutedBillingProviderId { get; init; }
 }

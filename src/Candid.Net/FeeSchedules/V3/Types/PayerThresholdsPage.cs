@@ -8,8 +8,8 @@ namespace Candid.Net.FeeSchedules.V3;
 public record PayerThresholdsPage
 {
     [JsonPropertyName("payer_thresholds")]
-    public Dictionary<Guid, PayerThreshold> PayerThresholds { get; init; } =
-        new Dictionary<Guid, PayerThreshold>();
+    public Dictionary<string, PayerThreshold> PayerThresholds { get; init; } =
+        new Dictionary<string, PayerThreshold>();
 
     [JsonPropertyName("prev_page_token")]
     public string? PrevPageToken { get; init; }

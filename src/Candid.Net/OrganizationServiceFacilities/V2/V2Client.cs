@@ -15,11 +15,12 @@ public class V2Client
         _client = client;
     }
 
-    public async Task<OrganizationServiceFacility> GetAsync(Guid organizationServiceFacilityId)
+    public async Task<OrganizationServiceFacility> GetAsync(string organizationServiceFacilityId)
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = $"/api/organization-service-facilities/v2/{organizationServiceFacilityId}"
             }
@@ -52,6 +53,7 @@ public class V2Client
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = "/api/organization-service-facilities/v2",
                 Query = _query
@@ -72,6 +74,7 @@ public class V2Client
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Post,
                 Path = "/api/organization-service-facilities/v2",
                 Body = request
@@ -86,13 +89,14 @@ public class V2Client
     }
 
     public async Task<OrganizationServiceFacility> UpdateAsync(
-        Guid organizationServiceFacilityId,
+        string organizationServiceFacilityId,
         OrganizationServiceFacilityUpdate request
     )
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethodExtensions.Patch,
                 Path = $"/api/organization-service-facilities/v2/{organizationServiceFacilityId}",
                 Body = request
@@ -106,11 +110,12 @@ public class V2Client
         throw new Exception(responseBody);
     }
 
-    public async Task DeleteAsync(Guid organizationServiceFacilityId)
+    public async Task DeleteAsync(string organizationServiceFacilityId)
     {
         await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Delete,
                 Path = $"/api/organization-service-facilities/v2/{organizationServiceFacilityId}"
             }

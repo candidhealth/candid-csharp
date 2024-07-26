@@ -11,7 +11,7 @@ public record ExpectedNetworkStatusSubscriberInformation
     /// The UUID that corresponds with the payer on the patient’s insurance card
     /// </summary>
     [JsonPropertyName("payer_uuid")]
-    public required Guid PayerUuid { get; init; }
+    public required string PayerUuid { get; init; }
 
     /// <summary>
     /// The member_id on the patient’s insurance card

@@ -10,7 +10,7 @@ namespace Candid.Net.Contracts.V2;
 public record Contract
 {
     [JsonPropertyName("contract_id")]
-    public required Guid ContractId { get; init; }
+    public required string ContractId { get; init; }
 
     /// <summary>
     /// The provider under contract

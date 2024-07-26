@@ -16,11 +16,12 @@ public class V3Client
         _client = client;
     }
 
-    public async Task<OrganizationProviderV2> GetAsync(Guid organizationProviderId)
+    public async Task<OrganizationProviderV2> GetAsync(string organizationProviderId)
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = $"/api/organization-providers/v3/{organizationProviderId}"
             }
@@ -69,6 +70,7 @@ public class V3Client
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = "/api/organization-providers/v3",
                 Query = _query
@@ -87,6 +89,7 @@ public class V3Client
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Post,
                 Path = "/api/organization-providers/v3",
                 Body = request
@@ -101,13 +104,14 @@ public class V3Client
     }
 
     public async Task<OrganizationProviderV2> UpdateAsync(
-        Guid organizationProviderId,
+        string organizationProviderId,
         OrganizationProviderUpdateV2 request
     )
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethodExtensions.Patch,
                 Path = $"/api/organization-providers/v3/{organizationProviderId}",
                 Body = request

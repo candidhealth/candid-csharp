@@ -32,16 +32,16 @@ public record ServiceLine
     public int? PatientResponsibilityCents { get; init; }
 
     [JsonPropertyName("diagnosis_id_zero")]
-    public Guid? DiagnosisIdZero { get; init; }
+    public string? DiagnosisIdZero { get; init; }
 
     [JsonPropertyName("diagnosis_id_one")]
-    public Guid? DiagnosisIdOne { get; init; }
+    public string? DiagnosisIdOne { get; init; }
 
     [JsonPropertyName("diagnosis_id_two")]
-    public Guid? DiagnosisIdTwo { get; init; }
+    public string? DiagnosisIdTwo { get; init; }
 
     [JsonPropertyName("diagnosis_id_three")]
-    public Guid? DiagnosisIdThree { get; init; }
+    public string? DiagnosisIdThree { get; init; }
 
     [JsonPropertyName("service_line_era_data")]
     public ServiceLineEraData? ServiceLineEraData { get; init; }
@@ -65,7 +65,7 @@ public record ServiceLine
     public FacilityTypeCode? PlaceOfServiceCodeAsSubmitted { get; init; }
 
     [JsonPropertyName("service_line_id")]
-    public required Guid ServiceLineId { get; init; }
+    public required string ServiceLineId { get; init; }
 
     [JsonPropertyName("procedure_code")]
     public required string ProcedureCode { get; init; }
@@ -94,7 +94,7 @@ public record ServiceLine
     public required ServiceLineUnits Units { get; init; }
 
     [JsonPropertyName("claim_id")]
-    public required Guid ClaimId { get; init; }
+    public required string ClaimId { get; init; }
 
     /// <summary>
     /// A range of dates of service for this service line. If the service line is for a single date, the end date

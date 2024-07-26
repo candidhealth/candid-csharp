@@ -8,7 +8,7 @@ namespace Candid.Net.Tasks.V3;
 public record TaskCreateV3
 {
     [JsonPropertyName("encounter_id")]
-    public required Guid EncounterId { get; init; }
+    public required string EncounterId { get; init; }
 
     [JsonPropertyName("task_type")]
     public required TaskType TaskType { get; init; }
@@ -20,7 +20,7 @@ public record TaskCreateV3
     public bool? BlocksClaimSubmission { get; init; }
 
     [JsonPropertyName("assignee_user_id")]
-    public Guid? AssigneeUserId { get; init; }
+    public string? AssigneeUserId { get; init; }
 
     [JsonPropertyName("category")]
     public TaskCategory? Category { get; init; }

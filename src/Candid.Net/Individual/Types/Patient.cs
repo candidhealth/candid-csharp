@@ -8,7 +8,7 @@ namespace Candid.Net;
 public record Patient
 {
     [JsonPropertyName("individual_id")]
-    public required Guid IndividualId { get; init; }
+    public required string IndividualId { get; init; }
 
     [JsonPropertyName("phone_numbers")]
     public IEnumerable<PhoneNumber> PhoneNumbers { get; init; } = new List<PhoneNumber>();

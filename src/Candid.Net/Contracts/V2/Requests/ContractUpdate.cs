@@ -14,7 +14,7 @@ public record ContractUpdate
     ///
     /// </summary>
     [JsonPropertyName("rendering_provider_ids")]
-    public HashSet<Guid>? RenderingProviderIds { get; init; }
+    public HashSet<string>? RenderingProviderIds { get; init; }
 
     /// <summary>
     /// The starting day upon which the contract is effective

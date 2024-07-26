@@ -9,7 +9,7 @@ namespace Candid.Net.InsuranceAdjudications.V1;
 public record ServiceLineAdjudication
 {
     [JsonPropertyName("service_line_adjudication_id")]
-    public required Guid ServiceLineAdjudicationId { get; init; }
+    public required string ServiceLineAdjudicationId { get; init; }
 
     /// <summary>
     /// Will be treated as a denial if present

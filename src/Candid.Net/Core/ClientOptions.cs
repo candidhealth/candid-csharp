@@ -1,4 +1,5 @@
 using System.Net.Http;
+using Candid.Net.Core;
 
 #nullable enable
 
@@ -7,9 +8,9 @@ namespace Candid.Net.Core;
 public partial class ClientOptions
 {
     /// <summary>
-    /// The Base URL for the API.
+    /// The Environment for the API.
     /// </summary>
-    public string BaseUrl { get; init; } = "";
+    public CandidEnvironment Environment { get; init; } = CandidEnvironment.PRODUCTION;
 
     /// <summary>
     /// The http client used to make requests.

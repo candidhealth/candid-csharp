@@ -39,6 +39,7 @@ public class V2Client
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Post,
                 Path = "/api/auth/v2/token",
                 Body = request

@@ -16,9 +16,9 @@ public record GetMultiRequest
 
     public DateOnly? ActiveDate { get; init; }
 
-    public Guid? PayerUuid { get; init; }
+    public string? PayerUuid { get; init; }
 
-    public Guid? OrganizationBillingProviderId { get; init; }
+    public string? OrganizationBillingProviderId { get; init; }
 
     public State? States { get; init; }
 

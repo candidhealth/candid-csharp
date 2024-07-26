@@ -11,6 +11,6 @@ public record ClaimInvoiceItemInfo
     public ClaimInvoiceItem? ClaimInvoiceItem { get; init; }
 
     [JsonPropertyName("service_line_invoice_items")]
-    public Dictionary<Guid, ServiceLineInvoiceItem> ServiceLineInvoiceItems { get; init; } =
-        new Dictionary<Guid, ServiceLineInvoiceItem>();
+    public Dictionary<string, ServiceLineInvoiceItem> ServiceLineInvoiceItems { get; init; } =
+        new Dictionary<string, ServiceLineInvoiceItem>();
 }

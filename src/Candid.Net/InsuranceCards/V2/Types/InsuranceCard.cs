@@ -8,7 +8,7 @@ namespace Candid.Net.InsuranceCards.V2;
 public record InsuranceCard
 {
     [JsonPropertyName("insurance_card_id")]
-    public required Guid InsuranceCardId { get; init; }
+    public required string InsuranceCardId { get; init; }
 
     [JsonPropertyName("member_id")]
     public required string MemberId { get; init; }

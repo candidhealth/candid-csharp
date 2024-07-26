@@ -20,10 +20,10 @@ public record ClaimAdjudicationCreate
 
     [JsonPropertyName("service_lines")]
     public Dictionary<
-        Guid,
+        string,
         IEnumerable<ServiceLineAdjudicationCreate>
     > ServiceLines { get; init; } =
-        new Dictionary<Guid, IEnumerable<ServiceLineAdjudicationCreate>>();
+        new Dictionary<string, IEnumerable<ServiceLineAdjudicationCreate>>();
 
     [JsonPropertyName("payer_claim_number")]
     public string? PayerClaimNumber { get; init; }

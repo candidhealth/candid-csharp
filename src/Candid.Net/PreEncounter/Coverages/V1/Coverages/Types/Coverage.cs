@@ -9,7 +9,7 @@ namespace Candid.Net.PreEncounter.Coverages.V1;
 public record Coverage
 {
     [JsonPropertyName("id")]
-    public required Guid Id { get; init; }
+    public required string Id { get; init; }
 
     /// <summary>
     /// The organization that owns this coverage.

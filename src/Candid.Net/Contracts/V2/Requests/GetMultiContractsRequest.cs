@@ -14,9 +14,9 @@ public record GetMultiContractsRequest
     /// </summary>
     public int? Limit { get; init; }
 
-    public Guid? ContractingProviderId { get; init; }
+    public string? ContractingProviderId { get; init; }
 
-    public Guid? RenderingProviderIds { get; init; }
+    public string? RenderingProviderIds { get; init; }
 
     /// <summary>
     /// Filter to contracts that include any of the included payer names.

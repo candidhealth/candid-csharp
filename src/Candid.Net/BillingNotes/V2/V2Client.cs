@@ -20,6 +20,7 @@ public class V2Client
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Post,
                 Path = "/api/billing_notes/v2",
                 Body = request

@@ -8,7 +8,7 @@ namespace Candid.Net.Guarantor.V1;
 public record Guarantor
 {
     [JsonPropertyName("guarantor_id")]
-    public required Guid GuarantorId { get; init; }
+    public required string GuarantorId { get; init; }
 
     [JsonPropertyName("phone_numbers")]
     public IEnumerable<PhoneNumber> PhoneNumbers { get; init; } = new List<PhoneNumber>();

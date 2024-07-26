@@ -8,7 +8,7 @@ namespace Candid.Net.Invoices.V2;
 public record InvoiceInfo
 {
     [JsonPropertyName("id")]
-    public required Guid Id { get; init; }
+    public required string Id { get; init; }
 
     [JsonPropertyName("invoice")]
     public required Invoice Invoice { get; init; }

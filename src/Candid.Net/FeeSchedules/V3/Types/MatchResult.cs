@@ -11,5 +11,5 @@ public record MatchResult
     public required ThresholdMatch Threshold { get; init; }
 
     [JsonPropertyName("rate_id")]
-    public required Guid RateId { get; init; }
+    public required string RateId { get; init; }
 }

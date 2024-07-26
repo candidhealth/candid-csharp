@@ -8,7 +8,7 @@ namespace Candid.Net.ImportInvoice.V1;
 public record ImportInvoice
 {
     [JsonPropertyName("id")]
-    public required Guid Id { get; init; }
+    public required string Id { get; init; }
 
     [JsonPropertyName("created_at")]
     public required DateTime CreatedAt { get; init; }

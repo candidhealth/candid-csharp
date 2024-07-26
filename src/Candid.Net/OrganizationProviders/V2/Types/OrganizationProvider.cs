@@ -11,7 +11,7 @@ public record OrganizationProvider
     /// Auto-generated ID set on creation
     /// </summary>
     [JsonPropertyName("organization_provider_id")]
-    public required Guid OrganizationProviderId { get; init; }
+    public required string OrganizationProviderId { get; init; }
 
     /// <summary>
     /// The employment status for the provider.

@@ -16,11 +16,12 @@ public class V2Client
         _client = client;
     }
 
-    public async Task<ContractWithProviders> GetAsync(Guid contractId)
+    public async Task<ContractWithProviders> GetAsync(string contractId)
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = $"/api/contracts/v2/{contractId}"
             }
@@ -67,6 +68,7 @@ public class V2Client
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = "/api/contracts/v2",
                 Query = _query
@@ -88,6 +90,7 @@ public class V2Client
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Post,
                 Path = "/api/contracts/v2",
                 Body = request
@@ -101,22 +104,24 @@ public class V2Client
         throw new Exception(responseBody);
     }
 
-    public async Task DeleteAsync(Guid contractId)
+    public async Task DeleteAsync(string contractId)
     {
         await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Delete,
                 Path = $"/api/contracts/v2/{contractId}"
             }
         );
     }
 
-    public async Task<ContractWithProviders> UpdateAsync(Guid contractId, ContractUpdate request)
+    public async Task<ContractWithProviders> UpdateAsync(string contractId, ContractUpdate request)
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethodExtensions.Patch,
                 Path = $"/api/contracts/v2/{contractId}",
                 Body = request

@@ -7,11 +7,11 @@ namespace Candid.Net.ExpectedNetworkStatus.V2;
 public record InNetworkRenderingProvidersDetail
 {
     [JsonPropertyName("rendering_providers")]
-    public IEnumerable<Guid> RenderingProviders { get; init; } = new List<Guid>();
+    public IEnumerable<string> RenderingProviders { get; init; } = new List<string>();
 
     [JsonPropertyName("routed_payer_uuid")]
-    public required Guid RoutedPayerUuid { get; init; }
+    public required string RoutedPayerUuid { get; init; }
 
     [JsonPropertyName("routed_billing_provider_id")]
-    public required Guid RoutedBillingProviderId { get; init; }
+    public required string RoutedBillingProviderId { get; init; }
 }

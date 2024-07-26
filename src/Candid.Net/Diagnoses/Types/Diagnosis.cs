@@ -8,7 +8,7 @@ namespace Candid.Net;
 public record Diagnosis
 {
     [JsonPropertyName("diagnosis_id")]
-    public required Guid DiagnosisId { get; init; }
+    public required string DiagnosisId { get; init; }
 
     [JsonPropertyName("created_at")]
     public required DateTime CreatedAt { get; init; }
@@ -17,7 +17,7 @@ public record Diagnosis
     public required DateTime UpdatedAt { get; init; }
 
     [JsonPropertyName("encounter_id")]
-    public required Guid EncounterId { get; init; }
+    public required string EncounterId { get; init; }
 
     /// <summary>
     /// Empty string not allowed.

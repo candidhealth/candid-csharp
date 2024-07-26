@@ -9,10 +9,10 @@ namespace Candid.Net.Tasks.V3;
 public record Task
 {
     [JsonPropertyName("task_id")]
-    public required Guid TaskId { get; init; }
+    public required string TaskId { get; init; }
 
     [JsonPropertyName("encounter_id")]
-    public required Guid EncounterId { get; init; }
+    public required string EncounterId { get; init; }
 
     [JsonPropertyName("task_type")]
     public required TaskType TaskType { get; init; }

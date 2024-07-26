@@ -18,11 +18,12 @@ public class V1Client
     /// <summary>
     /// Creates a new guarantor and returns the newly created Guarantor object.
     /// </summary>
-    public async Task<Guarantor> CreateAsync(Guid encounterId, GuarantorCreate request)
+    public async Task<Guarantor> CreateAsync(string encounterId, GuarantorCreate request)
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Post,
                 Path = $"/api/guarantors/v1/{encounterId}",
                 Body = request
@@ -39,11 +40,12 @@ public class V1Client
     /// <summary>
     /// Retrieves a guarantor by its `guarantor_id`.
     /// </summary>
-    public async Task<Guarantor> GetAsync(Guid guarantorId)
+    public async Task<Guarantor> GetAsync(string guarantorId)
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = $"/api/guarantors/v1/{guarantorId}"
             }
@@ -59,11 +61,12 @@ public class V1Client
     /// <summary>
     /// Updates a guarantor by its `guarantor_id`.
     /// </summary>
-    public async Task<Guarantor> UpdateAsync(Guid guarantorId, GuarantorUpdate request)
+    public async Task<Guarantor> UpdateAsync(string guarantorId, GuarantorUpdate request)
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethodExtensions.Patch,
                 Path = $"/api/guarantors/v1/{guarantorId}",
                 Body = request

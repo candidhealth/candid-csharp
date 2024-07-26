@@ -9,10 +9,10 @@ namespace Candid.Net.FeeSchedules.V3;
 public record Dimensions
 {
     [JsonPropertyName("payer_uuid")]
-    public required Guid PayerUuid { get; init; }
+    public required string PayerUuid { get; init; }
 
     [JsonPropertyName("organization_billing_provider_id")]
-    public required Guid OrganizationBillingProviderId { get; init; }
+    public required string OrganizationBillingProviderId { get; init; }
 
     [JsonPropertyName("states")]
     public HashSet<State> States { get; init; } = new HashSet<State>();

@@ -7,7 +7,7 @@ namespace Candid.Net;
 public record Era
 {
     [JsonPropertyName("era_id")]
-    public required Guid EraId { get; init; }
+    public required string EraId { get; init; }
 
     [JsonPropertyName("check_number")]
     public required string CheckNumber { get; init; }

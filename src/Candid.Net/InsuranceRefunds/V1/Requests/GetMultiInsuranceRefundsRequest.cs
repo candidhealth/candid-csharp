@@ -12,13 +12,13 @@ public record GetMultiInsuranceRefundsRequest
     /// </summary>
     public int? Limit { get; init; }
 
-    public Guid? PayerUuid { get; init; }
+    public string? PayerUuid { get; init; }
 
-    public Guid? ClaimId { get; init; }
+    public string? ClaimId { get; init; }
 
-    public Guid? ServiceLineId { get; init; }
+    public string? ServiceLineId { get; init; }
 
-    public Guid? BillingProviderId { get; init; }
+    public string? BillingProviderId { get; init; }
 
     /// <summary>
     /// Defaults to refund_timestamp

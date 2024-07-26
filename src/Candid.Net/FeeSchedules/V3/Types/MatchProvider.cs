@@ -7,7 +7,7 @@ namespace Candid.Net.FeeSchedules.V3;
 public record MatchProvider
 {
     [JsonPropertyName("value")]
-    public Guid? Value { get; init; }
+    public string? Value { get; init; }
 
     [JsonPropertyName("match")]
     public required bool Match { get; init; }
