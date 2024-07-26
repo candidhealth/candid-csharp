@@ -8,7 +8,7 @@ namespace Candid.Net.EncounterProviders.V2;
 public record EncounterProvider
 {
     [JsonPropertyName("provider_id")]
-    public required Guid ProviderId { get; init; }
+    public required string ProviderId { get; init; }
 
     [JsonPropertyName("address")]
     public required StreetAddressLongZip Address { get; init; }

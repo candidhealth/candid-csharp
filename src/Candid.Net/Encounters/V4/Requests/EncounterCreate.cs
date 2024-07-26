@@ -2,6 +2,7 @@ using System.Text.Json.Serialization;
 using Candid.Net;
 using Candid.Net.BillingNotes.V2;
 using Candid.Net.ClaimSubmission.V1;
+using Candid.Net.CustomSchemas.V1;
 using Candid.Net.EncounterProviders.V2;
 using Candid.Net.Encounters.V4;
 using Candid.Net.Guarantor.V1;
@@ -171,4 +172,12 @@ public record EncounterCreate
     /// </summary>
     [JsonPropertyName("tag_ids")]
     public IEnumerable<string>? TagIds { get; init; }
+
+    /// <summary>
+    /// Key-value pairs that must adhere to a schema created via the Custom Schema API. Multiple schema
+    /// instances cannot be created for the same schema on an encounter.
+    ///
+    /// </summary>
+    [JsonPropertyName("schema_instances")]
+    public IEnumerable<SchemaInstance>? SchemaInstances { get; init; }
 }

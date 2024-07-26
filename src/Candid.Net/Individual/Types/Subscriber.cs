@@ -9,7 +9,7 @@ namespace Candid.Net;
 public record Subscriber
 {
     [JsonPropertyName("individual_id")]
-    public required Guid IndividualId { get; init; }
+    public required string IndividualId { get; init; }
 
     [JsonPropertyName("insurance_card")]
     public required InsuranceCard InsuranceCard { get; init; }

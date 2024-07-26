@@ -16,11 +16,12 @@ public class V3Client
         _client = client;
     }
 
-    public async Task<TaskActions> GetActionsAsync(Guid taskId)
+    public async Task<TaskActions> GetActionsAsync(string taskId)
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = $"/api/tasks/v3/{taskId}/actions"
             }
@@ -91,6 +92,7 @@ public class V3Client
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = "/api/tasks/v3",
                 Query = _query
@@ -104,11 +106,12 @@ public class V3Client
         throw new Exception(responseBody);
     }
 
-    public async Task<Task> GetAsync(Guid taskId)
+    public async Task<Task> GetAsync(string taskId)
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = $"/api/tasks/v3/{taskId}"
             }
@@ -126,6 +129,7 @@ public class V3Client
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Post,
                 Path = "/api/tasks/v3",
                 Body = request
@@ -139,11 +143,12 @@ public class V3Client
         throw new Exception(responseBody);
     }
 
-    public async Task<Task> UpdateAsync(Guid taskId, TaskUpdateV3 request)
+    public async Task<Task> UpdateAsync(string taskId, TaskUpdateV3 request)
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethodExtensions.Patch,
                 Path = $"/api/tasks/v3/{taskId}",
                 Body = request

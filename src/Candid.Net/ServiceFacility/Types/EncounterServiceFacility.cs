@@ -8,7 +8,7 @@ namespace Candid.Net;
 public record EncounterServiceFacility
 {
     [JsonPropertyName("service_facility_id")]
-    public required Guid ServiceFacilityId { get; init; }
+    public required string ServiceFacilityId { get; init; }
 
     [JsonPropertyName("organization_name")]
     public required string OrganizationName { get; init; }

@@ -1,6 +1,6 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.FeeSchedules.V3;
+using Candid.Net.CustomSchemas.V1;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 
@@ -9,7 +9,7 @@ using NUnit.Framework;
 namespace Candid.Net.Test;
 
 [TestFixture]
-public class RateEntryTest
+public class SchemaInstanceTest
 {
     [Test]
     public void TestSerialization()
@@ -17,10 +17,13 @@ public class RateEntryTest
         var inputJson =
             @"
         {
-  ""start_date"": ""2024-4-11"",
-  ""end_date"": null,
-  ""rate_cents"": 33000,
-  ""is_deactivated"": false
+  ""schema_id"": ""ec096b13-f80a-471d-aaeb-54b021c9d582"",
+  ""content"": {
+    ""provider_category"": ""internist"",
+    ""is_urgent_care"": true,
+    ""bmi"": 24.2,
+    ""age"": 38
+  }
 }
 ";
 
@@ -29,7 +32,7 @@ public class RateEntryTest
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
         };
 
-        var deserializedObject = JsonSerializer.Deserialize<RateEntry>(
+        var deserializedObject = JsonSerializer.Deserialize<SchemaInstance>(
             inputJson,
             serializerOptions
         );

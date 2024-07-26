@@ -20,7 +20,7 @@ public record Invoice
     public required DateTime UpdatedAt { get; init; }
 
     [JsonPropertyName("organization_id")]
-    public required Guid OrganizationId { get; init; }
+    public required string OrganizationId { get; init; }
 
     /// <summary>
     /// Contains all relevant information from the third-party service this invoice was created in

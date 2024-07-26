@@ -70,6 +70,7 @@ public class V4Client
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = "/api/patient-payments/v4",
                 Query = _query
@@ -86,11 +87,12 @@ public class V4Client
     /// <summary>
     /// Retrieves a previously created patient payment by its `patient_payment_id`.
     /// </summary>
-    public async Task<PatientPayment> GetAsync(Guid patientPaymentId)
+    public async Task<PatientPayment> GetAsync(string patientPaymentId)
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = $"/api/patient-payments/v4/{patientPaymentId}"
             }
@@ -113,6 +115,7 @@ public class V4Client
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Post,
                 Path = "/api/patient-payments/v4",
                 Body = request
@@ -130,13 +133,14 @@ public class V4Client
     /// Updates the patient payment record matching the provided patient_payment_id.
     /// </summary>
     public async Task<PatientPayment> UpdateAsync(
-        Guid patientPaymentId,
+        string patientPaymentId,
         PatientPaymentUpdate request
     )
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethodExtensions.Patch,
                 Path = $"/api/patient-payments/v4/{patientPaymentId}",
                 Body = request
@@ -153,11 +157,12 @@ public class V4Client
     /// <summary>
     /// Deletes the patient payment record matching the provided patient_payment_id.
     /// </summary>
-    public async Task DeleteAsync(Guid patientPaymentId)
+    public async Task DeleteAsync(string patientPaymentId)
     {
         await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Delete,
                 Path = $"/api/patient-payments/v4/{patientPaymentId}"
             }

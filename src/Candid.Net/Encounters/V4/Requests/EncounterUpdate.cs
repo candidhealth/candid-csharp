@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using Candid.Net;
+using Candid.Net.CustomSchemas.V1;
 using Candid.Net.Encounters.V4;
 
 #nullable enable
@@ -41,7 +42,7 @@ public record EncounterUpdate
     ///
     /// </summary>
     [JsonPropertyName("diagnosis_ids")]
-    public IEnumerable<Guid>? DiagnosisIds { get; init; }
+    public IEnumerable<string>? DiagnosisIds { get; init; }
 
     /// <summary>
     /// Names of tags that should be on the encounter.  Note all tags on encounter will be overriden with this list.
@@ -210,4 +211,14 @@ public record EncounterUpdate
     /// </summary>
     [JsonPropertyName("patient_authorized_release")]
     public bool? PatientAuthorizedRelease { get; init; }
+
+    /// <summary>
+    /// Key-value pairs that must adhere to a schema created via the Custom Schema API. Multiple schema
+    /// instances cannot be created for the same schema on an encounter. Updating schema instances utilizes PUT
+    /// semantics, so the schema instances on the encounter will be set to whatever inputs are provided. If null
+    /// is provided as an input, then the encounter's schema instances will be cleared.
+    ///
+    /// </summary>
+    [JsonPropertyName("schema_instances")]
+    public IEnumerable<SchemaInstance>? SchemaInstances { get; init; }
 }

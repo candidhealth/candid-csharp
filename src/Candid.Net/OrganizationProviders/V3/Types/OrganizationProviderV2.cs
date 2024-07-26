@@ -90,7 +90,7 @@ public record OrganizationProviderV2
     /// Auto-generated ID set on creation.
     /// </summary>
     [JsonPropertyName("organization_provider_id")]
-    public required Guid OrganizationProviderId { get; init; }
+    public required string OrganizationProviderId { get; init; }
 
     /// <summary>
     /// Qualification given to a provider (PTAN, Medicaid Provider Id etc.).

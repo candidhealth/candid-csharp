@@ -17,5 +17,5 @@ public record ExpectedNetworkStatusResponse
     public required string Explanation { get; init; }
 
     [JsonPropertyName("contract_id")]
-    public Guid? ContractId { get; init; }
+    public string? ContractId { get; init; }
 }

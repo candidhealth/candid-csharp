@@ -9,7 +9,7 @@ namespace Candid.Net;
 public record Claim
 {
     [JsonPropertyName("claim_id")]
-    public required Guid ClaimId { get; init; }
+    public required string ClaimId { get; init; }
 
     [JsonPropertyName("status")]
     public required ClaimStatus Status { get; init; }

@@ -9,7 +9,7 @@ namespace Candid.Net.InsuranceAdjudications.V1;
 public record ClaimAdjudication
 {
     [JsonPropertyName("claim_id")]
-    public required Guid ClaimId { get; init; }
+    public required string ClaimId { get; init; }
 
     [JsonPropertyName("insurance_allowed_amount_cents")]
     public int? InsuranceAllowedAmountCents { get; init; }
@@ -21,8 +21,8 @@ public record ClaimAdjudication
     public int? ChargeAmountCents { get; init; }
 
     [JsonPropertyName("service_lines")]
-    public Dictionary<Guid, IEnumerable<ServiceLineAdjudication>> ServiceLines { get; init; } =
-        new Dictionary<Guid, IEnumerable<ServiceLineAdjudication>>();
+    public Dictionary<string, IEnumerable<ServiceLineAdjudication>> ServiceLines { get; init; } =
+        new Dictionary<string, IEnumerable<ServiceLineAdjudication>>();
 
     [JsonPropertyName("payer_claim_number")]
     public string? PayerClaimNumber { get; init; }

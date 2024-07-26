@@ -8,10 +8,10 @@ namespace Candid.Net.InsuranceAdjudications.V1;
 public record InsuranceAdjudication
 {
     [JsonPropertyName("insurance_adjudication_id")]
-    public required Guid InsuranceAdjudicationId { get; init; }
+    public required string InsuranceAdjudicationId { get; init; }
 
     [JsonPropertyName("payer_uuid")]
-    public required Guid PayerUuid { get; init; }
+    public required string PayerUuid { get; init; }
 
     [JsonPropertyName("post_date")]
     public DateOnly? PostDate { get; init; }
@@ -26,6 +26,6 @@ public record InsuranceAdjudication
     public string? Note { get; init; }
 
     [JsonPropertyName("claims")]
-    public Dictionary<Guid, IEnumerable<ClaimAdjudication>> Claims { get; init; } =
-        new Dictionary<Guid, IEnumerable<ClaimAdjudication>>();
+    public Dictionary<string, IEnumerable<ClaimAdjudication>> Claims { get; init; } =
+        new Dictionary<string, IEnumerable<ClaimAdjudication>>();
 }

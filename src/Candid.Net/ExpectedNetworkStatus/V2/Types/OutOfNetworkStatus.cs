@@ -11,8 +11,8 @@ public record OutOfNetworkStatus
     public required Explanation Explanation { get; init; }
 
     [JsonPropertyName("routed_payer_uuid")]
-    public required Guid RoutedPayerUuid { get; init; }
+    public required string RoutedPayerUuid { get; init; }
 
     [JsonPropertyName("routed_billing_provider_id")]
-    public required Guid RoutedBillingProviderId { get; init; }
+    public required string RoutedBillingProviderId { get; init; }
 }

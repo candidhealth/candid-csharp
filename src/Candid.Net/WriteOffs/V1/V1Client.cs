@@ -65,6 +65,7 @@ public class V1Client
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = "/api/write-offs/v1",
                 Query = _query
@@ -81,11 +82,12 @@ public class V1Client
     /// <summary>
     /// Retrieves a previously created write off by its `write_off_id`.
     /// </summary>
-    public async Task<object> GetAsync(Guid writeOffId)
+    public async Task<object> GetAsync(string writeOffId)
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = $"/api/write-offs/v1/{writeOffId}"
             }
@@ -107,6 +109,7 @@ public class V1Client
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Post,
                 Path = "/api/write-offs/v1",
                 Body = request
@@ -123,11 +126,12 @@ public class V1Client
     /// <summary>
     /// Reverts a write off given a `write_off_id`.
     /// </summary>
-    public async Task<object> RevertAsync(Guid writeOffId)
+    public async Task<object> RevertAsync(string writeOffId)
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Post,
                 Path = $"/api/write-offs/v1/{writeOffId}/revert"
             }

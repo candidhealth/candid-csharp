@@ -8,7 +8,7 @@ namespace Candid.Net;
 public record Invoice
 {
     [JsonPropertyName("id")]
-    public required Guid Id { get; init; }
+    public required string Id { get; init; }
 
     [JsonPropertyName("created_at")]
     public required DateTime CreatedAt { get; init; }
@@ -17,7 +17,7 @@ public record Invoice
     public required DateTime UpdatedAt { get; init; }
 
     [JsonPropertyName("organzation_id")]
-    public required Guid OrganzationId { get; init; }
+    public required string OrganzationId { get; init; }
 
     [JsonPropertyName("source_id")]
     public required string SourceId { get; init; }

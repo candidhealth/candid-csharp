@@ -13,10 +13,10 @@ public record ContractWithProviders
     /// The providers who can render medical services under the contract
     /// </summary>
     [JsonPropertyName("rendering_provider_ids")]
-    public HashSet<Guid> RenderingProviderIds { get; init; } = new HashSet<Guid>();
+    public HashSet<string> RenderingProviderIds { get; init; } = new HashSet<string>();
 
     [JsonPropertyName("contract_id")]
-    public required Guid ContractId { get; init; }
+    public required string ContractId { get; init; }
 
     /// <summary>
     /// The provider under contract

@@ -7,11 +7,11 @@ namespace Candid.Net;
 public record ServiceLineAllocationTarget
 {
     [JsonPropertyName("service_line_id")]
-    public required Guid ServiceLineId { get; init; }
+    public required string ServiceLineId { get; init; }
 
     [JsonPropertyName("claim_id")]
-    public required Guid ClaimId { get; init; }
+    public required string ClaimId { get; init; }
 
     [JsonPropertyName("encounter_id")]
-    public required Guid EncounterId { get; init; }
+    public required string EncounterId { get; init; }
 }

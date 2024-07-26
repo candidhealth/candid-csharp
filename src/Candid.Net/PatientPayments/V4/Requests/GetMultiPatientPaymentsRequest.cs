@@ -14,18 +14,18 @@ public record GetMultiPatientPaymentsRequest
 
     public string? PatientExternalId { get; init; }
 
-    public Guid? ClaimId { get; init; }
+    public string? ClaimId { get; init; }
 
-    public Guid? ServiceLineId { get; init; }
+    public string? ServiceLineId { get; init; }
 
-    public Guid? BillingProviderId { get; init; }
+    public string? BillingProviderId { get; init; }
 
     /// <summary>
     /// returns payments with unattributed allocations if set to true
     /// </summary>
     public bool? Unattributed { get; init; }
 
-    public Guid? InvoiceId { get; init; }
+    public string? InvoiceId { get; init; }
 
     public PatientTransactionSource? Sources { get; init; }
 

@@ -11,7 +11,7 @@ public record PatientPayment
     public required string PatientPaymentId { get; init; }
 
     [JsonPropertyName("organization_id")]
-    public required Guid OrganizationId { get; init; }
+    public required string OrganizationId { get; init; }
 
     [JsonPropertyName("source_internal_id")]
     public required string SourceInternalId { get; init; }
@@ -41,5 +41,5 @@ public record PatientPayment
     public string? EncounterExternalId { get; init; }
 
     [JsonPropertyName("service_line_id")]
-    public Guid? ServiceLineId { get; init; }
+    public string? ServiceLineId { get; init; }
 }

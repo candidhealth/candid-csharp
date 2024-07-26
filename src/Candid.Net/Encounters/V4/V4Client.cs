@@ -90,6 +90,7 @@ public class V4Client
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = "/api/encounters/v4",
                 Query = _query
@@ -103,11 +104,12 @@ public class V4Client
         throw new Exception(responseBody);
     }
 
-    public async Task<Encounter> GetAsync(Guid encounterId)
+    public async Task<Encounter> GetAsync(string encounterId)
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = $"/api/encounters/v4/{encounterId}"
             }
@@ -125,6 +127,7 @@ public class V4Client
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Post,
                 Path = "/api/encounters/v4",
                 Body = request
@@ -138,11 +141,12 @@ public class V4Client
         throw new Exception(responseBody);
     }
 
-    public async Task<Encounter> UpdateAsync(Guid encounterId, EncounterUpdate request)
+    public async Task<Encounter> UpdateAsync(string encounterId, EncounterUpdate request)
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethodExtensions.Patch,
                 Path = $"/api/encounters/v4/{encounterId}",
                 Body = request

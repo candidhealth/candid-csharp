@@ -23,5 +23,5 @@ public record PatientPaymentCreate
     public IEnumerable<AllocationCreate> Allocations { get; init; } = new List<AllocationCreate>();
 
     [JsonPropertyName("invoice")]
-    public Guid? Invoice { get; init; }
+    public string? Invoice { get; init; }
 }

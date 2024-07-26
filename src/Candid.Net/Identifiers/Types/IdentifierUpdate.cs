@@ -8,7 +8,7 @@ namespace Candid.Net;
 public record IdentifierUpdate
 {
     [JsonPropertyName("identifier_id")]
-    public required Guid IdentifierId { get; init; }
+    public required string IdentifierId { get; init; }
 
     [JsonPropertyName("identifier_code")]
     public IdentifierCode? IdentifierCode { get; init; }

@@ -70,6 +70,7 @@ public class V1Client
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = "/api/patient-refunds/v1",
                 Query = _query
@@ -86,11 +87,12 @@ public class V1Client
     /// <summary>
     /// Retrieves a previously created patient refund by its `patient_refund_id`.
     /// </summary>
-    public async Task<PatientRefund> GetAsync(Guid patientRefundId)
+    public async Task<PatientRefund> GetAsync(string patientRefundId)
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = $"/api/patient-refunds/v1/{patientRefundId}"
             }
@@ -113,6 +115,7 @@ public class V1Client
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Post,
                 Path = "/api/patient-refunds/v1",
                 Body = request
@@ -129,11 +132,15 @@ public class V1Client
     /// <summary>
     /// Updates the patient refund record matching the provided patient_refund_id.
     /// </summary>
-    public async Task<PatientRefund> UpdateAsync(Guid patientRefundId, PatientRefundUpdate request)
+    public async Task<PatientRefund> UpdateAsync(
+        string patientRefundId,
+        PatientRefundUpdate request
+    )
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethodExtensions.Patch,
                 Path = $"/api/patient-refunds/v1/{patientRefundId}",
                 Body = request
@@ -150,11 +157,12 @@ public class V1Client
     /// <summary>
     /// Deletes the patient refund record matching the provided patient_refund_id.
     /// </summary>
-    public async Task DeleteAsync(Guid patientRefundId)
+    public async Task DeleteAsync(string patientRefundId)
     {
         await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Delete,
                 Path = $"/api/patient-refunds/v1/{patientRefundId}"
             }

@@ -15,13 +15,14 @@ public class ServiceFacilityClient
     }
 
     public async Task<EncounterServiceFacility> UpdateAsync(
-        Guid serviceFacilityId,
+        string serviceFacilityId,
         EncounterServiceFacilityUpdate request
     )
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethodExtensions.Patch,
                 Path = $"/api/service_facility/v2/{serviceFacilityId}",
                 Body = request

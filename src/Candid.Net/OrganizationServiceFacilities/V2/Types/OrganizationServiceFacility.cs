@@ -9,7 +9,7 @@ namespace Candid.Net.OrganizationServiceFacilities.V2;
 public record OrganizationServiceFacility
 {
     [JsonPropertyName("organization_service_facility_id")]
-    public required Guid OrganizationServiceFacilityId { get; init; }
+    public required string OrganizationServiceFacilityId { get; init; }
 
     /// <summary>
     /// The name of the service facility.

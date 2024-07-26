@@ -8,7 +8,7 @@ namespace Candid.Net;
 public record Identifier
 {
     [JsonPropertyName("identifier_id")]
-    public required Guid IdentifierId { get; init; }
+    public required string IdentifierId { get; init; }
 
     [JsonPropertyName("period")]
     public DateRangeOptionalEnd? Period { get; init; }

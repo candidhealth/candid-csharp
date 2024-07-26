@@ -23,6 +23,7 @@ public class CoveragesClient
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.PreEncounter,
                 Method = HttpMethod.Post,
                 Path = "/coverages/v1",
                 Body = request
@@ -39,11 +40,12 @@ public class CoveragesClient
     /// <summary>
     /// Updates a Coverage. The path must contain the most recent version to prevent races. Updating historic versions is not supported.
     /// </summary>
-    public async Task<Coverage> UpdateAsync(Guid id, int version, MutableCoverage request)
+    public async Task<Coverage> UpdateAsync(string id, int version, MutableCoverage request)
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.PreEncounter,
                 Method = HttpMethod.Put,
                 Path = $"/coverages/v1/{id}/{version}",
                 Body = request
@@ -60,10 +62,15 @@ public class CoveragesClient
     /// <summary>
     /// gets a specific Coverage
     /// </summary>
-    public async Task<Coverage> GetAsync(Guid id)
+    public async Task<Coverage> GetAsync(string id)
     {
         var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest { Method = HttpMethod.Get, Path = $"/coverages/v1/{id}" }
+            new RawClient.JsonApiRequest
+            {
+                BaseUrl = _client.Options.Environment.PreEncounter,
+                Method = HttpMethod.Get,
+                Path = $"/coverages/v1/{id}"
+            }
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -76,11 +83,12 @@ public class CoveragesClient
     /// <summary>
     /// Gets a coverage along with it's full history. The return list is ordered by version ascending.
     /// </summary>
-    public async Task<IEnumerable<Coverage>> GetHistoryAsync(Guid id)
+    public async Task<IEnumerable<Coverage>> GetHistoryAsync(string id)
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.PreEncounter,
                 Method = HttpMethod.Get,
                 Path = $"/coverages/v1/{id}/history"
             }
@@ -106,6 +114,7 @@ public class CoveragesClient
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.PreEncounter,
                 Method = HttpMethod.Get,
                 Path = "/coverages/v1",
                 Query = _query
@@ -131,6 +140,7 @@ public class CoveragesClient
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.PreEncounter,
                 Method = HttpMethod.Get,
                 Path = "/coverages/v1/updates/scan",
                 Query = _query

@@ -19,11 +19,12 @@ public class V3Client
     /// <summary>
     /// Gets the rate that matches a service line. No result means no rate exists matching the service line's dimensions.
     /// </summary>
-    public async Task<MatchResult?> GetMatchAsync(Guid serviceLineId)
+    public async Task<MatchResult?> GetMatchAsync(string serviceLineId)
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = $"/api/fee-schedules/v3/service-line/{serviceLineId}/match"
             }
@@ -39,11 +40,12 @@ public class V3Client
     /// <summary>
     /// Tests a service line against a rate to see if it matches.
     /// </summary>
-    public async Task<MatchTestResult> TestMatchAsync(Guid serviceLineId, Guid rateId)
+    public async Task<MatchTestResult> TestMatchAsync(string serviceLineId, string rateId)
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = $"/api/fee-schedules/v3/service-line/{serviceLineId}/match/{rateId}"
             }
@@ -116,6 +118,7 @@ public class V3Client
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = "/api/fee-schedules/v3",
                 Query = _query
@@ -190,6 +193,7 @@ public class V3Client
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = "/api/fee-schedules/v3/unique-dimension-values",
                 Query = _query
@@ -206,11 +210,12 @@ public class V3Client
     /// <summary>
     /// Gets every version of a rate.
     /// </summary>
-    public async Task<IEnumerable<Rate>> GetRateHistoryAsync(Guid rateId)
+    public async Task<IEnumerable<Rate>> GetRateHistoryAsync(string rateId)
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = $"/api/fee-schedules/v3/{rateId}/history"
             }
@@ -231,6 +236,7 @@ public class V3Client
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Post,
                 Path = "/api/fee-schedules/v3",
                 Body = request
@@ -247,11 +253,12 @@ public class V3Client
     /// <summary>
     /// Soft deletes a rate from the system. Only the most recent version of a rate can be deleted.
     /// </summary>
-    public async Task DeleteRateAsync(Guid rateId, int version)
+    public async Task DeleteRateAsync(string rateId, int version)
     {
         await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Delete,
                 Path = $"/api/fee-schedules/v3/{rateId}/{version}"
             }
@@ -266,6 +273,7 @@ public class V3Client
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = "/api/fee-schedules/v3/payer-threshold/default"
             }
@@ -290,6 +298,7 @@ public class V3Client
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = "/api/fee-schedules/v3/payer-threshold",
                 Query = _query
@@ -306,11 +315,15 @@ public class V3Client
     /// <summary>
     /// Sets the threshold information for a payer
     /// </summary>
-    public async Task<PayerThreshold> SetPayerThresholdAsync(Guid payerUuid, PayerThreshold request)
+    public async Task<PayerThreshold> SetPayerThresholdAsync(
+        string payerUuid,
+        PayerThreshold request
+    )
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Put,
                 Path = $"/api/fee-schedules/v3/payer-threshold/{payerUuid}",
                 Body = request

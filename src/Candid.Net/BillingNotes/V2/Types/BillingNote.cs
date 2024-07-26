@@ -7,10 +7,10 @@ namespace Candid.Net.BillingNotes.V2;
 public record BillingNote
 {
     [JsonPropertyName("billing_note_id")]
-    public required Guid BillingNoteId { get; init; }
+    public required string BillingNoteId { get; init; }
 
     [JsonPropertyName("encounter_id")]
-    public required Guid EncounterId { get; init; }
+    public required string EncounterId { get; init; }
 
     /// <summary>
     /// An [RFC 3339, section 5.6 datetime](https://ijmacd.github.io/rfc3339-iso8601/).

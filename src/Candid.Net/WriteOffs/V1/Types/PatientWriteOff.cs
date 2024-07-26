@@ -8,7 +8,7 @@ namespace Candid.Net.WriteOffs.V1;
 public record PatientWriteOff
 {
     [JsonPropertyName("write_off_id")]
-    public required Guid WriteOffId { get; init; }
+    public required string WriteOffId { get; init; }
 
     [JsonPropertyName("write_off_timestamp")]
     public required DateTime WriteOffTimestamp { get; init; }
@@ -20,13 +20,13 @@ public record PatientWriteOff
     public required PatientWriteOffReason WriteOffReason { get; init; }
 
     [JsonPropertyName("service_line_id")]
-    public required Guid ServiceLineId { get; init; }
+    public required string ServiceLineId { get; init; }
 
     [JsonPropertyName("reverts_write_off_id")]
-    public Guid? RevertsWriteOffId { get; init; }
+    public string? RevertsWriteOffId { get; init; }
 
     [JsonPropertyName("reverted_by_write_off_id")]
-    public Guid? RevertedByWriteOffId { get; init; }
+    public string? RevertedByWriteOffId { get; init; }
 
     [JsonPropertyName("amount_cents")]
     public required int AmountCents { get; init; }

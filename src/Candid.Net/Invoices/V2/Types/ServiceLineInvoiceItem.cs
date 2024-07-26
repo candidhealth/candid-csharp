@@ -7,7 +7,7 @@ namespace Candid.Net.Invoices.V2;
 public record ServiceLineInvoiceItem
 {
     [JsonPropertyName("service_line_id")]
-    public required Guid ServiceLineId { get; init; }
+    public required string ServiceLineId { get; init; }
 
     [JsonPropertyName("amount_cents")]
     public required int AmountCents { get; init; }

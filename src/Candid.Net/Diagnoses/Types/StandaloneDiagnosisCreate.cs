@@ -8,7 +8,7 @@ namespace Candid.Net;
 public record StandaloneDiagnosisCreate
 {
     [JsonPropertyName("encounter_id")]
-    public required Guid EncounterId { get; init; }
+    public required string EncounterId { get; init; }
 
     /// <summary>
     /// Empty string not allowed.

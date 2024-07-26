@@ -9,7 +9,7 @@ namespace Candid.Net.WriteOffs.V1;
 public record InsuranceWriteOff
 {
     [JsonPropertyName("write_off_id")]
-    public required Guid WriteOffId { get; init; }
+    public required string WriteOffId { get; init; }
 
     [JsonPropertyName("payer")]
     public required Payer Payer { get; init; }
@@ -27,10 +27,10 @@ public record InsuranceWriteOff
     public required InsuranceWriteOffReason WriteOffReason { get; init; }
 
     [JsonPropertyName("reverts_write_off_id")]
-    public Guid? RevertsWriteOffId { get; init; }
+    public string? RevertsWriteOffId { get; init; }
 
     [JsonPropertyName("reverted_by_write_off_id")]
-    public Guid? RevertedByWriteOffId { get; init; }
+    public string? RevertedByWriteOffId { get; init; }
 
     [JsonPropertyName("amount_cents")]
     public required int AmountCents { get; init; }

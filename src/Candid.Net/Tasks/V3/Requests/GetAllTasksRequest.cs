@@ -31,7 +31,7 @@ public record GetAllTasksRequest
     /// <summary>
     /// Only return tasks associated with this encounter
     /// </summary>
-    public Guid? EncounterId { get; init; }
+    public string? EncounterId { get; init; }
 
     /// <summary>
     /// Query tasks by encounter_id, claim_id, task_id, or external_id
@@ -41,7 +41,7 @@ public record GetAllTasksRequest
     /// <summary>
     /// Only return tasks assigned to this user
     /// </summary>
-    public Guid? AssignedToId { get; init; }
+    public string? AssignedToId { get; init; }
 
     /// <summary>
     /// The minimum date of service for the linked encounter

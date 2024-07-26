@@ -37,13 +37,13 @@ public record ComputeAllInNetworkProvidersRequest
     public required StreetAddressShortZip PatientAddress { get; init; }
 
     [JsonPropertyName("billing_provider_id")]
-    public required Guid BillingProviderId { get; init; }
+    public required string BillingProviderId { get; init; }
 
     /// <summary>
     /// The id of the service facility where the appointment will be rendered
     /// </summary>
     [JsonPropertyName("organization_service_facility_id")]
-    public required Guid OrganizationServiceFacilityId { get; init; }
+    public required string OrganizationServiceFacilityId { get; init; }
 
     /// <summary>
     /// Expected date of service

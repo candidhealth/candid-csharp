@@ -24,6 +24,7 @@ public class V1Client
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Post,
                 Path = "/api/import-invoice/v1",
                 Body = request
@@ -86,6 +87,7 @@ public class V1Client
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = "/api/import-invoice/v1",
                 Query = _query
@@ -102,11 +104,12 @@ public class V1Client
     /// <summary>
     /// Retrieve and view an import invoice
     /// </summary>
-    public async Task<ImportInvoice> GetAsync(Guid invoiceId)
+    public async Task<ImportInvoice> GetAsync(string invoiceId)
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = $"/api/import-invoice/v1/{invoiceId}"
             }
@@ -122,11 +125,15 @@ public class V1Client
     /// <summary>
     /// Update the information on the imported invoice
     /// </summary>
-    public async Task<ImportInvoice> UpdateAsync(Guid invoiceId, ImportInvoiceUpdateRequest request)
+    public async Task<ImportInvoice> UpdateAsync(
+        string invoiceId,
+        ImportInvoiceUpdateRequest request
+    )
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethodExtensions.Patch,
                 Path = $"/api/import-invoice/v1/{invoiceId}",
                 Body = request

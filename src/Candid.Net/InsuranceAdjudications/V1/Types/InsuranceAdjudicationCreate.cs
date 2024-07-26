@@ -27,6 +27,6 @@ public record InsuranceAdjudicationCreate
     public string? Note { get; init; }
 
     [JsonPropertyName("claims")]
-    public Dictionary<Guid, IEnumerable<ClaimAdjudicationCreate>> Claims { get; init; } =
-        new Dictionary<Guid, IEnumerable<ClaimAdjudicationCreate>>();
+    public Dictionary<string, IEnumerable<ClaimAdjudicationCreate>> Claims { get; init; } =
+        new Dictionary<string, IEnumerable<ClaimAdjudicationCreate>>();
 }

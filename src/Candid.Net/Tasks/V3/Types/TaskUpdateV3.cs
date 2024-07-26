@@ -11,7 +11,7 @@ public record TaskUpdateV3
     public TaskStatus? Status { get; init; }
 
     [JsonPropertyName("assignee_user_id")]
-    public Guid? AssigneeUserId { get; init; }
+    public string? AssigneeUserId { get; init; }
 
     [JsonPropertyName("blocks_claim_submission")]
     public bool? BlocksClaimSubmission { get; init; }

@@ -18,11 +18,12 @@ public class V1Client
     /// <summary>
     /// Retrieves a previously created insurance adjudication by its `insurance_adjudication_id`.
     /// </summary>
-    public async Task<InsuranceAdjudication> GetAsync(Guid insuranceAdjudicationId)
+    public async Task<InsuranceAdjudication> GetAsync(string insuranceAdjudicationId)
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = $"/api/insurance-adjudications/v1/{insuranceAdjudicationId}"
             }
@@ -43,6 +44,7 @@ public class V1Client
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Post,
                 Path = "/api/insurance-adjudications/v1",
                 Body = request
@@ -59,11 +61,12 @@ public class V1Client
     /// <summary>
     /// Deletes the insurance adjudication record matching the provided insurance_adjudication_id.
     /// </summary>
-    public async Task DeleteAsync(Guid insuranceAdjudicationId)
+    public async Task DeleteAsync(string insuranceAdjudicationId)
     {
         await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Delete,
                 Path = $"/api/insurance-adjudications/v1/{insuranceAdjudicationId}"
             }

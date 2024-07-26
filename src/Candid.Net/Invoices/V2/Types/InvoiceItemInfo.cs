@@ -8,8 +8,8 @@ namespace Candid.Net.Invoices.V2;
 public record InvoiceItemInfo
 {
     [JsonPropertyName("claim_invoice_items")]
-    public Dictionary<Guid, ClaimInvoiceItemInfo> ClaimInvoiceItems { get; init; } =
-        new Dictionary<Guid, ClaimInvoiceItemInfo>();
+    public Dictionary<string, ClaimInvoiceItemInfo> ClaimInvoiceItems { get; init; } =
+        new Dictionary<string, ClaimInvoiceItemInfo>();
 
     [JsonPropertyName("unattributed_items")]
     public IEnumerable<UnattributedInvoiceItem> UnattributedItems { get; init; } =

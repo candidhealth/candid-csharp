@@ -39,7 +39,7 @@ public record Encounter
     public DateOnly? EndDateOfService { get; init; }
 
     [JsonPropertyName("encounter_id")]
-    public required Guid EncounterId { get; init; }
+    public required string EncounterId { get; init; }
 
     [JsonPropertyName("claims")]
     public IEnumerable<Claim> Claims { get; init; } = new List<Claim>();

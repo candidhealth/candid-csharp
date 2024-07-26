@@ -8,7 +8,7 @@ namespace Candid.Net.FeeSchedules.V3;
 public record NewRateVersion
 {
     [JsonPropertyName("rate_id")]
-    public required Guid RateId { get; init; }
+    public required string RateId { get; init; }
 
     /// <summary>
     /// New versions of rates must indicate the exact version they modify. When the system attempts to save this new version, if the latest version in the system does not equal this previos_version, the request will be rejected with a EntityConflictError.

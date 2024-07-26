@@ -23,6 +23,7 @@ public class PatientsClient
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.PreEncounter,
                 Method = HttpMethod.Post,
                 Path = "/patients/v1",
                 Body = request
@@ -42,7 +43,12 @@ public class PatientsClient
     public async Task<Patient> GetAsync(string id)
     {
         var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest { Method = HttpMethod.Get, Path = $"/patients/v1/{id}" }
+            new RawClient.JsonApiRequest
+            {
+                BaseUrl = _client.Options.Environment.PreEncounter,
+                Method = HttpMethod.Get,
+                Path = $"/patients/v1/{id}"
+            }
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -60,6 +66,7 @@ public class PatientsClient
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.PreEncounter,
                 Method = HttpMethod.Get,
                 Path = $"/patients/v1/{id}/history"
             }
@@ -80,6 +87,7 @@ public class PatientsClient
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.PreEncounter,
                 Method = HttpMethod.Put,
                 Path = $"/patients/v1/{id}/{version}",
                 Body = request
@@ -101,6 +109,7 @@ public class PatientsClient
         await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.PreEncounter,
                 Method = HttpMethod.Delete,
                 Path = $"/patients/v1/{id}/{version}"
             }
@@ -120,6 +129,7 @@ public class PatientsClient
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.PreEncounter,
                 Method = HttpMethod.Get,
                 Path = "/patients/v1",
                 Query = _query
@@ -145,6 +155,7 @@ public class PatientsClient
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.PreEncounter,
                 Method = HttpMethod.Get,
                 Path = "/patients/v1/updates/scan",
                 Query = _query

@@ -9,7 +9,7 @@ namespace Candid.Net.InsuranceRefunds.V1;
 public record InsuranceRefund
 {
     [JsonPropertyName("insurance_refund_id")]
-    public required Guid InsuranceRefundId { get; init; }
+    public required string InsuranceRefundId { get; init; }
 
     [JsonPropertyName("payer")]
     public required Payer Payer { get; init; }

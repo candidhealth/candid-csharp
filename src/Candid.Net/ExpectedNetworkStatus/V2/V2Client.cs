@@ -21,13 +21,14 @@ public class V2Client
     /// to discuss enabling this endpoint if it is not available for your organization.
     /// </summary>
     public async Task<ExpectedNetworkStatusResponseV2> ComputeForRenderingProviderAsync(
-        Guid renderingProviderId,
+        string renderingProviderId,
         ExpectedNetworkStatusRequestV2 request
     )
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Post,
                 Path = $"/api/expected-network-status/v2/compute/{renderingProviderId}",
                 Body = request
@@ -53,6 +54,7 @@ public class V2Client
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Post,
                 Path = "/api/expected-network-status/v2/compute",
                 Body = request

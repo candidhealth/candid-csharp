@@ -8,7 +8,7 @@ namespace Candid.Net.ImportInvoice.V1;
 public record CreateImportInvoiceRequest
 {
     [JsonPropertyName("external_payment_account_config_id")]
-    public required Guid ExternalPaymentAccountConfigId { get; init; }
+    public required string ExternalPaymentAccountConfigId { get; init; }
 
     [JsonPropertyName("patient_external_id")]
     public required string PatientExternalId { get; init; }

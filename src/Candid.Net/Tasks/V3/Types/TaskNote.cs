@@ -7,7 +7,7 @@ namespace Candid.Net.Tasks.V3;
 public record TaskNote
 {
     [JsonPropertyName("task_note_id")]
-    public required Guid TaskNoteId { get; init; }
+    public required string TaskNoteId { get; init; }
 
     [JsonPropertyName("text")]
     public required string Text { get; init; }

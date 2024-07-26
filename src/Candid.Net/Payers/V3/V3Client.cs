@@ -15,11 +15,12 @@ public class V3Client
         _client = client;
     }
 
-    public async Task<Payer> GetAsync(Guid payerUuid)
+    public async Task<Payer> GetAsync(string payerUuid)
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = $"/api/payers/v3/{payerUuid}"
             }
@@ -50,6 +51,7 @@ public class V3Client
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = "/api/payers/v3",
                 Query = _query

@@ -58,6 +58,7 @@ public class V1Client
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = "/api/insurance-refunds/v1",
                 Query = _query
@@ -75,11 +76,12 @@ public class V1Client
     /// Retrieves a previously created insurance refund by its `insurance_refund_id`.
     /// If the refund does not exist, a `403` will be thrown.
     /// </summary>
-    public async Task<InsuranceRefund> GetAsync(Guid insuranceRefundId)
+    public async Task<InsuranceRefund> GetAsync(string insuranceRefundId)
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = $"/api/insurance-refunds/v1/{insuranceRefundId}"
             }
@@ -102,6 +104,7 @@ public class V1Client
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Post,
                 Path = "/api/insurance-refunds/v1",
                 Body = request
@@ -120,13 +123,14 @@ public class V1Client
     /// then the allocations must be appropriately updated as well.
     /// </summary>
     public async Task<InsuranceRefund> UpdateAsync(
-        Guid insuranceRefundId,
+        string insuranceRefundId,
         InsuranceRefundUpdate request
     )
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethodExtensions.Patch,
                 Path = $"/api/insurance-refunds/v1/{insuranceRefundId}",
                 Body = request
@@ -145,11 +149,12 @@ public class V1Client
     /// If the matching record's organization_id does not match the authenticated user's
     /// current organization_id, then a response code of `403` will be returned.
     /// </summary>
-    public async Task DeleteAsync(Guid insuranceRefundId)
+    public async Task DeleteAsync(string insuranceRefundId)
     {
         await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
+                BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Delete,
                 Path = $"/api/insurance-refunds/v1/{insuranceRefundId}"
             }

@@ -8,10 +8,10 @@ namespace Candid.Net.PatientRefunds.V1;
 public record PatientRefund
 {
     [JsonPropertyName("patient_refund_id")]
-    public required Guid PatientRefundId { get; init; }
+    public required string PatientRefundId { get; init; }
 
     [JsonPropertyName("organization_id")]
-    public required Guid OrganizationId { get; init; }
+    public required string OrganizationId { get; init; }
 
     [JsonPropertyName("source_internal_id")]
     public string? SourceInternalId { get; init; }
@@ -35,7 +35,7 @@ public record PatientRefund
     public IEnumerable<Allocation> Allocations { get; init; } = new List<Allocation>();
 
     [JsonPropertyName("invoice")]
-    public Guid? Invoice { get; init; }
+    public string? Invoice { get; init; }
 
     [JsonPropertyName("refund_reason")]
     public RefundReason? RefundReason { get; init; }
