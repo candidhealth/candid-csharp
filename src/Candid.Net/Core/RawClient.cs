@@ -1,6 +1,5 @@
 using System.Net.Http;
 using System.Text;
-using System.Text.Json;
 
 namespace Candid.Net.Core;
 
@@ -9,11 +8,7 @@ namespace Candid.Net.Core;
 /// <summary>
 /// Utility class for making raw HTTP requests to the API.
 /// </summary>
-public class RawClient(
-    Dictionary<string, string> headers,
-    Dictionary<string, Func<string>> headerSuppliers,
-    ClientOptions clientOptions
-)
+public class RawClient(Dictionary<string, string> headers, ClientOptions clientOptions)
 {
     /// <summary>
     /// The http client used to make requests.
@@ -38,11 +33,6 @@ public class RawClient(
         {
             httpRequest.Headers.Add(header.Key, header.Value);
         }
-        // Add global headers to the request from supplier
-        foreach (var header in headerSuppliers)
-        {
-            httpRequest.Headers.Add(header.Key, header.Value.Invoke());
-        }
         // Add request headers to the request
         foreach (var header in request.Headers)
         {
@@ -53,9 +43,8 @@ public class RawClient(
         {
             if (jsonRequest.Body != null)
             {
-                var serializerOptions = new JsonSerializerOptions { WriteIndented = true, };
                 httpRequest.Content = new StringContent(
-                    JsonSerializer.Serialize(jsonRequest.Body, serializerOptions),
+                    JsonUtils.Serialize(jsonRequest.Body),
                     Encoding.UTF8,
                     "application/json"
                 );
