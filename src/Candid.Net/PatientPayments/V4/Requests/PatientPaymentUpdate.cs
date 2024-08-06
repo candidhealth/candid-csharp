@@ -7,11 +7,11 @@ namespace Candid.Net.PatientPayments.V4;
 public record PatientPaymentUpdate
 {
     [JsonPropertyName("payment_timestamp")]
-    public DateTime? PaymentTimestamp { get; init; }
+    public DateTime? PaymentTimestamp { get; set; }
 
     [JsonPropertyName("payment_note")]
-    public object? PaymentNote { get; init; }
+    public object? PaymentNote { get; set; }
 
     [JsonPropertyName("invoice")]
-    public object? Invoice { get; init; }
+    public object? Invoice { get; set; }
 }

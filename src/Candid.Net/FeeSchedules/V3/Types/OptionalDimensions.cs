@@ -9,30 +9,30 @@ namespace Candid.Net.FeeSchedules.V3;
 public record OptionalDimensions
 {
     [JsonPropertyName("payer_uuid")]
-    public string? PayerUuid { get; init; }
+    public string? PayerUuid { get; set; }
 
     [JsonPropertyName("organization_billing_provider_id")]
-    public string? OrganizationBillingProviderId { get; init; }
+    public string? OrganizationBillingProviderId { get; set; }
 
     [JsonPropertyName("states")]
-    public HashSet<State> States { get; init; } = new HashSet<State>();
+    public HashSet<State> States { get; set; } = new HashSet<State>();
 
     [JsonPropertyName("zip_codes")]
-    public HashSet<string> ZipCodes { get; init; } = new HashSet<string>();
+    public HashSet<string> ZipCodes { get; set; } = new HashSet<string>();
 
     [JsonPropertyName("license_types")]
-    public HashSet<LicenseType> LicenseTypes { get; init; } = new HashSet<LicenseType>();
+    public HashSet<LicenseType> LicenseTypes { get; set; } = new HashSet<LicenseType>();
 
     [JsonPropertyName("facility_type_codes")]
-    public HashSet<FacilityTypeCode> FacilityTypeCodes { get; init; } =
+    public HashSet<FacilityTypeCode> FacilityTypeCodes { get; set; } =
         new HashSet<FacilityTypeCode>();
 
     [JsonPropertyName("network_types")]
-    public HashSet<NetworkType> NetworkTypes { get; init; } = new HashSet<NetworkType>();
+    public HashSet<NetworkType> NetworkTypes { get; set; } = new HashSet<NetworkType>();
 
     [JsonPropertyName("cpt_code")]
-    public string? CptCode { get; init; }
+    public string? CptCode { get; set; }
 
     [JsonPropertyName("modifiers")]
-    public HashSet<ProcedureModifier> Modifiers { get; init; } = new HashSet<ProcedureModifier>();
+    public HashSet<ProcedureModifier> Modifiers { get; set; } = new HashSet<ProcedureModifier>();
 }

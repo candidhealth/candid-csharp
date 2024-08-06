@@ -1,3 +1,4 @@
+using System.Text.Json;
 using Candid.Net;
 using Candid.Net.Core;
 
@@ -16,7 +17,8 @@ public class ServiceFacilityClient
 
     public async Task<EncounterServiceFacility> UpdateAsync(
         string serviceFacilityId,
-        EncounterServiceFacilityUpdate request
+        EncounterServiceFacilityUpdate request,
+        RequestOptions? options = null
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -25,14 +27,27 @@ public class ServiceFacilityClient
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethodExtensions.Patch,
                 Path = $"/api/service_facility/v2/{serviceFacilityId}",
-                Body = request
+                Body = request,
+                Options = options
             }
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonUtils.Deserialize<EncounterServiceFacility>(responseBody)!;
+            try
+            {
+                return JsonUtils.Deserialize<EncounterServiceFacility>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
         }
-        throw new Exception(responseBody);
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            JsonUtils.Deserialize<object>(responseBody)
+        );
     }
 }

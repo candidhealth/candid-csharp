@@ -8,32 +8,32 @@ namespace Candid.Net.PatientPayments.V4;
 public record PatientPayment
 {
     [JsonPropertyName("patient_payment_id")]
-    public required string PatientPaymentId { get; init; }
+    public required string PatientPaymentId { get; set; }
 
     [JsonPropertyName("organization_id")]
-    public required string OrganizationId { get; init; }
+    public required string OrganizationId { get; set; }
 
     [JsonPropertyName("source_internal_id")]
-    public string? SourceInternalId { get; init; }
+    public string? SourceInternalId { get; set; }
 
     [JsonPropertyName("payment_source")]
-    public required PatientTransactionSource PaymentSource { get; init; }
+    public required PatientTransactionSource PaymentSource { get; set; }
 
     [JsonPropertyName("amount_cents")]
-    public required int AmountCents { get; init; }
+    public required int AmountCents { get; set; }
 
     [JsonPropertyName("patient_external_id")]
-    public required string PatientExternalId { get; init; }
+    public required string PatientExternalId { get; set; }
 
     [JsonPropertyName("payment_timestamp")]
-    public DateTime? PaymentTimestamp { get; init; }
+    public DateTime? PaymentTimestamp { get; set; }
 
     [JsonPropertyName("payment_note")]
-    public string? PaymentNote { get; init; }
+    public string? PaymentNote { get; set; }
 
     [JsonPropertyName("allocations")]
-    public IEnumerable<Allocation> Allocations { get; init; } = new List<Allocation>();
+    public IEnumerable<Allocation> Allocations { get; set; } = new List<Allocation>();
 
     [JsonPropertyName("invoice")]
-    public string? Invoice { get; init; }
+    public string? Invoice { get; set; }
 }

@@ -7,8 +7,8 @@ namespace Candid.Net;
 public record EraBase
 {
     [JsonPropertyName("check_number")]
-    public required string CheckNumber { get; init; }
+    public required string CheckNumber { get; set; }
 
     [JsonPropertyName("check_date")]
-    public required string CheckDate { get; init; }
+    public required string CheckDate { get; set; }
 }

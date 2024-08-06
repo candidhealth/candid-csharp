@@ -10,11 +10,11 @@ public record AuthGetTokenRequest
     /// Your application's Client ID.
     /// </summary>
     [JsonPropertyName("client_id")]
-    public required string ClientId { get; init; }
+    public required string ClientId { get; set; }
 
     /// <summary>
     /// Your application's Client Secret.
     /// </summary>
     [JsonPropertyName("client_secret")]
-    public required string ClientSecret { get; init; }
+    public required string ClientSecret { get; set; }
 }

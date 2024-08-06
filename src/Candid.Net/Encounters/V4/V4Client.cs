@@ -16,9 +16,13 @@ public class V4Client
         _client = client;
     }
 
-    public async Task<EncounterPage> GetAllAsync(GetAllEncountersRequest request)
+    public async Task<EncounterPage> GetAllAsync(
+        GetAllEncountersRequest request,
+        RequestOptions? options = null
+    )
     {
         var _query = new Dictionary<string, object>() { };
+        _query["tag_ids"] = request.TagIds;
         if (request.Limit != null)
         {
             _query["limit"] = request.Limit.ToString();
@@ -61,10 +65,6 @@ public class V4Client
                 Constants.DateTimeFormat
             );
         }
-        if (request.TagIds != null)
-        {
-            _query["tag_ids"] = request.TagIds;
-        }
         if (request.WorkQueueId != null)
         {
             _query["work_queue_id"] = request.WorkQueueId;
@@ -93,36 +93,65 @@ public class V4Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = "/api/encounters/v4",
-                Query = _query
+                Query = _query,
+                Options = options
             }
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonUtils.Deserialize<EncounterPage>(responseBody)!;
+            try
+            {
+                return JsonUtils.Deserialize<EncounterPage>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
         }
-        throw new Exception(responseBody);
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            JsonUtils.Deserialize<object>(responseBody)
+        );
     }
 
-    public async Task<Encounter> GetAsync(string encounterId)
+    public async Task<Encounter> GetAsync(string encounterId, RequestOptions? options = null)
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
-                Path = $"/api/encounters/v4/{encounterId}"
+                Path = $"/api/encounters/v4/{encounterId}",
+                Options = options
             }
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonUtils.Deserialize<Encounter>(responseBody)!;
+            try
+            {
+                return JsonUtils.Deserialize<Encounter>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
         }
-        throw new Exception(responseBody);
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            JsonUtils.Deserialize<object>(responseBody)
+        );
     }
 
-    public async Task<Encounter> CreateAsync(EncounterCreate request)
+    public async Task<Encounter> CreateAsync(
+        EncounterCreate request,
+        RequestOptions? options = null
+    )
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
@@ -130,18 +159,35 @@ public class V4Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Post,
                 Path = "/api/encounters/v4",
-                Body = request
+                Body = request,
+                Options = options
             }
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonUtils.Deserialize<Encounter>(responseBody)!;
+            try
+            {
+                return JsonUtils.Deserialize<Encounter>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
         }
-        throw new Exception(responseBody);
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            JsonUtils.Deserialize<object>(responseBody)
+        );
     }
 
-    public async Task<Encounter> UpdateAsync(string encounterId, EncounterUpdate request)
+    public async Task<Encounter> UpdateAsync(
+        string encounterId,
+        EncounterUpdate request,
+        RequestOptions? options = null
+    )
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
@@ -149,14 +195,27 @@ public class V4Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethodExtensions.Patch,
                 Path = $"/api/encounters/v4/{encounterId}",
-                Body = request
+                Body = request,
+                Options = options
             }
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonUtils.Deserialize<Encounter>(responseBody)!;
+            try
+            {
+                return JsonUtils.Deserialize<Encounter>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
         }
-        throw new Exception(responseBody);
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            JsonUtils.Deserialize<object>(responseBody)
+        );
     }
 }

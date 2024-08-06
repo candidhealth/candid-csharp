@@ -8,8 +8,8 @@ namespace Candid.Net.FeeSchedules.V3;
 public record MatchResult
 {
     [JsonPropertyName("threshold")]
-    public required ThresholdMatch Threshold { get; init; }
+    public required ThresholdMatch Threshold { get; set; }
 
     [JsonPropertyName("rate_id")]
-    public required string RateId { get; init; }
+    public required string RateId { get; set; }
 }

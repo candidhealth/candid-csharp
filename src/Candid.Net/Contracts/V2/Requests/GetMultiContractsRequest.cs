@@ -7,26 +7,26 @@ namespace Candid.Net.Contracts.V2;
 
 public record GetMultiContractsRequest
 {
-    public string? PageToken { get; init; }
+    public string? PageToken { get; set; }
 
     /// <summary>
     /// Max number of contracts returned. Defaults to 1000. Max is 1000.
     /// </summary>
-    public int? Limit { get; init; }
+    public int? Limit { get; set; }
 
-    public string? ContractingProviderId { get; init; }
+    public string? ContractingProviderId { get; set; }
 
-    public string? RenderingProviderIds { get; init; }
+    public IEnumerable<string> RenderingProviderIds { get; set; } = new List<string>();
 
     /// <summary>
     /// Filter to contracts that include any of the included payer names.
     /// </summary>
-    public string? PayerNames { get; init; }
+    public IEnumerable<string> PayerNames { get; set; } = new List<string>();
 
-    public State? States { get; init; }
+    public IEnumerable<State> States { get; set; } = new List<State>();
 
     /// <summary>
     /// The status of the contract. Defaults to `pending`
     /// </summary>
-    public ContractStatus? ContractStatus { get; init; }
+    public ContractStatus? ContractStatus { get; set; }
 }

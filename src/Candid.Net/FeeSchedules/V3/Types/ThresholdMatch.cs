@@ -8,14 +8,14 @@ namespace Candid.Net.FeeSchedules.V3;
 public record ThresholdMatch
 {
     [JsonPropertyName("threshold")]
-    public required PayerThreshold Threshold { get; init; }
+    public required PayerThreshold Threshold { get; set; }
 
     [JsonPropertyName("rate_cents")]
-    public required int RateCents { get; init; }
+    public required int RateCents { get; set; }
 
     [JsonPropertyName("match")]
-    public required bool Match { get; init; }
+    public required bool Match { get; set; }
 
     [JsonPropertyName("explanation")]
-    public required string Explanation { get; init; }
+    public required string Explanation { get; set; }
 }

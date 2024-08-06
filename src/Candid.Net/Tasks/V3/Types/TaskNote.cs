@@ -7,17 +7,17 @@ namespace Candid.Net.Tasks.V3;
 public record TaskNote
 {
     [JsonPropertyName("task_note_id")]
-    public required string TaskNoteId { get; init; }
+    public required string TaskNoteId { get; set; }
 
     [JsonPropertyName("text")]
-    public required string Text { get; init; }
+    public required string Text { get; set; }
 
     [JsonPropertyName("created_at")]
-    public required DateTime CreatedAt { get; init; }
+    public required DateTime CreatedAt { get; set; }
 
     [JsonPropertyName("author_name")]
-    public required string AuthorName { get; init; }
+    public required string AuthorName { get; set; }
 
     [JsonPropertyName("author_organization_name")]
-    public required string AuthorOrganizationName { get; init; }
+    public required string AuthorOrganizationName { get; set; }
 }

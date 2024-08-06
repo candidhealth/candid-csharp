@@ -7,11 +7,11 @@ namespace Candid.Net.Encounters.V4;
 public record IntakeFollowUp
 {
     [JsonPropertyName("id")]
-    public required string Id { get; init; }
+    public required string Id { get; set; }
 
     [JsonPropertyName("text")]
-    public required string Text { get; init; }
+    public required string Text { get; set; }
 
     [JsonPropertyName("response")]
-    public string? Response { get; init; }
+    public string? Response { get; set; }
 }

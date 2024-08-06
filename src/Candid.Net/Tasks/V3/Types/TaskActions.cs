@@ -8,5 +8,5 @@ namespace Candid.Net.Tasks.V3;
 public record TaskActions
 {
     [JsonPropertyName("actions")]
-    public IEnumerable<TaskAction> Actions { get; init; } = new List<TaskAction>();
+    public IEnumerable<TaskAction> Actions { get; set; } = new List<TaskAction>();
 }

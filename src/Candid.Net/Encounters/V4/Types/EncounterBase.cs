@@ -14,13 +14,13 @@ public record EncounterBase
     /// This field should not contain PHI.
     /// </summary>
     [JsonPropertyName("external_id")]
-    public required string ExternalId { get; init; }
+    public required string ExternalId { get; set; }
 
     /// <summary>
     /// Box 23 on the CMS-1500 claim form.
     /// </summary>
     [JsonPropertyName("prior_authorization_number")]
-    public string? PriorAuthorizationNumber { get; init; }
+    public string? PriorAuthorizationNumber { get; set; }
 
     /// <summary>
     /// Whether this patient has authorized the release of medical information
@@ -28,7 +28,7 @@ public record EncounterBase
     /// Box 12 on the CMS-1500 claim form.
     /// </summary>
     [JsonPropertyName("patient_authorized_release")]
-    public required bool PatientAuthorizedRelease { get; init; }
+    public required bool PatientAuthorizedRelease { get; set; }
 
     /// <summary>
     /// Whether this patient has authorized insurance payments to be made to you,
@@ -36,7 +36,7 @@ public record EncounterBase
     /// Box 13 on the CMS-1500 claim form.
     /// </summary>
     [JsonPropertyName("benefits_assigned_to_provider")]
-    public required bool BenefitsAssignedToProvider { get; init; }
+    public required bool BenefitsAssignedToProvider { get; set; }
 
     /// <summary>
     /// Whether you have accepted the patient's authorization for insurance payments
@@ -44,28 +44,28 @@ public record EncounterBase
     /// Box 27 on the CMS-1500 claim form.
     /// </summary>
     [JsonPropertyName("provider_accepts_assignment")]
-    public required bool ProviderAcceptsAssignment { get; init; }
+    public required bool ProviderAcceptsAssignment { get; set; }
 
     /// <summary>
     /// Human-readable description of the appointment type (ex: "Acupuncture - Headaches").
     /// </summary>
     [JsonPropertyName("appointment_type")]
-    public string? AppointmentType { get; init; }
+    public string? AppointmentType { get; set; }
 
     [JsonPropertyName("existing_medications")]
-    public IEnumerable<Medication>? ExistingMedications { get; init; }
+    public IEnumerable<Medication>? ExistingMedications { get; set; }
 
     [JsonPropertyName("vitals")]
-    public Vitals? Vitals { get; init; }
+    public Vitals? Vitals { get; set; }
 
     [JsonPropertyName("interventions")]
-    public IEnumerable<Intervention>? Interventions { get; init; }
+    public IEnumerable<Intervention>? Interventions { get; set; }
 
     /// <summary>
     /// Specifies the address to which payments for the claim should be sent.
     /// </summary>
     [JsonPropertyName("pay_to_address")]
-    public StreetAddressLongZip? PayToAddress { get; init; }
+    public StreetAddressLongZip? PayToAddress { get; set; }
 
     /// <summary>
     /// Whether or not this was a synchronous or asynchronous encounter.
@@ -75,7 +75,7 @@ public record EncounterBase
     /// directly with the provider, such as over video or a phone call.
     /// </summary>
     [JsonPropertyName("synchronicity")]
-    public SynchronicityType? Synchronicity { get; init; }
+    public SynchronicityType? Synchronicity { get; set; }
 
     /// <summary>
     /// Defines if the Encounter is to be billed by Candid to the responsible_party.
@@ -83,20 +83,20 @@ public record EncounterBase
     /// if the Encounter has not occurred yet or if there is no intention of ever billing the responsible_party.
     /// </summary>
     [JsonPropertyName("billable_status")]
-    public required BillableStatusType BillableStatus { get; init; }
+    public required BillableStatusType BillableStatus { get; set; }
 
     /// <summary>
     /// Defines the party to be billed with the initial balance owed on the claim.
     /// </summary>
     [JsonPropertyName("responsible_party")]
-    public required ResponsiblePartyType ResponsibleParty { get; init; }
+    public required ResponsiblePartyType ResponsibleParty { get; set; }
 
     /// <summary>
     /// Defines additional information on the claim needed by the payer.
     /// Box 19 on the CMS-1500 claim form.
     /// </summary>
     [JsonPropertyName("additional_information")]
-    public string? AdditionalInformation { get; init; }
+    public string? AdditionalInformation { get; set; }
 
     /// <summary>
     /// 837p Loop2300 REF\*4N
@@ -105,7 +105,7 @@ public record EncounterBase
     /// obtaining the authorization.
     /// </summary>
     [JsonPropertyName("service_authorization_exception_code")]
-    public ServiceAuthorizationExceptionCode? ServiceAuthorizationExceptionCode { get; init; }
+    public ServiceAuthorizationExceptionCode? ServiceAuthorizationExceptionCode { get; set; }
 
     /// <summary>
     /// 837p Loop2300 DTP\*435, CMS-1500 Box 18
@@ -114,14 +114,14 @@ public record EncounterBase
     /// Required on all claims involving inpatient medical visits.
     /// </summary>
     [JsonPropertyName("admission_date")]
-    public DateOnly? AdmissionDate { get; init; }
+    public DateOnly? AdmissionDate { get; set; }
 
     /// <summary>
     /// 837p Loop2300 DTP\*096, CMS-1500 Box 18
     /// Required for inpatient claims when the patient was discharged from the facility and the discharge date is known.
     /// </summary>
     [JsonPropertyName("discharge_date")]
-    public DateOnly? DischargeDate { get; init; }
+    public DateOnly? DischargeDate { get; set; }
 
     /// <summary>
     /// 837p Loop2300 DTP\*431, CMS-1500 Box 14
@@ -130,19 +130,19 @@ public record EncounterBase
     /// This date is the onset of acute symptoms for the current illness or condition.
     /// </summary>
     [JsonPropertyName("onset_of_current_illness_or_symptom_date")]
-    public DateOnly? OnsetOfCurrentIllnessOrSymptomDate { get; init; }
+    public DateOnly? OnsetOfCurrentIllnessOrSymptomDate { get; set; }
 
     /// <summary>
     /// 837p Loop2300 DTP\*484, CMS-1500 Box 14
     /// Required when, in the judgment of the provider, the services on this claim are related to the patient's pregnancy.
     /// </summary>
     [JsonPropertyName("last_menstrual_period_date")]
-    public DateOnly? LastMenstrualPeriodDate { get; init; }
+    public DateOnly? LastMenstrualPeriodDate { get; set; }
 
     /// <summary>
     /// 837i Loop2300, CLM-1300 Box 20
     /// Code indicating the reason why a request was delayed
     /// </summary>
     [JsonPropertyName("delay_reason_code")]
-    public DelayReasonCode? DelayReasonCode { get; init; }
+    public DelayReasonCode? DelayReasonCode { get; set; }
 }

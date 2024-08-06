@@ -10,17 +10,17 @@ public record EncounterProviderBase
     /// If the provider is an individual, this should be set instead of organization name
     /// </summary>
     [JsonPropertyName("first_name")]
-    public string? FirstName { get; init; }
+    public string? FirstName { get; set; }
 
     /// <summary>
     /// If the provider is an individual, this should be set instead of organization name
     /// </summary>
     [JsonPropertyName("last_name")]
-    public string? LastName { get; init; }
+    public string? LastName { get; set; }
 
     /// <summary>
     /// If the provider is an organization, this should be set instead of first + last name
     /// </summary>
     [JsonPropertyName("organization_name")]
-    public string? OrganizationName { get; init; }
+    public string? OrganizationName { get; set; }
 }

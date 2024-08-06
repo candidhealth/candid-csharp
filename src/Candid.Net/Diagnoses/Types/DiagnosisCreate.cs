@@ -11,13 +11,13 @@ public record DiagnosisCreate
     /// Empty string not allowed.
     /// </summary>
     [JsonPropertyName("name")]
-    public string? Name { get; init; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// Typically, providers submitting claims to Candid are using ICD-10 diagnosis codes. If you are using ICD-10 codes, the primary diagnosis code listed on the claim should use the ABK code_type. If more than one diagnosis is being submitted on a claim, please use ABF for the rest of the listed diagnoses. If you are using ICD-9 diagnosis codes, use BK and BF for the principal and following diagnosis code(s) respectively.
     /// </summary>
     [JsonPropertyName("code_type")]
-    public required DiagnosisTypeCode CodeType { get; init; }
+    public required DiagnosisTypeCode CodeType { get; set; }
 
     /// <summary>
     /// Empty string not allowed.
@@ -31,5 +31,5 @@ public record DiagnosisCreate
     /// - Up to 4 (or as few as 0) letters and digits
     /// </summary>
     [JsonPropertyName("code")]
-    public required string Code { get; init; }
+    public required string Code { get; set; }
 }

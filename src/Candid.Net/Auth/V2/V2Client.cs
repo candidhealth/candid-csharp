@@ -1,4 +1,5 @@
 using System.Net.Http;
+using System.Text.Json;
 using Candid.Net.Auth.V2;
 using Candid.Net.Core;
 
@@ -34,7 +35,10 @@ public class V2Client
     /// requests; if the client attempts to generate a token too often, it will be rate-limited and will receive an `HTTP 429 Too Many Requests` error.
     /// </Callout>
     /// </summary>
-    public async Task<AuthGetTokenResponse> GetTokenAsync(AuthGetTokenRequest request)
+    public async Task<AuthGetTokenResponse> GetTokenAsync(
+        AuthGetTokenRequest request,
+        RequestOptions? options = null
+    )
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
@@ -42,14 +46,27 @@ public class V2Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Post,
                 Path = "/api/auth/v2/token",
-                Body = request
+                Body = request,
+                Options = options
             }
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonUtils.Deserialize<AuthGetTokenResponse>(responseBody)!;
+            try
+            {
+                return JsonUtils.Deserialize<AuthGetTokenResponse>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
         }
-        throw new Exception(responseBody);
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            JsonUtils.Deserialize<object>(responseBody)
+        );
     }
 }

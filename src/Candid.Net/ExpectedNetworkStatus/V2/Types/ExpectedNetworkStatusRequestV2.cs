@@ -19,35 +19,35 @@ public record ExpectedNetworkStatusRequestV2
     /// to qualify as behavioral health.
     /// </summary>
     [JsonPropertyName("service_type")]
-    public required ServiceType ServiceType { get; init; }
+    public required ServiceType ServiceType { get; set; }
 
     /// <summary>
     /// Expected place of service
     /// </summary>
     [JsonPropertyName("place_of_service_code")]
-    public required FacilityTypeCode PlaceOfServiceCode { get; init; }
+    public required FacilityTypeCode PlaceOfServiceCode { get; set; }
 
     /// <summary>
     /// Information present on the patient's insurance card
     /// </summary>
     [JsonPropertyName("subscriber_information")]
-    public required ExpectedNetworkStatusSubscriberInformation SubscriberInformation { get; init; }
+    public required ExpectedNetworkStatusSubscriberInformation SubscriberInformation { get; set; }
 
     [JsonPropertyName("patient_address")]
-    public required StreetAddressShortZip PatientAddress { get; init; }
+    public required StreetAddressShortZip PatientAddress { get; set; }
 
     [JsonPropertyName("billing_provider_id")]
-    public required string BillingProviderId { get; init; }
+    public required string BillingProviderId { get; set; }
 
     /// <summary>
     /// The id of the service facility where the appointment will be rendered
     /// </summary>
     [JsonPropertyName("organization_service_facility_id")]
-    public required string OrganizationServiceFacilityId { get; init; }
+    public required string OrganizationServiceFacilityId { get; set; }
 
     /// <summary>
     /// Expected date of service
     /// </summary>
     [JsonPropertyName("date_of_service")]
-    public required DateOnly DateOfService { get; init; }
+    public required DateOnly DateOfService { get; set; }
 }

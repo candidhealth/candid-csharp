@@ -7,8 +7,8 @@ namespace Candid.Net.Tasks.V3;
 public record TaskAssignment
 {
     [JsonPropertyName("task_assignment_id")]
-    public required string TaskAssignmentId { get; init; }
+    public required string TaskAssignmentId { get; set; }
 
     [JsonPropertyName("assignee_user_id")]
-    public string? AssigneeUserId { get; init; }
+    public string? AssigneeUserId { get; set; }
 }

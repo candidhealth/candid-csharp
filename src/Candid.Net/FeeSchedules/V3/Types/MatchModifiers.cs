@@ -8,11 +8,11 @@ namespace Candid.Net.FeeSchedules.V3;
 public record MatchModifiers
 {
     [JsonPropertyName("value")]
-    public HashSet<ProcedureModifier> Value { get; init; } = new HashSet<ProcedureModifier>();
+    public HashSet<ProcedureModifier> Value { get; set; } = new HashSet<ProcedureModifier>();
 
     [JsonPropertyName("match")]
-    public required bool Match { get; init; }
+    public required bool Match { get; set; }
 
     [JsonPropertyName("explanation")]
-    public required string Explanation { get; init; }
+    public required string Explanation { get; set; }
 }

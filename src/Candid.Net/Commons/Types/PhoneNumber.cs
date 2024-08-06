@@ -8,8 +8,8 @@ namespace Candid.Net;
 public record PhoneNumber
 {
     [JsonPropertyName("number")]
-    public required string Number { get; init; }
+    public required string Number { get; set; }
 
     [JsonPropertyName("type")]
-    public required PhoneNumberType Type { get; init; }
+    public required PhoneNumberType Type { get; set; }
 }

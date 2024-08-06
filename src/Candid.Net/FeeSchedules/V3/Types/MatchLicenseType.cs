@@ -8,11 +8,11 @@ namespace Candid.Net.FeeSchedules.V3;
 public record MatchLicenseType
 {
     [JsonPropertyName("value")]
-    public LicenseType? Value { get; init; }
+    public LicenseType? Value { get; set; }
 
     [JsonPropertyName("match")]
-    public required bool Match { get; init; }
+    public required bool Match { get; set; }
 
     [JsonPropertyName("explanation")]
-    public required string Explanation { get; init; }
+    public required string Explanation { get; set; }
 }

@@ -7,8 +7,8 @@ namespace Candid.Net.PreEncounter;
 public record Period
 {
     [JsonPropertyName("start")]
-    public DateOnly? Start { get; init; }
+    public DateOnly? Start { get; set; }
 
     [JsonPropertyName("end")]
-    public DateOnly? End { get; init; }
+    public DateOnly? End { get; set; }
 }

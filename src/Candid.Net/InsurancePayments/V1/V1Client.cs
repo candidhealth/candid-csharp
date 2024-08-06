@@ -19,7 +19,10 @@ public class V1Client
     /// <summary>
     /// Returns all non-ERA originated insurance payments satisfying the search criteria
     /// </summary>
-    public async Task<InsurancePaymentsPage> GetMultiAsync(GetMultiInsurancePaymentRequest request)
+    public async Task<InsurancePaymentsPage> GetMultiAsync(
+        GetMultiInsurancePaymentRequest request,
+        RequestOptions? options = null
+    )
     {
         var _query = new Dictionary<string, object>() { };
         if (request.Limit != null)
@@ -60,37 +63,66 @@ public class V1Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = "/api/insurance-payments/v1",
-                Query = _query
+                Query = _query,
+                Options = options
             }
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonUtils.Deserialize<InsurancePaymentsPage>(responseBody)!;
+            try
+            {
+                return JsonUtils.Deserialize<InsurancePaymentsPage>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
         }
-        throw new Exception(responseBody);
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            JsonUtils.Deserialize<object>(responseBody)
+        );
     }
 
     /// <summary>
     /// Retrieves a previously created insurance payment by its `insurance_payment_id`.
     /// If the payment does not exist, a `403` will be thrown.
     /// </summary>
-    public async Task<InsurancePayment> GetAsync(string insurancePaymentId)
+    public async Task<InsurancePayment> GetAsync(
+        string insurancePaymentId,
+        RequestOptions? options = null
+    )
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
-                Path = $"/api/insurance-payments/v1/{insurancePaymentId}"
+                Path = $"/api/insurance-payments/v1/{insurancePaymentId}",
+                Options = options
             }
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonUtils.Deserialize<InsurancePayment>(responseBody)!;
+            try
+            {
+                return JsonUtils.Deserialize<InsurancePayment>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
         }
-        throw new Exception(responseBody);
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            JsonUtils.Deserialize<object>(responseBody)
+        );
     }
 
     /// <summary>
@@ -98,7 +130,10 @@ public class V1Client
     /// should only be used for insurance payments that do not have a corresponding ERA (for example: a settlement check
     /// from a payer). If the payment is an ERA, then you should used the insurance-adjudications API.
     /// </summary>
-    public async Task<InsurancePayment> CreateAsync(InsurancePaymentCreate request)
+    public async Task<InsurancePayment> CreateAsync(
+        InsurancePaymentCreate request,
+        RequestOptions? options = null
+    )
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
@@ -106,15 +141,28 @@ public class V1Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Post,
                 Path = "/api/insurance-payments/v1",
-                Body = request
+                Body = request,
+                Options = options
             }
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonUtils.Deserialize<InsurancePayment>(responseBody)!;
+            try
+            {
+                return JsonUtils.Deserialize<InsurancePayment>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
         }
-        throw new Exception(responseBody);
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            JsonUtils.Deserialize<object>(responseBody)
+        );
     }
 
     /// <summary>
@@ -123,7 +171,8 @@ public class V1Client
     /// </summary>
     public async Task<InsurancePayment> UpdateAsync(
         string insurancePaymentId,
-        InsurancePaymentUpdate request
+        InsurancePaymentUpdate request,
+        RequestOptions? options = null
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -132,15 +181,28 @@ public class V1Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethodExtensions.Patch,
                 Path = $"/api/insurance-payments/v1/{insurancePaymentId}",
-                Body = request
+                Body = request,
+                Options = options
             }
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonUtils.Deserialize<InsurancePayment>(responseBody)!;
+            try
+            {
+                return JsonUtils.Deserialize<InsurancePayment>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
         }
-        throw new Exception(responseBody);
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            JsonUtils.Deserialize<object>(responseBody)
+        );
     }
 
     /// <summary>
@@ -148,15 +210,26 @@ public class V1Client
     /// If the matching record's organization_id does not match the authenticated user's
     /// current organization_id, then a response code of `403` will be returned.
     /// </summary>
-    public async Task DeleteAsync(string insurancePaymentId)
+    public async Task DeleteAsync(string insurancePaymentId, RequestOptions? options = null)
     {
-        await _client.MakeRequestAsync(
+        var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Delete,
-                Path = $"/api/insurance-payments/v1/{insurancePaymentId}"
+                Path = $"/api/insurance-payments/v1/{insurancePaymentId}",
+                Options = options
             }
+        );
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            return;
+        }
+        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            JsonUtils.Deserialize<object>(responseBody)
         );
     }
 }

@@ -7,17 +7,17 @@ namespace Candid.Net.ServiceLines.V2;
 public record ServiceLineAdjustment
 {
     [JsonPropertyName("created_at")]
-    public required DateTime CreatedAt { get; init; }
+    public required DateTime CreatedAt { get; set; }
 
     [JsonPropertyName("adjustment_group_code")]
-    public string? AdjustmentGroupCode { get; init; }
+    public string? AdjustmentGroupCode { get; set; }
 
     [JsonPropertyName("adjustment_reason_code")]
-    public string? AdjustmentReasonCode { get; init; }
+    public string? AdjustmentReasonCode { get; set; }
 
     [JsonPropertyName("adjustment_amount_cents")]
-    public int? AdjustmentAmountCents { get; init; }
+    public int? AdjustmentAmountCents { get; set; }
 
     [JsonPropertyName("adjustment_note")]
-    public string? AdjustmentNote { get; init; }
+    public string? AdjustmentNote { get; set; }
 }

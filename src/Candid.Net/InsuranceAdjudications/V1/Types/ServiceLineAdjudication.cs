@@ -9,34 +9,34 @@ namespace Candid.Net.InsuranceAdjudications.V1;
 public record ServiceLineAdjudication
 {
     [JsonPropertyName("service_line_adjudication_id")]
-    public required string ServiceLineAdjudicationId { get; init; }
+    public required string ServiceLineAdjudicationId { get; set; }
 
     /// <summary>
     /// Will be treated as a denial if present
     /// </summary>
     [JsonPropertyName("denial_reason")]
-    public DenialReasonContent? DenialReason { get; init; }
+    public DenialReasonContent? DenialReason { get; set; }
 
     [JsonPropertyName("insurance_allowed_amount_cents")]
-    public int? InsuranceAllowedAmountCents { get; init; }
+    public int? InsuranceAllowedAmountCents { get; set; }
 
     [JsonPropertyName("insurance_paid_amount_cents")]
-    public int? InsurancePaidAmountCents { get; init; }
+    public int? InsurancePaidAmountCents { get; set; }
 
     [JsonPropertyName("deductible_amount_cents")]
-    public int? DeductibleAmountCents { get; init; }
+    public int? DeductibleAmountCents { get; set; }
 
     [JsonPropertyName("coinsurance_amount_cents")]
-    public int? CoinsuranceAmountCents { get; init; }
+    public int? CoinsuranceAmountCents { get; set; }
 
     [JsonPropertyName("copay_amount_cents")]
-    public int? CopayAmountCents { get; init; }
+    public int? CopayAmountCents { get; set; }
 
     [JsonPropertyName("carcs")]
-    public IEnumerable<ClaimAdjustmentReasonCode> Carcs { get; init; } =
+    public IEnumerable<ClaimAdjustmentReasonCode> Carcs { get; set; } =
         new List<ClaimAdjustmentReasonCode>();
 
     [JsonPropertyName("rarcs")]
-    public IEnumerable<RemittanceAdviceRemarkCode> Rarcs { get; init; } =
+    public IEnumerable<RemittanceAdviceRemarkCode> Rarcs { get; set; } =
         new List<RemittanceAdviceRemarkCode>();
 }

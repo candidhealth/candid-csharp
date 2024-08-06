@@ -1,4 +1,5 @@
 using System.Net.Http;
+using System.Text.Json;
 using Candid.Net.Core;
 using Candid.Net.Exports.V3;
 
@@ -29,27 +30,41 @@ public class V3Client
     /// caller will receive a 422 response. If the file has already been generated, it will be served. Please email
     /// our [Support team](mailto:support@joincandidhealth.com) with any data requests outside of these stated guarantees.
     /// </summary>
-    public async Task<GetExportsResponse> GetExportsAsync(GetExportsRequest request)
+    public async Task<GetExportsResponse> GetExportsAsync(
+        GetExportsRequest request,
+        RequestOptions? options = null
+    )
     {
-        var _query = new Dictionary<string, object>()
-        {
-            { "start_date", request.StartDate.ToString() },
-            { "end_date", request.EndDate.ToString() },
-        };
+        var _query = new Dictionary<string, object>() { };
+        _query["start_date"] = request.StartDate.ToString();
+        _query["end_date"] = request.EndDate.ToString();
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = "/api/exports/v3",
-                Query = _query
+                Query = _query,
+                Options = options
             }
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonUtils.Deserialize<GetExportsResponse>(responseBody)!;
+            try
+            {
+                return JsonUtils.Deserialize<GetExportsResponse>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
         }
-        throw new Exception(responseBody);
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            JsonUtils.Deserialize<object>(responseBody)
+        );
     }
 }

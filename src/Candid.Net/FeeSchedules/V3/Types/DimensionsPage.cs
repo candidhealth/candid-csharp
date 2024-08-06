@@ -8,12 +8,6 @@ namespace Candid.Net.FeeSchedules.V3;
 public record DimensionsPage
 {
     [JsonPropertyName("dimensions")]
-    public IEnumerable<OptionalDimensions> Dimensions { get; init; } =
+    public IEnumerable<OptionalDimensions> Dimensions { get; set; } =
         new List<OptionalDimensions>();
-
-    [JsonPropertyName("prev_page_token")]
-    public string? PrevPageToken { get; init; }
-
-    [JsonPropertyName("next_page_token")]
-    public string? NextPageToken { get; init; }
 }

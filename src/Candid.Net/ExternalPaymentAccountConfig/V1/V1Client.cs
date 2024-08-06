@@ -1,4 +1,5 @@
 using System.Net.Http;
+using System.Text.Json;
 using Candid.Net.Core;
 using Candid.Net.ExternalPaymentAccountConfig.V1;
 
@@ -16,7 +17,8 @@ public class V1Client
     }
 
     public async Task<ExternalPaymentAccountConfigPage> GetMultiAsync(
-        GetExternalPaymentAccountConfigsRequest request
+        GetExternalPaymentAccountConfigsRequest request,
+        RequestOptions? options = null
     )
     {
         var _query = new Dictionary<string, object>() { };
@@ -34,14 +36,27 @@ public class V1Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = "/api/external-payment-account-config/v1",
-                Query = _query
+                Query = _query,
+                Options = options
             }
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonUtils.Deserialize<ExternalPaymentAccountConfigPage>(responseBody)!;
+            try
+            {
+                return JsonUtils.Deserialize<ExternalPaymentAccountConfigPage>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
         }
-        throw new Exception(responseBody);
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            JsonUtils.Deserialize<object>(responseBody)
+        );
     }
 }

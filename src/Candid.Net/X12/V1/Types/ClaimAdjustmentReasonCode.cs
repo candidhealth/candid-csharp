@@ -9,11 +9,11 @@ namespace Candid.Net.X12.V1;
 public record ClaimAdjustmentReasonCode
 {
     [JsonPropertyName("group_code")]
-    public required ClaimAdjustmentGroupCodes GroupCode { get; init; }
+    public required ClaimAdjustmentGroupCodes GroupCode { get; set; }
 
     [JsonPropertyName("reason_code")]
-    public required Carc ReasonCode { get; init; }
+    public required Carc ReasonCode { get; set; }
 
     [JsonPropertyName("amount_cents")]
-    public required int AmountCents { get; init; }
+    public required int AmountCents { get; set; }
 }

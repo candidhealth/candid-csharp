@@ -7,11 +7,11 @@ namespace Candid.Net.InsuranceRefunds.V1;
 public record InsuranceRefundUpdate
 {
     [JsonPropertyName("refund_timestamp")]
-    public DateTime? RefundTimestamp { get; init; }
+    public DateTime? RefundTimestamp { get; set; }
 
     [JsonPropertyName("refund_note")]
-    public object? RefundNote { get; init; }
+    public object? RefundNote { get; set; }
 
     [JsonPropertyName("refund_reason")]
-    public object? RefundReason { get; init; }
+    public object? RefundReason { get; set; }
 }

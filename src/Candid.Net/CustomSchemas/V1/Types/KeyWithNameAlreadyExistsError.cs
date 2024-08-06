@@ -8,8 +8,8 @@ namespace Candid.Net.CustomSchemas.V1;
 public record KeyWithNameAlreadyExistsError
 {
     [JsonPropertyName("key")]
-    public required string Key { get; init; }
+    public required string Key { get; set; }
 
     [JsonPropertyName("value_type")]
-    public required Primitive ValueType { get; init; }
+    public required Primitive ValueType { get; set; }
 }

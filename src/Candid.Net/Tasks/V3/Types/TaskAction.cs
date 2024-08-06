@@ -8,11 +8,11 @@ namespace Candid.Net.Tasks.V3;
 public record TaskAction
 {
     [JsonPropertyName("display_name")]
-    public required string DisplayName { get; init; }
+    public required string DisplayName { get; set; }
 
     [JsonPropertyName("execution_method")]
-    public required object ExecutionMethod { get; init; }
+    public required object ExecutionMethod { get; set; }
 
     [JsonPropertyName("type")]
-    public required TaskActionType Type { get; init; }
+    public required TaskActionType Type { get; set; }
 }

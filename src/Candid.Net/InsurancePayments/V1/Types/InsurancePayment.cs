@@ -9,20 +9,20 @@ namespace Candid.Net.InsurancePayments.V1;
 public record InsurancePayment
 {
     [JsonPropertyName("insurance_payment_id")]
-    public required string InsurancePaymentId { get; init; }
+    public required string InsurancePaymentId { get; set; }
 
     [JsonPropertyName("payer")]
-    public required Payer Payer { get; init; }
+    public required Payer Payer { get; set; }
 
     [JsonPropertyName("amount_cents")]
-    public required int AmountCents { get; init; }
+    public required int AmountCents { get; set; }
 
     [JsonPropertyName("payment_timestamp")]
-    public DateTime? PaymentTimestamp { get; init; }
+    public DateTime? PaymentTimestamp { get; set; }
 
     [JsonPropertyName("payment_note")]
-    public string? PaymentNote { get; init; }
+    public string? PaymentNote { get; set; }
 
     [JsonPropertyName("allocations")]
-    public IEnumerable<Allocation> Allocations { get; init; } = new List<Allocation>();
+    public IEnumerable<Allocation> Allocations { get; set; } = new List<Allocation>();
 }

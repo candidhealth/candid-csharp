@@ -8,35 +8,20 @@ namespace Candid.Net.Guarantor.V1;
 public record GuarantorCreate
 {
     [JsonPropertyName("phone_numbers")]
-    public IEnumerable<PhoneNumber>? PhoneNumbers { get; init; }
+    public IEnumerable<PhoneNumber>? PhoneNumbers { get; set; }
 
     /// <summary>
     /// Defaults to false
     /// </summary>
     [JsonPropertyName("phone_consent")]
-    public bool? PhoneConsent { get; init; }
+    public bool? PhoneConsent { get; set; }
 
     [JsonPropertyName("email")]
-    public string? Email { get; init; }
+    public string? Email { get; set; }
 
     /// <summary>
     /// Defaults to false
     /// </summary>
     [JsonPropertyName("email_consent")]
-    public bool? EmailConsent { get; init; }
-
-    [JsonPropertyName("first_name")]
-    public required string FirstName { get; init; }
-
-    [JsonPropertyName("last_name")]
-    public required string LastName { get; init; }
-
-    [JsonPropertyName("external_id")]
-    public required string ExternalId { get; init; }
-
-    [JsonPropertyName("date_of_birth")]
-    public DateOnly? DateOfBirth { get; init; }
-
-    [JsonPropertyName("address")]
-    public StreetAddressShortZip? Address { get; init; }
+    public bool? EmailConsent { get; set; }
 }

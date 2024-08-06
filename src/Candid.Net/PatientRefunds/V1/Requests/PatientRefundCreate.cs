@@ -8,23 +8,23 @@ namespace Candid.Net.PatientRefunds.V1;
 public record PatientRefundCreate
 {
     [JsonPropertyName("amount_cents")]
-    public required int AmountCents { get; init; }
+    public required int AmountCents { get; set; }
 
     [JsonPropertyName("refund_timestamp")]
-    public DateTime? RefundTimestamp { get; init; }
+    public DateTime? RefundTimestamp { get; set; }
 
     [JsonPropertyName("refund_note")]
-    public string? RefundNote { get; init; }
+    public string? RefundNote { get; set; }
 
     [JsonPropertyName("patient_external_id")]
-    public required string PatientExternalId { get; init; }
+    public required string PatientExternalId { get; set; }
 
     [JsonPropertyName("allocations")]
-    public IEnumerable<AllocationCreate> Allocations { get; init; } = new List<AllocationCreate>();
+    public IEnumerable<AllocationCreate> Allocations { get; set; } = new List<AllocationCreate>();
 
     [JsonPropertyName("invoice")]
-    public string? Invoice { get; init; }
+    public string? Invoice { get; set; }
 
     [JsonPropertyName("refund_reason")]
-    public RefundReason? RefundReason { get; init; }
+    public RefundReason? RefundReason { get; set; }
 }

@@ -14,5 +14,8 @@ public enum AccountType
     Patient,
 
     [EnumMember(Value = "INSURANCE")]
-    Insurance
+    Insurance,
+
+    [EnumMember(Value = "THIRD_PARTY_PAYER")]
+    ThirdPartyPayer
 }

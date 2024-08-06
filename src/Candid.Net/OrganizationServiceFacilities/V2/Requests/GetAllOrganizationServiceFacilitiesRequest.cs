@@ -5,15 +5,15 @@ public record GetAllOrganizationServiceFacilitiesRequest
     /// <summary>
     /// Limit the number of results returned. Defaults to 100.
     /// </summary>
-    public int? Limit { get; init; }
+    public int? Limit { get; set; }
 
     /// <summary>
     /// Filter to a name or a part of a name.
     /// </summary>
-    public string? Name { get; init; }
+    public string? Name { get; set; }
 
     /// <summary>
     /// The page token to continue paging through a previous request.
     /// </summary>
-    public string? PageToken { get; init; }
+    public string? PageToken { get; set; }
 }

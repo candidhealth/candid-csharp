@@ -1,5 +1,4 @@
 using System.Text.Json.Serialization;
-using Candid.Net;
 
 #nullable enable
 
@@ -8,44 +7,26 @@ namespace Candid.Net.InsuranceCards.V2;
 public record InsuranceCard
 {
     [JsonPropertyName("insurance_card_id")]
-    public required string InsuranceCardId { get; init; }
+    public required string InsuranceCardId { get; set; }
 
     [JsonPropertyName("member_id")]
-    public required string MemberId { get; init; }
+    public required string MemberId { get; set; }
 
     [JsonPropertyName("payer_name")]
-    public required string PayerName { get; init; }
+    public required string PayerName { get; set; }
 
     [JsonPropertyName("payer_id")]
-    public required string PayerId { get; init; }
+    public required string PayerId { get; set; }
 
     [JsonPropertyName("rx_bin")]
-    public string? RxBin { get; init; }
+    public string? RxBin { get; set; }
 
     [JsonPropertyName("rx_pcn")]
-    public string? RxPcn { get; init; }
+    public string? RxPcn { get; set; }
 
     [JsonPropertyName("image_url_front")]
-    public string? ImageUrlFront { get; init; }
+    public string? ImageUrlFront { get; set; }
 
     [JsonPropertyName("image_url_back")]
-    public string? ImageUrlBack { get; init; }
-
-    /// <summary>
-    /// Box 11 on the CMS-1500 claim form.
-    /// </summary>
-    [JsonPropertyName("group_number")]
-    public string? GroupNumber { get; init; }
-
-    /// <summary>
-    /// Box 11c on the CMS-1500 claim form.
-    /// </summary>
-    [JsonPropertyName("plan_name")]
-    public string? PlanName { get; init; }
-
-    [JsonPropertyName("plan_type")]
-    public SourceOfPaymentCode? PlanType { get; init; }
-
-    [JsonPropertyName("insurance_type")]
-    public InsuranceTypeCode? InsuranceType { get; init; }
+    public string? ImageUrlBack { get; set; }
 }

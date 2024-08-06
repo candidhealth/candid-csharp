@@ -8,8 +8,8 @@ namespace Candid.Net.FeeSchedules.V3;
 public record MatchTestResult
 {
     [JsonPropertyName("dimensions")]
-    public required DimensionMatch Dimensions { get; init; }
+    public required DimensionMatch Dimensions { get; set; }
 
     [JsonPropertyName("threshold")]
-    public required ThresholdMatch Threshold { get; init; }
+    public required ThresholdMatch Threshold { get; set; }
 }

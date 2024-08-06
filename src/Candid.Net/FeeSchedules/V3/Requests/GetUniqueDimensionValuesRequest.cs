@@ -8,33 +8,34 @@ namespace Candid.Net.FeeSchedules.V3;
 
 public record GetUniqueDimensionValuesRequest
 {
-    public string? PageToken { get; init; }
+    public string? PageToken { get; set; }
 
     /// <summary>
     /// Max number of values returned. Defaults to 1000. Max is 1000.
     /// </summary>
-    public int? Limit { get; init; }
+    public int? Limit { get; set; }
 
     /// <summary>
     /// The name of the dimension to fetch unique values for.
     /// </summary>
-    public required DimensionName PivotDimension { get; init; }
+    public required DimensionName PivotDimension { get; set; }
 
-    public string? PayerUuid { get; init; }
+    public string? PayerUuid { get; set; }
 
-    public string? OrganizationBillingProviderId { get; init; }
+    public string? OrganizationBillingProviderId { get; set; }
 
-    public State? States { get; init; }
+    public IEnumerable<State> States { get; set; } = new List<State>();
 
-    public string? ZipCodes { get; init; }
+    public IEnumerable<string> ZipCodes { get; set; } = new List<string>();
 
-    public LicenseType? LicenseTypes { get; init; }
+    public IEnumerable<LicenseType> LicenseTypes { get; set; } = new List<LicenseType>();
 
-    public FacilityTypeCode? FacilityTypeCodes { get; init; }
+    public IEnumerable<FacilityTypeCode> FacilityTypeCodes { get; set; } =
+        new List<FacilityTypeCode>();
 
-    public NetworkType? NetworkTypes { get; init; }
+    public IEnumerable<NetworkType> NetworkTypes { get; set; } = new List<NetworkType>();
 
-    public string? CptCode { get; init; }
+    public string? CptCode { get; set; }
 
-    public ProcedureModifier? Modifiers { get; init; }
+    public IEnumerable<ProcedureModifier> Modifiers { get; set; } = new List<ProcedureModifier>();
 }

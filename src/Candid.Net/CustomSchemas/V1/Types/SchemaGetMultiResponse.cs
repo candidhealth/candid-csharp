@@ -8,5 +8,5 @@ namespace Candid.Net.CustomSchemas.V1;
 public record SchemaGetMultiResponse
 {
     [JsonPropertyName("schemas")]
-    public IEnumerable<Schema> Schemas { get; init; } = new List<Schema>();
+    public IEnumerable<Schema> Schemas { get; set; } = new List<Schema>();
 }

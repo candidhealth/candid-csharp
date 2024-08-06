@@ -8,8 +8,8 @@ namespace Candid.Net.FeeSchedules.V3;
 public record NewRate
 {
     [JsonPropertyName("dimensions")]
-    public required Dimensions Dimensions { get; init; }
+    public required Dimensions Dimensions { get; set; }
 
     [JsonPropertyName("entries")]
-    public IEnumerable<RateEntry> Entries { get; init; } = new List<RateEntry>();
+    public IEnumerable<RateEntry> Entries { get; set; } = new List<RateEntry>();
 }

@@ -8,23 +8,23 @@ namespace Candid.Net.PreEncounter;
 public record Address
 {
     [JsonPropertyName("use")]
-    public required AddressUse Use { get; init; }
+    public required AddressUse Use { get; set; }
 
     [JsonPropertyName("line")]
-    public IEnumerable<string> Line { get; init; } = new List<string>();
+    public IEnumerable<string> Line { get; set; } = new List<string>();
 
     [JsonPropertyName("city")]
-    public required string City { get; init; }
+    public required string City { get; set; }
 
     [JsonPropertyName("state")]
-    public required string State { get; init; }
+    public required string State { get; set; }
 
     [JsonPropertyName("postal_code")]
-    public required string PostalCode { get; init; }
+    public required string PostalCode { get; set; }
 
     [JsonPropertyName("country")]
-    public required string Country { get; init; }
+    public required string Country { get; set; }
 
     [JsonPropertyName("period")]
-    public Period? Period { get; init; }
+    public Period? Period { get; set; }
 }

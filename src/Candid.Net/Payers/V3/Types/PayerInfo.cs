@@ -7,8 +7,8 @@ namespace Candid.Net.Payers.V3;
 public record PayerInfo
 {
     [JsonPropertyName("payer_id")]
-    public required string PayerId { get; init; }
+    public required string PayerId { get; set; }
 
     [JsonPropertyName("payer_name")]
-    public required string PayerName { get; init; }
+    public required string PayerName { get; set; }
 }

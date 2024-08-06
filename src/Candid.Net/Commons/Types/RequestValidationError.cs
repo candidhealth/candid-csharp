@@ -7,8 +7,8 @@ namespace Candid.Net;
 public record RequestValidationError
 {
     [JsonPropertyName("fieldName")]
-    public required string FieldName { get; init; }
+    public required string FieldName { get; set; }
 
     [JsonPropertyName("humanReadableMessage")]
-    public string? HumanReadableMessage { get; init; }
+    public string? HumanReadableMessage { get; set; }
 }

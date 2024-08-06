@@ -8,11 +8,11 @@ namespace Candid.Net.PreEncounter;
 public record ContactPoint
 {
     [JsonPropertyName("value")]
-    public required string Value { get; init; }
+    public required string Value { get; set; }
 
     [JsonPropertyName("use")]
-    public required ContactPointUse Use { get; init; }
+    public required ContactPointUse Use { get; set; }
 
     [JsonPropertyName("period")]
-    public Period? Period { get; init; }
+    public Period? Period { get; set; }
 }

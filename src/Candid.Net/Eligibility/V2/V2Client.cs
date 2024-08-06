@@ -1,4 +1,5 @@
 using System.Net.Http;
+using System.Text.Json;
 using Candid.Net.Core;
 
 #nullable enable
@@ -30,7 +31,10 @@ public class V2Client
     ///
     /// A schema of the response object can be found here: [Change Healthcare Docs](https://developers.changehealthcare.com/eligibilityandclaims/reference/medicaleligibility)
     /// </summary>
-    public async Task<object> SubmitEligibilityCheckAsync(object request)
+    public async Task<object> SubmitEligibilityCheckAsync(
+        object request,
+        RequestOptions? options = null
+    )
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
@@ -38,15 +42,28 @@ public class V2Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Post,
                 Path = "/api/eligibility/v2",
-                Body = request
+                Body = request,
+                Options = options
             }
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonUtils.Deserialize<object>(responseBody)!;
+            try
+            {
+                return JsonUtils.Deserialize<object>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
         }
-        throw new Exception(responseBody);
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            JsonUtils.Deserialize<object>(responseBody)
+        );
     }
 
     /// <summary>
@@ -69,22 +86,35 @@ public class V2Client
     ///
     /// - [Availity Trading Partner Connection Status](https://www.availity.com/status/)
     /// </summary>
-    public async Task<object> SubmitEligibilityCheckAvailityAsync()
+    public async Task<object> SubmitEligibilityCheckAvailityAsync(RequestOptions? options = null)
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
-                Path = "/api/eligibility/v2/availity"
+                Path = "/api/eligibility/v2/availity",
+                Options = options
             }
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonUtils.Deserialize<object>(responseBody)!;
+            try
+            {
+                return JsonUtils.Deserialize<object>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
         }
-        throw new Exception(responseBody);
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            JsonUtils.Deserialize<object>(responseBody)
+        );
     }
 
     /// <summary>
@@ -103,7 +133,10 @@ public class V2Client
     ///
     /// - [Availity Trading Partner Connection Status](https://www.availity.com/status/)
     /// </summary>
-    public async Task<object> SubmitEligibilityCheckAvailityPostAsync(object request)
+    public async Task<object> SubmitEligibilityCheckAvailityPostAsync(
+        object request,
+        RequestOptions? options = null
+    )
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
@@ -111,14 +144,27 @@ public class V2Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Post,
                 Path = "/api/eligibility/v2/availity",
-                Body = request
+                Body = request,
+                Options = options
             }
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonUtils.Deserialize<object>(responseBody)!;
+            try
+            {
+                return JsonUtils.Deserialize<object>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
         }
-        throw new Exception(responseBody);
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            JsonUtils.Deserialize<object>(responseBody)
+        );
     }
 }

@@ -8,11 +8,11 @@ namespace Candid.Net.Tasks.V3;
 public record TaskUpdateV3
 {
     [JsonPropertyName("status")]
-    public TaskStatus? Status { get; init; }
+    public TaskStatus? Status { get; set; }
 
     [JsonPropertyName("assignee_user_id")]
-    public string? AssigneeUserId { get; init; }
+    public string? AssigneeUserId { get; set; }
 
     [JsonPropertyName("blocks_claim_submission")]
-    public bool? BlocksClaimSubmission { get; init; }
+    public bool? BlocksClaimSubmission { get; set; }
 }

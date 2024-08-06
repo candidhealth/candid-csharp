@@ -8,20 +8,20 @@ namespace Candid.Net.PatientPayments.V4;
 public record PatientPaymentCreate
 {
     [JsonPropertyName("amount_cents")]
-    public required int AmountCents { get; init; }
+    public required int AmountCents { get; set; }
 
     [JsonPropertyName("payment_timestamp")]
-    public DateTime? PaymentTimestamp { get; init; }
+    public DateTime? PaymentTimestamp { get; set; }
 
     [JsonPropertyName("payment_note")]
-    public string? PaymentNote { get; init; }
+    public string? PaymentNote { get; set; }
 
     [JsonPropertyName("patient_external_id")]
-    public required string PatientExternalId { get; init; }
+    public required string PatientExternalId { get; set; }
 
     [JsonPropertyName("allocations")]
-    public IEnumerable<AllocationCreate> Allocations { get; init; } = new List<AllocationCreate>();
+    public IEnumerable<AllocationCreate> Allocations { get; set; } = new List<AllocationCreate>();
 
     [JsonPropertyName("invoice")]
-    public string? Invoice { get; init; }
+    public string? Invoice { get; set; }
 }

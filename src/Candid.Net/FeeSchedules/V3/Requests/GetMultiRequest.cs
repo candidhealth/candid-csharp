@@ -7,30 +7,31 @@ namespace Candid.Net.FeeSchedules.V3;
 
 public record GetMultiRequest
 {
-    public string? PageToken { get; init; }
+    public string? PageToken { get; set; }
 
     /// <summary>
     /// Max number of dimensions returned. Defaults to 100. Max is 100.
     /// </summary>
-    public int? Limit { get; init; }
+    public int? Limit { get; set; }
 
-    public DateOnly? ActiveDate { get; init; }
+    public DateOnly? ActiveDate { get; set; }
 
-    public string? PayerUuid { get; init; }
+    public string? PayerUuid { get; set; }
 
-    public string? OrganizationBillingProviderId { get; init; }
+    public string? OrganizationBillingProviderId { get; set; }
 
-    public State? States { get; init; }
+    public IEnumerable<State> States { get; set; } = new List<State>();
 
-    public string? ZipCodes { get; init; }
+    public IEnumerable<string> ZipCodes { get; set; } = new List<string>();
 
-    public LicenseType? LicenseTypes { get; init; }
+    public IEnumerable<LicenseType> LicenseTypes { get; set; } = new List<LicenseType>();
 
-    public FacilityTypeCode? FacilityTypeCodes { get; init; }
+    public IEnumerable<FacilityTypeCode> FacilityTypeCodes { get; set; } =
+        new List<FacilityTypeCode>();
 
-    public NetworkType? NetworkTypes { get; init; }
+    public IEnumerable<NetworkType> NetworkTypes { get; set; } = new List<NetworkType>();
 
-    public string? CptCode { get; init; }
+    public string? CptCode { get; set; }
 
-    public ProcedureModifier? Modifiers { get; init; }
+    public IEnumerable<ProcedureModifier> Modifiers { get; set; } = new List<ProcedureModifier>();
 }

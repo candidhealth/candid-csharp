@@ -7,5 +7,5 @@ namespace Candid.Net.Guarantor.V1;
 public record EncounterHasExistingGuarantorErrorType
 {
     [JsonPropertyName("message")]
-    public required string Message { get; init; }
+    public required string Message { get; set; }
 }

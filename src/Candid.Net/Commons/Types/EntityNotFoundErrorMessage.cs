@@ -7,5 +7,5 @@ namespace Candid.Net;
 public record EntityNotFoundErrorMessage
 {
     [JsonPropertyName("id")]
-    public required string Id { get; init; }
+    public required string Id { get; set; }
 }

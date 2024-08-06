@@ -11,11 +11,11 @@ public record ExpectedNetworkStatusResponse
     /// The anticipated classification of a healthcare provider within the insurance plan's network.
     /// </summary>
     [JsonPropertyName("expected_network_status")]
-    public required ExpectedNetworkStatus ExpectedNetworkStatus { get; init; }
+    public required ExpectedNetworkStatus ExpectedNetworkStatus { get; set; }
 
     [JsonPropertyName("explanation")]
-    public required string Explanation { get; init; }
+    public required string Explanation { get; set; }
 
     [JsonPropertyName("contract_id")]
-    public string? ContractId { get; init; }
+    public string? ContractId { get; set; }
 }

@@ -14,14 +14,14 @@ public class PreEncounterClient
     public PreEncounterClient(RawClient client)
     {
         _client = client;
-        Common = new CommonClient(_client);
         Coverages = new CoveragesClient(_client);
         Patients = new PatientsClient(_client);
+        Common = new CommonClient(_client);
     }
-
-    public CommonClient Common { get; }
 
     public CoveragesClient Coverages { get; }
 
     public PatientsClient Patients { get; }
+
+    public CommonClient Common { get; }
 }

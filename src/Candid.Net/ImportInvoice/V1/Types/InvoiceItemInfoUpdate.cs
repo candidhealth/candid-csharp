@@ -13,8 +13,8 @@ public record InvoiceItemInfoUpdate
     /// or to append new invoice items
     /// </summary>
     [JsonPropertyName("update_type")]
-    public required InvoiceItemUpdateType UpdateType { get; init; }
+    public required InvoiceItemUpdateType UpdateType { get; set; }
 
     [JsonPropertyName("items")]
-    public IEnumerable<InvoiceItemCreate> Items { get; init; } = new List<InvoiceItemCreate>();
+    public IEnumerable<InvoiceItemCreate> Items { get; set; } = new List<InvoiceItemCreate>();
 }

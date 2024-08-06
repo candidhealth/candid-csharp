@@ -5,7 +5,7 @@ public record GetExternalPaymentAccountConfigsRequest
     /// <summary>
     /// Defaults to 100
     /// </summary>
-    public int? Limit { get; init; }
+    public int? Limit { get; set; }
 
-    public string? PageToken { get; init; }
+    public string? PageToken { get; set; }
 }

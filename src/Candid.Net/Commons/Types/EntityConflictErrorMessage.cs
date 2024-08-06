@@ -7,5 +7,5 @@ namespace Candid.Net;
 public record EntityConflictErrorMessage
 {
     [JsonPropertyName("entity_name")]
-    public required string EntityName { get; init; }
+    public required string EntityName { get; set; }
 }

@@ -7,11 +7,8 @@ namespace Candid.Net.PreEncounter;
 public record VersionConflictErrorBody
 {
     [JsonPropertyName("code")]
-    public required string Code { get; init; }
+    public required string Code { get; set; }
 
     [JsonPropertyName("latest_version")]
-    public required int LatestVersion { get; init; }
-
-    [JsonPropertyName("message")]
-    public required string Message { get; init; }
+    public required int LatestVersion { get; set; }
 }

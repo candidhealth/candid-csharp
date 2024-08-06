@@ -10,34 +10,35 @@ public record GetMultiPatientPaymentsRequest
     /// <summary>
     /// Defaults to 100. The value must be greater than 0 and less than 1000.
     /// </summary>
-    public int? Limit { get; init; }
+    public int? Limit { get; set; }
 
-    public string? PatientExternalId { get; init; }
+    public string? PatientExternalId { get; set; }
 
-    public string? ClaimId { get; init; }
+    public string? ClaimId { get; set; }
 
-    public string? ServiceLineId { get; init; }
+    public string? ServiceLineId { get; set; }
 
-    public string? BillingProviderId { get; init; }
+    public string? BillingProviderId { get; set; }
 
     /// <summary>
     /// returns payments with unattributed allocations if set to true
     /// </summary>
-    public bool? Unattributed { get; init; }
+    public bool? Unattributed { get; set; }
 
-    public string? InvoiceId { get; init; }
+    public string? InvoiceId { get; set; }
 
-    public PatientTransactionSource? Sources { get; init; }
+    public IEnumerable<PatientTransactionSource> Sources { get; set; } =
+        new List<PatientTransactionSource>();
 
     /// <summary>
     /// Defaults to payment_timestamp
     /// </summary>
-    public PatientPaymentSortField? Sort { get; init; }
+    public PatientPaymentSortField? Sort { get; set; }
 
     /// <summary>
     /// Sort direction. Defaults to descending order if not provided.
     /// </summary>
-    public SortDirection? SortDirection { get; init; }
+    public SortDirection? SortDirection { get; set; }
 
-    public string? PageToken { get; init; }
+    public string? PageToken { get; set; }
 }

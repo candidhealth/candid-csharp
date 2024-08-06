@@ -10,15 +10,24 @@ namespace Candid.Net.PreEncounter;
 [JsonConverter(typeof(StringEnumSerializer<Gender>))]
 public enum Gender
 {
-    [EnumMember(Value = "FEMALE")]
-    Female,
+    [EnumMember(Value = "MAN")]
+    Man,
 
-    [EnumMember(Value = "MALE")]
-    Male,
+    [EnumMember(Value = "WOMAN")]
+    Woman,
+
+    [EnumMember(Value = "NON_BINARY")]
+    NonBinary,
+
+    [EnumMember(Value = "TWO_SPIRIT")]
+    TwoSpirit,
 
     [EnumMember(Value = "OTHER")]
     Other,
 
     [EnumMember(Value = "UNKNOWN")]
-    Unknown
+    Unknown,
+
+    [EnumMember(Value = "REFUSED")]
+    Refused
 }

@@ -9,26 +9,26 @@ namespace Candid.Net;
 public record Claim
 {
     [JsonPropertyName("claim_id")]
-    public required string ClaimId { get; init; }
+    public required string ClaimId { get; set; }
 
     [JsonPropertyName("status")]
-    public required ClaimStatus Status { get; init; }
+    public required ClaimStatus Status { get; set; }
 
     [JsonPropertyName("clearinghouse")]
-    public string? Clearinghouse { get; init; }
+    public string? Clearinghouse { get; set; }
 
     [JsonPropertyName("clearinghouse_claim_id")]
-    public string? ClearinghouseClaimId { get; init; }
+    public string? ClearinghouseClaimId { get; set; }
 
     [JsonPropertyName("payer_claim_id")]
-    public string? PayerClaimId { get; init; }
+    public string? PayerClaimId { get; set; }
 
     [JsonPropertyName("clia_number")]
-    public string? CliaNumber { get; init; }
+    public string? CliaNumber { get; set; }
 
     [JsonPropertyName("service_lines")]
-    public IEnumerable<ServiceLine> ServiceLines { get; init; } = new List<ServiceLine>();
+    public IEnumerable<ServiceLine> ServiceLines { get; set; } = new List<ServiceLine>();
 
     [JsonPropertyName("eras")]
-    public IEnumerable<Era> Eras { get; init; } = new List<Era>();
+    public IEnumerable<Era> Eras { get; set; } = new List<Era>();
 }

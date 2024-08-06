@@ -10,17 +10,17 @@ public record Payer
     /// Auto-generated ID set on creation.
     /// </summary>
     [JsonPropertyName("payer_uuid")]
-    public required string PayerUuid { get; init; }
+    public required string PayerUuid { get; set; }
 
     /// <summary>
     /// The primary national payer ID of the payer.
     /// </summary>
     [JsonPropertyName("payer_id")]
-    public required string PayerId { get; init; }
+    public required string PayerId { get; set; }
 
     /// <summary>
     /// The primary display name of the payer.
     /// </summary>
     [JsonPropertyName("payer_name")]
-    public required string PayerName { get; init; }
+    public required string PayerName { get; set; }
 }

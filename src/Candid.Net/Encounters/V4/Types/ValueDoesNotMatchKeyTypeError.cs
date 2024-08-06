@@ -8,14 +8,14 @@ namespace Candid.Net.Encounters.V4;
 public record ValueDoesNotMatchKeyTypeError
 {
     [JsonPropertyName("schema_id")]
-    public required string SchemaId { get; init; }
+    public required string SchemaId { get; set; }
 
     [JsonPropertyName("key")]
-    public required string Key { get; init; }
+    public required string Key { get; set; }
 
     [JsonPropertyName("expected_value_type")]
-    public required Primitive ExpectedValueType { get; init; }
+    public required Primitive ExpectedValueType { get; set; }
 
     [JsonPropertyName("value")]
-    public required object Value { get; init; }
+    public required object Value { get; set; }
 }

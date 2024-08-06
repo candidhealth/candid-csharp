@@ -14,19 +14,19 @@ public record ContractUpdate
     ///
     /// </summary>
     [JsonPropertyName("rendering_provider_ids")]
-    public HashSet<string>? RenderingProviderIds { get; init; }
+    public HashSet<string>? RenderingProviderIds { get; set; }
 
     /// <summary>
     /// The starting day upon which the contract is effective
     /// </summary>
     [JsonPropertyName("effective_date")]
-    public string? EffectiveDate { get; init; }
+    public string? EffectiveDate { get; set; }
 
     /// <summary>
     /// An optional end day upon which the contract expires
     /// </summary>
     [JsonPropertyName("expiration_date")]
-    public object? ExpirationDate { get; init; }
+    public object? ExpirationDate { get; set; }
 
     /// <summary>
     /// If present, the contract's rendering providers will be patched to this exact
@@ -34,20 +34,20 @@ public record ContractUpdate
     ///
     /// </summary>
     [JsonPropertyName("regions")]
-    public object? Regions { get; init; }
+    public object? Regions { get; set; }
 
     [JsonPropertyName("contract_status")]
-    public ContractStatus? ContractStatus { get; init; }
+    public ContractStatus? ContractStatus { get; set; }
 
     [JsonPropertyName("authorized_signatory")]
-    public object? AuthorizedSignatory { get; init; }
+    public object? AuthorizedSignatory { get; set; }
 
     [JsonPropertyName("commercial_insurance_types")]
-    public object? CommercialInsuranceTypes { get; init; }
+    public object? CommercialInsuranceTypes { get; set; }
 
     [JsonPropertyName("medicare_insurance_types")]
-    public object? MedicareInsuranceTypes { get; init; }
+    public object? MedicareInsuranceTypes { get; set; }
 
     [JsonPropertyName("medicaid_insurance_types")]
-    public object? MedicaidInsuranceTypes { get; init; }
+    public object? MedicaidInsuranceTypes { get; set; }
 }

@@ -10,5 +10,5 @@ public record BillingNoteBase
     /// Empty string not allowed.
     /// </summary>
     [JsonPropertyName("text")]
-    public required string Text { get; init; }
+    public required string Text { get; set; }
 }

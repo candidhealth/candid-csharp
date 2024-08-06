@@ -1,4 +1,5 @@
 using System.Net.Http;
+using System.Text.Json;
 using Candid.Net.Core;
 using Candid.Net.ExpectedNetworkStatus.V2;
 
@@ -22,7 +23,8 @@ public class V2Client
     /// </summary>
     public async Task<ExpectedNetworkStatusResponseV2> ComputeForRenderingProviderAsync(
         string renderingProviderId,
-        ExpectedNetworkStatusRequestV2 request
+        ExpectedNetworkStatusRequestV2 request,
+        RequestOptions? options = null
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -31,15 +33,28 @@ public class V2Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Post,
                 Path = $"/api/expected-network-status/v2/compute/{renderingProviderId}",
-                Body = request
+                Body = request,
+                Options = options
             }
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonUtils.Deserialize<ExpectedNetworkStatusResponseV2>(responseBody)!;
+            try
+            {
+                return JsonUtils.Deserialize<ExpectedNetworkStatusResponseV2>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
         }
-        throw new Exception(responseBody);
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            JsonUtils.Deserialize<object>(responseBody)
+        );
     }
 
     /// <summary>
@@ -48,7 +63,8 @@ public class V2Client
     /// to discuss enabling this endpoint if it is not available for your organization.
     /// </summary>
     public async Task<ComputeAllInNetworkProvidersResponse> ComputeAllInNetworkProvidersAsync(
-        ComputeAllInNetworkProvidersRequest request
+        ComputeAllInNetworkProvidersRequest request,
+        RequestOptions? options = null
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -57,14 +73,27 @@ public class V2Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Post,
                 Path = "/api/expected-network-status/v2/compute",
-                Body = request
+                Body = request,
+                Options = options
             }
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonUtils.Deserialize<ComputeAllInNetworkProvidersResponse>(responseBody)!;
+            try
+            {
+                return JsonUtils.Deserialize<ComputeAllInNetworkProvidersResponse>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
         }
-        throw new Exception(responseBody);
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            JsonUtils.Deserialize<object>(responseBody)
+        );
     }
 }

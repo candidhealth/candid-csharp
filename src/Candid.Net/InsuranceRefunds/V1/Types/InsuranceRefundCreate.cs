@@ -8,20 +8,20 @@ namespace Candid.Net.InsuranceRefunds.V1;
 public record InsuranceRefundCreate
 {
     [JsonPropertyName("payer_identifier")]
-    public required object PayerIdentifier { get; init; }
+    public required object PayerIdentifier { get; set; }
 
     [JsonPropertyName("amount_cents")]
-    public required int AmountCents { get; init; }
+    public required int AmountCents { get; set; }
 
     [JsonPropertyName("refund_timestamp")]
-    public DateTime? RefundTimestamp { get; init; }
+    public DateTime? RefundTimestamp { get; set; }
 
     [JsonPropertyName("refund_note")]
-    public string? RefundNote { get; init; }
+    public string? RefundNote { get; set; }
 
     [JsonPropertyName("allocations")]
-    public IEnumerable<AllocationCreate> Allocations { get; init; } = new List<AllocationCreate>();
+    public IEnumerable<AllocationCreate> Allocations { get; set; } = new List<AllocationCreate>();
 
     [JsonPropertyName("refund_reason")]
-    public RefundReason? RefundReason { get; init; }
+    public RefundReason? RefundReason { get; set; }
 }

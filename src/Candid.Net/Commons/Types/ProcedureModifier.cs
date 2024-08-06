@@ -280,6 +280,9 @@ public enum ProcedureModifier
     [EnumMember(Value = "CQ")]
     Cq,
 
+    [EnumMember(Value = "DA")]
+    Da,
+
     [EnumMember(Value = "E1")]
     E1,
 

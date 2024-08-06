@@ -8,41 +8,41 @@ namespace Candid.Net;
 public record Invoice
 {
     [JsonPropertyName("id")]
-    public required string Id { get; init; }
+    public required string Id { get; set; }
 
     [JsonPropertyName("created_at")]
-    public required DateTime CreatedAt { get; init; }
+    public required DateTime CreatedAt { get; set; }
 
     [JsonPropertyName("updated_at")]
-    public required DateTime UpdatedAt { get; init; }
+    public required DateTime UpdatedAt { get; set; }
 
     [JsonPropertyName("organzation_id")]
-    public required string OrganzationId { get; init; }
+    public required string OrganzationId { get; set; }
 
     [JsonPropertyName("source_id")]
-    public required string SourceId { get; init; }
+    public required string SourceId { get; set; }
 
     [JsonPropertyName("source_customer_id")]
-    public required string SourceCustomerId { get; init; }
+    public required string SourceCustomerId { get; set; }
 
     [JsonPropertyName("patient_external_id")]
-    public required string PatientExternalId { get; init; }
+    public required string PatientExternalId { get; set; }
 
     [JsonPropertyName("note")]
-    public string? Note { get; init; }
+    public string? Note { get; set; }
 
     [JsonPropertyName("due_date")]
-    public required string DueDate { get; init; }
+    public required string DueDate { get; set; }
 
     [JsonPropertyName("status")]
-    public required InvoiceStatus Status { get; init; }
+    public required InvoiceStatus Status { get; set; }
 
     [JsonPropertyName("url")]
-    public string? Url { get; init; }
+    public string? Url { get; set; }
 
     [JsonPropertyName("customer_invoice_url")]
-    public string? CustomerInvoiceUrl { get; init; }
+    public string? CustomerInvoiceUrl { get; set; }
 
     [JsonPropertyName("items")]
-    public IEnumerable<InvoiceItem> Items { get; init; } = new List<InvoiceItem>();
+    public IEnumerable<InvoiceItem> Items { get; set; } = new List<InvoiceItem>();
 }

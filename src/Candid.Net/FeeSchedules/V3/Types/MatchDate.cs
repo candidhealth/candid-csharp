@@ -7,11 +7,11 @@ namespace Candid.Net.FeeSchedules.V3;
 public record MatchDate
 {
     [JsonPropertyName("value")]
-    public DateOnly? Value { get; init; }
+    public DateOnly? Value { get; set; }
 
     [JsonPropertyName("match")]
-    public required bool Match { get; init; }
+    public required bool Match { get; set; }
 
     [JsonPropertyName("explanation")]
-    public required string Explanation { get; init; }
+    public required string Explanation { get; set; }
 }

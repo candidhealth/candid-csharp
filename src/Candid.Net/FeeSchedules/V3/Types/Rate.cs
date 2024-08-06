@@ -8,26 +8,26 @@ namespace Candid.Net.FeeSchedules.V3;
 public record Rate
 {
     [JsonPropertyName("rate_id")]
-    public required string RateId { get; init; }
+    public required string RateId { get; set; }
 
     /// <summary>
     /// The dimension values that distinguish this rate from others.
     /// </summary>
     [JsonPropertyName("dimensions")]
-    public required Dimensions Dimensions { get; init; }
+    public required Dimensions Dimensions { get; set; }
 
     /// <summary>
     /// The version of this rate in the system.
     /// </summary>
     [JsonPropertyName("version")]
-    public required int Version { get; init; }
+    public required int Version { get; set; }
 
     [JsonPropertyName("updated_at")]
-    public required DateOnly UpdatedAt { get; init; }
+    public required DateOnly UpdatedAt { get; set; }
 
     [JsonPropertyName("updated_by")]
-    public required string UpdatedBy { get; init; }
+    public required string UpdatedBy { get; set; }
 
     [JsonPropertyName("entries")]
-    public IEnumerable<RateEntry> Entries { get; init; } = new List<RateEntry>();
+    public IEnumerable<RateEntry> Entries { get; set; } = new List<RateEntry>();
 }

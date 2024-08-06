@@ -10,7 +10,7 @@ public record ContractCreate
     /// The UUID of the provider under agreement to the contract
     /// </summary>
     [JsonPropertyName("contracting_provider_id")]
-    public required string ContractingProviderId { get; init; }
+    public required string ContractingProviderId { get; set; }
 
     /// <summary>
     /// A rendering provider isn't contracted directly with the payer but can render
@@ -19,11 +19,11 @@ public record ContractCreate
     ///
     /// </summary>
     [JsonPropertyName("rendering_provider_ids")]
-    public HashSet<string> RenderingProviderIds { get; init; } = new HashSet<string>();
+    public HashSet<string> RenderingProviderIds { get; set; } = new HashSet<string>();
 
     /// <summary>
     /// The UUID of the insurance company under agreement to the contract
     /// </summary>
     [JsonPropertyName("payer_uuid")]
-    public required string PayerUuid { get; init; }
+    public required string PayerUuid { get; set; }
 }

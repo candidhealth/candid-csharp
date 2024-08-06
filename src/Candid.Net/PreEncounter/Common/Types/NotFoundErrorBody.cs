@@ -7,8 +7,5 @@ namespace Candid.Net.PreEncounter;
 public record NotFoundErrorBody
 {
     [JsonPropertyName("code")]
-    public required string Code { get; init; }
-
-    [JsonPropertyName("message")]
-    public required string Message { get; init; }
+    public required string Code { get; set; }
 }

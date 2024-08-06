@@ -7,5 +7,5 @@ namespace Candid.Net;
 public record OrganizationNotAuthorizedErrorMessage
 {
     [JsonPropertyName("message")]
-    public required string Message { get; init; }
+    public required string Message { get; set; }
 }

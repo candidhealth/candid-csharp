@@ -7,5 +7,5 @@ namespace Candid.Net;
 public record HttpServiceUnavailableErrorMessage
 {
     [JsonPropertyName("message")]
-    public string? Message { get; init; }
+    public string? Message { get; set; }
 }

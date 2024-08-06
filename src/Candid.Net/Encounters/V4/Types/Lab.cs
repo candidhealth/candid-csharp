@@ -8,11 +8,11 @@ namespace Candid.Net.Encounters.V4;
 public record Lab
 {
     [JsonPropertyName("name")]
-    public required string Name { get; init; }
+    public required string Name { get; set; }
 
     [JsonPropertyName("code")]
-    public string? Code { get; init; }
+    public string? Code { get; set; }
 
     [JsonPropertyName("code_type")]
-    public LabCodeType? CodeType { get; init; }
+    public LabCodeType? CodeType { get; set; }
 }

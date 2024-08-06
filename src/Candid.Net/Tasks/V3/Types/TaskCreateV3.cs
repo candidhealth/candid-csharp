@@ -8,23 +8,23 @@ namespace Candid.Net.Tasks.V3;
 public record TaskCreateV3
 {
     [JsonPropertyName("encounter_id")]
-    public required string EncounterId { get; init; }
+    public required string EncounterId { get; set; }
 
     [JsonPropertyName("task_type")]
-    public required TaskType TaskType { get; init; }
+    public required TaskType TaskType { get; set; }
 
     [JsonPropertyName("description")]
-    public required string Description { get; init; }
+    public required string Description { get; set; }
 
     [JsonPropertyName("blocks_claim_submission")]
-    public bool? BlocksClaimSubmission { get; init; }
+    public bool? BlocksClaimSubmission { get; set; }
 
     [JsonPropertyName("assignee_user_id")]
-    public string? AssigneeUserId { get; init; }
+    public string? AssigneeUserId { get; set; }
 
     [JsonPropertyName("category")]
-    public TaskCategory? Category { get; init; }
+    public TaskCategory? Category { get; set; }
 
     [JsonPropertyName("work_queue_id")]
-    public required string WorkQueueId { get; init; }
+    public required string WorkQueueId { get; set; }
 }

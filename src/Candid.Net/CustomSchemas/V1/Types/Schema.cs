@@ -8,14 +8,14 @@ namespace Candid.Net.CustomSchemas.V1;
 public record Schema
 {
     [JsonPropertyName("id")]
-    public required string Id { get; init; }
+    public required string Id { get; set; }
 
     [JsonPropertyName("name")]
-    public required string Name { get; init; }
+    public required string Name { get; set; }
 
     [JsonPropertyName("description")]
-    public string? Description { get; init; }
+    public string? Description { get; set; }
 
     [JsonPropertyName("fields")]
-    public IEnumerable<SchemaField> Fields { get; init; } = new List<SchemaField>();
+    public IEnumerable<SchemaField> Fields { get; set; } = new List<SchemaField>();
 }

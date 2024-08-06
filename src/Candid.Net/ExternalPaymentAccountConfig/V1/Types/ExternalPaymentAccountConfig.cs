@@ -7,8 +7,8 @@ namespace Candid.Net.ExternalPaymentAccountConfig.V1;
 public record ExternalPaymentAccountConfig
 {
     [JsonPropertyName("id")]
-    public required string Id { get; init; }
+    public required string Id { get; set; }
 
     [JsonPropertyName("account_name")]
-    public required string AccountName { get; init; }
+    public required string AccountName { get; set; }
 }

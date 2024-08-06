@@ -11,5 +11,5 @@ public record ServiceLineDenialReason
     /// Text of the denial reason
     /// </summary>
     [JsonPropertyName("reason")]
-    public DenialReasonContent? Reason { get; init; }
+    public DenialReasonContent? Reason { get; set; }
 }

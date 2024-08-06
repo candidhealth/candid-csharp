@@ -16,26 +16,43 @@ public class V3Client
         _client = client;
     }
 
-    public async Task<OrganizationProviderV2> GetAsync(string organizationProviderId)
+    public async Task<OrganizationProviderV2> GetAsync(
+        string organizationProviderId,
+        RequestOptions? options = null
+    )
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
-                Path = $"/api/organization-providers/v3/{organizationProviderId}"
+                Path = $"/api/organization-providers/v3/{organizationProviderId}",
+                Options = options
             }
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonUtils.Deserialize<OrganizationProviderV2>(responseBody)!;
+            try
+            {
+                return JsonUtils.Deserialize<OrganizationProviderV2>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
         }
-        throw new Exception(responseBody);
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            JsonUtils.Deserialize<object>(responseBody)
+        );
     }
 
     public async Task<OrganizationProviderPageV2> GetMultiAsync(
-        GetAllOrganizationProvidersRequestV2 request
+        GetAllOrganizationProvidersRequestV2 request,
+        RequestOptions? options = null
     )
     {
         var _query = new Dictionary<string, object>() { };
@@ -73,18 +90,34 @@ public class V3Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = "/api/organization-providers/v3",
-                Query = _query
+                Query = _query,
+                Options = options
             }
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonUtils.Deserialize<OrganizationProviderPageV2>(responseBody)!;
+            try
+            {
+                return JsonUtils.Deserialize<OrganizationProviderPageV2>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
         }
-        throw new Exception(responseBody);
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            JsonUtils.Deserialize<object>(responseBody)
+        );
     }
 
-    public async Task<OrganizationProviderV2> CreateAsync(OrganizationProviderCreateV2 request)
+    public async Task<OrganizationProviderV2> CreateAsync(
+        OrganizationProviderCreateV2 request,
+        RequestOptions? options = null
+    )
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
@@ -92,20 +125,34 @@ public class V3Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Post,
                 Path = "/api/organization-providers/v3",
-                Body = request
+                Body = request,
+                Options = options
             }
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonUtils.Deserialize<OrganizationProviderV2>(responseBody)!;
+            try
+            {
+                return JsonUtils.Deserialize<OrganizationProviderV2>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
         }
-        throw new Exception(responseBody);
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            JsonUtils.Deserialize<object>(responseBody)
+        );
     }
 
     public async Task<OrganizationProviderV2> UpdateAsync(
         string organizationProviderId,
-        OrganizationProviderUpdateV2 request
+        OrganizationProviderUpdateV2 request,
+        RequestOptions? options = null
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -114,14 +161,27 @@ public class V3Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethodExtensions.Patch,
                 Path = $"/api/organization-providers/v3/{organizationProviderId}",
-                Body = request
+                Body = request,
+                Options = options
             }
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonUtils.Deserialize<OrganizationProviderV2>(responseBody)!;
+            try
+            {
+                return JsonUtils.Deserialize<OrganizationProviderV2>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
         }
-        throw new Exception(responseBody);
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            JsonUtils.Deserialize<object>(responseBody)
+        );
     }
 }

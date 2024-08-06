@@ -16,27 +16,51 @@ public class V2Client
         _client = client;
     }
 
-    public async Task<ContractWithProviders> GetAsync(string contractId)
+    public async Task<ContractWithProviders> GetAsync(
+        string contractId,
+        RequestOptions? options = null
+    )
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
-                Path = $"/api/contracts/v2/{contractId}"
+                Path = $"/api/contracts/v2/{contractId}",
+                Options = options
             }
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonUtils.Deserialize<ContractWithProviders>(responseBody)!;
+            try
+            {
+                return JsonUtils.Deserialize<ContractWithProviders>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
         }
-        throw new Exception(responseBody);
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            JsonUtils.Deserialize<object>(responseBody)
+        );
     }
 
-    public async Task<ContractsPage> GetMultiAsync(GetMultiContractsRequest request)
+    public async Task<ContractsPage> GetMultiAsync(
+        GetMultiContractsRequest request,
+        RequestOptions? options = null
+    )
     {
         var _query = new Dictionary<string, object>() { };
+        _query["rendering_provider_ids"] = request
+            .RenderingProviderIds.Select(_value => _value.ToString())
+            .ToList();
+        _query["payer_names"] = request.PayerNames;
+        _query["states"] = request.States.Select(_value => _value.ToString()).ToList();
         if (request.PageToken != null)
         {
             _query["page_token"] = request.PageToken;
@@ -49,18 +73,6 @@ public class V2Client
         {
             _query["contracting_provider_id"] = request.ContractingProviderId.ToString();
         }
-        if (request.RenderingProviderIds != null)
-        {
-            _query["rendering_provider_ids"] = request.RenderingProviderIds.ToString();
-        }
-        if (request.PayerNames != null)
-        {
-            _query["payer_names"] = request.PayerNames;
-        }
-        if (request.States != null)
-        {
-            _query["states"] = JsonSerializer.Serialize(request.States.Value);
-        }
         if (request.ContractStatus != null)
         {
             _query["contract_status"] = JsonSerializer.Serialize(request.ContractStatus.Value);
@@ -71,21 +83,37 @@ public class V2Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = "/api/contracts/v2",
-                Query = _query
+                Query = _query,
+                Options = options
             }
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonUtils.Deserialize<ContractsPage>(responseBody)!;
+            try
+            {
+                return JsonUtils.Deserialize<ContractsPage>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
         }
-        throw new Exception(responseBody);
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            JsonUtils.Deserialize<object>(responseBody)
+        );
     }
 
     /// <summary>
     /// Creates a new contract within the user's current organization
     /// </summary>
-    public async Task<ContractWithProviders> CreateAsync(ContractCreate request)
+    public async Task<ContractWithProviders> CreateAsync(
+        ContractCreate request,
+        RequestOptions? options = null
+    )
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
@@ -93,30 +121,58 @@ public class V2Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Post,
                 Path = "/api/contracts/v2",
-                Body = request
+                Body = request,
+                Options = options
             }
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonUtils.Deserialize<ContractWithProviders>(responseBody)!;
+            try
+            {
+                return JsonUtils.Deserialize<ContractWithProviders>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
         }
-        throw new Exception(responseBody);
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            JsonUtils.Deserialize<object>(responseBody)
+        );
     }
 
-    public async Task DeleteAsync(string contractId)
+    public async Task DeleteAsync(string contractId, RequestOptions? options = null)
     {
-        await _client.MakeRequestAsync(
+        var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Delete,
-                Path = $"/api/contracts/v2/{contractId}"
+                Path = $"/api/contracts/v2/{contractId}",
+                Options = options
             }
+        );
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            return;
+        }
+        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            JsonUtils.Deserialize<object>(responseBody)
         );
     }
 
-    public async Task<ContractWithProviders> UpdateAsync(string contractId, ContractUpdate request)
+    public async Task<ContractWithProviders> UpdateAsync(
+        string contractId,
+        ContractUpdate request,
+        RequestOptions? options = null
+    )
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
@@ -124,14 +180,27 @@ public class V2Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethodExtensions.Patch,
                 Path = $"/api/contracts/v2/{contractId}",
-                Body = request
+                Body = request,
+                Options = options
             }
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
-            return JsonUtils.Deserialize<ContractWithProviders>(responseBody)!;
+            try
+            {
+                return JsonUtils.Deserialize<ContractWithProviders>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
         }
-        throw new Exception(responseBody);
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            JsonUtils.Deserialize<object>(responseBody)
+        );
     }
 }

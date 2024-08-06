@@ -12,11 +12,11 @@ public record OrganizationProviderAddress
     /// The address of the provider
     /// </summary>
     [JsonPropertyName("address")]
-    public required StreetAddressLongZip Address { get; init; }
+    public required StreetAddressLongZip Address { get; set; }
 
     /// <summary>
     /// The address type of the provider
     /// </summary>
     [JsonPropertyName("address_type")]
-    public required AddressType AddressType { get; init; }
+    public required AddressType AddressType { get; set; }
 }
