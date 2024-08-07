@@ -24,4 +24,10 @@ public record BillingNote
 
     [JsonPropertyName("author_name")]
     public string? AuthorName { get; set; }
+
+    /// <summary>
+    /// Empty string not allowed.
+    /// </summary>
+    [JsonPropertyName("text")]
+    public required string Text { get; set; }
 }

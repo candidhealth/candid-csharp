@@ -11,4 +11,7 @@ public record VersionConflictErrorBody
 
     [JsonPropertyName("latest_version")]
     public required int LatestVersion { get; set; }
+
+    [JsonPropertyName("message")]
+    public required string Message { get; set; }
 }

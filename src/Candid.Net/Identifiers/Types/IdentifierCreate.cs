@@ -1,3 +1,18 @@
+using System.Text.Json.Serialization;
+using Candid.Net;
+
+#nullable enable
+
 namespace Candid.Net;
 
-public record IdentifierCreate { }
+public record IdentifierCreate
+{
+    [JsonPropertyName("period")]
+    public DateRangeOptionalEnd? Period { get; set; }
+
+    [JsonPropertyName("identifier_code")]
+    public required IdentifierCode IdentifierCode { get; set; }
+
+    [JsonPropertyName("identifier_value")]
+    public required object IdentifierValue { get; set; }
+}

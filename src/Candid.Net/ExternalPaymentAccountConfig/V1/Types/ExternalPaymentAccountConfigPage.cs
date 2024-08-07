@@ -10,4 +10,10 @@ public record ExternalPaymentAccountConfigPage
     [JsonPropertyName("items")]
     public IEnumerable<ExternalPaymentAccountConfig> Items { get; set; } =
         new List<ExternalPaymentAccountConfig>();
+
+    [JsonPropertyName("prev_page_token")]
+    public string? PrevPageToken { get; set; }
+
+    [JsonPropertyName("next_page_token")]
+    public string? NextPageToken { get; set; }
 }
