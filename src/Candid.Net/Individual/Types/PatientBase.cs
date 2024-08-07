@@ -24,4 +24,13 @@ public record PatientBase
     /// </summary>
     [JsonPropertyName("address")]
     public required StreetAddressShortZip Address { get; set; }
+
+    [JsonPropertyName("first_name")]
+    public required string FirstName { get; set; }
+
+    [JsonPropertyName("last_name")]
+    public required string LastName { get; set; }
+
+    [JsonPropertyName("gender")]
+    public required Gender Gender { get; set; }
 }

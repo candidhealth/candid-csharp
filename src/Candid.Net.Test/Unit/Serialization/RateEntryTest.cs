@@ -17,8 +17,7 @@ public class RateEntryTest
         var inputJson =
             @"
         {
-  ""start_date"": ""2024-4-11"",
-  ""end_date"": null,
+  ""start_date"": ""2024-04-11"",
   ""rate_cents"": 33000,
   ""is_deactivated"": false
 }

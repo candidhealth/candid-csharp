@@ -436,18 +436,7 @@ public class EncounterTest
   ""service_authorization_exception_code"": ""1"",
   ""admission_date"": ""2023-01-01"",
   ""discharge_date"": ""2023-01-05"",
-  ""onset_of_current_illness_or_symptom_date"": ""2023-01-01"",
-  ""schema_instances"": [
-    {
-      ""schema_id"": ""ec096b13-f80a-471d-aaeb-54b021c9d582"",
-      ""content"": {
-        ""provider_category"": ""internist"",
-        ""is_urgent_care"": true,
-        ""bmi"": 24.2,
-        ""age"": 38
-      }
-    }
-  ]
+  ""onset_of_current_illness_or_symptom_date"": ""2023-01-01""
 }
 ";
 

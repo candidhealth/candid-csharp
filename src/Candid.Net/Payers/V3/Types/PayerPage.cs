@@ -9,4 +9,10 @@ public record PayerPage
 {
     [JsonPropertyName("items")]
     public IEnumerable<Payer> Items { get; set; } = new List<Payer>();
+
+    [JsonPropertyName("prev_page_token")]
+    public string? PrevPageToken { get; set; }
+
+    [JsonPropertyName("next_page_token")]
+    public string? NextPageToken { get; set; }
 }
