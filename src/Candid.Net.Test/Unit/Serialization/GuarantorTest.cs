@@ -1,6 +1,5 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Guarantor.V1;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 
@@ -47,7 +46,7 @@ public class GuarantorTest
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
         };
 
-        var deserializedObject = JsonSerializer.Deserialize<Guarantor>(
+        var deserializedObject = JsonSerializer.Deserialize<Guarantor.V1.Guarantor>(
             inputJson,
             serializerOptions
         );

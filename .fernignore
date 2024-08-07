@@ -6,6 +6,13 @@ src/Candid.Net/Core/OAuthTokenProvider.cs
 
 # Namespace + Type conflict
 src/Candid.Net/Encounters/V4/Types/Encounter.cs
-Candid.Net.Test/Unit/Serialization/GuarantorTest.cs
+src/Candid.Net.Test/Unit/Serialization/GuarantorTest.cs
+
+# Extra field in example: schema_instances
+src/Candid.Net.Test/Unit/Serialization/EncounterPageTest.cs
+src/Candid.Net.Test/Unit/Serialization/EncounterTest.cs
+
+# Date format + null issue
+src/Candid.Net.Test/Unit/Serialization/RateEntryTest.cs
 
 README.md
