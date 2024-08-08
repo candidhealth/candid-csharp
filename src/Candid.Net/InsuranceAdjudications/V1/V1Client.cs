@@ -1,7 +1,6 @@
 using System.Net.Http;
 using System.Text.Json;
 using Candid.Net.Core;
-using Candid.Net.InsuranceAdjudications.V1;
 
 #nullable enable
 
@@ -42,11 +41,11 @@ public class V1Client
             }
             catch (JsonException e)
             {
-                throw new CandidException("Failed to deserialize response", e);
+                throw new CandidClientException("Failed to deserialize response", e);
             }
         }
 
-        throw new CandidApiException(
+        throw new CandidClientApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
             JsonUtils.Deserialize<object>(responseBody)
@@ -80,11 +79,11 @@ public class V1Client
             }
             catch (JsonException e)
             {
-                throw new CandidException("Failed to deserialize response", e);
+                throw new CandidClientException("Failed to deserialize response", e);
             }
         }
 
-        throw new CandidApiException(
+        throw new CandidClientApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
             JsonUtils.Deserialize<object>(responseBody)
@@ -110,7 +109,7 @@ public class V1Client
             return;
         }
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
-        throw new CandidApiException(
+        throw new CandidClientApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
             JsonUtils.Deserialize<object>(responseBody)

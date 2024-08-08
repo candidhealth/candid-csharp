@@ -7,5 +7,5 @@ namespace Candid.Net.Core;
 /// <summary>
 /// Base exception class for all exceptions thrown by the SDK.
 /// </summary>
-public class CandidException(string message, Exception? innerException = null)
+public class CandidClientException(string message, Exception? innerException = null)
     : Exception(message, innerException) { }

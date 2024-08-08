@@ -1,5 +1,4 @@
 using System.Text.Json.Serialization;
-using Candid.Net.PatientPayments.V3;
 
 #nullable enable
 

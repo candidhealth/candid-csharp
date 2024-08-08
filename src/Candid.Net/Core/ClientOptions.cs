@@ -1,6 +1,5 @@
 using System;
 using System.Net.Http;
-using Candid.Net.Core;
 
 #nullable enable
 
@@ -11,7 +10,7 @@ public partial class ClientOptions
     /// <summary>
     /// The Environment for the API.
     /// </summary>
-    public CandidEnvironment Environment { get; init; } = null;
+    public CandidClientEnvironment Environment { get; init; } = CandidClientEnvironment.PRODUCTION;
 
     /// <summary>
     /// The http client used to make requests.

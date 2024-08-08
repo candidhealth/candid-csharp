@@ -1,6 +1,5 @@
 using System.Net.Http;
 using System.Text.Json;
-using Candid.Net.Auth.V2;
 using Candid.Net.Core;
 
 #nullable enable
@@ -59,11 +58,11 @@ public class V2Client
             }
             catch (JsonException e)
             {
-                throw new CandidException("Failed to deserialize response", e);
+                throw new CandidClientException("Failed to deserialize response", e);
             }
         }
 
-        throw new CandidApiException(
+        throw new CandidClientApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
             JsonUtils.Deserialize<object>(responseBody)

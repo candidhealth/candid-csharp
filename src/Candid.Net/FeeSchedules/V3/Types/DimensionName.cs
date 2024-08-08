@@ -1,7 +1,6 @@
 using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
-using Candid.Net.FeeSchedules.V3;
 
 #nullable enable
 

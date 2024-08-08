@@ -1,4 +1,3 @@
-using Candid.Net;
 using Candid.Net.Core;
 
 #nullable enable
@@ -10,7 +9,7 @@ namespace Candid.Net;
 /// </summary>
 public class UpdatesDisabledDueToExternalSystemIntegrationError(
     UpdatesDisabledDueToExternalSystemIntegrationErrorMessage body
-) : CandidApiException("UpdatesDisabledDueToExternalSystemIntegrationError", 422, body)
+) : CandidClientApiException("UpdatesDisabledDueToExternalSystemIntegrationError", 422, body)
 {
     /// <summary>
     /// The body of the response that triggered the exception.

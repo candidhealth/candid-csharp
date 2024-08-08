@@ -1,6 +1,5 @@
 using System.Text.Json.Serialization;
 using Candid.Net.PreEncounter;
-using Candid.Net.PreEncounter.Coverages.V1;
 
 #nullable enable
 

@@ -1,5 +1,4 @@
 using Candid.Net.Core;
-using Candid.Net.Encounters.V4;
 
 #nullable enable
 
@@ -10,7 +9,7 @@ namespace Candid.Net.Encounters.V4;
 /// </summary>
 public class EncounterGuarantorMissingContactInfoError(
     EncounterGuarantorMissingContactInfoErrorType body
-) : CandidApiException("EncounterGuarantorMissingContactInfoError", 422, body)
+) : CandidClientApiException("EncounterGuarantorMissingContactInfoError", 422, body)
 {
     /// <summary>
     /// The body of the response that triggered the exception.

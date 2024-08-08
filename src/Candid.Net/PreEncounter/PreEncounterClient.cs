@@ -1,5 +1,4 @@
 using Candid.Net.Core;
-using Candid.Net.PreEncounter;
 using Candid.Net.PreEncounter.Coverages;
 using Candid.Net.PreEncounter.Patients;
 

@@ -1,5 +1,4 @@
 using System.Text.Json.Serialization;
-using Candid.Net;
 using Candid.Net.InsuranceCards.V2;
 
 #nullable enable

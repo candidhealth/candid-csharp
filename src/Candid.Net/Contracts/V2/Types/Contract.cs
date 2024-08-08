@@ -1,5 +1,4 @@
 using System.Text.Json.Serialization;
-using Candid.Net.Contracts.V2;
 using Candid.Net.OrganizationProviders.V2;
 using Candid.Net.Payers.V3;
 

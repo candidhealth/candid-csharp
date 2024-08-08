@@ -55,11 +55,11 @@ public class V2Client
             }
             catch (JsonException e)
             {
-                throw new CandidException("Failed to deserialize response", e);
+                throw new CandidClientException("Failed to deserialize response", e);
             }
         }
 
-        throw new CandidApiException(
+        throw new CandidClientApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
             JsonUtils.Deserialize<object>(responseBody)
@@ -106,11 +106,11 @@ public class V2Client
             }
             catch (JsonException e)
             {
-                throw new CandidException("Failed to deserialize response", e);
+                throw new CandidClientException("Failed to deserialize response", e);
             }
         }
 
-        throw new CandidApiException(
+        throw new CandidClientApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
             JsonUtils.Deserialize<object>(responseBody)
@@ -157,11 +157,11 @@ public class V2Client
             }
             catch (JsonException e)
             {
-                throw new CandidException("Failed to deserialize response", e);
+                throw new CandidClientException("Failed to deserialize response", e);
             }
         }
 
-        throw new CandidApiException(
+        throw new CandidClientApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
             JsonUtils.Deserialize<object>(responseBody)

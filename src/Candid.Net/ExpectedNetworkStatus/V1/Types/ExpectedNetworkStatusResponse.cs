@@ -1,5 +1,4 @@
 using System.Text.Json.Serialization;
-using Candid.Net.ExpectedNetworkStatus.V1;
 
 #nullable enable
 

@@ -1,14 +1,10 @@
-using Candid.Net.Core;
-
-#nullable enable
-
 namespace Candid.Net.Core;
 
 /// <summary>
 /// This exception type will be thrown for any non-2XX API responses.
 /// </summary>
-public class CandidApiException(string message, int statusCode, object body)
-    : CandidException(message)
+public class CandidClientApiException(string message, int statusCode, object body)
+    : CandidClientException(message)
 {
     /// <summary>
     /// The error code of the response that triggered the exception.
@@ -22,6 +18,6 @@ public class CandidApiException(string message, int statusCode, object body)
 
     public override string ToString()
     {
-        return $"CandidApiException {{ message: {Message}, statusCode: {StatusCode}, body: {Body} }}";
+        return $"CandidClientApiException {{ message: {Message}, statusCode: {StatusCode}, body: {Body} }}";
     }
 }

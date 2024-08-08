@@ -1,5 +1,4 @@
 using System.Text.Json.Serialization;
-using Candid.Net.ImportInvoice.V1;
 
 #nullable enable
 

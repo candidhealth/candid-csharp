@@ -1,5 +1,4 @@
 using System.Text.Json;
-using Candid.Net;
 using Candid.Net.Core;
 
 #nullable enable
@@ -40,11 +39,11 @@ public class ServiceFacilityClient
             }
             catch (JsonException e)
             {
-                throw new CandidException("Failed to deserialize response", e);
+                throw new CandidClientException("Failed to deserialize response", e);
             }
         }
 
-        throw new CandidApiException(
+        throw new CandidClientApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
             JsonUtils.Deserialize<object>(responseBody)
