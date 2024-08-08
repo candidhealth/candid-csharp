@@ -18,7 +18,7 @@ public record MutablePatient
     public IEnumerable<HumanName> OtherNames { get; set; } = new List<HumanName>();
 
     [JsonPropertyName("gender")]
-    public required Gender Gender { get; set; }
+    public Gender? Gender { get; set; }
 
     [JsonPropertyName("birth_date")]
     public required DateOnly BirthDate { get; set; }
