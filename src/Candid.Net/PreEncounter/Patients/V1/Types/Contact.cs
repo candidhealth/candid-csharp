@@ -13,9 +13,6 @@ public record Contact
     [JsonPropertyName("name")]
     public required HumanName Name { get; set; }
 
-    [JsonPropertyName("gender")]
-    public Gender? Gender { get; set; }
-
     [JsonPropertyName("telecoms")]
     public IEnumerable<ContactPoint> Telecoms { get; set; } = new List<ContactPoint>();
 

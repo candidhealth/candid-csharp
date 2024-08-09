@@ -1,17 +1,19 @@
 using System.Text.Json.Serialization;
-using Candid.Net.PreEncounter;
 
 #nullable enable
 
-namespace Candid.Net.PreEncounter.Patients.V1;
+namespace Candid.Net.PreEncounter;
 
 public record ExternalProvider
 {
     [JsonPropertyName("name")]
     public required HumanName Name { get; set; }
 
+    [JsonPropertyName("type")]
+    public ExternalProviderType? Type { get; set; }
+
     [JsonPropertyName("npi")]
-    public required string Npi { get; set; }
+    public string? Npi { get; set; }
 
     [JsonPropertyName("telecoms")]
     public IEnumerable<ContactPoint> Telecoms { get; set; } = new List<ContactPoint>();

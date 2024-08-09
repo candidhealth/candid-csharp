@@ -9,6 +9,12 @@ namespace Candid.Net.PreEncounter.Coverages.V1;
 [JsonConverter(typeof(StringEnumSerializer<NetworkType>))]
 public enum NetworkType
 {
+    [EnumMember(Value = "09")]
+    SelfPay,
+
+    [EnumMember(Value = "11")]
+    OtherNonFederalPrograms,
+
     [EnumMember(Value = "12")]
     Ppo,
 
@@ -30,11 +36,20 @@ public enum NetworkType
     [EnumMember(Value = "AM")]
     Auto,
 
+    [EnumMember(Value = "BL")]
+    BlueCrossBlueShield,
+
     [EnumMember(Value = "CH")]
     Champus,
 
+    [EnumMember(Value = "CI")]
+    CommercialInsuranceCo,
+
     [EnumMember(Value = "DS")]
     Disability,
+
+    [EnumMember(Value = "FI")]
+    FederalEmployees,
 
     [EnumMember(Value = "HM")]
     Hmo,

@@ -18,6 +18,6 @@ public class CandidApiException(string message, int statusCode, object body)
 
     public override string ToString()
     {
-        return $"CandidClientApiException {{ message: {Message}, statusCode: {StatusCode}, body: {Body} }}";
+        return $"CandidApiException {{ message: {Message}, statusCode: {StatusCode}, body: {Body} }}";
     }
 }

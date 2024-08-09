@@ -13,6 +13,6 @@ public record Subscriber
     [JsonPropertyName("date_of_birth")]
     public required DateOnly DateOfBirth { get; set; }
 
-    [JsonPropertyName("gender")]
-    public required Gender Gender { get; set; }
+    [JsonPropertyName("biological_sex")]
+    public required Sex BiologicalSex { get; set; }
 }

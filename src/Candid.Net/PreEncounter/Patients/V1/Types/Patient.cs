@@ -65,10 +65,10 @@ public record Patient
     public string? SocialSecurityNumber { get; set; }
 
     /// <summary>
-    /// The biological sex of the patient.
+    /// The biological sex of the patient. This corresponds to the HL7 AdministrativeGender https://www.hl7.org/fhir/valueset-administrative-gender.html
     /// </summary>
     [JsonPropertyName("biological_sex")]
-    public Sex? BiologicalSex { get; set; }
+    public required Sex BiologicalSex { get; set; }
 
     /// <summary>
     /// The sexual orientation of the patient.

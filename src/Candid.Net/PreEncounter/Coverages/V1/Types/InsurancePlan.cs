@@ -22,8 +22,11 @@ public record InsurancePlan
     [JsonPropertyName("name")]
     public string? Name { get; set; }
 
+    [JsonPropertyName("plan_type")]
+    public NetworkType? PlanType { get; set; }
+
     [JsonPropertyName("type")]
-    public NetworkType? Type { get; set; }
+    public InsuranceTypeCode? Type { get; set; }
 
     [JsonPropertyName("period")]
     public Period? Period { get; set; }
