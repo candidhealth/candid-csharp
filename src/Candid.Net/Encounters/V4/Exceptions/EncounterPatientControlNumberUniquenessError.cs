@@ -9,7 +9,7 @@ namespace Candid.Net.Encounters.V4;
 /// </summary>
 public class EncounterPatientControlNumberUniquenessError(
     EncounterPatientControlNumberUniquenessErrorType body
-) : CandidClientApiException("EncounterPatientControlNumberUniquenessError", 422, body)
+) : CandidApiException("EncounterPatientControlNumberUniquenessError", 422, body)
 {
     /// <summary>
     /// The body of the response that triggered the exception.

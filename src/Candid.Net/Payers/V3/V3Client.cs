@@ -35,11 +35,11 @@ public class V3Client
             }
             catch (JsonException e)
             {
-                throw new CandidClientException("Failed to deserialize response", e);
+                throw new CandidException("Failed to deserialize response", e);
             }
         }
 
-        throw new CandidClientApiException(
+        throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
             JsonUtils.Deserialize<object>(responseBody)
@@ -83,11 +83,11 @@ public class V3Client
             }
             catch (JsonException e)
             {
-                throw new CandidClientException("Failed to deserialize response", e);
+                throw new CandidException("Failed to deserialize response", e);
             }
         }
 
-        throw new CandidClientApiException(
+        throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
             JsonUtils.Deserialize<object>(responseBody)

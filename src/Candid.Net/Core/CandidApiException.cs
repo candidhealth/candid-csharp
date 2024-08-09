@@ -3,8 +3,8 @@ namespace Candid.Net.Core;
 /// <summary>
 /// This exception type will be thrown for any non-2XX API responses.
 /// </summary>
-public class CandidClientApiException(string message, int statusCode, object body)
-    : CandidClientException(message)
+public class CandidApiException(string message, int statusCode, object body)
+    : CandidException(message)
 {
     /// <summary>
     /// The error code of the response that triggered the exception.

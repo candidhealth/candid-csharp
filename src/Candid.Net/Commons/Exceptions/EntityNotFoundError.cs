@@ -8,7 +8,7 @@ namespace Candid.Net;
 /// This exception type will be thrown for any non-2XX API responses.
 /// </summary>
 public class EntityNotFoundError(EntityNotFoundErrorMessage body)
-    : CandidClientApiException("EntityNotFoundError", 404, body)
+    : CandidApiException("EntityNotFoundError", 404, body)
 {
     /// <summary>
     /// The body of the response that triggered the exception.

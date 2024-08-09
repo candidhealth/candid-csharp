@@ -8,7 +8,7 @@ namespace Candid.Net.FeeSchedules.V3;
 /// This exception type will be thrown for any non-2XX API responses.
 /// </summary>
 public class FeeScheduleValidationHttpError(IEnumerable<RateUploadWithPossibleErrors> body)
-    : CandidClientApiException("FeeScheduleValidationHttpError", 422, body)
+    : CandidApiException("FeeScheduleValidationHttpError", 422, body)
 {
     /// <summary>
     /// The body of the response that triggered the exception.

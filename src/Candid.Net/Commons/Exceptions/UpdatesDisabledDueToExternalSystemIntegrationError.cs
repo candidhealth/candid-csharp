@@ -9,7 +9,7 @@ namespace Candid.Net;
 /// </summary>
 public class UpdatesDisabledDueToExternalSystemIntegrationError(
     UpdatesDisabledDueToExternalSystemIntegrationErrorMessage body
-) : CandidClientApiException("UpdatesDisabledDueToExternalSystemIntegrationError", 422, body)
+) : CandidApiException("UpdatesDisabledDueToExternalSystemIntegrationError", 422, body)
 {
     /// <summary>
     /// The body of the response that triggered the exception.

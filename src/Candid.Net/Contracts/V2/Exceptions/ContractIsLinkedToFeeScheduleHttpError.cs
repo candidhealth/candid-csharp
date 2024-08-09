@@ -8,7 +8,7 @@ namespace Candid.Net.Contracts.V2;
 /// This exception type will be thrown for any non-2XX API responses.
 /// </summary>
 public class ContractIsLinkedToFeeScheduleHttpError(ContractIsLinkedToFeeScheduleError body)
-    : CandidClientApiException("ContractIsLinkedToFeeScheduleHttpError", 422, body)
+    : CandidApiException("ContractIsLinkedToFeeScheduleHttpError", 422, body)
 {
     /// <summary>
     /// The body of the response that triggered the exception.

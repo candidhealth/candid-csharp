@@ -9,7 +9,7 @@ namespace Candid.Net.Encounters.V4;
 /// </summary>
 public class EncounterGuarantorMissingContactInfoError(
     EncounterGuarantorMissingContactInfoErrorType body
-) : CandidClientApiException("EncounterGuarantorMissingContactInfoError", 422, body)
+) : CandidApiException("EncounterGuarantorMissingContactInfoError", 422, body)
 {
     /// <summary>
     /// The body of the response that triggered the exception.
