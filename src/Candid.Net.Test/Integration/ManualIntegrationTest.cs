@@ -20,7 +20,7 @@ public class ManualIntegrationTest
         candid = new CandidClient(
             "YOUR_CLIENT_ID",
             "YOUR_CLIENT_SECRET",
-            new ClientOptions { Environment = CandidClientEnvironment.STAGING }
+            new ClientOptions { Environment = CandidEnvironment.STAGING }
         );
     }
 

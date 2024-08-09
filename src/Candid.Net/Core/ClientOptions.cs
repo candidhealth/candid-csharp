@@ -10,7 +10,7 @@ public partial class ClientOptions
     /// <summary>
     /// The Environment for the API.
     /// </summary>
-    public CandidClientEnvironment Environment { get; init; } = CandidClientEnvironment.PRODUCTION;
+    public CandidEnvironment Environment { get; init; } = CandidEnvironment.PRODUCTION;
 
     /// <summary>
     /// The http client used to make requests.
