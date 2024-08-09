@@ -1,5 +1,4 @@
 using Candid.Net;
-using Candid.Net.Contracts.V2;
 
 #nullable enable
 

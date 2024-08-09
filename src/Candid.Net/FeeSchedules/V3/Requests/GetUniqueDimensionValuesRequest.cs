@@ -1,5 +1,4 @@
 using Candid.Net;
-using Candid.Net.FeeSchedules.V3;
 using Candid.Net.OrganizationProviders.V2;
 
 #nullable enable

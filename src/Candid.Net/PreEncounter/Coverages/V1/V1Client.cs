@@ -1,7 +1,6 @@
 using System.Net.Http;
 using System.Text.Json;
 using Candid.Net.Core;
-using Candid.Net.PreEncounter.Coverages.V1;
 
 #nullable enable
 

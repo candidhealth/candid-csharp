@@ -1,5 +1,4 @@
 using Candid.Net;
-using Candid.Net.PatientRefunds.V1;
 
 #nullable enable
 

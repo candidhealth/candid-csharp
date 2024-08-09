@@ -32,7 +32,7 @@ Below are code snippets of how you can use the C# SDK.
 ```csharp
 using Candid.Net;
 
-var candid = new Candid("YOUR_CLIENT_ID", "YOUR_CLIENT_SECRET");
+var candid = new CandidClient("YOUR_CLIENT_ID", "YOUR_CLIENT_SECRET");
 
 var guarantor = candid.Guarantor.V1.GetAsync(Guid.Parse("guarantor-id")).Result;
 ```
@@ -46,7 +46,7 @@ retried twice with exponential backoff. You can override this behavior
 globally or per-request.
 
 ```csharp
-var candid = new Candid("...", new ClientOptions {
+var candid = new CandidClient("...", new ClientOptions {
     MaxRetries = 1 // Only retry once
 });
 ```
@@ -57,7 +57,7 @@ The SDK defaults to a 60s timeout. You can override this behaviour
 globally or per-request.
 
 ```csharp
-var candid = new Candid("...", new ClientOptions {
+var candid = new CandidClient("...", new ClientOptions {
     TimeoutInSeconds = 20 // Lower timeout
 });
 ```
@@ -67,7 +67,7 @@ var candid = new Candid("...", new ClientOptions {
 You can override the HttpClient by passing in `ClientOptions`.
 
 ```csharp
-var candid = new Candid("YOUR_API_KEY", new ClientOptions {
+var candid = new CandidClient("YOUR_API_KEY", new ClientOptions {
     HttpClient = ... // Override the Http Client
     BaseURL = ... // Override the Base URL
 })

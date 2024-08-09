@@ -1,6 +1,5 @@
 using System.Text.Json.Serialization;
 using Candid.Net.PreEncounter;
-using Candid.Net.PreEncounter.Patients.V1;
 
 #nullable enable
 

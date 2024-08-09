@@ -1,6 +1,5 @@
 using System.Text.Json.Serialization;
 using Candid.Net;
-using Candid.Net.InsuranceAdjudications.V1;
 using Candid.Net.X12.V1;
 
 #nullable enable

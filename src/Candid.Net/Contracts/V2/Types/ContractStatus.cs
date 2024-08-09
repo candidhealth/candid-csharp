@@ -1,6 +1,5 @@
 using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
-using Candid.Net.Contracts.V2;
 using Candid.Net.Core;
 
 #nullable enable

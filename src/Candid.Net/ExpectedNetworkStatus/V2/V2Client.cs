@@ -1,7 +1,6 @@
 using System.Net.Http;
 using System.Text.Json;
 using Candid.Net.Core;
-using Candid.Net.ExpectedNetworkStatus.V2;
 
 #nullable enable
 

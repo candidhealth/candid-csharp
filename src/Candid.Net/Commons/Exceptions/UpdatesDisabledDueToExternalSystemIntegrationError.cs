@@ -1,4 +1,3 @@
-using Candid.Net;
 using Candid.Net.Core;
 
 #nullable enable

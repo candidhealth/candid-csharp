@@ -1,5 +1,4 @@
 using Candid.Net.Core;
-using Candid.Net.ExpectedNetworkStatus.V2;
 
 #nullable enable
 

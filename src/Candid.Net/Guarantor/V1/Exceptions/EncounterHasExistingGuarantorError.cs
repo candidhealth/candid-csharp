@@ -1,5 +1,4 @@
 using Candid.Net.Core;
-using Candid.Net.Guarantor.V1;
 
 #nullable enable
 

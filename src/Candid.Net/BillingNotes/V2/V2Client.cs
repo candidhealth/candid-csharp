@@ -1,6 +1,5 @@
 using System.Net.Http;
 using System.Text.Json;
-using Candid.Net.BillingNotes.V2;
 using Candid.Net.Core;
 
 #nullable enable

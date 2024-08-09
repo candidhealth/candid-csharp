@@ -1,5 +1,4 @@
 using Candid.Net.Core;
-using Candid.Net.FeeSchedules.V3;
 
 #nullable enable
 

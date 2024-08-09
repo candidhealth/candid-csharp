@@ -1,6 +1,5 @@
 using System.Text.Json.Serialization;
 using Candid.Net;
-using Candid.Net.ClaimSubmission.V1;
 
 #nullable enable
 

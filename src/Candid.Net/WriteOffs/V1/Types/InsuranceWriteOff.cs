@@ -1,6 +1,5 @@
 using System.Text.Json.Serialization;
 using Candid.Net.Payers.V3;
-using Candid.Net.WriteOffs.V1;
 
 #nullable enable
 

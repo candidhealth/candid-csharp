@@ -1,5 +1,4 @@
 using Candid.Net;
-using Candid.Net.InsurancePayments.V1;
 
 #nullable enable
 

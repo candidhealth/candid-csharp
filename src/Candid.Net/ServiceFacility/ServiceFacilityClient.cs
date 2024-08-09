@@ -1,5 +1,4 @@
 using System.Text.Json;
-using Candid.Net;
 using Candid.Net.Core;
 
 #nullable enable

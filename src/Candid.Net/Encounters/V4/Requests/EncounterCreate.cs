@@ -4,7 +4,6 @@ using Candid.Net.BillingNotes.V2;
 using Candid.Net.ClaimSubmission.V1;
 using Candid.Net.CustomSchemas.V1;
 using Candid.Net.EncounterProviders.V2;
-using Candid.Net.Encounters.V4;
 using Candid.Net.Guarantor.V1;
 using Candid.Net.ServiceLines.V2;
 

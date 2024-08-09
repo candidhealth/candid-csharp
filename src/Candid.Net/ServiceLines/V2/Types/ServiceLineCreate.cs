@@ -1,7 +1,6 @@
 using System.Text.Json.Serialization;
 using Candid.Net;
 using Candid.Net.EncounterProviders.V2;
-using Candid.Net.ServiceLines.V2;
 
 #nullable enable
 

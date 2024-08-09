@@ -1,5 +1,4 @@
 using System.Text.Json.Serialization;
-using Candid.Net.Encounters.V4;
 
 #nullable enable
 

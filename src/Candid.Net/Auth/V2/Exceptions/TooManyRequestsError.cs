@@ -1,4 +1,3 @@
-using Candid.Net.Auth.V2;
 using Candid.Net.Core;
 
 #nullable enable

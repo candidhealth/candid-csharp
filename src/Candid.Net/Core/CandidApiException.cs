@@ -1,7 +1,3 @@
-using Candid.Net.Core;
-
-#nullable enable
-
 namespace Candid.Net.Core;
 
 /// <summary>
@@ -22,6 +18,6 @@ public class CandidApiException(string message, int statusCode, object body)
 
     public override string ToString()
     {
-        return $"CandidApiException {{ message: {Message}, statusCode: {StatusCode}, body: {Body} }}";
+        return $"CandidClientApiException {{ message: {Message}, statusCode: {StatusCode}, body: {Body} }}";
     }
 }

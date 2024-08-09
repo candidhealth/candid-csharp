@@ -1,5 +1,4 @@
 using Candid.Net.Core;
-using Candid.Net.PreEncounter;
 
 #nullable enable
 

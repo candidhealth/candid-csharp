@@ -1,6 +1,5 @@
 using System.Text.Json.Serialization;
 using Candid.Net;
-using Candid.Net.OrganizationServiceFacilities.V2;
 
 #nullable enable
 
