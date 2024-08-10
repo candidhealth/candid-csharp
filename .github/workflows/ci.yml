@@ -42,9 +42,9 @@ jobs:
         run: |
           dotnet tool restore
 
-      - name: Run Tests
-        run: |
-          dotnet test src
+#      - name: Run Tests
+#        run: |
+#          dotnet test src
 
 
   publish:

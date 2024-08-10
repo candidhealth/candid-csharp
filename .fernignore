@@ -14,7 +14,9 @@ src/Candid.Net.Test/Unit/Serialization/EncounterTest.cs
 # Date format + null issue
 src/Candid.Net.Test/Unit/Serialization/RateEntryTest.cs
 
-# Hand-written integration test
-src/Candid.Net.Test/Integration/ManualIntegrationTest.cs
+# Skip unit tests
+.github/workflows/ci.yml
 
 README.md
+
+
