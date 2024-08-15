@@ -13,27 +13,6 @@ public record ServiceLineCreateStandalone
     [JsonPropertyName("charge_amount_cents")]
     public int? ChargeAmountCents { get; set; }
 
-    [JsonPropertyName("allowed_amount_cents")]
-    public int? AllowedAmountCents { get; set; }
-
-    [JsonPropertyName("insurance_balance_cents")]
-    public int? InsuranceBalanceCents { get; set; }
-
-    [JsonPropertyName("patient_balance_cents")]
-    public int? PatientBalanceCents { get; set; }
-
-    [JsonPropertyName("primary_paid_amount_cents")]
-    public int? PrimaryPaidAmountCents { get; set; }
-
-    [JsonPropertyName("secondary_paid_amount_cents")]
-    public int? SecondaryPaidAmountCents { get; set; }
-
-    [JsonPropertyName("tertiary_paid_amount_cents")]
-    public int? TertiaryPaidAmountCents { get; set; }
-
-    [JsonPropertyName("patient_responsibility_cents")]
-    public int? PatientResponsibilityCents { get; set; }
-
     [JsonPropertyName("diagnosis_id_zero")]
     public string? DiagnosisIdZero { get; set; }
 
@@ -46,17 +25,11 @@ public record ServiceLineCreateStandalone
     [JsonPropertyName("diagnosis_id_three")]
     public string? DiagnosisIdThree { get; set; }
 
-    [JsonPropertyName("service_line_manual_adjustments")]
-    public IEnumerable<ServiceLineAdjustment>? ServiceLineManualAdjustments { get; set; }
-
     [JsonPropertyName("denial_reason")]
     public ServiceLineDenialReason? DenialReason { get; set; }
 
     [JsonPropertyName("place_of_service_code")]
     public FacilityTypeCode? PlaceOfServiceCode { get; set; }
-
-    [JsonPropertyName("place_of_service_code_as_submitted")]
-    public FacilityTypeCode? PlaceOfServiceCodeAsSubmitted { get; set; }
 
     [JsonPropertyName("procedure_code")]
     public required string ProcedureCode { get; set; }
