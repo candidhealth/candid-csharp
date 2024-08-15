@@ -18,6 +18,12 @@ public record PatientWriteOff
     [JsonPropertyName("write_off_reason")]
     public required PatientWriteOffReason WriteOffReason { get; set; }
 
+    [JsonPropertyName("patient_external_id")]
+    public required string PatientExternalId { get; set; }
+
+    [JsonPropertyName("claim_id")]
+    public required string ClaimId { get; set; }
+
     [JsonPropertyName("service_line_id")]
     public required string ServiceLineId { get; set; }
 
