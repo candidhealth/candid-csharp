@@ -5,11 +5,11 @@ using Candid.Net.EncounterProviders.V2;
 
 namespace Candid.Net.EncounterProviders;
 
-public class EncounterProvidersClient
+public partial class EncounterProvidersClient
 {
     private RawClient _client;
 
-    public EncounterProvidersClient(RawClient client)
+    internal EncounterProvidersClient(RawClient client)
     {
         _client = client;
         V2 = new V2Client(_client);

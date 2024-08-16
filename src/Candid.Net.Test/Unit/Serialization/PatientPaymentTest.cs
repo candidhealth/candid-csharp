@@ -1,6 +1,6 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.PatientPayments.V3;
+using FluentAssertions.Json;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 
@@ -37,13 +37,13 @@ public class PatientPaymentTest
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
         };
 
-        var deserializedObject = JsonSerializer.Deserialize<PatientPayment>(
+        var deserializedObject = JsonSerializer.Deserialize<PatientPayments.V3.PatientPayment>(
             inputJson,
             serializerOptions
         );
 
         var serializedJson = JsonSerializer.Serialize(deserializedObject, serializerOptions);
 
-        Assert.That(JToken.DeepEquals(JToken.Parse(inputJson), JToken.Parse(serializedJson)));
+        JToken.Parse(inputJson).Should().BeEquivalentTo(JToken.Parse(serializedJson));
     }
 }

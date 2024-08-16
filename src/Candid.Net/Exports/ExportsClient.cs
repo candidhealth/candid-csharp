@@ -5,11 +5,11 @@ using Candid.Net.Exports.V3;
 
 namespace Candid.Net.Exports;
 
-public class ExportsClient
+public partial class ExportsClient
 {
     private RawClient _client;
 
-    public ExportsClient(RawClient client)
+    internal ExportsClient(RawClient client)
     {
         _client = client;
         V3 = new V3Client(_client);

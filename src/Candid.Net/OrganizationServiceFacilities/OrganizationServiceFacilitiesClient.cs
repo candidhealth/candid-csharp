@@ -5,11 +5,11 @@ using Candid.Net.OrganizationServiceFacilities.V2;
 
 namespace Candid.Net.OrganizationServiceFacilities;
 
-public class OrganizationServiceFacilitiesClient
+public partial class OrganizationServiceFacilitiesClient
 {
     private RawClient _client;
 
-    public OrganizationServiceFacilitiesClient(RawClient client)
+    internal OrganizationServiceFacilitiesClient(RawClient client)
     {
         _client = client;
         V2 = new V2Client(_client);

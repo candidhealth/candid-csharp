@@ -5,11 +5,11 @@ using Candid.Net.Tasks.V3;
 
 namespace Candid.Net.Tasks;
 
-public class TasksClient
+public partial class TasksClient
 {
     private RawClient _client;
 
-    public TasksClient(RawClient client)
+    internal TasksClient(RawClient client)
     {
         _client = client;
         V3 = new V3Client(_client);

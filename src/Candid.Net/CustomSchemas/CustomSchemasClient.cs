@@ -5,11 +5,11 @@ using Candid.Net.CustomSchemas.V1;
 
 namespace Candid.Net.CustomSchemas;
 
-public class CustomSchemasClient
+public partial class CustomSchemasClient
 {
     private RawClient _client;
 
-    public CustomSchemasClient(RawClient client)
+    internal CustomSchemasClient(RawClient client)
     {
         _client = client;
         V1 = new V1Client(_client);

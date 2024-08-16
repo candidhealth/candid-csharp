@@ -1,6 +1,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Candid.Net;
+using FluentAssertions.Json;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 
@@ -38,6 +39,6 @@ public class StreetAddressShortZipTest
 
         var serializedJson = JsonSerializer.Serialize(deserializedObject, serializerOptions);
 
-        Assert.That(JToken.DeepEquals(JToken.Parse(inputJson), JToken.Parse(serializedJson)));
+        JToken.Parse(inputJson).Should().BeEquivalentTo(JToken.Parse(serializedJson));
     }
 }

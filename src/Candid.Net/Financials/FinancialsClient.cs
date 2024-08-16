@@ -4,11 +4,11 @@ using Candid.Net.Core;
 
 namespace Candid.Net;
 
-public class FinancialsClient
+public partial class FinancialsClient
 {
     private RawClient _client;
 
-    public FinancialsClient(RawClient client)
+    internal FinancialsClient(RawClient client)
     {
         _client = client;
     }

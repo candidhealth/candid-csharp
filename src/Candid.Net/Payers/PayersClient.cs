@@ -5,11 +5,11 @@ using Candid.Net.Payers.V3;
 
 namespace Candid.Net.Payers;
 
-public class PayersClient
+public partial class PayersClient
 {
     private RawClient _client;
 
-    public PayersClient(RawClient client)
+    internal PayersClient(RawClient client)
     {
         _client = client;
         V3 = new V3Client(_client);

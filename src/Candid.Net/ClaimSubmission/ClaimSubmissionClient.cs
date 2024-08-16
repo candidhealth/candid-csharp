@@ -5,11 +5,11 @@ using Candid.Net.Core;
 
 namespace Candid.Net.ClaimSubmission;
 
-public class ClaimSubmissionClient
+public partial class ClaimSubmissionClient
 {
     private RawClient _client;
 
-    public ClaimSubmissionClient(RawClient client)
+    internal ClaimSubmissionClient(RawClient client)
     {
         _client = client;
         V1 = new V1Client(_client);

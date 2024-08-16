@@ -6,11 +6,11 @@ using Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter.Patients.V1;
 
-public class V1Client
+public partial class V1Client
 {
     private RawClient _client;
 
-    public V1Client(RawClient client)
+    internal V1Client(RawClient client)
     {
         _client = client;
     }
@@ -46,7 +46,7 @@ public class V1Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
@@ -80,7 +80,7 @@ public class V1Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
@@ -117,7 +117,7 @@ public class V1Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
@@ -157,14 +157,18 @@ public class V1Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
     /// <summary>
     /// Sets a patient as deactivated. The path must contain the most recent version to prevent races. Dactivating historic versions is not supported. Subsequent updates via PUT to the patient will "reactivate" the patient and set the deactivated flag to false.
     /// </summary>
-    public async Task DeactivateAsync(string id, string version, RequestOptions? options = null)
+    public async System.Threading.Tasks.Task DeactivateAsync(
+        string id,
+        string version,
+        RequestOptions? options = null
+    )
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
@@ -183,7 +187,7 @@ public class V1Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
@@ -226,7 +230,7 @@ public class V1Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
@@ -266,7 +270,7 @@ public class V1Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 }

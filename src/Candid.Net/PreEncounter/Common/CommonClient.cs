@@ -4,11 +4,11 @@ using Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter;
 
-public class CommonClient
+public partial class CommonClient
 {
     private RawClient _client;
 
-    public CommonClient(RawClient client)
+    internal CommonClient(RawClient client)
     {
         _client = client;
     }

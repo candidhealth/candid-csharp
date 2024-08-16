@@ -5,11 +5,11 @@ using Candid.Net.ServiceLines.V2;
 
 namespace Candid.Net.ServiceLines;
 
-public class ServiceLinesClient
+public partial class ServiceLinesClient
 {
     private RawClient _client;
 
-    public ServiceLinesClient(RawClient client)
+    internal ServiceLinesClient(RawClient client)
     {
         _client = client;
         V2 = new V2Client(_client);

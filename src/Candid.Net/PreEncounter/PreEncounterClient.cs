@@ -6,11 +6,11 @@ using Candid.Net.PreEncounter.Patients;
 
 namespace Candid.Net.PreEncounter;
 
-public class PreEncounterClient
+public partial class PreEncounterClient
 {
     private RawClient _client;
 
-    public PreEncounterClient(RawClient client)
+    internal PreEncounterClient(RawClient client)
     {
         _client = client;
         Coverages = new CoveragesClient(_client);

@@ -5,11 +5,11 @@ using Candid.Net.ThirdPartyPayerPayments.V1;
 
 namespace Candid.Net.ThirdPartyPayerPayments;
 
-public class ThirdPartyPayerPaymentsClient
+public partial class ThirdPartyPayerPaymentsClient
 {
     private RawClient _client;
 
-    public ThirdPartyPayerPaymentsClient(RawClient client)
+    internal ThirdPartyPayerPaymentsClient(RawClient client)
     {
         _client = client;
         V1 = new V1Client(_client);

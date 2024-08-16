@@ -6,11 +6,11 @@ using Candid.Net.Core;
 
 namespace Candid.Net.OrganizationServiceFacilities.V2;
 
-public class V2Client
+public partial class V2Client
 {
     private RawClient _client;
 
-    public V2Client(RawClient client)
+    internal V2Client(RawClient client)
     {
         _client = client;
     }
@@ -45,7 +45,7 @@ public class V2Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
@@ -93,7 +93,7 @@ public class V2Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
@@ -128,7 +128,7 @@ public class V2Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
@@ -164,11 +164,11 @@ public class V2Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
-    public async Task DeleteAsync(
+    public async System.Threading.Tasks.Task DeleteAsync(
         string organizationServiceFacilityId,
         RequestOptions? options = null
     )
@@ -190,7 +190,7 @@ public class V2Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 }

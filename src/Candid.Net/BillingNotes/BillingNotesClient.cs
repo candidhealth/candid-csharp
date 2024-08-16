@@ -5,11 +5,11 @@ using Candid.Net.Core;
 
 namespace Candid.Net.BillingNotes;
 
-public class BillingNotesClient
+public partial class BillingNotesClient
 {
     private RawClient _client;
 
-    public BillingNotesClient(RawClient client)
+    internal BillingNotesClient(RawClient client)
     {
         _client = client;
         V2 = new V2Client(_client);

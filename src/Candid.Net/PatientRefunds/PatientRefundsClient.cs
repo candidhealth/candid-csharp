@@ -5,11 +5,11 @@ using Candid.Net.PatientRefunds.V1;
 
 namespace Candid.Net.PatientRefunds;
 
-public class PatientRefundsClient
+public partial class PatientRefundsClient
 {
     private RawClient _client;
 
-    public PatientRefundsClient(RawClient client)
+    internal PatientRefundsClient(RawClient client)
     {
         _client = client;
         V1 = new V1Client(_client);

@@ -4,11 +4,11 @@ using Candid.Net.Core;
 
 namespace Candid.Net;
 
-public class TagsClient
+public partial class TagsClient
 {
     private RawClient _client;
 
-    public TagsClient(RawClient client)
+    internal TagsClient(RawClient client)
     {
         _client = client;
     }

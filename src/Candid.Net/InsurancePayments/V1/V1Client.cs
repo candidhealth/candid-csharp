@@ -6,11 +6,11 @@ using Candid.Net.Core;
 
 namespace Candid.Net.InsurancePayments.V1;
 
-public class V1Client
+public partial class V1Client
 {
     private RawClient _client;
 
-    public V1Client(RawClient client)
+    internal V1Client(RawClient client)
     {
         _client = client;
     }
@@ -82,7 +82,7 @@ public class V1Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
@@ -120,7 +120,7 @@ public class V1Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
@@ -160,7 +160,7 @@ public class V1Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
@@ -200,7 +200,7 @@ public class V1Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
@@ -209,7 +209,10 @@ public class V1Client
     /// If the matching record's organization_id does not match the authenticated user's
     /// current organization_id, then a response code of `403` will be returned.
     /// </summary>
-    public async Task DeleteAsync(string insurancePaymentId, RequestOptions? options = null)
+    public async System.Threading.Tasks.Task DeleteAsync(
+        string insurancePaymentId,
+        RequestOptions? options = null
+    )
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
@@ -228,7 +231,7 @@ public class V1Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 }

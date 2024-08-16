@@ -32,7 +32,7 @@ public record CreateImportInvoiceRequest
     public IEnumerable<InvoiceItemCreate> Items { get; set; } = new List<InvoiceItemCreate>();
 
     [JsonPropertyName("status")]
-    public required InvoiceStatus Status { get; set; }
+    public required Invoices.V2.InvoiceStatus Status { get; set; }
 
     /// <summary>
     /// Id of the invoice being imported in the source system. Warning - This field CANNOT be updated.

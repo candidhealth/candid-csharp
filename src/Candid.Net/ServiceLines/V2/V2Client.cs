@@ -6,11 +6,11 @@ using Candid.Net.Core;
 
 namespace Candid.Net.ServiceLines.V2;
 
-public class V2Client
+public partial class V2Client
 {
     private RawClient _client;
 
-    public V2Client(RawClient client)
+    internal V2Client(RawClient client)
     {
         _client = client;
     }
@@ -46,7 +46,7 @@ public class V2Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
@@ -82,7 +82,33 @@ public class V2Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
+        );
+    }
+
+    public async System.Threading.Tasks.Task DeleteAsync(
+        string serviceLineId,
+        RequestOptions? options = null
+    )
+    {
+        var response = await _client.MakeRequestAsync(
+            new RawClient.JsonApiRequest
+            {
+                BaseUrl = _client.Options.Environment.CandidApi,
+                Method = HttpMethod.Delete,
+                Path = $"/api/service-lines/v2/{serviceLineId}",
+                Options = options
+            }
+        );
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            return;
+        }
+        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            responseBody
         );
     }
 }

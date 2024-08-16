@@ -18,6 +18,12 @@ public record ServiceLine
     [JsonPropertyName("allowed_amount_cents")]
     public int? AllowedAmountCents { get; set; }
 
+    [JsonPropertyName("insurance_balance_cents")]
+    public int? InsuranceBalanceCents { get; set; }
+
+    [JsonPropertyName("patient_balance_cents")]
+    public int? PatientBalanceCents { get; set; }
+
     [JsonPropertyName("paid_amount_cents")]
     public int? PaidAmountCents { get; set; }
 
@@ -45,8 +51,14 @@ public record ServiceLine
     [JsonPropertyName("diagnosis_id_three")]
     public string? DiagnosisIdThree { get; set; }
 
+    [JsonPropertyName("service_line_era_data")]
+    public ServiceLineEraData? ServiceLineEraData { get; set; }
+
     [JsonPropertyName("service_line_manual_adjustments")]
     public IEnumerable<ServiceLineAdjustment>? ServiceLineManualAdjustments { get; set; }
+
+    [JsonPropertyName("related_invoices")]
+    public IEnumerable<Invoice>? RelatedInvoices { get; set; }
 
     [JsonPropertyName("related_invoice_info")]
     public IEnumerable<InvoiceInfo>? RelatedInvoiceInfo { get; set; }

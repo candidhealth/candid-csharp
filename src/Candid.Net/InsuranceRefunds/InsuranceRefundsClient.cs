@@ -5,11 +5,11 @@ using Candid.Net.InsuranceRefunds.V1;
 
 namespace Candid.Net.InsuranceRefunds;
 
-public class InsuranceRefundsClient
+public partial class InsuranceRefundsClient
 {
     private RawClient _client;
 
-    public InsuranceRefundsClient(RawClient client)
+    internal InsuranceRefundsClient(RawClient client)
     {
         _client = client;
         V1 = new V1Client(_client);

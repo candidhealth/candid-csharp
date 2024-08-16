@@ -5,11 +5,11 @@ using Candid.Net.Invoices.V2;
 
 namespace Candid.Net.Invoices;
 
-public class InvoicesClient
+public partial class InvoicesClient
 {
     private RawClient _client;
 
-    public InvoicesClient(RawClient client)
+    internal InvoicesClient(RawClient client)
     {
         _client = client;
         V2 = new V2Client(_client);

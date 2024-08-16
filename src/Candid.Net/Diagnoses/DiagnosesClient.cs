@@ -4,11 +4,11 @@ using Candid.Net.Core;
 
 namespace Candid.Net;
 
-public class DiagnosesClient
+public partial class DiagnosesClient
 {
     private RawClient _client;
 
-    public DiagnosesClient(RawClient client)
+    internal DiagnosesClient(RawClient client)
     {
         _client = client;
     }

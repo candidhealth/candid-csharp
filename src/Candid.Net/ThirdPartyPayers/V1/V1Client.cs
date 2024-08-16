@@ -6,11 +6,11 @@ using Candid.Net.Core;
 
 namespace Candid.Net.ThirdPartyPayers.V1;
 
-public class V1Client
+public partial class V1Client
 {
     private RawClient _client;
 
-    public V1Client(RawClient client)
+    internal V1Client(RawClient client)
     {
         _client = client;
     }
@@ -46,7 +46,7 @@ public class V1Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
@@ -82,7 +82,7 @@ public class V1Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
@@ -146,7 +146,7 @@ public class V1Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
@@ -180,7 +180,7 @@ public class V1Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
@@ -216,11 +216,14 @@ public class V1Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
-    public async Task DeleteAsync(string thirdPartyPayerId, RequestOptions? options = null)
+    public async System.Threading.Tasks.Task DeleteAsync(
+        string thirdPartyPayerId,
+        RequestOptions? options = null
+    )
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
@@ -239,7 +242,7 @@ public class V1Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 }

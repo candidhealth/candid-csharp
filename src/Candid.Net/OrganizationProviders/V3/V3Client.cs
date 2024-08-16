@@ -6,11 +6,11 @@ using Candid.Net.Core;
 
 namespace Candid.Net.OrganizationProviders.V3;
 
-public class V3Client
+public partial class V3Client
 {
     private RawClient _client;
 
-    public V3Client(RawClient client)
+    internal V3Client(RawClient client)
     {
         _client = client;
     }
@@ -45,7 +45,7 @@ public class V3Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
@@ -109,7 +109,7 @@ public class V3Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
@@ -144,7 +144,7 @@ public class V3Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
@@ -180,7 +180,7 @@ public class V3Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 }

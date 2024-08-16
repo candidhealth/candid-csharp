@@ -5,11 +5,11 @@ using Candid.Net.InsurancePayments.V1;
 
 namespace Candid.Net.InsurancePayments;
 
-public class InsurancePaymentsClient
+public partial class InsurancePaymentsClient
 {
     private RawClient _client;
 
-    public InsurancePaymentsClient(RawClient client)
+    internal InsurancePaymentsClient(RawClient client)
     {
         _client = client;
         V1 = new V1Client(_client);

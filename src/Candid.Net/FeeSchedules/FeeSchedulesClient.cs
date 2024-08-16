@@ -5,11 +5,11 @@ using Candid.Net.FeeSchedules.V3;
 
 namespace Candid.Net.FeeSchedules;
 
-public class FeeSchedulesClient
+public partial class FeeSchedulesClient
 {
     private RawClient _client;
 
-    public FeeSchedulesClient(RawClient client)
+    internal FeeSchedulesClient(RawClient client)
     {
         _client = client;
         V3 = new V3Client(_client);

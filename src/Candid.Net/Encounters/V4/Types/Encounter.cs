@@ -3,7 +3,6 @@ using Candid.Net;
 using Candid.Net.BillingNotes.V2;
 using Candid.Net.CustomSchemas.V1;
 using Candid.Net.EncounterProviders.V2;
-using Candid.Net.PatientPayments.V3;
 
 #nullable enable
 
@@ -141,7 +140,8 @@ public record Encounter
         new List<PatientHistoryCategory>();
 
     [JsonPropertyName("patient_payments")]
-    public IEnumerable<PatientPayment> PatientPayments { get; set; } = new List<PatientPayment>();
+    public IEnumerable<PatientPayments.V3.PatientPayment> PatientPayments { get; set; } =
+        new List<PatientPayments.V3.PatientPayment>();
 
     [JsonPropertyName("tags")]
     public IEnumerable<Tag> Tags { get; set; } = new List<Tag>();

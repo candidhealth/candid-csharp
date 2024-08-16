@@ -29,7 +29,8 @@ public record SearchImportedInvoicesRequest
     /// <summary>
     /// all invoices that match any of the provided statuses
     /// </summary>
-    public IEnumerable<InvoiceStatus> Status { get; set; } = new List<InvoiceStatus>();
+    public IEnumerable<Invoices.V2.InvoiceStatus> Status { get; set; } =
+        new List<Invoices.V2.InvoiceStatus>();
 
     /// <summary>
     /// Defaults to 100

@@ -5,11 +5,11 @@ using Candid.Net.ImportInvoice.V1;
 
 namespace Candid.Net.ImportInvoice;
 
-public class ImportInvoiceClient
+public partial class ImportInvoiceClient
 {
     private RawClient _client;
 
-    public ImportInvoiceClient(RawClient client)
+    internal ImportInvoiceClient(RawClient client)
     {
         _client = client;
         V1 = new V1Client(_client);

@@ -1,5 +1,4 @@
 using System.Text.Json.Serialization;
-using Candid.Net.Invoices.V2;
 
 #nullable enable
 
@@ -14,7 +13,7 @@ public record ImportInvoiceUpdateRequest
     public string? CustomerInvoiceUrl { get; set; }
 
     [JsonPropertyName("status")]
-    public InvoiceStatus? Status { get; set; }
+    public Invoices.V2.InvoiceStatus? Status { get; set; }
 
     [JsonPropertyName("note")]
     public string? Note { get; set; }

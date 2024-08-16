@@ -6,11 +6,11 @@ using Candid.Net.Core;
 
 namespace Candid.Net.CustomSchemas.V1;
 
-public class V1Client
+public partial class V1Client
 {
     private RawClient _client;
 
-    public V1Client(RawClient client)
+    internal V1Client(RawClient client)
     {
         _client = client;
     }
@@ -45,7 +45,7 @@ public class V1Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
@@ -79,7 +79,7 @@ public class V1Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
@@ -115,7 +115,7 @@ public class V1Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
@@ -154,7 +154,7 @@ public class V1Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 }

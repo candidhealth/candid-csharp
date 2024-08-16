@@ -5,11 +5,11 @@ using Candid.Net.PatientPayments.V4;
 
 namespace Candid.Net.PatientPayments;
 
-public class PatientPaymentsClient
+public partial class PatientPaymentsClient
 {
     private RawClient _client;
 
-    public PatientPaymentsClient(RawClient client)
+    internal PatientPaymentsClient(RawClient client)
     {
         _client = client;
         V4 = new V4Client(_client);

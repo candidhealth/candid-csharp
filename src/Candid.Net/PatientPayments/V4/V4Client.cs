@@ -6,11 +6,11 @@ using Candid.Net.Core;
 
 namespace Candid.Net.PatientPayments.V4;
 
-public class V4Client
+public partial class V4Client
 {
     private RawClient _client;
 
-    public V4Client(RawClient client)
+    internal V4Client(RawClient client)
     {
         _client = client;
     }
@@ -92,7 +92,7 @@ public class V4Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
@@ -129,7 +129,7 @@ public class V4Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
@@ -169,7 +169,7 @@ public class V4Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
@@ -208,14 +208,17 @@ public class V4Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
     /// <summary>
     /// Deletes the patient payment record matching the provided patient_payment_id.
     /// </summary>
-    public async Task DeleteAsync(string patientPaymentId, RequestOptions? options = null)
+    public async System.Threading.Tasks.Task DeleteAsync(
+        string patientPaymentId,
+        RequestOptions? options = null
+    )
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
@@ -234,7 +237,7 @@ public class V4Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 }

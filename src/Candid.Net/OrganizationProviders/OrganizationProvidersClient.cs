@@ -6,11 +6,11 @@ using Candid.Net.OrganizationProviders.V3;
 
 namespace Candid.Net.OrganizationProviders;
 
-public class OrganizationProvidersClient
+public partial class OrganizationProvidersClient
 {
     private RawClient _client;
 
-    public OrganizationProvidersClient(RawClient client)
+    internal OrganizationProvidersClient(RawClient client)
     {
         _client = client;
         V2 = new V2Client(_client);

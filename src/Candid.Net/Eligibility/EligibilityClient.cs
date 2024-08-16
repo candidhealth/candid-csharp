@@ -5,11 +5,11 @@ using Candid.Net.Eligibility.V2;
 
 namespace Candid.Net.Eligibility;
 
-public class EligibilityClient
+public partial class EligibilityClient
 {
     private RawClient _client;
 
-    public EligibilityClient(RawClient client)
+    internal EligibilityClient(RawClient client)
     {
         _client = client;
         V2 = new V2Client(_client);

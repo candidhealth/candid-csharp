@@ -32,7 +32,7 @@ public record ImportInvoice
     public required string ExternalCustomerIdentifier { get; set; }
 
     [JsonPropertyName("status")]
-    public required InvoiceStatus Status { get; set; }
+    public required Invoices.V2.InvoiceStatus Status { get; set; }
 
     /// <summary>
     /// Id of the invoice being imported in the source system

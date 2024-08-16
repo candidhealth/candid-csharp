@@ -6,11 +6,11 @@ using Candid.Net.ExpectedNetworkStatus.V2;
 
 namespace Candid.Net.ExpectedNetworkStatus;
 
-public class ExpectedNetworkStatusClient
+public partial class ExpectedNetworkStatusClient
 {
     private RawClient _client;
 
-    public ExpectedNetworkStatusClient(RawClient client)
+    internal ExpectedNetworkStatusClient(RawClient client)
     {
         _client = client;
         V1 = new V1Client(_client);

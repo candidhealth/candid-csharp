@@ -5,11 +5,11 @@ using Candid.Net.ExternalPaymentAccountConfig.V1;
 
 namespace Candid.Net.ExternalPaymentAccountConfig;
 
-public class ExternalPaymentAccountConfigClient
+public partial class ExternalPaymentAccountConfigClient
 {
     private RawClient _client;
 
-    public ExternalPaymentAccountConfigClient(RawClient client)
+    internal ExternalPaymentAccountConfigClient(RawClient client)
     {
         _client = client;
         V1 = new V1Client(_client);

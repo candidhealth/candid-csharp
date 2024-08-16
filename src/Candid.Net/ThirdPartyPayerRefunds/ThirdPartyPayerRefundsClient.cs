@@ -5,11 +5,11 @@ using Candid.Net.ThirdPartyPayerRefunds.V1;
 
 namespace Candid.Net.ThirdPartyPayerRefunds;
 
-public class ThirdPartyPayerRefundsClient
+public partial class ThirdPartyPayerRefundsClient
 {
     private RawClient _client;
 
-    public ThirdPartyPayerRefundsClient(RawClient client)
+    internal ThirdPartyPayerRefundsClient(RawClient client)
     {
         _client = client;
         V1 = new V1Client(_client);

@@ -6,11 +6,11 @@ using Candid.Net.Core;
 
 namespace Candid.Net.FeeSchedules.V3;
 
-public class V3Client
+public partial class V3Client
 {
     private RawClient _client;
 
-    public V3Client(RawClient client)
+    internal V3Client(RawClient client)
     {
         _client = client;
     }
@@ -48,7 +48,7 @@ public class V3Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
@@ -86,7 +86,7 @@ public class V3Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
@@ -158,7 +158,7 @@ public class V3Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
@@ -227,7 +227,7 @@ public class V3Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
@@ -264,7 +264,7 @@ public class V3Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
@@ -302,14 +302,18 @@ public class V3Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
     /// <summary>
     /// Soft deletes a rate from the system. Only the most recent version of a rate can be deleted.
     /// </summary>
-    public async Task DeleteRateAsync(string rateId, int version, RequestOptions? options = null)
+    public async System.Threading.Tasks.Task DeleteRateAsync(
+        string rateId,
+        int version,
+        RequestOptions? options = null
+    )
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
@@ -328,7 +332,7 @@ public class V3Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
@@ -362,7 +366,7 @@ public class V3Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
@@ -402,7 +406,7 @@ public class V3Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
@@ -441,7 +445,7 @@ public class V3Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 }

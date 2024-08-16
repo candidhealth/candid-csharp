@@ -5,11 +5,11 @@ using Candid.Net.Core;
 
 namespace Candid.Net.Contracts;
 
-public class ContractsClient
+public partial class ContractsClient
 {
     private RawClient _client;
 
-    public ContractsClient(RawClient client)
+    internal ContractsClient(RawClient client)
     {
         _client = client;
         V2 = new V2Client(_client);

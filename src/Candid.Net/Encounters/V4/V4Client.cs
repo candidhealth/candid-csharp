@@ -6,11 +6,11 @@ using Candid.Net.Core;
 
 namespace Candid.Net.Encounters.V4;
 
-public class V4Client
+public partial class V4Client
 {
     private RawClient _client;
 
-    public V4Client(RawClient client)
+    internal V4Client(RawClient client)
     {
         _client = client;
     }
@@ -112,7 +112,7 @@ public class V4Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
@@ -143,7 +143,7 @@ public class V4Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
@@ -178,7 +178,7 @@ public class V4Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
@@ -214,7 +214,7 @@ public class V4Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 }

@@ -5,11 +5,11 @@ using Candid.Net.PreEncounter.Coverages.V1;
 
 namespace Candid.Net.PreEncounter.Coverages;
 
-public class CoveragesClient
+public partial class CoveragesClient
 {
     private RawClient _client;
 
-    public CoveragesClient(RawClient client)
+    internal CoveragesClient(RawClient client)
     {
         _client = client;
         V1 = new V1Client(_client);

@@ -5,11 +5,11 @@ using Candid.Net.WriteOffs.V1;
 
 namespace Candid.Net.WriteOffs;
 
-public class WriteOffsClient
+public partial class WriteOffsClient
 {
     private RawClient _client;
 
-    public WriteOffsClient(RawClient client)
+    internal WriteOffsClient(RawClient client)
     {
         _client = client;
         V1 = new V1Client(_client);

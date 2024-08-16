@@ -5,11 +5,11 @@ using Candid.Net.PreEncounter.Patients.V1;
 
 namespace Candid.Net.PreEncounter.Patients;
 
-public class PatientsClient
+public partial class PatientsClient
 {
     private RawClient _client;
 
-    public PatientsClient(RawClient client)
+    internal PatientsClient(RawClient client)
     {
         _client = client;
         V1 = new V1Client(_client);

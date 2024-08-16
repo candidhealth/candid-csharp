@@ -6,11 +6,11 @@ using Candid.Net.Core;
 
 namespace Candid.Net.ThirdPartyPayerRefunds.V1;
 
-public class V1Client
+public partial class V1Client
 {
     private RawClient _client;
 
-    public V1Client(RawClient client)
+    internal V1Client(RawClient client)
     {
         _client = client;
     }
@@ -75,7 +75,7 @@ public class V1Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
@@ -112,7 +112,7 @@ public class V1Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
@@ -152,7 +152,7 @@ public class V1Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
@@ -192,14 +192,17 @@ public class V1Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 
     /// <summary>
     /// Deletes the third party payer refund record matching the provided `third_party_payer_refund_id`.
     /// </summary>
-    public async Task DeleteAsync(string thirdPartyPayerRefundId, RequestOptions? options = null)
+    public async System.Threading.Tasks.Task DeleteAsync(
+        string thirdPartyPayerRefundId,
+        RequestOptions? options = null
+    )
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
@@ -218,7 +221,7 @@ public class V1Client
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 }

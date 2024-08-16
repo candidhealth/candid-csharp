@@ -5,11 +5,11 @@ using Candid.Net.Core;
 
 namespace Candid.Net;
 
-public class ServiceFacilityClient
+public partial class ServiceFacilityClient
 {
     private RawClient _client;
 
-    public ServiceFacilityClient(RawClient client)
+    internal ServiceFacilityClient(RawClient client)
     {
         _client = client;
     }
@@ -46,7 +46,7 @@ public class ServiceFacilityClient
         throw new CandidApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
-            JsonUtils.Deserialize<object>(responseBody)
+            responseBody
         );
     }
 }

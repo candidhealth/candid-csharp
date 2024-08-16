@@ -5,11 +5,11 @@ using Candid.Net.Core;
 
 namespace Candid.Net.Auth;
 
-public class AuthClient
+public partial class AuthClient
 {
     private RawClient _client;
 
-    public AuthClient(RawClient client)
+    internal AuthClient(RawClient client)
     {
         _client = client;
         V2 = new V2Client(_client);

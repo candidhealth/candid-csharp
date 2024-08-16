@@ -4,11 +4,11 @@ using Candid.Net.Core;
 
 namespace Candid.Net;
 
-public class EraClient
+public partial class EraClient
 {
     private RawClient _client;
 
-    public EraClient(RawClient client)
+    internal EraClient(RawClient client)
     {
         _client = client;
     }

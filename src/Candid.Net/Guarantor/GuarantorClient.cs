@@ -5,11 +5,11 @@ using Candid.Net.Guarantor.V1;
 
 namespace Candid.Net.Guarantor;
 
-public class GuarantorClient
+public partial class GuarantorClient
 {
     private RawClient _client;
 
-    public GuarantorClient(RawClient client)
+    internal GuarantorClient(RawClient client)
     {
         _client = client;
         V1 = new V1Client(_client);
