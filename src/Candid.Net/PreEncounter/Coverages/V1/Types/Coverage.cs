@@ -69,4 +69,16 @@ public record Coverage
     /// </summary>
     [JsonPropertyName("verified")]
     public required bool Verified { get; set; }
+
+    /// <summary>
+    /// A list of eligibility check metadata that have been initiated on this coverage.
+    /// </summary>
+    [JsonPropertyName("eligibility_checks")]
+    public IEnumerable<EligibilityCheckMetadata>? EligibilityChecks { get; set; }
+
+    /// <summary>
+    /// The eligibility of the patient for the coverage, manually verified by users.
+    /// </summary>
+    [JsonPropertyName("benefits")]
+    public CoverageBenefits? Benefits { get; set; }
 }

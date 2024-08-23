@@ -13,5 +13,8 @@ public enum ExternalProviderType
     Primary,
 
     [EnumMember(Value = "REFERRING")]
-    Referring
+    Referring,
+
+    [EnumMember(Value = "ATTENDING")]
+    Attending
 }

@@ -1,7 +1,3 @@
-using Candid.Net;
-
-#nullable enable
-
 namespace Candid.Net.InsuranceRefunds.V1;
 
 public record GetMultiInsuranceRefundsRequest

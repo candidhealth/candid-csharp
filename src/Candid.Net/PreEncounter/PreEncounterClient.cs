@@ -1,4 +1,5 @@
 using Candid.Net.Core;
+using Candid.Net.PreEncounter.Appointments;
 using Candid.Net.PreEncounter.Coverages;
 using Candid.Net.PreEncounter.Patients;
 
@@ -13,10 +14,13 @@ public partial class PreEncounterClient
     internal PreEncounterClient(RawClient client)
     {
         _client = client;
+        Appointments = new AppointmentsClient(_client);
         Coverages = new CoveragesClient(_client);
         Patients = new PatientsClient(_client);
         Common = new CommonClient(_client);
     }
+
+    public AppointmentsClient Appointments { get; }
 
     public CoveragesClient Coverages { get; }
 

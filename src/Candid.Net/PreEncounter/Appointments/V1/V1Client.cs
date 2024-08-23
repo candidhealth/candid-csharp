@@ -4,7 +4,7 @@ using Candid.Net.Core;
 
 #nullable enable
 
-namespace Candid.Net.PreEncounter.Patients.V1;
+namespace Candid.Net.PreEncounter.Appointments.V1;
 
 public partial class V1Client
 {
@@ -16,16 +16,19 @@ public partial class V1Client
     }
 
     /// <summary>
-    /// Adds a patient. VersionConflictError is returned when the patient's external ID is already in use.
+    /// Adds an appointment. VersionConflictError is returned when the placer_appointment_id is already in use.
     /// </summary>
-    public async Task<Patient> CreateAsync(MutablePatient request, RequestOptions? options = null)
+    public async Task<Appointment> CreateAsync(
+        MutableAppointment request,
+        RequestOptions? options = null
+    )
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
                 BaseUrl = _client.Options.Environment.PreEncounter,
                 Method = HttpMethod.Post,
-                Path = "/patients/v1",
+                Path = "/appointments/v1",
                 Body = request,
                 Options = options
             }
@@ -35,7 +38,7 @@ public partial class V1Client
         {
             try
             {
-                return JsonUtils.Deserialize<Patient>(responseBody)!;
+                return JsonUtils.Deserialize<Appointment>(responseBody)!;
             }
             catch (JsonException e)
             {
@@ -51,37 +54,16 @@ public partial class V1Client
     }
 
     /// <summary>
-    /// Searches for patients that match the query parameters.
+    /// Gets an appointment.
     /// </summary>
-    public async Task<PatientPage> GetMultiAsync(
-        PatientsSearchRequestPaginated request,
-        RequestOptions? options = null
-    )
+    public async Task<Appointment> GetAsync(string id, RequestOptions? options = null)
     {
-        var _query = new Dictionary<string, object>() { };
-        if (request.PageToken != null)
-        {
-            _query["page_token"] = request.PageToken;
-        }
-        if (request.Limit != null)
-        {
-            _query["limit"] = request.Limit.ToString();
-        }
-        if (request.SortField != null)
-        {
-            _query["sort_field"] = request.SortField;
-        }
-        if (request.SortDirection != null)
-        {
-            _query["sort_direction"] = JsonSerializer.Serialize(request.SortDirection.Value);
-        }
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
                 BaseUrl = _client.Options.Environment.PreEncounter,
                 Method = HttpMethod.Get,
-                Path = "/patients/v1/get_multi",
-                Query = _query,
+                Path = $"/appointments/v1/{id}",
                 Options = options
             }
         );
@@ -90,7 +72,7 @@ public partial class V1Client
         {
             try
             {
-                return JsonUtils.Deserialize<PatientPage>(responseBody)!;
+                return JsonUtils.Deserialize<Appointment>(responseBody)!;
             }
             catch (JsonException e)
             {
@@ -106,43 +88,9 @@ public partial class V1Client
     }
 
     /// <summary>
-    /// Gets a patient.
+    /// Gets an appointment along with it's full history. The return list is ordered by version ascending.
     /// </summary>
-    public async Task<Patient> GetAsync(string id, RequestOptions? options = null)
-    {
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.PreEncounter,
-                Method = HttpMethod.Get,
-                Path = $"/patients/v1/{id}",
-                Options = options
-            }
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            try
-            {
-                return JsonUtils.Deserialize<Patient>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new CandidException("Failed to deserialize response", e);
-            }
-        }
-
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
-    }
-
-    /// <summary>
-    /// Gets a patient along with it's full history. The return list is ordered by version ascending.
-    /// </summary>
-    public async Task<IEnumerable<Patient>> GetHistoryAsync(
+    public async Task<IEnumerable<Appointment>> GetHistoryAsync(
         string id,
         RequestOptions? options = null
     )
@@ -152,7 +100,7 @@ public partial class V1Client
             {
                 BaseUrl = _client.Options.Environment.PreEncounter,
                 Method = HttpMethod.Get,
-                Path = $"/patients/v1/{id}/history",
+                Path = $"/appointments/v1/{id}/history",
                 Options = options
             }
         );
@@ -161,7 +109,7 @@ public partial class V1Client
         {
             try
             {
-                return JsonUtils.Deserialize<IEnumerable<Patient>>(responseBody)!;
+                return JsonUtils.Deserialize<IEnumerable<Appointment>>(responseBody)!;
             }
             catch (JsonException e)
             {
@@ -177,12 +125,12 @@ public partial class V1Client
     }
 
     /// <summary>
-    /// Updates a patient. The path must contain the most recent version to prevent race conditions. Updating historic versions is not supported.
+    /// Updates an appointment. The path must contain the most recent version to prevent race conditions. Updating historic versions is not supported.
     /// </summary>
-    public async Task<Patient> UpdateAsync(
+    public async Task<Appointment> UpdateAsync(
         string id,
         string version,
-        MutablePatient request,
+        MutableAppointment request,
         RequestOptions? options = null
     )
     {
@@ -191,7 +139,7 @@ public partial class V1Client
             {
                 BaseUrl = _client.Options.Environment.PreEncounter,
                 Method = HttpMethod.Put,
-                Path = $"/patients/v1/{id}/{version}",
+                Path = $"/appointments/v1/{id}/{version}",
                 Body = request,
                 Options = options
             }
@@ -201,7 +149,7 @@ public partial class V1Client
         {
             try
             {
-                return JsonUtils.Deserialize<Patient>(responseBody)!;
+                return JsonUtils.Deserialize<Appointment>(responseBody)!;
             }
             catch (JsonException e)
             {
@@ -217,7 +165,7 @@ public partial class V1Client
     }
 
     /// <summary>
-    /// Sets a patient as deactivated. The path must contain the most recent version to prevent race conditions. Deactivating historic versions is not supported. Subsequent updates via PUT to the patient will "reactivate" the patient and set the deactivated flag to false.
+    /// Sets an appointment as deactivated. The path must contain the most recent version to prevent race conditions. Deactivating historic versions is not supported. Subsequent updates via PUT to the appointment will "reactivate" the appointment and set the deactivated flag to false.
     /// </summary>
     public async System.Threading.Tasks.Task DeactivateAsync(
         string id,
@@ -230,7 +178,7 @@ public partial class V1Client
             {
                 BaseUrl = _client.Options.Environment.PreEncounter,
                 Method = HttpMethod.Delete,
-                Path = $"/patients/v1/{id}/{version}",
+                Path = $"/appointments/v1/{id}/{version}",
                 Options = options
             }
         );
@@ -247,28 +195,60 @@ public partial class V1Client
     }
 
     /// <summary>
-    /// Returns a list of Patients based on the search criteria.
+    /// Searches for appointments that match the query parameters.
     /// </summary>
-    public async Task<IEnumerable<Patient>> SearchAsync(
-        PatientGetMultiRequest request,
+    public async Task<IEnumerable<Appointment>> GetMultiAsync(
+        AppointmentsSearchRequest request,
         RequestOptions? options = null
     )
     {
         var _query = new Dictionary<string, object>() { };
-        if (request.Mrn != null)
+        if (request.CheckedIn != null)
         {
-            _query["mrn"] = request.Mrn;
+            _query["checked_in"] = request.CheckedIn.ToString();
         }
-        if (request.SimilarNameOrdering != null)
+        if (request.PatientId != null)
         {
-            _query["similar_name_ordering"] = request.SimilarNameOrdering;
+            _query["patient_id"] = request.PatientId;
+        }
+        if (request.MinStartTimestamp != null)
+        {
+            _query["min_start_timestamp"] = request.MinStartTimestamp.Value.ToString(
+                Constants.DateTimeFormat
+            );
+        }
+        if (request.MaxStartTimestamp != null)
+        {
+            _query["max_start_timestamp"] = request.MaxStartTimestamp.Value.ToString(
+                Constants.DateTimeFormat
+            );
+        }
+        if (request.PlacerAppointmentId != null)
+        {
+            _query["placer_appointment_id"] = request.PlacerAppointmentId;
+        }
+        if (request.WorkQueue != null)
+        {
+            _query["work_queue"] = JsonSerializer.Serialize(request.WorkQueue.Value);
+        }
+        if (request.SortField != null)
+        {
+            _query["sort_field"] = JsonSerializer.Serialize(request.SortField.Value);
+        }
+        if (request.SortDirection != null)
+        {
+            _query["sort_direction"] = JsonSerializer.Serialize(request.SortDirection.Value);
+        }
+        if (request.Limit != null)
+        {
+            _query["limit"] = request.Limit.ToString();
         }
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
                 BaseUrl = _client.Options.Environment.PreEncounter,
                 Method = HttpMethod.Get,
-                Path = "/patients/v1",
+                Path = "/appointments/v1",
                 Query = _query,
                 Options = options
             }
@@ -278,47 +258,7 @@ public partial class V1Client
         {
             try
             {
-                return JsonUtils.Deserialize<IEnumerable<Patient>>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new CandidException("Failed to deserialize response", e);
-            }
-        }
-
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
-    }
-
-    /// <summary>
-    /// Scans up to 100 patient updates. The since query parameter is inclusive, and the result list is ordered by updatedAt descending.
-    /// </summary>
-    public async Task<IEnumerable<Patient>> ScanAsync(
-        PatientScanRequest request,
-        RequestOptions? options = null
-    )
-    {
-        var _query = new Dictionary<string, object>() { };
-        _query["since"] = request.Since.ToString(Constants.DateTimeFormat);
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.PreEncounter,
-                Method = HttpMethod.Get,
-                Path = "/patients/v1/updates/scan",
-                Query = _query,
-                Options = options
-            }
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            try
-            {
-                return JsonUtils.Deserialize<IEnumerable<Patient>>(responseBody)!;
+                return JsonUtils.Deserialize<IEnumerable<Appointment>>(responseBody)!;
             }
             catch (JsonException e)
             {

@@ -14,7 +14,7 @@ public record Patient
     public required string Id { get; set; }
 
     /// <summary>
-    /// The medical record number for the patient. Human-friendly Candid generated MRNs are of the form JCH + 8 alphanumeric characters. MRNs are not case-sensitive.
+    /// The medical record number for the patient. Human-friendly Candid generated MRNs are of the form "YYMMDDXXXX", where "YYYYMMDD" is the date of patient creation and "XXXX" is a zero-padded incrementing integer.
     /// </summary>
     [JsonPropertyName("mrn")]
     public required string Mrn { get; set; }

@@ -21,4 +21,7 @@ public record Contact
 
     [JsonPropertyName("period")]
     public Period? Period { get; set; }
+
+    [JsonPropertyName("hipaa_authorization")]
+    public bool? HipaaAuthorization { get; set; }
 }

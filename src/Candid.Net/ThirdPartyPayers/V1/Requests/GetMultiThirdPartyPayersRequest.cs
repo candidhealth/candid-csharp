@@ -1,7 +1,3 @@
-using Candid.Net;
-
-#nullable enable
-
 namespace Candid.Net.ThirdPartyPayers.V1;
 
 public record GetMultiThirdPartyPayersRequest

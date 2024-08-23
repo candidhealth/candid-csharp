@@ -51,7 +51,7 @@ public partial class V1Client
     }
 
     /// <summary>
-    /// Updates a Coverage. The path must contain the most recent version to prevent races. Updating historic versions is not supported.
+    /// Updates a Coverage. The path must contain the most recent version to prevent race conditions. Updating historic versions is not supported.
     /// </summary>
     public async Task<Coverage> UpdateAsync(
         string id,
@@ -162,10 +162,10 @@ public partial class V1Client
     }
 
     /// <summary>
-    /// returns a list of Coverages based on the search criteria
+    /// Returns a list of Coverages based on the search criteria.
     /// </summary>
     public async Task<IEnumerable<Coverage>> GetMultiAsync(
-        GetAllCoveragesRequest request,
+        CoverageGetMultiRequest request,
         RequestOptions? options = null
     )
     {
@@ -230,6 +230,83 @@ public partial class V1Client
             try
             {
                 return JsonUtils.Deserialize<IEnumerable<Coverage>>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            responseBody
+        );
+    }
+
+    /// <summary>
+    /// Initiates an eligibility check. Returns the metadata of the check if successfully initiated.
+    /// </summary>
+    public async Task<EligibilityCheckMetadata> CheckEligibilityAsync(
+        string id,
+        CheckEligibilityRequest request,
+        RequestOptions? options = null
+    )
+    {
+        var response = await _client.MakeRequestAsync(
+            new RawClient.JsonApiRequest
+            {
+                BaseUrl = _client.Options.Environment.PreEncounter,
+                Method = HttpMethod.Post,
+                Path = $"/coverages/v1/{id}/eligibility",
+                Body = request,
+                Options = options
+            }
+        );
+        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            try
+            {
+                return JsonUtils.Deserialize<EligibilityCheckMetadata>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            responseBody
+        );
+    }
+
+    /// <summary>
+    /// Gets the eligibility of a patient for a specific coverage if successful.
+    /// </summary>
+    public async Task<CoverageEligibilityCheckResponse> GetEligibilityAsync(
+        string id,
+        string checkId,
+        RequestOptions? options = null
+    )
+    {
+        var response = await _client.MakeRequestAsync(
+            new RawClient.JsonApiRequest
+            {
+                BaseUrl = _client.Options.Environment.PreEncounter,
+                Method = HttpMethod.Get,
+                Path = $"/coverages/v1/{id}/eligibility/{checkId}",
+                Options = options
+            }
+        );
+        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            try
+            {
+                return JsonUtils.Deserialize<CoverageEligibilityCheckResponse>(responseBody)!;
             }
             catch (JsonException e)
             {

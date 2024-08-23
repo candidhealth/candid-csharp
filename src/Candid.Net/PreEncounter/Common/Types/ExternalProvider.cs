@@ -23,4 +23,7 @@ public record ExternalProvider
 
     [JsonPropertyName("period")]
     public Period? Period { get; set; }
+
+    [JsonPropertyName("canonical_id")]
+    public string? CanonicalId { get; set; }
 }
