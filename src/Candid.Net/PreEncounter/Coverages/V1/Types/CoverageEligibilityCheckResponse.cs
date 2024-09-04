@@ -9,9 +9,6 @@ public record CoverageEligibilityCheckResponse
     [JsonPropertyName("metadata")]
     public required EligibilityCheckMetadata Metadata { get; set; }
 
-    [JsonPropertyName("error")]
-    public string? Error { get; set; }
-
     [JsonPropertyName("check")]
     public EligibilityCheck? Check { get; set; }
 }

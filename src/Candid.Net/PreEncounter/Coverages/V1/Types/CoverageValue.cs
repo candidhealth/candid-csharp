@@ -7,8 +7,8 @@ namespace Candid.Net.PreEncounter.Coverages.V1;
 public record CoverageValue
 {
     [JsonPropertyName("family")]
-    public int? Family { get; set; }
+    public double? Family { get; set; }
 
     [JsonPropertyName("individual")]
-    public int? Individual { get; set; }
+    public double? Individual { get; set; }
 }

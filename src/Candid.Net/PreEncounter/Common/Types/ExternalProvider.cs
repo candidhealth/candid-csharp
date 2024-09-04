@@ -19,7 +19,7 @@ public record ExternalProvider
     public IEnumerable<ContactPoint> Telecoms { get; set; } = new List<ContactPoint>();
 
     [JsonPropertyName("addresses")]
-    public IEnumerable<Address> Addresses { get; set; } = new List<Address>();
+    public IEnumerable<Address>? Addresses { get; set; }
 
     [JsonPropertyName("period")]
     public Period? Period { get; set; }

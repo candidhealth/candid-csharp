@@ -51,6 +51,44 @@ public partial class V1Client
     }
 
     /// <summary>
+    /// Adds a patient without checking for duplicates.
+    /// </summary>
+    public async Task<Patient> CreateNoDuplicateCheckAsync(
+        MutablePatient request,
+        RequestOptions? options = null
+    )
+    {
+        var response = await _client.MakeRequestAsync(
+            new RawClient.JsonApiRequest
+            {
+                BaseUrl = _client.Options.Environment.PreEncounter,
+                Method = HttpMethod.Post,
+                Path = "/patients/v1",
+                Body = request,
+                Options = options
+            }
+        );
+        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            try
+            {
+                return JsonUtils.Deserialize<Patient>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            responseBody
+        );
+    }
+
+    /// <summary>
     /// Searches for patients that match the query parameters.
     /// </summary>
     public async Task<PatientPage> GetMultiAsync(
@@ -59,13 +97,17 @@ public partial class V1Client
     )
     {
         var _query = new Dictionary<string, object>() { };
-        if (request.PageToken != null)
-        {
-            _query["page_token"] = request.PageToken;
-        }
         if (request.Limit != null)
         {
             _query["limit"] = request.Limit.ToString();
+        }
+        if (request.Mrn != null)
+        {
+            _query["mrn"] = request.Mrn;
+        }
+        if (request.PageToken != null)
+        {
+            _query["page_token"] = request.PageToken;
         }
         if (request.SortField != null)
         {
@@ -294,7 +336,7 @@ public partial class V1Client
     }
 
     /// <summary>
-    /// Scans up to 100 patient updates. The since query parameter is inclusive, and the result list is ordered by updatedAt descending.
+    /// Scans up to 100 patient updates. The since query parameter is inclusive, and the result list is ordered by updatedAt ascending.
     /// </summary>
     public async Task<IEnumerable<Patient>> ScanAsync(
         PatientScanRequest request,

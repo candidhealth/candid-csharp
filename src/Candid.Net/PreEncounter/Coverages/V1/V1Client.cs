@@ -205,7 +205,7 @@ public partial class V1Client
     }
 
     /// <summary>
-    /// Scans up to 100 coverage updates. The since query parameter is inclusive, and the result list is ordered by updatedAt descending.
+    /// Scans up to 100 coverage updates. The since query parameter is inclusive, and the result list is ordered by updatedAt ascending.
     /// </summary>
     public async Task<IEnumerable<Coverage>> ScanAsync(
         CoverageScanRequest request,
