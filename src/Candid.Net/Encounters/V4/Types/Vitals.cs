@@ -20,4 +20,10 @@ public record Vitals
 
     [JsonPropertyName("body_temperature_f")]
     public double? BodyTemperatureF { get; set; }
+
+    [JsonPropertyName("hemoglobin_gdl")]
+    public double? HemoglobinGdl { get; set; }
+
+    [JsonPropertyName("hematocrit_pct")]
+    public double? HematocritPct { get; set; }
 }

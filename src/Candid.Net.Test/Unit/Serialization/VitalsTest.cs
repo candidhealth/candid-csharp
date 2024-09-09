@@ -22,7 +22,9 @@ public class VitalsTest
   ""weight_lbs"": 165,
   ""blood_pressure_systolic_mmhg"": 115,
   ""blood_pressure_diastolic_mmhg"": 85,
-  ""body_temperature_f"": 98
+  ""body_temperature_f"": 98,
+  ""hemoglobin_gdl"": 15.1,
+  ""hematocrit_pct"": 51.2
 }
 ";
 

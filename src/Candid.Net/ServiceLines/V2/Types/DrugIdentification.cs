@@ -23,4 +23,7 @@ public record DrugIdentification
 
     [JsonPropertyName("pharmacy_prescription_number")]
     public string? PharmacyPrescriptionNumber { get; set; }
+
+    [JsonPropertyName("conversion_formula")]
+    public string? ConversionFormula { get; set; }
 }
