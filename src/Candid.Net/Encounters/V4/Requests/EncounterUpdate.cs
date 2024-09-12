@@ -220,4 +220,12 @@ public record EncounterUpdate
     /// </summary>
     [JsonPropertyName("schema_instances")]
     public IEnumerable<SchemaInstance>? SchemaInstances { get; set; }
+
+    /// <summary>
+    /// If a vitals entity already exists for the encounter, then all values will be updated to the provided values.
+    /// Otherwise, a new vitals object will be created for the encounter.
+    ///
+    /// </summary>
+    [JsonPropertyName("vitals")]
+    public VitalsUpdate? Vitals { get; set; }
 }

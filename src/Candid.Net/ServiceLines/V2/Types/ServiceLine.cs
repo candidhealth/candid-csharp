@@ -51,6 +51,9 @@ public record ServiceLine
     [JsonPropertyName("diagnosis_id_three")]
     public string? DiagnosisIdThree { get; set; }
 
+    [JsonPropertyName("drug_identification")]
+    public DrugIdentification? DrugIdentification { get; set; }
+
     [JsonPropertyName("service_line_era_data")]
     public ServiceLineEraData? ServiceLineEraData { get; set; }
 

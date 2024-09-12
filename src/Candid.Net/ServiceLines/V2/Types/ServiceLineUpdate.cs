@@ -28,6 +28,9 @@ public record ServiceLineUpdate
     [JsonPropertyName("diagnosis_id_three")]
     public string? DiagnosisIdThree { get; set; }
 
+    [JsonPropertyName("drug_identification")]
+    public DrugIdentification? DrugIdentification { get; set; }
+
     [JsonPropertyName("denial_reason")]
     public ServiceLineDenialReason? DenialReason { get; set; }
 
