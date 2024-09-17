@@ -18,6 +18,9 @@ public record PatientCreate
     [JsonPropertyName("email")]
     public string? Email { get; set; }
 
+    [JsonPropertyName("non_insurance_payers")]
+    public IEnumerable<string>? NonInsurancePayers { get; set; }
+
     /// <summary>
     /// Defaults to false
     /// </summary>

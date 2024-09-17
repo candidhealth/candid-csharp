@@ -70,7 +70,6 @@ public record EncounterCreate
     /// <summary>
     /// The second iteration of Loop ID-2310. Use code "P3 - Primary Care Provider" in this loop to
     /// indicate the initial referral from the primary care provider or whatever provider wrote the initial referral for this patient's episode of care being billed/reported in this transaction.
-    /// Information in Loop ID-2310 applies to the entire claim unless overridden on a service line by the presence of Loop ID-2420 with the same value in NM101.
     ///
     /// </summary>
     [JsonPropertyName("initial_referring_provider")]
@@ -78,7 +77,6 @@ public record EncounterCreate
 
     /// <summary>
     /// Required when the rendering provider is supervised by a physician. If not required by this implementation guide, do not send.
-    /// Information in Loop ID-2310 applies to the entire claim unless overridden on a service line by the presence of Loop ID-2420 with the same value in NM101.
     ///
     /// </summary>
     [JsonPropertyName("supervising_provider")]

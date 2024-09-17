@@ -81,15 +81,6 @@ public record ServiceLine
     [JsonPropertyName("procedure_code")]
     public required string ProcedureCode { get; set; }
 
-    [JsonPropertyName("referring_provider")]
-    public EncounterProvider? ReferringProvider { get; set; }
-
-    [JsonPropertyName("initial_referring_provider")]
-    public EncounterProvider? InitialReferringProvider { get; set; }
-
-    [JsonPropertyName("supervising_provider")]
-    public EncounterProvider? SupervisingProvider { get; set; }
-
     [JsonPropertyName("ordering_provider")]
     public EncounterProvider? OrderingProvider { get; set; }
 

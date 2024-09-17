@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace Candid.Net;
 
-public record AppointmentAllocationTarget
+public record AppointmentByIdAndPatientExternalId
 {
     [JsonPropertyName("appointment_id")]
     public required string AppointmentId { get; set; }

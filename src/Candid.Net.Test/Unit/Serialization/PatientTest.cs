@@ -24,6 +24,15 @@ public class PatientTest
       ""type"": ""Home""
     }
   ],
+  ""non_insurance_payers"": [
+    {
+      ""non_insurance_payer_id"": ""EB7623AB-D5BC-4B25-B257-2B8FCEC578DE"",
+      ""name"": ""Sunrise Foundation"",
+      ""category"": ""Foundation"",
+      ""description"": ""Sunrise Foundation is a non-profit organization that provides financial assistance to patients in need."",
+      ""enabled"": true
+    }
+  ],
   ""phone_consent"": true,
   ""email"": ""johndoe@joincandidhealth.com"",
   ""email_consent"": true,

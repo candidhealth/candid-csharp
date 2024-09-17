@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.NonInsurancePayers.V1;
 
 #nullable enable
 
@@ -20,6 +21,10 @@ public record Patient
 
     [JsonPropertyName("email_consent")]
     public required bool EmailConsent { get; set; }
+
+    [JsonPropertyName("non_insurance_payers")]
+    public IEnumerable<NonInsurancePayer> NonInsurancePayers { get; set; } =
+        new List<NonInsurancePayer>();
 
     /// <summary>
     /// The ID used to identify this individual in your system. For example, your internal patient ID or an EHR patient ID.
