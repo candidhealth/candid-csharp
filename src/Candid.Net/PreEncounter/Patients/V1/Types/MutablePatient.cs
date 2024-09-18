@@ -115,4 +115,13 @@ public record MutablePatient
 
     [JsonPropertyName("filing_order")]
     public required FilingOrder FilingOrder { get; set; }
+
+    [JsonPropertyName("non_insurance_payers")]
+    public IEnumerable<string>? NonInsurancePayers { get; set; }
+
+    [JsonPropertyName("guarantor")]
+    public Guarantor? Guarantor { get; set; }
+
+    [JsonPropertyName("self_pay")]
+    public bool? SelfPay { get; set; }
 }

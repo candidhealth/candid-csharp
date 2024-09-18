@@ -27,6 +27,6 @@ public record PlanMetadata
     [JsonPropertyName("end_date")]
     public DateOnly? EndDate { get; set; }
 
-    [JsonPropertyName("eligibility_status")]
-    public EligibilityStatus? EligibilityStatus { get; set; }
+    [JsonPropertyName("plan_dates")]
+    public IEnumerable<PlanDate>? PlanDates { get; set; }
 }

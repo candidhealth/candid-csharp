@@ -18,53 +18,24 @@ public partial class V1Client
     /// <summary>
     /// Adds a patient. VersionConflictError is returned when the patient's external ID is already in use.
     /// </summary>
-    public async Task<Patient> CreateAsync(MutablePatient request, RequestOptions? options = null)
-    {
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.PreEncounter,
-                Method = HttpMethod.Post,
-                Path = "/patients/v1",
-                Body = request,
-                Options = options
-            }
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            try
-            {
-                return JsonUtils.Deserialize<Patient>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new CandidException("Failed to deserialize response", e);
-            }
-        }
-
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
-    }
-
-    /// <summary>
-    /// Adds a patient without checking for duplicates.
-    /// </summary>
-    public async Task<Patient> CreateNoDuplicateCheckAsync(
-        MutablePatient request,
+    public async Task<Patient> CreateAsync(
+        CreatePatientRequest request,
         RequestOptions? options = null
     )
     {
+        var _query = new Dictionary<string, object>() { };
+        if (request.SkipDuplicateCheck != null)
+        {
+            _query["skip_duplicate_check"] = request.SkipDuplicateCheck.ToString();
+        }
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
                 BaseUrl = _client.Options.Environment.PreEncounter,
                 Method = HttpMethod.Post,
                 Path = "/patients/v1",
-                Body = request,
+                Body = request.Body,
+                Query = _query,
                 Options = options
             }
         );
