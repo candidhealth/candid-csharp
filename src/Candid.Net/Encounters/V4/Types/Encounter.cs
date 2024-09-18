@@ -17,25 +17,6 @@ public record Encounter
     [JsonPropertyName("patient_control_number")]
     public string? PatientControlNumber { get; set; }
 
-    /// <summary>
-    /// Date formatted as YYYY-MM-DD; eg: 2019-08-24.
-    /// This date must be the local date in the timezone where the service occurred.
-    /// Box 24a on the CMS-1500 claim form.
-    /// If service occurred over a range of dates, this should be the start date.
-    /// date_of_service must be defined on either the encounter or the service lines but not both.
-    /// </summary>
-    [JsonPropertyName("date_of_service")]
-    public required DateOnly DateOfService { get; set; }
-
-    /// <summary>
-    /// Date formatted as YYYY-MM-DD; eg: 2019-08-25.
-    /// This date must be the local date in the timezone where the service occurred.
-    /// If omitted, the Encounter is assumed to be for a single day.
-    /// Must not be temporally before the date_of_service field.
-    /// </summary>
-    [JsonPropertyName("end_date_of_service")]
-    public DateOnly? EndDateOfService { get; set; }
-
     [JsonPropertyName("encounter_id")]
     public required string EncounterId { get; set; }
 
@@ -96,6 +77,24 @@ public record Encounter
     /// </summary>
     [JsonPropertyName("subscriber_secondary")]
     public Subscriber? SubscriberSecondary { get; set; }
+
+    /// <summary>
+    /// Box 23 on the CMS-1500 claim form.
+    /// </summary>
+    [JsonPropertyName("prior_authorization_number")]
+    public string? PriorAuthorizationNumber { get; set; }
+
+    /// <summary>
+    /// Human-readable description of the appointment type (ex: "Acupuncture - Headaches").
+    /// </summary>
+    [JsonPropertyName("appointment_type")]
+    public string? AppointmentType { get; set; }
+
+    /// <summary>
+    /// Defines the party to be billed with the initial balance owed on the claim.
+    /// </summary>
+    [JsonPropertyName("responsible_party")]
+    public required ResponsiblePartyType ResponsibleParty { get; set; }
 
     /// <summary>
     /// URL that links directly to the claim created in Candid.
@@ -188,10 +187,25 @@ public record Encounter
     public required string ExternalId { get; set; }
 
     /// <summary>
-    /// Box 23 on the CMS-1500 claim form.
+    /// Date formatted as YYYY-MM-DD; eg: 2019-08-24.
+    /// This date must be the local date in the timezone where the service occurred.
+    /// Box 24a on the CMS-1500 claim form.
+    /// If service occurred over a range of dates, this should be the start date.
+    /// date_of_service must be defined on either the encounter or the service lines but not both.
+    /// If there are greater than zero service lines, it is recommended to specify date_of_service on the service_line instead of on the encounter to prepare for future API versions.
     /// </summary>
-    [JsonPropertyName("prior_authorization_number")]
-    public string? PriorAuthorizationNumber { get; set; }
+    [JsonPropertyName("date_of_service")]
+    public DateOnly? DateOfService { get; set; }
+
+    /// <summary>
+    /// Date formatted as YYYY-MM-DD; eg: 2019-08-25.
+    /// This date must be the local date in the timezone where the service occurred.
+    /// If omitted, the Encounter is assumed to be for a single day.
+    /// Must not be temporally before the date_of_service field.
+    /// If there are greater than zero service lines, it is recommended to specify end_date_of_service on the service_line instead of on the encounter to prepare for future API versions.
+    /// </summary>
+    [JsonPropertyName("end_date_of_service")]
+    public DateOnly? EndDateOfService { get; set; }
 
     /// <summary>
     /// Whether this patient has authorized the release of medical information
@@ -216,12 +230,6 @@ public record Encounter
     /// </summary>
     [JsonPropertyName("provider_accepts_assignment")]
     public required bool ProviderAcceptsAssignment { get; set; }
-
-    /// <summary>
-    /// Human-readable description of the appointment type (ex: "Acupuncture - Headaches").
-    /// </summary>
-    [JsonPropertyName("appointment_type")]
-    public string? AppointmentType { get; set; }
 
     [JsonPropertyName("existing_medications")]
     public IEnumerable<Medication>? ExistingMedications { get; set; }
@@ -255,12 +263,6 @@ public record Encounter
     /// </summary>
     [JsonPropertyName("billable_status")]
     public required BillableStatusType BillableStatus { get; set; }
-
-    /// <summary>
-    /// Defines the party to be billed with the initial balance owed on the claim.
-    /// </summary>
-    [JsonPropertyName("responsible_party")]
-    public required ResponsiblePartyType ResponsibleParty { get; set; }
 
     /// <summary>
     /// Defines additional information on the claim needed by the payer.

@@ -182,6 +182,61 @@ public partial class V4Client
         );
     }
 
+    /// <summary>
+    /// Create an encounter from a pre-encounter patient and appointment. This endpoint is intended to be used by consumers who are managing
+    /// patients and appointments in the pre-encounter service and is currently under development. Consumers who are not taking advantage
+    /// of the pre-encounter service should use the standard create endpoint.
+    ///
+    /// The endpoint will create an encounter from the provided fields, pulling information from the provided patient and appointment objects
+    /// where applicable. In particular, the following fields are populated from the patient and appointment objects:
+    ///
+    /// - Patient
+    /// - Referring Provider
+    /// - Subscriber Primary
+    /// - Subscriber Secondary
+    /// - Prior Authorization Number
+    /// - Appointment Type
+    /// - Responsible Party
+    /// - Guarantor
+    ///
+    /// Utilizing this endpoint opts you into automatic updating of the encounter when the patient or appointment is updated, assuming the
+    /// encounter has not already been submitted or adjudicated.
+    /// </summary>
+    public async Task<Encounter> CreateFromPreEncounterPatientAsync(
+        EncounterCreateFromPreEncounter request,
+        RequestOptions? options = null
+    )
+    {
+        var response = await _client.MakeRequestAsync(
+            new RawClient.JsonApiRequest
+            {
+                BaseUrl = _client.Options.Environment.CandidApi,
+                Method = HttpMethod.Post,
+                Path = "/api/encounters/v4/create-from-pre-encounter",
+                Body = request,
+                Options = options
+            }
+        );
+        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            try
+            {
+                return JsonUtils.Deserialize<Encounter>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            responseBody
+        );
+    }
+
     public async Task<Encounter> UpdateAsync(
         string encounterId,
         EncounterUpdate request,
