@@ -44,7 +44,7 @@ public record EncounterUpdate
     public IEnumerable<string>? DiagnosisIds { get; set; }
 
     /// <summary>
-    /// Names of tags that should be on the encounter.  Note all tags on encounter will be overriden with this list.
+    /// Names of tags that should be on the encounter.  Note all tags on encounter will be overridden with this list.
     /// </summary>
     [JsonPropertyName("tag_ids")]
     public IEnumerable<string>? TagIds { get; set; }
@@ -201,6 +201,13 @@ public record EncounterUpdate
     /// </summary>
     [JsonPropertyName("delay_reason_code")]
     public DelayReasonCode? DelayReasonCode { get; set; }
+
+    /// <summary>
+    /// Contains the identification information of the individual receiving medical services.
+    ///
+    /// </summary>
+    [JsonPropertyName("patient")]
+    public PatientUpdate? Patient { get; set; }
 
     /// <summary>
     /// Whether this patient has authorized the release of medical information
