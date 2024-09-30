@@ -60,6 +60,12 @@ public record EncounterBase
     [JsonPropertyName("provider_accepts_assignment")]
     public required bool ProviderAcceptsAssignment { get; set; }
 
+    /// <summary>
+    /// Human-readable description of the appointment type (ex: "Acupuncture - Headaches").
+    /// </summary>
+    [JsonPropertyName("appointment_type")]
+    public string? AppointmentType { get; set; }
+
     [JsonPropertyName("existing_medications")]
     public IEnumerable<Medication>? ExistingMedications { get; set; }
 

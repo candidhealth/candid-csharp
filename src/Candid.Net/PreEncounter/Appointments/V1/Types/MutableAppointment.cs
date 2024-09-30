@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.PreEncounter;
 
 #nullable enable
 
@@ -35,6 +36,12 @@ public record MutableAppointment
     /// </summary>
     [JsonPropertyName("placer_appointment_id")]
     public string? PlacerAppointmentId { get; set; }
+
+    /// <summary>
+    /// Attending physician information. The attending physician will be stored as the Current MD for the patient.
+    /// </summary>
+    [JsonPropertyName("attending_doctor")]
+    public ExternalProvider? AttendingDoctor { get; set; }
 
     [JsonPropertyName("estimated_copay_cents")]
     public int? EstimatedCopayCents { get; set; }

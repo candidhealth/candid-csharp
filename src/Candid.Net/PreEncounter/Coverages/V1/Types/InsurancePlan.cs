@@ -16,6 +16,9 @@ public record InsurancePlan
     [JsonPropertyName("payer_name")]
     public required string PayerName { get; set; }
 
+    [JsonPropertyName("additional_payer_information")]
+    public AdditionalPayerInformation? AdditionalPayerInformation { get; set; }
+
     [JsonPropertyName("group_number")]
     public string? GroupNumber { get; set; }
 

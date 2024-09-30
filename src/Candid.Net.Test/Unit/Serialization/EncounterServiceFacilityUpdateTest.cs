@@ -1,6 +1,6 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Payers.V3;
+using Candid.Net;
 using FluentAssertions.Json;
 using Newtonsoft.Json.Linq;
 using NUnit.Framework;
@@ -10,7 +10,7 @@ using NUnit.Framework;
 namespace Candid.Net.Test;
 
 [TestFixture]
-public class PayerPageTest
+public class EncounterServiceFacilityUpdateTest
 {
     [Test]
     public void TestSerialization()
@@ -18,17 +18,15 @@ public class PayerPageTest
         var inputJson =
             @"
         {
-  ""items"": [
-    {
-      ""payer_uuid"": ""A6431FD2-0712-4714-B1B1-DD094DAF9F42"",
-      ""payer_id"": ""12345"",
-      ""payer_name"": ""Payer Name"",
-      ""availity_payer_name"": ""Availity Payer Name"",
-      ""availity_claims_payer_id"": ""54321"",
-      ""availity_eligibility_id"": ""54321"",
-      ""availity_remittance_payer_id"": ""54321""
-    }
-  ]
+  ""organization_name"": ""Test Organization"",
+  ""address"": {
+    ""address1"": ""123 Main St"",
+    ""address2"": ""Apt 1"",
+    ""city"": ""New York"",
+    ""state"": ""NY"",
+    ""zip_code"": ""10001"",
+    ""zip_plus_four_code"": ""1234""
+  }
 }
 ";
 
@@ -37,7 +35,7 @@ public class PayerPageTest
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
         };
 
-        var deserializedObject = JsonSerializer.Deserialize<PayerPage>(
+        var deserializedObject = JsonSerializer.Deserialize<EncounterServiceFacilityUpdate>(
             inputJson,
             serializerOptions
         );

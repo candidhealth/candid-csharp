@@ -77,6 +77,12 @@ public record Coverage
     public IEnumerable<EligibilityCheckMetadata>? EligibilityChecks { get; set; }
 
     /// <summary>
+    /// The latest eligibility check metadata that has been initiated on this coverage.
+    /// </summary>
+    [JsonPropertyName("latest_eligibility_check")]
+    public LatestEligibilityCheck? LatestEligibilityCheck { get; set; }
+
+    /// <summary>
     /// The eligibility of the patient for the coverage, manually verified by users.
     /// </summary>
     [JsonPropertyName("benefits")]

@@ -195,7 +195,6 @@ public partial class V4Client
     /// - Subscriber Primary
     /// - Subscriber Secondary
     /// - Prior Authorization Number
-    /// - Appointment Type
     /// - Responsible Party
     /// - Guarantor
     ///

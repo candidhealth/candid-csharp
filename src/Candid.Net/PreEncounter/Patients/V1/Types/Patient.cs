@@ -163,4 +163,10 @@ public record Patient
 
     [JsonPropertyName("self_pay")]
     public bool? SelfPay { get; set; }
+
+    [JsonPropertyName("authorizations")]
+    public IEnumerable<Authorization>? Authorizations { get; set; }
+
+    [JsonPropertyName("referrals")]
+    public IEnumerable<Referral>? Referrals { get; set; }
 }

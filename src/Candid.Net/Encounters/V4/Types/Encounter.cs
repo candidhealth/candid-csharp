@@ -85,12 +85,6 @@ public record Encounter
     public string? PriorAuthorizationNumber { get; set; }
 
     /// <summary>
-    /// Human-readable description of the appointment type (ex: "Acupuncture - Headaches").
-    /// </summary>
-    [JsonPropertyName("appointment_type")]
-    public string? AppointmentType { get; set; }
-
-    /// <summary>
     /// Defines the party to be billed with the initial balance owed on the claim.
     /// </summary>
     [JsonPropertyName("responsible_party")]
@@ -230,6 +224,12 @@ public record Encounter
     /// </summary>
     [JsonPropertyName("provider_accepts_assignment")]
     public required bool ProviderAcceptsAssignment { get; set; }
+
+    /// <summary>
+    /// Human-readable description of the appointment type (ex: "Acupuncture - Headaches").
+    /// </summary>
+    [JsonPropertyName("appointment_type")]
+    public string? AppointmentType { get; set; }
 
     [JsonPropertyName("existing_medications")]
     public IEnumerable<Medication>? ExistingMedications { get; set; }

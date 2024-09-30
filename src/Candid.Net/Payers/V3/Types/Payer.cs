@@ -23,4 +23,28 @@ public record Payer
     /// </summary>
     [JsonPropertyName("payer_name")]
     public required string PayerName { get; set; }
+
+    /// <summary>
+    /// The name of the payer as it appears in Availity.
+    /// </summary>
+    [JsonPropertyName("availity_payer_name")]
+    public string? AvailityPayerName { get; set; }
+
+    /// <summary>
+    /// The ID of the payer as it appears in Availity.
+    /// </summary>
+    [JsonPropertyName("availity_claims_payer_id")]
+    public string? AvailityClaimsPayerId { get; set; }
+
+    /// <summary>
+    /// The eligibility ID of the payer as it appears in Availity.
+    /// </summary>
+    [JsonPropertyName("availity_eligibility_id")]
+    public string? AvailityEligibilityId { get; set; }
+
+    /// <summary>
+    /// The remittance ID of the payer as it appears in Availity.
+    /// </summary>
+    [JsonPropertyName("availity_remittance_payer_id")]
+    public string? AvailityRemittancePayerId { get; set; }
 }

@@ -21,7 +21,6 @@ public record GuarantorUpdate
 
     /// <summary>
     /// Date formatted as YYYY-MM-DD; eg: 2019-08-25.
-    ///
     /// </summary>
     [JsonPropertyName("date_of_birth")]
     public DateOnly? DateOfBirth { get; set; }

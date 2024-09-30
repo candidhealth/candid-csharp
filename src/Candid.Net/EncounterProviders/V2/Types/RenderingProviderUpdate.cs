@@ -5,14 +5,14 @@ using Candid.Net;
 
 namespace Candid.Net.EncounterProviders.V2;
 
-public record RenderingProvider
+public record RenderingProviderUpdate
 {
     /// <summary>
     /// A National Provider Identifier is a unique 10-digit identification
     /// number issued to health care providers in the United States
     /// </summary>
     [JsonPropertyName("npi")]
-    public required string Npi { get; set; }
+    public string? Npi { get; set; }
 
     [JsonPropertyName("taxonomy_code")]
     public string? TaxonomyCode { get; set; }

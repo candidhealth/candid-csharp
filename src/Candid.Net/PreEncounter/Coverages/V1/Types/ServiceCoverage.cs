@@ -12,6 +12,12 @@ public record ServiceCoverage
     [JsonPropertyName("in_network")]
     public ServiceCoverageDetails? InNetwork { get; set; }
 
+    [JsonPropertyName("in_network_flat")]
+    public IEnumerable<CoverageDetails>? InNetworkFlat { get; set; }
+
     [JsonPropertyName("out_of_network")]
     public ServiceCoverageDetails? OutOfNetwork { get; set; }
+
+    [JsonPropertyName("out_of_network_flat")]
+    public IEnumerable<CoverageDetails>? OutOfNetworkFlat { get; set; }
 }
