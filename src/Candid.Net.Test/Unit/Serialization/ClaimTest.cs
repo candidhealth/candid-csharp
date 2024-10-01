@@ -97,7 +97,11 @@ public class ClaimTest
         ""end_date"": ""2023-01-03""
       },
       ""date_of_service"": ""2023-01-01"",
-      ""end_date_of_service"": ""2023-01-03""
+      ""end_date_of_service"": ""2023-01-03"",
+      ""test_result"": {
+        ""type"": ""hemoglobin"",
+        ""value"": 2.4
+      }
     }
   ],
   ""eras"": [

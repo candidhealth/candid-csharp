@@ -63,4 +63,10 @@ public record ServiceLineCreate
     /// </summary>
     [JsonPropertyName("ordering_provider")]
     public OrderingProvider? OrderingProvider { get; set; }
+
+    /// <summary>
+    /// Contains a single test result value. Maps to MEA-02 on the 837-P.
+    /// </summary>
+    [JsonPropertyName("test_result")]
+    public object? TestResult { get; set; }
 }

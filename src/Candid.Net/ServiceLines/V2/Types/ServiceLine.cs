@@ -116,4 +116,10 @@ public record ServiceLine
 
     [JsonPropertyName("end_date_of_service")]
     public DateOnly? EndDateOfService { get; set; }
+
+    /// <summary>
+    /// Contains a single test result value. Maps to MEA-02 on the 837-P.
+    /// </summary>
+    [JsonPropertyName("test_result")]
+    public object? TestResult { get; set; }
 }
