@@ -38,7 +38,7 @@ public partial class CandidClient
 
     public CandidClient(string clientId, string clientSecret, ClientOptions? clientOptions = null)
     {
-        var defaultHeaders = new Dictionary<string, HeaderValue>()
+        var defaultHeaders = new Headers
         {
             { "X-Fern-Language", "C#" },
             { "X-Fern-SDK-Name", "Candid.Net" },
@@ -55,22 +55,12 @@ public partial class CandidClient
 
         var authRawClient = new RawClient(clientOptions);
         Auth = new AuthClient(authRawClient);
-
-        var baseClientHeaders = new Headers(
-            new Dictionary<string, HeaderValue>(clientOptions.Headers)
-        );
+        
+        var baseClientOptions = clientOptions.Clone();
         var oAuthTokenProvider = new OAuthTokenProvider(clientId, clientSecret, Auth.V2);
-        baseClientHeaders["Authorization"] = new Func<string>(
+        baseClientOptions.Headers["Authorization"] = new Func<string>(
             () => oAuthTokenProvider.GetAccessTokenAsync().Result
         );
-        var baseClientOptions = new ClientOptions
-        {
-            Environment = clientOptions.Environment,
-            HttpClient = clientOptions.HttpClient,
-            MaxRetries = clientOptions.MaxRetries,
-            Timeout = clientOptions.Timeout,
-            Headers = baseClientHeaders
-        };
         _client = new RawClient(baseClientOptions);
         BillingNotes = new BillingNotesClient(_client);
         ClaimSubmission = new ClaimSubmissionClient(_client);
