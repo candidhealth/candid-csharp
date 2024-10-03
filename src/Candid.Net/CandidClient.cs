@@ -38,28 +38,40 @@ public partial class CandidClient
 
     public CandidClient(string clientId, string clientSecret, ClientOptions? clientOptions = null)
     {
-        clientOptions ??= new ClientOptions();
-        var headers = new Dictionary<string, string>()
+        var defaultHeaders = new Dictionary<string, HeaderValue>()
         {
             { "X-Fern-Language", "C#" },
             { "X-Fern-SDK-Name", "Candid.Net" },
             { "X-Fern-SDK-Version", "0.26.0" },
         };
-        var authRawClient = new RawClient(
-            headers,
-            new Dictionary<string, Func<string>>(),
-            clientOptions
-        );
-        Auth = new AuthClient(authRawClient);
-        var oAuthTokenProvider = new OAuthTokenProvider(clientId, clientSecret, Auth.V2);
-        _client = new RawClient(
-            headers,
-            new Dictionary<string, Func<string>>
+        clientOptions ??= new ClientOptions();
+        foreach (var header in defaultHeaders)
+        {
+            if (!clientOptions.Headers.ContainsKey(header.Key))
             {
-                { "Authorization", () => oAuthTokenProvider.GetAccessTokenAsync().Result }
-            },
-            clientOptions
+                clientOptions.Headers[header.Key] = header.Value;
+            }
+        }
+
+        var authRawClient = new RawClient(clientOptions);
+        Auth = new AuthClient(authRawClient);
+
+        var baseClientHeaders = new Headers(
+            new Dictionary<string, HeaderValue>(clientOptions.Headers)
         );
+        var oAuthTokenProvider = new OAuthTokenProvider(clientId, clientSecret, Auth.V2);
+        baseClientHeaders["Authorization"] = new Func<string>(
+            () => oAuthTokenProvider.GetAccessTokenAsync().Result
+        );
+        var baseClientOptions = new ClientOptions
+        {
+            Environment = clientOptions.Environment,
+            HttpClient = clientOptions.HttpClient,
+            MaxRetries = clientOptions.MaxRetries,
+            Timeout = clientOptions.Timeout,
+            Headers = baseClientHeaders
+        };
+        _client = new RawClient(baseClientOptions);
         BillingNotes = new BillingNotesClient(_client);
         ClaimSubmission = new ClaimSubmissionClient(_client);
         Contracts = new ContractsClient(_client);
