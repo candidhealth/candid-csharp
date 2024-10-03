@@ -53,15 +53,14 @@ public partial class CandidClient
             }
         }
 
-        var authRawClient = new RawClient(clientOptions);
+        var authRawClient = new RawClient(clientOptions.Clone());
         Auth = new AuthClient(authRawClient);
         
-        var baseClientOptions = clientOptions.Clone();
         var oAuthTokenProvider = new OAuthTokenProvider(clientId, clientSecret, Auth.V2);
-        baseClientOptions.Headers["Authorization"] = new Func<string>(
+        clientOptions.Headers["Authorization"] = new Func<string>(
             () => oAuthTokenProvider.GetAccessTokenAsync().Result
         );
-        _client = new RawClient(baseClientOptions);
+        _client = new RawClient(clientOptions);
         BillingNotes = new BillingNotesClient(_client);
         ClaimSubmission = new ClaimSubmissionClient(_client);
         Contracts = new ContractsClient(_client);

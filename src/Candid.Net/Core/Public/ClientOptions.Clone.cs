@@ -4,7 +4,7 @@ namespace Candid.Net.Core;
 
 public partial class ClientOptions
 {
-    public ClientOptions Clone()
+    internal ClientOptions Clone()
     {
         return new ClientOptions
         {
