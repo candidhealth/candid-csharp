@@ -19,5 +19,5 @@ public enum Primitive
     Integer,
 
     [EnumMember(Value = "STRING")]
-    String
+    String,
 }

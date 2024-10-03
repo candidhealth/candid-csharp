@@ -568,5 +568,5 @@ public enum ServiceTypeCode
     TransitionalNurseryCare,
 
     [EnumMember(Value = "UC")]
-    UrgentCare
+    UrgentCare,
 }

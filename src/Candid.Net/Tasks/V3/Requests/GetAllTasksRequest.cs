@@ -1,3 +1,4 @@
+using Candid.Net.Core;
 using Candid.Net.Tasks;
 
 #nullable enable
@@ -61,4 +62,9 @@ public record GetAllTasksRequest
     /// Defaults to updated_at:desc
     /// </summary>
     public TaskSortOptions? Sort { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

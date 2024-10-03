@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 
 #nullable enable
 
@@ -17,4 +18,9 @@ public record SchemaInstance
     /// </summary>
     [JsonPropertyName("content")]
     public Dictionary<string, object?> Content { get; set; } = new Dictionary<string, object?>();
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 using Candid.Net.NonInsurancePayers.V1;
 
 #nullable enable
@@ -52,4 +53,9 @@ public record Patient
 
     [JsonPropertyName("gender")]
     public required Gender Gender { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

@@ -14,5 +14,5 @@ public class EncounterPatientControlNumberUniquenessError(
     /// <summary>
     /// The body of the response that triggered the exception.
     /// </summary>
-    public new EncounterPatientControlNumberUniquenessErrorType Body { get; } = body;
+    public new EncounterPatientControlNumberUniquenessErrorType Body => body;
 }

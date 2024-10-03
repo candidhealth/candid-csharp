@@ -211,5 +211,5 @@ public enum LicenseType
     Apcc,
 
     [EnumMember(Value = "DNP")]
-    Dnp
+    Dnp,
 }

@@ -19,5 +19,5 @@ public enum InsuranceRefundSortField
     RefundNote,
 
     [EnumMember(Value = "refund_reason")]
-    RefundReason
+    RefundReason,
 }

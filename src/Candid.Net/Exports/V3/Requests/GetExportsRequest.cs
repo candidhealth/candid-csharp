@@ -1,3 +1,7 @@
+using Candid.Net.Core;
+
+#nullable enable
+
 namespace Candid.Net.Exports.V3;
 
 public record GetExportsRequest
@@ -13,4 +17,9 @@ public record GetExportsRequest
     /// Must be within 30 days of start_date.
     /// </summary>
     public required DateOnly EndDate { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

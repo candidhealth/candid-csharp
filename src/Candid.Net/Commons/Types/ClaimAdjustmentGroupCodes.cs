@@ -37,5 +37,5 @@ public enum ClaimAdjustmentGroupCodes
     Nc,
 
     [EnumMember(Value = "UNKNOWN")]
-    Unknown
+    Unknown,
 }

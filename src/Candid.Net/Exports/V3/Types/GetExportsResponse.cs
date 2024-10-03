@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 
 #nullable enable
 
@@ -26,4 +27,9 @@ public record GetExportsResponse
     /// </summary>
     [JsonPropertyName("authenticated_download_url_expiration")]
     public required DateTime AuthenticatedDownloadUrlExpiration { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

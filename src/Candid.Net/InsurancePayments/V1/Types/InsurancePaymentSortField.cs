@@ -16,5 +16,5 @@ public enum InsurancePaymentSortField
     PaymentTimestamp,
 
     [EnumMember(Value = "payment_note")]
-    PaymentNote
+    PaymentNote,
 }

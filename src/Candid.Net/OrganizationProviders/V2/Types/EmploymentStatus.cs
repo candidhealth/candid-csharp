@@ -13,5 +13,5 @@ public enum EmploymentStatus
     Active,
 
     [EnumMember(Value = "TERMINATED")]
-    Terminated
+    Terminated,
 }

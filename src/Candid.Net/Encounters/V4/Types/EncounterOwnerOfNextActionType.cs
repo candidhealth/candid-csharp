@@ -19,5 +19,5 @@ public enum EncounterOwnerOfNextActionType
     Coder,
 
     [EnumMember(Value = "NONE")]
-    None
+    None,
 }

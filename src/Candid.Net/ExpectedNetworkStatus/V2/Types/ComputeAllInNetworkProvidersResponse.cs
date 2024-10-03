@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 
 #nullable enable
 
@@ -14,4 +15,9 @@ public record ComputeAllInNetworkProvidersResponse
     /// </summary>
     [JsonPropertyName("network_status_check_id")]
     public required string NetworkStatusCheckId { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

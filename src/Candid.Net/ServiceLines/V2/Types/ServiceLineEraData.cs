@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 
 #nullable enable
 
@@ -12,4 +13,9 @@ public record ServiceLineEraData
 
     [JsonPropertyName("remittance_advice_remark_codes")]
     public IEnumerable<string> RemittanceAdviceRemarkCodes { get; set; } = new List<string>();
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

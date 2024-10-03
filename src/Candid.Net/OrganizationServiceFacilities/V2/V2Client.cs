@@ -1,5 +1,6 @@
 using System.Net.Http;
 using System.Text.Json;
+using System.Threading;
 using Candid.Net.Core;
 
 #nullable enable
@@ -15,9 +16,15 @@ public partial class V2Client
         _client = client;
     }
 
+    /// <example>
+    /// <code>
+    /// await client.OrganizationServiceFacilities.V2.GetAsync("30F55EE6-8C0E-43FC-A7FC-DAC00D5BF569");
+    /// </code>
+    /// </example>
     public async Task<OrganizationServiceFacility> GetAsync(
         string organizationServiceFacilityId,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -26,8 +33,9 @@ public partial class V2Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = $"/api/organization-service-facilities/v2/{organizationServiceFacilityId}",
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -49,12 +57,25 @@ public partial class V2Client
         );
     }
 
+    /// <example>
+    /// <code>
+    /// await client.OrganizationServiceFacilities.V2.GetMultiAsync(
+    ///     new GetAllOrganizationServiceFacilitiesRequest
+    ///     {
+    ///         Limit = 100,
+    ///         Name = "Test Service Facility",
+    ///         PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<OrganizationServiceFacilityPage> GetMultiAsync(
         GetAllOrganizationServiceFacilitiesRequest request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>() { };
+        var _query = new Dictionary<string, object>();
         if (request.Limit != null)
         {
             _query["limit"] = request.Limit.ToString();
@@ -74,8 +95,9 @@ public partial class V2Client
                 Method = HttpMethod.Get,
                 Path = "/api/organization-service-facilities/v2",
                 Query = _query,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -97,9 +119,37 @@ public partial class V2Client
         );
     }
 
+    /// <example>
+    /// <code>
+    /// await client.OrganizationServiceFacilities.V2.CreateAsync(
+    ///     new OrganizationServiceFacilityCreate
+    ///     {
+    ///         Name = "Test Service Facility",
+    ///         Aliases = new List<string>() { "Test Service Facility Alias" },
+    ///         Description = "Test Service Facility Description",
+    ///         Status = ServiceFacilityStatus.Active,
+    ///         OperationalStatus = ServiceFacilityOperationalStatus.Closed,
+    ///         Mode = ServiceFacilityMode.Instance,
+    ///         Type = ServiceFacilityType.DiagnosticsOrTherapeuticsUnit,
+    ///         PhysicalType = ServiceFacilityPhysicalType.Site,
+    ///         Telecoms = new List<string>() { "555-555-5555" },
+    ///         Address = new StreetAddressLongZip
+    ///         {
+    ///             Address1 = "123 Main St",
+    ///             Address2 = "Apt 1",
+    ///             City = "New York",
+    ///             State = State.Ny,
+    ///             ZipCode = "10001",
+    ///             ZipPlusFourCode = "1234",
+    ///         },
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<OrganizationServiceFacility> CreateAsync(
         OrganizationServiceFacilityCreate request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -109,8 +159,9 @@ public partial class V2Client
                 Method = HttpMethod.Post,
                 Path = "/api/organization-service-facilities/v2",
                 Body = request,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -132,10 +183,39 @@ public partial class V2Client
         );
     }
 
+    /// <example>
+    /// <code>
+    /// await client.OrganizationServiceFacilities.V2.UpdateAsync(
+    ///     "30F55EE6-8C0E-43FC-A7FC-DAC00D5BF569",
+    ///     new OrganizationServiceFacilityUpdate
+    ///     {
+    ///         Name = "Test Service Facility",
+    ///         Aliases = new List<string>() { "Test Service Facility Alias" },
+    ///         Description = "Test Service Facility Description",
+    ///         Status = ServiceFacilityStatus.Active,
+    ///         OperationalStatus = ServiceFacilityOperationalStatus.Closed,
+    ///         Mode = ServiceFacilityMode.Instance,
+    ///         Type = ServiceFacilityType.DiagnosticsOrTherapeuticsUnit,
+    ///         PhysicalType = ServiceFacilityPhysicalType.Site,
+    ///         Telecoms = new List<string>() { "555-555-5555" },
+    ///         Address = new StreetAddressLongZip
+    ///         {
+    ///             Address1 = "123 Main St",
+    ///             Address2 = "Apt 1",
+    ///             City = "New York",
+    ///             State = State.Ny,
+    ///             ZipCode = "10001",
+    ///             ZipPlusFourCode = "1234",
+    ///         },
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<OrganizationServiceFacility> UpdateAsync(
         string organizationServiceFacilityId,
         OrganizationServiceFacilityUpdate request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -145,8 +225,9 @@ public partial class V2Client
                 Method = HttpMethodExtensions.Patch,
                 Path = $"/api/organization-service-facilities/v2/{organizationServiceFacilityId}",
                 Body = request,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -168,9 +249,15 @@ public partial class V2Client
         );
     }
 
+    /// <example>
+    /// <code>
+    /// await client.OrganizationServiceFacilities.V2.DeleteAsync("30F55EE6-8C0E-43FC-A7FC-DAC00D5BF569");
+    /// </code>
+    /// </example>
     public async System.Threading.Tasks.Task DeleteAsync(
         string organizationServiceFacilityId,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -179,8 +266,9 @@ public partial class V2Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Delete,
                 Path = $"/api/organization-service-facilities/v2/{organizationServiceFacilityId}",
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         if (response.StatusCode is >= 200 and < 400)
         {

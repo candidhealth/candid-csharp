@@ -2,6 +2,7 @@ using System.Text.Json.Serialization;
 using Candid.Net;
 using Candid.Net.BillingNotes.V2;
 using Candid.Net.ClaimSubmission.V1;
+using Candid.Net.Core;
 using Candid.Net.CustomSchemas.V1;
 using Candid.Net.EncounterProviders.V2;
 using Candid.Net.ServiceLines.V2;
@@ -266,4 +267,9 @@ public record EncounterCreateFromPreEncounter
     /// </summary>
     [JsonPropertyName("delay_reason_code")]
     public DelayReasonCode? DelayReasonCode { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

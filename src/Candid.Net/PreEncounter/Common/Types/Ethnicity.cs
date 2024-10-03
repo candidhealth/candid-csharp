@@ -19,5 +19,5 @@ public enum Ethnicity
     Unknown,
 
     [EnumMember(Value = "REFUSED")]
-    Refused
+    Refused,
 }

@@ -13,5 +13,5 @@ public class ExpectedNetworkStatusCheckError(ExpectedNetworkStatusCheckErrorMess
     /// <summary>
     /// The body of the response that triggered the exception.
     /// </summary>
-    public new ExpectedNetworkStatusCheckErrorMessage Body { get; } = body;
+    public new ExpectedNetworkStatusCheckErrorMessage Body => body;
 }

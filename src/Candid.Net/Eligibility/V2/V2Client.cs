@@ -1,5 +1,6 @@
 using System.Net.Http;
 using System.Text.Json;
+using System.Threading;
 using Candid.Net.Core;
 
 #nullable enable
@@ -31,9 +32,17 @@ public partial class V2Client
     ///
     /// A schema of the response object can be found here: [Change Healthcare Docs](https://developers.changehealthcare.com/eligibilityandclaims/reference/medicaleligibility)
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.Eligibility.V2.SubmitEligibilityCheckAsync(
+    ///     new Dictionary<object, object?>() { { "key", "value" } }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<object> SubmitEligibilityCheckAsync(
         object request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -43,8 +52,9 @@ public partial class V2Client
                 Method = HttpMethod.Post,
                 Path = "/api/eligibility/v2",
                 Body = request,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -86,7 +96,15 @@ public partial class V2Client
     ///
     /// - [Availity Trading Partner Connection Status](https://www.availity.com/status/)
     /// </summary>
-    public async Task<object> SubmitEligibilityCheckAvailityAsync(RequestOptions? options = null)
+    /// <example>
+    /// <code>
+    /// await client.Eligibility.V2.SubmitEligibilityCheckAvailityAsync();
+    /// </code>
+    /// </example>
+    public async Task<object> SubmitEligibilityCheckAvailityAsync(
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
@@ -94,8 +112,9 @@ public partial class V2Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = "/api/eligibility/v2/availity",
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -133,9 +152,17 @@ public partial class V2Client
     ///
     /// - [Availity Trading Partner Connection Status](https://www.availity.com/status/)
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.Eligibility.V2.SubmitEligibilityCheckAvailityPostAsync(
+    ///     new Dictionary<object, object?>() { { "key", "value" } }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<object> SubmitEligibilityCheckAvailityPostAsync(
         object request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -145,8 +172,9 @@ public partial class V2Client
                 Method = HttpMethod.Post,
                 Path = "/api/eligibility/v2/availity",
                 Body = request,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)

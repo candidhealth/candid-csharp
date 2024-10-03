@@ -16,5 +16,5 @@ public enum EligibilityStatus
     Inactive,
 
     [EnumMember(Value = "UNKNOWN")]
-    Unknown
+    Unknown,
 }

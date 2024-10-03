@@ -13,5 +13,5 @@ public enum EmrPayerCrosswalk
     Healthie,
 
     [EnumMember(Value = "CANVAS")]
-    Canvas
+    Canvas,
 }

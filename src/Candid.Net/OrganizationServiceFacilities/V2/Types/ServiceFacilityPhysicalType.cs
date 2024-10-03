@@ -49,5 +49,5 @@ public enum ServiceFacilityPhysicalType
     Area,
 
     [EnumMember(Value = "jdn")]
-    Jurisdiction
+    Jurisdiction,
 }

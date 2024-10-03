@@ -13,5 +13,5 @@ public class EntityNotFoundError(EntityNotFoundErrorMessage body)
     /// <summary>
     /// The body of the response that triggered the exception.
     /// </summary>
-    public new EntityNotFoundErrorMessage Body { get; } = body;
+    public new EntityNotFoundErrorMessage Body => body;
 }

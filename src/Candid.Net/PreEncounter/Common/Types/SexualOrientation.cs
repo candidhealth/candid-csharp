@@ -28,5 +28,5 @@ public enum SexualOrientation
     Unknown,
 
     [EnumMember(Value = "REFUSED")]
-    Refused
+    Refused,
 }

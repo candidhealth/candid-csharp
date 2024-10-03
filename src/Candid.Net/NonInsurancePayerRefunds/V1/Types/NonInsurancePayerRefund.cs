@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using Candid.Net;
+using Candid.Net.Core;
 using Candid.Net.NonInsurancePayers.V1;
 
 #nullable enable
@@ -31,4 +32,9 @@ public record NonInsurancePayerRefund
 
     [JsonPropertyName("invoice_id")]
     public string? InvoiceId { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

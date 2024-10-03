@@ -5,13 +5,13 @@ public class CandidEnvironment
     public static CandidEnvironment PRODUCTION = new CandidEnvironment
     {
         CandidApi = "https://api.joincandidhealth.com",
-        PreEncounter = "https://pre-api.joincandidhealth.com"
+        PreEncounter = "https://pre-api.joincandidhealth.com",
     };
 
     public static CandidEnvironment STAGING = new CandidEnvironment
     {
         CandidApi = "https://api-staging.joincandidhealth.com",
-        PreEncounter = "https://pre-api-staging.joincandidhealth.com"
+        PreEncounter = "https://pre-api-staging.joincandidhealth.com",
     };
 
     /// <summary>

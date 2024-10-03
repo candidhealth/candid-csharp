@@ -13,5 +13,5 @@ public enum BillableStatusType
     Billable,
 
     [EnumMember(Value = "NOT_BILLABLE")]
-    NotBillable
+    NotBillable,
 }

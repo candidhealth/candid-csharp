@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 
 #nullable enable
 
@@ -11,4 +12,9 @@ public record Payee
 
     [JsonPropertyName("payee_identifier")]
     public required object PayeeIdentifier { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

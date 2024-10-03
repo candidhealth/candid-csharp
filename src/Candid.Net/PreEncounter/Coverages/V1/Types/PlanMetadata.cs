@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 
 #nullable enable
 
@@ -29,4 +30,9 @@ public record PlanMetadata
 
     [JsonPropertyName("plan_dates")]
     public IEnumerable<PlanDate>? PlanDates { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

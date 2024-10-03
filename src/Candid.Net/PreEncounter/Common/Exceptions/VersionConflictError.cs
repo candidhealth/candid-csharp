@@ -13,5 +13,5 @@ public class VersionConflictError(VersionConflictErrorBody body)
     /// <summary>
     /// The body of the response that triggered the exception.
     /// </summary>
-    public new VersionConflictErrorBody Body { get; } = body;
+    public new VersionConflictErrorBody Body => body;
 }

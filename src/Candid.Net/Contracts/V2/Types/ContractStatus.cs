@@ -16,5 +16,5 @@ public enum ContractStatus
     Effective,
 
     [EnumMember(Value = "cancelled")]
-    Cancelled
+    Cancelled,
 }

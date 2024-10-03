@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using Candid.Net;
+using Candid.Net.Core;
 
 #nullable enable
 
@@ -21,4 +22,9 @@ public record InsurancePaymentCreate
 
     [JsonPropertyName("allocations")]
     public IEnumerable<AllocationCreate> Allocations { get; set; } = new List<AllocationCreate>();
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

@@ -1,3 +1,4 @@
+using Candid.Net.Core;
 using Candid.Net.OrganizationProviders.V2;
 
 #nullable enable
@@ -40,4 +41,9 @@ public record GetAllOrganizationProvidersRequestV2
     /// Defaults to PROVIDER_NAME_ASC.
     /// </summary>
     public OrganizationProviderSortOptions? Sort { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

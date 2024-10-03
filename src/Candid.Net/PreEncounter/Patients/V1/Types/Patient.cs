@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 using Candid.Net.PreEncounter;
 
 #nullable enable
@@ -169,4 +170,9 @@ public record Patient
 
     [JsonPropertyName("referrals")]
     public IEnumerable<Referral>? Referrals { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

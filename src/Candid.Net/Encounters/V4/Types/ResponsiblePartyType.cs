@@ -16,5 +16,5 @@ public enum ResponsiblePartyType
     SelfPay,
 
     [EnumMember(Value = "UNKNOWN")]
-    Unknown
+    Unknown,
 }

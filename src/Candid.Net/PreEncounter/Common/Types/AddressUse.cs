@@ -22,5 +22,5 @@ public enum AddressUse
     Old,
 
     [EnumMember(Value = "BILLING")]
-    Billing
+    Billing,
 }

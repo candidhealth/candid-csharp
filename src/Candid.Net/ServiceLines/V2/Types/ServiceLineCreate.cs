@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using Candid.Net;
+using Candid.Net.Core;
 using Candid.Net.EncounterProviders.V2;
 
 #nullable enable
@@ -69,4 +70,9 @@ public record ServiceLineCreate
     /// </summary>
     [JsonPropertyName("test_result")]
     public object? TestResult { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

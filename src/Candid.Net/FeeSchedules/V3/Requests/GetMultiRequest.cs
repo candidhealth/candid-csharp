@@ -1,4 +1,5 @@
 using Candid.Net;
+using Candid.Net.Core;
 using Candid.Net.OrganizationProviders.V2;
 
 #nullable enable
@@ -34,4 +35,9 @@ public record GetMultiRequest
     public string? CptCode { get; set; }
 
     public IEnumerable<ProcedureModifier> Modifiers { get; set; } = new List<ProcedureModifier>();
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

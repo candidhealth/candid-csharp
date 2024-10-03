@@ -13,5 +13,5 @@ public class CashPayPayerError(CashPayPayerErrorMessage body)
     /// <summary>
     /// The body of the response that triggered the exception.
     /// </summary>
-    public new CashPayPayerErrorMessage Body { get; } = body;
+    public new CashPayPayerErrorMessage Body => body;
 }

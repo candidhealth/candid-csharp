@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using Candid.Net;
+using Candid.Net.Core;
 using Candid.Net.OrganizationProviders.V2;
 
 #nullable enable
@@ -92,4 +93,9 @@ public record OrganizationProviderCreateV2
     [JsonPropertyName("qualifications")]
     public IEnumerable<IdentifierCreate> Qualifications { get; set; } =
         new List<IdentifierCreate>();
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

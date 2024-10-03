@@ -13,5 +13,5 @@ public enum IdentifierCode
     Mcr,
 
     [EnumMember(Value = "MCD")]
-    Mcd
+    Mcd,
 }

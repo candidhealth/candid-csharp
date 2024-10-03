@@ -25,5 +25,5 @@ public enum BenefitType
     Copay,
 
     [EnumMember(Value = "COINSURANCE")]
-    Coinsurance
+    Coinsurance,
 }

@@ -1,5 +1,6 @@
 using System.Net.Http;
 using System.Text.Json;
+using System.Threading;
 using Candid.Net.Core;
 
 #nullable enable
@@ -15,9 +16,15 @@ public partial class V2Client
         _client = client;
     }
 
+    /// <example>
+    /// <code>
+    /// await client.Contracts.V2.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+    /// </code>
+    /// </example>
     public async Task<ContractWithProviders> GetAsync(
         string contractId,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -26,8 +33,9 @@ public partial class V2Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = $"/api/contracts/v2/{contractId}",
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -49,17 +57,34 @@ public partial class V2Client
         );
     }
 
+    /// <example>
+    /// <code>
+    /// await client.Contracts.V2.GetMultiAsync(
+    ///     new GetMultiContractsRequest
+    ///     {
+    ///         PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
+    ///         Limit = 1,
+    ///         ContractingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         RenderingProviderIds = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
+    ///         PayerNames = ["string"],
+    ///         States = [State.Aa],
+    ///         ContractStatus = ContractStatus.Pending,
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<ContractsPage> GetMultiAsync(
         GetMultiContractsRequest request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>() { };
+        var _query = new Dictionary<string, object>();
         _query["rendering_provider_ids"] = request
             .RenderingProviderIds.Select(_value => _value.ToString())
             .ToList();
         _query["payer_names"] = request.PayerNames;
-        _query["states"] = request.States.Select(_value => _value.ToString()).ToList();
+        _query["states"] = request.States.Select(_value => _value.Stringify()).ToList();
         if (request.PageToken != null)
         {
             _query["page_token"] = request.PageToken;
@@ -74,7 +99,7 @@ public partial class V2Client
         }
         if (request.ContractStatus != null)
         {
-            _query["contract_status"] = JsonSerializer.Serialize(request.ContractStatus.Value);
+            _query["contract_status"] = request.ContractStatus.Value.Stringify();
         }
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
@@ -83,8 +108,9 @@ public partial class V2Client
                 Method = HttpMethod.Get,
                 Path = "/api/contracts/v2",
                 Query = _query,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -109,9 +135,38 @@ public partial class V2Client
     /// <summary>
     /// Creates a new contract within the user's current organization
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.Contracts.V2.CreateAsync(
+    ///     new ContractCreate
+    ///     {
+    ///         ContractingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         RenderingProviderIds = new HashSet<string>() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
+    ///         PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         EffectiveDate = "string",
+    ///         ExpirationDate = "string",
+    ///         Regions = new RegionStates(),
+    ///         ContractStatus = ContractStatus.Pending,
+    ///         AuthorizedSignatory = new AuthorizedSignatory
+    ///         {
+    ///             FirstName = "string",
+    ///             LastName = "string",
+    ///             Title = "string",
+    ///             Email = "string",
+    ///             Phone = "string",
+    ///             Fax = "string",
+    ///         },
+    ///         CommercialInsuranceTypes = "no-properties-union",
+    ///         MedicareInsuranceTypes = "no-properties-union",
+    ///         MedicaidInsuranceTypes = "no-properties-union",
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<ContractWithProviders> CreateAsync(
         ContractCreate request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -121,8 +176,9 @@ public partial class V2Client
                 Method = HttpMethod.Post,
                 Path = "/api/contracts/v2",
                 Body = request,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -144,9 +200,15 @@ public partial class V2Client
         );
     }
 
+    /// <example>
+    /// <code>
+    /// await client.Contracts.V2.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+    /// </code>
+    /// </example>
     public async System.Threading.Tasks.Task DeleteAsync(
         string contractId,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -155,8 +217,9 @@ public partial class V2Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Delete,
                 Path = $"/api/contracts/v2/{contractId}",
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         if (response.StatusCode is >= 200 and < 400)
         {
@@ -170,10 +233,38 @@ public partial class V2Client
         );
     }
 
+    /// <example>
+    /// <code>
+    /// await client.Contracts.V2.UpdateAsync(
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///     new ContractUpdate
+    ///     {
+    ///         RenderingProviderIds = new HashSet<string>() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
+    ///         EffectiveDate = "string",
+    ///         ExpirationDate = "string",
+    ///         Regions = new RegionStates { States = new List<State>() { State.Aa } },
+    ///         ContractStatus = ContractStatus.Pending,
+    ///         AuthorizedSignatory = new AuthorizedSignatory
+    ///         {
+    ///             FirstName = "string",
+    ///             LastName = "string",
+    ///             Title = "string",
+    ///             Email = "string",
+    ///             Phone = "string",
+    ///             Fax = "string",
+    ///         },
+    ///         CommercialInsuranceTypes = "no-properties-union",
+    ///         MedicareInsuranceTypes = "no-properties-union",
+    ///         MedicaidInsuranceTypes = "no-properties-union",
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<ContractWithProviders> UpdateAsync(
         string contractId,
         ContractUpdate request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -183,8 +274,9 @@ public partial class V2Client
                 Method = HttpMethodExtensions.Patch,
                 Path = $"/api/contracts/v2/{contractId}",
                 Body = request,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)

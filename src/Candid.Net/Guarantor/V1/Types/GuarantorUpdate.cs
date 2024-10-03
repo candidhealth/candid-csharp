@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using Candid.Net;
+using Candid.Net.Core;
 
 #nullable enable
 
@@ -39,4 +40,9 @@ public record GuarantorUpdate
 
     [JsonPropertyName("email_consent")]
     public bool? EmailConsent { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

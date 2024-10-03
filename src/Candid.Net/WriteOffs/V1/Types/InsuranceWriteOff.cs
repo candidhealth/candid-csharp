@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 using Candid.Net.Payers.V3;
 
 #nullable enable
@@ -33,4 +34,9 @@ public record InsuranceWriteOff
 
     [JsonPropertyName("amount_cents")]
     public required int AmountCents { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

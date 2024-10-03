@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 
 #nullable enable
 
@@ -69,4 +70,9 @@ public record ContractCreate
     /// </summary>
     [JsonPropertyName("medicaid_insurance_types")]
     public required object MedicaidInsuranceTypes { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

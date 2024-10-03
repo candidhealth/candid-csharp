@@ -19,5 +19,5 @@ public enum PatientHistoryCategoryEnum
     Family,
 
     [EnumMember(Value = "social")]
-    Social
+    Social,
 }

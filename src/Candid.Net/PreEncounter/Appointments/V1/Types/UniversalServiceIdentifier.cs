@@ -19,5 +19,5 @@ public enum UniversalServiceIdentifier
     Tests,
 
     [EnumMember(Value = "Activity")]
-    Activity
+    Activity,
 }

@@ -13,5 +13,5 @@ public class EraNotFullyProcessedError(EraNotFullyProcessedErrorMessage body)
     /// <summary>
     /// The body of the response that triggered the exception.
     /// </summary>
-    public new EraNotFullyProcessedErrorMessage Body { get; } = body;
+    public new EraNotFullyProcessedErrorMessage Body => body;
 }

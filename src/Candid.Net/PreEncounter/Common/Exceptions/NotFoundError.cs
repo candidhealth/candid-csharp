@@ -12,5 +12,5 @@ public class NotFoundError(NotFoundErrorBody body) : CandidApiException("NotFoun
     /// <summary>
     /// The body of the response that triggered the exception.
     /// </summary>
-    public new NotFoundErrorBody Body { get; } = body;
+    public new NotFoundErrorBody Body => body;
 }

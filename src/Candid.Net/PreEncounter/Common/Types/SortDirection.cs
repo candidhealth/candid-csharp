@@ -13,5 +13,5 @@ public enum SortDirection
     Asc,
 
     [EnumMember(Value = "desc")]
-    Desc
+    Desc,
 }

@@ -1171,5 +1171,5 @@ public enum ProcedureModifier
     V3,
 
     [EnumMember(Value = "XE")]
-    Xe
+    Xe,
 }

@@ -79,5 +79,5 @@ public enum PatientRelationshipToInsuredCodeAll
     LifePartner,
 
     [EnumMember(Value = "G8")]
-    OtherRelationship
+    OtherRelationship,
 }

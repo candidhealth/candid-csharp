@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using Candid.Net;
+using Candid.Net.Core;
 
 #nullable enable
 
@@ -55,4 +56,9 @@ public record ExpectedNetworkStatusRequest
     /// </summary>
     [JsonPropertyName("date_of_service")]
     public required string DateOfService { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

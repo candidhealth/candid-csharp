@@ -28,5 +28,5 @@ public enum PatientTransactionSource
     Cedar,
 
     [EnumMember(Value = "HEALTHIE")]
-    Healthie
+    Healthie,
 }

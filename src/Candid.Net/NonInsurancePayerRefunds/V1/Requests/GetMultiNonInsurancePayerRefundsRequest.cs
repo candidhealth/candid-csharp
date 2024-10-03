@@ -1,3 +1,7 @@
+using Candid.Net.Core;
+
+#nullable enable
+
 namespace Candid.Net.NonInsurancePayerRefunds.V1;
 
 public record GetMultiNonInsurancePayerRefundsRequest
@@ -24,4 +28,9 @@ public record GetMultiNonInsurancePayerRefundsRequest
     public SortDirection? SortDirection { get; set; }
 
     public string? PageToken { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

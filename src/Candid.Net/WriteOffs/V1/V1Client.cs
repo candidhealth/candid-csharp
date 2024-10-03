@@ -1,5 +1,6 @@
 using System.Net.Http;
 using System.Text.Json;
+using System.Threading;
 using Candid.Net.Core;
 
 #nullable enable
@@ -18,13 +19,35 @@ public partial class V1Client
     /// <summary>
     /// Returns all write-offs satisfying the search criteria.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.WriteOffs.V1.GetMultiAsync(
+    ///     new GetMultiWriteOffsRequest
+    ///     {
+    ///         Limit = 1,
+    ///         PatientExternalId = "string",
+    ///         PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         ServiceLineId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         ClaimId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         BillingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         Sort = WriteOffSortField.AmountCents,
+    ///         SortDirection = Candid.Net.SortDirection.Asc,
+    ///         PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
+    ///         AccountTypes = [AccountType.Patient],
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<WriteOffsPage> GetMultiAsync(
         GetMultiWriteOffsRequest request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>() { };
-        _query["account_types"] = request.AccountTypes.Select(_value => _value.ToString()).ToList();
+        var _query = new Dictionary<string, object>();
+        _query["account_types"] = request
+            .AccountTypes.Select(_value => _value.Stringify())
+            .ToList();
         if (request.Limit != null)
         {
             _query["limit"] = request.Limit.ToString();
@@ -51,11 +74,11 @@ public partial class V1Client
         }
         if (request.Sort != null)
         {
-            _query["sort"] = JsonSerializer.Serialize(request.Sort.Value);
+            _query["sort"] = request.Sort.Value.Stringify();
         }
         if (request.SortDirection != null)
         {
-            _query["sort_direction"] = JsonSerializer.Serialize(request.SortDirection.Value);
+            _query["sort_direction"] = request.SortDirection.Value.Stringify();
         }
         if (request.PageToken != null)
         {
@@ -68,8 +91,9 @@ public partial class V1Client
                 Method = HttpMethod.Get,
                 Path = "/api/write-offs/v1",
                 Query = _query,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -94,7 +118,16 @@ public partial class V1Client
     /// <summary>
     /// Retrieves a previously created write off by its `write_off_id`.
     /// </summary>
-    public async Task<object> GetAsync(string writeOffId, RequestOptions? options = null)
+    /// <example>
+    /// <code>
+    /// await client.WriteOffs.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+    /// </code>
+    /// </example>
+    public async Task<object> GetAsync(
+        string writeOffId,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
@@ -102,8 +135,9 @@ public partial class V1Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = $"/api/write-offs/v1/{writeOffId}",
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -129,9 +163,30 @@ public partial class V1Client
     /// Creates one or many write-offs applied toward a specific service line,
     /// claim, or billing provider.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.WriteOffs.V1.CreateAsync(
+    ///     new CreateWriteOffsRequest
+    ///     {
+    ///         WriteOffs = new List<object>()
+    ///         {
+    ///             new PatientWriteOffCreate
+    ///             {
+    ///                 WriteOffTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
+    ///                 WriteOffNote = "string",
+    ///                 WriteOffReason = PatientWriteOffReason.SmallBalance,
+    ///                 ServiceLineId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///                 AmountCents = 1,
+    ///             },
+    ///         },
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<CreateWriteOffsResponse> CreateAsync(
         CreateWriteOffsRequest request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -141,8 +196,9 @@ public partial class V1Client
                 Method = HttpMethod.Post,
                 Path = "/api/write-offs/v1",
                 Body = request,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -167,7 +223,16 @@ public partial class V1Client
     /// <summary>
     /// Reverts a write off given a `write_off_id`.
     /// </summary>
-    public async Task<object> RevertAsync(string writeOffId, RequestOptions? options = null)
+    /// <example>
+    /// <code>
+    /// await client.WriteOffs.V1.RevertAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+    /// </code>
+    /// </example>
+    public async Task<object> RevertAsync(
+        string writeOffId,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
@@ -175,8 +240,9 @@ public partial class V1Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Post,
                 Path = $"/api/write-offs/v1/{writeOffId}/revert",
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)

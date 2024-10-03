@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 
 #nullable enable
 
@@ -20,4 +21,9 @@ public record ServiceLineAdjustment
 
     [JsonPropertyName("adjustment_note")]
     public string? AdjustmentNote { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

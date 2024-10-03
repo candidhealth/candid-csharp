@@ -28,5 +28,5 @@ public enum ServiceAuthorizationExceptionCode
     C6,
 
     [EnumMember(Value = "7")]
-    C7
+    C7,
 }

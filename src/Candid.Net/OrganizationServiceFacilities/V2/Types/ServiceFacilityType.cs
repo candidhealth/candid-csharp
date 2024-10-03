@@ -376,5 +376,5 @@ public enum ServiceFacilityType
     UnderageProtectionCenter,
 
     [EnumMember(Value = "WORK")]
-    WorkSite
+    WorkSite,
 }

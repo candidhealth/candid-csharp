@@ -1,5 +1,6 @@
 using System.Net.Http;
 using System.Text.Json;
+using System.Threading;
 using Candid.Net.Core;
 
 #nullable enable
@@ -19,12 +20,30 @@ public partial class V1Client
     /// Returns all insurance refunds satisfying the search criteria AND whose organization_id matches
     /// the current organization_id of the authenticated user.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.InsuranceRefunds.V1.GetMultiAsync(
+    ///     new GetMultiInsuranceRefundsRequest
+    ///     {
+    ///         Limit = 1,
+    ///         PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         ClaimId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         ServiceLineId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         BillingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         Sort = InsuranceRefundSortField.AmountCents,
+    ///         SortDirection = Candid.Net.SortDirection.Asc,
+    ///         PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<InsuranceRefundsPage> GetMultiAsync(
         GetMultiInsuranceRefundsRequest request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>() { };
+        var _query = new Dictionary<string, object>();
         if (request.Limit != null)
         {
             _query["limit"] = request.Limit.ToString();
@@ -47,11 +66,11 @@ public partial class V1Client
         }
         if (request.Sort != null)
         {
-            _query["sort"] = JsonSerializer.Serialize(request.Sort.Value);
+            _query["sort"] = request.Sort.Value.Stringify();
         }
         if (request.SortDirection != null)
         {
-            _query["sort_direction"] = JsonSerializer.Serialize(request.SortDirection.Value);
+            _query["sort_direction"] = request.SortDirection.Value.Stringify();
         }
         if (request.PageToken != null)
         {
@@ -64,8 +83,9 @@ public partial class V1Client
                 Method = HttpMethod.Get,
                 Path = "/api/insurance-refunds/v1",
                 Query = _query,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -91,9 +111,15 @@ public partial class V1Client
     /// Retrieves a previously created insurance refund by its `insurance_refund_id`.
     /// If the refund does not exist, a `403` will be thrown.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.InsuranceRefunds.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+    /// </code>
+    /// </example>
     public async Task<InsuranceRefund> GetAsync(
         string insuranceRefundId,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -102,8 +128,9 @@ public partial class V1Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = $"/api/insurance-refunds/v1/{insuranceRefundId}",
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -130,9 +157,32 @@ public partial class V1Client
     /// The allocations can describe whether the refund is being applied toward a specific service line,
     /// claim, or billing provider.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.InsuranceRefunds.V1.CreateAsync(
+    ///     new InsuranceRefundCreate
+    ///     {
+    ///         PayerIdentifier = new PayerInfo(),
+    ///         AmountCents = 1,
+    ///         RefundTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
+    ///         RefundNote = "string",
+    ///         Allocations = new List<AllocationCreate>()
+    ///         {
+    ///             new AllocationCreate
+    ///             {
+    ///                 AmountCents = 1,
+    ///                 Target = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///             },
+    ///         },
+    ///         RefundReason = RefundReason.Overcharged,
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<InsuranceRefund> CreateAsync(
         InsuranceRefundCreate request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -142,8 +192,9 @@ public partial class V1Client
                 Method = HttpMethod.Post,
                 Path = "/api/insurance-refunds/v1",
                 Body = request,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -169,10 +220,24 @@ public partial class V1Client
     /// Updates the patient refund record matching the provided insurance_refund_id. If updating the refund amount,
     /// then the allocations must be appropriately updated as well.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.InsuranceRefunds.V1.UpdateAsync(
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///     new InsuranceRefundUpdate
+    ///     {
+    ///         RefundTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
+    ///         RefundNote = "string",
+    ///         RefundReason = RefundReason.Overcharged,
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<InsuranceRefund> UpdateAsync(
         string insuranceRefundId,
         InsuranceRefundUpdate request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -182,8 +247,9 @@ public partial class V1Client
                 Method = HttpMethodExtensions.Patch,
                 Path = $"/api/insurance-refunds/v1/{insuranceRefundId}",
                 Body = request,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -210,9 +276,15 @@ public partial class V1Client
     /// If the matching record's organization_id does not match the authenticated user's
     /// current organization_id, then a response code of `403` will be returned.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.InsuranceRefunds.V1.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+    /// </code>
+    /// </example>
     public async System.Threading.Tasks.Task DeleteAsync(
         string insuranceRefundId,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -221,8 +293,9 @@ public partial class V1Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Delete,
                 Path = $"/api/insurance-refunds/v1/{insuranceRefundId}",
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         if (response.StatusCode is >= 200 and < 400)
         {

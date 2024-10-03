@@ -16,5 +16,5 @@ public enum AppointmentWorkQueue
     NewPatient,
 
     [EnumMember(Value = "RETURNING_PATIENT")]
-    ReturningPatient
+    ReturningPatient,
 }

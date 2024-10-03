@@ -13,5 +13,5 @@ public enum LabCodeType
     Quest,
 
     [EnumMember(Value = "labcorp")]
-    Labcorp
+    Labcorp,
 }

@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 using Candid.Net.X12.V1;
 
 #nullable enable
@@ -29,4 +30,9 @@ public record ClaimAdjudication
     [JsonPropertyName("carcs")]
     public IEnumerable<ClaimAdjustmentReasonCode> Carcs { get; set; } =
         new List<ClaimAdjustmentReasonCode>();
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

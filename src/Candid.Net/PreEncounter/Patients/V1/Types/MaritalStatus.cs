@@ -43,5 +43,5 @@ public enum MaritalStatus
     Widowed,
 
     [EnumMember(Value = "UNKNOWN")]
-    Unknown
+    Unknown,
 }

@@ -1,3 +1,7 @@
+using Candid.Net.Core;
+
+#nullable enable
+
 namespace Candid.Net.InsurancePayments.V1;
 
 public record GetMultiInsurancePaymentRequest
@@ -26,4 +30,9 @@ public record GetMultiInsurancePaymentRequest
     public SortDirection? SortDirection { get; set; }
 
     public string? PageToken { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

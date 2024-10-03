@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 
 #nullable enable
 
@@ -14,4 +15,9 @@ public record SchemaCreate
 
     [JsonPropertyName("fields")]
     public IEnumerable<SchemaField> Fields { get; set; } = new List<SchemaField>();
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

@@ -25,5 +25,5 @@ public enum InvoiceStatus
     Uncollectible,
 
     [EnumMember(Value = "held")]
-    Held
+    Held,
 }

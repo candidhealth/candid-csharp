@@ -19,5 +19,5 @@ public enum AppointmentStatus
     Ready,
 
     [EnumMember(Value = "CHECKED_IN")]
-    CheckedIn
+    CheckedIn,
 }

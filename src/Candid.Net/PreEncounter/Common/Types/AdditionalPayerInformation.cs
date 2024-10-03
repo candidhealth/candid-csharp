@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 
 #nullable enable
 
@@ -17,4 +18,9 @@ public record AdditionalPayerInformation
 
     [JsonPropertyName("availity_remittance_payer_id")]
     public string? AvailityRemittancePayerId { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

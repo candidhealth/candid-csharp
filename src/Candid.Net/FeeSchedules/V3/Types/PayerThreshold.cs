@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 
 #nullable enable
 
@@ -14,4 +15,9 @@ public record PayerThreshold
 
     [JsonPropertyName("disable_paid_incorrectly")]
     public required bool DisablePaidIncorrectly { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

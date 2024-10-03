@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 
 #nullable enable
 
@@ -26,4 +27,9 @@ public record ExternalClaimSubmissionCreate
     [JsonPropertyName("submission_records")]
     public IEnumerable<ClaimSubmissionRecordCreate> SubmissionRecords { get; set; } =
         new List<ClaimSubmissionRecordCreate>();
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

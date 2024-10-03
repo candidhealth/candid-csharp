@@ -13,5 +13,5 @@ public enum ClaimSubmissionPayerResponsibilityType
     Primary,
 
     [EnumMember(Value = "secondary")]
-    Secondary
+    Secondary,
 }

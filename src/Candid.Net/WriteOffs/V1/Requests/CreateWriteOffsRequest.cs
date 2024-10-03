@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 
 #nullable enable
 
@@ -8,4 +9,9 @@ public record CreateWriteOffsRequest
 {
     [JsonPropertyName("write_offs")]
     public IEnumerable<object> WriteOffs { get; set; } = new List<object>();
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

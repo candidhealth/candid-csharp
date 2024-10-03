@@ -19,5 +19,5 @@ public enum CodingAttributionType
     Tcn,
 
     [EnumMember(Value = "PJF")]
-    Pjf
+    Pjf,
 }

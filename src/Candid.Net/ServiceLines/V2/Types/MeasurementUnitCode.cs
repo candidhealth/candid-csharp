@@ -22,5 +22,5 @@ public enum MeasurementUnitCode
     InternationalUnit,
 
     [EnumMember(Value = "ME")]
-    Milligram
+    Milligram,
 }

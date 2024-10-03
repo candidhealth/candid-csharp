@@ -16,5 +16,5 @@ public enum PhoneNumberType
     Mobile,
 
     [EnumMember(Value = "Work")]
-    Work
+    Work,
 }

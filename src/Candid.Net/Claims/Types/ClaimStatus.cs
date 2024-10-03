@@ -52,5 +52,5 @@ public enum ClaimStatus
     HeldByCustomer,
 
     [EnumMember(Value = "era_requires_review")]
-    EraRequiresReview
+    EraRequiresReview,
 }

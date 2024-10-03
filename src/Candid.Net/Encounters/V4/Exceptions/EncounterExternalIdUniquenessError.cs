@@ -13,5 +13,5 @@ public class EncounterExternalIdUniquenessError(EncounterExternalIdUniquenessErr
     /// <summary>
     /// The body of the response that triggered the exception.
     /// </summary>
-    public new EncounterExternalIdUniquenessErrorType Body { get; } = body;
+    public new EncounterExternalIdUniquenessErrorType Body => body;
 }

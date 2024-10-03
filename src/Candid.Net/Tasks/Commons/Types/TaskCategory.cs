@@ -130,5 +130,5 @@ public enum TaskCategory
     PendingManualRemitPosting,
 
     [EnumMember(Value = "incorrect_referring_provider_info")]
-    IncorrectReferringProviderInfo
+    IncorrectReferringProviderInfo,
 }

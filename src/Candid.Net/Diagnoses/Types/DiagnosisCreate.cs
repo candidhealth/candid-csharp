@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 
 #nullable enable
 
@@ -31,4 +32,9 @@ public record DiagnosisCreate
     /// </summary>
     [JsonPropertyName("code")]
     public required string Code { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

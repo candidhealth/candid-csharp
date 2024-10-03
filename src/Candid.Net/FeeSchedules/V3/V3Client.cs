@@ -1,5 +1,6 @@
 using System.Net.Http;
 using System.Text.Json;
+using System.Threading;
 using Candid.Net.Core;
 
 #nullable enable
@@ -18,9 +19,15 @@ public partial class V3Client
     /// <summary>
     /// Gets the rate that matches a service line. No result means no rate exists matching the service line's dimensions.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.FeeSchedules.V3.GetMatchAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+    /// </code>
+    /// </example>
     public async Task<MatchResult?> GetMatchAsync(
         string serviceLineId,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -29,8 +36,9 @@ public partial class V3Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = $"/api/fee-schedules/v3/service-line/{serviceLineId}/match",
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -55,10 +63,19 @@ public partial class V3Client
     /// <summary>
     /// Tests a service line against a rate to see if it matches.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.FeeSchedules.V3.TestMatchAsync(
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
+    /// );
+    /// </code>
+    /// </example>
     public async Task<MatchTestResult> TestMatchAsync(
         string serviceLineId,
         string rateId,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -67,8 +84,9 @@ public partial class V3Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = $"/api/fee-schedules/v3/service-line/{serviceLineId}/match/{rateId}",
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -93,20 +111,46 @@ public partial class V3Client
     /// <summary>
     /// Gets a list of dimensions with their rates. The rates returned will always be the most recent versions of those rates.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.FeeSchedules.V3.GetMultiAsync(
+    ///     new GetMultiRequest
+    ///     {
+    ///         PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
+    ///         Limit = 1,
+    ///         ActiveDate = new DateOnly(2023, 1, 15),
+    ///         PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         OrganizationBillingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         States = [State.Aa],
+    ///         ZipCodes = ["string"],
+    ///         LicenseTypes = [LicenseType.Md],
+    ///         FacilityTypeCodes = [FacilityTypeCode.Pharmacy],
+    ///         NetworkTypes = [Candid.Net.NetworkType.Ppo],
+    ///         CptCode = "string",
+    ///         Modifiers = [ProcedureModifier.TwentyTwo],
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<RatesPage> GetMultiAsync(
         GetMultiRequest request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>() { };
-        _query["states"] = request.States.Select(_value => _value.ToString()).ToList();
+        var _query = new Dictionary<string, object>();
+        _query["states"] = request.States.Select(_value => _value.Stringify()).ToList();
         _query["zip_codes"] = request.ZipCodes;
-        _query["license_types"] = request.LicenseTypes.Select(_value => _value.ToString()).ToList();
-        _query["facility_type_codes"] = request
-            .FacilityTypeCodes.Select(_value => _value.ToString())
+        _query["license_types"] = request
+            .LicenseTypes.Select(_value => _value.Stringify())
             .ToList();
-        _query["network_types"] = request.NetworkTypes.Select(_value => _value.ToString()).ToList();
-        _query["modifiers"] = request.Modifiers.Select(_value => _value.ToString()).ToList();
+        _query["facility_type_codes"] = request
+            .FacilityTypeCodes.Select(_value => _value.Stringify())
+            .ToList();
+        _query["network_types"] = request
+            .NetworkTypes.Select(_value => _value.Stringify())
+            .ToList();
+        _query["modifiers"] = request.Modifiers.Select(_value => _value.Stringify()).ToList();
         if (request.PageToken != null)
         {
             _query["page_token"] = request.PageToken;
@@ -117,7 +161,7 @@ public partial class V3Client
         }
         if (request.ActiveDate != null)
         {
-            _query["active_date"] = request.ActiveDate.ToString();
+            _query["active_date"] = request.ActiveDate.Value.ToString(Constants.DateFormat);
         }
         if (request.PayerUuid != null)
         {
@@ -139,8 +183,9 @@ public partial class V3Client
                 Method = HttpMethod.Get,
                 Path = "/api/fee-schedules/v3",
                 Query = _query,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -165,21 +210,47 @@ public partial class V3Client
     /// <summary>
     /// Gets unique values for a dimension based on other selection criteria. The response is a list of dimensions with your criteria and the unique values populated. This API is useful for driving pivots on dimension values.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.FeeSchedules.V3.GetUniqueValuesForDimensionAsync(
+    ///     new GetUniqueDimensionValuesRequest
+    ///     {
+    ///         PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
+    ///         Limit = 1,
+    ///         PivotDimension = DimensionName.PayerUuid,
+    ///         PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         OrganizationBillingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         States = [State.Aa],
+    ///         ZipCodes = ["string"],
+    ///         LicenseTypes = [LicenseType.Md],
+    ///         FacilityTypeCodes = [FacilityTypeCode.Pharmacy],
+    ///         NetworkTypes = [Candid.Net.NetworkType.Ppo],
+    ///         CptCode = "string",
+    ///         Modifiers = [ProcedureModifier.TwentyTwo],
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<DimensionsPage> GetUniqueValuesForDimensionAsync(
         GetUniqueDimensionValuesRequest request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>() { };
-        _query["pivot_dimension"] = JsonSerializer.Serialize(request.PivotDimension);
-        _query["states"] = request.States.Select(_value => _value.ToString()).ToList();
+        var _query = new Dictionary<string, object>();
+        _query["pivot_dimension"] = request.PivotDimension.Stringify();
+        _query["states"] = request.States.Select(_value => _value.Stringify()).ToList();
         _query["zip_codes"] = request.ZipCodes;
-        _query["license_types"] = request.LicenseTypes.Select(_value => _value.ToString()).ToList();
-        _query["facility_type_codes"] = request
-            .FacilityTypeCodes.Select(_value => _value.ToString())
+        _query["license_types"] = request
+            .LicenseTypes.Select(_value => _value.Stringify())
             .ToList();
-        _query["network_types"] = request.NetworkTypes.Select(_value => _value.ToString()).ToList();
-        _query["modifiers"] = request.Modifiers.Select(_value => _value.ToString()).ToList();
+        _query["facility_type_codes"] = request
+            .FacilityTypeCodes.Select(_value => _value.Stringify())
+            .ToList();
+        _query["network_types"] = request
+            .NetworkTypes.Select(_value => _value.Stringify())
+            .ToList();
+        _query["modifiers"] = request.Modifiers.Select(_value => _value.Stringify()).ToList();
         if (request.PageToken != null)
         {
             _query["page_token"] = request.PageToken;
@@ -208,8 +279,9 @@ public partial class V3Client
                 Method = HttpMethod.Get,
                 Path = "/api/fee-schedules/v3/unique-dimension-values",
                 Query = _query,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -234,9 +306,15 @@ public partial class V3Client
     /// <summary>
     /// Gets every version of a rate.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.FeeSchedules.V3.GetRateHistoryAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+    /// </code>
+    /// </example>
     public async Task<IEnumerable<Rate>> GetRateHistoryAsync(
         string rateId,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -245,8 +323,9 @@ public partial class V3Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = $"/api/fee-schedules/v3/{rateId}/history",
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -271,9 +350,53 @@ public partial class V3Client
     /// <summary>
     /// Uploads a new fee schedule.\n Each rate may either be totally new as qualified by it's dimensions or a new version for an existing rate.\n If adding a new version to an existing rate, the rate must be posted with the next version number (previous version + 1) or a EntityConflictError will be returned.\n Use the dry run flag to discover already existing rates and to run validations. If validations for any rate fail, no rates will be saved to the system.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.FeeSchedules.V3.UploadFeeScheduleAsync(
+    ///     new FeeScheduleUploadRequest
+    ///     {
+    ///         DryRun = true,
+    ///         Rates = new List<object>()
+    ///         {
+    ///             new NewRate
+    ///             {
+    ///                 Dimensions = new Dimensions
+    ///                 {
+    ///                     PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///                     OrganizationBillingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///                     States = new HashSet<State>() { State.Aa },
+    ///                     ZipCodes = new HashSet<string>() { "string" },
+    ///                     LicenseTypes = new HashSet<LicenseType>() { LicenseType.Md },
+    ///                     FacilityTypeCodes = new HashSet<FacilityTypeCode>()
+    ///                     {
+    ///                         FacilityTypeCode.Pharmacy,
+    ///                     },
+    ///                     NetworkTypes = new HashSet<Candid.Net.NetworkType>()
+    ///                     {
+    ///                         Candid.Net.NetworkType.Ppo,
+    ///                     },
+    ///                     CptCode = "string",
+    ///                     Modifiers = new HashSet<ProcedureModifier>() { ProcedureModifier.TwentyTwo },
+    ///                 },
+    ///                 Entries = new List<RateEntry>()
+    ///                 {
+    ///                     new RateEntry
+    ///                     {
+    ///                         StartDate = new DateOnly(2024, 4, 11),
+    ///                         RateCents = 33000,
+    ///                         IsDeactivated = false,
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<IEnumerable<Rate>> UploadFeeScheduleAsync(
         FeeScheduleUploadRequest request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -283,8 +406,9 @@ public partial class V3Client
                 Method = HttpMethod.Post,
                 Path = "/api/fee-schedules/v3",
                 Body = request,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -309,10 +433,16 @@ public partial class V3Client
     /// <summary>
     /// Soft deletes a rate from the system. Only the most recent version of a rate can be deleted.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.FeeSchedules.V3.DeleteRateAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32", 1);
+    /// </code>
+    /// </example>
     public async System.Threading.Tasks.Task DeleteRateAsync(
         string rateId,
         int version,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -321,8 +451,9 @@ public partial class V3Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Delete,
                 Path = $"/api/fee-schedules/v3/{rateId}/{version}",
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         if (response.StatusCode is >= 200 and < 400)
         {
@@ -339,7 +470,15 @@ public partial class V3Client
     /// <summary>
     /// Gets the default payer threshold
     /// </summary>
-    public async Task<PayerThreshold> GetPayerThresholdsDefaultAsync(RequestOptions? options = null)
+    /// <example>
+    /// <code>
+    /// await client.FeeSchedules.V3.GetPayerThresholdsDefaultAsync();
+    /// </code>
+    /// </example>
+    public async Task<PayerThreshold> GetPayerThresholdsDefaultAsync(
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
@@ -347,8 +486,9 @@ public partial class V3Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = "/api/fee-schedules/v3/payer-threshold/default",
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -373,12 +513,20 @@ public partial class V3Client
     /// <summary>
     /// Gets a list of payers and thresholds by their uuids
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.FeeSchedules.V3.GetPayerThresholdsAsync(
+    ///     new PayerThresholdGetRequest { PayerUuids = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"] }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<PayerThresholdsPage> GetPayerThresholdsAsync(
         PayerThresholdGetRequest request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>() { };
+        var _query = new Dictionary<string, object>();
         _query["payer_uuids"] = request.PayerUuids.Select(_value => _value.ToString()).ToList();
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
@@ -387,8 +535,9 @@ public partial class V3Client
                 Method = HttpMethod.Get,
                 Path = "/api/fee-schedules/v3/payer-threshold",
                 Query = _query,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -413,10 +562,24 @@ public partial class V3Client
     /// <summary>
     /// Sets the threshold information for a payer
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.FeeSchedules.V3.SetPayerThresholdAsync(
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///     new PayerThreshold
+    ///     {
+    ///         UpperThresholdCents = 1,
+    ///         LowerThresholdCents = 1,
+    ///         DisablePaidIncorrectly = true,
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<PayerThreshold> SetPayerThresholdAsync(
         string payerUuid,
         PayerThreshold request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -426,8 +589,9 @@ public partial class V3Client
                 Method = HttpMethod.Put,
                 Path = $"/api/fee-schedules/v3/payer-threshold/{payerUuid}",
                 Body = request,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)

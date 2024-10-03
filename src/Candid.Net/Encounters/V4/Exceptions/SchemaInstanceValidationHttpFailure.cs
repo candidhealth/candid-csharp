@@ -13,5 +13,5 @@ public class SchemaInstanceValidationHttpFailure(SchemaInstanceValidationFailure
     /// <summary>
     /// The body of the response that triggered the exception.
     /// </summary>
-    public new SchemaInstanceValidationFailure Body { get; } = body;
+    public new SchemaInstanceValidationFailure Body => body;
 }

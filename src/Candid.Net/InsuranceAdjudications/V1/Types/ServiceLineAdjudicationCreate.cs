@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 using Candid.Net.ServiceLines.V2;
 using Candid.Net.X12.V1;
 
@@ -36,4 +37,9 @@ public record ServiceLineAdjudicationCreate
     [JsonPropertyName("rarcs")]
     public IEnumerable<RemittanceAdviceRemarkCode> Rarcs { get; set; } =
         new List<RemittanceAdviceRemarkCode>();
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

@@ -22,5 +22,5 @@ public enum Gender
     NotGiven,
 
     [EnumMember(Value = "unknown")]
-    Unknown
+    Unknown,
 }

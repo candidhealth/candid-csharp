@@ -16,5 +16,5 @@ public enum AccountType
     Insurance,
 
     [EnumMember(Value = "THIRD_PARTY_PAYER")]
-    ThirdPartyPayer
+    ThirdPartyPayer,
 }

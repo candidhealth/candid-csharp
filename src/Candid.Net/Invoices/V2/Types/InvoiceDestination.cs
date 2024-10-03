@@ -22,5 +22,5 @@ public enum InvoiceDestination
     Collectly,
 
     [EnumMember(Value = "THIRD_PARTY_PAYERS")]
-    ThirdPartyPayers
+    ThirdPartyPayers,
 }

@@ -49,5 +49,5 @@ public enum DelayReasonCode
     C16,
 
     [EnumMember(Value = "17")]
-    C17
+    C17,
 }

@@ -25,5 +25,5 @@ public enum ServiceFacilityOperationalStatus
     Occupied,
 
     [EnumMember(Value = "U")]
-    Unoccupied
+    Unoccupied,
 }

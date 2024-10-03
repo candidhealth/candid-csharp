@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 
 #nullable enable
 
@@ -24,4 +25,9 @@ public record EncounterServiceFacility
     /// </summary>
     [JsonPropertyName("address")]
     public required StreetAddressLongZip Address { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

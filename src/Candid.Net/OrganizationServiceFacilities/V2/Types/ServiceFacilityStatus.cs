@@ -16,5 +16,5 @@ public enum ServiceFacilityStatus
     Inactive,
 
     [EnumMember(Value = "suspended")]
-    Suspended
+    Suspended,
 }

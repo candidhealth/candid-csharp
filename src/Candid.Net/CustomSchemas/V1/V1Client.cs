@@ -1,5 +1,6 @@
 using System.Net.Http;
 using System.Text.Json;
+using System.Threading;
 using Candid.Net.Core;
 
 #nullable enable
@@ -18,7 +19,15 @@ public partial class V1Client
     /// <summary>
     /// Returns all custom schemas.
     /// </summary>
-    public async Task<SchemaGetMultiResponse> GetMultiAsync(RequestOptions? options = null)
+    /// <example>
+    /// <code>
+    /// await client.CustomSchemas.V1.GetMultiAsync();
+    /// </code>
+    /// </example>
+    public async Task<SchemaGetMultiResponse> GetMultiAsync(
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
@@ -26,8 +35,9 @@ public partial class V1Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = "/api/custom-schemas/v1",
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -52,7 +62,16 @@ public partial class V1Client
     /// <summary>
     /// Return a custom schema with a given ID.
     /// </summary>
-    public async Task<Schema> GetAsync(string schemaId, RequestOptions? options = null)
+    /// <example>
+    /// <code>
+    /// await client.CustomSchemas.V1.GetAsync("ec096b13-f80a-471d-aaeb-54b021c9d582");
+    /// </code>
+    /// </example>
+    public async Task<Schema> GetAsync(
+        string schemaId,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
@@ -60,8 +79,9 @@ public partial class V1Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = $"/api/custom-schemas/v1/{schemaId}",
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -87,7 +107,29 @@ public partial class V1Client
     /// Create custom schema with a set of typed keys. Schema keys can be referenced as inputs in user-configurable rules in the Rules
     /// Engine, and key-value pairs can be attached to claims via the Encounters API.
     /// </summary>
-    public async Task<Schema> CreateAsync(SchemaCreate request, RequestOptions? options = null)
+    /// <example>
+    /// <code>
+    /// await client.CustomSchemas.V1.CreateAsync(
+    ///     new SchemaCreate
+    ///     {
+    ///         Name = "General Medicine",
+    ///         Description = "Values associated with a generic visit",
+    ///         Fields = new List<SchemaField>()
+    ///         {
+    ///             new SchemaField { Key = "provider_category", Type = Primitive.String },
+    ///             new SchemaField { Key = "is_urgent_care", Type = Primitive.Boolean },
+    ///             new SchemaField { Key = "bmi", Type = Primitive.Double },
+    ///             new SchemaField { Key = "age", Type = Primitive.Integer },
+    ///         },
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
+    public async Task<Schema> CreateAsync(
+        SchemaCreate request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
@@ -96,8 +138,9 @@ public partial class V1Client
                 Method = HttpMethod.Post,
                 Path = "/api/custom-schemas/v1",
                 Body = request,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -122,10 +165,27 @@ public partial class V1Client
     /// <summary>
     /// Update the name, description, or keys on a preexisting schema.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.CustomSchemas.V1.UpdateAsync(
+    ///     "ec096b13-f80a-471d-aaeb-54b021c9d582",
+    ///     new SchemaUpdate
+    ///     {
+    ///         Name = "General Medicine and Health",
+    ///         Description = "Values collected during all visits",
+    ///         FieldsToAdd = new List<SchemaField>()
+    ///         {
+    ///             new SchemaField { Key = "visit_type", Type = Primitive.String },
+    ///         },
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<Schema> UpdateAsync(
         string schemaId,
         SchemaUpdate request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -135,8 +195,9 @@ public partial class V1Client
                 Method = HttpMethodExtensions.Patch,
                 Path = $"/api/custom-schemas/v1/{schemaId}",
                 Body = request,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)

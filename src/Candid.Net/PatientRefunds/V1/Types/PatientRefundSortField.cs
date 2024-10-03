@@ -22,5 +22,5 @@ public enum PatientRefundSortField
     RefundReason,
 
     [EnumMember(Value = "refund_note")]
-    RefundNote
+    RefundNote,
 }

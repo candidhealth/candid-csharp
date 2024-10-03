@@ -37,5 +37,5 @@ public enum DiagnosisTypeCode
     Dr,
 
     [EnumMember(Value = "LOI")]
-    Loi
+    Loi,
 }

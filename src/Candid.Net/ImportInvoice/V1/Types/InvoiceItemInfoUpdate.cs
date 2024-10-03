@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 using Candid.Net.Invoices.V2;
 
 #nullable enable
@@ -16,4 +17,9 @@ public record InvoiceItemInfoUpdate
 
     [JsonPropertyName("items")]
     public IEnumerable<InvoiceItemCreate> Items { get; set; } = new List<InvoiceItemCreate>();
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

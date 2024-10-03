@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 
 #nullable enable
 
@@ -11,4 +12,9 @@ public record FeeScheduleUploadRequest
 
     [JsonPropertyName("rates")]
     public IEnumerable<object> Rates { get; set; } = new List<object>();
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

@@ -1,3 +1,7 @@
+using Candid.Net.Core;
+
+#nullable enable
+
 namespace Candid.Net.Payers.V3;
 
 public record GetAllPayersRequest
@@ -10,4 +14,9 @@ public record GetAllPayersRequest
     public string? SearchTerm { get; set; }
 
     public string? PageToken { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

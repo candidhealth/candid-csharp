@@ -13,5 +13,5 @@ public class HttpRequestValidationsError(IEnumerable<RequestValidationError> bod
     /// <summary>
     /// The body of the response that triggered the exception.
     /// </summary>
-    public new IEnumerable<RequestValidationError> Body { get; } = body;
+    public new IEnumerable<RequestValidationError> Body => body;
 }

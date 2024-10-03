@@ -1,5 +1,6 @@
 using System.Net.Http;
 using System.Text.Json;
+using System.Threading;
 using Candid.Net.Core;
 
 #nullable enable
@@ -18,12 +19,29 @@ public partial class V1Client
     /// <summary>
     /// Returns all non-insurance payer payments
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.NonInsurancePayerPayments.V1.GetMultiAsync(
+    ///     new GetMultiNonInsurancePayerPaymentRequest
+    ///     {
+    ///         Limit = 1,
+    ///         NonInsurancePayerId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         CheckNumber = ["string"],
+    ///         InvoiceId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         Sort = NonInsurancePayerPaymentSortField.AmountCents,
+    ///         SortDirection = Candid.Net.SortDirection.Asc,
+    ///         PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<NonInsurancePayerPaymentsPage> GetMultiAsync(
         GetMultiNonInsurancePayerPaymentRequest request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>() { };
+        var _query = new Dictionary<string, object>();
         _query["check_number"] = request.CheckNumber;
         if (request.Limit != null)
         {
@@ -39,11 +57,11 @@ public partial class V1Client
         }
         if (request.Sort != null)
         {
-            _query["sort"] = JsonSerializer.Serialize(request.Sort.Value);
+            _query["sort"] = request.Sort.Value.Stringify();
         }
         if (request.SortDirection != null)
         {
-            _query["sort_direction"] = JsonSerializer.Serialize(request.SortDirection.Value);
+            _query["sort_direction"] = request.SortDirection.Value.Stringify();
         }
         if (request.PageToken != null)
         {
@@ -56,8 +74,9 @@ public partial class V1Client
                 Method = HttpMethod.Get,
                 Path = "/api/non-insurance-payer-payments/v1",
                 Query = _query,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -82,9 +101,15 @@ public partial class V1Client
     /// <summary>
     /// Retrieves a previously created non-insurance payer payment by its `non_insurance_payer_payment_id`.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.NonInsurancePayerPayments.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+    /// </code>
+    /// </example>
     public async Task<NonInsurancePayerPayment> GetAsync(
         string nonInsurancePayerPaymentId,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -93,8 +118,9 @@ public partial class V1Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = $"/api/non-insurance-payer-payments/v1/{nonInsurancePayerPaymentId}",
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -116,9 +142,33 @@ public partial class V1Client
         );
     }
 
+    /// <example>
+    /// <code>
+    /// await client.NonInsurancePayerPayments.V1.CreateAsync(
+    ///     new NonInsurancePayerPaymentCreate
+    ///     {
+    ///         NonInsurancePayerId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         AmountCents = 1,
+    ///         PaymentTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
+    ///         PaymentNote = "string",
+    ///         CheckNumber = "string",
+    ///         Allocations = new List<AllocationCreate>()
+    ///         {
+    ///             new AllocationCreate
+    ///             {
+    ///                 AmountCents = 1,
+    ///                 Target = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///             },
+    ///         },
+    ///         InvoiceId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<NonInsurancePayerPayment> CreateAsync(
         NonInsurancePayerPaymentCreate request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -128,8 +178,9 @@ public partial class V1Client
                 Method = HttpMethod.Post,
                 Path = "/api/non-insurance-payer-payments/v1",
                 Body = request,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -151,10 +202,24 @@ public partial class V1Client
         );
     }
 
+    /// <example>
+    /// <code>
+    /// await client.NonInsurancePayerPayments.V1.UpdateAsync(
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///     new UpdateNonInsurancePayerPaymentRequest
+    ///     {
+    ///         PaymentTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
+    ///         PaymentNote = "string",
+    ///         InvoiceId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<NonInsurancePayerPayment> UpdateAsync(
         string nonInsurancePayerPaymentId,
         UpdateNonInsurancePayerPaymentRequest request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -164,8 +229,9 @@ public partial class V1Client
                 Method = HttpMethodExtensions.Patch,
                 Path = $"/api/non-insurance-payer-payments/v1/{nonInsurancePayerPaymentId}",
                 Body = request,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -190,9 +256,15 @@ public partial class V1Client
     /// <summary>
     /// Deletes the non-insurance payer payment record matching the provided `non_insurance_payer_payment_id`.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.NonInsurancePayerPayments.V1.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+    /// </code>
+    /// </example>
     public async System.Threading.Tasks.Task DeleteAsync(
         string nonInsurancePayerPaymentId,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -201,8 +273,9 @@ public partial class V1Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Delete,
                 Path = $"/api/non-insurance-payer-payments/v1/{nonInsurancePayerPaymentId}",
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         if (response.StatusCode is >= 200 and < 400)
         {

@@ -16,5 +16,5 @@ public enum CoverageValueUnit
     Currency,
 
     [EnumMember(Value = "COUNT")]
-    Count
+    Count,
 }

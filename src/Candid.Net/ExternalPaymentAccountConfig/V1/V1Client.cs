@@ -1,5 +1,6 @@
 using System.Net.Http;
 using System.Text.Json;
+using System.Threading;
 using Candid.Net.Core;
 
 #nullable enable
@@ -15,12 +16,24 @@ public partial class V1Client
         _client = client;
     }
 
+    /// <example>
+    /// <code>
+    /// await client.ExternalPaymentAccountConfig.V1.GetMultiAsync(
+    ///     new GetExternalPaymentAccountConfigsRequest
+    ///     {
+    ///         Limit = 1,
+    ///         PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<ExternalPaymentAccountConfigPage> GetMultiAsync(
         GetExternalPaymentAccountConfigsRequest request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>() { };
+        var _query = new Dictionary<string, object>();
         if (request.Limit != null)
         {
             _query["limit"] = request.Limit.ToString();
@@ -36,8 +49,9 @@ public partial class V1Client
                 Method = HttpMethod.Get,
                 Path = "/api/external-payment-account-config/v1",
                 Query = _query,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)

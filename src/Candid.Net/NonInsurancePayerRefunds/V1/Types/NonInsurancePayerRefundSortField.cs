@@ -13,5 +13,5 @@ public enum NonInsurancePayerRefundSortField
     AmountCents,
 
     [EnumMember(Value = "refund_timestamp")]
-    RefundTimestamp
+    RefundTimestamp,
 }

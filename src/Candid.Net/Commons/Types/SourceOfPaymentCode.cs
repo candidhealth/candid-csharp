@@ -79,5 +79,5 @@ public enum SourceOfPaymentCode
     WorkersCompHealthClaim,
 
     [EnumMember(Value = "ZZ")]
-    MutuallyDefined
+    MutuallyDefined,
 }

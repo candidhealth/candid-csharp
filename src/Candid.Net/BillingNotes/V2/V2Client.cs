@@ -1,5 +1,6 @@
 using System.Net.Http;
 using System.Text.Json;
+using System.Threading;
 using Candid.Net.Core;
 
 #nullable enable
@@ -15,9 +16,21 @@ public partial class V2Client
         _client = client;
     }
 
+    /// <example>
+    /// <code>
+    /// await client.BillingNotes.V2.CreateAsync(
+    ///     new StandaloneBillingNoteCreate
+    ///     {
+    ///         EncounterId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         Text = "string",
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<BillingNote> CreateAsync(
         StandaloneBillingNoteCreate request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -27,8 +40,9 @@ public partial class V2Client
                 Method = HttpMethod.Post,
                 Path = "/api/billing_notes/v2",
                 Body = request,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)

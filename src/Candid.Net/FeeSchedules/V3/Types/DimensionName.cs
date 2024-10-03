@@ -16,5 +16,5 @@ public enum DimensionName
     OrganizationBillingProviderId,
 
     [EnumMember(Value = "cpt_code")]
-    CptCode
+    CptCode,
 }

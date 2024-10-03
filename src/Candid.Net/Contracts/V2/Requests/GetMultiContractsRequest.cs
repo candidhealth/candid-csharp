@@ -1,4 +1,5 @@
 using Candid.Net;
+using Candid.Net.Core;
 
 #nullable enable
 
@@ -28,4 +29,9 @@ public record GetMultiContractsRequest
     /// The status of the contract. Defaults to `pending`
     /// </summary>
     public ContractStatus? ContractStatus { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

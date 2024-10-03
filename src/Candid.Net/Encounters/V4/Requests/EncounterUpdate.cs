@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using Candid.Net;
+using Candid.Net.Core;
 using Candid.Net.CustomSchemas.V1;
 using Candid.Net.EncounterProviders.V2;
 using Candid.Net.Guarantor.V1;
@@ -269,6 +270,13 @@ public record EncounterUpdate
     public GuarantorUpdate? Guarantor { get; set; }
 
     /// <summary>
+    /// The billing provider is the provider or business entity submitting the claim. Billing provider may be, but is not necessarily, the same person/NPI as the rendering provider. From a payer's perspective, this represents the person or entity being reimbursed. When a contract exists with the target payer, the billing provider should be the entity contracted with the payer. In some circumstances, this will be an individual provider. In that case, submit that provider's NPI and the tax ID (TIN) that the provider gave to the payer during contracting. In other cases, the billing entity will be a medical group. If so, submit the group NPI and the group's tax ID. Box 33 on the CMS-1500 claim form.
+    ///
+    /// </summary>
+    [JsonPropertyName("billing_provider")]
+    public BillingProviderUpdate? BillingProvider { get; set; }
+
+    /// <summary>
     /// Required when the rendering provider is supervised by a physician. If not required by this implementation guide, do not send.
     ///
     /// </summary>
@@ -291,4 +299,9 @@ public record EncounterUpdate
     /// </summary>
     [JsonPropertyName("initial_referring_provider")]
     public InitialReferringProviderUpdate? InitialReferringProvider { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

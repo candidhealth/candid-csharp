@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 
 #nullable enable
 
@@ -56,4 +57,9 @@ public record Invoice
     /// </summary>
     [JsonPropertyName("items")]
     public required InvoiceItemInfo Items { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

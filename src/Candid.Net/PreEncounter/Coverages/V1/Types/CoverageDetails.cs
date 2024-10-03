@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 
 #nullable enable
 
@@ -20,4 +21,9 @@ public record CoverageDetails
 
     [JsonPropertyName("additional_notes")]
     public string? AdditionalNotes { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

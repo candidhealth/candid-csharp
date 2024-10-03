@@ -1,5 +1,6 @@
 using System.Net.Http;
 using System.Text.Json;
+using System.Threading;
 using Candid.Net.Core;
 
 #nullable enable
@@ -29,14 +30,26 @@ public partial class V3Client
     /// caller will receive a 422 response. If the file has already been generated, it will be served. Please email
     /// our [Support team](mailto:support@joincandidhealth.com) with any data requests outside of these stated guarantees.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.Exports.V3.GetExportsAsync(
+    ///     new GetExportsRequest
+    ///     {
+    ///         StartDate = new DateOnly(2023, 10, 1),
+    ///         EndDate = new DateOnly(2023, 10, 2),
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<GetExportsResponse> GetExportsAsync(
         GetExportsRequest request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>() { };
-        _query["start_date"] = request.StartDate.ToString();
-        _query["end_date"] = request.EndDate.ToString();
+        var _query = new Dictionary<string, object>();
+        _query["start_date"] = request.StartDate.ToString(Constants.DateFormat);
+        _query["end_date"] = request.EndDate.ToString(Constants.DateFormat);
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
             {
@@ -44,8 +57,9 @@ public partial class V3Client
                 Method = HttpMethod.Get,
                 Path = "/api/exports/v3",
                 Query = _query,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)

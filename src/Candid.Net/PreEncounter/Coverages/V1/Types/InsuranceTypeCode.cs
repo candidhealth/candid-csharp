@@ -214,5 +214,5 @@ public enum InsuranceTypeCode
     Cwc,
 
     [EnumMember(Value = "WU")]
-    Cwu
+    Cwu,
 }

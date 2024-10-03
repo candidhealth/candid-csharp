@@ -49,5 +49,5 @@ public enum NoteCategory
     Procedure,
 
     [EnumMember(Value = "time_in_appointment")]
-    TimeInAppointment
+    TimeInAppointment,
 }

@@ -34,5 +34,5 @@ public enum PatientWriteOffReason
     Other,
 
     [EnumMember(Value = "UNKNOWN")]
-    Unknown
+    Unknown,
 }

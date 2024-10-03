@@ -193,5 +193,5 @@ public enum State
     Wi,
 
     [EnumMember(Value = "WY")]
-    Wy
+    Wy,
 }

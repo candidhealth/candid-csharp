@@ -22,5 +22,5 @@ public enum Relationship
     CommonLawSpouse,
 
     [EnumMember(Value = "OTHER")]
-    Other
+    Other,
 }

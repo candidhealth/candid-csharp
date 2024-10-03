@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 
 #nullable enable
 
@@ -14,4 +15,9 @@ public record OutOfNetworkStatus
 
     [JsonPropertyName("routed_billing_provider_id")]
     public required string RoutedBillingProviderId { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

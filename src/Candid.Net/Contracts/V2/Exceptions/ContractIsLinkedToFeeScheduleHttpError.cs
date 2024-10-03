@@ -13,5 +13,5 @@ public class ContractIsLinkedToFeeScheduleHttpError(ContractIsLinkedToFeeSchedul
     /// <summary>
     /// The body of the response that triggered the exception.
     /// </summary>
-    public new ContractIsLinkedToFeeScheduleError Body { get; } = body;
+    public new ContractIsLinkedToFeeScheduleError Body => body;
 }

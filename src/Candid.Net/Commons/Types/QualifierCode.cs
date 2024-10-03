@@ -19,5 +19,5 @@ public enum QualifierCode
     Dk,
 
     [EnumMember(Value = "P3")]
-    P3
+    P3,
 }

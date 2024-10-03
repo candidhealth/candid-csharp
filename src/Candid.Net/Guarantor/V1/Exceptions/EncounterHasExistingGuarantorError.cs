@@ -13,5 +13,5 @@ public class EncounterHasExistingGuarantorError(EncounterHasExistingGuarantorErr
     /// <summary>
     /// The body of the response that triggered the exception.
     /// </summary>
-    public new EncounterHasExistingGuarantorErrorType Body { get; } = body;
+    public new EncounterHasExistingGuarantorErrorType Body => body;
 }

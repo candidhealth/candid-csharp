@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 using Candid.Net.OrganizationProviders.V2;
 
 #nullable enable
@@ -15,4 +16,9 @@ public record MatchLicenseType
 
     [JsonPropertyName("explanation")]
     public required string Explanation { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

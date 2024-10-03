@@ -1,5 +1,6 @@
 using System.Net.Http;
 using System.Text.Json;
+using System.Threading;
 using Candid.Net.Core;
 
 #nullable enable
@@ -18,12 +19,29 @@ public partial class V1Client
     /// <summary>
     /// Returns all non-insurance payer refunds satisfying the search criteria
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.NonInsurancePayerRefunds.V1.GetMultiAsync(
+    ///     new GetMultiNonInsurancePayerRefundsRequest
+    ///     {
+    ///         Limit = 1,
+    ///         NonInsurancePayerId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         CheckNumber = ["string"],
+    ///         InvoiceId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         Sort = NonInsurancePayerRefundSortField.AmountCents,
+    ///         SortDirection = Candid.Net.SortDirection.Asc,
+    ///         PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<NonInsurancePayerRefundsPage> GetMultiAsync(
         GetMultiNonInsurancePayerRefundsRequest request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>() { };
+        var _query = new Dictionary<string, object>();
         _query["check_number"] = request.CheckNumber;
         if (request.Limit != null)
         {
@@ -39,11 +57,11 @@ public partial class V1Client
         }
         if (request.Sort != null)
         {
-            _query["sort"] = JsonSerializer.Serialize(request.Sort.Value);
+            _query["sort"] = request.Sort.Value.Stringify();
         }
         if (request.SortDirection != null)
         {
-            _query["sort_direction"] = JsonSerializer.Serialize(request.SortDirection.Value);
+            _query["sort_direction"] = request.SortDirection.Value.Stringify();
         }
         if (request.PageToken != null)
         {
@@ -56,8 +74,9 @@ public partial class V1Client
                 Method = HttpMethod.Get,
                 Path = "/api/non-insurance-payer-refunds/v1",
                 Query = _query,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -82,9 +101,15 @@ public partial class V1Client
     /// <summary>
     /// Retrieves a previously created non-insurance payer refund by its `non_insurance_payer_refund_id`.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.NonInsurancePayerRefunds.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+    /// </code>
+    /// </example>
     public async Task<NonInsurancePayerRefund> GetAsync(
         string nonInsurancePayerRefundId,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -93,8 +118,9 @@ public partial class V1Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = $"/api/non-insurance-payer-refunds/v1/{nonInsurancePayerRefundId}",
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -121,9 +147,33 @@ public partial class V1Client
     /// The allocations can describe whether the refund is being applied toward a specific service line,
     /// claim, or billing provider.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.NonInsurancePayerRefunds.V1.CreateAsync(
+    ///     new NonInsurancePayerRefundCreate
+    ///     {
+    ///         NonInsurancePayerId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         InvoiceId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         AmountCents = 1,
+    ///         RefundTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
+    ///         RefundNote = "string",
+    ///         Allocations = new List<AllocationCreate>()
+    ///         {
+    ///             new AllocationCreate
+    ///             {
+    ///                 AmountCents = 1,
+    ///                 Target = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///             },
+    ///         },
+    ///         RefundReason = RefundReason.Overcharged,
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<NonInsurancePayerRefund> CreateAsync(
         NonInsurancePayerRefundCreate request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -133,8 +183,9 @@ public partial class V1Client
                 Method = HttpMethod.Post,
                 Path = "/api/non-insurance-payer-refunds/v1",
                 Body = request,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -160,10 +211,25 @@ public partial class V1Client
     /// Updates the non-insurance payer refund record matching the provided non_insurance_payer_refund_id. If updating the refund amount,
     /// then the allocations must be appropriately updated as well.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.NonInsurancePayerRefunds.V1.UpdateAsync(
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///     new NonInsurancePayerRefundUpdate
+    ///     {
+    ///         RefundTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
+    ///         RefundNote = "string",
+    ///         RefundReason = RefundReason.Overcharged,
+    ///         InvoiceId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<NonInsurancePayerRefund> UpdateAsync(
         string nonInsurancePayerRefundId,
         NonInsurancePayerRefundUpdate request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -173,8 +239,9 @@ public partial class V1Client
                 Method = HttpMethodExtensions.Patch,
                 Path = $"/api/non-insurance-payer-refunds/v1/{nonInsurancePayerRefundId}",
                 Body = request,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -199,9 +266,15 @@ public partial class V1Client
     /// <summary>
     /// Deletes the non-insurance payer refund record matching the provided `non_insurance_payer_refund_id`.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.NonInsurancePayerRefunds.V1.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+    /// </code>
+    /// </example>
     public async System.Threading.Tasks.Task DeleteAsync(
         string nonInsurancePayerRefundId,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -210,8 +283,9 @@ public partial class V1Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Delete,
                 Path = $"/api/non-insurance-payer-refunds/v1/{nonInsurancePayerRefundId}",
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         if (response.StatusCode is >= 200 and < 400)
         {

@@ -16,5 +16,5 @@ public enum CoverageLevel
     Family,
 
     [EnumMember(Value = "EMPLOYEE_ONLY")]
-    EmployeeOnly
+    EmployeeOnly,
 }

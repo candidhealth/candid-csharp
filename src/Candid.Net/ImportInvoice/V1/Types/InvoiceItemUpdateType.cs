@@ -13,5 +13,5 @@ public enum InvoiceItemUpdateType
     Append,
 
     [EnumMember(Value = "OVERWRITE")]
-    Overwrite
+    Overwrite,
 }

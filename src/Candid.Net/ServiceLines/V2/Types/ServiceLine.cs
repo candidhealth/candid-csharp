@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using Candid.Net;
+using Candid.Net.Core;
 using Candid.Net.EncounterProviders.V2;
 using Candid.Net.Invoices.V2;
 
@@ -122,4 +123,9 @@ public record ServiceLine
     /// </summary>
     [JsonPropertyName("test_result")]
     public object? TestResult { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

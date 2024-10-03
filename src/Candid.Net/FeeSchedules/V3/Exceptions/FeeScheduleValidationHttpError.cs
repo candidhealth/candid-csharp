@@ -13,5 +13,5 @@ public class FeeScheduleValidationHttpError(IEnumerable<RateUploadWithPossibleEr
     /// <summary>
     /// The body of the response that triggered the exception.
     /// </summary>
-    public new IEnumerable<RateUploadWithPossibleErrors> Body { get; } = body;
+    public new IEnumerable<RateUploadWithPossibleErrors> Body => body;
 }

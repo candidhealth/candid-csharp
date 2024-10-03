@@ -13,5 +13,5 @@ public enum ProviderType
     Individual,
 
     [EnumMember(Value = "ORGANIZATION")]
-    Organization
+    Organization,
 }

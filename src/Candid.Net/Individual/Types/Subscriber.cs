@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 using Candid.Net.InsuranceCards.V2;
 
 #nullable enable
@@ -30,4 +31,9 @@ public record Subscriber
 
     [JsonPropertyName("gender")]
     public required Gender Gender { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

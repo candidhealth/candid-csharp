@@ -16,5 +16,5 @@ public enum ExpectedNetworkStatus
     OutOfNetwork,
 
     [EnumMember(Value = "unknown")]
-    Unknown
+    Unknown,
 }

@@ -28,5 +28,5 @@ public enum ServiceIdQualifier
     Gtin,
 
     [EnumMember(Value = "UP")]
-    Ucc12
+    Ucc12,
 }

@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using Candid.Net;
+using Candid.Net.Core;
 using Candid.Net.OrganizationProviders.V2;
 
 #nullable enable
@@ -35,4 +36,9 @@ public record Dimensions
 
     [JsonPropertyName("modifiers")]
     public HashSet<ProcedureModifier> Modifiers { get; set; } = new HashSet<ProcedureModifier>();
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

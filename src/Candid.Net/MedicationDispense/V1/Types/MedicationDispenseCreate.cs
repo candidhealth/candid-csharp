@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using Candid.Net;
+using Candid.Net.Core;
 using Candid.Net.ServiceLines.V2;
 
 #nullable enable
@@ -34,4 +35,9 @@ public record MedicationDispenseCreate
 
     [JsonPropertyName("modifiers")]
     public IEnumerable<ProcedureModifier>? Modifiers { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

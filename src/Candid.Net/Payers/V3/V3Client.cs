@@ -1,5 +1,6 @@
 using System.Net.Http;
 using System.Text.Json;
+using System.Threading;
 using Candid.Net.Core;
 
 #nullable enable
@@ -15,7 +16,16 @@ public partial class V3Client
         _client = client;
     }
 
-    public async Task<Payer> GetAsync(string payerUuid, RequestOptions? options = null)
+    /// <example>
+    /// <code>
+    /// await client.Payers.V3.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+    /// </code>
+    /// </example>
+    public async Task<Payer> GetAsync(
+        string payerUuid,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
@@ -23,8 +33,9 @@ public partial class V3Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = $"/api/payers/v3/{payerUuid}",
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -46,12 +57,25 @@ public partial class V3Client
         );
     }
 
+    /// <example>
+    /// <code>
+    /// await client.Payers.V3.GetAllAsync(
+    ///     new GetAllPayersRequest
+    ///     {
+    ///         Limit = 100,
+    ///         SearchTerm = "john",
+    ///         PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<PayerPage> GetAllAsync(
         GetAllPayersRequest request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>() { };
+        var _query = new Dictionary<string, object>();
         if (request.Limit != null)
         {
             _query["limit"] = request.Limit.ToString();
@@ -71,8 +95,9 @@ public partial class V3Client
                 Method = HttpMethod.Get,
                 Path = "/api/payers/v3",
                 Query = _query,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)

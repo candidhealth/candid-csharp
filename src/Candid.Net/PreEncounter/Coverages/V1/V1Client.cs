@@ -1,5 +1,6 @@
 using System.Net.Http;
 using System.Text.Json;
+using System.Threading;
 using Candid.Net.Core;
 
 #nullable enable
@@ -18,7 +19,85 @@ public partial class V1Client
     /// <summary>
     /// Creates a new Coverage. A Coverage provides the high-level identifiers and descriptors of a specific insurance plan for a specific individual - typically the information you can find on an insurance card. Additionally a coverage will include detailed benefits information covered by the specific plan for the individual.
     /// </summary>
-    public async Task<Coverage> CreateAsync(MutableCoverage request, RequestOptions? options = null)
+    /// <example>
+    /// <code>
+    /// await client.PreEncounter.Coverages.V1.CreateAsync(
+    ///     new MutableCoverage
+    ///     {
+    ///         Status = CoverageStatus.Active,
+    ///         Subscriber = new Candid.Net.PreEncounter.Coverages.V1.Subscriber
+    ///         {
+    ///             Name = new HumanName
+    ///             {
+    ///                 Family = "string",
+    ///                 Given = new List<string>() { "string" },
+    ///                 Use = NameUse.Usual,
+    ///                 Period = new Period
+    ///                 {
+    ///                     Start = new Dictionary<object, object?>() { { "key", "value" } },
+    ///                     End = new Dictionary<object, object?>() { { "key", "value" } },
+    ///                 },
+    ///             },
+    ///             DateOfBirth = new DateOnly(2023, 1, 15),
+    ///             BiologicalSex = Sex.Female,
+    ///         },
+    ///         Relationship = Relationship.Self,
+    ///         Patient = "string",
+    ///         InsurancePlan = new InsurancePlan
+    ///         {
+    ///             MemberId = "string",
+    ///             PayerId = "string",
+    ///             PayerName = "string",
+    ///             AdditionalPayerInformation = new AdditionalPayerInformation
+    ///             {
+    ///                 AvailityEligibilityId = "string",
+    ///                 AvailityPayerId = "string",
+    ///                 AvailityPayerName = "string",
+    ///                 AvailityRemittancePayerId = "string",
+    ///             },
+    ///             GroupNumber = "string",
+    ///             Name = "string",
+    ///             PlanType = Candid.Net.PreEncounter.Coverages.V1.NetworkType.SelfPay,
+    ///             Type = Candid.Net.PreEncounter.Coverages.V1.InsuranceTypeCode.C01,
+    ///             Period = new Period
+    ///             {
+    ///                 Start = new Dictionary<object, object?>() { { "key", "value" } },
+    ///                 End = new Dictionary<object, object?>() { { "key", "value" } },
+    ///             },
+    ///             InsuranceCardImageLocator = "string",
+    ///         },
+    ///         Verified = true,
+    ///         EligibilityChecks = new List<EligibilityCheckMetadata>()
+    ///         {
+    ///             new EligibilityCheckMetadata
+    ///             {
+    ///                 CheckId = "string",
+    ///                 ServiceCode = ServiceTypeCode.MedicalCare,
+    ///                 Status = EligibilityCheckStatus.Created,
+    ///                 InitiatedBy = "string",
+    ///                 InitiatedAt = new DateTime(2024, 01, 15, 09, 30, 00, 000),
+    ///             },
+    ///         },
+    ///         LatestEligibilityCheck = new LatestEligibilityCheck
+    ///         {
+    ///             CheckId = "string",
+    ///             Status = EligibilityStatus.Active,
+    ///             InitiatedAt = new DateTime(2024, 01, 15, 09, 30, 00, 000),
+    ///         },
+    ///         Benefits = new CoverageBenefits
+    ///         {
+    ///             PlanCoverage = new Dictionary<object, object?>() { { "key", "value" } },
+    ///             ServiceSpecificCoverage = new Dictionary<object, object?>() { { "key", "value" } },
+    ///         },
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
+    public async Task<Coverage> CreateAsync(
+        MutableCoverage request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
@@ -27,8 +106,9 @@ public partial class V1Client
                 Method = HttpMethod.Post,
                 Path = "/coverages/v1",
                 Body = request,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -53,11 +133,88 @@ public partial class V1Client
     /// <summary>
     /// Updates a Coverage. The path must contain the most recent version to prevent race conditions. Updating historic versions is not supported.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.PreEncounter.Coverages.V1.UpdateAsync(
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///     "string",
+    ///     new MutableCoverage
+    ///     {
+    ///         Status = CoverageStatus.Active,
+    ///         Subscriber = new Candid.Net.PreEncounter.Coverages.V1.Subscriber
+    ///         {
+    ///             Name = new HumanName
+    ///             {
+    ///                 Family = "string",
+    ///                 Given = new List<string>() { "string" },
+    ///                 Use = NameUse.Usual,
+    ///                 Period = new Period
+    ///                 {
+    ///                     Start = new Dictionary<object, object?>() { { "key", "value" } },
+    ///                     End = new Dictionary<object, object?>() { { "key", "value" } },
+    ///                 },
+    ///             },
+    ///             DateOfBirth = new DateOnly(2023, 1, 15),
+    ///             BiologicalSex = Sex.Female,
+    ///         },
+    ///         Relationship = Relationship.Self,
+    ///         Patient = "string",
+    ///         InsurancePlan = new InsurancePlan
+    ///         {
+    ///             MemberId = "string",
+    ///             PayerId = "string",
+    ///             PayerName = "string",
+    ///             AdditionalPayerInformation = new AdditionalPayerInformation
+    ///             {
+    ///                 AvailityEligibilityId = "string",
+    ///                 AvailityPayerId = "string",
+    ///                 AvailityPayerName = "string",
+    ///                 AvailityRemittancePayerId = "string",
+    ///             },
+    ///             GroupNumber = "string",
+    ///             Name = "string",
+    ///             PlanType = Candid.Net.PreEncounter.Coverages.V1.NetworkType.SelfPay,
+    ///             Type = Candid.Net.PreEncounter.Coverages.V1.InsuranceTypeCode.C01,
+    ///             Period = new Period
+    ///             {
+    ///                 Start = new Dictionary<object, object?>() { { "key", "value" } },
+    ///                 End = new Dictionary<object, object?>() { { "key", "value" } },
+    ///             },
+    ///             InsuranceCardImageLocator = "string",
+    ///         },
+    ///         Verified = true,
+    ///         EligibilityChecks = new List<EligibilityCheckMetadata>()
+    ///         {
+    ///             new EligibilityCheckMetadata
+    ///             {
+    ///                 CheckId = "string",
+    ///                 ServiceCode = ServiceTypeCode.MedicalCare,
+    ///                 Status = EligibilityCheckStatus.Created,
+    ///                 InitiatedBy = "string",
+    ///                 InitiatedAt = new DateTime(2024, 01, 15, 09, 30, 00, 000),
+    ///             },
+    ///         },
+    ///         LatestEligibilityCheck = new LatestEligibilityCheck
+    ///         {
+    ///             CheckId = "string",
+    ///             Status = EligibilityStatus.Active,
+    ///             InitiatedAt = new DateTime(2024, 01, 15, 09, 30, 00, 000),
+    ///         },
+    ///         Benefits = new CoverageBenefits
+    ///         {
+    ///             PlanCoverage = new Dictionary<object, object?>() { { "key", "value" } },
+    ///             ServiceSpecificCoverage = new Dictionary<object, object?>() { { "key", "value" } },
+    ///         },
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<Coverage> UpdateAsync(
         string id,
         string version,
         MutableCoverage request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -67,8 +224,9 @@ public partial class V1Client
                 Method = HttpMethod.Put,
                 Path = $"/coverages/v1/{id}/{version}",
                 Body = request,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -93,7 +251,16 @@ public partial class V1Client
     /// <summary>
     /// gets a specific Coverage
     /// </summary>
-    public async Task<Coverage> GetAsync(string id, RequestOptions? options = null)
+    /// <example>
+    /// <code>
+    /// await client.PreEncounter.Coverages.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+    /// </code>
+    /// </example>
+    public async Task<Coverage> GetAsync(
+        string id,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
@@ -101,8 +268,9 @@ public partial class V1Client
                 BaseUrl = _client.Options.Environment.PreEncounter,
                 Method = HttpMethod.Get,
                 Path = $"/coverages/v1/{id}",
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -127,9 +295,15 @@ public partial class V1Client
     /// <summary>
     /// Gets a coverage along with it's full history. The return list is ordered by version ascending.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.PreEncounter.Coverages.V1.GetHistoryAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+    /// </code>
+    /// </example>
     public async Task<IEnumerable<Coverage>> GetHistoryAsync(
         string id,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -138,8 +312,9 @@ public partial class V1Client
                 BaseUrl = _client.Options.Environment.PreEncounter,
                 Method = HttpMethod.Get,
                 Path = $"/coverages/v1/{id}/history",
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -164,12 +339,20 @@ public partial class V1Client
     /// <summary>
     /// Returns a list of Coverages based on the search criteria.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.PreEncounter.Coverages.V1.GetMultiAsync(
+    ///     new CoverageGetMultiRequest { PatientId = "string" }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<IEnumerable<Coverage>> GetMultiAsync(
         CoverageGetMultiRequest request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>() { };
+        var _query = new Dictionary<string, object>();
         if (request.PatientId != null)
         {
             _query["patient_id"] = request.PatientId;
@@ -181,8 +364,9 @@ public partial class V1Client
                 Method = HttpMethod.Get,
                 Path = "/coverages/v1",
                 Query = _query,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -207,12 +391,20 @@ public partial class V1Client
     /// <summary>
     /// Scans up to 100 coverage updates. The since query parameter is inclusive, and the result list is ordered by updatedAt ascending.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.PreEncounter.Coverages.V1.ScanAsync(
+    ///     new CoverageScanRequest { Since = new DateTime(2024, 01, 15, 09, 30, 00, 000) }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<IEnumerable<Coverage>> ScanAsync(
         CoverageScanRequest request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>() { };
+        var _query = new Dictionary<string, object>();
         _query["since"] = request.Since.ToString(Constants.DateTimeFormat);
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
@@ -221,8 +413,9 @@ public partial class V1Client
                 Method = HttpMethod.Get,
                 Path = "/coverages/v1/updates/scan",
                 Query = _query,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -247,10 +440,24 @@ public partial class V1Client
     /// <summary>
     /// Initiates an eligibility check. Returns the metadata of the check if successfully initiated.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.PreEncounter.Coverages.V1.CheckEligibilityAsync(
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///     new CheckEligibilityRequest
+    ///     {
+    ///         ServiceCode = ServiceTypeCode.MedicalCare,
+    ///         DateOfService = new DateOnly(2023, 1, 15),
+    ///         Npi = "string",
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<EligibilityCheckMetadata> CheckEligibilityAsync(
         string id,
         CheckEligibilityRequest request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -260,8 +467,9 @@ public partial class V1Client
                 Method = HttpMethod.Post,
                 Path = $"/coverages/v1/{id}/eligibility",
                 Body = request,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -286,10 +494,19 @@ public partial class V1Client
     /// <summary>
     /// Gets the eligibility of a patient for a specific coverage if successful.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.PreEncounter.Coverages.V1.GetEligibilityAsync(
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///     "string"
+    /// );
+    /// </code>
+    /// </example>
     public async Task<CoverageEligibilityCheckResponse> GetEligibilityAsync(
         string id,
         string checkId,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -298,8 +515,9 @@ public partial class V1Client
                 BaseUrl = _client.Options.Environment.PreEncounter,
                 Method = HttpMethod.Get,
                 Path = $"/coverages/v1/{id}/eligibility/{checkId}",
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)

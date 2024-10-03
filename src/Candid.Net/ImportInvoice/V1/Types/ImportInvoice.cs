@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 using Candid.Net.Invoices.V2;
 
 #nullable enable
@@ -57,4 +58,9 @@ public record ImportInvoice
     /// </summary>
     [JsonPropertyName("amount_cents")]
     public required int AmountCents { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

@@ -19,5 +19,5 @@ public enum CoverageStatus
     Draft,
 
     [EnumMember(Value = "ENTERED_IN_ERROR")]
-    EnteredInError
+    EnteredInError,
 }

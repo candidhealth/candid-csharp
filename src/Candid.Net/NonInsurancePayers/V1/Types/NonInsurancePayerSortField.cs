@@ -19,5 +19,5 @@ public enum NonInsurancePayerSortField
     Enabled,
 
     [EnumMember(Value = "UPDATED_AT")]
-    UpdatedAt
+    UpdatedAt,
 }

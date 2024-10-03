@@ -28,5 +28,5 @@ public enum TaskStatus
     WaitingForReview,
 
     [EnumMember(Value = "in_progress")]
-    InProgress
+    InProgress,
 }

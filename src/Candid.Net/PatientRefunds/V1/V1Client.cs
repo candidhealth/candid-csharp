@@ -1,5 +1,6 @@
 using System.Net.Http;
 using System.Text.Json;
+using System.Threading;
 using Candid.Net.Core;
 
 #nullable enable
@@ -19,13 +20,34 @@ public partial class V1Client
     /// Returns all patient refunds satisfying the search criteria AND whose organization_id matches
     /// the current organization_id of the authenticated user.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.PatientRefunds.V1.GetMultiAsync(
+    ///     new GetMultiPatientRefundsRequest
+    ///     {
+    ///         Limit = 1,
+    ///         PatientExternalId = "string",
+    ///         ClaimId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         ServiceLineId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         BillingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         Unattributed = true,
+    ///         InvoiceId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         Sources = [PatientTransactionSource.ManualEntry],
+    ///         Sort = PatientRefundSortField.RefundSource,
+    ///         SortDirection = Candid.Net.SortDirection.Asc,
+    ///         PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<PatientRefundsPage> GetMultiAsync(
         GetMultiPatientRefundsRequest request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>() { };
-        _query["sources"] = request.Sources.Select(_value => _value.ToString()).ToList();
+        var _query = new Dictionary<string, object>();
+        _query["sources"] = request.Sources.Select(_value => _value.Stringify()).ToList();
         if (request.Limit != null)
         {
             _query["limit"] = request.Limit.ToString();
@@ -56,11 +78,11 @@ public partial class V1Client
         }
         if (request.Sort != null)
         {
-            _query["sort"] = JsonSerializer.Serialize(request.Sort.Value);
+            _query["sort"] = request.Sort.Value.Stringify();
         }
         if (request.SortDirection != null)
         {
-            _query["sort_direction"] = JsonSerializer.Serialize(request.SortDirection.Value);
+            _query["sort_direction"] = request.SortDirection.Value.Stringify();
         }
         if (request.PageToken != null)
         {
@@ -73,8 +95,9 @@ public partial class V1Client
                 Method = HttpMethod.Get,
                 Path = "/api/patient-refunds/v1",
                 Query = _query,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -99,9 +122,15 @@ public partial class V1Client
     /// <summary>
     /// Retrieves a previously created patient refund by its `patient_refund_id`.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.PatientRefunds.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+    /// </code>
+    /// </example>
     public async Task<PatientRefund> GetAsync(
         string patientRefundId,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -110,8 +139,9 @@ public partial class V1Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = $"/api/patient-refunds/v1/{patientRefundId}",
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -138,9 +168,33 @@ public partial class V1Client
     /// The allocations can describe whether the refund is being applied toward a specific service line,
     /// claim, or billing provider.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.PatientRefunds.V1.CreateAsync(
+    ///     new PatientRefundCreate
+    ///     {
+    ///         AmountCents = 1,
+    ///         RefundTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
+    ///         RefundNote = "string",
+    ///         PatientExternalId = "string",
+    ///         Allocations = new List<AllocationCreate>()
+    ///         {
+    ///             new AllocationCreate
+    ///             {
+    ///                 AmountCents = 1,
+    ///                 Target = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///             },
+    ///         },
+    ///         Invoice = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         RefundReason = RefundReason.Overcharged,
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<PatientRefund> CreateAsync(
         PatientRefundCreate request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -150,8 +204,9 @@ public partial class V1Client
                 Method = HttpMethod.Post,
                 Path = "/api/patient-refunds/v1",
                 Body = request,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -176,10 +231,25 @@ public partial class V1Client
     /// <summary>
     /// Updates the patient refund record matching the provided patient_refund_id.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.PatientRefunds.V1.UpdateAsync(
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///     new PatientRefundUpdate
+    ///     {
+    ///         RefundTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
+    ///         RefundNote = "string",
+    ///         Invoice = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         RefundReason = RefundReason.Overcharged,
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<PatientRefund> UpdateAsync(
         string patientRefundId,
         PatientRefundUpdate request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -189,8 +259,9 @@ public partial class V1Client
                 Method = HttpMethodExtensions.Patch,
                 Path = $"/api/patient-refunds/v1/{patientRefundId}",
                 Body = request,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -215,9 +286,15 @@ public partial class V1Client
     /// <summary>
     /// Deletes the patient refund record matching the provided patient_refund_id.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.PatientRefunds.V1.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+    /// </code>
+    /// </example>
     public async System.Threading.Tasks.Task DeleteAsync(
         string patientRefundId,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -226,8 +303,9 @@ public partial class V1Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Delete,
                 Path = $"/api/patient-refunds/v1/{patientRefundId}",
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         if (response.StatusCode is >= 200 and < 400)
         {

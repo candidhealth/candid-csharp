@@ -130,5 +130,5 @@ public enum ServiceType
     CmsTelehealthCodes,
 
     [EnumMember(Value = "cms_telehealth_audio_codes")]
-    CmsTelehealthAudioCodes
+    CmsTelehealthAudioCodes,
 }

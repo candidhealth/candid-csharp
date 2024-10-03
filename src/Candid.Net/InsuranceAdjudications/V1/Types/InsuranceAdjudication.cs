@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 
 #nullable enable
 
@@ -27,4 +28,9 @@ public record InsuranceAdjudication
     [JsonPropertyName("claims")]
     public Dictionary<string, IEnumerable<ClaimAdjudication>> Claims { get; set; } =
         new Dictionary<string, IEnumerable<ClaimAdjudication>>();
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

@@ -19,5 +19,5 @@ public enum EncounterSortOptions
     DateOfServiceAsc,
 
     [EnumMember(Value = "date_of_service:desc")]
-    DateOfServiceDesc
+    DateOfServiceDesc,
 }

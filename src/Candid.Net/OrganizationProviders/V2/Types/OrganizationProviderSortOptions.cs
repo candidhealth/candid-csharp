@@ -19,5 +19,5 @@ public enum OrganizationProviderSortOptions
     NpiAsc,
 
     [EnumMember(Value = "npi:desc")]
-    NpiDesc
+    NpiDesc,
 }

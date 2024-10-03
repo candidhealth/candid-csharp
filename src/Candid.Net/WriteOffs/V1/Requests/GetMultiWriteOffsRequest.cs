@@ -1,4 +1,5 @@
 using Candid.Net;
+using Candid.Net.Core;
 
 #nullable enable
 
@@ -37,4 +38,9 @@ public record GetMultiWriteOffsRequest
     /// Filters the returned values to include only the provided account types.
     /// </summary>
     public IEnumerable<AccountType> AccountTypes { get; set; } = new List<AccountType>();
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

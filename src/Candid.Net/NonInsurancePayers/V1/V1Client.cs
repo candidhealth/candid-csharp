@@ -1,5 +1,6 @@
 using System.Net.Http;
 using System.Text.Json;
+using System.Threading;
 using Candid.Net.Core;
 
 #nullable enable
@@ -15,9 +16,22 @@ public partial class V1Client
         _client = client;
     }
 
+    /// <example>
+    /// <code>
+    /// await client.NonInsurancePayers.V1.CreateAsync(
+    ///     new CreateNonInsurancePayerRequest
+    ///     {
+    ///         Name = "string",
+    ///         Description = "string",
+    ///         Category = "string",
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<NonInsurancePayer> CreateAsync(
         CreateNonInsurancePayerRequest request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -27,8 +41,9 @@ public partial class V1Client
                 Method = HttpMethod.Post,
                 Path = "/api/non-insurance-payers/v1",
                 Body = request,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -50,10 +65,19 @@ public partial class V1Client
         );
     }
 
+    /// <example>
+    /// <code>
+    /// await client.NonInsurancePayers.V1.ToggleEnablementAsync(
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///     new ToggleNonInsurancePayerEnablementRequest { Enabled = true }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<NonInsurancePayer> ToggleEnablementAsync(
         string nonInsurancePayerId,
         ToggleNonInsurancePayerEnablementRequest request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -63,8 +87,9 @@ public partial class V1Client
                 Method = HttpMethodExtensions.Patch,
                 Path = $"/api/non-insurance-payers/v1/{nonInsurancePayerId}/toggle_enablement",
                 Body = request,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -86,12 +111,29 @@ public partial class V1Client
         );
     }
 
+    /// <example>
+    /// <code>
+    /// await client.NonInsurancePayers.V1.GetMultiAsync(
+    ///     new GetMultiNonInsurancePayersRequest
+    ///     {
+    ///         Name = "string",
+    ///         Category = "string",
+    ///         Enabled = true,
+    ///         Sort = NonInsurancePayerSortField.Name,
+    ///         SortDirection = Candid.Net.SortDirection.Asc,
+    ///         Limit = 1,
+    ///         PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<NonInsurancePayerPage> GetMultiAsync(
         GetMultiNonInsurancePayersRequest request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>() { };
+        var _query = new Dictionary<string, object>();
         if (request.Name != null)
         {
             _query["name"] = request.Name;
@@ -106,11 +148,11 @@ public partial class V1Client
         }
         if (request.Sort != null)
         {
-            _query["sort"] = JsonSerializer.Serialize(request.Sort.Value);
+            _query["sort"] = request.Sort.Value.Stringify();
         }
         if (request.SortDirection != null)
         {
-            _query["sort_direction"] = JsonSerializer.Serialize(request.SortDirection.Value);
+            _query["sort_direction"] = request.SortDirection.Value.Stringify();
         }
         if (request.Limit != null)
         {
@@ -127,8 +169,9 @@ public partial class V1Client
                 Method = HttpMethod.Get,
                 Path = "/api/non-insurance-payers/v1",
                 Query = _query,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -150,9 +193,15 @@ public partial class V1Client
         );
     }
 
+    /// <example>
+    /// <code>
+    /// await client.NonInsurancePayers.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+    /// </code>
+    /// </example>
     public async Task<NonInsurancePayer> GetAsync(
         string nonInsurancePayerId,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -161,8 +210,9 @@ public partial class V1Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = $"/api/non-insurance-payers/v1/{nonInsurancePayerId}",
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -184,10 +234,24 @@ public partial class V1Client
         );
     }
 
+    /// <example>
+    /// <code>
+    /// await client.NonInsurancePayers.V1.UpdateAsync(
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///     new NonInsurancePayerUpdateRequest
+    ///     {
+    ///         Name = "string",
+    ///         Description = "no-properties-union",
+    ///         Category = "no-properties-union",
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<NonInsurancePayer> UpdateAsync(
         string nonInsurancePayerId,
         NonInsurancePayerUpdateRequest request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -197,8 +261,9 @@ public partial class V1Client
                 Method = HttpMethodExtensions.Patch,
                 Path = $"/api/non-insurance-payers/v1/{nonInsurancePayerId}",
                 Body = request,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -220,9 +285,15 @@ public partial class V1Client
         );
     }
 
+    /// <example>
+    /// <code>
+    /// await client.NonInsurancePayers.V1.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+    /// </code>
+    /// </example>
     public async System.Threading.Tasks.Task DeleteAsync(
         string nonInsurancePayerId,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -231,8 +302,9 @@ public partial class V1Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Delete,
                 Path = $"/api/non-insurance-payers/v1/{nonInsurancePayerId}",
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         if (response.StatusCode is >= 200 and < 400)
         {

@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 using Candid.Net.PreEncounter.Appointments.V1;
 using Candid.Net.PreEncounter.Coverages.V1;
 using Candid.Net.PreEncounter.Patients.V1;
@@ -17,4 +18,9 @@ public record AppointmentListItem
 
     [JsonPropertyName("primary_coverage")]
     public MutableCoverage? PrimaryCoverage { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

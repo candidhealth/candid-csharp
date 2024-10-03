@@ -1,5 +1,6 @@
 using System.Net.Http;
 using System.Text.Json;
+using System.Threading;
 using Candid.Net.Core;
 
 #nullable enable
@@ -34,9 +35,17 @@ public partial class V2Client
     /// requests; if the client attempts to generate a token too often, it will be rate-limited and will receive an `HTTP 429 Too Many Requests` error.
     /// </Callout>
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.Auth.V2.GetTokenAsync(
+    ///     new AuthGetTokenRequest { ClientId = "YOUR_CLIENT_ID", ClientSecret = "YOUR_CLIENT_SECRET" }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<AuthGetTokenResponse> GetTokenAsync(
         AuthGetTokenRequest request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -46,8 +55,9 @@ public partial class V2Client
                 Method = HttpMethod.Post,
                 Path = "/api/auth/v2/token",
                 Body = request,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)

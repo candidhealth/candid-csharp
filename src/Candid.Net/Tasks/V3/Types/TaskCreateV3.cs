@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 using Candid.Net.Tasks;
 
 #nullable enable
@@ -27,4 +28,9 @@ public record TaskCreateV3
 
     [JsonPropertyName("work_queue_id")]
     public required string WorkQueueId { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

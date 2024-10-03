@@ -1,5 +1,6 @@
 using System.Net.Http;
 using System.Text.Json;
+using System.Threading;
 using Candid.Net.Core;
 
 #nullable enable
@@ -18,9 +19,75 @@ public partial class V1Client
     /// <summary>
     /// Adds an appointment. VersionConflictError is returned when the placer_appointment_id is already in use.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.PreEncounter.Appointments.V1.CreateAsync(
+    ///     new MutableAppointment
+    ///     {
+    ///         PatientId = "string",
+    ///         StartTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
+    ///         Status = AppointmentStatus.Pending,
+    ///         ServiceDuration = 1,
+    ///         Services = new List<Service>()
+    ///         {
+    ///             new Service
+    ///             {
+    ///                 UniversalServiceIdentifier = UniversalServiceIdentifier.MdVisit,
+    ///                 StartTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
+    ///             },
+    ///         },
+    ///         PlacerAppointmentId = "string",
+    ///         AttendingDoctor = new ExternalProvider
+    ///         {
+    ///             Name = new HumanName
+    ///             {
+    ///                 Family = "string",
+    ///                 Given = new List<string>() { "string" },
+    ///                 Use = NameUse.Usual,
+    ///                 Period = new Period
+    ///                 {
+    ///                     Start = new Dictionary<object, object?>() { { "key", "value" } },
+    ///                     End = new Dictionary<object, object?>() { { "key", "value" } },
+    ///                 },
+    ///             },
+    ///             Type = ExternalProviderType.Primary,
+    ///             Npi = "string",
+    ///             Telecoms = new List<ContactPoint>()
+    ///             {
+    ///                 new ContactPoint
+    ///                 {
+    ///                     Value = "string",
+    ///                     Use = ContactPointUse.Home,
+    ///                     Period = new Dictionary<object, object?>() { { "key", "value" } },
+    ///                 },
+    ///             },
+    ///             Addresses = new List<Address>()
+    ///             {
+    ///                 new Dictionary<object, object?>() { { "key", "value" } },
+    ///             },
+    ///             Period = new Period
+    ///             {
+    ///                 Start = new Dictionary<object, object?>() { { "key", "value" } },
+    ///                 End = new Dictionary<object, object?>() { { "key", "value" } },
+    ///             },
+    ///             CanonicalId = "string",
+    ///         },
+    ///         EstimatedCopayCents = 1,
+    ///         EstimatedPatientResponsibilityCents = 1,
+    ///         PatientDepositCents = 1,
+    ///         CheckedInTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
+    ///         Notes = "string",
+    ///         LocationResourceId = "string",
+    ///         AutomatedEligibilityCheckComplete = true,
+    ///         WorkQueue = AppointmentWorkQueue.EmergentIssue,
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<Appointment> CreateAsync(
         MutableAppointment request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -30,8 +97,9 @@ public partial class V1Client
                 Method = HttpMethod.Post,
                 Path = "/appointments/v1",
                 Body = request,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -56,7 +124,16 @@ public partial class V1Client
     /// <summary>
     /// Gets an appointment.
     /// </summary>
-    public async Task<Appointment> GetAsync(string id, RequestOptions? options = null)
+    /// <example>
+    /// <code>
+    /// await client.PreEncounter.Appointments.V1.GetAsync("string");
+    /// </code>
+    /// </example>
+    public async Task<Appointment> GetAsync(
+        string id,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
@@ -64,8 +141,9 @@ public partial class V1Client
                 BaseUrl = _client.Options.Environment.PreEncounter,
                 Method = HttpMethod.Get,
                 Path = $"/appointments/v1/{id}",
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -90,9 +168,15 @@ public partial class V1Client
     /// <summary>
     /// Gets an appointment along with it's full history. The return list is ordered by version ascending.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.PreEncounter.Appointments.V1.GetHistoryAsync("string");
+    /// </code>
+    /// </example>
     public async Task<IEnumerable<Appointment>> GetHistoryAsync(
         string id,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -101,8 +185,9 @@ public partial class V1Client
                 BaseUrl = _client.Options.Environment.PreEncounter,
                 Method = HttpMethod.Get,
                 Path = $"/appointments/v1/{id}/history",
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -127,11 +212,79 @@ public partial class V1Client
     /// <summary>
     /// Updates an appointment. The path must contain the most recent version to prevent race conditions. Updating historic versions is not supported.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.PreEncounter.Appointments.V1.UpdateAsync(
+    ///     "string",
+    ///     "string",
+    ///     new MutableAppointment
+    ///     {
+    ///         PatientId = "string",
+    ///         StartTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
+    ///         Status = AppointmentStatus.Pending,
+    ///         ServiceDuration = 1,
+    ///         Services = new List<Service>()
+    ///         {
+    ///             new Service
+    ///             {
+    ///                 UniversalServiceIdentifier = UniversalServiceIdentifier.MdVisit,
+    ///                 StartTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
+    ///             },
+    ///         },
+    ///         PlacerAppointmentId = "string",
+    ///         AttendingDoctor = new ExternalProvider
+    ///         {
+    ///             Name = new HumanName
+    ///             {
+    ///                 Family = "string",
+    ///                 Given = new List<string>() { "string" },
+    ///                 Use = NameUse.Usual,
+    ///                 Period = new Period
+    ///                 {
+    ///                     Start = new Dictionary<object, object?>() { { "key", "value" } },
+    ///                     End = new Dictionary<object, object?>() { { "key", "value" } },
+    ///                 },
+    ///             },
+    ///             Type = ExternalProviderType.Primary,
+    ///             Npi = "string",
+    ///             Telecoms = new List<ContactPoint>()
+    ///             {
+    ///                 new ContactPoint
+    ///                 {
+    ///                     Value = "string",
+    ///                     Use = ContactPointUse.Home,
+    ///                     Period = new Dictionary<object, object?>() { { "key", "value" } },
+    ///                 },
+    ///             },
+    ///             Addresses = new List<Address>()
+    ///             {
+    ///                 new Dictionary<object, object?>() { { "key", "value" } },
+    ///             },
+    ///             Period = new Period
+    ///             {
+    ///                 Start = new Dictionary<object, object?>() { { "key", "value" } },
+    ///                 End = new Dictionary<object, object?>() { { "key", "value" } },
+    ///             },
+    ///             CanonicalId = "string",
+    ///         },
+    ///         EstimatedCopayCents = 1,
+    ///         EstimatedPatientResponsibilityCents = 1,
+    ///         PatientDepositCents = 1,
+    ///         CheckedInTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
+    ///         Notes = "string",
+    ///         LocationResourceId = "string",
+    ///         AutomatedEligibilityCheckComplete = true,
+    ///         WorkQueue = AppointmentWorkQueue.EmergentIssue,
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<Appointment> UpdateAsync(
         string id,
         string version,
         MutableAppointment request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -141,8 +294,9 @@ public partial class V1Client
                 Method = HttpMethod.Put,
                 Path = $"/appointments/v1/{id}/{version}",
                 Body = request,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -167,12 +321,20 @@ public partial class V1Client
     /// <summary>
     /// Scans up to 100 appointment updates. The since query parameter is inclusive, and the result list is ordered by updatedAt ascending.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.PreEncounter.Appointments.V1.ScanAsync(
+    ///     new AppointmentScanRequest { Since = new DateTime(2024, 01, 15, 09, 30, 00, 000) }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<IEnumerable<Appointment>> ScanAsync(
         AppointmentScanRequest request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>() { };
+        var _query = new Dictionary<string, object>();
         _query["since"] = request.Since.ToString(Constants.DateTimeFormat);
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
@@ -181,8 +343,9 @@ public partial class V1Client
                 Method = HttpMethod.Get,
                 Path = "/appointments/v1/updates/scan",
                 Query = _query,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -207,10 +370,16 @@ public partial class V1Client
     /// <summary>
     /// Sets an appointment as deactivated. The path must contain the most recent version to prevent race conditions. Deactivating historic versions is not supported. Subsequent updates via PUT to the appointment will "reactivate" the appointment and set the deactivated flag to false.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.PreEncounter.Appointments.V1.DeactivateAsync("string", "string");
+    /// </code>
+    /// </example>
     public async System.Threading.Tasks.Task DeactivateAsync(
         string id,
         string version,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -219,8 +388,9 @@ public partial class V1Client
                 BaseUrl = _client.Options.Environment.PreEncounter,
                 Method = HttpMethod.Delete,
                 Path = $"/appointments/v1/{id}/{version}",
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         if (response.StatusCode is >= 200 and < 400)
         {

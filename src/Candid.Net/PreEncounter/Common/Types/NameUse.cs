@@ -28,5 +28,5 @@ public enum NameUse
     Old,
 
     [EnumMember(Value = "MAIDEN")]
-    Maiden
+    Maiden,
 }

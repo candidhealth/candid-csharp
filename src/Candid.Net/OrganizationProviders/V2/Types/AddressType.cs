@@ -10,5 +10,5 @@ namespace Candid.Net.OrganizationProviders.V2;
 public enum AddressType
 {
     [EnumMember(Value = "DEFAULT")]
-    Default
+    Default,
 }

@@ -37,5 +37,5 @@ public enum TagColorEnum
     Purple,
 
     [EnumMember(Value = "pink")]
-    Pink
+    Pink,
 }

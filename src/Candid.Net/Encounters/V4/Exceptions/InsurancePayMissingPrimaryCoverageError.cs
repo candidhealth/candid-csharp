@@ -14,5 +14,5 @@ public class InsurancePayMissingPrimaryCoverageError(
     /// <summary>
     /// The body of the response that triggered the exception.
     /// </summary>
-    public new InsurancePayMissingPrimaryCoverageErrorType Body { get; } = body;
+    public new InsurancePayMissingPrimaryCoverageErrorType Body => body;
 }

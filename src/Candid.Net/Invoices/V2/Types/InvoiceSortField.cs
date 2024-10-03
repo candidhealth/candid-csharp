@@ -25,5 +25,5 @@ public enum InvoiceSortField
     DueDate,
 
     [EnumMember(Value = "STATUS")]
-    Status
+    Status,
 }

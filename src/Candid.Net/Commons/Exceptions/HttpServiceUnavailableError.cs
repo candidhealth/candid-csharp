@@ -13,5 +13,5 @@ public class HttpServiceUnavailableError(HttpServiceUnavailableErrorMessage body
     /// <summary>
     /// The body of the response that triggered the exception.
     /// </summary>
-    public new HttpServiceUnavailableErrorMessage Body { get; } = body;
+    public new HttpServiceUnavailableErrorMessage Body => body;
 }

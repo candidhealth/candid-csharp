@@ -97,5 +97,5 @@ public enum DenialReasonContent
     Unknown,
 
     [EnumMember(Value = "Max Benefit Reached")]
-    MaxBenefitReached
+    MaxBenefitReached,
 }

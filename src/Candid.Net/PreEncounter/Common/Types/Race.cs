@@ -34,5 +34,5 @@ public enum Race
     Unknown,
 
     [EnumMember(Value = "REFUSED")]
-    Refused
+    Refused,
 }

@@ -16,5 +16,5 @@ public enum WriteOffSortField
     WriteOffTimestamp,
 
     [EnumMember(Value = "write_off_note")]
-    WriteOffNote
+    WriteOffNote,
 }

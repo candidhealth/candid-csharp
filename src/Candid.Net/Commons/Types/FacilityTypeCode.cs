@@ -157,5 +157,5 @@ public enum FacilityTypeCode
     IndependentLaboratory,
 
     [EnumMember(Value = "99")]
-    OtherUnlistedFacility
+    OtherUnlistedFacility,
 }

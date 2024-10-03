@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 
 #nullable enable
 
@@ -83,4 +84,9 @@ public record OrganizationProviderBase
     /// </summary>
     [JsonPropertyName("addresses")]
     public IEnumerable<OrganizationProviderAddress>? Addresses { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

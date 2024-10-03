@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 using Candid.Net.Tasks;
 
 #nullable enable
@@ -66,4 +67,9 @@ public record Task
 
     [JsonPropertyName("category")]
     public TaskCategory? Category { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

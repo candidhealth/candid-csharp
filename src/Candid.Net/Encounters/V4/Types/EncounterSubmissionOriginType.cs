@@ -13,5 +13,5 @@ public enum EncounterSubmissionOriginType
     Candid,
 
     [EnumMember(Value = "EXTERNAL")]
-    External
+    External,
 }

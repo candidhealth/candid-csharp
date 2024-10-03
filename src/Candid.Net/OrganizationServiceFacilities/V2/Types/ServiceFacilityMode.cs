@@ -13,5 +13,5 @@ public enum ServiceFacilityMode
     Instance,
 
     [EnumMember(Value = "kind")]
-    Kind
+    Kind,
 }

@@ -13,5 +13,5 @@ public class UnprocessableEntityError(UnprocessableEntityErrorMessage body)
     /// <summary>
     /// The body of the response that triggered the exception.
     /// </summary>
-    public new UnprocessableEntityErrorMessage Body { get; } = body;
+    public new UnprocessableEntityErrorMessage Body => body;
 }

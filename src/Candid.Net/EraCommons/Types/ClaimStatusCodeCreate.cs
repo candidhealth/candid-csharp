@@ -34,5 +34,5 @@ public enum ClaimStatusCodeCreate
     ReversalOfPreviousPayment,
 
     [EnumMember(Value = "23")]
-    NotOurClaimForwarded
+    NotOurClaimForwarded,
 }

@@ -13,5 +13,5 @@ public class UnauthorizedError(UnauthorizedErrorMessage body)
     /// <summary>
     /// The body of the response that triggered the exception.
     /// </summary>
-    public new UnauthorizedErrorMessage Body { get; } = body;
+    public new UnauthorizedErrorMessage Body => body;
 }

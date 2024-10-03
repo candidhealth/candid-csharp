@@ -13,5 +13,5 @@ public enum ServiceLineUnits
     Mj,
 
     [EnumMember(Value = "UN")]
-    Un
+    Un,
 }

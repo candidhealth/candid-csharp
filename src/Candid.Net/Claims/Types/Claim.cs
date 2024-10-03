@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 using Candid.Net.ServiceLines.V2;
 
 #nullable enable
@@ -30,4 +31,9 @@ public record Claim
 
     [JsonPropertyName("eras")]
     public IEnumerable<Era> Eras { get; set; } = new List<Era>();
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

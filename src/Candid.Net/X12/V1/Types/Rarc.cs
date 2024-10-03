@@ -3187,5 +3187,5 @@ public enum Rarc
     N859,
 
     [EnumMember(Value = "N860")]
-    N860
+    N860,
 }

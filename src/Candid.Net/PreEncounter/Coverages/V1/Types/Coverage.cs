@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 using Candid.Net.PreEncounter;
 
 #nullable enable
@@ -87,4 +88,9 @@ public record Coverage
     /// </summary>
     [JsonPropertyName("benefits")]
     public CoverageBenefits? Benefits { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 using Candid.Net.PreEncounter;
 
 #nullable enable
@@ -78,4 +79,9 @@ public record MutableAppointment
     /// </summary>
     [JsonPropertyName("work_queue")]
     public AppointmentWorkQueue? WorkQueue { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

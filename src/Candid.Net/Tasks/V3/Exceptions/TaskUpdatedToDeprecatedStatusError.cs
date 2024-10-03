@@ -13,5 +13,5 @@ public class TaskUpdatedToDeprecatedStatusError(TaskUpdatedToDeprecatedStatusErr
     /// <summary>
     /// The body of the response that triggered the exception.
     /// </summary>
-    public new TaskUpdatedToDeprecatedStatusErrorType Body { get; } = body;
+    public new TaskUpdatedToDeprecatedStatusErrorType Body => body;
 }

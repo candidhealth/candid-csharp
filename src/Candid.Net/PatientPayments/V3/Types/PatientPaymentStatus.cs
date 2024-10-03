@@ -40,5 +40,5 @@ public enum PatientPaymentStatus
     StripeRequiresAction,
 
     [EnumMember(Value = "canceled")]
-    StripeCanceled
+    StripeCanceled,
 }

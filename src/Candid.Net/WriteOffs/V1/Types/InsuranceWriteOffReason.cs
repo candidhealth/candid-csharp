@@ -55,5 +55,5 @@ public enum InsuranceWriteOffReason
     Unknown,
 
     [EnumMember(Value = "CONTRACTUAL_ADJUSTMENT")]
-    ContractualAdjustment
+    ContractualAdjustment,
 }

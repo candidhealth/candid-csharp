@@ -10,5 +10,5 @@ namespace Candid.Net;
 public enum RefundReason
 {
     [EnumMember(Value = "OVERCHARGED")]
-    Overcharged
+    Overcharged,
 }

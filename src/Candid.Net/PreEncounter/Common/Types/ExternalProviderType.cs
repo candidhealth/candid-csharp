@@ -16,5 +16,5 @@ public enum ExternalProviderType
     Referring,
 
     [EnumMember(Value = "ATTENDING")]
-    Attending
+    Attending,
 }

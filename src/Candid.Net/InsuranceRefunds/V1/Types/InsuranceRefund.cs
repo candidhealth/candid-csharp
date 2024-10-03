@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using Candid.Net;
+using Candid.Net.Core;
 using Candid.Net.Payers.V3;
 
 #nullable enable
@@ -28,4 +29,9 @@ public record InsuranceRefund
 
     [JsonPropertyName("refund_reason")]
     public RefundReason? RefundReason { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

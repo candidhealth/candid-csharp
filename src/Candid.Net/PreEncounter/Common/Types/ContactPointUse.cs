@@ -22,5 +22,5 @@ public enum ContactPointUse
     Old,
 
     [EnumMember(Value = "MOBILE")]
-    Mobile
+    Mobile,
 }

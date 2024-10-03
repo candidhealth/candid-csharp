@@ -13,5 +13,5 @@ public enum TaskActionType
     CloseTask,
 
     [EnumMember(Value = "close_task_and_reprocess")]
-    CloseTaskAndReprocess
+    CloseTaskAndReprocess,
 }

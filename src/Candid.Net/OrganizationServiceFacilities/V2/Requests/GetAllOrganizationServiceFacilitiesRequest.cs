@@ -1,3 +1,7 @@
+using Candid.Net.Core;
+
+#nullable enable
+
 namespace Candid.Net.OrganizationServiceFacilities.V2;
 
 public record GetAllOrganizationServiceFacilitiesRequest
@@ -16,4 +20,9 @@ public record GetAllOrganizationServiceFacilitiesRequest
     /// The page token to continue paging through a previous request.
     /// </summary>
     public string? PageToken { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

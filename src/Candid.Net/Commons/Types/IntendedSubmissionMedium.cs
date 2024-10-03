@@ -13,5 +13,5 @@ public enum IntendedSubmissionMedium
     Paper,
 
     [EnumMember(Value = "electronic")]
-    Electronic
+    Electronic,
 }

@@ -1,3 +1,4 @@
+using Candid.Net.Core;
 using Candid.Net.Invoices.V2;
 
 #nullable enable
@@ -47,4 +48,9 @@ public record SearchImportedInvoicesRequest
     public SortDirection? SortDirection { get; set; }
 
     public string? PageToken { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

@@ -13,5 +13,5 @@ public class PotentialDuplicatePatients(PotentialDuplicatePatientsErrorBody body
     /// <summary>
     /// The body of the response that triggered the exception.
     /// </summary>
-    public new PotentialDuplicatePatientsErrorBody Body { get; } = body;
+    public new PotentialDuplicatePatientsErrorBody Body => body;
 }

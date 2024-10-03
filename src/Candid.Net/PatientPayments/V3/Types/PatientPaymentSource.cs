@@ -34,5 +34,5 @@ public enum PatientPaymentSource
     StripeRefunds,
 
     [EnumMember(Value = "ELATION_PAYMENTS")]
-    ElationPayments
+    ElationPayments,
 }

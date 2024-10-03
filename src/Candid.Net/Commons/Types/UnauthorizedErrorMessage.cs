@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 
 #nullable enable
 
@@ -8,4 +9,9 @@ public record UnauthorizedErrorMessage
 {
     [JsonPropertyName("message")]
     public string? Message { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

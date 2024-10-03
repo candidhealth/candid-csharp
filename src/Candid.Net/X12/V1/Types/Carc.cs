@@ -1216,5 +1216,5 @@ public enum Carc
     CarcY3,
 
     [EnumMember(Value = "UNKNOWN")]
-    Unknown
+    Unknown,
 }

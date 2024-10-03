@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 
 #nullable enable
 
@@ -11,4 +12,9 @@ public record ClinicalNoteCategoryCreate
 
     [JsonPropertyName("notes")]
     public IEnumerable<ClinicalNote> Notes { get; set; } = new List<ClinicalNote>();
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

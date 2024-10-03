@@ -12,5 +12,5 @@ public class BadRequestError(ErrorBase body) : CandidApiException("BadRequestErr
     /// <summary>
     /// The body of the response that triggered the exception.
     /// </summary>
-    public new ErrorBase Body { get; } = body;
+    public new ErrorBase Body => body;
 }

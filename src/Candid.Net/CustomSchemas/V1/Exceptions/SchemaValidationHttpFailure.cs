@@ -13,5 +13,5 @@ public class SchemaValidationHttpFailure(SchemaValidationFailure body)
     /// <summary>
     /// The body of the response that triggered the exception.
     /// </summary>
-    public new SchemaValidationFailure Body { get; } = body;
+    public new SchemaValidationFailure Body => body;
 }

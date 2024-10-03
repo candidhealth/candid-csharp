@@ -43,5 +43,5 @@ public enum TaskType
     DenialResolution,
 
     [EnumMember(Value = "MISSING_ENROLLMENT")]
-    MissingEnrollment
+    MissingEnrollment,
 }

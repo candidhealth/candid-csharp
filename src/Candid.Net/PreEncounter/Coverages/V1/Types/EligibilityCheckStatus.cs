@@ -19,5 +19,5 @@ public enum EligibilityCheckStatus
     Failed,
 
     [EnumMember(Value = "PENDING")]
-    Pending
+    Pending,
 }

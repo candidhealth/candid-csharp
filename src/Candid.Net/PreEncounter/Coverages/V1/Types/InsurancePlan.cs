@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 using Candid.Net.PreEncounter;
 
 #nullable enable
@@ -36,4 +37,9 @@ public record InsurancePlan
 
     [JsonPropertyName("insurance_card_image_locator")]
     public string? InsuranceCardImageLocator { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

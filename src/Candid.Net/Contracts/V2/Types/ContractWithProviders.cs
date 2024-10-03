@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 using Candid.Net.OrganizationProviders.V2;
 using Candid.Net.Payers.V3;
 
@@ -77,4 +78,9 @@ public record ContractWithProviders
     /// </summary>
     [JsonPropertyName("medicaid_insurance_types")]
     public required object MedicaidInsuranceTypes { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

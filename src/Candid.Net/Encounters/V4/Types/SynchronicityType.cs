@@ -13,5 +13,5 @@ public enum SynchronicityType
     Synchronous,
 
     [EnumMember(Value = "Asynchronous")]
-    Asynchronous
+    Asynchronous,
 }

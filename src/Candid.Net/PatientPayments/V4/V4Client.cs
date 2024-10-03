@@ -1,5 +1,6 @@
 using System.Net.Http;
 using System.Text.Json;
+using System.Threading;
 using Candid.Net.Core;
 
 #nullable enable
@@ -19,13 +20,34 @@ public partial class V4Client
     /// Returns all patient payments satisfying the search criteria AND whose organization_id matches
     /// the current organization_id of the authenticated user.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.PatientPayments.V4.GetMultiAsync(
+    ///     new GetMultiPatientPaymentsRequest
+    ///     {
+    ///         Limit = 1,
+    ///         PatientExternalId = "string",
+    ///         ClaimId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         ServiceLineId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         BillingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         Unattributed = true,
+    ///         InvoiceId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         Sources = [PatientTransactionSource.ManualEntry],
+    ///         Sort = PatientPaymentSortField.PaymentSource,
+    ///         SortDirection = Candid.Net.SortDirection.Asc,
+    ///         PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<PatientPaymentsPage> GetMultiAsync(
         GetMultiPatientPaymentsRequest request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>() { };
-        _query["sources"] = request.Sources.Select(_value => _value.ToString()).ToList();
+        var _query = new Dictionary<string, object>();
+        _query["sources"] = request.Sources.Select(_value => _value.Stringify()).ToList();
         if (request.Limit != null)
         {
             _query["limit"] = request.Limit.ToString();
@@ -56,11 +78,11 @@ public partial class V4Client
         }
         if (request.Sort != null)
         {
-            _query["sort"] = JsonSerializer.Serialize(request.Sort.Value);
+            _query["sort"] = request.Sort.Value.Stringify();
         }
         if (request.SortDirection != null)
         {
-            _query["sort_direction"] = JsonSerializer.Serialize(request.SortDirection.Value);
+            _query["sort_direction"] = request.SortDirection.Value.Stringify();
         }
         if (request.PageToken != null)
         {
@@ -73,8 +95,9 @@ public partial class V4Client
                 Method = HttpMethod.Get,
                 Path = "/api/patient-payments/v4",
                 Query = _query,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -99,9 +122,15 @@ public partial class V4Client
     /// <summary>
     /// Retrieves a previously created patient payment by its `patient_payment_id`.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.PatientPayments.V4.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+    /// </code>
+    /// </example>
     public async Task<PatientPayment> GetAsync(
         string patientPaymentId,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -110,8 +139,9 @@ public partial class V4Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = $"/api/patient-payments/v4/{patientPaymentId}",
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -138,9 +168,32 @@ public partial class V4Client
     /// The allocations can describe whether the payment is being applied toward a specific service line,
     /// claim, or billing provider.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.PatientPayments.V4.CreateAsync(
+    ///     new PatientPaymentCreate
+    ///     {
+    ///         AmountCents = 1,
+    ///         PaymentTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
+    ///         PaymentNote = "string",
+    ///         PatientExternalId = "string",
+    ///         Allocations = new List<AllocationCreate>()
+    ///         {
+    ///             new AllocationCreate
+    ///             {
+    ///                 AmountCents = 1,
+    ///                 Target = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///             },
+    ///         },
+    ///         Invoice = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<PatientPayment> CreateAsync(
         PatientPaymentCreate request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -150,8 +203,9 @@ public partial class V4Client
                 Method = HttpMethod.Post,
                 Path = "/api/patient-payments/v4",
                 Body = request,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -176,10 +230,24 @@ public partial class V4Client
     /// <summary>
     /// Updates the patient payment record matching the provided patient_payment_id.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.PatientPayments.V4.UpdateAsync(
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///     new PatientPaymentUpdate
+    ///     {
+    ///         PaymentTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
+    ///         PaymentNote = "string",
+    ///         Invoice = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<PatientPayment> UpdateAsync(
         string patientPaymentId,
         PatientPaymentUpdate request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -189,8 +257,9 @@ public partial class V4Client
                 Method = HttpMethodExtensions.Patch,
                 Path = $"/api/patient-payments/v4/{patientPaymentId}",
                 Body = request,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -215,9 +284,15 @@ public partial class V4Client
     /// <summary>
     /// Deletes the patient payment record matching the provided patient_payment_id.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.PatientPayments.V4.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+    /// </code>
+    /// </example>
     public async System.Threading.Tasks.Task DeleteAsync(
         string patientPaymentId,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -226,8 +301,9 @@ public partial class V4Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Delete,
                 Path = $"/api/patient-payments/v4/{patientPaymentId}",
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         if (response.StatusCode is >= 200 and < 400)
         {

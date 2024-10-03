@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 using Candid.Net.Invoices.V2;
 
 #nullable enable
@@ -45,4 +46,9 @@ public record CreateImportInvoiceRequest
     /// </summary>
     [JsonPropertyName("customer_invoice_url")]
     public string? CustomerInvoiceUrl { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

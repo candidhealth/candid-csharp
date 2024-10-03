@@ -10,5 +10,5 @@ namespace Candid.Net.PreEncounter.Patients.V1;
 public enum AuthorizationUnit
 {
     [EnumMember(Value = "VISIT")]
-    Visit
+    Visit,
 }

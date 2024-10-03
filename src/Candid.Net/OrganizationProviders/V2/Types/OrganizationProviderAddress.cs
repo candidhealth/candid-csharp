@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using Candid.Net;
+using Candid.Net.Core;
 
 #nullable enable
 
@@ -18,4 +19,9 @@ public record OrganizationProviderAddress
     /// </summary>
     [JsonPropertyName("address_type")]
     public required AddressType AddressType { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

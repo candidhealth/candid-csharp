@@ -79,5 +79,5 @@ public enum NetworkType
     WorkersCompHealthClaim,
 
     [EnumMember(Value = "ZZ")]
-    MutuallyDefined
+    MutuallyDefined,
 }

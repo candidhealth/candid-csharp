@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 
 #nullable enable
 
@@ -12,4 +13,9 @@ public record ClaimInvoiceItemInfo
     [JsonPropertyName("service_line_invoice_items")]
     public Dictionary<string, ServiceLineInvoiceItem> ServiceLineInvoiceItems { get; set; } =
         new Dictionary<string, ServiceLineInvoiceItem>();
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

@@ -1,3 +1,7 @@
+using Candid.Net.Core;
+
+#nullable enable
+
 namespace Candid.Net.PreEncounter.Patients.V1;
 
 public record PatientsSearchRequestPaginated
@@ -14,4 +18,9 @@ public record PatientsSearchRequestPaginated
     /// Defaults to ascending.
     /// </summary>
     public SortDirection? SortDirection { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

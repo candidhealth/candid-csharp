@@ -16,5 +16,5 @@ public enum LineOfBusiness
     Medicaid,
 
     [EnumMember(Value = "commercial")]
-    Commercial
+    Commercial,
 }

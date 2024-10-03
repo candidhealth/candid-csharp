@@ -31,5 +31,5 @@ public enum Explanation
     RenderingProviderMatchFailed,
 
     [EnumMember(Value = "Rendering Provider Not Credentialed")]
-    RenderingProviderCredentialingCheckFailed
+    RenderingProviderCredentialingCheckFailed,
 }

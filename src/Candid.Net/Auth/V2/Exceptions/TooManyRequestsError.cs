@@ -13,5 +13,5 @@ public class TooManyRequestsError(TooManyRequestsErrorType body)
     /// <summary>
     /// The body of the response that triggered the exception.
     /// </summary>
-    public new TooManyRequestsErrorType Body { get; } = body;
+    public new TooManyRequestsErrorType Body => body;
 }

@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 
 #nullable enable
 
@@ -50,4 +51,9 @@ public record PatientUpdate
     /// </summary>
     [JsonPropertyName("non_insurance_payers")]
     public IEnumerable<string>? NonInsurancePayers { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

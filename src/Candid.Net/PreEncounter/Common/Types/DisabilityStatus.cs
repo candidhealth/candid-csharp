@@ -13,5 +13,5 @@ public enum DisabilityStatus
     Disabled,
 
     [EnumMember(Value = "NON_DISABLED")]
-    NonDisabled
+    NonDisabled,
 }

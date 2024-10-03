@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 
 #nullable enable
 
@@ -17,4 +18,9 @@ public record PlanCoverage
 
     [JsonPropertyName("out_of_network_flat")]
     public IEnumerable<CoverageDetails>? OutOfNetworkFlat { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

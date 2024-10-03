@@ -13,5 +13,5 @@ public class OrganizationNotAuthorizedError(OrganizationNotAuthorizedErrorMessag
     /// <summary>
     /// The body of the response that triggered the exception.
     /// </summary>
-    public new OrganizationNotAuthorizedErrorMessage Body { get; } = body;
+    public new OrganizationNotAuthorizedErrorMessage Body => body;
 }

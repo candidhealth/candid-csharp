@@ -19,5 +19,5 @@ public enum InterventionCategory
     Tests,
 
     [EnumMember(Value = "lifestyle")]
-    Lifestyle
+    Lifestyle,
 }

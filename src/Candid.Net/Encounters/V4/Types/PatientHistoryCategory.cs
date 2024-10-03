@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 
 #nullable enable
 
@@ -14,4 +15,9 @@ public record PatientHistoryCategory
     /// </summary>
     [JsonPropertyName("questions")]
     public IEnumerable<IntakeQuestion> Questions { get; set; } = new List<IntakeQuestion>();
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

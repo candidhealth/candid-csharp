@@ -16,5 +16,5 @@ public enum ClaimFrequencyTypeCode
     Replacement,
 
     [EnumMember(Value = "8")]
-    Void
+    Void,
 }

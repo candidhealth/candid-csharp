@@ -1,4 +1,5 @@
 using Candid.Net;
+using Candid.Net.Core;
 
 #nullable enable
 
@@ -81,4 +82,9 @@ public record GetAllEncountersRequest
     /// The patient ID from the external EMR platform for the patient
     /// </summary>
     public string? PatientExternalId { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

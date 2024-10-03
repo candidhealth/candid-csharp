@@ -1,5 +1,6 @@
 using System.Net.Http;
 using System.Text.Json;
+using System.Threading;
 using Candid.Net.Core;
 
 #nullable enable
@@ -18,9 +19,35 @@ public partial class V1Client
     /// <summary>
     /// Import an existing invoice from a third party service to reflect state in Candid.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.ImportInvoice.V1.ImportInvoiceAsync(
+    ///     new CreateImportInvoiceRequest
+    ///     {
+    ///         ExternalPaymentAccountConfigId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         PatientExternalId = "string",
+    ///         ExternalCustomerIdentifier = "string",
+    ///         Note = "string",
+    ///         DueDate = new DateOnly(2023, 1, 15),
+    ///         Items = new List<InvoiceItemCreate>()
+    ///         {
+    ///             new InvoiceItemCreate
+    ///             {
+    ///                 Attribution = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///                 AmountCents = 1,
+    ///             },
+    ///         },
+    ///         Status = Candid.Net.Invoices.V2.InvoiceStatus.Draft,
+    ///         ExternalIdentifier = "string",
+    ///         CustomerInvoiceUrl = "string",
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<ImportInvoice> ImportInvoiceAsync(
         CreateImportInvoiceRequest request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -30,8 +57,9 @@ public partial class V1Client
                 Method = HttpMethod.Post,
                 Path = "/api/import-invoice/v1",
                 Body = request,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -56,13 +84,33 @@ public partial class V1Client
     /// <summary>
     /// Returns all Invoices for the authenticated user's organziation with all filters applied.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.ImportInvoice.V1.GetMultiAsync(
+    ///     new SearchImportedInvoicesRequest
+    ///     {
+    ///         PatientExternalId = "string",
+    ///         EncounterExternalId = "string",
+    ///         Note = "string",
+    ///         DueDateBefore = new DateOnly(2023, 1, 15),
+    ///         DueDateAfter = new DateOnly(2023, 1, 15),
+    ///         Status = [Candid.Net.Invoices.V2.InvoiceStatus.Draft],
+    ///         Limit = 1,
+    ///         Sort = InvoiceSortField.CreatedAt,
+    ///         SortDirection = Candid.Net.SortDirection.Asc,
+    ///         PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<ImportInvoicesPage> GetMultiAsync(
         SearchImportedInvoicesRequest request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>() { };
-        _query["status"] = request.Status.Select(_value => _value.ToString()).ToList();
+        var _query = new Dictionary<string, object>();
+        _query["status"] = request.Status.Select(_value => _value.Stringify()).ToList();
         if (request.PatientExternalId != null)
         {
             _query["patient_external_id"] = request.PatientExternalId;
@@ -77,11 +125,11 @@ public partial class V1Client
         }
         if (request.DueDateBefore != null)
         {
-            _query["due_date_before"] = request.DueDateBefore.ToString();
+            _query["due_date_before"] = request.DueDateBefore.Value.ToString(Constants.DateFormat);
         }
         if (request.DueDateAfter != null)
         {
-            _query["due_date_after"] = request.DueDateAfter.ToString();
+            _query["due_date_after"] = request.DueDateAfter.Value.ToString(Constants.DateFormat);
         }
         if (request.Limit != null)
         {
@@ -89,11 +137,11 @@ public partial class V1Client
         }
         if (request.Sort != null)
         {
-            _query["sort"] = JsonSerializer.Serialize(request.Sort.Value);
+            _query["sort"] = request.Sort.Value.Stringify();
         }
         if (request.SortDirection != null)
         {
-            _query["sort_direction"] = JsonSerializer.Serialize(request.SortDirection.Value);
+            _query["sort_direction"] = request.SortDirection.Value.Stringify();
         }
         if (request.PageToken != null)
         {
@@ -106,8 +154,9 @@ public partial class V1Client
                 Method = HttpMethod.Get,
                 Path = "/api/import-invoice/v1",
                 Query = _query,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -132,7 +181,16 @@ public partial class V1Client
     /// <summary>
     /// Retrieve and view an import invoice
     /// </summary>
-    public async Task<ImportInvoice> GetAsync(string invoiceId, RequestOptions? options = null)
+    /// <example>
+    /// <code>
+    /// await client.ImportInvoice.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+    /// </code>
+    /// </example>
+    public async Task<ImportInvoice> GetAsync(
+        string invoiceId,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
     {
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
@@ -140,8 +198,9 @@ public partial class V1Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
                 Path = $"/api/import-invoice/v1/{invoiceId}",
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
@@ -166,10 +225,37 @@ public partial class V1Client
     /// <summary>
     /// Update the information on the imported invoice
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.ImportInvoice.V1.UpdateAsync(
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///     new ImportInvoiceUpdateRequest
+    ///     {
+    ///         CustomerInvoiceUrl = "string",
+    ///         Status = Candid.Net.Invoices.V2.InvoiceStatus.Draft,
+    ///         Note = "string",
+    ///         DueDate = new DateOnly(2023, 1, 15),
+    ///         Items = new InvoiceItemInfoUpdate
+    ///         {
+    ///             UpdateType = InvoiceItemUpdateType.Append,
+    ///             Items = new List<InvoiceItemCreate>()
+    ///             {
+    ///                 new InvoiceItemCreate
+    ///                 {
+    ///                     Attribution = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///                     AmountCents = 1,
+    ///                 },
+    ///             },
+    ///         },
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<ImportInvoice> UpdateAsync(
         string invoiceId,
         ImportInvoiceUpdateRequest request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -179,8 +265,9 @@ public partial class V1Client
                 Method = HttpMethodExtensions.Patch,
                 Path = $"/api/import-invoice/v1/{invoiceId}",
                 Body = request,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)

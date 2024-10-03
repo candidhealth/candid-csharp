@@ -1,5 +1,6 @@
 using System.Net.Http;
 using System.Text.Json;
+using System.Threading;
 using Candid.Net.Core;
 
 #nullable enable
@@ -18,9 +19,29 @@ public partial class V1Client
     /// <summary>
     /// Computes the expected network status given the provided information.
     /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.ExpectedNetworkStatus.V1.ComputeAsync(
+    ///     new ExpectedNetworkStatusRequest
+    ///     {
+    ///         ExternalPatientId = "string",
+    ///         SubscriberPayerId = "string",
+    ///         SubscriberPayerName = "string",
+    ///         SubscriberInsuranceType = Candid.Net.InsuranceTypeCode.C01,
+    ///         SubscriberPlanName = "string",
+    ///         BillingProviderNpi = "string",
+    ///         BillingProviderTin = "string",
+    ///         RenderingProviderNpi = "string",
+    ///         ContractedState = State.Aa,
+    ///         DateOfService = "string",
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
     public async Task<ExpectedNetworkStatusResponse> ComputeAsync(
         ExpectedNetworkStatusRequest request,
-        RequestOptions? options = null
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
     )
     {
         var response = await _client.MakeRequestAsync(
@@ -30,8 +51,9 @@ public partial class V1Client
                 Method = HttpMethod.Post,
                 Path = "/api/expected-network-status/v1",
                 Body = request,
-                Options = options
-            }
+                Options = options,
+            },
+            cancellationToken
         );
         var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)

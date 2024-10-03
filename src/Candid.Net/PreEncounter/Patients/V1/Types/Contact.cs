@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Core;
 using Candid.Net.PreEncounter;
 
 #nullable enable
@@ -24,4 +25,9 @@ public record Contact
 
     [JsonPropertyName("hipaa_authorization")]
     public bool? HipaaAuthorization { get; set; }
+
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
 }

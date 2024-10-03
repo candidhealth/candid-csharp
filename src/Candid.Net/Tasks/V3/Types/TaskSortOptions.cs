@@ -73,5 +73,5 @@ public enum TaskSortOptions
     BlocksClaimSubmissionAsc,
 
     [EnumMember(Value = "blocks_claim_submission:desc")]
-    BlocksClaimSubmissionDesc
+    BlocksClaimSubmissionDesc,
 }

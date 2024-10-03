@@ -28,5 +28,5 @@ public enum Gender
     Unknown,
 
     [EnumMember(Value = "REFUSED")]
-    Refused
+    Refused,
 }
