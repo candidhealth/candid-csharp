@@ -54,7 +54,7 @@ public partial class CandidClient
             }
         }
 
-        var authRawClient = new RawClient(clientOptions.Clone());
+        var authRawClient = new RawClient(clientOptions);
         Auth = new AuthClient(authRawClient);
         
         var oAuthTokenProvider = new OAuthTokenProvider(clientId, clientSecret, Auth.V2);
