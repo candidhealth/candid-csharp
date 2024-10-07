@@ -102,6 +102,7 @@ public partial class V2Client
     ///             LinkSequenceNumber = "string",
     ///             PharmacyPrescriptionNumber = "string",
     ///             ConversionFormula = "string",
+    ///             DrugDescription = "string",
     ///         },
     ///         DenialReason = new ServiceLineDenialReason
     ///         {
@@ -114,7 +115,10 @@ public partial class V2Client
     ///         Description = "string",
     ///         DateOfService = new DateOnly(2023, 1, 15),
     ///         EndDateOfService = new DateOnly(2023, 1, 15),
-    ///         TestResult = 1.1,
+    ///         TestResults = new List<TestResult>()
+    ///         {
+    ///             new TestResult { Value = 1.1, ResultType = TestResultType.Hematocrit },
+    ///         },
     ///     }
     /// );
     /// </code>

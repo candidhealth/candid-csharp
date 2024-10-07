@@ -37,6 +37,7 @@ public partial class V1Client
     ///             LinkSequenceNumber = "string",
     ///             PharmacyPrescriptionNumber = "string",
     ///             ConversionFormula = "string",
+    ///             DrugDescription = "string",
     ///         },
     ///         Description = "string",
     ///         Modifiers = new List<ProcedureModifier>() { ProcedureModifier.TwentyTwo },

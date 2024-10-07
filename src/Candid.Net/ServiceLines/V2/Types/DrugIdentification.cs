@@ -28,6 +28,9 @@ public record DrugIdentification
     [JsonPropertyName("conversion_formula")]
     public string? ConversionFormula { get; set; }
 
+    [JsonPropertyName("drug_description")]
+    public string? DrugDescription { get; set; }
+
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

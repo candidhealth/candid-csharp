@@ -119,10 +119,10 @@ public record ServiceLine
     public DateOnly? EndDateOfService { get; set; }
 
     /// <summary>
-    /// Contains a single test result value. Maps to MEA-02 on the 837-P.
+    /// Maps to MEA-02 on the 837-P. No more than 5 test results may be submitted per service line.
     /// </summary>
-    [JsonPropertyName("test_result")]
-    public object? TestResult { get; set; }
+    [JsonPropertyName("test_results")]
+    public IEnumerable<TestResult>? TestResults { get; set; }
 
     public override string ToString()
     {

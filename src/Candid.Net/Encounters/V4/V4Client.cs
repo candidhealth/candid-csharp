@@ -456,6 +456,7 @@ public partial class V4Client
     ///                     LinkSequenceNumber = "string",
     ///                     PharmacyPrescriptionNumber = "string",
     ///                     ConversionFormula = "string",
+    ///                     DrugDescription = "string",
     ///                 },
     ///                 PlaceOfServiceCode = FacilityTypeCode.Pharmacy,
     ///                 Description = "string",
@@ -478,7 +479,10 @@ public partial class V4Client
     ///                     LastName = "string",
     ///                     OrganizationName = "string",
     ///                 },
-    ///                 TestResult = 1.1,
+    ///                 TestResults = new List<TestResult>()
+    ///                 {
+    ///                     new TestResult { Value = 1.1, ResultType = TestResultType.Hematocrit },
+    ///                 },
     ///             },
     ///         },
     ///         Guarantor = new GuarantorCreate
@@ -845,6 +849,7 @@ public partial class V4Client
     ///                     LinkSequenceNumber = "string",
     ///                     PharmacyPrescriptionNumber = "string",
     ///                     ConversionFormula = "string",
+    ///                     DrugDescription = "string",
     ///                 },
     ///                 PlaceOfServiceCode = FacilityTypeCode.Pharmacy,
     ///                 Description = "string",
@@ -867,7 +872,10 @@ public partial class V4Client
     ///                     LastName = "string",
     ///                     OrganizationName = "string",
     ///                 },
-    ///                 TestResult = 1.1,
+    ///                 TestResults = new List<TestResult>()
+    ///                 {
+    ///                     new TestResult { Value = 1.1, ResultType = TestResultType.Hematocrit },
+    ///                 },
     ///             },
     ///         },
     ///         ExternalClaimSubmission = new ExternalClaimSubmissionCreate
