@@ -18,6 +18,7 @@ using Candid.Net.InsuranceAdjudications;
 using Candid.Net.InsurancePayments;
 using Candid.Net.InsuranceRefunds;
 using Candid.Net.Invoices;
+using Candid.Net.MedicationDispense;
 using Candid.Net.OrganizationProviders;
 using Candid.Net.OrganizationServiceFacilities;
 using Candid.Net.PatientPayments;
@@ -95,6 +96,7 @@ public partial class CandidClient
         Individual = new IndividualClient(_client);
         ServiceFacility = new ServiceFacilityClient(_client);
         Tags = new TagsClient(_client);
+        MedicationDispense = new MedicationDispenseClient(_client);
     }
 
     public AuthClient Auth { get; init; }
@@ -166,4 +168,6 @@ public partial class CandidClient
     public ServiceFacilityClient ServiceFacility { get; init; }
 
     public TagsClient Tags { get; init; }
+    
+    public MedicationDispenseClient MedicationDispense { get; init; }
 }
