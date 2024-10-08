@@ -17,6 +17,9 @@ src/Candid.Net.Test/Unit/Serialization/RateEntryTest.cs
 # Skip unit tests
 .github/workflows/ci.yml
 
+# Add Oauth Test
+src/Candid.Net.Test/TestClient.cs
+
 README.md
 
 
