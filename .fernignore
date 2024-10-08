@@ -3,6 +3,7 @@
 # Oauth
 src/Candid.Net/CandidClient.cs
 src/Candid.Net/Core/OAuthTokenProvider.cs
+src/Candid.Net/Core/ClientOptions.Clone.cs
 
 # Maintain compatibility with old client naming
 src/Candid.Net/Candid.cs
@@ -16,6 +17,9 @@ src/Candid.Net.Test/Unit/Serialization/RateEntryTest.cs
 
 # Skip unit tests
 .github/workflows/ci.yml
+
+# Add Oauth Test
+src/Candid.Net.Test/TestClient.cs
 
 README.md
 
