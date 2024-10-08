@@ -3,6 +3,7 @@
 # Oauth
 src/Candid.Net/CandidClient.cs
 src/Candid.Net/Core/OAuthTokenProvider.cs
+src/Candid.Net/Core/ClientOptions.Clone.cs
 
 # Maintain compatibility with old client naming
 src/Candid.Net/Candid.cs
