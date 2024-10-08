@@ -39,6 +39,21 @@ public partial class V2Client
     ///         Description = "string",
     ///         DateOfService = new DateOnly(2023, 1, 15),
     ///         EndDateOfService = new DateOnly(2023, 1, 15),
+    ///         DrugIdentification = new DrugIdentification
+    ///         {
+    ///             ServiceIdQualifier = ServiceIdQualifier.EanUcc13,
+    ///             NationalDrugCode = "string",
+    ///             NationalDrugUnitCount = "string",
+    ///             MeasurementUnitCode = MeasurementUnitCode.Milliliters,
+    ///             LinkSequenceNumber = "string",
+    ///             PharmacyPrescriptionNumber = "string",
+    ///             ConversionFormula = "string",
+    ///             DrugDescription = "string",
+    ///         },
+    ///         TestResults = new List<TestResult>()
+    ///         {
+    ///             new TestResult { Value = 1.1, ResultType = TestResultType.Hematocrit },
+    ///         },
     ///     }
     /// );
     /// </code>

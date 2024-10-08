@@ -61,6 +61,15 @@ public record ServiceLineCreateStandalone
     [JsonPropertyName("end_date_of_service")]
     public DateOnly? EndDateOfService { get; set; }
 
+    [JsonPropertyName("drug_identification")]
+    public DrugIdentification? DrugIdentification { get; set; }
+
+    /// <summary>
+    /// Maps to MEA-02 on the 837-P. No more than 5 test results may be submitted per service line.
+    /// </summary>
+    [JsonPropertyName("test_results")]
+    public IEnumerable<TestResult>? TestResults { get; set; }
+
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

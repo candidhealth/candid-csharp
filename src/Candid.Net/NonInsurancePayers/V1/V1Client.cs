@@ -24,6 +24,15 @@ public partial class V1Client
     ///         Name = "string",
     ///         Description = "string",
     ///         Category = "string",
+    ///         Address = new StreetAddressShortZip
+    ///         {
+    ///             Address1 = "123 Main St",
+    ///             Address2 = "Apt 1",
+    ///             City = "New York",
+    ///             State = State.Ny,
+    ///             ZipCode = "10001",
+    ///             ZipPlusFourCode = "1234",
+    ///         },
     ///     }
     /// );
     /// </code>
@@ -243,6 +252,7 @@ public partial class V1Client
     ///         Name = "string",
     ///         Description = "no-properties-union",
     ///         Category = "no-properties-union",
+    ///         Address = "no-properties-union",
     ///     }
     /// );
     /// </code>
