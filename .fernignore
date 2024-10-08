@@ -1,12 +1,7 @@
 # Specify files that shouldn't be modified by Fern
 
-# Oauth
-src/Candid.Net/CandidClient.cs
-src/Candid.Net/Core/OAuthTokenProvider.cs
-src/Candid.Net/Core/ClientOptions.Clone.cs
-
 # Maintain compatibility with old client naming
-src/Candid.Net/Candid.cs
+src/Candid.Net/CandidClient.cs
 
 # Extra field in example: schema_instances
 src/Candid.Net.Test/Unit/Serialization/EncounterPageTest.cs

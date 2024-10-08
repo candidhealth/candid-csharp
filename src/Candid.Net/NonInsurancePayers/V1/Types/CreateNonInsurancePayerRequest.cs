@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Core;
 
 #nullable enable
@@ -24,6 +25,9 @@ public record CreateNonInsurancePayerRequest
     /// </summary>
     [JsonPropertyName("category")]
     public string? Category { get; set; }
+
+    [JsonPropertyName("address")]
+    public StreetAddressShortZip? Address { get; set; }
 
     public override string ToString()
     {

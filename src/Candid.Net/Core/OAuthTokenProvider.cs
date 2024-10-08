@@ -1,50 +1,42 @@
 using Candid.Net.Auth.V2;
 
+#nullable enable
+
 namespace Candid.Net.Core;
 
-using System;
-using System.Threading.Tasks;
-
-public sealed class OAuthTokenProvider
+public partial class OAuthTokenProvider
 {
     private const double BufferInMinutes = 2;
 
-    private readonly string _clientId;
-    private readonly string _clientSecret;
-    private readonly V2Client _authClient;
-
     private string? _accessToken;
-    private DateTime _expiresAt;
 
-    public OAuthTokenProvider(string clientId, string clientSecret, V2Client authClient)
+    private DateTime? _expiresAt;
+
+    private string _clientId;
+
+    private string _clientSecret;
+
+    private V2Client _client;
+
+    public OAuthTokenProvider(string clientId, string clientSecret, V2Client client)
     {
         _clientId = clientId;
         _clientSecret = clientSecret;
-        _authClient = authClient;
-        _expiresAt = DateTime.UtcNow;
+        _client = client;
     }
 
     public async Task<string> GetAccessTokenAsync()
     {
         if (_accessToken == null || DateTime.UtcNow >= _expiresAt)
         {
-            var tokenResponse = await FetchTokenAsync();
+            var tokenResponse = await _client.GetTokenAsync(
+                new AuthGetTokenRequest { ClientId = _clientId, ClientSecret = _clientSecret }
+            );
             _accessToken = tokenResponse.AccessToken;
             _expiresAt = DateTime
                 .UtcNow.AddSeconds(tokenResponse.ExpiresIn)
                 .AddMinutes(-BufferInMinutes);
         }
-
         return $"Bearer {_accessToken}";
-    }
-
-    private async Task<AuthGetTokenResponse> FetchTokenAsync()
-    {
-        var request = new AuthGetTokenRequest
-        {
-            ClientId = _clientId,
-            ClientSecret = _clientSecret
-        };
-        return await _authClient.GetTokenAsync(request);
     }
 }

@@ -19,6 +19,9 @@ public record NonInsurancePayerUpdateRequest
     [JsonPropertyName("category")]
     public object? Category { get; set; }
 
+    [JsonPropertyName("address")]
+    public object? Address { get; set; }
+
     public override string ToString()
     {
         return JsonUtils.Serialize(this);
