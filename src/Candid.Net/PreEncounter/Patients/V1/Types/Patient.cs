@@ -159,6 +159,9 @@ public record Patient
     [JsonPropertyName("non_insurance_payers")]
     public IEnumerable<string>? NonInsurancePayers { get; set; }
 
+    [JsonPropertyName("non_insurance_payer_associations")]
+    public IEnumerable<CanonicalNonInsurancePayerAssociation>? NonInsurancePayerAssociations { get; set; }
+
     [JsonPropertyName("guarantor")]
     public Guarantor? Guarantor { get; set; }
 
@@ -170,6 +173,9 @@ public record Patient
 
     [JsonPropertyName("referrals")]
     public IEnumerable<Referral>? Referrals { get; set; }
+
+    [JsonPropertyName("primary_service_facility_id")]
+    public string? PrimaryServiceFacilityId { get; set; }
 
     public override string ToString()
     {

@@ -40,6 +40,20 @@ public partial class V1Client
     ///             },
     ///             DateOfBirth = new DateOnly(2023, 1, 15),
     ///             BiologicalSex = Sex.Female,
+    ///             Address = new Address
+    ///             {
+    ///                 Use = AddressUse.Home,
+    ///                 Line = new List<string>() { "string" },
+    ///                 City = "string",
+    ///                 State = "string",
+    ///                 PostalCode = "string",
+    ///                 Country = "string",
+    ///                 Period = new Period
+    ///                 {
+    ///                     Start = new Dictionary<object, object?>() { { "key", "value" } },
+    ///                     End = new Dictionary<object, object?>() { { "key", "value" } },
+    ///                 },
+    ///             },
     ///         },
     ///         Relationship = Relationship.Self,
     ///         Patient = "string",
@@ -156,6 +170,20 @@ public partial class V1Client
     ///             },
     ///             DateOfBirth = new DateOnly(2023, 1, 15),
     ///             BiologicalSex = Sex.Female,
+    ///             Address = new Address
+    ///             {
+    ///                 Use = AddressUse.Home,
+    ///                 Line = new List<string>() { "string" },
+    ///                 City = "string",
+    ///                 State = "string",
+    ///                 PostalCode = "string",
+    ///                 Country = "string",
+    ///                 Period = new Period
+    ///                 {
+    ///                     Start = new Dictionary<object, object?>() { { "key", "value" } },
+    ///                     End = new Dictionary<object, object?>() { { "key", "value" } },
+    ///                 },
+    ///             },
     ///         },
     ///         Relationship = Relationship.Self,
     ///         Patient = "string",

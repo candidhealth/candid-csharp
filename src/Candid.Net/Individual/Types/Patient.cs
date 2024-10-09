@@ -27,6 +27,10 @@ public record Patient
     public IEnumerable<NonInsurancePayer> NonInsurancePayers { get; set; } =
         new List<NonInsurancePayer>();
 
+    [JsonPropertyName("non_insurance_payers_info")]
+    public IEnumerable<PatientNonInsurancePayerInfo> NonInsurancePayersInfo { get; set; } =
+        new List<PatientNonInsurancePayerInfo>();
+
     /// <summary>
     /// The ID used to identify this individual in your system. For example, your internal patient ID or an EHR patient ID.
     /// </summary>

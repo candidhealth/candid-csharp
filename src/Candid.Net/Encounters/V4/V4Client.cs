@@ -195,6 +195,14 @@ public partial class V4Client
     ///             PhoneConsent = true,
     ///             Email = "johndoe@joincandidhealth.com",
     ///             NonInsurancePayers = new List<string>() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
+    ///             NonInsurancePayersInfo = new List<PatientNonInsurancePayerInfoCreate>()
+    ///             {
+    ///                 new PatientNonInsurancePayerInfoCreate
+    ///                 {
+    ///                     NonInsurancePayerId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///                     MemberId = "string",
+    ///                 },
+    ///             },
     ///             EmailConsent = true,
     ///             ExternalId = "string",
     ///             DateOfBirth = new DateOnly(2023, 1, 15),
@@ -620,6 +628,7 @@ public partial class V4Client
     ///         OnsetOfCurrentIllnessOrSymptomDate = new DateOnly(2023, 1, 15),
     ///         LastMenstrualPeriodDate = new DateOnly(2023, 1, 15),
     ///         DelayReasonCode = DelayReasonCode.C1,
+    ///         ReferralNumber = "string",
     ///     }
     /// );
     /// </code>
@@ -990,6 +999,7 @@ public partial class V4Client
     ///         OnsetOfCurrentIllnessOrSymptomDate = new DateOnly(2023, 1, 15),
     ///         LastMenstrualPeriodDate = new DateOnly(2023, 1, 15),
     ///         DelayReasonCode = DelayReasonCode.C1,
+    ///         ReferralNumber = "string",
     ///     }
     /// );
     /// </code>
@@ -1172,6 +1182,14 @@ public partial class V4Client
     ///             Email = "johndoe@joincandidhealth.com",
     ///             EmailConsent = true,
     ///             NonInsurancePayers = new List<string>() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
+    ///             NonInsurancePayersInfo = new List<PatientNonInsurancePayerInfoCreate>()
+    ///             {
+    ///                 new PatientNonInsurancePayerInfoCreate
+    ///                 {
+    ///                     NonInsurancePayerId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///                     MemberId = "string",
+    ///                 },
+    ///             },
     ///         },
     ///         PatientAuthorizedRelease = true,
     ///         SchemaInstances = new List<SchemaInstance>()
@@ -1333,6 +1351,7 @@ public partial class V4Client
     ///             LastName = "string",
     ///             OrganizationName = "string",
     ///         },
+    ///         ReferralNumber = "string",
     ///     }
     /// );
     /// </code>

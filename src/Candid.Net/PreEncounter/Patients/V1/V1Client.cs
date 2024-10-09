@@ -211,6 +211,14 @@ public partial class V1Client
     ///                 Coverages = new List<string>() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
     ///             },
     ///             NonInsurancePayers = new List<string>() { "string" },
+    ///             NonInsurancePayerAssociations = new List<CanonicalNonInsurancePayerAssociation>()
+    ///             {
+    ///                 new CanonicalNonInsurancePayerAssociation
+    ///                 {
+    ///                     Id = "string",
+    ///                     MemberId = new Dictionary<object, object?>() { { "key", "value" } },
+    ///                 },
+    ///             },
     ///             Guarantor = new Candid.Net.PreEncounter.Patients.V1.Guarantor
     ///             {
     ///                 Name = new HumanName
@@ -310,6 +318,7 @@ public partial class V1Client
     ///                     Notes = new Dictionary<object, object?>() { { "key", "value" } },
     ///                 },
     ///             },
+    ///             PrimaryServiceFacilityId = "string",
     ///         },
     ///     }
     /// );
@@ -715,6 +724,14 @@ public partial class V1Client
     ///             Coverages = new List<string>() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
     ///         },
     ///         NonInsurancePayers = new List<string>() { "string" },
+    ///         NonInsurancePayerAssociations = new List<CanonicalNonInsurancePayerAssociation>()
+    ///         {
+    ///             new CanonicalNonInsurancePayerAssociation
+    ///             {
+    ///                 Id = "string",
+    ///                 MemberId = new Dictionary<object, object?>() { { "key", "value" } },
+    ///             },
+    ///         },
     ///         Guarantor = new Candid.Net.PreEncounter.Patients.V1.Guarantor
     ///         {
     ///             Name = new HumanName
@@ -814,6 +831,7 @@ public partial class V1Client
     ///                 Notes = new Dictionary<object, object?>() { { "key", "value" } },
     ///             },
     ///         },
+    ///         PrimaryServiceFacilityId = "string",
     ///     }
     /// );
     /// </code>

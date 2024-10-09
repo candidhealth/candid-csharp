@@ -1655,6 +1655,14 @@ await client.Encounters.V4.CreateAsync(
             PhoneConsent = true,
             Email = "johndoe@joincandidhealth.com",
             NonInsurancePayers = new List<string>() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
+            NonInsurancePayersInfo = new List<PatientNonInsurancePayerInfoCreate>()
+            {
+                new PatientNonInsurancePayerInfoCreate
+                {
+                    NonInsurancePayerId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+                    MemberId = "string",
+                },
+            },
             EmailConsent = true,
             ExternalId = "string",
             DateOfBirth = new DateOnly(2023, 1, 15),
@@ -2080,6 +2088,7 @@ await client.Encounters.V4.CreateAsync(
         OnsetOfCurrentIllnessOrSymptomDate = new DateOnly(2023, 1, 15),
         LastMenstrualPeriodDate = new DateOnly(2023, 1, 15),
         DelayReasonCode = DelayReasonCode.C1,
+        ReferralNumber = "string",
     }
 );
 ```
@@ -2459,6 +2468,7 @@ await client.Encounters.V4.CreateFromPreEncounterPatientAsync(
         OnsetOfCurrentIllnessOrSymptomDate = new DateOnly(2023, 1, 15),
         LastMenstrualPeriodDate = new DateOnly(2023, 1, 15),
         DelayReasonCode = DelayReasonCode.C1,
+        ReferralNumber = "string",
     }
 );
 ```
@@ -2639,6 +2649,14 @@ await client.Encounters.V4.UpdateAsync(
             Email = "johndoe@joincandidhealth.com",
             EmailConsent = true,
             NonInsurancePayers = new List<string>() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
+            NonInsurancePayersInfo = new List<PatientNonInsurancePayerInfoCreate>()
+            {
+                new PatientNonInsurancePayerInfoCreate
+                {
+                    NonInsurancePayerId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+                    MemberId = "string",
+                },
+            },
         },
         PatientAuthorizedRelease = true,
         SchemaInstances = new List<SchemaInstance>()
@@ -2800,6 +2818,7 @@ await client.Encounters.V4.UpdateAsync(
             LastName = "string",
             OrganizationName = "string",
         },
+        ReferralNumber = "string",
     }
 );
 ```
@@ -8646,6 +8665,20 @@ await client.PreEncounter.Coverages.V1.CreateAsync(
             },
             DateOfBirth = new DateOnly(2023, 1, 15),
             BiologicalSex = Sex.Female,
+            Address = new Address
+            {
+                Use = AddressUse.Home,
+                Line = new List<string>() { "string" },
+                City = "string",
+                State = "string",
+                PostalCode = "string",
+                Country = "string",
+                Period = new Period
+                {
+                    Start = new Dictionary<object, object?>() { { "key", "value" } },
+                    End = new Dictionary<object, object?>() { { "key", "value" } },
+                },
+            },
         },
         Relationship = Relationship.Self,
         Patient = "string",
@@ -8771,6 +8804,20 @@ await client.PreEncounter.Coverages.V1.UpdateAsync(
             },
             DateOfBirth = new DateOnly(2023, 1, 15),
             BiologicalSex = Sex.Female,
+            Address = new Address
+            {
+                Use = AddressUse.Home,
+                Line = new List<string>() { "string" },
+                City = "string",
+                State = "string",
+                PostalCode = "string",
+                Country = "string",
+                Period = new Period
+                {
+                    Start = new Dictionary<object, object?>() { { "key", "value" } },
+                    End = new Dictionary<object, object?>() { { "key", "value" } },
+                },
+            },
         },
         Relationship = Relationship.Self,
         Patient = "string",
@@ -9564,6 +9611,14 @@ await client.PreEncounter.Patients.V1.CreateAsync(
                 Coverages = new List<string>() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
             },
             NonInsurancePayers = new List<string>() { "string" },
+            NonInsurancePayerAssociations = new List<CanonicalNonInsurancePayerAssociation>()
+            {
+                new CanonicalNonInsurancePayerAssociation
+                {
+                    Id = "string",
+                    MemberId = new Dictionary<object, object?>() { { "key", "value" } },
+                },
+            },
             Guarantor = new Candid.Net.PreEncounter.Patients.V1.Guarantor
             {
                 Name = new HumanName
@@ -9663,6 +9718,7 @@ await client.PreEncounter.Patients.V1.CreateAsync(
                     Notes = new Dictionary<object, object?>() { { "key", "value" } },
                 },
             },
+            PrimaryServiceFacilityId = "string",
         },
     }
 );
@@ -10079,6 +10135,14 @@ await client.PreEncounter.Patients.V1.UpdateAsync(
             Coverages = new List<string>() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
         },
         NonInsurancePayers = new List<string>() { "string" },
+        NonInsurancePayerAssociations = new List<CanonicalNonInsurancePayerAssociation>()
+        {
+            new CanonicalNonInsurancePayerAssociation
+            {
+                Id = "string",
+                MemberId = new Dictionary<object, object?>() { { "key", "value" } },
+            },
+        },
         Guarantor = new Candid.Net.PreEncounter.Patients.V1.Guarantor
         {
             Name = new HumanName
@@ -10178,6 +10242,7 @@ await client.PreEncounter.Patients.V1.UpdateAsync(
                 Notes = new Dictionary<object, object?>() { { "key", "value" } },
             },
         },
+        PrimaryServiceFacilityId = "string",
     }
 );
 ```

@@ -300,6 +300,13 @@ public record EncounterUpdate
     [JsonPropertyName("initial_referring_provider")]
     public InitialReferringProviderUpdate? InitialReferringProvider { get; set; }
 
+    /// <summary>
+    /// Refers to REF*9F on the 837p. Value cannot be greater than 50 characters.
+    ///
+    /// </summary>
+    [JsonPropertyName("referral_number")]
+    public string? ReferralNumber { get; set; }
+
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

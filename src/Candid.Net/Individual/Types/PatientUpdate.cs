@@ -52,6 +52,12 @@ public record PatientUpdate
     [JsonPropertyName("non_insurance_payers")]
     public IEnumerable<string>? NonInsurancePayers { get; set; }
 
+    /// <summary>
+    /// On update, we will replace the existing list of non-insurance payers with the new list if populated.
+    /// </summary>
+    [JsonPropertyName("non_insurance_payers_info")]
+    public IEnumerable<PatientNonInsurancePayerInfoCreate>? NonInsurancePayersInfo { get; set; }
+
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

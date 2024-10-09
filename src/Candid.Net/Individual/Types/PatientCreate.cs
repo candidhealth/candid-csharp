@@ -22,6 +22,9 @@ public record PatientCreate
     [JsonPropertyName("non_insurance_payers")]
     public IEnumerable<string>? NonInsurancePayers { get; set; }
 
+    [JsonPropertyName("non_insurance_payers_info")]
+    public IEnumerable<PatientNonInsurancePayerInfoCreate>? NonInsurancePayersInfo { get; set; }
+
     /// <summary>
     /// Defaults to false
     /// </summary>

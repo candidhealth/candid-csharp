@@ -17,6 +17,9 @@ public record Subscriber
     [JsonPropertyName("biological_sex")]
     public required Sex BiologicalSex { get; set; }
 
+    [JsonPropertyName("address")]
+    public Address? Address { get; set; }
+
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

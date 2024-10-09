@@ -12,7 +12,7 @@ public record Guarantor
     public required HumanName Name { get; set; }
 
     [JsonPropertyName("telecom")]
-    public required ContactPoint Telecom { get; set; }
+    public ContactPoint? Telecom { get; set; }
 
     [JsonPropertyName("email")]
     public string? Email { get; set; }
