@@ -176,11 +176,7 @@ public partial class V3Client
     ///         {
     ///             new IdentifierCreate
     ///             {
-    ///                 Period = new DateRangeOptionalEnd
-    ///                 {
-    ///                     StartDate = "string",
-    ///                     EndDate = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                 },
+    ///                 Period = new DateRangeOptionalEnd { StartDate = "string" },
     ///                 IdentifierCode = IdentifierCode.Mcr,
     ///                 IdentifierValue = new MedicareProviderIdentifier(),
     ///             },
@@ -264,11 +260,7 @@ public partial class V3Client
     ///         {
     ///             new IdentifierCreate
     ///             {
-    ///                 Period = new DateRangeOptionalEnd
-    ///                 {
-    ///                     StartDate = "string",
-    ///                     EndDate = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                 },
+    ///                 Period = new DateRangeOptionalEnd { StartDate = "string" },
     ///                 IdentifierCode = IdentifierCode.Mcr,
     ///                 IdentifierValue = new MedicareProviderIdentifier(),
     ///             },

@@ -32,11 +32,7 @@ public partial class V1Client
     ///                 Family = "string",
     ///                 Given = new List<string>() { "string" },
     ///                 Use = NameUse.Usual,
-    ///                 Period = new Period
-    ///                 {
-    ///                     Start = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                     End = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                 },
+    ///                 Period = new Period(),
     ///             },
     ///             DateOfBirth = new DateOnly(2023, 1, 15),
     ///             BiologicalSex = Sex.Female,
@@ -48,11 +44,7 @@ public partial class V1Client
     ///                 State = "string",
     ///                 PostalCode = "string",
     ///                 Country = "string",
-    ///                 Period = new Period
-    ///                 {
-    ///                     Start = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                     End = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                 },
+    ///                 Period = new Period(),
     ///             },
     ///         },
     ///         Relationship = Relationship.Self,
@@ -73,11 +65,7 @@ public partial class V1Client
     ///             Name = "string",
     ///             PlanType = Candid.Net.PreEncounter.Coverages.V1.NetworkType.SelfPay,
     ///             Type = Candid.Net.PreEncounter.Coverages.V1.InsuranceTypeCode.C01,
-    ///             Period = new Period
-    ///             {
-    ///                 Start = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                 End = new Dictionary<object, object?>() { { "key", "value" } },
-    ///             },
+    ///             Period = new Period(),
     ///             InsuranceCardImageLocator = "string",
     ///         },
     ///         Verified = true,
@@ -98,11 +86,7 @@ public partial class V1Client
     ///             Status = EligibilityStatus.Active,
     ///             InitiatedAt = new DateTime(2024, 01, 15, 09, 30, 00, 000),
     ///         },
-    ///         Benefits = new CoverageBenefits
-    ///         {
-    ///             PlanCoverage = new Dictionary<object, object?>() { { "key", "value" } },
-    ///             ServiceSpecificCoverage = new Dictionary<object, object?>() { { "key", "value" } },
-    ///         },
+    ///         Benefits = new CoverageBenefits(),
     ///     }
     /// );
     /// </code>
@@ -162,11 +146,7 @@ public partial class V1Client
     ///                 Family = "string",
     ///                 Given = new List<string>() { "string" },
     ///                 Use = NameUse.Usual,
-    ///                 Period = new Period
-    ///                 {
-    ///                     Start = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                     End = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                 },
+    ///                 Period = new Period(),
     ///             },
     ///             DateOfBirth = new DateOnly(2023, 1, 15),
     ///             BiologicalSex = Sex.Female,
@@ -178,11 +158,7 @@ public partial class V1Client
     ///                 State = "string",
     ///                 PostalCode = "string",
     ///                 Country = "string",
-    ///                 Period = new Period
-    ///                 {
-    ///                     Start = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                     End = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                 },
+    ///                 Period = new Period(),
     ///             },
     ///         },
     ///         Relationship = Relationship.Self,
@@ -203,11 +179,7 @@ public partial class V1Client
     ///             Name = "string",
     ///             PlanType = Candid.Net.PreEncounter.Coverages.V1.NetworkType.SelfPay,
     ///             Type = Candid.Net.PreEncounter.Coverages.V1.InsuranceTypeCode.C01,
-    ///             Period = new Period
-    ///             {
-    ///                 Start = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                 End = new Dictionary<object, object?>() { { "key", "value" } },
-    ///             },
+    ///             Period = new Period(),
     ///             InsuranceCardImageLocator = "string",
     ///         },
     ///         Verified = true,
@@ -228,11 +200,7 @@ public partial class V1Client
     ///             Status = EligibilityStatus.Active,
     ///             InitiatedAt = new DateTime(2024, 01, 15, 09, 30, 00, 000),
     ///         },
-    ///         Benefits = new CoverageBenefits
-    ///         {
-    ///             PlanCoverage = new Dictionary<object, object?>() { { "key", "value" } },
-    ///             ServiceSpecificCoverage = new Dictionary<object, object?>() { { "key", "value" } },
-    ///         },
+    ///         Benefits = new CoverageBenefits(),
     ///     }
     /// );
     /// </code>

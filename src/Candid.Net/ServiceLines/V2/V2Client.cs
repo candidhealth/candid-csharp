@@ -50,6 +50,23 @@ public partial class V2Client
     ///             ConversionFormula = "string",
     ///             DrugDescription = "string",
     ///         },
+    ///         OrderingProvider = new OrderingProvider
+    ///         {
+    ///             Npi = "string",
+    ///             TaxonomyCode = "string",
+    ///             Address = new StreetAddressLongZip
+    ///             {
+    ///                 Address1 = "123 Main St",
+    ///                 Address2 = "Apt 1",
+    ///                 City = "New York",
+    ///                 State = State.Ny,
+    ///                 ZipCode = "10001",
+    ///                 ZipPlusFourCode = "1234",
+    ///             },
+    ///             FirstName = "string",
+    ///             LastName = "string",
+    ///             OrganizationName = "string",
+    ///         },
     ///         TestResults = new List<TestResult>()
     ///         {
     ///             new TestResult { Value = 1.1, ResultType = TestResultType.Hematocrit },

@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using Candid.Net;
 using Candid.Net.Core;
+using Candid.Net.EncounterProviders.V2;
 
 #nullable enable
 
@@ -63,6 +64,13 @@ public record ServiceLineCreateStandalone
 
     [JsonPropertyName("drug_identification")]
     public DrugIdentification? DrugIdentification { get; set; }
+
+    /// <summary>
+    /// Required when the service or supply was ordered by a provider who is different than the rendering provider for this service line.
+    /// If not required by this implementation guide, do not send.
+    /// </summary>
+    [JsonPropertyName("ordering_provider")]
+    public OrderingProvider? OrderingProvider { get; set; }
 
     /// <summary>
     /// Maps to MEA-02 on the 837-P. No more than 5 test results may be submitted per service line.

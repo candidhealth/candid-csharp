@@ -969,6 +969,9 @@ public enum Rarc
     [EnumMember(Value = "N99")]
     N99,
 
+    [EnumMember(Value = "N102")]
+    N102,
+
     [EnumMember(Value = "N103")]
     N103,
 

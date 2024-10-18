@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Core;
 
 #nullable enable
@@ -21,6 +22,9 @@ public record NonInsurancePayer
 
     [JsonPropertyName("enabled")]
     public required bool Enabled { get; set; }
+
+    [JsonPropertyName("address")]
+    public StreetAddressShortZip? Address { get; set; }
 
     public override string ToString()
     {

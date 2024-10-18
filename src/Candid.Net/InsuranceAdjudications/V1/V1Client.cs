@@ -83,29 +83,12 @@ public partial class V1Client
     ///                     new ClaimAdjudicationCreate
     ///                     {
     ///                         ClaimStatusCode = ClaimStatusCodeCreate.ProcessedAsPrimary,
-    ///                         InsurancePaidAmountCents = new Dictionary<object, object?>()
-    ///                         {
-    ///                             { "key", "value" },
-    ///                         },
-    ///                         ChargeAmountCents = new Dictionary<object, object?>()
-    ///                         {
-    ///                             { "key", "value" },
-    ///                         },
     ///                         ServiceLines = new Dictionary<
     ///                             string,
     ///                             IEnumerable<ServiceLineAdjudicationCreate>
     ///                         >()
-    ///                         {
-    ///                             {
-    ///                                 "string",
-    ///                                 new Dictionary<object, object?>() { { "key", "value" } }
-    ///                             },
-    ///                         },
-    ///                         PayerClaimNumber = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                         Carcs = new List<ClaimAdjustmentReasonCode>()
-    ///                         {
-    ///                             new Dictionary<object, object?>() { { "key", "value" } },
-    ///                         },
+    ///                         { },
+    ///                         Carcs = new List<ClaimAdjustmentReasonCode>() { },
     ///                     },
     ///                 }
     ///             },

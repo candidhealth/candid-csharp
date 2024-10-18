@@ -398,6 +398,262 @@ await client.Contracts.V2.UpdateAsync(
 </dl>
 </details>
 
+## Credentialing V2
+<details><summary><code>client.Credentialing.V2.<a href="/src/Candid.Net/Credentialing/V2/V2Client.cs">CreateAsync</a>(ProviderCredentialingSpanCreate { ... }) -> ProviderCredentialingSpan</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Credentialing.V2.CreateAsync(
+    new ProviderCredentialingSpanCreate
+    {
+        RenderingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        ContractingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        StartDate = new DateOnly(2023, 1, 15),
+        EndDate = new DateOnly(2023, 1, 15),
+        Regions = new RegionStates { States = new List<State>() { State.Aa } },
+        SubmittedDate = new DateOnly(2023, 1, 15),
+        PayerLoadedDate = new DateOnly(2023, 1, 15),
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ProviderCredentialingSpanCreate` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Credentialing.V2.<a href="/src/Candid.Net/Credentialing/V2/V2Client.cs">GetAsync</a>(providerCredentialingId) -> ProviderCredentialingSpan</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Credentialing.V2.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerCredentialingId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Credentialing.V2.<a href="/src/Candid.Net/Credentialing/V2/V2Client.cs">GetAllAsync</a>(GetAllProviderCredentialingSpansRequest { ... }) -> ProviderCredentialingSpanPage</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Credentialing.V2.GetAllAsync(
+    new GetAllProviderCredentialingSpansRequest
+    {
+        Limit = 1,
+        PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
+        PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        AsRenderingProvider = true,
+        AsContractingProvider = true,
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `GetAllProviderCredentialingSpansRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Credentialing.V2.<a href="/src/Candid.Net/Credentialing/V2/V2Client.cs">DeleteAsync</a>(providerCredentialingId)</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Soft deletes a credentialing span rate from the system.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Credentialing.V2.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerCredentialingId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Credentialing.V2.<a href="/src/Candid.Net/Credentialing/V2/V2Client.cs">UpdateAsync</a>(providerCredentialingId, ProviderCredentialingSpanUpdate { ... }) -> ProviderCredentialingSpan</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Credentialing.V2.UpdateAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new ProviderCredentialingSpanUpdate
+    {
+        ContractingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        StartDate = new DateOnly(2023, 1, 15),
+        EndDate = new DateOnly(2023, 1, 15),
+        Regions = new RegionStates { States = new List<State>() { State.Aa } },
+        SubmittedDate = new DateOnly(2023, 1, 15),
+        PayerLoadedDate = new DateOnly(2023, 1, 15),
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerCredentialingId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `ProviderCredentialingSpanUpdate` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## CustomSchemas V1
 <details><summary><code>client.CustomSchemas.V1.<a href="/src/Candid.Net/CustomSchemas/V1/V1Client.cs">GetMultiAsync</a>() -> SchemaGetMultiResponse</code></summary>
 <dl>
@@ -2013,6 +2269,7 @@ await client.Encounters.V4.CreateAsync(
                 },
             },
         },
+        ReferralNumber = "string",
         ExternalId = "string",
         DateOfService = new DateOnly(2023, 1, 15),
         EndDateOfService = new DateOnly(2023, 1, 15),
@@ -2088,7 +2345,6 @@ await client.Encounters.V4.CreateAsync(
         OnsetOfCurrentIllnessOrSymptomDate = new DateOnly(2023, 1, 15),
         LastMenstrualPeriodDate = new DateOnly(2023, 1, 15),
         DelayReasonCode = DelayReasonCode.C1,
-        ReferralNumber = "string",
     }
 );
 ```
@@ -2140,7 +2396,7 @@ where applicable. In particular, the following fields are populated from the pat
 - Referring Provider
 - Subscriber Primary
 - Subscriber Secondary
-- Prior Authorization Number
+- Referral Number
 - Responsible Party
 - Guarantor
 
@@ -2468,7 +2724,6 @@ await client.Encounters.V4.CreateFromPreEncounterPatientAsync(
         OnsetOfCurrentIllnessOrSymptomDate = new DateOnly(2023, 1, 15),
         LastMenstrualPeriodDate = new DateOnly(2023, 1, 15),
         DelayReasonCode = DelayReasonCode.C1,
-        ReferralNumber = "string",
     }
 );
 ```
@@ -4463,29 +4718,12 @@ await client.InsuranceAdjudications.V1.CreateAsync(
                     new ClaimAdjudicationCreate
                     {
                         ClaimStatusCode = ClaimStatusCodeCreate.ProcessedAsPrimary,
-                        InsurancePaidAmountCents = new Dictionary<object, object?>()
-                        {
-                            { "key", "value" },
-                        },
-                        ChargeAmountCents = new Dictionary<object, object?>()
-                        {
-                            { "key", "value" },
-                        },
                         ServiceLines = new Dictionary<
                             string,
                             IEnumerable<ServiceLineAdjudicationCreate>
                         >()
-                        {
-                            {
-                                "string",
-                                new Dictionary<object, object?>() { { "key", "value" } }
-                            },
-                        },
-                        PayerClaimNumber = new Dictionary<object, object?>() { { "key", "value" } },
-                        Carcs = new List<ClaimAdjustmentReasonCode>()
-                        {
-                            new Dictionary<object, object?>() { { "key", "value" } },
-                        },
+                        { },
+                        Carcs = new List<ClaimAdjustmentReasonCode>() { },
                     },
                 }
             },
@@ -6584,11 +6822,7 @@ await client.OrganizationProviders.V3.CreateAsync(
         {
             new IdentifierCreate
             {
-                Period = new DateRangeOptionalEnd
-                {
-                    StartDate = "string",
-                    EndDate = new Dictionary<object, object?>() { { "key", "value" } },
-                },
+                Period = new DateRangeOptionalEnd { StartDate = "string" },
                 IdentifierCode = IdentifierCode.Mcr,
                 IdentifierValue = new MedicareProviderIdentifier(),
             },
@@ -6670,11 +6904,7 @@ await client.OrganizationProviders.V3.UpdateAsync(
         {
             new IdentifierCreate
             {
-                Period = new DateRangeOptionalEnd
-                {
-                    StartDate = "string",
-                    EndDate = new Dictionary<object, object?>() { { "key", "value" } },
-                },
+                Period = new DateRangeOptionalEnd { StartDate = "string" },
                 IdentifierCode = IdentifierCode.Mcr,
                 IdentifierValue = new MedicareProviderIdentifier(),
             },
@@ -7495,6 +7725,23 @@ await client.ServiceLines.V2.CreateAsync(
             ConversionFormula = "string",
             DrugDescription = "string",
         },
+        OrderingProvider = new OrderingProvider
+        {
+            Npi = "string",
+            TaxonomyCode = "string",
+            Address = new StreetAddressLongZip
+            {
+                Address1 = "123 Main St",
+                Address2 = "Apt 1",
+                City = "New York",
+                State = State.Ny,
+                ZipCode = "10001",
+                ZipPlusFourCode = "1234",
+            },
+            FirstName = "string",
+            LastName = "string",
+            OrganizationName = "string",
+        },
         TestResults = new List<TestResult>()
         {
             new TestResult { Value = 1.1, ResultType = TestResultType.Hematocrit },
@@ -8196,32 +8443,16 @@ await client.PreEncounter.Appointments.V1.CreateAsync(
                 Family = "string",
                 Given = new List<string>() { "string" },
                 Use = NameUse.Usual,
-                Period = new Period
-                {
-                    Start = new Dictionary<object, object?>() { { "key", "value" } },
-                    End = new Dictionary<object, object?>() { { "key", "value" } },
-                },
+                Period = new Period(),
             },
             Type = ExternalProviderType.Primary,
             Npi = "string",
             Telecoms = new List<ContactPoint>()
             {
-                new ContactPoint
-                {
-                    Value = "string",
-                    Use = ContactPointUse.Home,
-                    Period = new Dictionary<object, object?>() { { "key", "value" } },
-                },
+                new ContactPoint { Value = "string", Use = ContactPointUse.Home },
             },
-            Addresses = new List<Address>()
-            {
-                new Dictionary<object, object?>() { { "key", "value" } },
-            },
-            Period = new Period
-            {
-                Start = new Dictionary<object, object?>() { { "key", "value" } },
-                End = new Dictionary<object, object?>() { { "key", "value" } },
-            },
+            Addresses = new List<Address>() { },
+            Period = new Period(),
             CanonicalId = "string",
         },
         EstimatedCopayCents = 1,
@@ -8420,32 +8651,16 @@ await client.PreEncounter.Appointments.V1.UpdateAsync(
                 Family = "string",
                 Given = new List<string>() { "string" },
                 Use = NameUse.Usual,
-                Period = new Period
-                {
-                    Start = new Dictionary<object, object?>() { { "key", "value" } },
-                    End = new Dictionary<object, object?>() { { "key", "value" } },
-                },
+                Period = new Period(),
             },
             Type = ExternalProviderType.Primary,
             Npi = "string",
             Telecoms = new List<ContactPoint>()
             {
-                new ContactPoint
-                {
-                    Value = "string",
-                    Use = ContactPointUse.Home,
-                    Period = new Dictionary<object, object?>() { { "key", "value" } },
-                },
+                new ContactPoint { Value = "string", Use = ContactPointUse.Home },
             },
-            Addresses = new List<Address>()
-            {
-                new Dictionary<object, object?>() { { "key", "value" } },
-            },
-            Period = new Period
-            {
-                Start = new Dictionary<object, object?>() { { "key", "value" } },
-                End = new Dictionary<object, object?>() { { "key", "value" } },
-            },
+            Addresses = new List<Address>() { },
+            Period = new Period(),
             CanonicalId = "string",
         },
         EstimatedCopayCents = 1,
@@ -8657,11 +8872,7 @@ await client.PreEncounter.Coverages.V1.CreateAsync(
                 Family = "string",
                 Given = new List<string>() { "string" },
                 Use = NameUse.Usual,
-                Period = new Period
-                {
-                    Start = new Dictionary<object, object?>() { { "key", "value" } },
-                    End = new Dictionary<object, object?>() { { "key", "value" } },
-                },
+                Period = new Period(),
             },
             DateOfBirth = new DateOnly(2023, 1, 15),
             BiologicalSex = Sex.Female,
@@ -8673,11 +8884,7 @@ await client.PreEncounter.Coverages.V1.CreateAsync(
                 State = "string",
                 PostalCode = "string",
                 Country = "string",
-                Period = new Period
-                {
-                    Start = new Dictionary<object, object?>() { { "key", "value" } },
-                    End = new Dictionary<object, object?>() { { "key", "value" } },
-                },
+                Period = new Period(),
             },
         },
         Relationship = Relationship.Self,
@@ -8698,11 +8905,7 @@ await client.PreEncounter.Coverages.V1.CreateAsync(
             Name = "string",
             PlanType = Candid.Net.PreEncounter.Coverages.V1.NetworkType.SelfPay,
             Type = Candid.Net.PreEncounter.Coverages.V1.InsuranceTypeCode.C01,
-            Period = new Period
-            {
-                Start = new Dictionary<object, object?>() { { "key", "value" } },
-                End = new Dictionary<object, object?>() { { "key", "value" } },
-            },
+            Period = new Period(),
             InsuranceCardImageLocator = "string",
         },
         Verified = true,
@@ -8723,11 +8926,7 @@ await client.PreEncounter.Coverages.V1.CreateAsync(
             Status = EligibilityStatus.Active,
             InitiatedAt = new DateTime(2024, 01, 15, 09, 30, 00, 000),
         },
-        Benefits = new CoverageBenefits
-        {
-            PlanCoverage = new Dictionary<object, object?>() { { "key", "value" } },
-            ServiceSpecificCoverage = new Dictionary<object, object?>() { { "key", "value" } },
-        },
+        Benefits = new CoverageBenefits(),
     }
 );
 ```
@@ -8796,11 +8995,7 @@ await client.PreEncounter.Coverages.V1.UpdateAsync(
                 Family = "string",
                 Given = new List<string>() { "string" },
                 Use = NameUse.Usual,
-                Period = new Period
-                {
-                    Start = new Dictionary<object, object?>() { { "key", "value" } },
-                    End = new Dictionary<object, object?>() { { "key", "value" } },
-                },
+                Period = new Period(),
             },
             DateOfBirth = new DateOnly(2023, 1, 15),
             BiologicalSex = Sex.Female,
@@ -8812,11 +9007,7 @@ await client.PreEncounter.Coverages.V1.UpdateAsync(
                 State = "string",
                 PostalCode = "string",
                 Country = "string",
-                Period = new Period
-                {
-                    Start = new Dictionary<object, object?>() { { "key", "value" } },
-                    End = new Dictionary<object, object?>() { { "key", "value" } },
-                },
+                Period = new Period(),
             },
         },
         Relationship = Relationship.Self,
@@ -8837,11 +9028,7 @@ await client.PreEncounter.Coverages.V1.UpdateAsync(
             Name = "string",
             PlanType = Candid.Net.PreEncounter.Coverages.V1.NetworkType.SelfPay,
             Type = Candid.Net.PreEncounter.Coverages.V1.InsuranceTypeCode.C01,
-            Period = new Period
-            {
-                Start = new Dictionary<object, object?>() { { "key", "value" } },
-                End = new Dictionary<object, object?>() { { "key", "value" } },
-            },
+            Period = new Period(),
             InsuranceCardImageLocator = "string",
         },
         Verified = true,
@@ -8862,11 +9049,7 @@ await client.PreEncounter.Coverages.V1.UpdateAsync(
             Status = EligibilityStatus.Active,
             InitiatedAt = new DateTime(2024, 01, 15, 09, 30, 00, 000),
         },
-        Benefits = new CoverageBenefits
-        {
-            PlanCoverage = new Dictionary<object, object?>() { { "key", "value" } },
-            ServiceSpecificCoverage = new Dictionary<object, object?>() { { "key", "value" } },
-        },
+        Benefits = new CoverageBenefits(),
     }
 );
 ```
@@ -9432,11 +9615,7 @@ await client.PreEncounter.Patients.V1.CreateAsync(
                 Family = "string",
                 Given = new List<string>() { "string" },
                 Use = NameUse.Usual,
-                Period = new Period
-                {
-                    Start = new Dictionary<object, object?>() { { "key", "value" } },
-                    End = new Dictionary<object, object?>() { { "key", "value" } },
-                },
+                Period = new Period(),
             },
             OtherNames = new List<HumanName>()
             {
@@ -9445,11 +9624,7 @@ await client.PreEncounter.Patients.V1.CreateAsync(
                     Family = "string",
                     Given = new List<string>() { "string" },
                     Use = NameUse.Usual,
-                    Period = new Period
-                    {
-                        Start = new Dictionary<object, object?>() { { "key", "value" } },
-                        End = new Dictionary<object, object?>() { { "key", "value" } },
-                    },
+                    Period = new Period(),
                 },
             },
             Gender = Candid.Net.PreEncounter.Gender.Man,
@@ -9471,11 +9646,7 @@ await client.PreEncounter.Patients.V1.CreateAsync(
                 State = "string",
                 PostalCode = "string",
                 Country = "string",
-                Period = new Period
-                {
-                    Start = new Dictionary<object, object?>() { { "key", "value" } },
-                    End = new Dictionary<object, object?>() { { "key", "value" } },
-                },
+                Period = new Period(),
             },
             OtherAddresses = new List<Address>()
             {
@@ -9487,27 +9658,13 @@ await client.PreEncounter.Patients.V1.CreateAsync(
                     State = "string",
                     PostalCode = "string",
                     Country = "string",
-                    Period = new Period
-                    {
-                        Start = new Dictionary<object, object?>() { { "key", "value" } },
-                        End = new Dictionary<object, object?>() { { "key", "value" } },
-                    },
+                    Period = new Period(),
                 },
             },
-            PrimaryTelecom = new ContactPoint
-            {
-                Value = "string",
-                Use = ContactPointUse.Home,
-                Period = new Dictionary<object, object?>() { { "key", "value" } },
-            },
+            PrimaryTelecom = new ContactPoint { Value = "string", Use = ContactPointUse.Home },
             OtherTelecoms = new List<ContactPoint>()
             {
-                new ContactPoint
-                {
-                    Value = "string",
-                    Use = ContactPointUse.Home,
-                    Period = new Dictionary<object, object?>() { { "key", "value" } },
-                },
+                new ContactPoint { Value = "string", Use = ContactPointUse.Home },
             },
             Email = "string",
             ElectronicCommunicationOptIn = true,
@@ -9528,20 +9685,11 @@ await client.PreEncounter.Patients.V1.CreateAsync(
                         Family = "string",
                         Given = new List<string>() { "string" },
                         Use = NameUse.Usual,
-                        Period = new Period
-                        {
-                            Start = new Dictionary<object, object?>() { { "key", "value" } },
-                            End = new Dictionary<object, object?>() { { "key", "value" } },
-                        },
+                        Period = new Period(),
                     },
                     Telecoms = new List<ContactPoint>()
                     {
-                        new ContactPoint
-                        {
-                            Value = "string",
-                            Use = ContactPointUse.Home,
-                            Period = new Dictionary<object, object?>() { { "key", "value" } },
-                        },
+                        new ContactPoint { Value = "string", Use = ContactPointUse.Home },
                     },
                     Addresses = new List<Address>()
                     {
@@ -9553,18 +9701,10 @@ await client.PreEncounter.Patients.V1.CreateAsync(
                             State = "string",
                             PostalCode = "string",
                             Country = "string",
-                            Period = new Period
-                            {
-                                Start = new Dictionary<object, object?>() { { "key", "value" } },
-                                End = new Dictionary<object, object?>() { { "key", "value" } },
-                            },
+                            Period = new Period(),
                         },
                     },
-                    Period = new Period
-                    {
-                        Start = new Dictionary<object, object?>() { { "key", "value" } },
-                        End = new Dictionary<object, object?>() { { "key", "value" } },
-                    },
+                    Period = new Period(),
                     HipaaAuthorization = true,
                 },
             },
@@ -9577,32 +9717,16 @@ await client.PreEncounter.Patients.V1.CreateAsync(
                         Family = "string",
                         Given = new List<string>() { "string" },
                         Use = NameUse.Usual,
-                        Period = new Period
-                        {
-                            Start = new Dictionary<object, object?>() { { "key", "value" } },
-                            End = new Dictionary<object, object?>() { { "key", "value" } },
-                        },
+                        Period = new Period(),
                     },
                     Type = ExternalProviderType.Primary,
                     Npi = "string",
                     Telecoms = new List<ContactPoint>()
                     {
-                        new ContactPoint
-                        {
-                            Value = "string",
-                            Use = ContactPointUse.Home,
-                            Period = new Dictionary<object, object?>() { { "key", "value" } },
-                        },
+                        new ContactPoint { Value = "string", Use = ContactPointUse.Home },
                     },
-                    Addresses = new List<Address>()
-                    {
-                        new Dictionary<object, object?>() { { "key", "value" } },
-                    },
-                    Period = new Period
-                    {
-                        Start = new Dictionary<object, object?>() { { "key", "value" } },
-                        End = new Dictionary<object, object?>() { { "key", "value" } },
-                    },
+                    Addresses = new List<Address>() { },
+                    Period = new Period(),
                     CanonicalId = "string",
                 },
             },
@@ -9613,11 +9737,7 @@ await client.PreEncounter.Patients.V1.CreateAsync(
             NonInsurancePayers = new List<string>() { "string" },
             NonInsurancePayerAssociations = new List<CanonicalNonInsurancePayerAssociation>()
             {
-                new CanonicalNonInsurancePayerAssociation
-                {
-                    Id = "string",
-                    MemberId = new Dictionary<object, object?>() { { "key", "value" } },
-                },
+                new CanonicalNonInsurancePayerAssociation { Id = "string" },
             },
             Guarantor = new Candid.Net.PreEncounter.Patients.V1.Guarantor
             {
@@ -9626,18 +9746,9 @@ await client.PreEncounter.Patients.V1.CreateAsync(
                     Family = "string",
                     Given = new List<string>() { "string" },
                     Use = NameUse.Usual,
-                    Period = new Period
-                    {
-                        Start = new Dictionary<object, object?>() { { "key", "value" } },
-                        End = new Dictionary<object, object?>() { { "key", "value" } },
-                    },
+                    Period = new Period(),
                 },
-                Telecom = new ContactPoint
-                {
-                    Value = "string",
-                    Use = ContactPointUse.Home,
-                    Period = new Dictionary<object, object?>() { { "key", "value" } },
-                },
+                Telecom = new ContactPoint { Value = "string", Use = ContactPointUse.Home },
                 Email = "string",
                 BirthDate = new DateOnly(2023, 1, 15),
                 Address = new Address
@@ -9648,11 +9759,7 @@ await client.PreEncounter.Patients.V1.CreateAsync(
                     State = "string",
                     PostalCode = "string",
                     Country = "string",
-                    Period = new Period
-                    {
-                        Start = new Dictionary<object, object?>() { { "key", "value" } },
-                        End = new Dictionary<object, object?>() { { "key", "value" } },
-                    },
+                    Period = new Period(),
                 },
             },
             SelfPay = true,
@@ -9662,16 +9769,9 @@ await client.PreEncounter.Patients.V1.CreateAsync(
                 {
                     PayerId = "string",
                     PayerName = "string",
-                    AdditionalPayerInformation = new Dictionary<object, object?>()
-                    {
-                        { "key", "value" },
-                    },
                     AuthorizationNumber = "string",
                     CptCode = "string",
                     Units = AuthorizationUnit.Visit,
-                    Quantity = new Dictionary<object, object?>() { { "key", "value" } },
-                    Period = new Dictionary<object, object?>() { { "key", "value" } },
-                    Notes = new Dictionary<object, object?>() { { "key", "value" } },
                 },
             },
             Referrals = new List<Referral>()
@@ -9685,37 +9785,19 @@ await client.PreEncounter.Patients.V1.CreateAsync(
                             Family = "string",
                             Given = new List<string>() { "string" },
                             Use = NameUse.Usual,
-                            Period = new Period
-                            {
-                                Start = new Dictionary<object, object?>() { { "key", "value" } },
-                                End = new Dictionary<object, object?>() { { "key", "value" } },
-                            },
+                            Period = new Period(),
                         },
                         Type = ExternalProviderType.Primary,
                         Npi = "string",
                         Telecoms = new List<ContactPoint>()
                         {
-                            new ContactPoint
-                            {
-                                Value = "string",
-                                Use = ContactPointUse.Home,
-                                Period = new Dictionary<object, object?>() { { "key", "value" } },
-                            },
+                            new ContactPoint { Value = "string", Use = ContactPointUse.Home },
                         },
-                        Addresses = new List<Address>()
-                        {
-                            new Dictionary<object, object?>() { { "key", "value" } },
-                        },
-                        Period = new Period
-                        {
-                            Start = new Dictionary<object, object?>() { { "key", "value" } },
-                            End = new Dictionary<object, object?>() { { "key", "value" } },
-                        },
+                        Addresses = new List<Address>() { },
+                        Period = new Period(),
                         CanonicalId = "string",
                     },
                     ReferralNumber = "string",
-                    Period = new Dictionary<object, object?>() { { "key", "value" } },
-                    Notes = new Dictionary<object, object?>() { { "key", "value" } },
                 },
             },
             PrimaryServiceFacilityId = "string",
@@ -9956,11 +10038,7 @@ await client.PreEncounter.Patients.V1.UpdateAsync(
             Family = "string",
             Given = new List<string>() { "string" },
             Use = NameUse.Usual,
-            Period = new Period
-            {
-                Start = new Dictionary<object, object?>() { { "key", "value" } },
-                End = new Dictionary<object, object?>() { { "key", "value" } },
-            },
+            Period = new Period(),
         },
         OtherNames = new List<HumanName>()
         {
@@ -9969,11 +10047,7 @@ await client.PreEncounter.Patients.V1.UpdateAsync(
                 Family = "string",
                 Given = new List<string>() { "string" },
                 Use = NameUse.Usual,
-                Period = new Period
-                {
-                    Start = new Dictionary<object, object?>() { { "key", "value" } },
-                    End = new Dictionary<object, object?>() { { "key", "value" } },
-                },
+                Period = new Period(),
             },
         },
         Gender = Candid.Net.PreEncounter.Gender.Man,
@@ -9995,11 +10069,7 @@ await client.PreEncounter.Patients.V1.UpdateAsync(
             State = "string",
             PostalCode = "string",
             Country = "string",
-            Period = new Period
-            {
-                Start = new Dictionary<object, object?>() { { "key", "value" } },
-                End = new Dictionary<object, object?>() { { "key", "value" } },
-            },
+            Period = new Period(),
         },
         OtherAddresses = new List<Address>()
         {
@@ -10011,27 +10081,13 @@ await client.PreEncounter.Patients.V1.UpdateAsync(
                 State = "string",
                 PostalCode = "string",
                 Country = "string",
-                Period = new Period
-                {
-                    Start = new Dictionary<object, object?>() { { "key", "value" } },
-                    End = new Dictionary<object, object?>() { { "key", "value" } },
-                },
+                Period = new Period(),
             },
         },
-        PrimaryTelecom = new ContactPoint
-        {
-            Value = "string",
-            Use = ContactPointUse.Home,
-            Period = new Dictionary<object, object?>() { { "key", "value" } },
-        },
+        PrimaryTelecom = new ContactPoint { Value = "string", Use = ContactPointUse.Home },
         OtherTelecoms = new List<ContactPoint>()
         {
-            new ContactPoint
-            {
-                Value = "string",
-                Use = ContactPointUse.Home,
-                Period = new Dictionary<object, object?>() { { "key", "value" } },
-            },
+            new ContactPoint { Value = "string", Use = ContactPointUse.Home },
         },
         Email = "string",
         ElectronicCommunicationOptIn = true,
@@ -10052,20 +10108,11 @@ await client.PreEncounter.Patients.V1.UpdateAsync(
                     Family = "string",
                     Given = new List<string>() { "string" },
                     Use = NameUse.Usual,
-                    Period = new Period
-                    {
-                        Start = new Dictionary<object, object?>() { { "key", "value" } },
-                        End = new Dictionary<object, object?>() { { "key", "value" } },
-                    },
+                    Period = new Period(),
                 },
                 Telecoms = new List<ContactPoint>()
                 {
-                    new ContactPoint
-                    {
-                        Value = "string",
-                        Use = ContactPointUse.Home,
-                        Period = new Dictionary<object, object?>() { { "key", "value" } },
-                    },
+                    new ContactPoint { Value = "string", Use = ContactPointUse.Home },
                 },
                 Addresses = new List<Address>()
                 {
@@ -10077,18 +10124,10 @@ await client.PreEncounter.Patients.V1.UpdateAsync(
                         State = "string",
                         PostalCode = "string",
                         Country = "string",
-                        Period = new Period
-                        {
-                            Start = new Dictionary<object, object?>() { { "key", "value" } },
-                            End = new Dictionary<object, object?>() { { "key", "value" } },
-                        },
+                        Period = new Period(),
                     },
                 },
-                Period = new Period
-                {
-                    Start = new Dictionary<object, object?>() { { "key", "value" } },
-                    End = new Dictionary<object, object?>() { { "key", "value" } },
-                },
+                Period = new Period(),
                 HipaaAuthorization = true,
             },
         },
@@ -10101,32 +10140,16 @@ await client.PreEncounter.Patients.V1.UpdateAsync(
                     Family = "string",
                     Given = new List<string>() { "string" },
                     Use = NameUse.Usual,
-                    Period = new Period
-                    {
-                        Start = new Dictionary<object, object?>() { { "key", "value" } },
-                        End = new Dictionary<object, object?>() { { "key", "value" } },
-                    },
+                    Period = new Period(),
                 },
                 Type = ExternalProviderType.Primary,
                 Npi = "string",
                 Telecoms = new List<ContactPoint>()
                 {
-                    new ContactPoint
-                    {
-                        Value = "string",
-                        Use = ContactPointUse.Home,
-                        Period = new Dictionary<object, object?>() { { "key", "value" } },
-                    },
+                    new ContactPoint { Value = "string", Use = ContactPointUse.Home },
                 },
-                Addresses = new List<Address>()
-                {
-                    new Dictionary<object, object?>() { { "key", "value" } },
-                },
-                Period = new Period
-                {
-                    Start = new Dictionary<object, object?>() { { "key", "value" } },
-                    End = new Dictionary<object, object?>() { { "key", "value" } },
-                },
+                Addresses = new List<Address>() { },
+                Period = new Period(),
                 CanonicalId = "string",
             },
         },
@@ -10137,11 +10160,7 @@ await client.PreEncounter.Patients.V1.UpdateAsync(
         NonInsurancePayers = new List<string>() { "string" },
         NonInsurancePayerAssociations = new List<CanonicalNonInsurancePayerAssociation>()
         {
-            new CanonicalNonInsurancePayerAssociation
-            {
-                Id = "string",
-                MemberId = new Dictionary<object, object?>() { { "key", "value" } },
-            },
+            new CanonicalNonInsurancePayerAssociation { Id = "string" },
         },
         Guarantor = new Candid.Net.PreEncounter.Patients.V1.Guarantor
         {
@@ -10150,18 +10169,9 @@ await client.PreEncounter.Patients.V1.UpdateAsync(
                 Family = "string",
                 Given = new List<string>() { "string" },
                 Use = NameUse.Usual,
-                Period = new Period
-                {
-                    Start = new Dictionary<object, object?>() { { "key", "value" } },
-                    End = new Dictionary<object, object?>() { { "key", "value" } },
-                },
+                Period = new Period(),
             },
-            Telecom = new ContactPoint
-            {
-                Value = "string",
-                Use = ContactPointUse.Home,
-                Period = new Dictionary<object, object?>() { { "key", "value" } },
-            },
+            Telecom = new ContactPoint { Value = "string", Use = ContactPointUse.Home },
             Email = "string",
             BirthDate = new DateOnly(2023, 1, 15),
             Address = new Address
@@ -10172,11 +10182,7 @@ await client.PreEncounter.Patients.V1.UpdateAsync(
                 State = "string",
                 PostalCode = "string",
                 Country = "string",
-                Period = new Period
-                {
-                    Start = new Dictionary<object, object?>() { { "key", "value" } },
-                    End = new Dictionary<object, object?>() { { "key", "value" } },
-                },
+                Period = new Period(),
             },
         },
         SelfPay = true,
@@ -10186,16 +10192,9 @@ await client.PreEncounter.Patients.V1.UpdateAsync(
             {
                 PayerId = "string",
                 PayerName = "string",
-                AdditionalPayerInformation = new Dictionary<object, object?>()
-                {
-                    { "key", "value" },
-                },
                 AuthorizationNumber = "string",
                 CptCode = "string",
                 Units = AuthorizationUnit.Visit,
-                Quantity = new Dictionary<object, object?>() { { "key", "value" } },
-                Period = new Dictionary<object, object?>() { { "key", "value" } },
-                Notes = new Dictionary<object, object?>() { { "key", "value" } },
             },
         },
         Referrals = new List<Referral>()
@@ -10209,37 +10208,19 @@ await client.PreEncounter.Patients.V1.UpdateAsync(
                         Family = "string",
                         Given = new List<string>() { "string" },
                         Use = NameUse.Usual,
-                        Period = new Period
-                        {
-                            Start = new Dictionary<object, object?>() { { "key", "value" } },
-                            End = new Dictionary<object, object?>() { { "key", "value" } },
-                        },
+                        Period = new Period(),
                     },
                     Type = ExternalProviderType.Primary,
                     Npi = "string",
                     Telecoms = new List<ContactPoint>()
                     {
-                        new ContactPoint
-                        {
-                            Value = "string",
-                            Use = ContactPointUse.Home,
-                            Period = new Dictionary<object, object?>() { { "key", "value" } },
-                        },
+                        new ContactPoint { Value = "string", Use = ContactPointUse.Home },
                     },
-                    Addresses = new List<Address>()
-                    {
-                        new Dictionary<object, object?>() { { "key", "value" } },
-                    },
-                    Period = new Period
-                    {
-                        Start = new Dictionary<object, object?>() { { "key", "value" } },
-                        End = new Dictionary<object, object?>() { { "key", "value" } },
-                    },
+                    Addresses = new List<Address>() { },
+                    Period = new Period(),
                     CanonicalId = "string",
                 },
                 ReferralNumber = "string",
-                Period = new Dictionary<object, object?>() { { "key", "value" } },
-                Notes = new Dictionary<object, object?>() { { "key", "value" } },
             },
         },
         PrimaryServiceFacilityId = "string",

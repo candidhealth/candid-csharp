@@ -44,32 +44,16 @@ public partial class V1Client
     ///                 Family = "string",
     ///                 Given = new List<string>() { "string" },
     ///                 Use = NameUse.Usual,
-    ///                 Period = new Period
-    ///                 {
-    ///                     Start = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                     End = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                 },
+    ///                 Period = new Period(),
     ///             },
     ///             Type = ExternalProviderType.Primary,
     ///             Npi = "string",
     ///             Telecoms = new List<ContactPoint>()
     ///             {
-    ///                 new ContactPoint
-    ///                 {
-    ///                     Value = "string",
-    ///                     Use = ContactPointUse.Home,
-    ///                     Period = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                 },
+    ///                 new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///             },
-    ///             Addresses = new List<Address>()
-    ///             {
-    ///                 new Dictionary<object, object?>() { { "key", "value" } },
-    ///             },
-    ///             Period = new Period
-    ///             {
-    ///                 Start = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                 End = new Dictionary<object, object?>() { { "key", "value" } },
-    ///             },
+    ///             Addresses = new List<Address>() { },
+    ///             Period = new Period(),
     ///             CanonicalId = "string",
     ///         },
     ///         EstimatedCopayCents = 1,
@@ -239,32 +223,16 @@ public partial class V1Client
     ///                 Family = "string",
     ///                 Given = new List<string>() { "string" },
     ///                 Use = NameUse.Usual,
-    ///                 Period = new Period
-    ///                 {
-    ///                     Start = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                     End = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                 },
+    ///                 Period = new Period(),
     ///             },
     ///             Type = ExternalProviderType.Primary,
     ///             Npi = "string",
     ///             Telecoms = new List<ContactPoint>()
     ///             {
-    ///                 new ContactPoint
-    ///                 {
-    ///                     Value = "string",
-    ///                     Use = ContactPointUse.Home,
-    ///                     Period = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                 },
+    ///                 new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///             },
-    ///             Addresses = new List<Address>()
-    ///             {
-    ///                 new Dictionary<object, object?>() { { "key", "value" } },
-    ///             },
-    ///             Period = new Period
-    ///             {
-    ///                 Start = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                 End = new Dictionary<object, object?>() { { "key", "value" } },
-    ///             },
+    ///             Addresses = new List<Address>() { },
+    ///             Period = new Period(),
     ///             CanonicalId = "string",
     ///         },
     ///         EstimatedCopayCents = 1,

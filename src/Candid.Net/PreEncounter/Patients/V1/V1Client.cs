@@ -32,11 +32,7 @@ public partial class V1Client
     ///                 Family = "string",
     ///                 Given = new List<string>() { "string" },
     ///                 Use = NameUse.Usual,
-    ///                 Period = new Period
-    ///                 {
-    ///                     Start = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                     End = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                 },
+    ///                 Period = new Period(),
     ///             },
     ///             OtherNames = new List<HumanName>()
     ///             {
@@ -45,11 +41,7 @@ public partial class V1Client
     ///                     Family = "string",
     ///                     Given = new List<string>() { "string" },
     ///                     Use = NameUse.Usual,
-    ///                     Period = new Period
-    ///                     {
-    ///                         Start = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                         End = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                     },
+    ///                     Period = new Period(),
     ///                 },
     ///             },
     ///             Gender = Candid.Net.PreEncounter.Gender.Man,
@@ -71,11 +63,7 @@ public partial class V1Client
     ///                 State = "string",
     ///                 PostalCode = "string",
     ///                 Country = "string",
-    ///                 Period = new Period
-    ///                 {
-    ///                     Start = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                     End = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                 },
+    ///                 Period = new Period(),
     ///             },
     ///             OtherAddresses = new List<Address>()
     ///             {
@@ -87,27 +75,13 @@ public partial class V1Client
     ///                     State = "string",
     ///                     PostalCode = "string",
     ///                     Country = "string",
-    ///                     Period = new Period
-    ///                     {
-    ///                         Start = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                         End = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                     },
+    ///                     Period = new Period(),
     ///                 },
     ///             },
-    ///             PrimaryTelecom = new ContactPoint
-    ///             {
-    ///                 Value = "string",
-    ///                 Use = ContactPointUse.Home,
-    ///                 Period = new Dictionary<object, object?>() { { "key", "value" } },
-    ///             },
+    ///             PrimaryTelecom = new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///             OtherTelecoms = new List<ContactPoint>()
     ///             {
-    ///                 new ContactPoint
-    ///                 {
-    ///                     Value = "string",
-    ///                     Use = ContactPointUse.Home,
-    ///                     Period = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                 },
+    ///                 new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///             },
     ///             Email = "string",
     ///             ElectronicCommunicationOptIn = true,
@@ -128,20 +102,11 @@ public partial class V1Client
     ///                         Family = "string",
     ///                         Given = new List<string>() { "string" },
     ///                         Use = NameUse.Usual,
-    ///                         Period = new Period
-    ///                         {
-    ///                             Start = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                             End = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                         },
+    ///                         Period = new Period(),
     ///                     },
     ///                     Telecoms = new List<ContactPoint>()
     ///                     {
-    ///                         new ContactPoint
-    ///                         {
-    ///                             Value = "string",
-    ///                             Use = ContactPointUse.Home,
-    ///                             Period = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                         },
+    ///                         new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///                     },
     ///                     Addresses = new List<Address>()
     ///                     {
@@ -153,18 +118,10 @@ public partial class V1Client
     ///                             State = "string",
     ///                             PostalCode = "string",
     ///                             Country = "string",
-    ///                             Period = new Period
-    ///                             {
-    ///                                 Start = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                                 End = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                             },
+    ///                             Period = new Period(),
     ///                         },
     ///                     },
-    ///                     Period = new Period
-    ///                     {
-    ///                         Start = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                         End = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                     },
+    ///                     Period = new Period(),
     ///                     HipaaAuthorization = true,
     ///                 },
     ///             },
@@ -177,32 +134,16 @@ public partial class V1Client
     ///                         Family = "string",
     ///                         Given = new List<string>() { "string" },
     ///                         Use = NameUse.Usual,
-    ///                         Period = new Period
-    ///                         {
-    ///                             Start = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                             End = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                         },
+    ///                         Period = new Period(),
     ///                     },
     ///                     Type = ExternalProviderType.Primary,
     ///                     Npi = "string",
     ///                     Telecoms = new List<ContactPoint>()
     ///                     {
-    ///                         new ContactPoint
-    ///                         {
-    ///                             Value = "string",
-    ///                             Use = ContactPointUse.Home,
-    ///                             Period = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                         },
+    ///                         new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///                     },
-    ///                     Addresses = new List<Address>()
-    ///                     {
-    ///                         new Dictionary<object, object?>() { { "key", "value" } },
-    ///                     },
-    ///                     Period = new Period
-    ///                     {
-    ///                         Start = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                         End = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                     },
+    ///                     Addresses = new List<Address>() { },
+    ///                     Period = new Period(),
     ///                     CanonicalId = "string",
     ///                 },
     ///             },
@@ -213,11 +154,7 @@ public partial class V1Client
     ///             NonInsurancePayers = new List<string>() { "string" },
     ///             NonInsurancePayerAssociations = new List<CanonicalNonInsurancePayerAssociation>()
     ///             {
-    ///                 new CanonicalNonInsurancePayerAssociation
-    ///                 {
-    ///                     Id = "string",
-    ///                     MemberId = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                 },
+    ///                 new CanonicalNonInsurancePayerAssociation { Id = "string" },
     ///             },
     ///             Guarantor = new Candid.Net.PreEncounter.Patients.V1.Guarantor
     ///             {
@@ -226,18 +163,9 @@ public partial class V1Client
     ///                     Family = "string",
     ///                     Given = new List<string>() { "string" },
     ///                     Use = NameUse.Usual,
-    ///                     Period = new Period
-    ///                     {
-    ///                         Start = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                         End = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                     },
+    ///                     Period = new Period(),
     ///                 },
-    ///                 Telecom = new ContactPoint
-    ///                 {
-    ///                     Value = "string",
-    ///                     Use = ContactPointUse.Home,
-    ///                     Period = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                 },
+    ///                 Telecom = new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///                 Email = "string",
     ///                 BirthDate = new DateOnly(2023, 1, 15),
     ///                 Address = new Address
@@ -248,11 +176,7 @@ public partial class V1Client
     ///                     State = "string",
     ///                     PostalCode = "string",
     ///                     Country = "string",
-    ///                     Period = new Period
-    ///                     {
-    ///                         Start = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                         End = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                     },
+    ///                     Period = new Period(),
     ///                 },
     ///             },
     ///             SelfPay = true,
@@ -262,16 +186,9 @@ public partial class V1Client
     ///                 {
     ///                     PayerId = "string",
     ///                     PayerName = "string",
-    ///                     AdditionalPayerInformation = new Dictionary<object, object?>()
-    ///                     {
-    ///                         { "key", "value" },
-    ///                     },
     ///                     AuthorizationNumber = "string",
     ///                     CptCode = "string",
     ///                     Units = AuthorizationUnit.Visit,
-    ///                     Quantity = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                     Period = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                     Notes = new Dictionary<object, object?>() { { "key", "value" } },
     ///                 },
     ///             },
     ///             Referrals = new List<Referral>()
@@ -285,37 +202,19 @@ public partial class V1Client
     ///                             Family = "string",
     ///                             Given = new List<string>() { "string" },
     ///                             Use = NameUse.Usual,
-    ///                             Period = new Period
-    ///                             {
-    ///                                 Start = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                                 End = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                             },
+    ///                             Period = new Period(),
     ///                         },
     ///                         Type = ExternalProviderType.Primary,
     ///                         Npi = "string",
     ///                         Telecoms = new List<ContactPoint>()
     ///                         {
-    ///                             new ContactPoint
-    ///                             {
-    ///                                 Value = "string",
-    ///                                 Use = ContactPointUse.Home,
-    ///                                 Period = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                             },
+    ///                             new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///                         },
-    ///                         Addresses = new List<Address>()
-    ///                         {
-    ///                             new Dictionary<object, object?>() { { "key", "value" } },
-    ///                         },
-    ///                         Period = new Period
-    ///                         {
-    ///                             Start = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                             End = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                         },
+    ///                         Addresses = new List<Address>() { },
+    ///                         Period = new Period(),
     ///                         CanonicalId = "string",
     ///                     },
     ///                     ReferralNumber = "string",
-    ///                     Period = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                     Notes = new Dictionary<object, object?>() { { "key", "value" } },
     ///                 },
     ///             },
     ///             PrimaryServiceFacilityId = "string",
@@ -545,11 +444,7 @@ public partial class V1Client
     ///             Family = "string",
     ///             Given = new List<string>() { "string" },
     ///             Use = NameUse.Usual,
-    ///             Period = new Period
-    ///             {
-    ///                 Start = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                 End = new Dictionary<object, object?>() { { "key", "value" } },
-    ///             },
+    ///             Period = new Period(),
     ///         },
     ///         OtherNames = new List<HumanName>()
     ///         {
@@ -558,11 +453,7 @@ public partial class V1Client
     ///                 Family = "string",
     ///                 Given = new List<string>() { "string" },
     ///                 Use = NameUse.Usual,
-    ///                 Period = new Period
-    ///                 {
-    ///                     Start = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                     End = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                 },
+    ///                 Period = new Period(),
     ///             },
     ///         },
     ///         Gender = Candid.Net.PreEncounter.Gender.Man,
@@ -584,11 +475,7 @@ public partial class V1Client
     ///             State = "string",
     ///             PostalCode = "string",
     ///             Country = "string",
-    ///             Period = new Period
-    ///             {
-    ///                 Start = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                 End = new Dictionary<object, object?>() { { "key", "value" } },
-    ///             },
+    ///             Period = new Period(),
     ///         },
     ///         OtherAddresses = new List<Address>()
     ///         {
@@ -600,27 +487,13 @@ public partial class V1Client
     ///                 State = "string",
     ///                 PostalCode = "string",
     ///                 Country = "string",
-    ///                 Period = new Period
-    ///                 {
-    ///                     Start = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                     End = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                 },
+    ///                 Period = new Period(),
     ///             },
     ///         },
-    ///         PrimaryTelecom = new ContactPoint
-    ///         {
-    ///             Value = "string",
-    ///             Use = ContactPointUse.Home,
-    ///             Period = new Dictionary<object, object?>() { { "key", "value" } },
-    ///         },
+    ///         PrimaryTelecom = new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///         OtherTelecoms = new List<ContactPoint>()
     ///         {
-    ///             new ContactPoint
-    ///             {
-    ///                 Value = "string",
-    ///                 Use = ContactPointUse.Home,
-    ///                 Period = new Dictionary<object, object?>() { { "key", "value" } },
-    ///             },
+    ///             new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///         },
     ///         Email = "string",
     ///         ElectronicCommunicationOptIn = true,
@@ -641,20 +514,11 @@ public partial class V1Client
     ///                     Family = "string",
     ///                     Given = new List<string>() { "string" },
     ///                     Use = NameUse.Usual,
-    ///                     Period = new Period
-    ///                     {
-    ///                         Start = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                         End = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                     },
+    ///                     Period = new Period(),
     ///                 },
     ///                 Telecoms = new List<ContactPoint>()
     ///                 {
-    ///                     new ContactPoint
-    ///                     {
-    ///                         Value = "string",
-    ///                         Use = ContactPointUse.Home,
-    ///                         Period = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                     },
+    ///                     new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///                 },
     ///                 Addresses = new List<Address>()
     ///                 {
@@ -666,18 +530,10 @@ public partial class V1Client
     ///                         State = "string",
     ///                         PostalCode = "string",
     ///                         Country = "string",
-    ///                         Period = new Period
-    ///                         {
-    ///                             Start = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                             End = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                         },
+    ///                         Period = new Period(),
     ///                     },
     ///                 },
-    ///                 Period = new Period
-    ///                 {
-    ///                     Start = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                     End = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                 },
+    ///                 Period = new Period(),
     ///                 HipaaAuthorization = true,
     ///             },
     ///         },
@@ -690,32 +546,16 @@ public partial class V1Client
     ///                     Family = "string",
     ///                     Given = new List<string>() { "string" },
     ///                     Use = NameUse.Usual,
-    ///                     Period = new Period
-    ///                     {
-    ///                         Start = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                         End = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                     },
+    ///                     Period = new Period(),
     ///                 },
     ///                 Type = ExternalProviderType.Primary,
     ///                 Npi = "string",
     ///                 Telecoms = new List<ContactPoint>()
     ///                 {
-    ///                     new ContactPoint
-    ///                     {
-    ///                         Value = "string",
-    ///                         Use = ContactPointUse.Home,
-    ///                         Period = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                     },
+    ///                     new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///                 },
-    ///                 Addresses = new List<Address>()
-    ///                 {
-    ///                     new Dictionary<object, object?>() { { "key", "value" } },
-    ///                 },
-    ///                 Period = new Period
-    ///                 {
-    ///                     Start = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                     End = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                 },
+    ///                 Addresses = new List<Address>() { },
+    ///                 Period = new Period(),
     ///                 CanonicalId = "string",
     ///             },
     ///         },
@@ -726,11 +566,7 @@ public partial class V1Client
     ///         NonInsurancePayers = new List<string>() { "string" },
     ///         NonInsurancePayerAssociations = new List<CanonicalNonInsurancePayerAssociation>()
     ///         {
-    ///             new CanonicalNonInsurancePayerAssociation
-    ///             {
-    ///                 Id = "string",
-    ///                 MemberId = new Dictionary<object, object?>() { { "key", "value" } },
-    ///             },
+    ///             new CanonicalNonInsurancePayerAssociation { Id = "string" },
     ///         },
     ///         Guarantor = new Candid.Net.PreEncounter.Patients.V1.Guarantor
     ///         {
@@ -739,18 +575,9 @@ public partial class V1Client
     ///                 Family = "string",
     ///                 Given = new List<string>() { "string" },
     ///                 Use = NameUse.Usual,
-    ///                 Period = new Period
-    ///                 {
-    ///                     Start = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                     End = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                 },
+    ///                 Period = new Period(),
     ///             },
-    ///             Telecom = new ContactPoint
-    ///             {
-    ///                 Value = "string",
-    ///                 Use = ContactPointUse.Home,
-    ///                 Period = new Dictionary<object, object?>() { { "key", "value" } },
-    ///             },
+    ///             Telecom = new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///             Email = "string",
     ///             BirthDate = new DateOnly(2023, 1, 15),
     ///             Address = new Address
@@ -761,11 +588,7 @@ public partial class V1Client
     ///                 State = "string",
     ///                 PostalCode = "string",
     ///                 Country = "string",
-    ///                 Period = new Period
-    ///                 {
-    ///                     Start = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                     End = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                 },
+    ///                 Period = new Period(),
     ///             },
     ///         },
     ///         SelfPay = true,
@@ -775,16 +598,9 @@ public partial class V1Client
     ///             {
     ///                 PayerId = "string",
     ///                 PayerName = "string",
-    ///                 AdditionalPayerInformation = new Dictionary<object, object?>()
-    ///                 {
-    ///                     { "key", "value" },
-    ///                 },
     ///                 AuthorizationNumber = "string",
     ///                 CptCode = "string",
     ///                 Units = AuthorizationUnit.Visit,
-    ///                 Quantity = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                 Period = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                 Notes = new Dictionary<object, object?>() { { "key", "value" } },
     ///             },
     ///         },
     ///         Referrals = new List<Referral>()
@@ -798,37 +614,19 @@ public partial class V1Client
     ///                         Family = "string",
     ///                         Given = new List<string>() { "string" },
     ///                         Use = NameUse.Usual,
-    ///                         Period = new Period
-    ///                         {
-    ///                             Start = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                             End = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                         },
+    ///                         Period = new Period(),
     ///                     },
     ///                     Type = ExternalProviderType.Primary,
     ///                     Npi = "string",
     ///                     Telecoms = new List<ContactPoint>()
     ///                     {
-    ///                         new ContactPoint
-    ///                         {
-    ///                             Value = "string",
-    ///                             Use = ContactPointUse.Home,
-    ///                             Period = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                         },
+    ///                         new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///                     },
-    ///                     Addresses = new List<Address>()
-    ///                     {
-    ///                         new Dictionary<object, object?>() { { "key", "value" } },
-    ///                     },
-    ///                     Period = new Period
-    ///                     {
-    ///                         Start = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                         End = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                     },
+    ///                     Addresses = new List<Address>() { },
+    ///                     Period = new Period(),
     ///                     CanonicalId = "string",
     ///                 },
     ///                 ReferralNumber = "string",
-    ///                 Period = new Dictionary<object, object?>() { { "key", "value" } },
-    ///                 Notes = new Dictionary<object, object?>() { { "key", "value" } },
     ///             },
     ///         },
     ///         PrimaryServiceFacilityId = "string",

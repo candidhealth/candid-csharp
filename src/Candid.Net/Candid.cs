@@ -4,6 +4,7 @@ using Candid.Net.BillingNotes;
 using Candid.Net.ClaimSubmission;
 using Candid.Net.Contracts;
 using Candid.Net.Core;
+using Candid.Net.Credentialing;
 using Candid.Net.CustomSchemas;
 using Candid.Net.Eligibility;
 using Candid.Net.EncounterProviders;
@@ -48,7 +49,7 @@ public partial class Candid
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Candid.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Candid.Net/0.34.9" },
+                { "User-Agent", "Candid.Net/0.35.0" },
             }
         );
         clientOptions ??= new ClientOptions();
@@ -72,6 +73,7 @@ public partial class Candid
         BillingNotes = new BillingNotesClient(_client);
         ClaimSubmission = new ClaimSubmissionClient(_client);
         Contracts = new ContractsClient(_client);
+        Credentialing = new CredentialingClient(_client);
         CustomSchemas = new CustomSchemasClient(_client);
         Eligibility = new EligibilityClient(_client);
         EncounterProviders = new EncounterProvidersClient(_client);
@@ -116,6 +118,8 @@ public partial class Candid
     public ClaimSubmissionClient ClaimSubmission { get; init; }
 
     public ContractsClient Contracts { get; init; }
+
+    public CredentialingClient Credentialing { get; init; }
 
     public CustomSchemasClient CustomSchemas { get; init; }
 

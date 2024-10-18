@@ -170,6 +170,13 @@ public record EncounterCreate
     public IEnumerable<SchemaInstance>? SchemaInstances { get; set; }
 
     /// <summary>
+    /// Refers to REF*9F on the 837p. Value cannot be greater than 50 characters.
+    ///
+    /// </summary>
+    [JsonPropertyName("referral_number")]
+    public string? ReferralNumber { get; set; }
+
+    /// <summary>
     /// A client-specified unique ID to associate with this encounter;
     /// for example, your internal encounter ID or a Dr. Chrono encounter ID.
     /// This field should not contain PHI.
@@ -315,12 +322,6 @@ public record EncounterCreate
     /// </summary>
     [JsonPropertyName("delay_reason_code")]
     public DelayReasonCode? DelayReasonCode { get; set; }
-
-    /// <summary>
-    /// Refers to REF\*9F on the 837p. Value cannot be greater than 50 characters.
-    /// </summary>
-    [JsonPropertyName("referral_number")]
-    public string? ReferralNumber { get; set; }
 
     public override string ToString()
     {

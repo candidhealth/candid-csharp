@@ -553,6 +553,7 @@ public partial class V4Client
     ///                 },
     ///             },
     ///         },
+    ///         ReferralNumber = "string",
     ///         ExternalId = "string",
     ///         DateOfService = new DateOnly(2023, 1, 15),
     ///         EndDateOfService = new DateOnly(2023, 1, 15),
@@ -628,7 +629,6 @@ public partial class V4Client
     ///         OnsetOfCurrentIllnessOrSymptomDate = new DateOnly(2023, 1, 15),
     ///         LastMenstrualPeriodDate = new DateOnly(2023, 1, 15),
     ///         DelayReasonCode = DelayReasonCode.C1,
-    ///         ReferralNumber = "string",
     ///     }
     /// );
     /// </code>
@@ -682,7 +682,7 @@ public partial class V4Client
     /// - Referring Provider
     /// - Subscriber Primary
     /// - Subscriber Secondary
-    /// - Prior Authorization Number
+    /// - Referral Number
     /// - Responsible Party
     /// - Guarantor
     ///
@@ -999,7 +999,6 @@ public partial class V4Client
     ///         OnsetOfCurrentIllnessOrSymptomDate = new DateOnly(2023, 1, 15),
     ///         LastMenstrualPeriodDate = new DateOnly(2023, 1, 15),
     ///         DelayReasonCode = DelayReasonCode.C1,
-    ///         ReferralNumber = "string",
     ///     }
     /// );
     /// </code>
