@@ -30,6 +30,9 @@ public record InsuranceAdjudicationCreate
     public Dictionary<string, IEnumerable<ClaimAdjudicationCreate>> Claims { get; set; } =
         new Dictionary<string, IEnumerable<ClaimAdjudicationCreate>>();
 
+    [JsonPropertyName("remit_draft_id")]
+    public string? RemitDraftId { get; set; }
+
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

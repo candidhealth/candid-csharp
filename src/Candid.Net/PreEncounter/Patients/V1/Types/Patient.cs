@@ -177,6 +177,12 @@ public record Patient
     [JsonPropertyName("primary_service_facility_id")]
     public string? PrimaryServiceFacilityId { get; set; }
 
+    /// <summary>
+    /// If this value is defined, the customer will not be invoiced.
+    /// </summary>
+    [JsonPropertyName("do_not_invoice_reason")]
+    public DoNotInvoiceReason? DoNotInvoiceReason { get; set; }
+
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

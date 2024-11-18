@@ -13,6 +13,9 @@ public record CoverageBenefits
     [JsonPropertyName("service_specific_coverage")]
     public IEnumerable<ServiceCoverage>? ServiceSpecificCoverage { get; set; }
 
+    [JsonPropertyName("notes")]
+    public string? Notes { get; set; }
+
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

@@ -17,4 +17,7 @@ public enum AppointmentWorkQueue
 
     [EnumMember(Value = "RETURNING_PATIENT")]
     ReturningPatient,
+
+    [EnumMember(Value = "MANUAL_ESCALATION")]
+    ManualEscalation,
 }

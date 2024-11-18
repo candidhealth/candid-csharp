@@ -19,6 +19,9 @@ public record AppointmentListItem
     [JsonPropertyName("primary_coverage")]
     public MutableCoverage? PrimaryCoverage { get; set; }
 
+    [JsonPropertyName("primary_service_type")]
+    public UniversalServiceIdentifier? PrimaryServiceType { get; set; }
+
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

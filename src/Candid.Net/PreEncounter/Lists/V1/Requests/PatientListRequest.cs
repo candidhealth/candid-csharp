@@ -10,6 +10,9 @@ public record PatientListRequest
 
     public int? Limit { get; set; }
 
+    /// <summary>
+    /// Defaults to patient.updatedAt.
+    /// </summary>
     public string? SortField { get; set; }
 
     /// <summary>

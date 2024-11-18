@@ -10,6 +10,9 @@ public record ExternalProvider
     [JsonPropertyName("name")]
     public required HumanName Name { get; set; }
 
+    /// <summary>
+    /// Defaults to ATTENDING.
+    /// </summary>
     [JsonPropertyName("type")]
     public ExternalProviderType? Type { get; set; }
 

@@ -6,8 +6,14 @@ using Candid.Net.PreEncounter;
 
 namespace Candid.Net.PreEncounter.Patients.V1;
 
-public record MutablePatient
+public record MutablePatientWithMrn
 {
+    /// <summary>
+    /// The medical record number for the patient.
+    /// </summary>
+    [JsonPropertyName("mrn")]
+    public required string Mrn { get; set; }
+
     [JsonPropertyName("name")]
     public required HumanName Name { get; set; }
 

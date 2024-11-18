@@ -36,7 +36,7 @@ public record Guarantor
     public DateOnly? DateOfBirth { get; set; }
 
     [JsonPropertyName("address")]
-    public StreetAddressShortZip? Address { get; set; }
+    public required StreetAddressShortZip Address { get; set; }
 
     public override string ToString()
     {

@@ -3380,8 +3380,9 @@ of Candid Health's export files be resilient to the addition of new columns at t
 
 **SLA guarantees:** Files for a given date are guaranteed to be available after 3 business days. For example, Friday's file will be
 available by Wednesday at the latest. If file generation is still in progress upon request before 3 business days have passed, the
-caller will receive a 422 response. If the file has already been generated, it will be served. Please email
-our [Support team](mailto:support@joincandidhealth.com) with any data requests outside of these stated guarantees.
+caller will receive a 422 response. If the file has already been generated, it will be served. Historic files should be available
+up to 90 days in the past by default. Please email our [Support team](mailto:support@joincandidhealth.com) with any data requests
+outside of these stated guarantees.
 </dd>
 </dl>
 </dd>
@@ -4728,6 +4729,7 @@ await client.InsuranceAdjudications.V1.CreateAsync(
                 }
             },
         },
+        RemitDraftId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     }
 );
 ```
@@ -9801,6 +9803,7 @@ await client.PreEncounter.Patients.V1.CreateAsync(
                 },
             },
             PrimaryServiceFacilityId = "string",
+            DoNotInvoiceReason = DoNotInvoiceReason.Bankruptcy,
         },
     }
 );
@@ -9819,6 +9822,261 @@ await client.PreEncounter.Patients.V1.CreateAsync(
 <dd>
 
 **request:** `CreatePatientRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PreEncounter.Patients.V1.<a href="/src/Candid.Net/PreEncounter/Patients/V1/V1Client.cs">CreateWithMrnAsync</a>(CreatePatientWithMrnRequest { ... }) -> PreEncounter.Patients.V1.Patient</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Adds a patient and hydrates their MRN with a pre-existing MRN. Once this patient is created their MRN will not be editable. InvalidMRNError is returned when the MRN is greater than 20 characters. VersionConflictError is returned when the patient's external ID is already in use.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreEncounter.Patients.V1.CreateWithMrnAsync(
+    new CreatePatientWithMrnRequest
+    {
+        SkipDuplicateCheck = true,
+        Body = new MutablePatientWithMrn
+        {
+            Mrn = "string",
+            Name = new HumanName
+            {
+                Family = "string",
+                Given = new List<string>() { "string" },
+                Use = NameUse.Usual,
+                Period = new Period(),
+            },
+            OtherNames = new List<HumanName>()
+            {
+                new HumanName
+                {
+                    Family = "string",
+                    Given = new List<string>() { "string" },
+                    Use = NameUse.Usual,
+                    Period = new Period(),
+                },
+            },
+            Gender = Candid.Net.PreEncounter.Gender.Man,
+            BirthDate = new DateOnly(2023, 1, 15),
+            SocialSecurityNumber = "string",
+            BiologicalSex = Sex.Female,
+            SexualOrientation = SexualOrientation.Heterosexual,
+            Race = Race.AmericanIndianOrAlaskaNative,
+            Ethnicity = Ethnicity.HispanicOrLatino,
+            DisabilityStatus = DisabilityStatus.Disabled,
+            MaritalStatus = MaritalStatus.Annulled,
+            Deceased = new DateTime(2024, 01, 15, 09, 30, 00, 000),
+            MultipleBirth = 1,
+            PrimaryAddress = new Address
+            {
+                Use = AddressUse.Home,
+                Line = new List<string>() { "string" },
+                City = "string",
+                State = "string",
+                PostalCode = "string",
+                Country = "string",
+                Period = new Period(),
+            },
+            OtherAddresses = new List<Address>()
+            {
+                new Address
+                {
+                    Use = AddressUse.Home,
+                    Line = new List<string>() { "string" },
+                    City = "string",
+                    State = "string",
+                    PostalCode = "string",
+                    Country = "string",
+                    Period = new Period(),
+                },
+            },
+            PrimaryTelecom = new ContactPoint { Value = "string", Use = ContactPointUse.Home },
+            OtherTelecoms = new List<ContactPoint>()
+            {
+                new ContactPoint { Value = "string", Use = ContactPointUse.Home },
+            },
+            Email = "string",
+            ElectronicCommunicationOptIn = true,
+            Photo = "string",
+            Language = "string",
+            ExternalProvenance = new ExternalProvenance
+            {
+                ExternalId = "string",
+                SystemName = "string",
+            },
+            Contacts = new List<Contact>()
+            {
+                new Contact
+                {
+                    Relationship = new List<Relationship>() { Relationship.Self },
+                    Name = new HumanName
+                    {
+                        Family = "string",
+                        Given = new List<string>() { "string" },
+                        Use = NameUse.Usual,
+                        Period = new Period(),
+                    },
+                    Telecoms = new List<ContactPoint>()
+                    {
+                        new ContactPoint { Value = "string", Use = ContactPointUse.Home },
+                    },
+                    Addresses = new List<Address>()
+                    {
+                        new Address
+                        {
+                            Use = AddressUse.Home,
+                            Line = new List<string>() { "string" },
+                            City = "string",
+                            State = "string",
+                            PostalCode = "string",
+                            Country = "string",
+                            Period = new Period(),
+                        },
+                    },
+                    Period = new Period(),
+                    HipaaAuthorization = true,
+                },
+            },
+            GeneralPractitioners = new List<ExternalProvider>()
+            {
+                new ExternalProvider
+                {
+                    Name = new HumanName
+                    {
+                        Family = "string",
+                        Given = new List<string>() { "string" },
+                        Use = NameUse.Usual,
+                        Period = new Period(),
+                    },
+                    Type = ExternalProviderType.Primary,
+                    Npi = "string",
+                    Telecoms = new List<ContactPoint>()
+                    {
+                        new ContactPoint { Value = "string", Use = ContactPointUse.Home },
+                    },
+                    Addresses = new List<Address>() { },
+                    Period = new Period(),
+                    CanonicalId = "string",
+                },
+            },
+            FilingOrder = new FilingOrder
+            {
+                Coverages = new List<string>() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
+            },
+            NonInsurancePayers = new List<string>() { "string" },
+            NonInsurancePayerAssociations = new List<CanonicalNonInsurancePayerAssociation>()
+            {
+                new CanonicalNonInsurancePayerAssociation { Id = "string" },
+            },
+            Guarantor = new Candid.Net.PreEncounter.Patients.V1.Guarantor
+            {
+                Name = new HumanName
+                {
+                    Family = "string",
+                    Given = new List<string>() { "string" },
+                    Use = NameUse.Usual,
+                    Period = new Period(),
+                },
+                Telecom = new ContactPoint { Value = "string", Use = ContactPointUse.Home },
+                Email = "string",
+                BirthDate = new DateOnly(2023, 1, 15),
+                Address = new Address
+                {
+                    Use = AddressUse.Home,
+                    Line = new List<string>() { "string" },
+                    City = "string",
+                    State = "string",
+                    PostalCode = "string",
+                    Country = "string",
+                    Period = new Period(),
+                },
+            },
+            SelfPay = true,
+            Authorizations = new List<Authorization>()
+            {
+                new Authorization
+                {
+                    PayerId = "string",
+                    PayerName = "string",
+                    AuthorizationNumber = "string",
+                    CptCode = "string",
+                    Units = AuthorizationUnit.Visit,
+                },
+            },
+            Referrals = new List<Referral>()
+            {
+                new Referral
+                {
+                    Provider = new ExternalProvider
+                    {
+                        Name = new HumanName
+                        {
+                            Family = "string",
+                            Given = new List<string>() { "string" },
+                            Use = NameUse.Usual,
+                            Period = new Period(),
+                        },
+                        Type = ExternalProviderType.Primary,
+                        Npi = "string",
+                        Telecoms = new List<ContactPoint>()
+                        {
+                            new ContactPoint { Value = "string", Use = ContactPointUse.Home },
+                        },
+                        Addresses = new List<Address>() { },
+                        Period = new Period(),
+                        CanonicalId = "string",
+                    },
+                    ReferralNumber = "string",
+                },
+            },
+            PrimaryServiceFacilityId = "string",
+            DoNotInvoiceReason = DoNotInvoiceReason.Bankruptcy,
+        },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `CreatePatientWithMrnRequest` 
     
 </dd>
 </dl>
@@ -10224,6 +10482,7 @@ await client.PreEncounter.Patients.V1.UpdateAsync(
             },
         },
         PrimaryServiceFacilityId = "string",
+        DoNotInvoiceReason = DoNotInvoiceReason.Bankruptcy,
     }
 );
 ```

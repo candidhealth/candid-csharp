@@ -7,7 +7,7 @@ namespace Candid.Net.PreEncounter.Lists.V1;
 public record AppointmentsGetListRequest
 {
     /// <summary>
-    /// The string path to the field to order by. Defaults to appointment.startTimestamp. Path values are camelCase.
+    /// Defaults to appointment.startTimestamp.
     /// </summary>
     public string? SortField { get; set; }
 
