@@ -5,13 +5,13 @@ using Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter;
 
-public record NotFoundErrorBody
+public record ErrorBase4Xx
 {
-    [JsonPropertyName("code")]
-    public required string Code { get; set; }
-
     [JsonPropertyName("message")]
     public required string Message { get; set; }
+
+    [JsonPropertyName("data")]
+    public object? Data { get; set; }
 
     public override string ToString()
     {

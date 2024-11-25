@@ -119,6 +119,7 @@ public partial class V2Client
     ///         Limit = 1,
     ///         PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
     ///         PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         ProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///         AsRenderingProvider = true,
     ///         AsContractingProvider = true,
     ///     }
@@ -143,6 +144,10 @@ public partial class V2Client
         if (request.PayerUuid != null)
         {
             _query["payer_uuid"] = request.PayerUuid.ToString();
+        }
+        if (request.ProviderId != null)
+        {
+            _query["provider_id"] = request.ProviderId.ToString();
         }
         if (request.AsRenderingProvider != null)
         {

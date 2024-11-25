@@ -268,7 +268,7 @@ public partial class V1Client
     }
 
     /// <summary>
-    /// Adds a patient and hydrates their MRN with a pre-existing MRN. Once this patient is created their MRN will not be editable. InvalidMRNError is returned when the MRN is greater than 20 characters. VersionConflictError is returned when the patient's external ID is already in use.
+    /// Adds a patient and hydrates their MRN with a pre-existing MRN. Once this patient is created their MRN will not be editable. BadRequestError is returned when the MRN is greater than 20 characters. VersionConflictError is returned when the patient's external ID is already in use.
     /// </summary>
     /// <example>
     /// <code>

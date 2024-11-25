@@ -19,12 +19,17 @@ public record GetAllProviderCredentialingSpansRequest
     public string? PayerUuid { get; set; }
 
     /// <summary>
-    /// Filter to credentialing spans where the provider is a rendering provider.
+    /// Filter to a particular provider. Use in conjunction as_rendering_provider and as_contracting_provider.
+    /// </summary>
+    public string? ProviderId { get; set; }
+
+    /// <summary>
+    /// Filter to credentialing spans where the provider is a rendering provider. To use this filter provider_id is required.
     /// </summary>
     public bool? AsRenderingProvider { get; set; }
 
     /// <summary>
-    /// Filter to credentialing spans where the provider is a contracting provider.
+    /// Filter to credentialing spans where the provider is a contracting provider. To use this filter provider_id is required.
     /// </summary>
     public bool? AsContractingProvider { get; set; }
 
