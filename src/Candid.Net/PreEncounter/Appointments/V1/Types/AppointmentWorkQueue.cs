@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter.Appointments.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<AppointmentWorkQueue>))]
+[JsonConverter(typeof(EnumSerializer<AppointmentWorkQueue>))]
 public enum AppointmentWorkQueue
 {
     [EnumMember(Value = "EMERGENT_ISSUE")]

@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.ExpectedNetworkStatus.V2;
 
-[JsonConverter(typeof(StringEnumSerializer<ServiceType>))]
+[JsonConverter(typeof(EnumSerializer<ServiceType>))]
 public enum ServiceType
 {
     [EnumMember(Value = "new_patient_video_appt")]

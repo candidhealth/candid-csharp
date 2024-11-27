@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter.Patients.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<AuthorizationUnit>))]
+[JsonConverter(typeof(EnumSerializer<AuthorizationUnit>))]
 public enum AuthorizationUnit
 {
     [EnumMember(Value = "VISIT")]

@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter.Patients.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<MaritalStatus>))]
+[JsonConverter(typeof(EnumSerializer<MaritalStatus>))]
 public enum MaritalStatus
 {
     [EnumMember(Value = "ANNULLED")]

@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter.Coverages.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<BenefitType>))]
+[JsonConverter(typeof(EnumSerializer<BenefitType>))]
 public enum BenefitType
 {
     [EnumMember(Value = "DEDUCTIBLE")]

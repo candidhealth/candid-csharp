@@ -21,7 +21,7 @@ public partial class V2Client
     /// await client.ServiceLines.V2.CreateAsync(
     ///     new ServiceLineCreateStandalone
     ///     {
-    ///         Modifiers = new List<ProcedureModifier>() { ProcedureModifier.TwentyTwo },
+    ///         Modifiers = new List&lt;ProcedureModifier&gt;() { ProcedureModifier.TwentyTwo },
     ///         ChargeAmountCents = 1,
     ///         DiagnosisIdZero = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///         DiagnosisIdOne = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
@@ -67,7 +67,7 @@ public partial class V2Client
     ///             LastName = "string",
     ///             OrganizationName = "string",
     ///         },
-    ///         TestResults = new List<TestResult>()
+    ///         TestResults = new List&lt;TestResult&gt;()
     ///         {
     ///             new TestResult { Value = 1.1, ResultType = TestResultType.Hematocrit },
     ///         },
@@ -119,7 +119,7 @@ public partial class V2Client
     ///     new ServiceLineUpdate
     ///     {
     ///         EditReason = "string",
-    ///         Modifiers = new List<ProcedureModifier>() { ProcedureModifier.TwentyTwo },
+    ///         Modifiers = new List&lt;ProcedureModifier&gt;() { ProcedureModifier.TwentyTwo },
     ///         ChargeAmountCents = 1,
     ///         DiagnosisIdZero = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///         DiagnosisIdOne = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
@@ -147,7 +147,7 @@ public partial class V2Client
     ///         Description = "string",
     ///         DateOfService = new DateOnly(2023, 1, 15),
     ///         EndDateOfService = new DateOnly(2023, 1, 15),
-    ///         TestResults = new List<TestResult>()
+    ///         TestResults = new List&lt;TestResult&gt;()
     ///         {
     ///             new TestResult { Value = 1.1, ResultType = TestResultType.Hematocrit },
     ///         },

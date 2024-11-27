@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.X12.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<Rarc>))]
+[JsonConverter(typeof(EnumSerializer<Rarc>))]
 public enum Rarc
 {
     [EnumMember(Value = "M1")]

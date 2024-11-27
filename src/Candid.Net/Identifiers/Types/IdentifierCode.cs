@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net;
 
-[JsonConverter(typeof(StringEnumSerializer<IdentifierCode>))]
+[JsonConverter(typeof(EnumSerializer<IdentifierCode>))]
 public enum IdentifierCode
 {
     [EnumMember(Value = "MCR")]

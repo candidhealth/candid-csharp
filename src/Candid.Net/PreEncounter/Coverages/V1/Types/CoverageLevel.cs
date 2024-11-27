@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter.Coverages.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<CoverageLevel>))]
+[JsonConverter(typeof(EnumSerializer<CoverageLevel>))]
 public enum CoverageLevel
 {
     [EnumMember(Value = "INDIVIDUAL")]

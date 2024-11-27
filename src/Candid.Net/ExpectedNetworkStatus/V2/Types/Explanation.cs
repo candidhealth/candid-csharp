@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.ExpectedNetworkStatus.V2;
 
-[JsonConverter(typeof(StringEnumSerializer<Explanation>))]
+[JsonConverter(typeof(EnumSerializer<Explanation>))]
 public enum Explanation
 {
     [EnumMember(Value = "Payer Routing and/or Billing Provider Routing Failed")]

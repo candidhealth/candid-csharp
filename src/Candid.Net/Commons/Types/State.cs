@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net;
 
-[JsonConverter(typeof(StringEnumSerializer<State>))]
+[JsonConverter(typeof(EnumSerializer<State>))]
 public enum State
 {
     [EnumMember(Value = "AA")]

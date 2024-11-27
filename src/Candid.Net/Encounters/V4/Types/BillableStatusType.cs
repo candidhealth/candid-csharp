@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.Encounters.V4;
 
-[JsonConverter(typeof(StringEnumSerializer<BillableStatusType>))]
+[JsonConverter(typeof(EnumSerializer<BillableStatusType>))]
 public enum BillableStatusType
 {
     [EnumMember(Value = "BILLABLE")]

@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.ExpectedNetworkStatus.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<ExpectedNetworkStatus>))]
+[JsonConverter(typeof(EnumSerializer<ExpectedNetworkStatus>))]
 public enum ExpectedNetworkStatus
 {
     [EnumMember(Value = "in_network")]

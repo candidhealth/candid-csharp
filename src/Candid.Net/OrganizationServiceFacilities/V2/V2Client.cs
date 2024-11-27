@@ -125,14 +125,14 @@ public partial class V2Client
     ///     new OrganizationServiceFacilityCreate
     ///     {
     ///         Name = "Test Service Facility",
-    ///         Aliases = new List<string>() { "Test Service Facility Alias" },
+    ///         Aliases = new List&lt;string&gt;() { "Test Service Facility Alias" },
     ///         Description = "Test Service Facility Description",
     ///         Status = ServiceFacilityStatus.Active,
     ///         OperationalStatus = ServiceFacilityOperationalStatus.Closed,
     ///         Mode = ServiceFacilityMode.Instance,
     ///         Type = ServiceFacilityType.DiagnosticsOrTherapeuticsUnit,
     ///         PhysicalType = ServiceFacilityPhysicalType.Site,
-    ///         Telecoms = new List<string>() { "555-555-5555" },
+    ///         Telecoms = new List&lt;string&gt;() { "555-555-5555" },
     ///         Address = new StreetAddressLongZip
     ///         {
     ///             Address1 = "123 Main St",
@@ -190,14 +190,14 @@ public partial class V2Client
     ///     new OrganizationServiceFacilityUpdate
     ///     {
     ///         Name = "Test Service Facility",
-    ///         Aliases = new List<string>() { "Test Service Facility Alias" },
+    ///         Aliases = new List&lt;string&gt;() { "Test Service Facility Alias" },
     ///         Description = "Test Service Facility Description",
     ///         Status = ServiceFacilityStatus.Active,
     ///         OperationalStatus = ServiceFacilityOperationalStatus.Closed,
     ///         Mode = ServiceFacilityMode.Instance,
     ///         Type = ServiceFacilityType.DiagnosticsOrTherapeuticsUnit,
     ///         PhysicalType = ServiceFacilityPhysicalType.Site,
-    ///         Telecoms = new List<string>() { "555-555-5555" },
+    ///         Telecoms = new List&lt;string&gt;() { "555-555-5555" },
     ///         Address = new StreetAddressLongZip
     ///         {
     ///             Address1 = "123 Main St",

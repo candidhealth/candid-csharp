@@ -114,7 +114,7 @@ public partial class V1Client
     ///     {
     ///         Name = "General Medicine",
     ///         Description = "Values associated with a generic visit",
-    ///         Fields = new List<SchemaField>()
+    ///         Fields = new List&lt;SchemaField&gt;()
     ///         {
     ///             new SchemaField { Key = "provider_category", Type = Primitive.String },
     ///             new SchemaField { Key = "is_urgent_care", Type = Primitive.Boolean },
@@ -173,7 +173,7 @@ public partial class V1Client
     ///     {
     ///         Name = "General Medicine and Health",
     ///         Description = "Values collected during all visits",
-    ///         FieldsToAdd = new List<SchemaField>()
+    ///         FieldsToAdd = new List&lt;SchemaField&gt;()
     ///         {
     ///             new SchemaField { Key = "visit_type", Type = Primitive.String },
     ///         },

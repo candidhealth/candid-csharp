@@ -154,7 +154,7 @@ public partial class V3Client
     ///         TaxId = "string",
     ///         TaxonomyCode = "string",
     ///         LicenseType = LicenseType.Md,
-    ///         Addresses = new List<OrganizationProviderAddress>()
+    ///         Addresses = new List&lt;OrganizationProviderAddress&gt;()
     ///         {
     ///             new OrganizationProviderAddress
     ///             {
@@ -172,7 +172,7 @@ public partial class V3Client
     ///         },
     ///         EmploymentStartDate = new DateOnly(2023, 1, 15),
     ///         EmploymentTerminationDate = new DateOnly(2023, 1, 15),
-    ///         Qualifications = new List<IdentifierCreate>()
+    ///         Qualifications = new List&lt;IdentifierCreate&gt;()
     ///         {
     ///             new IdentifierCreate
     ///             {
@@ -238,7 +238,7 @@ public partial class V3Client
     ///         TaxId = "string",
     ///         TaxonomyCode = "string",
     ///         LicenseType = LicenseType.Md,
-    ///         Addresses = new List<OrganizationProviderAddress>()
+    ///         Addresses = new List&lt;OrganizationProviderAddress&gt;()
     ///         {
     ///             new OrganizationProviderAddress
     ///             {
@@ -256,7 +256,7 @@ public partial class V3Client
     ///         },
     ///         EmploymentStartDate = "string",
     ///         EmploymentTerminationDate = "string",
-    ///         Qualifications = new List<object>()
+    ///         Qualifications = new List&lt;object&gt;()
     ///         {
     ///             new IdentifierCreate
     ///             {

@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net;
 
-[JsonConverter(typeof(StringEnumSerializer<PatientRelationshipToInsuredCodeAll>))]
+[JsonConverter(typeof(EnumSerializer<PatientRelationshipToInsuredCodeAll>))]
 public enum PatientRelationshipToInsuredCodeAll
 {
     [EnumMember(Value = "01")]

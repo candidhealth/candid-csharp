@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net;
 
-[JsonConverter(typeof(StringEnumSerializer<ClaimSubmissionPayerResponsibilityType>))]
+[JsonConverter(typeof(EnumSerializer<ClaimSubmissionPayerResponsibilityType>))]
 public enum ClaimSubmissionPayerResponsibilityType
 {
     [EnumMember(Value = "primary")]

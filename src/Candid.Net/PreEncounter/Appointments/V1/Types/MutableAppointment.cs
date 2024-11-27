@@ -63,7 +63,7 @@ public record MutableAppointment
     public string? Notes { get; set; }
 
     /// <summary>
-    /// Contains the coded identification of the location being scheduled. Components: <Identifier (ST)>^<Text (ST)>
+    /// Contains the coded identification of the location being scheduled. Components: &lt;Identifier (ST)&gt;^&lt;Text (ST)&gt;
     /// </summary>
     [JsonPropertyName("location_resource_id")]
     public string? LocationResourceId { get; set; }

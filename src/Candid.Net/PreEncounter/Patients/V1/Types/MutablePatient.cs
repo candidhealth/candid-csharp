@@ -144,6 +144,12 @@ public record MutablePatient
     [JsonPropertyName("do_not_invoice_reason")]
     public DoNotInvoiceReason? DoNotInvoiceReason { get; set; }
 
+    [JsonPropertyName("note_ids")]
+    public IEnumerable<string>? NoteIds { get; set; }
+
+    [JsonPropertyName("tag_ids")]
+    public IEnumerable<string>? TagIds { get; set; }
+
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

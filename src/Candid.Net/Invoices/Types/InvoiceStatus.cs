@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net;
 
-[JsonConverter(typeof(StringEnumSerializer<InvoiceStatus>))]
+[JsonConverter(typeof(EnumSerializer<InvoiceStatus>))]
 public enum InvoiceStatus
 {
     [EnumMember(Value = "draft")]

@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter.Coverages.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<EligibilityCheckStatus>))]
+[JsonConverter(typeof(EnumSerializer<EligibilityCheckStatus>))]
 public enum EligibilityCheckStatus
 {
     [EnumMember(Value = "CREATED")]

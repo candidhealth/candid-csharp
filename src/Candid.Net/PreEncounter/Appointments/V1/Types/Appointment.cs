@@ -12,19 +12,19 @@ public record Appointment
     public required string Id { get; set; }
 
     /// <summary>
-    /// The organization that owns this appointment.
+    /// The organization that owns this object.
     /// </summary>
     [JsonPropertyName("organization_id")]
     public required string OrganizationId { get; set; }
 
     /// <summary>
-    /// True if the appointment is deactivated. Deactivated appointments are not returned in search results but are returned in all other endpoints including scan.
+    /// True if the object is deactivated. Deactivated objects are not returned in search results but are returned in all other endpoints including scan.
     /// </summary>
     [JsonPropertyName("deactivated")]
     public required bool Deactivated { get; set; }
 
     /// <summary>
-    /// The version of the appointment. Any update to any property of an appointment object will create a new version.
+    /// The version of the object. Any update to any property of an object object will create a new version.
     /// </summary>
     [JsonPropertyName("version")]
     public required int Version { get; set; }
@@ -33,7 +33,7 @@ public record Appointment
     public required DateTime UpdatedAt { get; set; }
 
     /// <summary>
-    /// The user ID of the user who last updated the appointment.
+    /// The user ID of the user who last updated the object.
     /// </summary>
     [JsonPropertyName("updating_user_id")]
     public required string UpdatingUserId { get; set; }
@@ -93,7 +93,7 @@ public record Appointment
     public string? Notes { get; set; }
 
     /// <summary>
-    /// Contains the coded identification of the location being scheduled. Components: <Identifier (ST)>^<Text (ST)>
+    /// Contains the coded identification of the location being scheduled. Components: &lt;Identifier (ST)&gt;^&lt;Text (ST)&gt;
     /// </summary>
     [JsonPropertyName("location_resource_id")]
     public string? LocationResourceId { get; set; }

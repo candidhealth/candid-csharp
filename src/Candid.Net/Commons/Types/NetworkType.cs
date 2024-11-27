@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net;
 
-[JsonConverter(typeof(StringEnumSerializer<NetworkType>))]
+[JsonConverter(typeof(EnumSerializer<NetworkType>))]
 public enum NetworkType
 {
     [EnumMember(Value = "12")]

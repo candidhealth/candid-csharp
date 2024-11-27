@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.Encounters.V4;
 
-[JsonConverter(typeof(StringEnumSerializer<CodingAttributionType>))]
+[JsonConverter(typeof(EnumSerializer<CodingAttributionType>))]
 public enum CodingAttributionType
 {
     [EnumMember(Value = "CANDID")]

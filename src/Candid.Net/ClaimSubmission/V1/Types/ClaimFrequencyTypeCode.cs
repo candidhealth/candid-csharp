@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.ClaimSubmission.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<ClaimFrequencyTypeCode>))]
+[JsonConverter(typeof(EnumSerializer<ClaimFrequencyTypeCode>))]
 public enum ClaimFrequencyTypeCode
 {
     [EnumMember(Value = "1")]

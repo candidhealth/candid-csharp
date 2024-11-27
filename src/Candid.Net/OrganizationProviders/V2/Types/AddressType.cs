@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.OrganizationProviders.V2;
 
-[JsonConverter(typeof(StringEnumSerializer<AddressType>))]
+[JsonConverter(typeof(EnumSerializer<AddressType>))]
 public enum AddressType
 {
     [EnumMember(Value = "DEFAULT")]

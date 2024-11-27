@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net;
 
-[JsonConverter(typeof(StringEnumSerializer<SortDirection>))]
+[JsonConverter(typeof(EnumSerializer<SortDirection>))]
 public enum SortDirection
 {
     [EnumMember(Value = "asc")]

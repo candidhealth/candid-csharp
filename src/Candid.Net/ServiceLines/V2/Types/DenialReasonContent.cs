@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.ServiceLines.V2;
 
-[JsonConverter(typeof(StringEnumSerializer<DenialReasonContent>))]
+[JsonConverter(typeof(EnumSerializer<DenialReasonContent>))]
 public enum DenialReasonContent
 {
     [EnumMember(Value = "Authorization Required")]

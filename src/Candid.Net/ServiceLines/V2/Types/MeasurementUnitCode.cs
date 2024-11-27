@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.ServiceLines.V2;
 
-[JsonConverter(typeof(StringEnumSerializer<MeasurementUnitCode>))]
+[JsonConverter(typeof(EnumSerializer<MeasurementUnitCode>))]
 public enum MeasurementUnitCode
 {
     [EnumMember(Value = "ML")]

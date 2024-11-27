@@ -28,7 +28,7 @@ public partial class V1Client
     ///         StartTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
     ///         Status = AppointmentStatus.Pending,
     ///         ServiceDuration = 1,
-    ///         Services = new List<Service>()
+    ///         Services = new List&lt;Service&gt;()
     ///         {
     ///             new Service
     ///             {
@@ -42,17 +42,17 @@ public partial class V1Client
     ///             Name = new HumanName
     ///             {
     ///                 Family = "string",
-    ///                 Given = new List<string>() { "string" },
+    ///                 Given = new List&lt;string&gt;() { "string" },
     ///                 Use = NameUse.Usual,
     ///                 Period = new Period(),
     ///             },
     ///             Type = ExternalProviderType.Primary,
     ///             Npi = "string",
-    ///             Telecoms = new List<ContactPoint>()
+    ///             Telecoms = new List&lt;ContactPoint&gt;()
     ///             {
     ///                 new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///             },
-    ///             Addresses = new List<Address>() { },
+    ///             Addresses = new List&lt;Address&gt;() { },
     ///             Period = new Period(),
     ///             CanonicalId = "string",
     ///         },
@@ -207,7 +207,7 @@ public partial class V1Client
     ///         StartTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
     ///         Status = AppointmentStatus.Pending,
     ///         ServiceDuration = 1,
-    ///         Services = new List<Service>()
+    ///         Services = new List&lt;Service&gt;()
     ///         {
     ///             new Service
     ///             {
@@ -221,17 +221,17 @@ public partial class V1Client
     ///             Name = new HumanName
     ///             {
     ///                 Family = "string",
-    ///                 Given = new List<string>() { "string" },
+    ///                 Given = new List&lt;string&gt;() { "string" },
     ///                 Use = NameUse.Usual,
     ///                 Period = new Period(),
     ///             },
     ///             Type = ExternalProviderType.Primary,
     ///             Npi = "string",
-    ///             Telecoms = new List<ContactPoint>()
+    ///             Telecoms = new List&lt;ContactPoint&gt;()
     ///             {
     ///                 new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///             },
-    ///             Addresses = new List<Address>() { },
+    ///             Addresses = new List&lt;Address&gt;() { },
     ///             Period = new Period(),
     ///             CanonicalId = "string",
     ///         },

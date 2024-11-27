@@ -74,21 +74,21 @@ public partial class V1Client
     ///         CheckNumber = "string",
     ///         CheckDate = new DateOnly(2023, 1, 15),
     ///         Note = "string",
-    ///         Claims = new Dictionary<string, IEnumerable<ClaimAdjudicationCreate>>()
+    ///         Claims = new Dictionary&lt;string, IEnumerable&lt;ClaimAdjudicationCreate&gt;&gt;()
     ///         {
     ///             {
     ///                 "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///                 new List<ClaimAdjudicationCreate>()
+    ///                 new List&lt;ClaimAdjudicationCreate&gt;()
     ///                 {
     ///                     new ClaimAdjudicationCreate
     ///                     {
     ///                         ClaimStatusCode = ClaimStatusCodeCreate.ProcessedAsPrimary,
-    ///                         ServiceLines = new Dictionary<
+    ///                         ServiceLines = new Dictionary&lt;
     ///                             string,
-    ///                             IEnumerable<ServiceLineAdjudicationCreate>
-    ///                         >()
+    ///                             IEnumerable&lt;ServiceLineAdjudicationCreate&gt;
+    ///                         &gt;()
     ///                         { },
-    ///                         Carcs = new List<ClaimAdjustmentReasonCode>() { },
+    ///                         Carcs = new List&lt;ClaimAdjustmentReasonCode&gt;() { },
     ///                     },
     ///                 }
     ///             },

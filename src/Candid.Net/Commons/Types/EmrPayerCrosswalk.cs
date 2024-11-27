@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net;
 
-[JsonConverter(typeof(StringEnumSerializer<EmrPayerCrosswalk>))]
+[JsonConverter(typeof(EnumSerializer<EmrPayerCrosswalk>))]
 public enum EmrPayerCrosswalk
 {
     [EnumMember(Value = "HEALTHIE")]

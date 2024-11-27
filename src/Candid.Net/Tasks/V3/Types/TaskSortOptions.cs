@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.Tasks.V3;
 
-[JsonConverter(typeof(StringEnumSerializer<TaskSortOptions>))]
+[JsonConverter(typeof(EnumSerializer<TaskSortOptions>))]
 public enum TaskSortOptions
 {
     [EnumMember(Value = "updated_at:asc")]

@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.Encounters.V4;
 
-[JsonConverter(typeof(StringEnumSerializer<EncounterSubmissionOriginType>))]
+[JsonConverter(typeof(EnumSerializer<EncounterSubmissionOriginType>))]
 public enum EncounterSubmissionOriginType
 {
     [EnumMember(Value = "CANDID")]

@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.OrganizationServiceFacilities.V2;
 
-[JsonConverter(typeof(StringEnumSerializer<ServiceFacilityPhysicalType>))]
+[JsonConverter(typeof(EnumSerializer<ServiceFacilityPhysicalType>))]
 public enum ServiceFacilityPhysicalType
 {
     [EnumMember(Value = "si")]

@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.PatientPayments.V3;
 
-[JsonConverter(typeof(StringEnumSerializer<PatientPaymentStatus>))]
+[JsonConverter(typeof(EnumSerializer<PatientPaymentStatus>))]
 public enum PatientPaymentStatus
 {
     [EnumMember(Value = "PENDING")]

@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.Encounters.V4;
 
-[JsonConverter(typeof(StringEnumSerializer<SynchronicityType>))]
+[JsonConverter(typeof(EnumSerializer<SynchronicityType>))]
 public enum SynchronicityType
 {
     [EnumMember(Value = "Synchronous")]

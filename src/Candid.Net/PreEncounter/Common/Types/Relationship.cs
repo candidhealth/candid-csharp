@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter;
 
-[JsonConverter(typeof(StringEnumSerializer<Relationship>))]
+[JsonConverter(typeof(EnumSerializer<Relationship>))]
 public enum Relationship
 {
     [EnumMember(Value = "SELF")]

@@ -141,7 +141,7 @@ public partial class V2Client
     ///     new ContractCreate
     ///     {
     ///         ContractingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         RenderingProviderIds = new HashSet<string>() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
+    ///         RenderingProviderIds = new HashSet&lt;string&gt;() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
     ///         PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///         EffectiveDate = "string",
     ///         ExpirationDate = "string",
@@ -239,10 +239,10 @@ public partial class V2Client
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///     new ContractUpdate
     ///     {
-    ///         RenderingProviderIds = new HashSet<string>() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
+    ///         RenderingProviderIds = new HashSet&lt;string&gt;() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
     ///         EffectiveDate = "string",
     ///         ExpirationDate = "string",
-    ///         Regions = new RegionStates { States = new List<State>() { State.Aa } },
+    ///         Regions = new RegionStates { States = new List&lt;State&gt;() { State.Aa } },
     ///         ContractStatus = ContractStatus.Pending,
     ///         AuthorizedSignatory = new AuthorizedSignatory
     ///         {

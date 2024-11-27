@@ -188,14 +188,14 @@ public partial class V4Client
     ///     {
     ///         Patient = new PatientCreate
     ///         {
-    ///             PhoneNumbers = new List<PhoneNumber>()
+    ///             PhoneNumbers = new List&lt;PhoneNumber&gt;()
     ///             {
     ///                 new PhoneNumber { Number = "1234567890", Type = PhoneNumberType.Home },
     ///             },
     ///             PhoneConsent = true,
     ///             Email = "johndoe@joincandidhealth.com",
-    ///             NonInsurancePayers = new List<string>() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
-    ///             NonInsurancePayersInfo = new List<PatientNonInsurancePayerInfoCreate>()
+    ///             NonInsurancePayers = new List&lt;string&gt;() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
+    ///             NonInsurancePayersInfo = new List&lt;PatientNonInsurancePayerInfoCreate&gt;()
     ///             {
     ///                 new PatientNonInsurancePayerInfoCreate
     ///                 {
@@ -386,7 +386,7 @@ public partial class V4Client
     ///         },
     ///         PriorAuthorizationNumber = "string",
     ///         ResponsibleParty = ResponsiblePartyType.InsurancePay,
-    ///         Diagnoses = new List<DiagnosisCreate>()
+    ///         Diagnoses = new List&lt;DiagnosisCreate&gt;()
     ///         {
     ///             new DiagnosisCreate
     ///             {
@@ -395,12 +395,12 @@ public partial class V4Client
     ///                 Code = "string",
     ///             },
     ///         },
-    ///         ClinicalNotes = new List<ClinicalNoteCategoryCreate>()
+    ///         ClinicalNotes = new List&lt;ClinicalNoteCategoryCreate&gt;()
     ///         {
     ///             new ClinicalNoteCategoryCreate
     ///             {
     ///                 Category = NoteCategory.Clinical,
-    ///                 Notes = new List<ClinicalNote>()
+    ///                 Notes = new List&lt;ClinicalNote&gt;()
     ///                 {
     ///                     new ClinicalNote
     ///                     {
@@ -412,25 +412,25 @@ public partial class V4Client
     ///                 },
     ///             },
     ///         },
-    ///         BillingNotes = new List<BillingNoteBase>() { new BillingNoteBase { Text = "string" } },
+    ///         BillingNotes = new List&lt;BillingNoteBase&gt;() { new BillingNoteBase { Text = "string" } },
     ///         PlaceOfServiceCode = FacilityTypeCode.Pharmacy,
-    ///         PatientHistories = new List<PatientHistoryCategory>()
+    ///         PatientHistories = new List&lt;PatientHistoryCategory&gt;()
     ///         {
     ///             new PatientHistoryCategory
     ///             {
     ///                 Category = PatientHistoryCategoryEnum.PresentIllness,
-    ///                 Questions = new List<IntakeQuestion>()
+    ///                 Questions = new List&lt;IntakeQuestion&gt;()
     ///                 {
     ///                     new IntakeQuestion
     ///                     {
     ///                         Id = "6E7FBCE4-A8EA-46D0-A8D8-FF83CA3BB176",
     ///                         Text = "Do you have any allergies?",
-    ///                         Responses = new List<IntakeResponseAndFollowUps>()
+    ///                         Responses = new List&lt;IntakeResponseAndFollowUps&gt;()
     ///                         {
     ///                             new IntakeResponseAndFollowUps
     ///                             {
     ///                                 Response = "No allergies",
-    ///                                 FollowUps = new List<IntakeFollowUp>()
+    ///                                 FollowUps = new List&lt;IntakeFollowUp&gt;()
     ///                                 {
     ///                                     new IntakeFollowUp
     ///                                     {
@@ -445,16 +445,16 @@ public partial class V4Client
     ///                 },
     ///             },
     ///         },
-    ///         ServiceLines = new List<ServiceLineCreate>()
+    ///         ServiceLines = new List&lt;ServiceLineCreate&gt;()
     ///         {
     ///             new ServiceLineCreate
     ///             {
-    ///                 Modifiers = new List<ProcedureModifier>() { ProcedureModifier.TwentyTwo },
+    ///                 Modifiers = new List&lt;ProcedureModifier&gt;() { ProcedureModifier.TwentyTwo },
     ///                 ProcedureCode = "string",
     ///                 Quantity = "string",
     ///                 Units = ServiceLineUnits.Mj,
     ///                 ChargeAmountCents = 1,
-    ///                 DiagnosisPointers = new List<int>() { 1 },
+    ///                 DiagnosisPointers = new List&lt;int&gt;() { 1 },
     ///                 DrugIdentification = new DrugIdentification
     ///                 {
     ///                     ServiceIdQualifier = ServiceIdQualifier.EanUcc13,
@@ -487,7 +487,7 @@ public partial class V4Client
     ///                     LastName = "string",
     ///                     OrganizationName = "string",
     ///                 },
-    ///                 TestResults = new List<TestResult>()
+    ///                 TestResults = new List&lt;TestResult&gt;()
     ///                 {
     ///                     new TestResult { Value = 1.1, ResultType = TestResultType.Hematocrit },
     ///                 },
@@ -495,7 +495,7 @@ public partial class V4Client
     ///         },
     ///         Guarantor = new GuarantorCreate
     ///         {
-    ///             PhoneNumbers = new List<PhoneNumber>()
+    ///             PhoneNumbers = new List&lt;PhoneNumber&gt;()
     ///             {
     ///                 new PhoneNumber { Number = "1234567890", Type = PhoneNumberType.Home },
     ///             },
@@ -520,7 +520,7 @@ public partial class V4Client
     ///         {
     ///             ClaimCreatedAt = new DateTime(2023, 01, 01, 12, 00, 00, 000),
     ///             PatientControlNumber = "PATIENT_CONTROL_NUMBER",
-    ///             SubmissionRecords = new List<ClaimSubmissionRecordCreate>()
+    ///             SubmissionRecords = new List&lt;ClaimSubmissionRecordCreate&gt;()
     ///             {
     ///                 new ClaimSubmissionRecordCreate
     ///                 {
@@ -538,13 +538,13 @@ public partial class V4Client
     ///                 },
     ///             },
     ///         },
-    ///         TagIds = new List<string>() { "string" },
-    ///         SchemaInstances = new List<SchemaInstance>()
+    ///         TagIds = new List&lt;string&gt;() { "string" },
+    ///         SchemaInstances = new List&lt;SchemaInstance&gt;()
     ///         {
     ///             new SchemaInstance
     ///             {
     ///                 SchemaId = "ec096b13-f80a-471d-aaeb-54b021c9d582",
-    ///                 Content = new Dictionary<string, object>()
+    ///                 Content = new Dictionary&lt;string, object&gt;()
     ///                 {
     ///                     { "provider_category", "internist" },
     ///                     { "is_urgent_care", true },
@@ -561,7 +561,7 @@ public partial class V4Client
     ///         BenefitsAssignedToProvider = true,
     ///         ProviderAcceptsAssignment = true,
     ///         AppointmentType = "string",
-    ///         ExistingMedications = new List<Medication>()
+    ///         ExistingMedications = new List&lt;Medication&gt;()
     ///         {
     ///             new Medication
     ///             {
@@ -583,7 +583,7 @@ public partial class V4Client
     ///             HemoglobinGdl = 15.1,
     ///             HematocritPct = 51.2,
     ///         },
-    ///         Interventions = new List<Intervention>()
+    ///         Interventions = new List&lt;Intervention&gt;()
     ///         {
     ///             new Intervention
     ///             {
@@ -600,7 +600,7 @@ public partial class V4Client
     ///                     Frequency = "Once Daily",
     ///                     AsNeeded = true,
     ///                 },
-    ///                 Labs = new List<Lab>()
+    ///                 Labs = new List&lt;Lab&gt;()
     ///                 {
     ///                     new Lab
     ///                     {
@@ -695,7 +695,7 @@ public partial class V4Client
     ///     new EncounterCreateFromPreEncounter
     ///     {
     ///         PreEncounterPatientId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         PreEncounterAppointmentIds = new List<string>() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
+    ///         PreEncounterAppointmentIds = new List&lt;string&gt;() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
     ///         BillingProvider = new BillingProvider
     ///         {
     ///             Address = new StreetAddressLongZip
@@ -780,7 +780,7 @@ public partial class V4Client
     ///                 ZipPlusFourCode = "1234",
     ///             },
     ///         },
-    ///         Diagnoses = new List<DiagnosisCreate>()
+    ///         Diagnoses = new List&lt;DiagnosisCreate&gt;()
     ///         {
     ///             new DiagnosisCreate
     ///             {
@@ -789,12 +789,12 @@ public partial class V4Client
     ///                 Code = "string",
     ///             },
     ///         },
-    ///         ClinicalNotes = new List<ClinicalNoteCategoryCreate>()
+    ///         ClinicalNotes = new List&lt;ClinicalNoteCategoryCreate&gt;()
     ///         {
     ///             new ClinicalNoteCategoryCreate
     ///             {
     ///                 Category = NoteCategory.Clinical,
-    ///                 Notes = new List<ClinicalNote>()
+    ///                 Notes = new List&lt;ClinicalNote&gt;()
     ///                 {
     ///                     new ClinicalNote
     ///                     {
@@ -806,25 +806,25 @@ public partial class V4Client
     ///                 },
     ///             },
     ///         },
-    ///         BillingNotes = new List<BillingNoteBase>() { new BillingNoteBase { Text = "string" } },
+    ///         BillingNotes = new List&lt;BillingNoteBase&gt;() { new BillingNoteBase { Text = "string" } },
     ///         PlaceOfServiceCode = FacilityTypeCode.Pharmacy,
-    ///         PatientHistories = new List<PatientHistoryCategory>()
+    ///         PatientHistories = new List&lt;PatientHistoryCategory&gt;()
     ///         {
     ///             new PatientHistoryCategory
     ///             {
     ///                 Category = PatientHistoryCategoryEnum.PresentIllness,
-    ///                 Questions = new List<IntakeQuestion>()
+    ///                 Questions = new List&lt;IntakeQuestion&gt;()
     ///                 {
     ///                     new IntakeQuestion
     ///                     {
     ///                         Id = "6E7FBCE4-A8EA-46D0-A8D8-FF83CA3BB176",
     ///                         Text = "Do you have any allergies?",
-    ///                         Responses = new List<IntakeResponseAndFollowUps>()
+    ///                         Responses = new List&lt;IntakeResponseAndFollowUps&gt;()
     ///                         {
     ///                             new IntakeResponseAndFollowUps
     ///                             {
     ///                                 Response = "No allergies",
-    ///                                 FollowUps = new List<IntakeFollowUp>()
+    ///                                 FollowUps = new List&lt;IntakeFollowUp&gt;()
     ///                                 {
     ///                                     new IntakeFollowUp
     ///                                     {
@@ -839,16 +839,16 @@ public partial class V4Client
     ///                 },
     ///             },
     ///         },
-    ///         ServiceLines = new List<ServiceLineCreate>()
+    ///         ServiceLines = new List&lt;ServiceLineCreate&gt;()
     ///         {
     ///             new ServiceLineCreate
     ///             {
-    ///                 Modifiers = new List<ProcedureModifier>() { ProcedureModifier.TwentyTwo },
+    ///                 Modifiers = new List&lt;ProcedureModifier&gt;() { ProcedureModifier.TwentyTwo },
     ///                 ProcedureCode = "string",
     ///                 Quantity = "string",
     ///                 Units = ServiceLineUnits.Mj,
     ///                 ChargeAmountCents = 1,
-    ///                 DiagnosisPointers = new List<int>() { 1 },
+    ///                 DiagnosisPointers = new List&lt;int&gt;() { 1 },
     ///                 DrugIdentification = new DrugIdentification
     ///                 {
     ///                     ServiceIdQualifier = ServiceIdQualifier.EanUcc13,
@@ -881,7 +881,7 @@ public partial class V4Client
     ///                     LastName = "string",
     ///                     OrganizationName = "string",
     ///                 },
-    ///                 TestResults = new List<TestResult>()
+    ///                 TestResults = new List&lt;TestResult&gt;()
     ///                 {
     ///                     new TestResult { Value = 1.1, ResultType = TestResultType.Hematocrit },
     ///                 },
@@ -891,7 +891,7 @@ public partial class V4Client
     ///         {
     ///             ClaimCreatedAt = new DateTime(2023, 01, 01, 12, 00, 00, 000),
     ///             PatientControlNumber = "PATIENT_CONTROL_NUMBER",
-    ///             SubmissionRecords = new List<ClaimSubmissionRecordCreate>()
+    ///             SubmissionRecords = new List&lt;ClaimSubmissionRecordCreate&gt;()
     ///             {
     ///                 new ClaimSubmissionRecordCreate
     ///                 {
@@ -909,13 +909,13 @@ public partial class V4Client
     ///                 },
     ///             },
     ///         },
-    ///         TagIds = new List<string>() { "string" },
-    ///         SchemaInstances = new List<SchemaInstance>()
+    ///         TagIds = new List&lt;string&gt;() { "string" },
+    ///         SchemaInstances = new List&lt;SchemaInstance&gt;()
     ///         {
     ///             new SchemaInstance
     ///             {
     ///                 SchemaId = "ec096b13-f80a-471d-aaeb-54b021c9d582",
-    ///                 Content = new Dictionary<string, object>()
+    ///                 Content = new Dictionary&lt;string, object&gt;()
     ///                 {
     ///                     { "provider_category", "internist" },
     ///                     { "is_urgent_care", true },
@@ -931,7 +931,7 @@ public partial class V4Client
     ///         BenefitsAssignedToProvider = true,
     ///         ProviderAcceptsAssignment = true,
     ///         AppointmentType = "string",
-    ///         ExistingMedications = new List<Medication>()
+    ///         ExistingMedications = new List&lt;Medication&gt;()
     ///         {
     ///             new Medication
     ///             {
@@ -953,7 +953,7 @@ public partial class V4Client
     ///             HemoglobinGdl = 15.1,
     ///             HematocritPct = 51.2,
     ///         },
-    ///         Interventions = new List<Intervention>()
+    ///         Interventions = new List&lt;Intervention&gt;()
     ///         {
     ///             new Intervention
     ///             {
@@ -970,7 +970,7 @@ public partial class V4Client
     ///                     Frequency = "Once Daily",
     ///                     AsNeeded = true,
     ///                 },
-    ///                 Labs = new List<Lab>()
+    ///                 Labs = new List&lt;Lab&gt;()
     ///                 {
     ///                     new Lab
     ///                     {
@@ -1049,14 +1049,14 @@ public partial class V4Client
     ///         PriorAuthorizationNumber = "string",
     ///         ExternalId = "string",
     ///         DateOfService = new DateOnly(2023, 1, 15),
-    ///         DiagnosisIds = new List<string>() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
-    ///         TagIds = new List<string>() { "string" },
-    ///         ClinicalNotes = new List<ClinicalNoteCategoryCreate>()
+    ///         DiagnosisIds = new List&lt;string&gt;() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
+    ///         TagIds = new List&lt;string&gt;() { "string" },
+    ///         ClinicalNotes = new List&lt;ClinicalNoteCategoryCreate&gt;()
     ///         {
     ///             new ClinicalNoteCategoryCreate
     ///             {
     ///                 Category = NoteCategory.Clinical,
-    ///                 Notes = new List<ClinicalNote>()
+    ///                 Notes = new List&lt;ClinicalNote&gt;()
     ///                 {
     ///                     new ClinicalNote
     ///                     {
@@ -1173,15 +1173,15 @@ public partial class V4Client
     ///                 ZipCode = "10001",
     ///                 ZipPlusFourCode = "1234",
     ///             },
-    ///             PhoneNumbers = new List<PhoneNumber>()
+    ///             PhoneNumbers = new List&lt;PhoneNumber&gt;()
     ///             {
     ///                 new PhoneNumber { Number = "1234567890", Type = PhoneNumberType.Home },
     ///             },
     ///             PhoneConsent = true,
     ///             Email = "johndoe@joincandidhealth.com",
     ///             EmailConsent = true,
-    ///             NonInsurancePayers = new List<string>() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
-    ///             NonInsurancePayersInfo = new List<PatientNonInsurancePayerInfoCreate>()
+    ///             NonInsurancePayers = new List&lt;string&gt;() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
+    ///             NonInsurancePayersInfo = new List&lt;PatientNonInsurancePayerInfoCreate&gt;()
     ///             {
     ///                 new PatientNonInsurancePayerInfoCreate
     ///                 {
@@ -1191,12 +1191,12 @@ public partial class V4Client
     ///             },
     ///         },
     ///         PatientAuthorizedRelease = true,
-    ///         SchemaInstances = new List<SchemaInstance>()
+    ///         SchemaInstances = new List&lt;SchemaInstance&gt;()
     ///         {
     ///             new SchemaInstance
     ///             {
     ///                 SchemaId = "ec096b13-f80a-471d-aaeb-54b021c9d582",
-    ///                 Content = new Dictionary<string, object>()
+    ///                 Content = new Dictionary&lt;string, object&gt;()
     ///                 {
     ///                     { "provider_category", "internist" },
     ///                     { "is_urgent_care", true },
@@ -1215,7 +1215,7 @@ public partial class V4Client
     ///             HemoglobinGdl = 15.1,
     ///             HematocritPct = 51.2,
     ///         },
-    ///         ExistingMedications = new List<Medication>()
+    ///         ExistingMedications = new List&lt;Medication&gt;()
     ///         {
     ///             new Medication
     ///             {
@@ -1272,7 +1272,7 @@ public partial class V4Client
     ///                 ZipCode = "10001",
     ///                 ZipPlusFourCode = "1234",
     ///             },
-    ///             PhoneNumbers = new List<PhoneNumber>()
+    ///             PhoneNumbers = new List&lt;PhoneNumber&gt;()
     ///             {
     ///                 new PhoneNumber { Number = "1234567890", Type = PhoneNumberType.Home },
     ///             },

@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.OrganizationProviders.V2;
 
-[JsonConverter(typeof(StringEnumSerializer<OrganizationProviderSortOptions>))]
+[JsonConverter(typeof(EnumSerializer<OrganizationProviderSortOptions>))]
 public enum OrganizationProviderSortOptions
 {
     [EnumMember(Value = "provider_name:asc")]

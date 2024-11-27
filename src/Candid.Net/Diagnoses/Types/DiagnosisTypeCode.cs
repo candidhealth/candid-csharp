@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net;
 
-[JsonConverter(typeof(StringEnumSerializer<DiagnosisTypeCode>))]
+[JsonConverter(typeof(EnumSerializer<DiagnosisTypeCode>))]
 public enum DiagnosisTypeCode
 {
     [EnumMember(Value = "ABF")]

@@ -165,7 +165,7 @@ public partial class V1Client
     ///         AmountCents = 1,
     ///         PaymentTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
     ///         PaymentNote = "string",
-    ///         Allocations = new List<AllocationCreate>()
+    ///         Allocations = new List&lt;AllocationCreate&gt;()
     ///         {
     ///             new AllocationCreate
     ///             {

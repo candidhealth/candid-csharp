@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter.Coverages.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<InsuranceTypeCode>))]
+[JsonConverter(typeof(EnumSerializer<InsuranceTypeCode>))]
 public enum InsuranceTypeCode
 {
     [EnumMember(Value = "01")]

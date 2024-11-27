@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net;
 
-[JsonConverter(typeof(StringEnumSerializer<QualifierCode>))]
+[JsonConverter(typeof(EnumSerializer<QualifierCode>))]
 public enum QualifierCode
 {
     [EnumMember(Value = "DQ")]

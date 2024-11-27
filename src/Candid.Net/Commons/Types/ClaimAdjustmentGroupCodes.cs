@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net;
 
-[JsonConverter(typeof(StringEnumSerializer<ClaimAdjustmentGroupCodes>))]
+[JsonConverter(typeof(EnumSerializer<ClaimAdjustmentGroupCodes>))]
 public enum ClaimAdjustmentGroupCodes
 {
     [EnumMember(Value = "CO")]

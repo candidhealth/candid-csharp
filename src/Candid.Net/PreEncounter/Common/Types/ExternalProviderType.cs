@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter;
 
-[JsonConverter(typeof(StringEnumSerializer<ExternalProviderType>))]
+[JsonConverter(typeof(EnumSerializer<ExternalProviderType>))]
 public enum ExternalProviderType
 {
     [EnumMember(Value = "PRIMARY")]

@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.OrganizationProviders.V2;
 
-[JsonConverter(typeof(StringEnumSerializer<LicenseType>))]
+[JsonConverter(typeof(EnumSerializer<LicenseType>))]
 public enum LicenseType
 {
     [EnumMember(Value = "MD")]

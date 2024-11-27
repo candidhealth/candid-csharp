@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter.Appointments.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<UniversalServiceIdentifier>))]
+[JsonConverter(typeof(EnumSerializer<UniversalServiceIdentifier>))]
 public enum UniversalServiceIdentifier
 {
     [EnumMember(Value = "MD_Visit")]

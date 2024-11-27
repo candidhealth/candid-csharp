@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter;
 
-[JsonConverter(typeof(StringEnumSerializer<DisabilityStatus>))]
+[JsonConverter(typeof(EnumSerializer<DisabilityStatus>))]
 public enum DisabilityStatus
 {
     [EnumMember(Value = "DISABLED")]

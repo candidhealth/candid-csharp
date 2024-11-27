@@ -21,19 +21,19 @@ public record Patient
     public required string Mrn { get; set; }
 
     /// <summary>
-    /// The organization that owns this patient.
+    /// The organization that owns this object.
     /// </summary>
     [JsonPropertyName("organization_id")]
     public required string OrganizationId { get; set; }
 
     /// <summary>
-    /// True if the patient is deactivated. Deactivated patients are not returned in search results but are returned in all other endpoints including scan.
+    /// True if the object is deactivated. Deactivated objects are not returned in search results but are returned in all other endpoints including scan.
     /// </summary>
     [JsonPropertyName("deactivated")]
     public required bool Deactivated { get; set; }
 
     /// <summary>
-    /// The version of the patient. Any update to any property of a patient object will create a new version.
+    /// The version of the object. Any update to any property of an object object will create a new version.
     /// </summary>
     [JsonPropertyName("version")]
     public required int Version { get; set; }
@@ -42,7 +42,7 @@ public record Patient
     public required DateTime UpdatedAt { get; set; }
 
     /// <summary>
-    /// The user ID of the user who last updated the patient.
+    /// The user ID of the user who last updated the object.
     /// </summary>
     [JsonPropertyName("updating_user_id")]
     public required string UpdatingUserId { get; set; }
@@ -182,6 +182,12 @@ public record Patient
     /// </summary>
     [JsonPropertyName("do_not_invoice_reason")]
     public DoNotInvoiceReason? DoNotInvoiceReason { get; set; }
+
+    [JsonPropertyName("note_ids")]
+    public IEnumerable<string>? NoteIds { get; set; }
+
+    [JsonPropertyName("tag_ids")]
+    public IEnumerable<string>? TagIds { get; set; }
 
     public override string ToString()
     {

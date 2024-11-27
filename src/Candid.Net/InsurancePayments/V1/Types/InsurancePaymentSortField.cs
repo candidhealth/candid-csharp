@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.InsurancePayments.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<InsurancePaymentSortField>))]
+[JsonConverter(typeof(EnumSerializer<InsurancePaymentSortField>))]
 public enum InsurancePaymentSortField
 {
     [EnumMember(Value = "amount_cents")]

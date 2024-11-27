@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.ServiceLines.V2;
 
-[JsonConverter(typeof(StringEnumSerializer<TestResultType>))]
+[JsonConverter(typeof(EnumSerializer<TestResultType>))]
 public enum TestResultType
 {
     [EnumMember(Value = "HEMATOCRIT")]

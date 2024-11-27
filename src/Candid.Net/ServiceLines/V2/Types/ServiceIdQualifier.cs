@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.ServiceLines.V2;
 
-[JsonConverter(typeof(StringEnumSerializer<ServiceIdQualifier>))]
+[JsonConverter(typeof(EnumSerializer<ServiceIdQualifier>))]
 public enum ServiceIdQualifier
 {
     [EnumMember(Value = "EN")]

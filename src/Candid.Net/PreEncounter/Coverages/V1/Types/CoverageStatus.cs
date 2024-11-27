@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter.Coverages.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<CoverageStatus>))]
+[JsonConverter(typeof(EnumSerializer<CoverageStatus>))]
 public enum CoverageStatus
 {
     [EnumMember(Value = "ACTIVE")]

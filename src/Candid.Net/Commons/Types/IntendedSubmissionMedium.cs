@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net;
 
-[JsonConverter(typeof(StringEnumSerializer<IntendedSubmissionMedium>))]
+[JsonConverter(typeof(EnumSerializer<IntendedSubmissionMedium>))]
 public enum IntendedSubmissionMedium
 {
     [EnumMember(Value = "paper")]

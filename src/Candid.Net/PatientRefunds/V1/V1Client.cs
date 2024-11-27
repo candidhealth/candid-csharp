@@ -177,7 +177,7 @@ public partial class V1Client
     ///         RefundTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
     ///         RefundNote = "string",
     ///         PatientExternalId = "string",
-    ///         Allocations = new List<AllocationCreate>()
+    ///         Allocations = new List&lt;AllocationCreate&gt;()
     ///         {
     ///             new AllocationCreate
     ///             {

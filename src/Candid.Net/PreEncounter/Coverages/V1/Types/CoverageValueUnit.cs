@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter.Coverages.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<CoverageValueUnit>))]
+[JsonConverter(typeof(EnumSerializer<CoverageValueUnit>))]
 public enum CoverageValueUnit
 {
     [EnumMember(Value = "PERCENT")]

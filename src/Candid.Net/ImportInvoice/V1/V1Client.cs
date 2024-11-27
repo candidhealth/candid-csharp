@@ -29,7 +29,7 @@ public partial class V1Client
     ///         ExternalCustomerIdentifier = "string",
     ///         Note = "string",
     ///         DueDate = new DateOnly(2023, 1, 15),
-    ///         Items = new List<InvoiceItemCreate>()
+    ///         Items = new List&lt;InvoiceItemCreate&gt;()
     ///         {
     ///             new InvoiceItemCreate
     ///             {
@@ -238,7 +238,7 @@ public partial class V1Client
     ///         Items = new InvoiceItemInfoUpdate
     ///         {
     ///             UpdateType = InvoiceItemUpdateType.Append,
-    ///             Items = new List<InvoiceItemCreate>()
+    ///             Items = new List&lt;InvoiceItemCreate&gt;()
     ///             {
     ///                 new InvoiceItemCreate
     ///                 {

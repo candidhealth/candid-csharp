@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter;
 
-[JsonConverter(typeof(StringEnumSerializer<Sex>))]
+[JsonConverter(typeof(EnumSerializer<Sex>))]
 public enum Sex
 {
     [EnumMember(Value = "FEMALE")]

@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net;
 
-[JsonConverter(typeof(StringEnumSerializer<PatientTransactionSource>))]
+[JsonConverter(typeof(EnumSerializer<PatientTransactionSource>))]
 public enum PatientTransactionSource
 {
     [EnumMember(Value = "MANUAL_ENTRY")]

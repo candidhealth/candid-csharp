@@ -30,7 +30,7 @@ public partial class V1Client
     ///             Name = new HumanName
     ///             {
     ///                 Family = "string",
-    ///                 Given = new List<string>() { "string" },
+    ///                 Given = new List&lt;string&gt;() { "string" },
     ///                 Use = NameUse.Usual,
     ///                 Period = new Period(),
     ///             },
@@ -39,7 +39,7 @@ public partial class V1Client
     ///             Address = new Address
     ///             {
     ///                 Use = AddressUse.Home,
-    ///                 Line = new List<string>() { "string" },
+    ///                 Line = new List&lt;string&gt;() { "string" },
     ///                 City = "string",
     ///                 State = "string",
     ///                 PostalCode = "string",
@@ -69,7 +69,7 @@ public partial class V1Client
     ///             InsuranceCardImageLocator = "string",
     ///         },
     ///         Verified = true,
-    ///         EligibilityChecks = new List<EligibilityCheckMetadata>()
+    ///         EligibilityChecks = new List&lt;EligibilityCheckMetadata&gt;()
     ///         {
     ///             new EligibilityCheckMetadata
     ///             {
@@ -144,7 +144,7 @@ public partial class V1Client
     ///             Name = new HumanName
     ///             {
     ///                 Family = "string",
-    ///                 Given = new List<string>() { "string" },
+    ///                 Given = new List&lt;string&gt;() { "string" },
     ///                 Use = NameUse.Usual,
     ///                 Period = new Period(),
     ///             },
@@ -153,7 +153,7 @@ public partial class V1Client
     ///             Address = new Address
     ///             {
     ///                 Use = AddressUse.Home,
-    ///                 Line = new List<string>() { "string" },
+    ///                 Line = new List&lt;string&gt;() { "string" },
     ///                 City = "string",
     ///                 State = "string",
     ///                 PostalCode = "string",
@@ -183,7 +183,7 @@ public partial class V1Client
     ///             InsuranceCardImageLocator = "string",
     ///         },
     ///         Verified = true,
-    ///         EligibilityChecks = new List<EligibilityCheckMetadata>()
+    ///         EligibilityChecks = new List&lt;EligibilityCheckMetadata&gt;()
     ///         {
     ///             new EligibilityCheckMetadata
     ///             {

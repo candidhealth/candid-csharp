@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net;
 
-[JsonConverter(typeof(StringEnumSerializer<ProcedureModifier>))]
+[JsonConverter(typeof(EnumSerializer<ProcedureModifier>))]
 public enum ProcedureModifier
 {
     [EnumMember(Value = "22")]

@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.Encounters.V4;
 
-[JsonConverter(typeof(StringEnumSerializer<EncounterSortOptions>))]
+[JsonConverter(typeof(EnumSerializer<EncounterSortOptions>))]
 public enum EncounterSortOptions
 {
     [EnumMember(Value = "created_at:asc")]

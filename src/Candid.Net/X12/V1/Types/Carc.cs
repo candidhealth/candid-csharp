@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.X12.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<Carc>))]
+[JsonConverter(typeof(EnumSerializer<Carc>))]
 public enum Carc
 {
     [EnumMember(Value = "1")]

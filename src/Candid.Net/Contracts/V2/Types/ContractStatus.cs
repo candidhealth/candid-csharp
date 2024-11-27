@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.Contracts.V2;
 
-[JsonConverter(typeof(StringEnumSerializer<ContractStatus>))]
+[JsonConverter(typeof(EnumSerializer<ContractStatus>))]
 public enum ContractStatus
 {
     [EnumMember(Value = "pending")]

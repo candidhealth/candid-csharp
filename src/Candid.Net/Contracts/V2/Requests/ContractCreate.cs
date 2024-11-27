@@ -17,7 +17,6 @@ public record ContractCreate
     /// A rendering provider isn't contracted directly with the payer but can render
     /// services under the contract held by the contracting provider.
     /// Max items is 100.
-    ///
     /// </summary>
     [JsonPropertyName("rendering_provider_ids")]
     public HashSet<string> RenderingProviderIds { get; set; } = new HashSet<string>();

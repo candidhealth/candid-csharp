@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter;
 
-[JsonConverter(typeof(StringEnumSerializer<SexualOrientation>))]
+[JsonConverter(typeof(EnumSerializer<SexualOrientation>))]
 public enum SexualOrientation
 {
     [EnumMember(Value = "HETEROSEXUAL")]

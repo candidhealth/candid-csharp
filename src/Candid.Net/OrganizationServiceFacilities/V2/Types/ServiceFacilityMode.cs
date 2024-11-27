@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.OrganizationServiceFacilities.V2;
 
-[JsonConverter(typeof(StringEnumSerializer<ServiceFacilityMode>))]
+[JsonConverter(typeof(EnumSerializer<ServiceFacilityMode>))]
 public enum ServiceFacilityMode
 {
     [EnumMember(Value = "instance")]

@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.FeeSchedules.V3;
 
-[JsonConverter(typeof(StringEnumSerializer<DimensionName>))]
+[JsonConverter(typeof(EnumSerializer<DimensionName>))]
 public enum DimensionName
 {
     [EnumMember(Value = "payer_uuid")]

@@ -26,7 +26,7 @@ public partial class V2Client
     ///         PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///         StartDate = new DateOnly(2023, 1, 15),
     ///         EndDate = new DateOnly(2023, 1, 15),
-    ///         Regions = new RegionStates { States = new List<State>() { State.Aa } },
+    ///         Regions = new RegionStates { States = new List&lt;State&gt;() { State.Aa } },
     ///         SubmittedDate = new DateOnly(2023, 1, 15),
     ///         PayerLoadedDate = new DateOnly(2023, 1, 15),
     ///     }
@@ -234,7 +234,7 @@ public partial class V2Client
     ///         PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///         StartDate = new DateOnly(2023, 1, 15),
     ///         EndDate = new DateOnly(2023, 1, 15),
-    ///         Regions = new RegionStates { States = new List<State>() { State.Aa } },
+    ///         Regions = new RegionStates { States = new List&lt;State&gt;() { State.Aa } },
     ///         SubmittedDate = new DateOnly(2023, 1, 15),
     ///         PayerLoadedDate = new DateOnly(2023, 1, 15),
     ///     }

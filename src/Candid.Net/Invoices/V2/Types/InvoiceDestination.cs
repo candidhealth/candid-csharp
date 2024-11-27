@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.Invoices.V2;
 
-[JsonConverter(typeof(StringEnumSerializer<InvoiceDestination>))]
+[JsonConverter(typeof(EnumSerializer<InvoiceDestination>))]
 public enum InvoiceDestination
 {
     [EnumMember(Value = "STRIPE")]

@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net;
 
-[JsonConverter(typeof(StringEnumSerializer<ServiceLineUnits>))]
+[JsonConverter(typeof(EnumSerializer<ServiceLineUnits>))]
 public enum ServiceLineUnits
 {
     [EnumMember(Value = "MJ")]

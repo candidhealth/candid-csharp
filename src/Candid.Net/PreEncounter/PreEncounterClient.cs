@@ -2,7 +2,9 @@ using Candid.Net.Core;
 using Candid.Net.PreEncounter.Appointments;
 using Candid.Net.PreEncounter.Coverages;
 using Candid.Net.PreEncounter.Lists;
+using Candid.Net.PreEncounter.Notes;
 using Candid.Net.PreEncounter.Patients;
+using Candid.Net.PreEncounter.Tags;
 
 #nullable enable
 
@@ -18,7 +20,9 @@ public partial class PreEncounterClient
         Appointments = new AppointmentsClient(_client);
         Coverages = new CoveragesClient(_client);
         Lists = new ListsClient(_client);
+        Notes = new NotesClient(_client);
         Patients = new PatientsClient(_client);
+        Tags = new TagsClient(_client);
         Common = new CommonClient(_client);
     }
 
@@ -28,7 +32,11 @@ public partial class PreEncounterClient
 
     public ListsClient Lists { get; }
 
+    public NotesClient Notes { get; }
+
     public PatientsClient Patients { get; }
+
+    public TagsClient Tags { get; }
 
     public CommonClient Common { get; }
 }

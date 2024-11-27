@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.WriteOffs.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<InsuranceWriteOffReason>))]
+[JsonConverter(typeof(EnumSerializer<InsuranceWriteOffReason>))]
 public enum InsuranceWriteOffReason
 {
     [EnumMember(Value = "SMALL_BALANCE")]

@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net;
 
-[JsonConverter(typeof(StringEnumSerializer<PhoneNumberType>))]
+[JsonConverter(typeof(EnumSerializer<PhoneNumberType>))]
 public enum PhoneNumberType
 {
     [EnumMember(Value = "Home")]

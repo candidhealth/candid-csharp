@@ -52,7 +52,6 @@ public record ExpectedNetworkStatusRequest
 
     /// <summary>
     /// Date formatted as YYYY-MM-DD; eg: 2019-08-25.
-    ///
     /// </summary>
     [JsonPropertyName("date_of_service")]
     public required string DateOfService { get; set; }

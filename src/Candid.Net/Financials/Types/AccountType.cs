@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net;
 
-[JsonConverter(typeof(StringEnumSerializer<AccountType>))]
+[JsonConverter(typeof(EnumSerializer<AccountType>))]
 public enum AccountType
 {
     [EnumMember(Value = "PATIENT")]

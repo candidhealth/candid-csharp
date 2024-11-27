@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.Credentialing.V2;
 
-[JsonConverter(typeof(StringEnumSerializer<CredentialingSpanStatus>))]
+[JsonConverter(typeof(EnumSerializer<CredentialingSpanStatus>))]
 public enum CredentialingSpanStatus
 {
     [EnumMember(Value = "work_in_progress")]

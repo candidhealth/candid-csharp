@@ -30,16 +30,16 @@ public partial class V1Client
     ///             Name = new HumanName
     ///             {
     ///                 Family = "string",
-    ///                 Given = new List<string>() { "string" },
+    ///                 Given = new List&lt;string&gt;() { "string" },
     ///                 Use = NameUse.Usual,
     ///                 Period = new Period(),
     ///             },
-    ///             OtherNames = new List<HumanName>()
+    ///             OtherNames = new List&lt;HumanName&gt;()
     ///             {
     ///                 new HumanName
     ///                 {
     ///                     Family = "string",
-    ///                     Given = new List<string>() { "string" },
+    ///                     Given = new List&lt;string&gt;() { "string" },
     ///                     Use = NameUse.Usual,
     ///                     Period = new Period(),
     ///                 },
@@ -58,19 +58,19 @@ public partial class V1Client
     ///             PrimaryAddress = new Address
     ///             {
     ///                 Use = AddressUse.Home,
-    ///                 Line = new List<string>() { "string" },
+    ///                 Line = new List&lt;string&gt;() { "string" },
     ///                 City = "string",
     ///                 State = "string",
     ///                 PostalCode = "string",
     ///                 Country = "string",
     ///                 Period = new Period(),
     ///             },
-    ///             OtherAddresses = new List<Address>()
+    ///             OtherAddresses = new List&lt;Address&gt;()
     ///             {
     ///                 new Address
     ///                 {
     ///                     Use = AddressUse.Home,
-    ///                     Line = new List<string>() { "string" },
+    ///                     Line = new List&lt;string&gt;() { "string" },
     ///                     City = "string",
     ///                     State = "string",
     ///                     PostalCode = "string",
@@ -79,7 +79,7 @@ public partial class V1Client
     ///                 },
     ///             },
     ///             PrimaryTelecom = new ContactPoint { Value = "string", Use = ContactPointUse.Home },
-    ///             OtherTelecoms = new List<ContactPoint>()
+    ///             OtherTelecoms = new List&lt;ContactPoint&gt;()
     ///             {
     ///                 new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///             },
@@ -92,28 +92,28 @@ public partial class V1Client
     ///                 ExternalId = "string",
     ///                 SystemName = "string",
     ///             },
-    ///             Contacts = new List<Contact>()
+    ///             Contacts = new List&lt;Contact&gt;()
     ///             {
     ///                 new Contact
     ///                 {
-    ///                     Relationship = new List<Relationship>() { Relationship.Self },
+    ///                     Relationship = new List&lt;Relationship&gt;() { Relationship.Self },
     ///                     Name = new HumanName
     ///                     {
     ///                         Family = "string",
-    ///                         Given = new List<string>() { "string" },
+    ///                         Given = new List&lt;string&gt;() { "string" },
     ///                         Use = NameUse.Usual,
     ///                         Period = new Period(),
     ///                     },
-    ///                     Telecoms = new List<ContactPoint>()
+    ///                     Telecoms = new List&lt;ContactPoint&gt;()
     ///                     {
     ///                         new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///                     },
-    ///                     Addresses = new List<Address>()
+    ///                     Addresses = new List&lt;Address&gt;()
     ///                     {
     ///                         new Address
     ///                         {
     ///                             Use = AddressUse.Home,
-    ///                             Line = new List<string>() { "string" },
+    ///                             Line = new List&lt;string&gt;() { "string" },
     ///                             City = "string",
     ///                             State = "string",
     ///                             PostalCode = "string",
@@ -125,34 +125,34 @@ public partial class V1Client
     ///                     HipaaAuthorization = true,
     ///                 },
     ///             },
-    ///             GeneralPractitioners = new List<ExternalProvider>()
+    ///             GeneralPractitioners = new List&lt;ExternalProvider&gt;()
     ///             {
     ///                 new ExternalProvider
     ///                 {
     ///                     Name = new HumanName
     ///                     {
     ///                         Family = "string",
-    ///                         Given = new List<string>() { "string" },
+    ///                         Given = new List&lt;string&gt;() { "string" },
     ///                         Use = NameUse.Usual,
     ///                         Period = new Period(),
     ///                     },
     ///                     Type = ExternalProviderType.Primary,
     ///                     Npi = "string",
-    ///                     Telecoms = new List<ContactPoint>()
+    ///                     Telecoms = new List&lt;ContactPoint&gt;()
     ///                     {
     ///                         new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///                     },
-    ///                     Addresses = new List<Address>() { },
+    ///                     Addresses = new List&lt;Address&gt;() { },
     ///                     Period = new Period(),
     ///                     CanonicalId = "string",
     ///                 },
     ///             },
     ///             FilingOrder = new FilingOrder
     ///             {
-    ///                 Coverages = new List<string>() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
+    ///                 Coverages = new List&lt;string&gt;() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
     ///             },
-    ///             NonInsurancePayers = new List<string>() { "string" },
-    ///             NonInsurancePayerAssociations = new List<CanonicalNonInsurancePayerAssociation>()
+    ///             NonInsurancePayers = new List&lt;string&gt;() { "string" },
+    ///             NonInsurancePayerAssociations = new List&lt;CanonicalNonInsurancePayerAssociation&gt;()
     ///             {
     ///                 new CanonicalNonInsurancePayerAssociation { Id = "string" },
     ///             },
@@ -161,7 +161,7 @@ public partial class V1Client
     ///                 Name = new HumanName
     ///                 {
     ///                     Family = "string",
-    ///                     Given = new List<string>() { "string" },
+    ///                     Given = new List&lt;string&gt;() { "string" },
     ///                     Use = NameUse.Usual,
     ///                     Period = new Period(),
     ///                 },
@@ -171,7 +171,7 @@ public partial class V1Client
     ///                 Address = new Address
     ///                 {
     ///                     Use = AddressUse.Home,
-    ///                     Line = new List<string>() { "string" },
+    ///                     Line = new List&lt;string&gt;() { "string" },
     ///                     City = "string",
     ///                     State = "string",
     ///                     PostalCode = "string",
@@ -180,7 +180,7 @@ public partial class V1Client
     ///                 },
     ///             },
     ///             SelfPay = true,
-    ///             Authorizations = new List<Authorization>()
+    ///             Authorizations = new List&lt;Authorization&gt;()
     ///             {
     ///                 new Authorization
     ///                 {
@@ -191,7 +191,7 @@ public partial class V1Client
     ///                     Units = AuthorizationUnit.Visit,
     ///                 },
     ///             },
-    ///             Referrals = new List<Referral>()
+    ///             Referrals = new List&lt;Referral&gt;()
     ///             {
     ///                 new Referral
     ///                 {
@@ -200,17 +200,17 @@ public partial class V1Client
     ///                         Name = new HumanName
     ///                         {
     ///                             Family = "string",
-    ///                             Given = new List<string>() { "string" },
+    ///                             Given = new List&lt;string&gt;() { "string" },
     ///                             Use = NameUse.Usual,
     ///                             Period = new Period(),
     ///                         },
     ///                         Type = ExternalProviderType.Primary,
     ///                         Npi = "string",
-    ///                         Telecoms = new List<ContactPoint>()
+    ///                         Telecoms = new List&lt;ContactPoint&gt;()
     ///                         {
     ///                             new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///                         },
-    ///                         Addresses = new List<Address>() { },
+    ///                         Addresses = new List&lt;Address&gt;() { },
     ///                         Period = new Period(),
     ///                         CanonicalId = "string",
     ///                     },
@@ -219,6 +219,8 @@ public partial class V1Client
     ///             },
     ///             PrimaryServiceFacilityId = "string",
     ///             DoNotInvoiceReason = DoNotInvoiceReason.Bankruptcy,
+    ///             NoteIds = new List&lt;string&gt;() { "string" },
+    ///             TagIds = new List&lt;string&gt;() { "string" },
     ///         },
     ///     }
     /// );
@@ -282,16 +284,16 @@ public partial class V1Client
     ///             Name = new HumanName
     ///             {
     ///                 Family = "string",
-    ///                 Given = new List<string>() { "string" },
+    ///                 Given = new List&lt;string&gt;() { "string" },
     ///                 Use = NameUse.Usual,
     ///                 Period = new Period(),
     ///             },
-    ///             OtherNames = new List<HumanName>()
+    ///             OtherNames = new List&lt;HumanName&gt;()
     ///             {
     ///                 new HumanName
     ///                 {
     ///                     Family = "string",
-    ///                     Given = new List<string>() { "string" },
+    ///                     Given = new List&lt;string&gt;() { "string" },
     ///                     Use = NameUse.Usual,
     ///                     Period = new Period(),
     ///                 },
@@ -310,19 +312,19 @@ public partial class V1Client
     ///             PrimaryAddress = new Address
     ///             {
     ///                 Use = AddressUse.Home,
-    ///                 Line = new List<string>() { "string" },
+    ///                 Line = new List&lt;string&gt;() { "string" },
     ///                 City = "string",
     ///                 State = "string",
     ///                 PostalCode = "string",
     ///                 Country = "string",
     ///                 Period = new Period(),
     ///             },
-    ///             OtherAddresses = new List<Address>()
+    ///             OtherAddresses = new List&lt;Address&gt;()
     ///             {
     ///                 new Address
     ///                 {
     ///                     Use = AddressUse.Home,
-    ///                     Line = new List<string>() { "string" },
+    ///                     Line = new List&lt;string&gt;() { "string" },
     ///                     City = "string",
     ///                     State = "string",
     ///                     PostalCode = "string",
@@ -331,7 +333,7 @@ public partial class V1Client
     ///                 },
     ///             },
     ///             PrimaryTelecom = new ContactPoint { Value = "string", Use = ContactPointUse.Home },
-    ///             OtherTelecoms = new List<ContactPoint>()
+    ///             OtherTelecoms = new List&lt;ContactPoint&gt;()
     ///             {
     ///                 new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///             },
@@ -344,28 +346,28 @@ public partial class V1Client
     ///                 ExternalId = "string",
     ///                 SystemName = "string",
     ///             },
-    ///             Contacts = new List<Contact>()
+    ///             Contacts = new List&lt;Contact&gt;()
     ///             {
     ///                 new Contact
     ///                 {
-    ///                     Relationship = new List<Relationship>() { Relationship.Self },
+    ///                     Relationship = new List&lt;Relationship&gt;() { Relationship.Self },
     ///                     Name = new HumanName
     ///                     {
     ///                         Family = "string",
-    ///                         Given = new List<string>() { "string" },
+    ///                         Given = new List&lt;string&gt;() { "string" },
     ///                         Use = NameUse.Usual,
     ///                         Period = new Period(),
     ///                     },
-    ///                     Telecoms = new List<ContactPoint>()
+    ///                     Telecoms = new List&lt;ContactPoint&gt;()
     ///                     {
     ///                         new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///                     },
-    ///                     Addresses = new List<Address>()
+    ///                     Addresses = new List&lt;Address&gt;()
     ///                     {
     ///                         new Address
     ///                         {
     ///                             Use = AddressUse.Home,
-    ///                             Line = new List<string>() { "string" },
+    ///                             Line = new List&lt;string&gt;() { "string" },
     ///                             City = "string",
     ///                             State = "string",
     ///                             PostalCode = "string",
@@ -377,34 +379,34 @@ public partial class V1Client
     ///                     HipaaAuthorization = true,
     ///                 },
     ///             },
-    ///             GeneralPractitioners = new List<ExternalProvider>()
+    ///             GeneralPractitioners = new List&lt;ExternalProvider&gt;()
     ///             {
     ///                 new ExternalProvider
     ///                 {
     ///                     Name = new HumanName
     ///                     {
     ///                         Family = "string",
-    ///                         Given = new List<string>() { "string" },
+    ///                         Given = new List&lt;string&gt;() { "string" },
     ///                         Use = NameUse.Usual,
     ///                         Period = new Period(),
     ///                     },
     ///                     Type = ExternalProviderType.Primary,
     ///                     Npi = "string",
-    ///                     Telecoms = new List<ContactPoint>()
+    ///                     Telecoms = new List&lt;ContactPoint&gt;()
     ///                     {
     ///                         new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///                     },
-    ///                     Addresses = new List<Address>() { },
+    ///                     Addresses = new List&lt;Address&gt;() { },
     ///                     Period = new Period(),
     ///                     CanonicalId = "string",
     ///                 },
     ///             },
     ///             FilingOrder = new FilingOrder
     ///             {
-    ///                 Coverages = new List<string>() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
+    ///                 Coverages = new List&lt;string&gt;() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
     ///             },
-    ///             NonInsurancePayers = new List<string>() { "string" },
-    ///             NonInsurancePayerAssociations = new List<CanonicalNonInsurancePayerAssociation>()
+    ///             NonInsurancePayers = new List&lt;string&gt;() { "string" },
+    ///             NonInsurancePayerAssociations = new List&lt;CanonicalNonInsurancePayerAssociation&gt;()
     ///             {
     ///                 new CanonicalNonInsurancePayerAssociation { Id = "string" },
     ///             },
@@ -413,7 +415,7 @@ public partial class V1Client
     ///                 Name = new HumanName
     ///                 {
     ///                     Family = "string",
-    ///                     Given = new List<string>() { "string" },
+    ///                     Given = new List&lt;string&gt;() { "string" },
     ///                     Use = NameUse.Usual,
     ///                     Period = new Period(),
     ///                 },
@@ -423,7 +425,7 @@ public partial class V1Client
     ///                 Address = new Address
     ///                 {
     ///                     Use = AddressUse.Home,
-    ///                     Line = new List<string>() { "string" },
+    ///                     Line = new List&lt;string&gt;() { "string" },
     ///                     City = "string",
     ///                     State = "string",
     ///                     PostalCode = "string",
@@ -432,7 +434,7 @@ public partial class V1Client
     ///                 },
     ///             },
     ///             SelfPay = true,
-    ///             Authorizations = new List<Authorization>()
+    ///             Authorizations = new List&lt;Authorization&gt;()
     ///             {
     ///                 new Authorization
     ///                 {
@@ -443,7 +445,7 @@ public partial class V1Client
     ///                     Units = AuthorizationUnit.Visit,
     ///                 },
     ///             },
-    ///             Referrals = new List<Referral>()
+    ///             Referrals = new List&lt;Referral&gt;()
     ///             {
     ///                 new Referral
     ///                 {
@@ -452,17 +454,17 @@ public partial class V1Client
     ///                         Name = new HumanName
     ///                         {
     ///                             Family = "string",
-    ///                             Given = new List<string>() { "string" },
+    ///                             Given = new List&lt;string&gt;() { "string" },
     ///                             Use = NameUse.Usual,
     ///                             Period = new Period(),
     ///                         },
     ///                         Type = ExternalProviderType.Primary,
     ///                         Npi = "string",
-    ///                         Telecoms = new List<ContactPoint>()
+    ///                         Telecoms = new List&lt;ContactPoint&gt;()
     ///                         {
     ///                             new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///                         },
-    ///                         Addresses = new List<Address>() { },
+    ///                         Addresses = new List&lt;Address&gt;() { },
     ///                         Period = new Period(),
     ///                         CanonicalId = "string",
     ///                     },
@@ -471,6 +473,8 @@ public partial class V1Client
     ///             },
     ///             PrimaryServiceFacilityId = "string",
     ///             DoNotInvoiceReason = DoNotInvoiceReason.Bankruptcy,
+    ///             NoteIds = new List&lt;string&gt;() { "string" },
+    ///             TagIds = new List&lt;string&gt;() { "string" },
     ///         },
     ///     }
     /// );
@@ -695,16 +699,16 @@ public partial class V1Client
     ///         Name = new HumanName
     ///         {
     ///             Family = "string",
-    ///             Given = new List<string>() { "string" },
+    ///             Given = new List&lt;string&gt;() { "string" },
     ///             Use = NameUse.Usual,
     ///             Period = new Period(),
     ///         },
-    ///         OtherNames = new List<HumanName>()
+    ///         OtherNames = new List&lt;HumanName&gt;()
     ///         {
     ///             new HumanName
     ///             {
     ///                 Family = "string",
-    ///                 Given = new List<string>() { "string" },
+    ///                 Given = new List&lt;string&gt;() { "string" },
     ///                 Use = NameUse.Usual,
     ///                 Period = new Period(),
     ///             },
@@ -723,19 +727,19 @@ public partial class V1Client
     ///         PrimaryAddress = new Address
     ///         {
     ///             Use = AddressUse.Home,
-    ///             Line = new List<string>() { "string" },
+    ///             Line = new List&lt;string&gt;() { "string" },
     ///             City = "string",
     ///             State = "string",
     ///             PostalCode = "string",
     ///             Country = "string",
     ///             Period = new Period(),
     ///         },
-    ///         OtherAddresses = new List<Address>()
+    ///         OtherAddresses = new List&lt;Address&gt;()
     ///         {
     ///             new Address
     ///             {
     ///                 Use = AddressUse.Home,
-    ///                 Line = new List<string>() { "string" },
+    ///                 Line = new List&lt;string&gt;() { "string" },
     ///                 City = "string",
     ///                 State = "string",
     ///                 PostalCode = "string",
@@ -744,7 +748,7 @@ public partial class V1Client
     ///             },
     ///         },
     ///         PrimaryTelecom = new ContactPoint { Value = "string", Use = ContactPointUse.Home },
-    ///         OtherTelecoms = new List<ContactPoint>()
+    ///         OtherTelecoms = new List&lt;ContactPoint&gt;()
     ///         {
     ///             new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///         },
@@ -757,28 +761,28 @@ public partial class V1Client
     ///             ExternalId = "string",
     ///             SystemName = "string",
     ///         },
-    ///         Contacts = new List<Contact>()
+    ///         Contacts = new List&lt;Contact&gt;()
     ///         {
     ///             new Contact
     ///             {
-    ///                 Relationship = new List<Relationship>() { Relationship.Self },
+    ///                 Relationship = new List&lt;Relationship&gt;() { Relationship.Self },
     ///                 Name = new HumanName
     ///                 {
     ///                     Family = "string",
-    ///                     Given = new List<string>() { "string" },
+    ///                     Given = new List&lt;string&gt;() { "string" },
     ///                     Use = NameUse.Usual,
     ///                     Period = new Period(),
     ///                 },
-    ///                 Telecoms = new List<ContactPoint>()
+    ///                 Telecoms = new List&lt;ContactPoint&gt;()
     ///                 {
     ///                     new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///                 },
-    ///                 Addresses = new List<Address>()
+    ///                 Addresses = new List&lt;Address&gt;()
     ///                 {
     ///                     new Address
     ///                     {
     ///                         Use = AddressUse.Home,
-    ///                         Line = new List<string>() { "string" },
+    ///                         Line = new List&lt;string&gt;() { "string" },
     ///                         City = "string",
     ///                         State = "string",
     ///                         PostalCode = "string",
@@ -790,34 +794,34 @@ public partial class V1Client
     ///                 HipaaAuthorization = true,
     ///             },
     ///         },
-    ///         GeneralPractitioners = new List<ExternalProvider>()
+    ///         GeneralPractitioners = new List&lt;ExternalProvider&gt;()
     ///         {
     ///             new ExternalProvider
     ///             {
     ///                 Name = new HumanName
     ///                 {
     ///                     Family = "string",
-    ///                     Given = new List<string>() { "string" },
+    ///                     Given = new List&lt;string&gt;() { "string" },
     ///                     Use = NameUse.Usual,
     ///                     Period = new Period(),
     ///                 },
     ///                 Type = ExternalProviderType.Primary,
     ///                 Npi = "string",
-    ///                 Telecoms = new List<ContactPoint>()
+    ///                 Telecoms = new List&lt;ContactPoint&gt;()
     ///                 {
     ///                     new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///                 },
-    ///                 Addresses = new List<Address>() { },
+    ///                 Addresses = new List&lt;Address&gt;() { },
     ///                 Period = new Period(),
     ///                 CanonicalId = "string",
     ///             },
     ///         },
     ///         FilingOrder = new FilingOrder
     ///         {
-    ///             Coverages = new List<string>() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
+    ///             Coverages = new List&lt;string&gt;() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
     ///         },
-    ///         NonInsurancePayers = new List<string>() { "string" },
-    ///         NonInsurancePayerAssociations = new List<CanonicalNonInsurancePayerAssociation>()
+    ///         NonInsurancePayers = new List&lt;string&gt;() { "string" },
+    ///         NonInsurancePayerAssociations = new List&lt;CanonicalNonInsurancePayerAssociation&gt;()
     ///         {
     ///             new CanonicalNonInsurancePayerAssociation { Id = "string" },
     ///         },
@@ -826,7 +830,7 @@ public partial class V1Client
     ///             Name = new HumanName
     ///             {
     ///                 Family = "string",
-    ///                 Given = new List<string>() { "string" },
+    ///                 Given = new List&lt;string&gt;() { "string" },
     ///                 Use = NameUse.Usual,
     ///                 Period = new Period(),
     ///             },
@@ -836,7 +840,7 @@ public partial class V1Client
     ///             Address = new Address
     ///             {
     ///                 Use = AddressUse.Home,
-    ///                 Line = new List<string>() { "string" },
+    ///                 Line = new List&lt;string&gt;() { "string" },
     ///                 City = "string",
     ///                 State = "string",
     ///                 PostalCode = "string",
@@ -845,7 +849,7 @@ public partial class V1Client
     ///             },
     ///         },
     ///         SelfPay = true,
-    ///         Authorizations = new List<Authorization>()
+    ///         Authorizations = new List&lt;Authorization&gt;()
     ///         {
     ///             new Authorization
     ///             {
@@ -856,7 +860,7 @@ public partial class V1Client
     ///                 Units = AuthorizationUnit.Visit,
     ///             },
     ///         },
-    ///         Referrals = new List<Referral>()
+    ///         Referrals = new List&lt;Referral&gt;()
     ///         {
     ///             new Referral
     ///             {
@@ -865,17 +869,17 @@ public partial class V1Client
     ///                     Name = new HumanName
     ///                     {
     ///                         Family = "string",
-    ///                         Given = new List<string>() { "string" },
+    ///                         Given = new List&lt;string&gt;() { "string" },
     ///                         Use = NameUse.Usual,
     ///                         Period = new Period(),
     ///                     },
     ///                     Type = ExternalProviderType.Primary,
     ///                     Npi = "string",
-    ///                     Telecoms = new List<ContactPoint>()
+    ///                     Telecoms = new List&lt;ContactPoint&gt;()
     ///                     {
     ///                         new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///                     },
-    ///                     Addresses = new List<Address>() { },
+    ///                     Addresses = new List&lt;Address&gt;() { },
     ///                     Period = new Period(),
     ///                     CanonicalId = "string",
     ///                 },
@@ -884,6 +888,8 @@ public partial class V1Client
     ///         },
     ///         PrimaryServiceFacilityId = "string",
     ///         DoNotInvoiceReason = DoNotInvoiceReason.Bankruptcy,
+    ///         NoteIds = new List&lt;string&gt;() { "string" },
+    ///         TagIds = new List&lt;string&gt;() { "string" },
     ///     }
     /// );
     /// </code>

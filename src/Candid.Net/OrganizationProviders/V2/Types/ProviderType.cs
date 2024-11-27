@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.OrganizationProviders.V2;
 
-[JsonConverter(typeof(StringEnumSerializer<ProviderType>))]
+[JsonConverter(typeof(EnumSerializer<ProviderType>))]
 public enum ProviderType
 {
     [EnumMember(Value = "INDIVIDUAL")]

@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.Encounters.V4;
 
-[JsonConverter(typeof(StringEnumSerializer<InterventionCategory>))]
+[JsonConverter(typeof(EnumSerializer<InterventionCategory>))]
 public enum InterventionCategory
 {
     [EnumMember(Value = "allopathic")]

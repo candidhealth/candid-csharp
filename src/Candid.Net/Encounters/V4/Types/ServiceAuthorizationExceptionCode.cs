@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.Encounters.V4;
 
-[JsonConverter(typeof(StringEnumSerializer<ServiceAuthorizationExceptionCode>))]
+[JsonConverter(typeof(EnumSerializer<ServiceAuthorizationExceptionCode>))]
 public enum ServiceAuthorizationExceptionCode
 {
     [EnumMember(Value = "1")]

@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.Encounters.V4;
 
-[JsonConverter(typeof(StringEnumSerializer<NoteCategory>))]
+[JsonConverter(typeof(EnumSerializer<NoteCategory>))]
 public enum NoteCategory
 {
     [EnumMember(Value = "clinical")]

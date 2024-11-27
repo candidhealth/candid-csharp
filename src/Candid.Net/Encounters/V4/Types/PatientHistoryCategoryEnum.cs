@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.Encounters.V4;
 
-[JsonConverter(typeof(StringEnumSerializer<PatientHistoryCategoryEnum>))]
+[JsonConverter(typeof(EnumSerializer<PatientHistoryCategoryEnum>))]
 public enum PatientHistoryCategoryEnum
 {
     [EnumMember(Value = "present_illness")]

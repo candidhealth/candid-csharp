@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.Tasks;
 
-[JsonConverter(typeof(StringEnumSerializer<TaskCategory>))]
+[JsonConverter(typeof(EnumSerializer<TaskCategory>))]
 public enum TaskCategory
 {
     [EnumMember(Value = "other")]

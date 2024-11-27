@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.Invoices.V2;
 
-[JsonConverter(typeof(StringEnumSerializer<InvoiceSortField>))]
+[JsonConverter(typeof(EnumSerializer<InvoiceSortField>))]
 public enum InvoiceSortField
 {
     [EnumMember(Value = "CREATED_AT")]

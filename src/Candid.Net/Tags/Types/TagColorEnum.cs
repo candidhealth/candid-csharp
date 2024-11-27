@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net;
 
-[JsonConverter(typeof(StringEnumSerializer<TagColorEnum>))]
+[JsonConverter(typeof(EnumSerializer<TagColorEnum>))]
 public enum TagColorEnum
 {
     [EnumMember(Value = "black")]

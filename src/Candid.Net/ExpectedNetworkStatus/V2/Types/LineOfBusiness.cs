@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.ExpectedNetworkStatus.V2;
 
-[JsonConverter(typeof(StringEnumSerializer<LineOfBusiness>))]
+[JsonConverter(typeof(EnumSerializer<LineOfBusiness>))]
 public enum LineOfBusiness
 {
     [EnumMember(Value = "medicare")]

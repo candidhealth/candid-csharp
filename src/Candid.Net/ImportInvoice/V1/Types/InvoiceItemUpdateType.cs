@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.ImportInvoice.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<InvoiceItemUpdateType>))]
+[JsonConverter(typeof(EnumSerializer<InvoiceItemUpdateType>))]
 public enum InvoiceItemUpdateType
 {
     [EnumMember(Value = "APPEND")]

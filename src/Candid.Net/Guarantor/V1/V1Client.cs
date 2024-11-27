@@ -25,7 +25,7 @@ public partial class V1Client
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///     new GuarantorCreate
     ///     {
-    ///         PhoneNumbers = new List<PhoneNumber>()
+    ///         PhoneNumbers = new List&lt;PhoneNumber&gt;()
     ///         {
     ///             new PhoneNumber { Number = "1234567890", Type = PhoneNumberType.Home },
     ///         },
@@ -153,7 +153,7 @@ public partial class V1Client
     ///             ZipCode = "10001",
     ///             ZipPlusFourCode = "1234",
     ///         },
-    ///         PhoneNumbers = new List<PhoneNumber>()
+    ///         PhoneNumbers = new List&lt;PhoneNumber&gt;()
     ///         {
     ///             new PhoneNumber { Number = "1234567890", Type = PhoneNumberType.Home },
     ///         },

@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net;
 
-[JsonConverter(typeof(StringEnumSerializer<SourceOfPaymentCode>))]
+[JsonConverter(typeof(EnumSerializer<SourceOfPaymentCode>))]
 public enum SourceOfPaymentCode
 {
     [EnumMember(Value = "09")]

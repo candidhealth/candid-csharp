@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net;
 
-[JsonConverter(typeof(StringEnumSerializer<RefundReason>))]
+[JsonConverter(typeof(EnumSerializer<RefundReason>))]
 public enum RefundReason
 {
     [EnumMember(Value = "OVERCHARGED")]

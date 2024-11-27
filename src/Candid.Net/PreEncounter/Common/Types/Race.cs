@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter;
 
-[JsonConverter(typeof(StringEnumSerializer<Race>))]
+[JsonConverter(typeof(EnumSerializer<Race>))]
 public enum Race
 {
     [EnumMember(Value = "AMERICAN_INDIAN_OR_ALASKA_NATIVE")]

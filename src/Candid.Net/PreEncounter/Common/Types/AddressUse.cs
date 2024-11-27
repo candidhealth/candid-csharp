@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter;
 
-[JsonConverter(typeof(StringEnumSerializer<AddressUse>))]
+[JsonConverter(typeof(EnumSerializer<AddressUse>))]
 public enum AddressUse
 {
     [EnumMember(Value = "HOME")]

@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.WriteOffs.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<WriteOffSortField>))]
+[JsonConverter(typeof(EnumSerializer<WriteOffSortField>))]
 public enum WriteOffSortField
 {
     [EnumMember(Value = "amount_cents")]

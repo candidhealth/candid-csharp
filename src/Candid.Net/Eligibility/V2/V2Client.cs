@@ -35,7 +35,7 @@ public partial class V2Client
     /// <example>
     /// <code>
     /// await client.Eligibility.V2.SubmitEligibilityCheckAsync(
-    ///     new Dictionary<object, object?>() { { "key", "value" } }
+    ///     new Dictionary&lt;object, object?&gt;() { { "key", "value" } }
     /// );
     /// </code>
     /// </example>
@@ -155,7 +155,7 @@ public partial class V2Client
     /// <example>
     /// <code>
     /// await client.Eligibility.V2.SubmitEligibilityCheckAvailityPostAsync(
-    ///     new Dictionary<object, object?>() { { "key", "value" } }
+    ///     new Dictionary&lt;object, object?&gt;() { { "key", "value" } }
     /// );
     /// </code>
     /// </example>

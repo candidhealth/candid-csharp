@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.Tasks;
 
-[JsonConverter(typeof(StringEnumSerializer<TaskType>))]
+[JsonConverter(typeof(EnumSerializer<TaskType>))]
 public enum TaskType
 {
     [EnumMember(Value = "CUSTOMER_DATA_REQUEST")]

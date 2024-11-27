@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net;
 
-[JsonConverter(typeof(StringEnumSerializer<DelayReasonCode>))]
+[JsonConverter(typeof(EnumSerializer<DelayReasonCode>))]
 public enum DelayReasonCode
 {
     [EnumMember(Value = "1")]

@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.Tasks;
 
-[JsonConverter(typeof(StringEnumSerializer<TaskStatus>))]
+[JsonConverter(typeof(EnumSerializer<TaskStatus>))]
 public enum TaskStatus
 {
     [EnumMember(Value = "finished")]

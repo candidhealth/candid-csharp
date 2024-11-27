@@ -15,7 +15,6 @@ public record ProviderCredentialingSpanCreate
 
     /// <summary>
     /// The ID of the practice location at which the rendering provider is covered by the credentialing span.
-    ///
     /// </summary>
     [JsonPropertyName("contracting_provider_id")]
     public required string ContractingProviderId { get; set; }
@@ -40,7 +39,6 @@ public record ProviderCredentialingSpanCreate
 
     /// <summary>
     /// The states covered by the credentialing span. A span may be national and cover all states.
-    ///
     /// </summary>
     [JsonPropertyName("regions")]
     public required object Regions { get; set; }

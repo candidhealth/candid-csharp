@@ -168,7 +168,7 @@ public partial class V1Client
     /// await client.WriteOffs.V1.CreateAsync(
     ///     new CreateWriteOffsRequest
     ///     {
-    ///         WriteOffs = new List<object>()
+    ///         WriteOffs = new List&lt;object&gt;()
     ///         {
     ///             new PatientWriteOffCreate
     ///             {

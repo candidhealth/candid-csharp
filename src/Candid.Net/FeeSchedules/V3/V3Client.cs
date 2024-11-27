@@ -356,7 +356,7 @@ public partial class V3Client
     ///     new FeeScheduleUploadRequest
     ///     {
     ///         DryRun = true,
-    ///         Rates = new List<object>()
+    ///         Rates = new List&lt;object&gt;()
     ///         {
     ///             new NewRate
     ///             {
@@ -364,21 +364,21 @@ public partial class V3Client
     ///                 {
     ///                     PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///                     OrganizationBillingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///                     States = new HashSet<State>() { State.Aa },
-    ///                     ZipCodes = new HashSet<string>() { "string" },
-    ///                     LicenseTypes = new HashSet<LicenseType>() { LicenseType.Md },
-    ///                     FacilityTypeCodes = new HashSet<FacilityTypeCode>()
+    ///                     States = new HashSet&lt;State&gt;() { State.Aa },
+    ///                     ZipCodes = new HashSet&lt;string&gt;() { "string" },
+    ///                     LicenseTypes = new HashSet&lt;LicenseType&gt;() { LicenseType.Md },
+    ///                     FacilityTypeCodes = new HashSet&lt;FacilityTypeCode&gt;()
     ///                     {
     ///                         FacilityTypeCode.Pharmacy,
     ///                     },
-    ///                     NetworkTypes = new HashSet<Candid.Net.NetworkType>()
+    ///                     NetworkTypes = new HashSet&lt;Candid.Net.NetworkType&gt;()
     ///                     {
     ///                         Candid.Net.NetworkType.Ppo,
     ///                     },
     ///                     CptCode = "string",
-    ///                     Modifiers = new HashSet<ProcedureModifier>() { ProcedureModifier.TwentyTwo },
+    ///                     Modifiers = new HashSet&lt;ProcedureModifier&gt;() { ProcedureModifier.TwentyTwo },
     ///                 },
-    ///                 Entries = new List<RateEntry>()
+    ///                 Entries = new List&lt;RateEntry&gt;()
     ///                 {
     ///                     new RateEntry
     ///                     {

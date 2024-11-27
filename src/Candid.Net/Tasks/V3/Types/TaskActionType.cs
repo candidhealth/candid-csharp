@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.Tasks.V3;
 
-[JsonConverter(typeof(StringEnumSerializer<TaskActionType>))]
+[JsonConverter(typeof(EnumSerializer<TaskActionType>))]
 public enum TaskActionType
 {
     [EnumMember(Value = "close_task")]

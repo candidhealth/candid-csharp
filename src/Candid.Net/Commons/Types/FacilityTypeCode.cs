@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net;
 
-[JsonConverter(typeof(StringEnumSerializer<FacilityTypeCode>))]
+[JsonConverter(typeof(EnumSerializer<FacilityTypeCode>))]
 public enum FacilityTypeCode
 {
     [EnumMember(Value = "01")]

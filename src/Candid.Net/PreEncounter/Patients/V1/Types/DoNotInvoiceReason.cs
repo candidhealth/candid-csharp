@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter.Patients.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<DoNotInvoiceReason>))]
+[JsonConverter(typeof(EnumSerializer<DoNotInvoiceReason>))]
 public enum DoNotInvoiceReason
 {
     [EnumMember(Value = "BANKRUPTCY")]

@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.OrganizationProviders.V2;
 
-[JsonConverter(typeof(StringEnumSerializer<EmploymentStatus>))]
+[JsonConverter(typeof(EnumSerializer<EmploymentStatus>))]
 public enum EmploymentStatus
 {
     [EnumMember(Value = "ACTIVE")]
