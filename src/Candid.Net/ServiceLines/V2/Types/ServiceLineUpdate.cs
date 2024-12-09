@@ -35,6 +35,9 @@ public record ServiceLineUpdate
     [JsonPropertyName("denial_reason")]
     public ServiceLineDenialReason? DenialReason { get; set; }
 
+    /// <summary>
+    /// 837p Loop2300, SV105. If your organization does not intend to submit claims with a different place of service at the service line level, this field should not be populated. 02 for telemedicine, 11 for in-person. Full list [here](https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set).
+    /// </summary>
     [JsonPropertyName("place_of_service_code")]
     public FacilityTypeCode? PlaceOfServiceCode { get; set; }
 

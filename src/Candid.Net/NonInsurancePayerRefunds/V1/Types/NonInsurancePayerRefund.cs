@@ -24,6 +24,9 @@ public record NonInsurancePayerRefund
     [JsonPropertyName("refund_note")]
     public string? RefundNote { get; set; }
 
+    [JsonPropertyName("check_number")]
+    public string? CheckNumber { get; set; }
+
     [JsonPropertyName("allocations")]
     public IEnumerable<Allocation> Allocations { get; set; } = new List<Allocation>();
 

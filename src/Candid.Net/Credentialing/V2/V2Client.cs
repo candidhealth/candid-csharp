@@ -162,7 +162,7 @@ public partial class V2Client
             {
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
-                Path = "/api/provider-credentialing-span/v2/",
+                Path = "/api/provider-credentialing-span/v2",
                 Query = _query,
                 Options = options,
             },

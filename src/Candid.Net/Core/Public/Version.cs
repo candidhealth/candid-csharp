@@ -2,5 +2,5 @@ namespace Candid.Net;
 
 internal class Version
 {
-    public const string Current = "0.35.3";
+    public const string Current = "0.36.0";
 }

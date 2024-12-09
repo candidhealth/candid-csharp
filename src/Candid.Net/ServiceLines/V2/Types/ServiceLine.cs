@@ -70,9 +70,15 @@ public record ServiceLine
     [JsonPropertyName("denial_reason")]
     public ServiceLineDenialReason? DenialReason { get; set; }
 
+    /// <summary>
+    /// 837p Loop2300, SV105. 02 for telemedicine, 11 for in-person. Full list [here](https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set).
+    /// </summary>
     [JsonPropertyName("place_of_service_code")]
     public FacilityTypeCode? PlaceOfServiceCode { get; set; }
 
+    /// <summary>
+    /// 837p Loop2300, SV105. 02 for telemedicine, 11 for in-person. Full list [here](https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set).
+    /// </summary>
     [JsonPropertyName("place_of_service_code_as_submitted")]
     public FacilityTypeCode? PlaceOfServiceCodeAsSubmitted { get; set; }
 
