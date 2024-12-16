@@ -9,22 +9,8 @@ using Candid.Net.Guarantor.V1;
 
 namespace Candid.Net.Encounters.V4;
 
-public record EncounterUpdate
+public record EncounterOptional
 {
-    /// <summary>
-    /// Ideally, this field should contain no more than 12 diagnoses. However, more diagnoses
-    /// may be submitted at this time, and coders will later prioritize the 12 that will be
-    /// submitted to the payor.
-    /// </summary>
-    [JsonPropertyName("diagnosis_ids")]
-    public IEnumerable<string>? DiagnosisIds { get; set; }
-
-    /// <summary>
-    /// Box 24B on the CMS-1500 claim form. 837p Loop2300, CLM-05-1. 02 for telemedicine, 11 for in-person. Full list [here](https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set).
-    /// </summary>
-    [JsonPropertyName("place_of_service_code_as_submitted")]
-    public FacilityTypeCode? PlaceOfServiceCodeAsSubmitted { get; set; }
-
     /// <summary>
     /// Whether this patient has authorized insurance payments to be made to you, not them. If false, patient may receive reimbursement. Box 13 on the CMS-1500 claim form.
     /// </summary>

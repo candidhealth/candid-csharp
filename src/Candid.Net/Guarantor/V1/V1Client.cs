@@ -153,10 +153,7 @@ public partial class V1Client
     ///             ZipCode = "10001",
     ///             ZipPlusFourCode = "1234",
     ///         },
-    ///         PhoneNumbers = new List&lt;PhoneNumber&gt;()
-    ///         {
-    ///             new PhoneNumber { Number = "1234567890", Type = PhoneNumberType.Home },
-    ///         },
+    ///         PhoneNumbers = new List&lt;PhoneNumber&gt;() { },
     ///         PhoneConsent = true,
     ///         Email = "johndoe@joincandidhealth.com",
     ///         EmailConsent = true,

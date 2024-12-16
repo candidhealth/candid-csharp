@@ -233,6 +233,8 @@ public partial class V4Client
     ///             TaxId = "string",
     ///             Npi = "string",
     ///             TaxonomyCode = "string",
+    ///             ProviderCommercialLicenseType =
+    ///                 BillingProviderCommercialLicenseType.LicensedClinicalSocialWorker,
     ///             FirstName = "string",
     ///             LastName = "string",
     ///             OrganizationName = "string",
@@ -388,28 +390,14 @@ public partial class V4Client
     ///         ResponsibleParty = ResponsiblePartyType.InsurancePay,
     ///         Diagnoses = new List&lt;DiagnosisCreate&gt;()
     ///         {
-    ///             new DiagnosisCreate
-    ///             {
-    ///                 Name = "string",
-    ///                 CodeType = DiagnosisTypeCode.Abf,
-    ///                 Code = "string",
-    ///             },
+    ///             new DiagnosisCreate { CodeType = DiagnosisTypeCode.Abf, Code = "string" },
     ///         },
     ///         ClinicalNotes = new List&lt;ClinicalNoteCategoryCreate&gt;()
     ///         {
     ///             new ClinicalNoteCategoryCreate
     ///             {
     ///                 Category = NoteCategory.Clinical,
-    ///                 Notes = new List&lt;ClinicalNote&gt;()
-    ///                 {
-    ///                     new ClinicalNote
-    ///                     {
-    ///                         Text = "string",
-    ///                         AuthorName = "string",
-    ///                         AuthorNpi = "string",
-    ///                         Timestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
-    ///                     },
-    ///                 },
+    ///                 Notes = new List&lt;ClinicalNote&gt;() { },
     ///             },
     ///         },
     ///         BillingNotes = new List&lt;BillingNoteBase&gt;() { new BillingNoteBase { Text = "string" } },
@@ -449,48 +437,10 @@ public partial class V4Client
     ///         {
     ///             new ServiceLineCreate
     ///             {
-    ///                 Modifiers = new List&lt;ProcedureModifier&gt;() { ProcedureModifier.TwentyTwo },
     ///                 ProcedureCode = "string",
     ///                 Quantity = "string",
     ///                 Units = ServiceLineUnits.Mj,
-    ///                 ChargeAmountCents = 1,
-    ///                 DiagnosisPointers = new List&lt;int&gt;() { 1 },
-    ///                 DrugIdentification = new DrugIdentification
-    ///                 {
-    ///                     ServiceIdQualifier = ServiceIdQualifier.EanUcc13,
-    ///                     NationalDrugCode = "string",
-    ///                     NationalDrugUnitCount = "string",
-    ///                     MeasurementUnitCode = MeasurementUnitCode.Milliliters,
-    ///                     LinkSequenceNumber = "string",
-    ///                     PharmacyPrescriptionNumber = "string",
-    ///                     ConversionFormula = "string",
-    ///                     DrugDescription = "string",
-    ///                 },
-    ///                 PlaceOfServiceCode = FacilityTypeCode.Pharmacy,
-    ///                 Description = "string",
-    ///                 DateOfService = new DateOnly(2023, 1, 15),
-    ///                 EndDateOfService = new DateOnly(2023, 1, 15),
-    ///                 OrderingProvider = new OrderingProvider
-    ///                 {
-    ///                     Npi = "string",
-    ///                     TaxonomyCode = "string",
-    ///                     Address = new StreetAddressLongZip
-    ///                     {
-    ///                         Address1 = "123 Main St",
-    ///                         Address2 = "Apt 1",
-    ///                         City = "New York",
-    ///                         State = State.Ny,
-    ///                         ZipCode = "10001",
-    ///                         ZipPlusFourCode = "1234",
-    ///                     },
-    ///                     FirstName = "string",
-    ///                     LastName = "string",
-    ///                     OrganizationName = "string",
-    ///                 },
-    ///                 TestResults = new List&lt;TestResult&gt;()
-    ///                 {
-    ///                     new TestResult { Value = 1.1, ResultType = TestResultType.Hematocrit },
-    ///                 },
+    ///                 DiagnosisPointers = new List&lt;int&gt;() { },
     ///             },
     ///         },
     ///         Guarantor = new GuarantorCreate
@@ -710,6 +660,8 @@ public partial class V4Client
     ///             TaxId = "string",
     ///             Npi = "string",
     ///             TaxonomyCode = "string",
+    ///             ProviderCommercialLicenseType =
+    ///                 BillingProviderCommercialLicenseType.LicensedClinicalSocialWorker,
     ///             FirstName = "string",
     ///             LastName = "string",
     ///             OrganizationName = "string",
@@ -782,28 +734,14 @@ public partial class V4Client
     ///         },
     ///         Diagnoses = new List&lt;DiagnosisCreate&gt;()
     ///         {
-    ///             new DiagnosisCreate
-    ///             {
-    ///                 Name = "string",
-    ///                 CodeType = DiagnosisTypeCode.Abf,
-    ///                 Code = "string",
-    ///             },
+    ///             new DiagnosisCreate { CodeType = DiagnosisTypeCode.Abf, Code = "string" },
     ///         },
     ///         ClinicalNotes = new List&lt;ClinicalNoteCategoryCreate&gt;()
     ///         {
     ///             new ClinicalNoteCategoryCreate
     ///             {
     ///                 Category = NoteCategory.Clinical,
-    ///                 Notes = new List&lt;ClinicalNote&gt;()
-    ///                 {
-    ///                     new ClinicalNote
-    ///                     {
-    ///                         Text = "string",
-    ///                         AuthorName = "string",
-    ///                         AuthorNpi = "string",
-    ///                         Timestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
-    ///                     },
-    ///                 },
+    ///                 Notes = new List&lt;ClinicalNote&gt;() { },
     ///             },
     ///         },
     ///         BillingNotes = new List&lt;BillingNoteBase&gt;() { new BillingNoteBase { Text = "string" } },
@@ -843,48 +781,10 @@ public partial class V4Client
     ///         {
     ///             new ServiceLineCreate
     ///             {
-    ///                 Modifiers = new List&lt;ProcedureModifier&gt;() { ProcedureModifier.TwentyTwo },
     ///                 ProcedureCode = "string",
     ///                 Quantity = "string",
     ///                 Units = ServiceLineUnits.Mj,
-    ///                 ChargeAmountCents = 1,
-    ///                 DiagnosisPointers = new List&lt;int&gt;() { 1 },
-    ///                 DrugIdentification = new DrugIdentification
-    ///                 {
-    ///                     ServiceIdQualifier = ServiceIdQualifier.EanUcc13,
-    ///                     NationalDrugCode = "string",
-    ///                     NationalDrugUnitCount = "string",
-    ///                     MeasurementUnitCode = MeasurementUnitCode.Milliliters,
-    ///                     LinkSequenceNumber = "string",
-    ///                     PharmacyPrescriptionNumber = "string",
-    ///                     ConversionFormula = "string",
-    ///                     DrugDescription = "string",
-    ///                 },
-    ///                 PlaceOfServiceCode = FacilityTypeCode.Pharmacy,
-    ///                 Description = "string",
-    ///                 DateOfService = new DateOnly(2023, 1, 15),
-    ///                 EndDateOfService = new DateOnly(2023, 1, 15),
-    ///                 OrderingProvider = new OrderingProvider
-    ///                 {
-    ///                     Npi = "string",
-    ///                     TaxonomyCode = "string",
-    ///                     Address = new StreetAddressLongZip
-    ///                     {
-    ///                         Address1 = "123 Main St",
-    ///                         Address2 = "Apt 1",
-    ///                         City = "New York",
-    ///                         State = State.Ny,
-    ///                         ZipCode = "10001",
-    ///                         ZipPlusFourCode = "1234",
-    ///                     },
-    ///                     FirstName = "string",
-    ///                     LastName = "string",
-    ///                     OrganizationName = "string",
-    ///                 },
-    ///                 TestResults = new List&lt;TestResult&gt;()
-    ///                 {
-    ///                     new TestResult { Value = 1.1, ResultType = TestResultType.Hematocrit },
-    ///                 },
+    ///                 DiagnosisPointers = new List&lt;int&gt;() { },
     ///             },
     ///         },
     ///         ExternalClaimSubmission = new ExternalClaimSubmissionCreate
@@ -1046,26 +946,19 @@ public partial class V4Client
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///     new EncounterUpdate
     ///     {
+    ///         DiagnosisIds = new List&lt;string&gt;() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
+    ///         PlaceOfServiceCodeAsSubmitted = FacilityTypeCode.Pharmacy,
+    ///         BenefitsAssignedToProvider = true,
     ///         PriorAuthorizationNumber = "string",
     ///         ExternalId = "string",
     ///         DateOfService = new DateOnly(2023, 1, 15),
-    ///         DiagnosisIds = new List&lt;string&gt;() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
     ///         TagIds = new List&lt;string&gt;() { "string" },
     ///         ClinicalNotes = new List&lt;ClinicalNoteCategoryCreate&gt;()
     ///         {
     ///             new ClinicalNoteCategoryCreate
     ///             {
     ///                 Category = NoteCategory.Clinical,
-    ///                 Notes = new List&lt;ClinicalNote&gt;()
-    ///                 {
-    ///                     new ClinicalNote
-    ///                     {
-    ///                         Text = "string",
-    ///                         AuthorName = "string",
-    ///                         AuthorNpi = "string",
-    ///                         Timestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
-    ///                     },
-    ///                 },
+    ///                 Notes = new List&lt;ClinicalNote&gt;() { },
     ///             },
     ///         },
     ///         PayToAddress = new StreetAddressLongZip
@@ -1080,10 +973,8 @@ public partial class V4Client
     ///         BillableStatus = BillableStatusType.Billable,
     ///         ResponsibleParty = ResponsiblePartyType.InsurancePay,
     ///         ProviderAcceptsAssignment = true,
-    ///         BenefitsAssignedToProvider = true,
     ///         Synchronicity = SynchronicityType.Synchronous,
     ///         PlaceOfServiceCode = FacilityTypeCode.Pharmacy,
-    ///         PlaceOfServiceCodeAsSubmitted = FacilityTypeCode.Pharmacy,
     ///         AppointmentType = "string",
     ///         EndDateOfService = new DateOnly(2023, 1, 15),
     ///         SubscriberPrimary = new SubscriberCreate
@@ -1173,22 +1064,12 @@ public partial class V4Client
     ///                 ZipCode = "10001",
     ///                 ZipPlusFourCode = "1234",
     ///             },
-    ///             PhoneNumbers = new List&lt;PhoneNumber&gt;()
-    ///             {
-    ///                 new PhoneNumber { Number = "1234567890", Type = PhoneNumberType.Home },
-    ///             },
+    ///             PhoneNumbers = new List&lt;PhoneNumber&gt;() { },
     ///             PhoneConsent = true,
     ///             Email = "johndoe@joincandidhealth.com",
     ///             EmailConsent = true,
-    ///             NonInsurancePayers = new List&lt;string&gt;() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
-    ///             NonInsurancePayersInfo = new List&lt;PatientNonInsurancePayerInfoCreate&gt;()
-    ///             {
-    ///                 new PatientNonInsurancePayerInfoCreate
-    ///                 {
-    ///                     NonInsurancePayerId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///                     MemberId = "string",
-    ///                 },
-    ///             },
+    ///             NonInsurancePayers = new List&lt;string&gt;() { },
+    ///             NonInsurancePayersInfo = new List&lt;PatientNonInsurancePayerInfoCreate&gt;() { },
     ///         },
     ///         PatientAuthorizedRelease = true,
     ///         SchemaInstances = new List&lt;SchemaInstance&gt;()
@@ -1272,10 +1153,7 @@ public partial class V4Client
     ///                 ZipCode = "10001",
     ///                 ZipPlusFourCode = "1234",
     ///             },
-    ///             PhoneNumbers = new List&lt;PhoneNumber&gt;()
-    ///             {
-    ///                 new PhoneNumber { Number = "1234567890", Type = PhoneNumberType.Home },
-    ///             },
+    ///             PhoneNumbers = new List&lt;PhoneNumber&gt;() { },
     ///             PhoneConsent = true,
     ///             Email = "johndoe@joincandidhealth.com",
     ///             EmailConsent = true,
@@ -1294,6 +1172,8 @@ public partial class V4Client
     ///             TaxId = "string",
     ///             Npi = "string",
     ///             TaxonomyCode = "string",
+    ///             ProviderCommercialLicenseType =
+    ///                 BillingProviderCommercialLicenseType.LicensedClinicalSocialWorker,
     ///             FirstName = "string",
     ///             LastName = "string",
     ///             OrganizationName = "string",

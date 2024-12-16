@@ -24,6 +24,13 @@ public record BillingProviderUpdate
     public string? TaxonomyCode { get; set; }
 
     /// <summary>
+    /// 837i Loop2010BB G2
+    /// Provider Commercial Number
+    /// </summary>
+    [JsonPropertyName("provider_commercial_license_type")]
+    public BillingProviderCommercialLicenseType? ProviderCommercialLicenseType { get; set; }
+
+    /// <summary>
     /// If the provider is an individual, this should be set instead of organization name
     /// </summary>
     [JsonPropertyName("first_name")]
