@@ -138,26 +138,7 @@ public partial class V1Client
     /// <code>
     /// await client.Guarantor.V1.UpdateAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new GuarantorUpdate
-    ///     {
-    ///         FirstName = "string",
-    ///         LastName = "string",
-    ///         ExternalId = "string",
-    ///         DateOfBirth = new DateOnly(2023, 1, 15),
-    ///         Address = new StreetAddressShortZip
-    ///         {
-    ///             Address1 = "123 Main St",
-    ///             Address2 = "Apt 1",
-    ///             City = "New York",
-    ///             State = State.Ny,
-    ///             ZipCode = "10001",
-    ///             ZipPlusFourCode = "1234",
-    ///         },
-    ///         PhoneNumbers = new List&lt;PhoneNumber&gt;() { },
-    ///         PhoneConsent = true,
-    ///         Email = "johndoe@joincandidhealth.com",
-    ///         EmailConsent = true,
-    ///     }
+    ///     new GuarantorUpdate()
     /// );
     /// </code>
     /// </example>
