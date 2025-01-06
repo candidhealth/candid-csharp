@@ -2523,6 +2523,7 @@ await client.Encounters.V4.CreateAsync(
                 ZipCode = "10001",
                 ZipPlusFourCode = "1234",
             },
+            SecondaryIdentification = "string",
         },
         SubscriberPrimary = new SubscriberCreate
         {
@@ -2941,6 +2942,7 @@ await client.Encounters.V4.CreateFromPreEncounterPatientAsync(
                 ZipCode = "10001",
                 ZipPlusFourCode = "1234",
             },
+            SecondaryIdentification = "string",
         },
         Diagnoses = new List<DiagnosisCreate>()
         {

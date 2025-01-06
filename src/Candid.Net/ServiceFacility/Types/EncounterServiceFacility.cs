@@ -26,6 +26,14 @@ public record EncounterServiceFacility
     [JsonPropertyName("address")]
     public required StreetAddressLongZip Address { get; set; }
 
+    /// <summary>
+    /// An additional identifier for the service facility other than the facility's NPI. Some payers may require this field.
+    /// Potential examples: state license number, provider commercial number, or location number.
+    /// Box 32 section (b) of the CMS-1500 claim form.
+    /// </summary>
+    [JsonPropertyName("secondary_identification")]
+    public string? SecondaryIdentification { get; set; }
+
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

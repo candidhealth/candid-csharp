@@ -306,6 +306,7 @@ public partial class V4Client
     ///                 ZipCode = "10001",
     ///                 ZipPlusFourCode = "1234",
     ///             },
+    ///             SecondaryIdentification = "string",
     ///         },
     ///         SubscriberPrimary = new SubscriberCreate
     ///         {
@@ -715,6 +716,7 @@ public partial class V4Client
     ///                 ZipCode = "10001",
     ///                 ZipPlusFourCode = "1234",
     ///             },
+    ///             SecondaryIdentification = "string",
     ///         },
     ///         Diagnoses = new List&lt;DiagnosisCreate&gt;()
     ///         {
