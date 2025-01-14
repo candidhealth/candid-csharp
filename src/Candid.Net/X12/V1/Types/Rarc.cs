@@ -105,6 +105,9 @@ public enum Rarc
     [EnumMember(Value = "M32")]
     M32,
 
+    [EnumMember(Value = "M34")]
+    M34,
+
     [EnumMember(Value = "M36")]
     M36,
 
@@ -785,6 +788,9 @@ public enum Rarc
 
     [EnumMember(Value = "N28")]
     N28,
+
+    [EnumMember(Value = "N29")]
+    N29,
 
     [EnumMember(Value = "N30")]
     N30,
@@ -3209,6 +3215,9 @@ public enum Rarc
 
     [EnumMember(Value = "N887")]
     N887,
+
+    [EnumMember(Value = "N888")]
+    N888,
 
     [EnumMember(Value = "N891")]
     N891,

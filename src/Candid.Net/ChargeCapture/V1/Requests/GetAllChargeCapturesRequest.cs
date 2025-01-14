@@ -28,7 +28,13 @@ public record GetAllChargeCapturesRequest
     /// for example, your internal encounter ID or a Dr. Chrono encounter ID.
     /// This field should not contain PHI.
     /// </summary>
-    public string? ExternalId { get; set; }
+    public string? ChargeExternalId { get; set; }
+
+    /// <summary>
+    /// Date formatted as YYYY-MM-DD; eg: 2019-08-24.
+    /// This date must be the local date in the timezone where the service occurred.
+    /// </summary>
+    public DateOnly? DateOfService { get; set; }
 
     public override string ToString()
     {

@@ -140,8 +140,9 @@ public partial class V1Client
     ///             InitialReferringProvider = new InitialReferringProviderUpdate(),
     ///             ReferralNumber = "string",
     ///         },
-    ///         EncounterExternalId = "string",
+    ///         ChargeExternalId = "string",
     ///         EhrSourceUrl = "string",
+    ///         DateOfService = new DateOnly(2023, 1, 15),
     ///         PatientExternalId = "string",
     ///         Status = ChargeCaptureStatus.Planned,
     ///     }
@@ -343,10 +344,11 @@ public partial class V1Client
     ///             InitialReferringProvider = new InitialReferringProviderUpdate(),
     ///             ReferralNumber = "string",
     ///         },
-    ///         EncounterExternalId = "string",
+    ///         ChargeExternalId = "string",
     ///         EhrSourceUrl = "string",
     ///         PatientExternalId = "string",
     ///         Status = ChargeCaptureStatus.Planned,
+    ///         DateOfService = new DateOnly(2023, 1, 15),
     ///     }
     /// );
     /// </code>
@@ -439,7 +441,8 @@ public partial class V1Client
     ///         PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
     ///         PatientExternalId = "string",
     ///         Status = ChargeCaptureStatus.Planned,
-    ///         ExternalId = "string",
+    ///         ChargeExternalId = "string",
+    ///         DateOfService = new DateOnly(2023, 1, 15),
     ///     }
     /// );
     /// </code>
@@ -467,9 +470,13 @@ public partial class V1Client
         {
             _query["status"] = request.Status.Value.Stringify();
         }
-        if (request.ExternalId != null)
+        if (request.ChargeExternalId != null)
         {
-            _query["external_id"] = request.ExternalId;
+            _query["charge_external_id"] = request.ChargeExternalId;
+        }
+        if (request.DateOfService != null)
+        {
+            _query["date_of_service"] = request.DateOfService.Value.ToString(Constants.DateFormat);
         }
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest

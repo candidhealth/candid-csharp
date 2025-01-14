@@ -17,4 +17,7 @@ public enum CoverageLevel
 
     [EnumMember(Value = "EMPLOYEE_ONLY")]
     EmployeeOnly,
+
+    [EnumMember(Value = "EMPLOYEE_AND_SPOUSE")]
+    EmployeeAndSpouse,
 }

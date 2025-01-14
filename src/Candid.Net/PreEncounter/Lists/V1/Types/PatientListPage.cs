@@ -16,6 +16,9 @@ public record PatientListPage
     [JsonPropertyName("prev_page_token")]
     public string? PrevPageToken { get; set; }
 
+    [JsonPropertyName("total")]
+    public required int Total { get; set; }
+
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

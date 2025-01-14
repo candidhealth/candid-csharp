@@ -19,11 +19,18 @@ public record ChargeCapture
     [JsonPropertyName("patient_external_id")]
     public required string PatientExternalId { get; set; }
 
-    [JsonPropertyName("encounter_external_id")]
-    public required string EncounterExternalId { get; set; }
+    [JsonPropertyName("charge_external_id")]
+    public required string ChargeExternalId { get; set; }
 
     [JsonPropertyName("ehr_source_url")]
     public string? EhrSourceUrl { get; set; }
+
+    /// <summary>
+    /// Date formatted as YYYY-MM-DD; eg: 2019-08-24.
+    /// This date must be the local date in the timezone where the service occurred.
+    /// </summary>
+    [JsonPropertyName("date_of_service")]
+    public DateOnly? DateOfService { get; set; }
 
     public override string ToString()
     {
