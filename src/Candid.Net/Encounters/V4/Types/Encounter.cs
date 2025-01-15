@@ -180,6 +180,12 @@ public record Encounter
     public string? ReferralNumber { get; set; }
 
     /// <summary>
+    /// The date and time the encounter was last submitted to a payer.
+    /// </summary>
+    [JsonPropertyName("last_submitted_at")]
+    public DateTime? LastSubmittedAt { get; set; }
+
+    /// <summary>
     /// A client-specified unique ID to associate with this encounter;
     /// for example, your internal encounter ID or a Dr. Chrono encounter ID.
     /// This field should not contain PHI.
