@@ -13,6 +13,9 @@ public record CoverageBenefits
     [JsonPropertyName("service_specific_coverage")]
     public IEnumerable<ServiceCoverage>? ServiceSpecificCoverage { get; set; }
 
+    [JsonPropertyName("benefits_related_entities")]
+    public IEnumerable<BenefitsRelatedEntity>? BenefitsRelatedEntities { get; set; }
+
     [JsonPropertyName("notes")]
     public string? Notes { get; set; }
 

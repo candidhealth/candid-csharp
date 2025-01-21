@@ -75,7 +75,7 @@ public partial class V1Client
     ///             {
     ///                 CheckId = "string",
     ///                 ServiceCode = ServiceTypeCode.MedicalCare,
-    ///                 Status = EligibilityCheckStatus.Created,
+    ///                 Status = EligibilityCheckStatus.Completed,
     ///                 InitiatedBy = "string",
     ///                 InitiatedAt = new DateTime(2024, 01, 15, 09, 30, 00, 000),
     ///             },
@@ -189,7 +189,7 @@ public partial class V1Client
     ///             {
     ///                 CheckId = "string",
     ///                 ServiceCode = ServiceTypeCode.MedicalCare,
-    ///                 Status = EligibilityCheckStatus.Created,
+    ///                 Status = EligibilityCheckStatus.Completed,
     ///                 InitiatedBy = "string",
     ///                 InitiatedAt = new DateTime(2024, 01, 15, 09, 30, 00, 000),
     ///             },

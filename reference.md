@@ -210,6 +210,138 @@ await client.BillingNotes.V2.UpdateAsync(
 </dl>
 </details>
 
+## ChargeCaptureBundles V1
+<details><summary><code>client.ChargeCaptureBundles.V1.<a href="/src/Candid.Net/ChargeCaptureBundles/V1/V1Client.cs">GetAsync</a>(chargeCaptureBundleId) -> ChargeCaptureBundle</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.ChargeCaptureBundles.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**chargeCaptureBundleId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ChargeCaptureBundles.V1.<a href="/src/Candid.Net/ChargeCaptureBundles/V1/V1Client.cs">ResubmitAsync</a>(chargeCaptureBundleId) -> ChargeCaptureBundle</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.ChargeCaptureBundles.V1.ResubmitAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**chargeCaptureBundleId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ChargeCaptureBundles.V1.<a href="/src/Candid.Net/ChargeCaptureBundles/V1/V1Client.cs">GetAllAsync</a>(GetAllChargeCaptureBundlesRequest { ... }) -> ChargeCaptureBundlePage</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.ChargeCaptureBundles.V1.GetAllAsync(
+    new GetAllChargeCaptureBundlesRequest
+    {
+        Limit = 1,
+        PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
+        PatientExternalId = "string",
+        BundleStatus = ChargeCaptureBundleStatus.InProgress,
+        ChargeStatus = ChargeCaptureStatus.Planned,
+        ChargeExternalId = "string",
+        DateOfService = new DateOnly(2023, 1, 15),
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `GetAllChargeCaptureBundlesRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## ChargeCapture V1
 <details><summary><code>client.ChargeCapture.V1.<a href="/src/Candid.Net/ChargeCapture/V1/V1Client.cs">CreateAsync</a>(CreateChargeCaptureRequest { ... }) -> ChargeCapture.V1.ChargeCapture</code></summary>
 <dl>
@@ -227,125 +359,7 @@ await client.BillingNotes.V2.UpdateAsync(
 await client.ChargeCapture.V1.CreateAsync(
     new CreateChargeCaptureRequest
     {
-        Data = new ChargeCaptureData
-        {
-            Diagnoses = new List<DiagnosisCreate>() { },
-            Interventions = new List<Intervention>() { },
-            ExternalClaimSubmission = new ExternalClaimSubmissionCreate
-            {
-                ClaimCreatedAt = new DateTime(2023, 01, 01, 12, 00, 00, 000),
-                PatientControlNumber = "PATIENT_CONTROL_NUMBER",
-                SubmissionRecords = new List<ClaimSubmissionRecordCreate>()
-                {
-                    new ClaimSubmissionRecordCreate
-                    {
-                        SubmittedAt = new DateTime(2023, 01, 01, 13, 00, 00, 000),
-                        ClaimFrequencyCode = ClaimFrequencyTypeCode.Original,
-                        PayerResponsibility = ClaimSubmissionPayerResponsibilityType.Primary,
-                        IntendedSubmissionMedium = IntendedSubmissionMedium.Electronic,
-                    },
-                    new ClaimSubmissionRecordCreate
-                    {
-                        SubmittedAt = new DateTime(2023, 01, 04, 12, 00, 00, 000),
-                        ClaimFrequencyCode = ClaimFrequencyTypeCode.Replacement,
-                        PayerResponsibility = ClaimSubmissionPayerResponsibilityType.Primary,
-                        IntendedSubmissionMedium = IntendedSubmissionMedium.Paper,
-                    },
-                },
-            },
-            ServiceLines = new List<ServiceLineCreate>() { },
-            PatientHistories = new List<PatientHistoryCategory>() { },
-            BillingNotes = new List<BillingNote>() { },
-            BenefitsAssignedToProvider = true,
-            PriorAuthorizationNumber = "string",
-            ExternalId = "string",
-            DateOfService = new DateOnly(2023, 1, 15),
-            TagIds = new List<string>() { },
-            ClinicalNotes = new List<ClinicalNoteCategoryCreate>() { },
-            PayToAddress = new StreetAddressLongZip
-            {
-                Address1 = "123 Main St",
-                Address2 = "Apt 1",
-                City = "New York",
-                State = State.Ny,
-                ZipCode = "10001",
-                ZipPlusFourCode = "1234",
-            },
-            BillableStatus = BillableStatusType.Billable,
-            ResponsibleParty = ResponsiblePartyType.InsurancePay,
-            ProviderAcceptsAssignment = true,
-            Synchronicity = SynchronicityType.Synchronous,
-            PlaceOfServiceCode = FacilityTypeCode.Pharmacy,
-            AppointmentType = "string",
-            EndDateOfService = new DateOnly(2023, 1, 15),
-            SubscriberPrimary = new SubscriberCreate
-            {
-                InsuranceCard = new InsuranceCardCreate
-                {
-                    MemberId = "string",
-                    PayerName = "string",
-                    PayerId = "string",
-                },
-                PatientRelationshipToSubscriberCode = PatientRelationshipToInsuredCodeAll.Spouse,
-                FirstName = "string",
-                LastName = "string",
-                Gender = Candid.Net.Gender.Male,
-            },
-            SubscriberSecondary = new SubscriberCreate
-            {
-                InsuranceCard = new InsuranceCardCreate
-                {
-                    MemberId = "string",
-                    PayerName = "string",
-                    PayerId = "string",
-                },
-                PatientRelationshipToSubscriberCode = PatientRelationshipToInsuredCodeAll.Spouse,
-                FirstName = "string",
-                LastName = "string",
-                Gender = Candid.Net.Gender.Male,
-            },
-            AdditionalInformation = "string",
-            ServiceAuthorizationExceptionCode = ServiceAuthorizationExceptionCode.C1,
-            AdmissionDate = new DateOnly(2023, 1, 15),
-            DischargeDate = new DateOnly(2023, 1, 15),
-            OnsetOfCurrentIllnessOrSymptomDate = new DateOnly(2023, 1, 15),
-            LastMenstrualPeriodDate = new DateOnly(2023, 1, 15),
-            DelayReasonCode = DelayReasonCode.C1,
-            Patient = new PatientUpdate(),
-            PatientAuthorizedRelease = true,
-            SchemaInstances = new List<SchemaInstance>() { },
-            Vitals = new VitalsUpdate
-            {
-                HeightIn = 70,
-                WeightLbs = 165,
-                BloodPressureSystolicMmhg = 115,
-                BloodPressureDiastolicMmhg = 85,
-                BodyTemperatureF = 98,
-                HemoglobinGdl = 15.1,
-                HematocritPct = 51.2,
-            },
-            ExistingMedications = new List<Medication>() { },
-            RenderingProvider = new RenderingProviderUpdate(),
-            ServiceFacility = new EncounterServiceFacilityUpdate
-            {
-                OrganizationName = "Test Organization",
-                Address = new StreetAddressLongZip
-                {
-                    Address1 = "123 Main St",
-                    Address2 = "Apt 1",
-                    City = "New York",
-                    State = State.Ny,
-                    ZipCode = "10001",
-                    ZipPlusFourCode = "1234",
-                },
-            },
-            Guarantor = new GuarantorUpdate(),
-            BillingProvider = new BillingProviderUpdate(),
-            SupervisingProvider = new SupervisingProviderUpdate(),
-            ReferringProvider = new ReferringProviderUpdate(),
-            InitialReferringProvider = new InitialReferringProviderUpdate(),
-            ReferralNumber = "string",
-        },
+        Data = new ChargeCaptureData(),
         ChargeExternalId = "string",
         EhrSourceUrl = "string",
         DateOfService = new DateOnly(2023, 1, 15),
@@ -436,125 +450,7 @@ await client.ChargeCapture.V1.UpdateAsync(
     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     new ChargeCaptureUpdate
     {
-        Data = new ChargeCaptureData
-        {
-            Diagnoses = new List<DiagnosisCreate>() { },
-            Interventions = new List<Intervention>() { },
-            ExternalClaimSubmission = new ExternalClaimSubmissionCreate
-            {
-                ClaimCreatedAt = new DateTime(2023, 01, 01, 12, 00, 00, 000),
-                PatientControlNumber = "PATIENT_CONTROL_NUMBER",
-                SubmissionRecords = new List<ClaimSubmissionRecordCreate>()
-                {
-                    new ClaimSubmissionRecordCreate
-                    {
-                        SubmittedAt = new DateTime(2023, 01, 01, 13, 00, 00, 000),
-                        ClaimFrequencyCode = ClaimFrequencyTypeCode.Original,
-                        PayerResponsibility = ClaimSubmissionPayerResponsibilityType.Primary,
-                        IntendedSubmissionMedium = IntendedSubmissionMedium.Electronic,
-                    },
-                    new ClaimSubmissionRecordCreate
-                    {
-                        SubmittedAt = new DateTime(2023, 01, 04, 12, 00, 00, 000),
-                        ClaimFrequencyCode = ClaimFrequencyTypeCode.Replacement,
-                        PayerResponsibility = ClaimSubmissionPayerResponsibilityType.Primary,
-                        IntendedSubmissionMedium = IntendedSubmissionMedium.Paper,
-                    },
-                },
-            },
-            ServiceLines = new List<ServiceLineCreate>() { },
-            PatientHistories = new List<PatientHistoryCategory>() { },
-            BillingNotes = new List<BillingNote>() { },
-            BenefitsAssignedToProvider = true,
-            PriorAuthorizationNumber = "string",
-            ExternalId = "string",
-            DateOfService = new DateOnly(2023, 1, 15),
-            TagIds = new List<string>() { },
-            ClinicalNotes = new List<ClinicalNoteCategoryCreate>() { },
-            PayToAddress = new StreetAddressLongZip
-            {
-                Address1 = "123 Main St",
-                Address2 = "Apt 1",
-                City = "New York",
-                State = State.Ny,
-                ZipCode = "10001",
-                ZipPlusFourCode = "1234",
-            },
-            BillableStatus = BillableStatusType.Billable,
-            ResponsibleParty = ResponsiblePartyType.InsurancePay,
-            ProviderAcceptsAssignment = true,
-            Synchronicity = SynchronicityType.Synchronous,
-            PlaceOfServiceCode = FacilityTypeCode.Pharmacy,
-            AppointmentType = "string",
-            EndDateOfService = new DateOnly(2023, 1, 15),
-            SubscriberPrimary = new SubscriberCreate
-            {
-                InsuranceCard = new InsuranceCardCreate
-                {
-                    MemberId = "string",
-                    PayerName = "string",
-                    PayerId = "string",
-                },
-                PatientRelationshipToSubscriberCode = PatientRelationshipToInsuredCodeAll.Spouse,
-                FirstName = "string",
-                LastName = "string",
-                Gender = Candid.Net.Gender.Male,
-            },
-            SubscriberSecondary = new SubscriberCreate
-            {
-                InsuranceCard = new InsuranceCardCreate
-                {
-                    MemberId = "string",
-                    PayerName = "string",
-                    PayerId = "string",
-                },
-                PatientRelationshipToSubscriberCode = PatientRelationshipToInsuredCodeAll.Spouse,
-                FirstName = "string",
-                LastName = "string",
-                Gender = Candid.Net.Gender.Male,
-            },
-            AdditionalInformation = "string",
-            ServiceAuthorizationExceptionCode = ServiceAuthorizationExceptionCode.C1,
-            AdmissionDate = new DateOnly(2023, 1, 15),
-            DischargeDate = new DateOnly(2023, 1, 15),
-            OnsetOfCurrentIllnessOrSymptomDate = new DateOnly(2023, 1, 15),
-            LastMenstrualPeriodDate = new DateOnly(2023, 1, 15),
-            DelayReasonCode = DelayReasonCode.C1,
-            Patient = new PatientUpdate(),
-            PatientAuthorizedRelease = true,
-            SchemaInstances = new List<SchemaInstance>() { },
-            Vitals = new VitalsUpdate
-            {
-                HeightIn = 70,
-                WeightLbs = 165,
-                BloodPressureSystolicMmhg = 115,
-                BloodPressureDiastolicMmhg = 85,
-                BodyTemperatureF = 98,
-                HemoglobinGdl = 15.1,
-                HematocritPct = 51.2,
-            },
-            ExistingMedications = new List<Medication>() { },
-            RenderingProvider = new RenderingProviderUpdate(),
-            ServiceFacility = new EncounterServiceFacilityUpdate
-            {
-                OrganizationName = "Test Organization",
-                Address = new StreetAddressLongZip
-                {
-                    Address1 = "123 Main St",
-                    Address2 = "Apt 1",
-                    City = "New York",
-                    State = State.Ny,
-                    ZipCode = "10001",
-                    ZipPlusFourCode = "1234",
-                },
-            },
-            Guarantor = new GuarantorUpdate(),
-            BillingProvider = new BillingProviderUpdate(),
-            SupervisingProvider = new SupervisingProviderUpdate(),
-            ReferringProvider = new ReferringProviderUpdate(),
-            InitialReferringProvider = new InitialReferringProviderUpdate(),
-            ReferralNumber = "string",
-        },
+        Data = new ChargeCaptureData(),
         ChargeExternalId = "string",
         EhrSourceUrl = "string",
         PatientExternalId = "string",
@@ -1668,7 +1564,23 @@ await client.Eligibility.V2.SubmitEligibilityCheckAvailityPostAsync(
 ```csharp
 await client.EncounterProviders.V2.UpdateReferringProviderAsync(
     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    new ReferringProviderUpdate()
+    new ReferringProviderUpdate
+    {
+        Npi = "string",
+        TaxonomyCode = "string",
+        Address = new StreetAddressLongZip
+        {
+            Address1 = "123 Main St",
+            Address2 = "Apt 1",
+            City = "New York",
+            State = State.Ny,
+            ZipCode = "10001",
+            ZipPlusFourCode = "1234",
+        },
+        FirstName = "string",
+        LastName = "string",
+        OrganizationName = "string",
+    }
 );
 ```
 </dd>
@@ -1719,7 +1631,24 @@ await client.EncounterProviders.V2.UpdateReferringProviderAsync(
 ```csharp
 await client.EncounterProviders.V2.UpdateInitialReferringProviderAsync(
     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    new InitialReferringProviderUpdate()
+    new InitialReferringProviderUpdate
+    {
+        Npi = "string",
+        TaxonomyCode = "string",
+        Address = new StreetAddressLongZip
+        {
+            Address1 = "123 Main St",
+            Address2 = "Apt 1",
+            City = "New York",
+            State = State.Ny,
+            ZipCode = "10001",
+            ZipPlusFourCode = "1234",
+        },
+        Qualifier = QualifierCode.Dq,
+        FirstName = "string",
+        LastName = "string",
+        OrganizationName = "string",
+    }
 );
 ```
 </dd>
@@ -1770,7 +1699,23 @@ await client.EncounterProviders.V2.UpdateInitialReferringProviderAsync(
 ```csharp
 await client.EncounterProviders.V2.UpdateSupervisingProviderAsync(
     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    new SupervisingProviderUpdate()
+    new SupervisingProviderUpdate
+    {
+        Npi = "string",
+        TaxonomyCode = "string",
+        Address = new StreetAddressLongZip
+        {
+            Address1 = "123 Main St",
+            Address2 = "Apt 1",
+            City = "New York",
+            State = State.Ny,
+            ZipCode = "10001",
+            ZipPlusFourCode = "1234",
+        },
+        FirstName = "string",
+        LastName = "string",
+        OrganizationName = "string",
+    }
 );
 ```
 </dd>
@@ -1834,6 +1779,9 @@ await client.EncounterProviders.V2.UpdateOrderingProviderAsync(
             ZipCode = "10001",
             ZipPlusFourCode = "1234",
         },
+        FirstName = "string",
+        LastName = "string",
+        OrganizationName = "string",
     }
 );
 ```
@@ -1898,6 +1846,9 @@ await client.EncounterProviders.V2.CreateReferringProviderAsync(
             ZipCode = "10001",
             ZipPlusFourCode = "1234",
         },
+        FirstName = "string",
+        LastName = "string",
+        OrganizationName = "string",
     }
 );
 ```
@@ -1963,6 +1914,9 @@ await client.EncounterProviders.V2.CreateInitialReferringProviderAsync(
             ZipPlusFourCode = "1234",
         },
         Qualifier = QualifierCode.Dq,
+        FirstName = "string",
+        LastName = "string",
+        OrganizationName = "string",
     }
 );
 ```
@@ -2027,6 +1981,9 @@ await client.EncounterProviders.V2.CreateSupervisingProviderAsync(
             ZipCode = "10001",
             ZipPlusFourCode = "1234",
         },
+        FirstName = "string",
+        LastName = "string",
+        OrganizationName = "string",
     }
 );
 ```
@@ -2091,6 +2048,9 @@ await client.EncounterProviders.V2.CreateOrderingProviderAsync(
             ZipCode = "10001",
             ZipPlusFourCode = "1234",
         },
+        FirstName = "string",
+        LastName = "string",
+        OrganizationName = "string",
     }
 );
 ```
@@ -2455,6 +2415,9 @@ await client.Encounters.V4.CreateAsync(
             TaxonomyCode = "string",
             ProviderCommercialLicenseType =
                 BillingProviderCommercialLicenseType.LicensedClinicalSocialWorker,
+            FirstName = "string",
+            LastName = "string",
+            OrganizationName = "string",
         },
         RenderingProvider = new RenderingProvider
         {
@@ -2469,6 +2432,9 @@ await client.Encounters.V4.CreateAsync(
                 ZipCode = "10001",
                 ZipPlusFourCode = "1234",
             },
+            FirstName = "string",
+            LastName = "string",
+            OrganizationName = "string",
         },
         ReferringProvider = new ReferringProvider
         {
@@ -2483,6 +2449,9 @@ await client.Encounters.V4.CreateAsync(
                 ZipCode = "10001",
                 ZipPlusFourCode = "1234",
             },
+            FirstName = "string",
+            LastName = "string",
+            OrganizationName = "string",
         },
         InitialReferringProvider = new InitialReferringProvider
         {
@@ -2498,6 +2467,9 @@ await client.Encounters.V4.CreateAsync(
                 ZipPlusFourCode = "1234",
             },
             Qualifier = QualifierCode.Dq,
+            FirstName = "string",
+            LastName = "string",
+            OrganizationName = "string",
         },
         SupervisingProvider = new SupervisingProvider
         {
@@ -2512,6 +2484,9 @@ await client.Encounters.V4.CreateAsync(
                 ZipCode = "10001",
                 ZipPlusFourCode = "1234",
             },
+            FirstName = "string",
+            LastName = "string",
+            OrganizationName = "string",
         },
         ServiceFacility = new EncounterServiceFacilityBase
         {
@@ -2535,8 +2510,27 @@ await client.Encounters.V4.CreateAsync(
                 MemberId = "string",
                 PayerName = "string",
                 PayerId = "string",
+                RxBin = "string",
+                RxPcn = "string",
+                ImageUrlFront = "string",
+                ImageUrlBack = "string",
+                EmrPayerCrosswalk = EmrPayerCrosswalk.Healthie,
+                GroupNumber = "string",
+                PlanName = "string",
+                PlanType = SourceOfPaymentCode.SelfPay,
+                InsuranceType = Candid.Net.InsuranceTypeCode.C01,
             },
             PatientRelationshipToSubscriberCode = PatientRelationshipToInsuredCodeAll.Spouse,
+            DateOfBirth = new DateOnly(2023, 1, 15),
+            Address = new StreetAddressShortZip
+            {
+                Address1 = "123 Main St",
+                Address2 = "Apt 1",
+                City = "New York",
+                State = State.Ny,
+                ZipCode = "10001",
+                ZipPlusFourCode = "1234",
+            },
             FirstName = "string",
             LastName = "string",
             Gender = Candid.Net.Gender.Male,
@@ -2548,8 +2542,27 @@ await client.Encounters.V4.CreateAsync(
                 MemberId = "string",
                 PayerName = "string",
                 PayerId = "string",
+                RxBin = "string",
+                RxPcn = "string",
+                ImageUrlFront = "string",
+                ImageUrlBack = "string",
+                EmrPayerCrosswalk = EmrPayerCrosswalk.Healthie,
+                GroupNumber = "string",
+                PlanName = "string",
+                PlanType = SourceOfPaymentCode.SelfPay,
+                InsuranceType = Candid.Net.InsuranceTypeCode.C01,
             },
             PatientRelationshipToSubscriberCode = PatientRelationshipToInsuredCodeAll.Spouse,
+            DateOfBirth = new DateOnly(2023, 1, 15),
+            Address = new StreetAddressShortZip
+            {
+                Address1 = "123 Main St",
+                Address2 = "Apt 1",
+                City = "New York",
+                State = State.Ny,
+                ZipCode = "10001",
+                ZipPlusFourCode = "1234",
+            },
             FirstName = "string",
             LastName = "string",
             Gender = Candid.Net.Gender.Male,
@@ -2653,6 +2666,9 @@ await client.Encounters.V4.CreateAsync(
                         ZipCode = "10001",
                         ZipPlusFourCode = "1234",
                     },
+                    FirstName = "string",
+                    LastName = "string",
+                    OrganizationName = "string",
                 },
                 TestResults = new List<TestResult>()
                 {
@@ -2888,6 +2904,9 @@ await client.Encounters.V4.CreateFromPreEncounterPatientAsync(
             TaxonomyCode = "string",
             ProviderCommercialLicenseType =
                 BillingProviderCommercialLicenseType.LicensedClinicalSocialWorker,
+            FirstName = "string",
+            LastName = "string",
+            OrganizationName = "string",
         },
         RenderingProvider = new RenderingProvider
         {
@@ -2902,6 +2921,9 @@ await client.Encounters.V4.CreateFromPreEncounterPatientAsync(
                 ZipCode = "10001",
                 ZipPlusFourCode = "1234",
             },
+            FirstName = "string",
+            LastName = "string",
+            OrganizationName = "string",
         },
         InitialReferringProvider = new InitialReferringProvider
         {
@@ -2917,6 +2939,9 @@ await client.Encounters.V4.CreateFromPreEncounterPatientAsync(
                 ZipPlusFourCode = "1234",
             },
             Qualifier = QualifierCode.Dq,
+            FirstName = "string",
+            LastName = "string",
+            OrganizationName = "string",
         },
         SupervisingProvider = new SupervisingProvider
         {
@@ -2931,6 +2956,9 @@ await client.Encounters.V4.CreateFromPreEncounterPatientAsync(
                 ZipCode = "10001",
                 ZipPlusFourCode = "1234",
             },
+            FirstName = "string",
+            LastName = "string",
+            OrganizationName = "string",
         },
         ServiceFacility = new EncounterServiceFacilityBase
         {
@@ -3044,6 +3072,9 @@ await client.Encounters.V4.CreateFromPreEncounterPatientAsync(
                         ZipCode = "10001",
                         ZipPlusFourCode = "1234",
                     },
+                    FirstName = "string",
+                    LastName = "string",
+                    OrganizationName = "string",
                 },
                 TestResults = new List<TestResult>()
                 {
@@ -3210,95 +3241,6 @@ await client.Encounters.V4.UpdateAsync(
     {
         DiagnosisIds = new List<string>() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
         PlaceOfServiceCodeAsSubmitted = FacilityTypeCode.Pharmacy,
-        BenefitsAssignedToProvider = true,
-        PriorAuthorizationNumber = "string",
-        ExternalId = "string",
-        DateOfService = new DateOnly(2023, 1, 15),
-        TagIds = new List<string>() { },
-        ClinicalNotes = new List<ClinicalNoteCategoryCreate>() { },
-        PayToAddress = new StreetAddressLongZip
-        {
-            Address1 = "123 Main St",
-            Address2 = "Apt 1",
-            City = "New York",
-            State = State.Ny,
-            ZipCode = "10001",
-            ZipPlusFourCode = "1234",
-        },
-        BillableStatus = BillableStatusType.Billable,
-        ResponsibleParty = ResponsiblePartyType.InsurancePay,
-        ProviderAcceptsAssignment = true,
-        Synchronicity = SynchronicityType.Synchronous,
-        PlaceOfServiceCode = FacilityTypeCode.Pharmacy,
-        AppointmentType = "string",
-        EndDateOfService = new DateOnly(2023, 1, 15),
-        SubscriberPrimary = new SubscriberCreate
-        {
-            InsuranceCard = new InsuranceCardCreate
-            {
-                MemberId = "string",
-                PayerName = "string",
-                PayerId = "string",
-            },
-            PatientRelationshipToSubscriberCode = PatientRelationshipToInsuredCodeAll.Spouse,
-            FirstName = "string",
-            LastName = "string",
-            Gender = Candid.Net.Gender.Male,
-        },
-        SubscriberSecondary = new SubscriberCreate
-        {
-            InsuranceCard = new InsuranceCardCreate
-            {
-                MemberId = "string",
-                PayerName = "string",
-                PayerId = "string",
-            },
-            PatientRelationshipToSubscriberCode = PatientRelationshipToInsuredCodeAll.Spouse,
-            FirstName = "string",
-            LastName = "string",
-            Gender = Candid.Net.Gender.Male,
-        },
-        AdditionalInformation = "string",
-        ServiceAuthorizationExceptionCode = ServiceAuthorizationExceptionCode.C1,
-        AdmissionDate = new DateOnly(2023, 1, 15),
-        DischargeDate = new DateOnly(2023, 1, 15),
-        OnsetOfCurrentIllnessOrSymptomDate = new DateOnly(2023, 1, 15),
-        LastMenstrualPeriodDate = new DateOnly(2023, 1, 15),
-        DelayReasonCode = DelayReasonCode.C1,
-        Patient = new PatientUpdate(),
-        PatientAuthorizedRelease = true,
-        SchemaInstances = new List<SchemaInstance>() { },
-        Vitals = new VitalsUpdate
-        {
-            HeightIn = 70,
-            WeightLbs = 165,
-            BloodPressureSystolicMmhg = 115,
-            BloodPressureDiastolicMmhg = 85,
-            BodyTemperatureF = 98,
-            HemoglobinGdl = 15.1,
-            HematocritPct = 51.2,
-        },
-        ExistingMedications = new List<Medication>() { },
-        RenderingProvider = new RenderingProviderUpdate(),
-        ServiceFacility = new EncounterServiceFacilityUpdate
-        {
-            OrganizationName = "Test Organization",
-            Address = new StreetAddressLongZip
-            {
-                Address1 = "123 Main St",
-                Address2 = "Apt 1",
-                City = "New York",
-                State = State.Ny,
-                ZipCode = "10001",
-                ZipPlusFourCode = "1234",
-            },
-        },
-        Guarantor = new GuarantorUpdate(),
-        BillingProvider = new BillingProviderUpdate(),
-        SupervisingProvider = new SupervisingProviderUpdate(),
-        ReferringProvider = new ReferringProviderUpdate(),
-        InitialReferringProvider = new InitialReferringProviderUpdate(),
-        ReferralNumber = "string",
     }
 );
 ```
@@ -4506,7 +4448,29 @@ Updates a guarantor by its `guarantor_id`.
 ```csharp
 await client.Guarantor.V1.UpdateAsync(
     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    new GuarantorUpdate()
+    new GuarantorUpdate
+    {
+        FirstName = "string",
+        LastName = "string",
+        ExternalId = "string",
+        DateOfBirth = new DateOnly(2023, 1, 15),
+        Address = new StreetAddressShortZip
+        {
+            Address1 = "123 Main St",
+            Address2 = "Apt 1",
+            City = "New York",
+            State = State.Ny,
+            ZipCode = "10001",
+            ZipPlusFourCode = "1234",
+        },
+        PhoneNumbers = new List<PhoneNumber>()
+        {
+            new PhoneNumber { Number = "1234567890", Type = PhoneNumberType.Home },
+        },
+        PhoneConsent = true,
+        Email = "johndoe@joincandidhealth.com",
+        EmailConsent = true,
+    }
 );
 ```
 </dd>
@@ -7944,6 +7908,9 @@ await client.ServiceLines.V2.CreateAsync(
                 ZipCode = "10001",
                 ZipPlusFourCode = "1234",
             },
+            FirstName = "string",
+            LastName = "string",
+            OrganizationName = "string",
         },
         TestResults = new List<TestResult>()
         {
@@ -9118,7 +9085,7 @@ await client.PreEncounter.Coverages.V1.CreateAsync(
             {
                 CheckId = "string",
                 ServiceCode = ServiceTypeCode.MedicalCare,
-                Status = EligibilityCheckStatus.Created,
+                Status = EligibilityCheckStatus.Completed,
                 InitiatedBy = "string",
                 InitiatedAt = new DateTime(2024, 01, 15, 09, 30, 00, 000),
             },
@@ -9241,7 +9208,7 @@ await client.PreEncounter.Coverages.V1.UpdateAsync(
             {
                 CheckId = "string",
                 ServiceCode = ServiceTypeCode.MedicalCare,
-                Status = EligibilityCheckStatus.Created,
+                Status = EligibilityCheckStatus.Completed,
                 InitiatedBy = "string",
                 InitiatedAt = new DateTime(2024, 01, 15, 09, 30, 00, 000),
             },

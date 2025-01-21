@@ -65,4 +65,10 @@ public enum NetworkType
 
     [EnumMember(Value = "ZZ")]
     MutuallyDefined,
+
+    [EnumMember(Value = "CI")]
+    CommercialInsuranceCo,
+
+    [EnumMember(Value = "BL")]
+    BlueCrossBlueShield,
 }

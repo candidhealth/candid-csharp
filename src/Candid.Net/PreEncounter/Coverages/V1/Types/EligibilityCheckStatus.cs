@@ -9,9 +9,6 @@ namespace Candid.Net.PreEncounter.Coverages.V1;
 [JsonConverter(typeof(EnumSerializer<EligibilityCheckStatus>))]
 public enum EligibilityCheckStatus
 {
-    [EnumMember(Value = "CREATED")]
-    Created,
-
     [EnumMember(Value = "COMPLETED")]
     Completed,
 

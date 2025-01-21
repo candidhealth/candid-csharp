@@ -213,6 +213,9 @@ public enum Rarc
     [EnumMember(Value = "M77")]
     M77,
 
+    [EnumMember(Value = "M78")]
+    M78,
+
     [EnumMember(Value = "M79")]
     M79,
 
@@ -3221,4 +3224,7 @@ public enum Rarc
 
     [EnumMember(Value = "N891")]
     N891,
+
+    [EnumMember(Value = "N900")]
+    N900,
 }

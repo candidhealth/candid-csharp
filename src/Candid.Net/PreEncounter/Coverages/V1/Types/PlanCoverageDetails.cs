@@ -10,6 +10,9 @@ public record PlanCoverageDetails
     [JsonPropertyName("deductible")]
     public CoverageValue? Deductible { get; set; }
 
+    [JsonPropertyName("deductible_contract")]
+    public CoverageValue? DeductibleContract { get; set; }
+
     [JsonPropertyName("deductible_remaining")]
     public CoverageValue? DeductibleRemaining { get; set; }
 
@@ -19,11 +22,14 @@ public record PlanCoverageDetails
     [JsonPropertyName("oop_max")]
     public CoverageValue? OopMax { get; set; }
 
+    [JsonPropertyName("oop_max_contract")]
+    public CoverageValue? OopMaxContract { get; set; }
+
     [JsonPropertyName("oop_max_remaining")]
     public CoverageValue? OopMaxRemaining { get; set; }
 
-    [JsonPropertyName("oop_year_to_date")]
-    public CoverageValue? OopYearToDate { get; set; }
+    [JsonPropertyName("oop_max_year_to_date")]
+    public CoverageValue? OopMaxYearToDate { get; set; }
 
     [JsonPropertyName("additional_notes")]
     public string? AdditionalNotes { get; set; }

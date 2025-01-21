@@ -12,6 +12,9 @@ public enum BenefitType
     [EnumMember(Value = "DEDUCTIBLE")]
     Deductible,
 
+    [EnumMember(Value = "DEDUCTIBLE_CONTRACT")]
+    DeductibleContract,
+
     [EnumMember(Value = "DEDUCTIBLE_REMAINING")]
     DeductibleRemaining,
 
@@ -21,11 +24,14 @@ public enum BenefitType
     [EnumMember(Value = "OOP_MAX")]
     OopMax,
 
+    [EnumMember(Value = "OOP_MAX_CONTRACT")]
+    OopMaxContract,
+
     [EnumMember(Value = "OOP_MAX_REMAINING")]
     OopMaxRemaining,
 
-    [EnumMember(Value = "OOP_YEAR_TO_DATE")]
-    OopYearToDate,
+    [EnumMember(Value = "OOP_MAX_YEAR_TO_DATE")]
+    OopMaxYearToDate,
 
     [EnumMember(Value = "COPAY")]
     Copay,

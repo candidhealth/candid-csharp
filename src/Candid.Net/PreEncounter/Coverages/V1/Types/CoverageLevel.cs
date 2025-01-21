@@ -9,15 +9,18 @@ namespace Candid.Net.PreEncounter.Coverages.V1;
 [JsonConverter(typeof(EnumSerializer<CoverageLevel>))]
 public enum CoverageLevel
 {
-    [EnumMember(Value = "INDIVIDUAL")]
-    Individual,
-
-    [EnumMember(Value = "FAMILY")]
-    Family,
+    [EnumMember(Value = "EMPLOYEE_AND_CHILDREN")]
+    EmployeeAndChildren,
 
     [EnumMember(Value = "EMPLOYEE_ONLY")]
     EmployeeOnly,
 
     [EnumMember(Value = "EMPLOYEE_AND_SPOUSE")]
     EmployeeAndSpouse,
+
+    [EnumMember(Value = "FAMILY")]
+    Family,
+
+    [EnumMember(Value = "INDIVIDUAL")]
+    Individual,
 }

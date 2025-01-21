@@ -16,6 +16,9 @@ public record CoverageValue
     [JsonPropertyName("employeeAndSpouse")]
     public double? EmployeeAndSpouse { get; set; }
 
+    [JsonPropertyName("employeeAndChildren")]
+    public double? EmployeeAndChildren { get; set; }
+
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

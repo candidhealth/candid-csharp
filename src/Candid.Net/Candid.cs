@@ -2,6 +2,7 @@ using Candid.Net.Auth;
 using Candid.Net.Auth.V2;
 using Candid.Net.BillingNotes;
 using Candid.Net.ChargeCapture;
+using Candid.Net.ChargeCaptureBundles;
 using Candid.Net.ClaimSubmission;
 using Candid.Net.Contracts;
 using Candid.Net.Core;
@@ -50,7 +51,7 @@ public partial class Candid
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Candid.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Candid.Net/0.38.2" },
+                { "User-Agent", "Candid.Net/0.39.0" },
             }
         );
         clientOptions ??= new ClientOptions();
@@ -72,6 +73,7 @@ public partial class Candid
         _client = new RawClient(clientOptions);
         Auth = new AuthClient(_client);
         BillingNotes = new BillingNotesClient(_client);
+        ChargeCaptureBundles = new ChargeCaptureBundlesClient(_client);
         ChargeCapture = new ChargeCaptureClient(_client);
         ClaimSubmission = new ClaimSubmissionClient(_client);
         Contracts = new ContractsClient(_client);
@@ -116,6 +118,8 @@ public partial class Candid
     public AuthClient Auth { get; init; }
 
     public BillingNotesClient BillingNotes { get; init; }
+
+    public ChargeCaptureBundlesClient ChargeCaptureBundles { get; init; }
 
     public ChargeCaptureClient ChargeCapture { get; init; }
 
