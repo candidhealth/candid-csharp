@@ -132,7 +132,6 @@ public record EncounterCreate
     public GuarantorCreate? Guarantor { get; set; }
 
     /// <summary>
-    /// ***This field is in beta.***
     /// To be included for claims that have been submitted outside of Candid.
     /// Candid supports posting remits and payments to these claims and working them in-platform (e.g. editing, resubmitting).
     /// </summary>
@@ -157,6 +156,12 @@ public record EncounterCreate
     /// </summary>
     [JsonPropertyName("referral_number")]
     public string? ReferralNumber { get; set; }
+
+    /// <summary>
+    /// Refers Box 24H on the CMS1500 form and Loop 2300 CRC - EPSDT Referral on the 837P form
+    /// </summary>
+    [JsonPropertyName("epsdt_referral")]
+    public EpsdtReferral? EpsdtReferral { get; set; }
 
     /// <summary>
     /// A client-specified unique ID to associate with this encounter;

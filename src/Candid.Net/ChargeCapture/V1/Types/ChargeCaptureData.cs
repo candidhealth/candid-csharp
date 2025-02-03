@@ -302,6 +302,12 @@ public record ChargeCaptureData
     [JsonPropertyName("referral_number")]
     public string? ReferralNumber { get; set; }
 
+    /// <summary>
+    /// Refers Box 24H on the CMS1500 form and Loop 2300 CRC - EPSDT Referral on the 837P form
+    /// </summary>
+    [JsonPropertyName("epsdt_referral")]
+    public EpsdtReferral? EpsdtReferral { get; set; }
+
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

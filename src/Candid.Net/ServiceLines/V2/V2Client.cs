@@ -71,6 +71,8 @@ public partial class V2Client
     ///         {
     ///             new TestResult { Value = 1.1, ResultType = TestResultType.Hematocrit },
     ///         },
+    ///         HasEpsdtIndicator = true,
+    ///         HasFamilyPlanningIndicator = true,
     ///     }
     /// );
     /// </code>
@@ -151,6 +153,8 @@ public partial class V2Client
     ///         {
     ///             new TestResult { Value = 1.1, ResultType = TestResultType.Hematocrit },
     ///         },
+    ///         HasEpsdtIndicator = true,
+    ///         HasFamilyPlanningIndicator = true,
     ///     }
     /// );
     /// </code>

@@ -180,6 +180,12 @@ public record Encounter
     public string? ReferralNumber { get; set; }
 
     /// <summary>
+    /// Refers Box 24H on the CMS1500 form and Loop 2300 CRC - EPSDT Referral on the 837P form
+    /// </summary>
+    [JsonPropertyName("epsdt_referral")]
+    public EpsdtReferral? EpsdtReferral { get; set; }
+
+    /// <summary>
     /// The date and time the encounter was last submitted to a payer.
     /// </summary>
     [JsonPropertyName("last_submitted_at")]

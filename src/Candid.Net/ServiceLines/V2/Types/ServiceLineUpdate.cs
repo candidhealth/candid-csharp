@@ -78,6 +78,20 @@ public record ServiceLineUpdate
     [JsonPropertyName("test_results")]
     public IEnumerable<TestResult>? TestResults { get; set; }
 
+    /// <summary>
+    /// Maps to SV1-11 on the 837-P and Box 24H on the CMS-1500.
+    /// If the value is true, the box will be populated with "Y". Otherwise, the box will not be populated.
+    /// </summary>
+    [JsonPropertyName("has_epsdt_indicator")]
+    public bool? HasEpsdtIndicator { get; set; }
+
+    /// <summary>
+    /// Maps to SV1-12 on the 837-P and Box 24I on the CMS-1500.
+    /// If the value is true, the box will be populated with "Y". Otherwise, the box will not be populated.
+    /// </summary>
+    [JsonPropertyName("has_family_planning_indicator")]
+    public bool? HasFamilyPlanningIndicator { get; set; }
+
     public override string ToString()
     {
         return JsonUtils.Serialize(this);
