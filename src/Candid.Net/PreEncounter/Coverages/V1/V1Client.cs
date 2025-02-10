@@ -54,13 +54,7 @@ public partial class V1Client
     ///             MemberId = "string",
     ///             PayerId = "string",
     ///             PayerName = "string",
-    ///             AdditionalPayerInformation = new AdditionalPayerInformation
-    ///             {
-    ///                 AvailityEligibilityId = "string",
-    ///                 AvailityPayerId = "string",
-    ///                 AvailityPayerName = "string",
-    ///                 AvailityRemittancePayerId = "string",
-    ///             },
+    ///             AdditionalPayerInformation = new AdditionalPayerInformation(),
     ///             GroupNumber = "string",
     ///             Name = "string",
     ///             PlanType = Candid.Net.PreEncounter.Coverages.V1.NetworkType.SelfPay,
@@ -168,13 +162,7 @@ public partial class V1Client
     ///             MemberId = "string",
     ///             PayerId = "string",
     ///             PayerName = "string",
-    ///             AdditionalPayerInformation = new AdditionalPayerInformation
-    ///             {
-    ///                 AvailityEligibilityId = "string",
-    ///                 AvailityPayerId = "string",
-    ///                 AvailityPayerName = "string",
-    ///                 AvailityRemittancePayerId = "string",
-    ///             },
+    ///             AdditionalPayerInformation = new AdditionalPayerInformation(),
     ///             GroupNumber = "string",
     ///             Name = "string",
     ///             PlanType = Candid.Net.PreEncounter.Coverages.V1.NetworkType.SelfPay,

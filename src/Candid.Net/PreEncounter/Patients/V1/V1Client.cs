@@ -186,9 +186,13 @@ public partial class V1Client
     ///                 {
     ///                     PayerId = "string",
     ///                     PayerName = "string",
+    ///                     AdditionalPayerInformation = new AdditionalPayerInformation(),
     ///                     AuthorizationNumber = "string",
     ///                     CptCode = "string",
     ///                     Units = AuthorizationUnit.Visit,
+    ///                     Quantity = 1,
+    ///                     Period = new Period(),
+    ///                     Notes = "string",
     ///                 },
     ///             },
     ///             Referrals = new List&lt;Referral&gt;()
@@ -440,9 +444,13 @@ public partial class V1Client
     ///                 {
     ///                     PayerId = "string",
     ///                     PayerName = "string",
+    ///                     AdditionalPayerInformation = new AdditionalPayerInformation(),
     ///                     AuthorizationNumber = "string",
     ///                     CptCode = "string",
     ///                     Units = AuthorizationUnit.Visit,
+    ///                     Quantity = 1,
+    ///                     Period = new Period(),
+    ///                     Notes = "string",
     ///                 },
     ///             },
     ///             Referrals = new List&lt;Referral&gt;()
@@ -855,9 +863,13 @@ public partial class V1Client
     ///             {
     ///                 PayerId = "string",
     ///                 PayerName = "string",
+    ///                 AdditionalPayerInformation = new AdditionalPayerInformation(),
     ///                 AuthorizationNumber = "string",
     ///                 CptCode = "string",
     ///                 Units = AuthorizationUnit.Visit,
+    ///                 Quantity = 1,
+    ///                 Period = new Period(),
+    ///                 Notes = "string",
     ///             },
     ///         },
     ///         Referrals = new List&lt;Referral&gt;()
