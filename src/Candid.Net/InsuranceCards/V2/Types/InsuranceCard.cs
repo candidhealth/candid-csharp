@@ -50,6 +50,9 @@ public record InsuranceCard
     [JsonPropertyName("insurance_type")]
     public InsuranceTypeCode? InsuranceType { get; set; }
 
+    [JsonPropertyName("payer_plan_group_id")]
+    public string? PayerPlanGroupId { get; set; }
+
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

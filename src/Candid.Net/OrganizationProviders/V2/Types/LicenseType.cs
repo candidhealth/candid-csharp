@@ -212,4 +212,73 @@ public enum LicenseType
 
     [EnumMember(Value = "DNP")]
     Dnp,
+
+    [EnumMember(Value = "AGNPBC")]
+    Agnpbc,
+
+    [EnumMember(Value = "ANP")]
+    Anp,
+
+    [EnumMember(Value = "FNPPP")]
+    Fnppp,
+
+    [EnumMember(Value = "LCSWR")]
+    Lcswr,
+
+    [EnumMember(Value = "ALC")]
+    Alc,
+
+    [EnumMember(Value = "RMFTI")]
+    Rmfti,
+
+    [EnumMember(Value = "LAMFT")]
+    Lamft,
+
+    [EnumMember(Value = "LPCA")]
+    Lpca,
+
+    [EnumMember(Value = "LSWI")]
+    Lswi,
+
+    [EnumMember(Value = "CSW")]
+    Csw,
+
+    [EnumMember(Value = "CPC")]
+    Cpc,
+
+    [EnumMember(Value = "LGMFT")]
+    Lgmft,
+
+    [EnumMember(Value = "LLPC")]
+    Llpc,
+
+    [EnumMember(Value = "PLPC")]
+    Plpc,
+
+    [EnumMember(Value = "PLMFT")]
+    Plmft,
+
+    [EnumMember(Value = "LMHCA")]
+    Lmhca,
+
+    [EnumMember(Value = "CIT")]
+    Cit,
+
+    [EnumMember(Value = "CT")]
+    Ct,
+
+    [EnumMember(Value = "MFT")]
+    Mft,
+
+    [EnumMember(Value = "LSW")]
+    Lsw,
+
+    [EnumMember(Value = "PLMHP")]
+    Plmhp,
+
+    [EnumMember(Value = "PCMSW")]
+    Pcmsw,
+
+    [EnumMember(Value = "LMHP")]
+    Lmhp,
 }
