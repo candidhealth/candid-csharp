@@ -14,7 +14,7 @@ public record AppointmentListItem
     public required Appointment Appointment { get; set; }
 
     [JsonPropertyName("patient")]
-    public required MutablePatient Patient { get; set; }
+    public required MutablePatientWithMrn Patient { get; set; }
 
     [JsonPropertyName("primary_coverage")]
     public MutableCoverage? PrimaryCoverage { get; set; }

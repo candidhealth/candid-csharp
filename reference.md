@@ -2310,7 +2310,7 @@ await client.Encounters.V4.GetAllAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Encounters.V4.<a href="/src/Candid.Net/Encounters/V4/V4Client.cs">GetAsync</a>(encounterId) -> Encounter</code></summary>
+<details><summary><code>client.Encounters.V4.<a href="/src/Candid.Net/Encounters/V4/V4Client.cs">GetAsync</a>(encounterId) -> Encounters.V4.Encounter</code></summary>
 <dl>
 <dd>
 
@@ -2350,7 +2350,7 @@ await client.Encounters.V4.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
 </dl>
 </details>
 
-<details><summary><code>client.Encounters.V4.<a href="/src/Candid.Net/Encounters/V4/V4Client.cs">CreateAsync</a>(EncounterCreate { ... }) -> Encounter</code></summary>
+<details><summary><code>client.Encounters.V4.<a href="/src/Candid.Net/Encounters/V4/V4Client.cs">CreateAsync</a>(EncounterCreate { ... }) -> Encounters.V4.Encounter</code></summary>
 <dl>
 <dd>
 
@@ -2801,7 +2801,7 @@ await client.Encounters.V4.CreateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Encounters.V4.<a href="/src/Candid.Net/Encounters/V4/V4Client.cs">CreateFromPreEncounterPatientAsync</a>(EncounterCreateFromPreEncounter { ... }) -> Encounter</code></summary>
+<details><summary><code>client.Encounters.V4.<a href="/src/Candid.Net/Encounters/V4/V4Client.cs">CreateFromPreEncounterPatientAsync</a>(EncounterCreateFromPreEncounter { ... }) -> Encounters.V4.Encounter</code></summary>
 <dl>
 <dd>
 
@@ -3136,7 +3136,7 @@ await client.Encounters.V4.CreateFromPreEncounterPatientAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Encounters.V4.<a href="/src/Candid.Net/Encounters/V4/V4Client.cs">UpdateAsync</a>(encounterId, EncounterUpdate { ... }) -> Encounter</code></summary>
+<details><summary><code>client.Encounters.V4.<a href="/src/Candid.Net/Encounters/V4/V4Client.cs">UpdateAsync</a>(encounterId, EncounterUpdate { ... }) -> Encounters.V4.Encounter</code></summary>
 <dl>
 <dd>
 
@@ -3718,6 +3718,7 @@ await client.FeeSchedules.V3.GetMultiAsync(
         LicenseTypes = [LicenseType.Md],
         FacilityTypeCodes = [FacilityTypeCode.Pharmacy],
         NetworkTypes = [Candid.Net.NetworkType.Ppo],
+        PayerPlanGroupIds = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
         CptCode = "string",
         Modifiers = [ProcedureModifier.TwentyTwo],
     }
@@ -3788,6 +3789,7 @@ await client.FeeSchedules.V3.GetUniqueValuesForDimensionAsync(
         LicenseTypes = [LicenseType.Md],
         FacilityTypeCodes = [FacilityTypeCode.Pharmacy],
         NetworkTypes = [Candid.Net.NetworkType.Ppo],
+        PayerPlanGroupIds = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
         CptCode = "string",
         Modifiers = [ProcedureModifier.TwentyTwo],
     }
@@ -3921,6 +3923,10 @@ await client.FeeSchedules.V3.UploadFeeScheduleAsync(
                     NetworkTypes = new HashSet<Candid.Net.NetworkType>()
                     {
                         Candid.Net.NetworkType.Ppo,
+                    },
+                    PayerPlanGroupIds = new HashSet<string>()
+                    {
+                        "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
                     },
                     CptCode = "string",
                     Modifiers = new HashSet<ProcedureModifier>() { ProcedureModifier.TwentyTwo },
@@ -5537,7 +5543,7 @@ await client.InsuranceRefunds.V1.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc
 </details>
 
 ## MedicationDispense V1
-<details><summary><code>client.MedicationDispense.V1.<a href="/src/Candid.Net/MedicationDispense/V1/V1Client.cs">CreateAsync</a>(MedicationDispenseCreate { ... }) -> Encounter</code></summary>
+<details><summary><code>client.MedicationDispense.V1.<a href="/src/Candid.Net/MedicationDispense/V1/V1Client.cs">CreateAsync</a>(MedicationDispenseCreate { ... }) -> Encounters.V4.Encounter</code></summary>
 <dl>
 <dd>
 
@@ -8539,9 +8545,10 @@ await client.PreEncounter.Appointments.V1.CreateAsync(
             {
                 new ContactPoint { Value = "string", Use = ContactPointUse.Home },
             },
-            Addresses = new List<Address>() { },
+            Addresses = new List<Candid.Net.PreEncounter.Address>() { },
             Period = new Period(),
             CanonicalId = "string",
+            Fax = "string",
         },
         EstimatedCopayCents = 1,
         EstimatedPatientResponsibilityCents = 1,
@@ -8568,6 +8575,69 @@ await client.PreEncounter.Appointments.V1.CreateAsync(
 <dd>
 
 **request:** `MutableAppointment` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PreEncounter.Appointments.V1.<a href="/src/Candid.Net/PreEncounter/Appointments/V1/V1Client.cs">GetVisitsAsync</a>(VisitsRequest { ... }) -> VisitsPage</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets all Visits within a given time range. The return list is ordered by start_time ascending.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreEncounter.Appointments.V1.GetVisitsAsync(
+    new VisitsRequest
+    {
+        PageToken = "string",
+        Limit = 1,
+        SortField = "string",
+        SortDirection = Candid.Net.PreEncounter.SortDirection.Asc,
+        Filters = "string",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `VisitsRequest` 
     
 </dd>
 </dl>
@@ -8747,9 +8817,10 @@ await client.PreEncounter.Appointments.V1.UpdateAsync(
             {
                 new ContactPoint { Value = "string", Use = ContactPointUse.Home },
             },
-            Addresses = new List<Address>() { },
+            Addresses = new List<Candid.Net.PreEncounter.Address>() { },
             Period = new Period(),
             CanonicalId = "string",
+            Fax = "string",
         },
         EstimatedCopayCents = 1,
         EstimatedPatientResponsibilityCents = 1,
@@ -8964,7 +9035,7 @@ await client.PreEncounter.Coverages.V1.CreateAsync(
             },
             DateOfBirth = new DateOnly(2023, 1, 15),
             BiologicalSex = Sex.Female,
-            Address = new Address
+            Address = new Candid.Net.PreEncounter.Address
             {
                 Use = AddressUse.Home,
                 Line = new List<string>() { "string" },
@@ -8989,19 +9060,10 @@ await client.PreEncounter.Coverages.V1.CreateAsync(
             Type = Candid.Net.PreEncounter.Coverages.V1.InsuranceTypeCode.C01,
             Period = new Period(),
             InsuranceCardImageLocator = "string",
+            PayerPlanGroupId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
         },
         Verified = true,
-        EligibilityChecks = new List<EligibilityCheckMetadata>()
-        {
-            new EligibilityCheckMetadata
-            {
-                CheckId = "string",
-                ServiceCode = ServiceTypeCode.MedicalCare,
-                Status = EligibilityCheckStatus.Completed,
-                InitiatedBy = "string",
-                InitiatedAt = new DateTime(2024, 01, 15, 09, 30, 00, 000),
-            },
-        },
+        EligibilityChecks = new List<EligibilityCheckMetadata>() { },
         LatestEligibilityCheck = new LatestEligibilityCheck
         {
             CheckId = "string",
@@ -9081,7 +9143,7 @@ await client.PreEncounter.Coverages.V1.UpdateAsync(
             },
             DateOfBirth = new DateOnly(2023, 1, 15),
             BiologicalSex = Sex.Female,
-            Address = new Address
+            Address = new Candid.Net.PreEncounter.Address
             {
                 Use = AddressUse.Home,
                 Line = new List<string>() { "string" },
@@ -9106,19 +9168,10 @@ await client.PreEncounter.Coverages.V1.UpdateAsync(
             Type = Candid.Net.PreEncounter.Coverages.V1.InsuranceTypeCode.C01,
             Period = new Period(),
             InsuranceCardImageLocator = "string",
+            PayerPlanGroupId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
         },
         Verified = true,
-        EligibilityChecks = new List<EligibilityCheckMetadata>()
-        {
-            new EligibilityCheckMetadata
-            {
-                CheckId = "string",
-                ServiceCode = ServiceTypeCode.MedicalCare,
-                Status = EligibilityCheckStatus.Completed,
-                InitiatedBy = "string",
-                InitiatedAt = new DateTime(2024, 01, 15, 09, 30, 00, 000),
-            },
-        },
+        EligibilityChecks = new List<EligibilityCheckMetadata>() { },
         LatestEligibilityCheck = new LatestEligibilityCheck
         {
             CheckId = "string",
@@ -9159,6 +9212,68 @@ await client.PreEncounter.Coverages.V1.UpdateAsync(
 <dd>
 
 **request:** `MutableCoverage` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PreEncounter.Coverages.V1.<a href="/src/Candid.Net/PreEncounter/Coverages/V1/V1Client.cs">GetMultiPaginatedAsync</a>(CoverageGetMultiPaginatedRequest { ... }) -> CoveragesPage</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a page of Coverages based on the search criteria.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreEncounter.Coverages.V1.GetMultiPaginatedAsync(
+    new CoverageGetMultiPaginatedRequest
+    {
+        PatientId = "string",
+        PayerPlanGroupId = "string",
+        PageToken = "string",
+        Limit = 1,
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `CoverageGetMultiPaginatedRequest` 
     
 </dd>
 </dl>
@@ -9514,6 +9629,91 @@ await client.PreEncounter.Coverages.V1.GetEligibilityAsync(
 <dd>
 
 **checkId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## PreEncounter EligibilityChecks V1
+<details><summary><code>client.PreEncounter.EligibilityChecks.V1.<a href="/src/Candid.Net/PreEncounter/EligibilityChecks/V1/V1Client.cs">PostAsync</a>(EligibilityRequest { ... }) -> PreEncounter.EligibilityChecks.V1.EligibilityCheck</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Sends real-time eligibility checks to payers through Stedi.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreEncounter.EligibilityChecks.V1.PostAsync(
+    new EligibilityRequest
+    {
+        PayerId = "string",
+        Provider = new IndividualProvider
+        {
+            FirstName = "string",
+            LastName = "string",
+            Npi = "string",
+        },
+        Subscriber = new MemberInfo
+        {
+            MemberId = "string",
+            FirstName = "string",
+            LastName = "string",
+            DateOfBirth = new DateOnly(2023, 1, 15),
+        },
+        Dependent = new MemberInfo
+        {
+            MemberId = "string",
+            FirstName = "string",
+            LastName = "string",
+            DateOfBirth = new DateOnly(2023, 1, 15),
+        },
+        Encounter = new Candid.Net.PreEncounter.EligibilityChecks.V1.Encounter
+        {
+            DateOfService = new DateOnly(2023, 1, 15),
+            ServiceTypeCodes = new List<string>() { "string" },
+        },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `EligibilityRequest` 
     
 </dd>
 </dl>
@@ -9960,6 +10160,10 @@ await client.PreEncounter.Patients.V1.CreateAsync(
                     Period = new Period(),
                 },
             },
+            OtherIdentifiers = new List<ExternalIdentifier>()
+            {
+                new ExternalIdentifier { Value = "string", System = "string" },
+            },
             Gender = Candid.Net.PreEncounter.Gender.Man,
             BirthDate = new DateOnly(2023, 1, 15),
             SocialSecurityNumber = "string",
@@ -9971,7 +10175,7 @@ await client.PreEncounter.Patients.V1.CreateAsync(
             MaritalStatus = MaritalStatus.Annulled,
             Deceased = new DateTime(2024, 01, 15, 09, 30, 00, 000),
             MultipleBirth = 1,
-            PrimaryAddress = new Address
+            PrimaryAddress = new Candid.Net.PreEncounter.Address
             {
                 Use = AddressUse.Home,
                 Line = new List<string>() { "string" },
@@ -9981,9 +10185,9 @@ await client.PreEncounter.Patients.V1.CreateAsync(
                 Country = "string",
                 Period = new Period(),
             },
-            OtherAddresses = new List<Address>()
+            OtherAddresses = new List<Candid.Net.PreEncounter.Address>()
             {
-                new Address
+                new Candid.Net.PreEncounter.Address
                 {
                     Use = AddressUse.Home,
                     Line = new List<string>() { "string" },
@@ -10024,9 +10228,9 @@ await client.PreEncounter.Patients.V1.CreateAsync(
                     {
                         new ContactPoint { Value = "string", Use = ContactPointUse.Home },
                     },
-                    Addresses = new List<Address>()
+                    Addresses = new List<Candid.Net.PreEncounter.Address>()
                     {
-                        new Address
+                        new Candid.Net.PreEncounter.Address
                         {
                             Use = AddressUse.Home,
                             Line = new List<string>() { "string" },
@@ -10058,9 +10262,10 @@ await client.PreEncounter.Patients.V1.CreateAsync(
                     {
                         new ContactPoint { Value = "string", Use = ContactPointUse.Home },
                     },
-                    Addresses = new List<Address>() { },
+                    Addresses = new List<Candid.Net.PreEncounter.Address>() { },
                     Period = new Period(),
                     CanonicalId = "string",
+                    Fax = "string",
                 },
             },
             FilingOrder = new FilingOrder
@@ -10084,7 +10289,7 @@ await client.PreEncounter.Patients.V1.CreateAsync(
                 Telecom = new ContactPoint { Value = "string", Use = ContactPointUse.Home },
                 Email = "string",
                 BirthDate = new DateOnly(2023, 1, 15),
-                Address = new Address
+                Address = new Candid.Net.PreEncounter.Address
                 {
                     Use = AddressUse.Home,
                     Line = new List<string>() { "string" },
@@ -10130,9 +10335,10 @@ await client.PreEncounter.Patients.V1.CreateAsync(
                         {
                             new ContactPoint { Value = "string", Use = ContactPointUse.Home },
                         },
-                        Addresses = new List<Address>() { },
+                        Addresses = new List<Candid.Net.PreEncounter.Address>() { },
                         Period = new Period(),
                         CanonicalId = "string",
+                        Fax = "string",
                     },
                     ReferralNumber = "string",
                 },
@@ -10221,6 +10427,10 @@ await client.PreEncounter.Patients.V1.CreateWithMrnAsync(
                     Period = new Period(),
                 },
             },
+            OtherIdentifiers = new List<ExternalIdentifier>()
+            {
+                new ExternalIdentifier { Value = "string", System = "string" },
+            },
             Gender = Candid.Net.PreEncounter.Gender.Man,
             BirthDate = new DateOnly(2023, 1, 15),
             SocialSecurityNumber = "string",
@@ -10232,7 +10442,7 @@ await client.PreEncounter.Patients.V1.CreateWithMrnAsync(
             MaritalStatus = MaritalStatus.Annulled,
             Deceased = new DateTime(2024, 01, 15, 09, 30, 00, 000),
             MultipleBirth = 1,
-            PrimaryAddress = new Address
+            PrimaryAddress = new Candid.Net.PreEncounter.Address
             {
                 Use = AddressUse.Home,
                 Line = new List<string>() { "string" },
@@ -10242,9 +10452,9 @@ await client.PreEncounter.Patients.V1.CreateWithMrnAsync(
                 Country = "string",
                 Period = new Period(),
             },
-            OtherAddresses = new List<Address>()
+            OtherAddresses = new List<Candid.Net.PreEncounter.Address>()
             {
-                new Address
+                new Candid.Net.PreEncounter.Address
                 {
                     Use = AddressUse.Home,
                     Line = new List<string>() { "string" },
@@ -10285,9 +10495,9 @@ await client.PreEncounter.Patients.V1.CreateWithMrnAsync(
                     {
                         new ContactPoint { Value = "string", Use = ContactPointUse.Home },
                     },
-                    Addresses = new List<Address>()
+                    Addresses = new List<Candid.Net.PreEncounter.Address>()
                     {
-                        new Address
+                        new Candid.Net.PreEncounter.Address
                         {
                             Use = AddressUse.Home,
                             Line = new List<string>() { "string" },
@@ -10319,9 +10529,10 @@ await client.PreEncounter.Patients.V1.CreateWithMrnAsync(
                     {
                         new ContactPoint { Value = "string", Use = ContactPointUse.Home },
                     },
-                    Addresses = new List<Address>() { },
+                    Addresses = new List<Candid.Net.PreEncounter.Address>() { },
                     Period = new Period(),
                     CanonicalId = "string",
+                    Fax = "string",
                 },
             },
             FilingOrder = new FilingOrder
@@ -10345,7 +10556,7 @@ await client.PreEncounter.Patients.V1.CreateWithMrnAsync(
                 Telecom = new ContactPoint { Value = "string", Use = ContactPointUse.Home },
                 Email = "string",
                 BirthDate = new DateOnly(2023, 1, 15),
-                Address = new Address
+                Address = new Candid.Net.PreEncounter.Address
                 {
                     Use = AddressUse.Home,
                     Line = new List<string>() { "string" },
@@ -10391,9 +10602,10 @@ await client.PreEncounter.Patients.V1.CreateWithMrnAsync(
                         {
                             new ContactPoint { Value = "string", Use = ContactPointUse.Home },
                         },
-                        Addresses = new List<Address>() { },
+                        Addresses = new List<Candid.Net.PreEncounter.Address>() { },
                         Period = new Period(),
                         CanonicalId = "string",
+                        Fax = "string",
                     },
                     ReferralNumber = "string",
                 },
@@ -10651,6 +10863,10 @@ await client.PreEncounter.Patients.V1.UpdateAsync(
                 Period = new Period(),
             },
         },
+        OtherIdentifiers = new List<ExternalIdentifier>()
+        {
+            new ExternalIdentifier { Value = "string", System = "string" },
+        },
         Gender = Candid.Net.PreEncounter.Gender.Man,
         BirthDate = new DateOnly(2023, 1, 15),
         SocialSecurityNumber = "string",
@@ -10662,7 +10878,7 @@ await client.PreEncounter.Patients.V1.UpdateAsync(
         MaritalStatus = MaritalStatus.Annulled,
         Deceased = new DateTime(2024, 01, 15, 09, 30, 00, 000),
         MultipleBirth = 1,
-        PrimaryAddress = new Address
+        PrimaryAddress = new Candid.Net.PreEncounter.Address
         {
             Use = AddressUse.Home,
             Line = new List<string>() { "string" },
@@ -10672,9 +10888,9 @@ await client.PreEncounter.Patients.V1.UpdateAsync(
             Country = "string",
             Period = new Period(),
         },
-        OtherAddresses = new List<Address>()
+        OtherAddresses = new List<Candid.Net.PreEncounter.Address>()
         {
-            new Address
+            new Candid.Net.PreEncounter.Address
             {
                 Use = AddressUse.Home,
                 Line = new List<string>() { "string" },
@@ -10715,9 +10931,9 @@ await client.PreEncounter.Patients.V1.UpdateAsync(
                 {
                     new ContactPoint { Value = "string", Use = ContactPointUse.Home },
                 },
-                Addresses = new List<Address>()
+                Addresses = new List<Candid.Net.PreEncounter.Address>()
                 {
-                    new Address
+                    new Candid.Net.PreEncounter.Address
                     {
                         Use = AddressUse.Home,
                         Line = new List<string>() { "string" },
@@ -10749,9 +10965,10 @@ await client.PreEncounter.Patients.V1.UpdateAsync(
                 {
                     new ContactPoint { Value = "string", Use = ContactPointUse.Home },
                 },
-                Addresses = new List<Address>() { },
+                Addresses = new List<Candid.Net.PreEncounter.Address>() { },
                 Period = new Period(),
                 CanonicalId = "string",
+                Fax = "string",
             },
         },
         FilingOrder = new FilingOrder
@@ -10775,7 +10992,7 @@ await client.PreEncounter.Patients.V1.UpdateAsync(
             Telecom = new ContactPoint { Value = "string", Use = ContactPointUse.Home },
             Email = "string",
             BirthDate = new DateOnly(2023, 1, 15),
-            Address = new Address
+            Address = new Candid.Net.PreEncounter.Address
             {
                 Use = AddressUse.Home,
                 Line = new List<string>() { "string" },
@@ -10821,9 +11038,10 @@ await client.PreEncounter.Patients.V1.UpdateAsync(
                     {
                         new ContactPoint { Value = "string", Use = ContactPointUse.Home },
                     },
-                    Addresses = new List<Address>() { },
+                    Addresses = new List<Candid.Net.PreEncounter.Address>() { },
                     Period = new Period(),
                     CanonicalId = "string",
+                    Fax = "string",
                 },
                 ReferralNumber = "string",
             },
@@ -10888,7 +11106,7 @@ await client.PreEncounter.Patients.V1.UpdateAsync(
 <dl>
 <dd>
 
-Sets a patient as deactivated. The path must contain the most recent version to prevent race conditions. Deactivating historic versions is not supported. Subsequent updates via PUT to the patient will "reactivate" the patient and set the deactivated flag to false.
+Sets a patient as deactivated. The path must contain the most recent version plus 1 to prevent race conditions. Deactivating historic versions is not supported.
 </dd>
 </dl>
 </dd>
@@ -10904,6 +11122,68 @@ Sets a patient as deactivated. The path must contain the most recent version to 
 
 ```csharp
 await client.PreEncounter.Patients.V1.DeactivateAsync("string", "string");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**version:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PreEncounter.Patients.V1.<a href="/src/Candid.Net/PreEncounter/Patients/V1/V1Client.cs">ReactivateAsync</a>(id, version)</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Removes the deactivated flag for a patient. The path must contain the most recent version plus 1 to prevent race conditions. Reactivating historic versions is not supported.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreEncounter.Patients.V1.ReactivateAsync("string", "string");
 ```
 </dd>
 </dl>

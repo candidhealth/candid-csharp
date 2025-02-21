@@ -7,6 +7,9 @@ namespace Candid.Net.PreEncounter.Coverages.V1;
 
 public record PlanMetadata
 {
+    [JsonPropertyName("payer_name")]
+    public string? PayerName { get; set; }
+
     [JsonPropertyName("insurance_type")]
     public string? InsuranceType { get; set; }
 
@@ -30,6 +33,12 @@ public record PlanMetadata
 
     [JsonPropertyName("plan_dates")]
     public IEnumerable<PlanDate>? PlanDates { get; set; }
+
+    [JsonPropertyName("subscriber")]
+    public ExpandedMemberInfo? Subscriber { get; set; }
+
+    [JsonPropertyName("dependent")]
+    public ExpandedMemberInfo? Dependent { get; set; }
 
     public override string ToString()
     {

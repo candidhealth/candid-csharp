@@ -183,6 +183,9 @@ public enum InsuranceTypeCode
     [EnumMember(Value = "OT")]
     Cot,
 
+    [EnumMember(Value = "PE")]
+    Cpe,
+
     [EnumMember(Value = "PL")]
     Cpl,
 

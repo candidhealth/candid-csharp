@@ -1,6 +1,5 @@
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
-using Candid.Net.OrganizationProviders.V2;
 using Candid.Net.Payers.V3;
 
 #nullable enable
@@ -22,7 +21,7 @@ public record ContractWithProviders
     /// The provider under contract
     /// </summary>
     [JsonPropertyName("contracting_provider")]
-    public required OrganizationProvider ContractingProvider { get; set; }
+    public required OrganizationProviders.V2.OrganizationProvider ContractingProvider { get; set; }
 
     /// <summary>
     /// The number of linked providers who can render medical services under this contract

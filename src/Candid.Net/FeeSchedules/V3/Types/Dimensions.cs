@@ -31,6 +31,9 @@ public record Dimensions
     [JsonPropertyName("network_types")]
     public HashSet<NetworkType> NetworkTypes { get; set; } = new HashSet<NetworkType>();
 
+    [JsonPropertyName("payer_plan_group_ids")]
+    public HashSet<string> PayerPlanGroupIds { get; set; } = new HashSet<string>();
+
     [JsonPropertyName("cpt_code")]
     public required string CptCode { get; set; }
 

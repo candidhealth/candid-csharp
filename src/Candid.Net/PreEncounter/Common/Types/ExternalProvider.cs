@@ -31,6 +31,9 @@ public record ExternalProvider
     [JsonPropertyName("canonical_id")]
     public string? CanonicalId { get; set; }
 
+    [JsonPropertyName("fax")]
+    public string? Fax { get; set; }
+
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

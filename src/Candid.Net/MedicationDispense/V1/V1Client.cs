@@ -2,7 +2,6 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading;
 using Candid.Net.Core;
-using Candid.Net.Encounters.V4;
 
 #nullable enable
 
@@ -45,7 +44,7 @@ public partial class V1Client
     /// );
     /// </code>
     /// </example>
-    public async Task<Encounter> CreateAsync(
+    public async Task<Encounters.V4.Encounter> CreateAsync(
         MedicationDispenseCreate request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -67,7 +66,7 @@ public partial class V1Client
         {
             try
             {
-                return JsonUtils.Deserialize<Encounter>(responseBody)!;
+                return JsonUtils.Deserialize<Encounters.V4.Encounter>(responseBody)!;
             }
             catch (JsonException e)
             {

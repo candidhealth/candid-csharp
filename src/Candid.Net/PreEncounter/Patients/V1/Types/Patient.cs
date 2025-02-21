@@ -56,6 +56,12 @@ public record Patient
     [JsonPropertyName("other_names")]
     public IEnumerable<HumanName> OtherNames { get; set; } = new List<HumanName>();
 
+    /// <summary>
+    /// Other identifiers for the patient.
+    /// </summary>
+    [JsonPropertyName("other_identifiers")]
+    public IEnumerable<ExternalIdentifier>? OtherIdentifiers { get; set; }
+
     [JsonPropertyName("gender")]
     public Gender? Gender { get; set; }
 

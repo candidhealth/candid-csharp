@@ -281,4 +281,16 @@ public enum LicenseType
 
     [EnumMember(Value = "LMHP")]
     Lmhp,
+
+    [EnumMember(Value = "OTR/L")]
+    Otrl,
+
+    [EnumMember(Value = "RPA")]
+    Rpa,
+
+    [EnumMember(Value = "COTA")]
+    Cota,
+
+    [EnumMember(Value = "CRNP")]
+    Crnp,
 }

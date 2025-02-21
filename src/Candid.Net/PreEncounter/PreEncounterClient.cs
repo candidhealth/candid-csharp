@@ -1,6 +1,7 @@
 using Candid.Net.Core;
 using Candid.Net.PreEncounter.Appointments;
 using Candid.Net.PreEncounter.Coverages;
+using Candid.Net.PreEncounter.EligibilityChecks;
 using Candid.Net.PreEncounter.Lists;
 using Candid.Net.PreEncounter.Notes;
 using Candid.Net.PreEncounter.Patients;
@@ -19,6 +20,7 @@ public partial class PreEncounterClient
         _client = client;
         Appointments = new AppointmentsClient(_client);
         Coverages = new CoveragesClient(_client);
+        EligibilityChecks = new EligibilityChecksClient(_client);
         Lists = new ListsClient(_client);
         Notes = new NotesClient(_client);
         Patients = new PatientsClient(_client);
@@ -29,6 +31,8 @@ public partial class PreEncounterClient
     public AppointmentsClient Appointments { get; }
 
     public CoveragesClient Coverages { get; }
+
+    public EligibilityChecksClient EligibilityChecks { get; }
 
     public ListsClient Lists { get; }
 

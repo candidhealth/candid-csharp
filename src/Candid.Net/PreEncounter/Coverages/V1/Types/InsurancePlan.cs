@@ -38,6 +38,12 @@ public record InsurancePlan
     [JsonPropertyName("insurance_card_image_locator")]
     public string? InsuranceCardImageLocator { get; set; }
 
+    /// <summary>
+    /// The ID of the Candid configured payer plan group associated with this coverage
+    /// </summary>
+    [JsonPropertyName("payer_plan_group_id")]
+    public string? PayerPlanGroupId { get; set; }
+
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

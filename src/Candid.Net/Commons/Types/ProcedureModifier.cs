@@ -1175,4 +1175,7 @@ public enum ProcedureModifier
 
     [EnumMember(Value = "XS")]
     Xs,
+
+    [EnumMember(Value = "XU")]
+    Xu,
 }

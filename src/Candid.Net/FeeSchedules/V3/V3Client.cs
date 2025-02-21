@@ -126,6 +126,7 @@ public partial class V3Client
     ///         LicenseTypes = [LicenseType.Md],
     ///         FacilityTypeCodes = [FacilityTypeCode.Pharmacy],
     ///         NetworkTypes = [Candid.Net.NetworkType.Ppo],
+    ///         PayerPlanGroupIds = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
     ///         CptCode = "string",
     ///         Modifiers = [ProcedureModifier.TwentyTwo],
     ///     }
@@ -149,6 +150,9 @@ public partial class V3Client
             .ToList();
         _query["network_types"] = request
             .NetworkTypes.Select(_value => _value.Stringify())
+            .ToList();
+        _query["payer_plan_group_ids"] = request
+            .PayerPlanGroupIds.Select(_value => _value.ToString())
             .ToList();
         _query["modifiers"] = request.Modifiers.Select(_value => _value.Stringify()).ToList();
         if (request.PageToken != null)
@@ -225,6 +229,7 @@ public partial class V3Client
     ///         LicenseTypes = [LicenseType.Md],
     ///         FacilityTypeCodes = [FacilityTypeCode.Pharmacy],
     ///         NetworkTypes = [Candid.Net.NetworkType.Ppo],
+    ///         PayerPlanGroupIds = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
     ///         CptCode = "string",
     ///         Modifiers = [ProcedureModifier.TwentyTwo],
     ///     }
@@ -249,6 +254,9 @@ public partial class V3Client
             .ToList();
         _query["network_types"] = request
             .NetworkTypes.Select(_value => _value.Stringify())
+            .ToList();
+        _query["payer_plan_group_ids"] = request
+            .PayerPlanGroupIds.Select(_value => _value.ToString())
             .ToList();
         _query["modifiers"] = request.Modifiers.Select(_value => _value.Stringify()).ToList();
         if (request.PageToken != null)
@@ -374,6 +382,10 @@ public partial class V3Client
     ///                     NetworkTypes = new HashSet&lt;Candid.Net.NetworkType&gt;()
     ///                     {
     ///                         Candid.Net.NetworkType.Ppo,
+    ///                     },
+    ///                     PayerPlanGroupIds = new HashSet&lt;string&gt;()
+    ///                     {
+    ///                         "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///                     },
     ///                     CptCode = "string",
     ///                     Modifiers = new HashSet&lt;ProcedureModifier&gt;() { ProcedureModifier.TwentyTwo },

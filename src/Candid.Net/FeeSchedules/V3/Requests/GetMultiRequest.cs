@@ -32,6 +32,8 @@ public record GetMultiRequest
 
     public IEnumerable<NetworkType> NetworkTypes { get; set; } = new List<NetworkType>();
 
+    public IEnumerable<string> PayerPlanGroupIds { get; set; } = new List<string>();
+
     public string? CptCode { get; set; }
 
     public IEnumerable<ProcedureModifier> Modifiers { get; set; } = new List<ProcedureModifier>();

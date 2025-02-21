@@ -75,7 +75,7 @@ public record MutableAppointment
     public bool? AutomatedEligibilityCheckComplete { get; set; }
 
     /// <summary>
-    /// The work queue that the appointment belongs to. It is not recommended to change this value manually via API. If status is NOT_READY, work_queue must be set. If status is READY or CHECKED_IN, work_queue must be null.
+    /// The work queue that the appointment belongs to. It is not recommended to change this value manually via API. If status is NOT_READY, work_queue must be set. If status is READY, work_queue must be null.
     /// </summary>
     [JsonPropertyName("work_queue")]
     public AppointmentWorkQueue? WorkQueue { get; set; }

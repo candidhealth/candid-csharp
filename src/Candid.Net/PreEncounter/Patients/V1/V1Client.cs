@@ -44,6 +44,10 @@ public partial class V1Client
     ///                     Period = new Period(),
     ///                 },
     ///             },
+    ///             OtherIdentifiers = new List&lt;ExternalIdentifier&gt;()
+    ///             {
+    ///                 new ExternalIdentifier { Value = "string", System = "string" },
+    ///             },
     ///             Gender = Candid.Net.PreEncounter.Gender.Man,
     ///             BirthDate = new DateOnly(2023, 1, 15),
     ///             SocialSecurityNumber = "string",
@@ -55,7 +59,7 @@ public partial class V1Client
     ///             MaritalStatus = MaritalStatus.Annulled,
     ///             Deceased = new DateTime(2024, 01, 15, 09, 30, 00, 000),
     ///             MultipleBirth = 1,
-    ///             PrimaryAddress = new Address
+    ///             PrimaryAddress = new Candid.Net.PreEncounter.Address
     ///             {
     ///                 Use = AddressUse.Home,
     ///                 Line = new List&lt;string&gt;() { "string" },
@@ -65,9 +69,9 @@ public partial class V1Client
     ///                 Country = "string",
     ///                 Period = new Period(),
     ///             },
-    ///             OtherAddresses = new List&lt;Address&gt;()
+    ///             OtherAddresses = new List&lt;Candid.Net.PreEncounter.Address&gt;()
     ///             {
-    ///                 new Address
+    ///                 new Candid.Net.PreEncounter.Address
     ///                 {
     ///                     Use = AddressUse.Home,
     ///                     Line = new List&lt;string&gt;() { "string" },
@@ -108,9 +112,9 @@ public partial class V1Client
     ///                     {
     ///                         new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///                     },
-    ///                     Addresses = new List&lt;Address&gt;()
+    ///                     Addresses = new List&lt;Candid.Net.PreEncounter.Address&gt;()
     ///                     {
-    ///                         new Address
+    ///                         new Candid.Net.PreEncounter.Address
     ///                         {
     ///                             Use = AddressUse.Home,
     ///                             Line = new List&lt;string&gt;() { "string" },
@@ -142,9 +146,10 @@ public partial class V1Client
     ///                     {
     ///                         new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///                     },
-    ///                     Addresses = new List&lt;Address&gt;() { },
+    ///                     Addresses = new List&lt;Candid.Net.PreEncounter.Address&gt;() { },
     ///                     Period = new Period(),
     ///                     CanonicalId = "string",
+    ///                     Fax = "string",
     ///                 },
     ///             },
     ///             FilingOrder = new FilingOrder
@@ -168,7 +173,7 @@ public partial class V1Client
     ///                 Telecom = new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///                 Email = "string",
     ///                 BirthDate = new DateOnly(2023, 1, 15),
-    ///                 Address = new Address
+    ///                 Address = new Candid.Net.PreEncounter.Address
     ///                 {
     ///                     Use = AddressUse.Home,
     ///                     Line = new List&lt;string&gt;() { "string" },
@@ -214,9 +219,10 @@ public partial class V1Client
     ///                         {
     ///                             new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///                         },
-    ///                         Addresses = new List&lt;Address&gt;() { },
+    ///                         Addresses = new List&lt;Candid.Net.PreEncounter.Address&gt;() { },
     ///                         Period = new Period(),
     ///                         CanonicalId = "string",
+    ///                         Fax = "string",
     ///                     },
     ///                     ReferralNumber = "string",
     ///                 },
@@ -302,6 +308,10 @@ public partial class V1Client
     ///                     Period = new Period(),
     ///                 },
     ///             },
+    ///             OtherIdentifiers = new List&lt;ExternalIdentifier&gt;()
+    ///             {
+    ///                 new ExternalIdentifier { Value = "string", System = "string" },
+    ///             },
     ///             Gender = Candid.Net.PreEncounter.Gender.Man,
     ///             BirthDate = new DateOnly(2023, 1, 15),
     ///             SocialSecurityNumber = "string",
@@ -313,7 +323,7 @@ public partial class V1Client
     ///             MaritalStatus = MaritalStatus.Annulled,
     ///             Deceased = new DateTime(2024, 01, 15, 09, 30, 00, 000),
     ///             MultipleBirth = 1,
-    ///             PrimaryAddress = new Address
+    ///             PrimaryAddress = new Candid.Net.PreEncounter.Address
     ///             {
     ///                 Use = AddressUse.Home,
     ///                 Line = new List&lt;string&gt;() { "string" },
@@ -323,9 +333,9 @@ public partial class V1Client
     ///                 Country = "string",
     ///                 Period = new Period(),
     ///             },
-    ///             OtherAddresses = new List&lt;Address&gt;()
+    ///             OtherAddresses = new List&lt;Candid.Net.PreEncounter.Address&gt;()
     ///             {
-    ///                 new Address
+    ///                 new Candid.Net.PreEncounter.Address
     ///                 {
     ///                     Use = AddressUse.Home,
     ///                     Line = new List&lt;string&gt;() { "string" },
@@ -366,9 +376,9 @@ public partial class V1Client
     ///                     {
     ///                         new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///                     },
-    ///                     Addresses = new List&lt;Address&gt;()
+    ///                     Addresses = new List&lt;Candid.Net.PreEncounter.Address&gt;()
     ///                     {
-    ///                         new Address
+    ///                         new Candid.Net.PreEncounter.Address
     ///                         {
     ///                             Use = AddressUse.Home,
     ///                             Line = new List&lt;string&gt;() { "string" },
@@ -400,9 +410,10 @@ public partial class V1Client
     ///                     {
     ///                         new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///                     },
-    ///                     Addresses = new List&lt;Address&gt;() { },
+    ///                     Addresses = new List&lt;Candid.Net.PreEncounter.Address&gt;() { },
     ///                     Period = new Period(),
     ///                     CanonicalId = "string",
+    ///                     Fax = "string",
     ///                 },
     ///             },
     ///             FilingOrder = new FilingOrder
@@ -426,7 +437,7 @@ public partial class V1Client
     ///                 Telecom = new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///                 Email = "string",
     ///                 BirthDate = new DateOnly(2023, 1, 15),
-    ///                 Address = new Address
+    ///                 Address = new Candid.Net.PreEncounter.Address
     ///                 {
     ///                     Use = AddressUse.Home,
     ///                     Line = new List&lt;string&gt;() { "string" },
@@ -472,9 +483,10 @@ public partial class V1Client
     ///                         {
     ///                             new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///                         },
-    ///                         Addresses = new List&lt;Address&gt;() { },
+    ///                         Addresses = new List&lt;Candid.Net.PreEncounter.Address&gt;() { },
     ///                         Period = new Period(),
     ///                         CanonicalId = "string",
+    ///                         Fax = "string",
     ///                     },
     ///                     ReferralNumber = "string",
     ///                 },
@@ -721,6 +733,10 @@ public partial class V1Client
     ///                 Period = new Period(),
     ///             },
     ///         },
+    ///         OtherIdentifiers = new List&lt;ExternalIdentifier&gt;()
+    ///         {
+    ///             new ExternalIdentifier { Value = "string", System = "string" },
+    ///         },
     ///         Gender = Candid.Net.PreEncounter.Gender.Man,
     ///         BirthDate = new DateOnly(2023, 1, 15),
     ///         SocialSecurityNumber = "string",
@@ -732,7 +748,7 @@ public partial class V1Client
     ///         MaritalStatus = MaritalStatus.Annulled,
     ///         Deceased = new DateTime(2024, 01, 15, 09, 30, 00, 000),
     ///         MultipleBirth = 1,
-    ///         PrimaryAddress = new Address
+    ///         PrimaryAddress = new Candid.Net.PreEncounter.Address
     ///         {
     ///             Use = AddressUse.Home,
     ///             Line = new List&lt;string&gt;() { "string" },
@@ -742,9 +758,9 @@ public partial class V1Client
     ///             Country = "string",
     ///             Period = new Period(),
     ///         },
-    ///         OtherAddresses = new List&lt;Address&gt;()
+    ///         OtherAddresses = new List&lt;Candid.Net.PreEncounter.Address&gt;()
     ///         {
-    ///             new Address
+    ///             new Candid.Net.PreEncounter.Address
     ///             {
     ///                 Use = AddressUse.Home,
     ///                 Line = new List&lt;string&gt;() { "string" },
@@ -785,9 +801,9 @@ public partial class V1Client
     ///                 {
     ///                     new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///                 },
-    ///                 Addresses = new List&lt;Address&gt;()
+    ///                 Addresses = new List&lt;Candid.Net.PreEncounter.Address&gt;()
     ///                 {
-    ///                     new Address
+    ///                     new Candid.Net.PreEncounter.Address
     ///                     {
     ///                         Use = AddressUse.Home,
     ///                         Line = new List&lt;string&gt;() { "string" },
@@ -819,9 +835,10 @@ public partial class V1Client
     ///                 {
     ///                     new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///                 },
-    ///                 Addresses = new List&lt;Address&gt;() { },
+    ///                 Addresses = new List&lt;Candid.Net.PreEncounter.Address&gt;() { },
     ///                 Period = new Period(),
     ///                 CanonicalId = "string",
+    ///                 Fax = "string",
     ///             },
     ///         },
     ///         FilingOrder = new FilingOrder
@@ -845,7 +862,7 @@ public partial class V1Client
     ///             Telecom = new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///             Email = "string",
     ///             BirthDate = new DateOnly(2023, 1, 15),
-    ///             Address = new Address
+    ///             Address = new Candid.Net.PreEncounter.Address
     ///             {
     ///                 Use = AddressUse.Home,
     ///                 Line = new List&lt;string&gt;() { "string" },
@@ -891,9 +908,10 @@ public partial class V1Client
     ///                     {
     ///                         new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///                     },
-    ///                     Addresses = new List&lt;Address&gt;() { },
+    ///                     Addresses = new List&lt;Candid.Net.PreEncounter.Address&gt;() { },
     ///                     Period = new Period(),
     ///                     CanonicalId = "string",
+    ///                     Fax = "string",
     ///                 },
     ///                 ReferralNumber = "string",
     ///             },
@@ -946,7 +964,7 @@ public partial class V1Client
     }
 
     /// <summary>
-    /// Sets a patient as deactivated. The path must contain the most recent version to prevent race conditions. Deactivating historic versions is not supported. Subsequent updates via PUT to the patient will "reactivate" the patient and set the deactivated flag to false.
+    /// Sets a patient as deactivated. The path must contain the most recent version plus 1 to prevent race conditions. Deactivating historic versions is not supported.
     /// </summary>
     /// <example>
     /// <code>
@@ -965,6 +983,43 @@ public partial class V1Client
             {
                 BaseUrl = _client.Options.Environment.PreEncounter,
                 Method = HttpMethod.Delete,
+                Path = $"/patients/v1/{id}/{version}",
+                Options = options,
+            },
+            cancellationToken
+        );
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            return;
+        }
+        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            responseBody
+        );
+    }
+
+    /// <summary>
+    /// Removes the deactivated flag for a patient. The path must contain the most recent version plus 1 to prevent race conditions. Reactivating historic versions is not supported.
+    /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.PreEncounter.Patients.V1.ReactivateAsync("string", "string");
+    /// </code>
+    /// </example>
+    public async System.Threading.Tasks.Task ReactivateAsync(
+        string id,
+        string version,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client.MakeRequestAsync(
+            new RawClient.JsonApiRequest
+            {
+                BaseUrl = _client.Options.Environment.PreEncounter,
+                Method = HttpMethodExtensions.Patch,
                 Path = $"/patients/v1/{id}/{version}",
                 Options = options,
             },

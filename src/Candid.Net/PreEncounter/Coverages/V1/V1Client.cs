@@ -36,7 +36,7 @@ public partial class V1Client
     ///             },
     ///             DateOfBirth = new DateOnly(2023, 1, 15),
     ///             BiologicalSex = Sex.Female,
-    ///             Address = new Address
+    ///             Address = new Candid.Net.PreEncounter.Address
     ///             {
     ///                 Use = AddressUse.Home,
     ///                 Line = new List&lt;string&gt;() { "string" },
@@ -61,19 +61,10 @@ public partial class V1Client
     ///             Type = Candid.Net.PreEncounter.Coverages.V1.InsuranceTypeCode.C01,
     ///             Period = new Period(),
     ///             InsuranceCardImageLocator = "string",
+    ///             PayerPlanGroupId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///         },
     ///         Verified = true,
-    ///         EligibilityChecks = new List&lt;EligibilityCheckMetadata&gt;()
-    ///         {
-    ///             new EligibilityCheckMetadata
-    ///             {
-    ///                 CheckId = "string",
-    ///                 ServiceCode = ServiceTypeCode.MedicalCare,
-    ///                 Status = EligibilityCheckStatus.Completed,
-    ///                 InitiatedBy = "string",
-    ///                 InitiatedAt = new DateTime(2024, 01, 15, 09, 30, 00, 000),
-    ///             },
-    ///         },
+    ///         EligibilityChecks = new List&lt;EligibilityCheckMetadata&gt;() { },
     ///         LatestEligibilityCheck = new LatestEligibilityCheck
     ///         {
     ///             CheckId = "string",
@@ -144,7 +135,7 @@ public partial class V1Client
     ///             },
     ///             DateOfBirth = new DateOnly(2023, 1, 15),
     ///             BiologicalSex = Sex.Female,
-    ///             Address = new Address
+    ///             Address = new Candid.Net.PreEncounter.Address
     ///             {
     ///                 Use = AddressUse.Home,
     ///                 Line = new List&lt;string&gt;() { "string" },
@@ -169,19 +160,10 @@ public partial class V1Client
     ///             Type = Candid.Net.PreEncounter.Coverages.V1.InsuranceTypeCode.C01,
     ///             Period = new Period(),
     ///             InsuranceCardImageLocator = "string",
+    ///             PayerPlanGroupId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///         },
     ///         Verified = true,
-    ///         EligibilityChecks = new List&lt;EligibilityCheckMetadata&gt;()
-    ///         {
-    ///             new EligibilityCheckMetadata
-    ///             {
-    ///                 CheckId = "string",
-    ///                 ServiceCode = ServiceTypeCode.MedicalCare,
-    ///                 Status = EligibilityCheckStatus.Completed,
-    ///                 InitiatedBy = "string",
-    ///                 InitiatedAt = new DateTime(2024, 01, 15, 09, 30, 00, 000),
-    ///             },
-    ///         },
+    ///         EligibilityChecks = new List&lt;EligibilityCheckMetadata&gt;() { },
     ///         LatestEligibilityCheck = new LatestEligibilityCheck
     ///         {
     ///             CheckId = "string",
@@ -218,6 +200,76 @@ public partial class V1Client
             try
             {
                 return JsonUtils.Deserialize<Coverage>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            responseBody
+        );
+    }
+
+    /// <summary>
+    /// Returns a page of Coverages based on the search criteria.
+    /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.PreEncounter.Coverages.V1.GetMultiPaginatedAsync(
+    ///     new CoverageGetMultiPaginatedRequest
+    ///     {
+    ///         PatientId = "string",
+    ///         PayerPlanGroupId = "string",
+    ///         PageToken = "string",
+    ///         Limit = 1,
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
+    public async Task<CoveragesPage> GetMultiPaginatedAsync(
+        CoverageGetMultiPaginatedRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _query = new Dictionary<string, object>();
+        if (request.PatientId != null)
+        {
+            _query["patient_id"] = request.PatientId;
+        }
+        if (request.PayerPlanGroupId != null)
+        {
+            _query["payer_plan_group_id"] = request.PayerPlanGroupId;
+        }
+        if (request.PageToken != null)
+        {
+            _query["page_token"] = request.PageToken;
+        }
+        if (request.Limit != null)
+        {
+            _query["limit"] = request.Limit.ToString();
+        }
+        var response = await _client.MakeRequestAsync(
+            new RawClient.JsonApiRequest
+            {
+                BaseUrl = _client.Options.Environment.PreEncounter,
+                Method = HttpMethod.Get,
+                Path = "/coverages/v1/get-multi-paginated",
+                Query = _query,
+                Options = options,
+            },
+            cancellationToken
+        );
+        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            try
+            {
+                return JsonUtils.Deserialize<CoveragesPage>(responseBody)!;
             }
             catch (JsonException e)
             {

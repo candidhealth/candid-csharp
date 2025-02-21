@@ -34,6 +34,9 @@ public record DimensionMatch
     [JsonPropertyName("network_types")]
     public required MatchNetworkTypes NetworkTypes { get; set; }
 
+    [JsonPropertyName("payer_plan_groups")]
+    public required MatchPayerPlanGroups PayerPlanGroups { get; set; }
+
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

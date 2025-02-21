@@ -52,9 +52,10 @@ public partial class V1Client
     ///             {
     ///                 new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///             },
-    ///             Addresses = new List&lt;Address&gt;() { },
+    ///             Addresses = new List&lt;Candid.Net.PreEncounter.Address&gt;() { },
     ///             Period = new Period(),
     ///             CanonicalId = "string",
+    ///             Fax = "string",
     ///         },
     ///         EstimatedCopayCents = 1,
     ///         EstimatedPatientResponsibilityCents = 1,
@@ -91,6 +92,81 @@ public partial class V1Client
             try
             {
                 return JsonUtils.Deserialize<Appointment>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            responseBody
+        );
+    }
+
+    /// <summary>
+    /// Gets all Visits within a given time range. The return list is ordered by start_time ascending.
+    /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.PreEncounter.Appointments.V1.GetVisitsAsync(
+    ///     new VisitsRequest
+    ///     {
+    ///         PageToken = "string",
+    ///         Limit = 1,
+    ///         SortField = "string",
+    ///         SortDirection = Candid.Net.PreEncounter.SortDirection.Asc,
+    ///         Filters = "string",
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
+    public async Task<VisitsPage> GetVisitsAsync(
+        VisitsRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _query = new Dictionary<string, object>();
+        if (request.PageToken != null)
+        {
+            _query["page_token"] = request.PageToken;
+        }
+        if (request.Limit != null)
+        {
+            _query["limit"] = request.Limit.ToString();
+        }
+        if (request.SortField != null)
+        {
+            _query["sort_field"] = request.SortField;
+        }
+        if (request.SortDirection != null)
+        {
+            _query["sort_direction"] = request.SortDirection.Value.Stringify();
+        }
+        if (request.Filters != null)
+        {
+            _query["filters"] = request.Filters;
+        }
+        var response = await _client.MakeRequestAsync(
+            new RawClient.JsonApiRequest
+            {
+                BaseUrl = _client.Options.Environment.PreEncounter,
+                Method = HttpMethod.Get,
+                Path = "/appointments/v1/visits",
+                Query = _query,
+                Options = options,
+            },
+            cancellationToken
+        );
+        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            try
+            {
+                return JsonUtils.Deserialize<VisitsPage>(responseBody)!;
             }
             catch (JsonException e)
             {
@@ -231,9 +307,10 @@ public partial class V1Client
     ///             {
     ///                 new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///             },
-    ///             Addresses = new List&lt;Address&gt;() { },
+    ///             Addresses = new List&lt;Candid.Net.PreEncounter.Address&gt;() { },
     ///             Period = new Period(),
     ///             CanonicalId = "string",
+    ///             Fax = "string",
     ///         },
     ///         EstimatedCopayCents = 1,
     ///         EstimatedPatientResponsibilityCents = 1,

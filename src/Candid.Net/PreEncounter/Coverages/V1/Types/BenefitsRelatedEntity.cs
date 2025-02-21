@@ -19,6 +19,9 @@ public record BenefitsRelatedEntity
     [JsonPropertyName("contactInformation")]
     public IEnumerable<RelatedEntityContact>? ContactInformation { get; set; }
 
+    [JsonPropertyName("serviceTypeCodes")]
+    public IEnumerable<ServiceTypeCode>? ServiceTypeCodes { get; set; }
+
     public override string ToString()
     {
         return JsonUtils.Serialize(this);
