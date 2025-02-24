@@ -17,7 +17,7 @@ public partial class V2Client
     }
 
     /// <summary>
-    /// &lt;Tip&gt;Candid is deprecating support for this endpoint. It is instead recommended to use [Candid's Stedi passthrough endpoint](https://docs.joincandidhealth.com/api-reference/eligibility-checks/v-1/post).
+    /// &lt;Tip&gt;Candid is deprecating support for this endpoint. It is instead recommended to use [Candid's Stedi passthrough endpoint](https://docs.joincandidhealth.com/api-reference/pre-encounter/eligibility-checks/v-1/post).
     /// For assistance with the transition, please reference the [Transitioning to Candid's New Eligibility Endpoint](https://support.joincandidhealth.com/hc/en-us/articles/34918552872980) document in the Candid Support Center.&lt;/Tip&gt;
     ///
     /// This API is a wrapper around Change Healthcare's eligibility API. Below are some helpful documentation links:
@@ -80,7 +80,7 @@ public partial class V2Client
     }
 
     /// <summary>
-    /// &lt;Tip&gt;Candid is deprecating support for this endpoint. It is instead recommended to use [Candid's Stedi passthrough endpoint](https://docs.joincandidhealth.com/api-reference/eligibility-checks/v-1/post).
+    /// &lt;Tip&gt;Candid is deprecating support for this endpoint. It is instead recommended to use [Candid's Stedi passthrough endpoint](https://docs.joincandidhealth.com/api-reference/pre-encounter/eligibility-checks/v-1/post).
     /// For assistance with the transition, please reference the [Transitioning to Candid's New Eligibility Endpoint](https://support.joincandidhealth.com/hc/en-us/articles/34918552872980) document in the Candid Support Center.&lt;/Tip&gt;
     ///
     /// **Availity has transitioned their GET endpoint to a POST endpoint. Candid has updated their pass-through integration to enable backwards compatibility for the GET endpoint so that customers do not have to immediately update their integrations.**
@@ -143,7 +143,7 @@ public partial class V2Client
     }
 
     /// <summary>
-    /// &lt;Tip&gt;Candid is deprecating support for this endpoint. It is instead recommended to use [Candid's Stedi passthrough endpoint](https://docs.joincandidhealth.com/api-reference/eligibility-checks/v-1/post).
+    /// &lt;Tip&gt;Candid is deprecating support for this endpoint. It is instead recommended to use [Candid's Stedi passthrough endpoint](https://docs.joincandidhealth.com/api-reference/pre-encounter/eligibility-checks/v-1/post).
     /// For assistance with the transition, please reference the [Transitioning to Candid's New Eligibility Endpoint](https://support.joincandidhealth.com/hc/en-us/articles/34918552872980) document in the Candid Support Center.&lt;/Tip&gt;
     ///
     /// If you'd like access to this endpoint, please reach out to support@joincandidhealth.com with the subject line "Action: Activate Availity Eligibility API Endpoint
