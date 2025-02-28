@@ -10,6 +10,9 @@ namespace Candid.Net.ServiceLines.V2;
 
 public record ServiceLine
 {
+    [JsonPropertyName("created_at")]
+    public required DateTime CreatedAt { get; set; }
+
     [JsonPropertyName("modifiers")]
     public IEnumerable<ProcedureModifier>? Modifiers { get; set; }
 
@@ -39,6 +42,15 @@ public record ServiceLine
 
     [JsonPropertyName("patient_responsibility_cents")]
     public int? PatientResponsibilityCents { get; set; }
+
+    [JsonPropertyName("copay_cents")]
+    public int? CopayCents { get; set; }
+
+    [JsonPropertyName("coinsurance_cents")]
+    public int? CoinsuranceCents { get; set; }
+
+    [JsonPropertyName("deductible_cents")]
+    public int? DeductibleCents { get; set; }
 
     [JsonPropertyName("diagnosis_id_zero")]
     public string? DiagnosisIdZero { get; set; }

@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Core;
 
 #nullable enable
@@ -48,6 +49,9 @@ public record Payer
     /// </summary>
     [JsonPropertyName("availity_remittance_payer_id")]
     public string? AvailityRemittancePayerId { get; set; }
+
+    [JsonPropertyName("street_address")]
+    public StreetAddressLongZip? StreetAddress { get; set; }
 
     public override string ToString()
     {

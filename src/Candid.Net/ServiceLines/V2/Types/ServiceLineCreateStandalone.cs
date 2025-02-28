@@ -12,6 +12,11 @@ public record ServiceLineCreateStandalone
     [JsonPropertyName("modifiers")]
     public IEnumerable<ProcedureModifier>? Modifiers { get; set; }
 
+    /// <summary>
+    /// The total amount charged for this service line, factoring in quantity. If left unfilled, the system will attempt to set it based on
+    /// chargemasters entries and the service line's quantity. For example, if a single unit has an entry of 100 cents and 2 units were rendered,
+    /// the `charge_amount_cents` will be set to 200, if this field is unfilled.
+    /// </summary>
     [JsonPropertyName("charge_amount_cents")]
     public int? ChargeAmountCents { get; set; }
 

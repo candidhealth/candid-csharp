@@ -42,7 +42,7 @@ public record ServiceLineCreate
 
     /// <summary>
     /// The total amount charged for this service line taking quantity into account. For example, if a single unit
-    /// costs 100 cents and 2 units were rendered, the charge_amount_cents should be 200. Should be greater than or
+    /// costs 100 cents and 2 units were rendered, the `charge_amount_cents` should be 200. Should be greater than or
     /// equal to 0.
     /// </summary>
     [JsonPropertyName("charge_amount_cents")]

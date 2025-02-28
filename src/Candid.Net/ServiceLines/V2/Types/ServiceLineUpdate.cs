@@ -14,6 +14,11 @@ public record ServiceLineUpdate
     [JsonPropertyName("modifiers")]
     public IEnumerable<ProcedureModifier>? Modifiers { get; set; }
 
+    /// <summary>
+    /// The total amount charged for this service line, factoring in quantity. If `procedure_code` is updated and this is not, the system will attempt
+    /// to set it based on chargemasters entries and the service line's quantity. For example, if a single unit has an entry of 100 cents and 2
+    /// units were rendered, the `charge_amount_cents` will be set to 200, if this field is unfilled.
+    /// </summary>
     [JsonPropertyName("charge_amount_cents")]
     public int? ChargeAmountCents { get; set; }
 
@@ -44,6 +49,9 @@ public record ServiceLineUpdate
     [JsonPropertyName("units")]
     public ServiceLineUnits? Units { get; set; }
 
+    /// <summary>
+    /// If `procedure_code` is updated, and `charge_amount_cents` is not, then `charge_amount_cents` will be set by the system.
+    /// </summary>
     [JsonPropertyName("procedure_code")]
     public string? ProcedureCode { get; set; }
 
