@@ -1170,8 +1170,20 @@ public enum ProcedureModifier
     [EnumMember(Value = "V3")]
     V3,
 
+    [EnumMember(Value = "W1")]
+    W1,
+
+    [EnumMember(Value = "W2")]
+    W2,
+
+    [EnumMember(Value = "W3")]
+    W3,
+
     [EnumMember(Value = "XE")]
     Xe,
+
+    [EnumMember(Value = "XP")]
+    Xp,
 
     [EnumMember(Value = "XS")]
     Xs,

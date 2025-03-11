@@ -13,6 +13,9 @@ public record PatientNonInsurancePayerInfoCreate
     [JsonPropertyName("member_id")]
     public string? MemberId { get; set; }
 
+    [JsonPropertyName("clinical_trial_info")]
+    public IEnumerable<PatientClinicalTrialInfoCreate>? ClinicalTrialInfo { get; set; }
+
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

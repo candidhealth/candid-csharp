@@ -192,6 +192,12 @@ public record Encounter
     public DateTime? LastSubmittedAt { get; set; }
 
     /// <summary>
+    /// The date and time the encounter was created.
+    /// </summary>
+    [JsonPropertyName("created_at")]
+    public required DateTime CreatedAt { get; set; }
+
+    /// <summary>
     /// A client-specified unique ID to associate with this encounter;
     /// for example, your internal encounter ID or a Dr. Chrono encounter ID.
     /// This field should not contain PHI.

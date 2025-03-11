@@ -263,4 +263,96 @@ public partial class V1Client
             responseBody
         );
     }
+
+    /// <summary>
+    /// Reverts an Insurance Balance Adjustment given an `adjustment_id`
+    /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.WriteOffs.V1.RevertInsuranceBalanceAdjustmentAsync(
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
+    /// );
+    /// </code>
+    /// </example>
+    public async Task<object> RevertInsuranceBalanceAdjustmentAsync(
+        string adjustmentId,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client.MakeRequestAsync(
+            new RawClient.JsonApiRequest
+            {
+                BaseUrl = _client.Options.Environment.CandidApi,
+                Method = HttpMethod.Post,
+                Path = $"/api/write-offs/v1/{adjustmentId}/revert",
+                Options = options,
+            },
+            cancellationToken
+        );
+        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            try
+            {
+                return JsonUtils.Deserialize<object>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            responseBody
+        );
+    }
+
+    /// <summary>
+    /// Reverts an ERA-originated Insurance Balance Adjustment given an `adjustment_id`
+    /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.WriteOffs.V1.RevertEraOriginatedInsuranceBalanceAdjustmentAsync(
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
+    /// );
+    /// </code>
+    /// </example>
+    public async Task<string> RevertEraOriginatedInsuranceBalanceAdjustmentAsync(
+        string adjustmentId,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client.MakeRequestAsync(
+            new RawClient.JsonApiRequest
+            {
+                BaseUrl = _client.Options.Environment.CandidApi,
+                Method = HttpMethod.Post,
+                Path = $"/api/write-offs/v1/{adjustmentId}/revert-era-originated",
+                Options = options,
+            },
+            cancellationToken
+        );
+        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            try
+            {
+                return JsonUtils.Deserialize<string>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            responseBody
+        );
+    }
 }

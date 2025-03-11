@@ -293,4 +293,13 @@ public enum LicenseType
 
     [EnumMember(Value = "CRNP")]
     Crnp,
+
+    [EnumMember(Value = "SLP-CF")]
+    SlpCf,
+
+    [EnumMember(Value = "NP-C")]
+    NpC,
+
+    [EnumMember(Value = "PA-C")]
+    PaC,
 }

@@ -14,6 +14,13 @@ public record PatientNonInsurancePayerInfo
     [JsonPropertyName("member_id")]
     public string? MemberId { get; set; }
 
+    /// <summary>
+    /// A patient cannot be associated with a given trial more than once
+    /// </summary>
+    [JsonPropertyName("clinical_trial_info")]
+    public IEnumerable<PatientClinicalTrialInfo> ClinicalTrialInfo { get; set; } =
+        new List<PatientClinicalTrialInfo>();
+
     public override string ToString()
     {
         return JsonUtils.Serialize(this);
