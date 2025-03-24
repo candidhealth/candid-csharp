@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using Candid.Net;
+using Candid.Net.ClinicalTrials.V1;
 using Candid.Net.Core;
 
 #nullable enable
@@ -28,6 +29,12 @@ public record CreateNonInsurancePayerRequest
 
     [JsonPropertyName("address")]
     public StreetAddressShortZip? Address { get; set; }
+
+    /// <summary>
+    /// The same name cannot be used across several clinical trials
+    /// </summary>
+    [JsonPropertyName("clinical_trials")]
+    public IEnumerable<MutableClinicalTrial>? ClinicalTrials { get; set; }
 
     public override string ToString()
     {

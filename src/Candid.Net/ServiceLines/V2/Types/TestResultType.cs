@@ -14,4 +14,7 @@ public enum TestResultType
 
     [EnumMember(Value = "HEMOGLOBIN")]
     Hemoglobin,
+
+    [EnumMember(Value = "LDL")]
+    Ldl,
 }

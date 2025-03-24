@@ -164,6 +164,12 @@ public record EncounterCreate
     public EpsdtReferral? EpsdtReferral { get; set; }
 
     /// <summary>
+    /// Refers to Loop 2300 - Segment PWK on the 837P form. No more than 10 entries are permitted.
+    /// </summary>
+    [JsonPropertyName("claim_supplemental_information")]
+    public IEnumerable<ClaimSupplementalInformation>? ClaimSupplementalInformation { get; set; }
+
+    /// <summary>
     /// A client-specified unique ID to associate with this encounter;
     /// for example, your internal encounter ID or a Dr. Chrono encounter ID.
     /// This field should not contain PHI.

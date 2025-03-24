@@ -105,8 +105,14 @@ public enum Rarc
     [EnumMember(Value = "M32")]
     M32,
 
+    [EnumMember(Value = "M33")]
+    M33,
+
     [EnumMember(Value = "M34")]
     M34,
+
+    [EnumMember(Value = "M35")]
+    M35,
 
     [EnumMember(Value = "M36")]
     M36,
@@ -129,6 +135,9 @@ public enum Rarc
     [EnumMember(Value = "M42")]
     M42,
 
+    [EnumMember(Value = "M43")]
+    M43,
+
     [EnumMember(Value = "M44")]
     M44,
 
@@ -140,6 +149,9 @@ public enum Rarc
 
     [EnumMember(Value = "M47")]
     M47,
+
+    [EnumMember(Value = "M48")]
+    M48,
 
     [EnumMember(Value = "M49")]
     M49,
@@ -165,6 +177,12 @@ public enum Rarc
     [EnumMember(Value = "M56")]
     M56,
 
+    [EnumMember(Value = "M57")]
+    M57,
+
+    [EnumMember(Value = "M58")]
+    M58,
+
     [EnumMember(Value = "M59")]
     M59,
 
@@ -176,6 +194,9 @@ public enum Rarc
 
     [EnumMember(Value = "M62")]
     M62,
+
+    [EnumMember(Value = "M63")]
+    M63,
 
     [EnumMember(Value = "M64")]
     M64,
@@ -189,6 +210,9 @@ public enum Rarc
     [EnumMember(Value = "M67")]
     M67,
 
+    [EnumMember(Value = "M68")]
+    M68,
+
     [EnumMember(Value = "M69")]
     M69,
 
@@ -197,6 +221,9 @@ public enum Rarc
 
     [EnumMember(Value = "M71")]
     M71,
+
+    [EnumMember(Value = "M72")]
+    M72,
 
     [EnumMember(Value = "M73")]
     M73,
@@ -243,6 +270,9 @@ public enum Rarc
     [EnumMember(Value = "M87")]
     M87,
 
+    [EnumMember(Value = "M88")]
+    M88,
+
     [EnumMember(Value = "M89")]
     M89,
 
@@ -251,6 +281,9 @@ public enum Rarc
 
     [EnumMember(Value = "M91")]
     M91,
+
+    [EnumMember(Value = "M92")]
+    M92,
 
     [EnumMember(Value = "M93")]
     M93,
@@ -267,11 +300,17 @@ public enum Rarc
     [EnumMember(Value = "M97")]
     M97,
 
+    [EnumMember(Value = "M98")]
+    M98,
+
     [EnumMember(Value = "M99")]
     M99,
 
     [EnumMember(Value = "M100")]
     M100,
+
+    [EnumMember(Value = "M101")]
+    M101,
 
     [EnumMember(Value = "M102")]
     M102,
@@ -285,11 +324,20 @@ public enum Rarc
     [EnumMember(Value = "M105")]
     M105,
 
+    [EnumMember(Value = "M106")]
+    M106,
+
     [EnumMember(Value = "M107")]
     M107,
 
+    [EnumMember(Value = "M108")]
+    M108,
+
     [EnumMember(Value = "M109")]
     M109,
+
+    [EnumMember(Value = "M110")]
+    M110,
 
     [EnumMember(Value = "M111")]
     M111,
@@ -312,8 +360,14 @@ public enum Rarc
     [EnumMember(Value = "M117")]
     M117,
 
+    [EnumMember(Value = "M118")]
+    M118,
+
     [EnumMember(Value = "M119")]
     M119,
+
+    [EnumMember(Value = "M120")]
+    M120,
 
     [EnumMember(Value = "M121")]
     M121,
@@ -335,6 +389,9 @@ public enum Rarc
 
     [EnumMember(Value = "M127")]
     M127,
+
+    [EnumMember(Value = "M128")]
+    M128,
 
     [EnumMember(Value = "M129")]
     M129,
@@ -369,6 +426,9 @@ public enum Rarc
     [EnumMember(Value = "M139")]
     M139,
 
+    [EnumMember(Value = "M140")]
+    M140,
+
     [EnumMember(Value = "M141")]
     M141,
 
@@ -387,8 +447,17 @@ public enum Rarc
     [EnumMember(Value = "MA02")]
     Ma02,
 
+    [EnumMember(Value = "MA03")]
+    Ma03,
+
     [EnumMember(Value = "MA04")]
     Ma04,
+
+    [EnumMember(Value = "MA05")]
+    Ma05,
+
+    [EnumMember(Value = "MA06")]
+    Ma06,
 
     [EnumMember(Value = "MA07")]
     Ma07,
@@ -401,6 +470,9 @@ public enum Rarc
 
     [EnumMember(Value = "MA10")]
     Ma10,
+
+    [EnumMember(Value = "MA11")]
+    Ma11,
 
     [EnumMember(Value = "MA12")]
     Ma12,
@@ -453,6 +525,9 @@ public enum Rarc
     [EnumMember(Value = "MA28")]
     Ma28,
 
+    [EnumMember(Value = "MA29")]
+    Ma29,
+
     [EnumMember(Value = "MA30")]
     Ma30,
 
@@ -476,6 +551,9 @@ public enum Rarc
 
     [EnumMember(Value = "MA37")]
     Ma37,
+
+    [EnumMember(Value = "MA38")]
+    Ma38,
 
     [EnumMember(Value = "MA39")]
     Ma39,
@@ -507,8 +585,17 @@ public enum Rarc
     [EnumMember(Value = "MA48")]
     Ma48,
 
+    [EnumMember(Value = "MA49")]
+    Ma49,
+
     [EnumMember(Value = "MA50")]
     Ma50,
+
+    [EnumMember(Value = "MA51")]
+    Ma51,
+
+    [EnumMember(Value = "MA52")]
+    Ma52,
 
     [EnumMember(Value = "MA53")]
     Ma53,
@@ -585,6 +672,9 @@ public enum Rarc
     [EnumMember(Value = "MA77")]
     Ma77,
 
+    [EnumMember(Value = "MA78")]
+    Ma78,
+
     [EnumMember(Value = "MA79")]
     Ma79,
 
@@ -594,11 +684,23 @@ public enum Rarc
     [EnumMember(Value = "MA81")]
     Ma81,
 
+    [EnumMember(Value = "MA82")]
+    Ma82,
+
     [EnumMember(Value = "MA83")]
     Ma83,
 
     [EnumMember(Value = "MA84")]
     Ma84,
+
+    [EnumMember(Value = "MA85")]
+    Ma85,
+
+    [EnumMember(Value = "MA86")]
+    Ma86,
+
+    [EnumMember(Value = "MA87")]
+    Ma87,
 
     [EnumMember(Value = "MA88")]
     Ma88,
@@ -621,11 +723,17 @@ public enum Rarc
     [EnumMember(Value = "MA94")]
     Ma94,
 
+    [EnumMember(Value = "MA95")]
+    Ma95,
+
     [EnumMember(Value = "MA96")]
     Ma96,
 
     [EnumMember(Value = "MA97")]
     Ma97,
+
+    [EnumMember(Value = "MA98")]
+    Ma98,
 
     [EnumMember(Value = "MA99")]
     Ma99,
@@ -633,11 +741,20 @@ public enum Rarc
     [EnumMember(Value = "MA100")]
     Ma100,
 
+    [EnumMember(Value = "MA101")]
+    Ma101,
+
     [EnumMember(Value = "MA102")]
     Ma102,
 
     [EnumMember(Value = "MA103")]
     Ma103,
+
+    [EnumMember(Value = "MA104")]
+    Ma104,
+
+    [EnumMember(Value = "MA105")]
+    Ma105,
 
     [EnumMember(Value = "MA106")]
     Ma106,
@@ -678,6 +795,9 @@ public enum Rarc
     [EnumMember(Value = "MA118")]
     Ma118,
 
+    [EnumMember(Value = "MA119")]
+    Ma119,
+
     [EnumMember(Value = "MA120")]
     Ma120,
 
@@ -690,14 +810,23 @@ public enum Rarc
     [EnumMember(Value = "MA123")]
     Ma123,
 
+    [EnumMember(Value = "MA124")]
+    Ma124,
+
     [EnumMember(Value = "MA125")]
     Ma125,
 
     [EnumMember(Value = "MA126")]
     Ma126,
 
+    [EnumMember(Value = "MA127")]
+    Ma127,
+
     [EnumMember(Value = "MA128")]
     Ma128,
+
+    [EnumMember(Value = "MA129")]
+    Ma129,
 
     [EnumMember(Value = "MA130")]
     Ma130,
@@ -762,6 +891,12 @@ public enum Rarc
     [EnumMember(Value = "N16")]
     N16,
 
+    [EnumMember(Value = "N17")]
+    N17,
+
+    [EnumMember(Value = "N18")]
+    N18,
+
     [EnumMember(Value = "N19")]
     N19,
 
@@ -819,17 +954,26 @@ public enum Rarc
     [EnumMember(Value = "N37")]
     N37,
 
+    [EnumMember(Value = "N38")]
+    N38,
+
     [EnumMember(Value = "N39")]
     N39,
 
     [EnumMember(Value = "N40")]
     N40,
 
+    [EnumMember(Value = "N41")]
+    N41,
+
     [EnumMember(Value = "N42")]
     N42,
 
     [EnumMember(Value = "N43")]
     N43,
+
+    [EnumMember(Value = "N44")]
+    N44,
 
     [EnumMember(Value = "N45")]
     N45,
@@ -876,6 +1020,9 @@ public enum Rarc
     [EnumMember(Value = "N59")]
     N59,
 
+    [EnumMember(Value = "N60")]
+    N60,
+
     [EnumMember(Value = "N61")]
     N61,
 
@@ -890,6 +1037,9 @@ public enum Rarc
 
     [EnumMember(Value = "N65")]
     N65,
+
+    [EnumMember(Value = "N66")]
+    N66,
 
     [EnumMember(Value = "N67")]
     N67,
@@ -908,6 +1058,9 @@ public enum Rarc
 
     [EnumMember(Value = "N72")]
     N72,
+
+    [EnumMember(Value = "N73")]
+    N73,
 
     [EnumMember(Value = "N74")]
     N74,
@@ -986,6 +1139,12 @@ public enum Rarc
 
     [EnumMember(Value = "N99")]
     N99,
+
+    [EnumMember(Value = "N100")]
+    N100,
+
+    [EnumMember(Value = "N101")]
+    N101,
 
     [EnumMember(Value = "N102")]
     N102,
@@ -1116,6 +1275,9 @@ public enum Rarc
     [EnumMember(Value = "N144")]
     N144,
 
+    [EnumMember(Value = "N145")]
+    N145,
+
     [EnumMember(Value = "N146")]
     N146,
 
@@ -1170,8 +1332,23 @@ public enum Rarc
     [EnumMember(Value = "N163")]
     N163,
 
+    [EnumMember(Value = "N164")]
+    N164,
+
+    [EnumMember(Value = "N165")]
+    N165,
+
+    [EnumMember(Value = "N166")]
+    N166,
+
     [EnumMember(Value = "N167")]
     N167,
+
+    [EnumMember(Value = "N168")]
+    N168,
+
+    [EnumMember(Value = "N169")]
+    N169,
 
     [EnumMember(Value = "N170")]
     N170,
@@ -1266,6 +1443,9 @@ public enum Rarc
     [EnumMember(Value = "N200")]
     N200,
 
+    [EnumMember(Value = "N201")]
+    N201,
+
     [EnumMember(Value = "N202")]
     N202,
 
@@ -1334,6 +1514,9 @@ public enum Rarc
 
     [EnumMember(Value = "N224")]
     N224,
+
+    [EnumMember(Value = "N225")]
+    N225,
 
     [EnumMember(Value = "N226")]
     N226,
@@ -1740,6 +1923,9 @@ public enum Rarc
     [EnumMember(Value = "N360")]
     N360,
 
+    [EnumMember(Value = "N361")]
+    N361,
+
     [EnumMember(Value = "N362")]
     N362,
 
@@ -2103,6 +2289,12 @@ public enum Rarc
     [EnumMember(Value = "N482")]
     N482,
 
+    [EnumMember(Value = "N483")]
+    N483,
+
+    [EnumMember(Value = "N484")]
+    N484,
+
     [EnumMember(Value = "N485")]
     N485,
 
@@ -2189,6 +2381,12 @@ public enum Rarc
 
     [EnumMember(Value = "N513")]
     N513,
+
+    [EnumMember(Value = "N514")]
+    N514,
+
+    [EnumMember(Value = "N515")]
+    N515,
 
     [EnumMember(Value = "N516")]
     N516,
@@ -2300,6 +2498,9 @@ public enum Rarc
 
     [EnumMember(Value = "N552")]
     N552,
+
+    [EnumMember(Value = "N553")]
+    N553,
 
     [EnumMember(Value = "N554")]
     N554,
@@ -2519,6 +2720,9 @@ public enum Rarc
 
     [EnumMember(Value = "N626")]
     N626,
+
+    [EnumMember(Value = "N627")]
+    N627,
 
     [EnumMember(Value = "N628")]
     N628,
@@ -3213,8 +3417,83 @@ public enum Rarc
     [EnumMember(Value = "N860")]
     N860,
 
+    [EnumMember(Value = "N861")]
+    N861,
+
+    [EnumMember(Value = "N862")]
+    N862,
+
+    [EnumMember(Value = "N863")]
+    N863,
+
+    [EnumMember(Value = "N864")]
+    N864,
+
+    [EnumMember(Value = "N865")]
+    N865,
+
+    [EnumMember(Value = "N866")]
+    N866,
+
+    [EnumMember(Value = "N867")]
+    N867,
+
+    [EnumMember(Value = "N868")]
+    N868,
+
+    [EnumMember(Value = "N869")]
+    N869,
+
+    [EnumMember(Value = "N870")]
+    N870,
+
+    [EnumMember(Value = "N871")]
+    N871,
+
+    [EnumMember(Value = "N872")]
+    N872,
+
+    [EnumMember(Value = "N873")]
+    N873,
+
+    [EnumMember(Value = "N874")]
+    N874,
+
+    [EnumMember(Value = "N875")]
+    N875,
+
+    [EnumMember(Value = "N876")]
+    N876,
+
+    [EnumMember(Value = "N877")]
+    N877,
+
+    [EnumMember(Value = "N878")]
+    N878,
+
+    [EnumMember(Value = "N879")]
+    N879,
+
     [EnumMember(Value = "N880")]
     N880,
+
+    [EnumMember(Value = "N881")]
+    N881,
+
+    [EnumMember(Value = "N882")]
+    N882,
+
+    [EnumMember(Value = "N883")]
+    N883,
+
+    [EnumMember(Value = "N884")]
+    N884,
+
+    [EnumMember(Value = "N885")]
+    N885,
+
+    [EnumMember(Value = "N886")]
+    N886,
 
     [EnumMember(Value = "N887")]
     N887,
@@ -3222,9 +3501,72 @@ public enum Rarc
     [EnumMember(Value = "N888")]
     N888,
 
+    [EnumMember(Value = "N889")]
+    N889,
+
+    [EnumMember(Value = "N890")]
+    N890,
+
     [EnumMember(Value = "N891")]
     N891,
 
+    [EnumMember(Value = "N892")]
+    N892,
+
+    [EnumMember(Value = "N893")]
+    N893,
+
+    [EnumMember(Value = "N894")]
+    N894,
+
+    [EnumMember(Value = "N895")]
+    N895,
+
+    [EnumMember(Value = "N896")]
+    N896,
+
+    [EnumMember(Value = "N897")]
+    N897,
+
+    [EnumMember(Value = "N898")]
+    N898,
+
+    [EnumMember(Value = "N899")]
+    N899,
+
     [EnumMember(Value = "N900")]
     N900,
+
+    [EnumMember(Value = "N901")]
+    N901,
+
+    [EnumMember(Value = "N902")]
+    N902,
+
+    [EnumMember(Value = "N903")]
+    N903,
+
+    [EnumMember(Value = "N904")]
+    N904,
+
+    [EnumMember(Value = "N905")]
+    N905,
+
+    [EnumMember(Value = "N906")]
+    N906,
+
+    [EnumMember(Value = "N907")]
+    N907,
+
+    [EnumMember(Value = "N908")]
+    N908,
+
+    [EnumMember(Value = "N909")]
+    N909,
+
+    [EnumMember(Value = "N910")]
+    N910,
+
+    [EnumMember(Value = "N911")]
+    N911,
 }

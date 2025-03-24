@@ -186,6 +186,12 @@ public record Encounter
     public EpsdtReferral? EpsdtReferral { get; set; }
 
     /// <summary>
+    /// Refers to Loop 2300 - Segment PWK on the 837P form. No more than 10 entries are permitted.
+    /// </summary>
+    [JsonPropertyName("claim_supplemental_information")]
+    public IEnumerable<ClaimSupplementalInformation>? ClaimSupplementalInformation { get; set; }
+
+    /// <summary>
     /// The date and time the encounter was last submitted to a payer.
     /// </summary>
     [JsonPropertyName("last_submitted_at")]

@@ -525,6 +525,14 @@ public partial class V4Client
     ///             ConditionIndicator2 = EpsdtReferralConditionIndicatorCode.Av,
     ///             ConditionIndicator3 = EpsdtReferralConditionIndicatorCode.Av,
     ///         },
+    ///         ClaimSupplementalInformation = new List&lt;ClaimSupplementalInformation&gt;()
+    ///         {
+    ///             new ClaimSupplementalInformation
+    ///             {
+    ///                 AttachmentReportTypeCode = ReportTypeCode.C03,
+    ///                 AttachmentTransmissionCode = ReportTransmissionCode.Cbm,
+    ///             },
+    ///         },
     ///         ExternalId = "string",
     ///         DateOfService = new DateOnly(2023, 1, 15),
     ///         EndDateOfService = new DateOnly(2023, 1, 15),

@@ -33,6 +33,15 @@ public partial class V1Client
     ///             ZipCode = "10001",
     ///             ZipPlusFourCode = "1234",
     ///         },
+    ///         ClinicalTrials = new List&lt;MutableClinicalTrial&gt;()
+    ///         {
+    ///             new MutableClinicalTrial
+    ///             {
+    ///                 Name = "string",
+    ///                 ClinicalTrialNumber = "string",
+    ///                 ClinicalTrialPhase = ClinicalTrialPhase.PhaseOne,
+    ///             },
+    ///         },
     ///     }
     /// );
     /// </code>

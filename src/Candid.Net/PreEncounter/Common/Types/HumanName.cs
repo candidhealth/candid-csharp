@@ -19,6 +19,9 @@ public record HumanName
     [JsonPropertyName("period")]
     public Period? Period { get; set; }
 
+    [JsonPropertyName("suffix")]
+    public string? Suffix { get; set; }
+
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

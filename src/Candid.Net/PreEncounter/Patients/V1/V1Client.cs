@@ -2,6 +2,7 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading;
 using Candid.Net.Core;
+using Candid.Net.PreEncounter;
 
 #nullable enable
 
@@ -33,6 +34,7 @@ public partial class V1Client
     ///                 Given = new List&lt;string&gt;() { "string" },
     ///                 Use = NameUse.Usual,
     ///                 Period = new Period(),
+    ///                 Suffix = "string",
     ///             },
     ///             OtherNames = new List&lt;HumanName&gt;()
     ///             {
@@ -42,6 +44,7 @@ public partial class V1Client
     ///                     Given = new List&lt;string&gt;() { "string" },
     ///                     Use = NameUse.Usual,
     ///                     Period = new Period(),
+    ///                     Suffix = "string",
     ///                 },
     ///             },
     ///             OtherIdentifiers = new List&lt;ExternalIdentifier&gt;()
@@ -107,6 +110,7 @@ public partial class V1Client
     ///                         Given = new List&lt;string&gt;() { "string" },
     ///                         Use = NameUse.Usual,
     ///                         Period = new Period(),
+    ///                         Suffix = "string",
     ///                     },
     ///                     Telecoms = new List&lt;ContactPoint&gt;()
     ///                     {
@@ -139,6 +143,7 @@ public partial class V1Client
     ///                         Given = new List&lt;string&gt;() { "string" },
     ///                         Use = NameUse.Usual,
     ///                         Period = new Period(),
+    ///                         Suffix = "string",
     ///                     },
     ///                     Type = ExternalProviderType.Primary,
     ///                     Npi = "string",
@@ -169,6 +174,7 @@ public partial class V1Client
     ///                     Given = new List&lt;string&gt;() { "string" },
     ///                     Use = NameUse.Usual,
     ///                     Period = new Period(),
+    ///                     Suffix = "string",
     ///                 },
     ///                 Telecom = new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///                 Email = "string",
@@ -194,6 +200,7 @@ public partial class V1Client
     ///                     AdditionalPayerInformation = new AdditionalPayerInformation(),
     ///                     AuthorizationNumber = "string",
     ///                     CptCode = "string",
+    ///                     ApplyForAllCptCodes = true,
     ///                     Units = AuthorizationUnit.Visit,
     ///                     Quantity = 1,
     ///                     Period = new Period(),
@@ -212,6 +219,7 @@ public partial class V1Client
     ///                             Given = new List&lt;string&gt;() { "string" },
     ///                             Use = NameUse.Usual,
     ///                             Period = new Period(),
+    ///                             Suffix = "string",
     ///                         },
     ///                         Type = ExternalProviderType.Primary,
     ///                         Npi = "string",
@@ -297,6 +305,7 @@ public partial class V1Client
     ///                 Given = new List&lt;string&gt;() { "string" },
     ///                 Use = NameUse.Usual,
     ///                 Period = new Period(),
+    ///                 Suffix = "string",
     ///             },
     ///             OtherNames = new List&lt;HumanName&gt;()
     ///             {
@@ -306,6 +315,7 @@ public partial class V1Client
     ///                     Given = new List&lt;string&gt;() { "string" },
     ///                     Use = NameUse.Usual,
     ///                     Period = new Period(),
+    ///                     Suffix = "string",
     ///                 },
     ///             },
     ///             OtherIdentifiers = new List&lt;ExternalIdentifier&gt;()
@@ -371,6 +381,7 @@ public partial class V1Client
     ///                         Given = new List&lt;string&gt;() { "string" },
     ///                         Use = NameUse.Usual,
     ///                         Period = new Period(),
+    ///                         Suffix = "string",
     ///                     },
     ///                     Telecoms = new List&lt;ContactPoint&gt;()
     ///                     {
@@ -403,6 +414,7 @@ public partial class V1Client
     ///                         Given = new List&lt;string&gt;() { "string" },
     ///                         Use = NameUse.Usual,
     ///                         Period = new Period(),
+    ///                         Suffix = "string",
     ///                     },
     ///                     Type = ExternalProviderType.Primary,
     ///                     Npi = "string",
@@ -433,6 +445,7 @@ public partial class V1Client
     ///                     Given = new List&lt;string&gt;() { "string" },
     ///                     Use = NameUse.Usual,
     ///                     Period = new Period(),
+    ///                     Suffix = "string",
     ///                 },
     ///                 Telecom = new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///                 Email = "string",
@@ -458,6 +471,7 @@ public partial class V1Client
     ///                     AdditionalPayerInformation = new AdditionalPayerInformation(),
     ///                     AuthorizationNumber = "string",
     ///                     CptCode = "string",
+    ///                     ApplyForAllCptCodes = true,
     ///                     Units = AuthorizationUnit.Visit,
     ///                     Quantity = 1,
     ///                     Period = new Period(),
@@ -476,6 +490,7 @@ public partial class V1Client
     ///                             Given = new List&lt;string&gt;() { "string" },
     ///                             Use = NameUse.Usual,
     ///                             Period = new Period(),
+    ///                             Suffix = "string",
     ///                         },
     ///                         Type = ExternalProviderType.Primary,
     ///                         Npi = "string",
@@ -619,6 +634,55 @@ public partial class V1Client
     }
 
     /// <summary>
+    /// Searches for referring providers that match the query parameters. The search is case-insensitive, supports fuzzy matching, and matches against provider name and NPI. The search criteria must be an alphanumeric string, and the search is limited to the first 20 results.
+    /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.PreEncounter.Patients.V1.SearchProvidersAsync(
+    ///     new SearchProvidersRequest { SearchCriteria = "string" }
+    /// );
+    /// </code>
+    /// </example>
+    public async Task<IEnumerable<ExternalProvider>> SearchProvidersAsync(
+        SearchProvidersRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _query = new Dictionary<string, object>();
+        _query["search_criteria"] = request.SearchCriteria;
+        var response = await _client.MakeRequestAsync(
+            new RawClient.JsonApiRequest
+            {
+                BaseUrl = _client.Options.Environment.PreEncounter,
+                Method = HttpMethod.Get,
+                Path = "/patients/v1/search_providers",
+                Query = _query,
+                Options = options,
+            },
+            cancellationToken
+        );
+        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            try
+            {
+                return JsonUtils.Deserialize<IEnumerable<ExternalProvider>>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            responseBody
+        );
+    }
+
+    /// <summary>
     /// Gets a patient.
     /// </summary>
     /// <example>
@@ -722,6 +786,7 @@ public partial class V1Client
     ///             Given = new List&lt;string&gt;() { "string" },
     ///             Use = NameUse.Usual,
     ///             Period = new Period(),
+    ///             Suffix = "string",
     ///         },
     ///         OtherNames = new List&lt;HumanName&gt;()
     ///         {
@@ -731,6 +796,7 @@ public partial class V1Client
     ///                 Given = new List&lt;string&gt;() { "string" },
     ///                 Use = NameUse.Usual,
     ///                 Period = new Period(),
+    ///                 Suffix = "string",
     ///             },
     ///         },
     ///         OtherIdentifiers = new List&lt;ExternalIdentifier&gt;()
@@ -796,6 +862,7 @@ public partial class V1Client
     ///                     Given = new List&lt;string&gt;() { "string" },
     ///                     Use = NameUse.Usual,
     ///                     Period = new Period(),
+    ///                     Suffix = "string",
     ///                 },
     ///                 Telecoms = new List&lt;ContactPoint&gt;()
     ///                 {
@@ -828,6 +895,7 @@ public partial class V1Client
     ///                     Given = new List&lt;string&gt;() { "string" },
     ///                     Use = NameUse.Usual,
     ///                     Period = new Period(),
+    ///                     Suffix = "string",
     ///                 },
     ///                 Type = ExternalProviderType.Primary,
     ///                 Npi = "string",
@@ -858,6 +926,7 @@ public partial class V1Client
     ///                 Given = new List&lt;string&gt;() { "string" },
     ///                 Use = NameUse.Usual,
     ///                 Period = new Period(),
+    ///                 Suffix = "string",
     ///             },
     ///             Telecom = new ContactPoint { Value = "string", Use = ContactPointUse.Home },
     ///             Email = "string",
@@ -883,6 +952,7 @@ public partial class V1Client
     ///                 AdditionalPayerInformation = new AdditionalPayerInformation(),
     ///                 AuthorizationNumber = "string",
     ///                 CptCode = "string",
+    ///                 ApplyForAllCptCodes = true,
     ///                 Units = AuthorizationUnit.Visit,
     ///                 Quantity = 1,
     ///                 Period = new Period(),
@@ -901,6 +971,7 @@ public partial class V1Client
     ///                         Given = new List&lt;string&gt;() { "string" },
     ///                         Use = NameUse.Usual,
     ///                         Period = new Period(),
+    ///                         Suffix = "string",
     ///                     },
     ///                     Type = ExternalProviderType.Primary,
     ///                     Npi = "string",
