@@ -207,6 +207,7 @@ public partial class V1Client
     ///         Status = ChargeCaptureStatus.Planned,
     ///         ChargeExternalId = "string",
     ///         DateOfService = new DateOnly(2023, 1, 15),
+    ///         ExcludeBundled = true,
     ///     }
     /// );
     /// </code>
@@ -241,6 +242,10 @@ public partial class V1Client
         if (request.DateOfService != null)
         {
             _query["date_of_service"] = request.DateOfService.Value.ToString(Constants.DateFormat);
+        }
+        if (request.ExcludeBundled != null)
+        {
+            _query["exclude_bundled"] = request.ExcludeBundled.ToString();
         }
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest

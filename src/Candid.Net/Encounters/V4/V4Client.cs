@@ -396,6 +396,39 @@ public partial class V4Client
     ///             LastName = "string",
     ///             Gender = Candid.Net.Gender.Male,
     ///         },
+    ///         SubscriberTertiary = new SubscriberCreate
+    ///         {
+    ///             InsuranceCard = new InsuranceCardCreate
+    ///             {
+    ///                 MemberId = "string",
+    ///                 PayerName = "string",
+    ///                 PayerId = "string",
+    ///                 RxBin = "string",
+    ///                 RxPcn = "string",
+    ///                 ImageUrlFront = "string",
+    ///                 ImageUrlBack = "string",
+    ///                 EmrPayerCrosswalk = EmrPayerCrosswalk.Healthie,
+    ///                 GroupNumber = "string",
+    ///                 PlanName = "string",
+    ///                 PlanType = SourceOfPaymentCode.SelfPay,
+    ///                 InsuranceType = Candid.Net.InsuranceTypeCode.C01,
+    ///                 PayerPlanGroupId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///             },
+    ///             PatientRelationshipToSubscriberCode = PatientRelationshipToInsuredCodeAll.Spouse,
+    ///             DateOfBirth = new DateOnly(2023, 1, 15),
+    ///             Address = new StreetAddressShortZip
+    ///             {
+    ///                 Address1 = "123 Main St",
+    ///                 Address2 = "Apt 1",
+    ///                 City = "New York",
+    ///                 State = State.Ny,
+    ///                 ZipCode = "10001",
+    ///                 ZipPlusFourCode = "1234",
+    ///             },
+    ///             FirstName = "string",
+    ///             LastName = "string",
+    ///             Gender = Candid.Net.Gender.Male,
+    ///         },
     ///         PriorAuthorizationNumber = "string",
     ///         ResponsibleParty = ResponsiblePartyType.InsurancePay,
     ///         Diagnoses = new List&lt;DiagnosisCreate&gt;()

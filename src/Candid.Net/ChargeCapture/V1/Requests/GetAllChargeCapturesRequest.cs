@@ -36,6 +36,11 @@ public record GetAllChargeCapturesRequest
     /// </summary>
     public DateOnly? DateOfService { get; set; }
 
+    /// <summary>
+    /// Whether to exclude charge captures which are associated with a charge capture bundle.
+    /// </summary>
+    public bool? ExcludeBundled { get; set; }
+
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

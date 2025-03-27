@@ -76,6 +76,12 @@ public record EncounterCreate
     public SubscriberCreate? SubscriberSecondary { get; set; }
 
     /// <summary>
+    /// Please always include this when you have it, even for self-pay claims.
+    /// </summary>
+    [JsonPropertyName("subscriber_tertiary")]
+    public SubscriberCreate? SubscriberTertiary { get; set; }
+
+    /// <summary>
     /// Box 23 on the CMS-1500 claim form.
     /// </summary>
     [JsonPropertyName("prior_authorization_number")]

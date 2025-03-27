@@ -80,6 +80,12 @@ public record Encounter
     public Subscriber? SubscriberSecondary { get; set; }
 
     /// <summary>
+    /// Contains details of the tertiary insurance subscriber.
+    /// </summary>
+    [JsonPropertyName("subscriber_tertiary")]
+    public Subscriber? SubscriberTertiary { get; set; }
+
+    /// <summary>
     /// Box 23 on the CMS-1500 claim form.
     /// </summary>
     [JsonPropertyName("prior_authorization_number")]

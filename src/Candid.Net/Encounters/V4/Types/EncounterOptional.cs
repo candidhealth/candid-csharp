@@ -118,6 +118,12 @@ public record EncounterOptional
     public SubscriberCreate? SubscriberSecondary { get; set; }
 
     /// <summary>
+    /// Contains details of the tertiary insurance subscriber.
+    /// </summary>
+    [JsonPropertyName("subscriber_tertiary")]
+    public SubscriberCreate? SubscriberTertiary { get; set; }
+
+    /// <summary>
     /// Defines additional information on the claim needed by the payer.
     /// Box 19 on the CMS-1500 claim form.
     /// </summary>
