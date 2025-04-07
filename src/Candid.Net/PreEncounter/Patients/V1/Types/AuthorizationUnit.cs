@@ -11,4 +11,7 @@ public enum AuthorizationUnit
 {
     [EnumMember(Value = "VISIT")]
     Visit,
+
+    [EnumMember(Value = "UNIT")]
+    Unit,
 }

@@ -35,4 +35,7 @@ public enum PatientWriteOffReason
 
     [EnumMember(Value = "UNKNOWN")]
     Unknown,
+
+    [EnumMember(Value = "UNCOLLECTIBLE_OR_NON_BILLABLE")]
+    UncollectibleOrNonBillable,
 }

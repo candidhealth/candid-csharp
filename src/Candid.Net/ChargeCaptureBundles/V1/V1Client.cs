@@ -104,12 +104,15 @@ public partial class V1Client
     ///     new GetAllChargeCaptureBundlesRequest
     ///     {
     ///         Limit = 1,
+    ///         Sort = ChargeCaptureBundleSortField.CreatedAt,
+    ///         SortDirection = Candid.Net.SortDirection.Asc,
     ///         PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
     ///         PatientExternalId = "string",
     ///         BundleStatus = ChargeCaptureBundleStatus.InProgress,
     ///         ChargeStatus = ChargeCaptureStatus.Planned,
     ///         ChargeExternalId = "string",
     ///         DateOfService = new DateOnly(2023, 1, 15),
+    ///         HasChargeCaptureUpdates = true,
     ///     }
     /// );
     /// </code>
@@ -124,6 +127,14 @@ public partial class V1Client
         if (request.Limit != null)
         {
             _query["limit"] = request.Limit.ToString();
+        }
+        if (request.Sort != null)
+        {
+            _query["sort"] = request.Sort.Value.Stringify();
+        }
+        if (request.SortDirection != null)
+        {
+            _query["sort_direction"] = request.SortDirection.Value.Stringify();
         }
         if (request.PageToken != null)
         {
@@ -148,6 +159,10 @@ public partial class V1Client
         if (request.DateOfService != null)
         {
             _query["date_of_service"] = request.DateOfService.Value.ToString(Constants.DateFormat);
+        }
+        if (request.HasChargeCaptureUpdates != null)
+        {
+            _query["has_charge_capture_updates"] = request.HasChargeCaptureUpdates.ToString();
         }
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest

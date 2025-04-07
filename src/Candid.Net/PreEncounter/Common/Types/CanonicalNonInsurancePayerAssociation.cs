@@ -13,6 +13,9 @@ public record CanonicalNonInsurancePayerAssociation
     [JsonPropertyName("member_id")]
     public string? MemberId { get; set; }
 
+    [JsonPropertyName("period")]
+    public Period? Period { get; set; }
+
     /// <summary>
     /// A patient cannot be associated with a given trial more than once
     /// </summary>

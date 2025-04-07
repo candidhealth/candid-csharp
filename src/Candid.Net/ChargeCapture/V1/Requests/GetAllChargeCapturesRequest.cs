@@ -11,6 +11,16 @@ public record GetAllChargeCapturesRequest
     /// </summary>
     public int? Limit { get; set; }
 
+    /// <summary>
+    /// Defaults to created_at
+    /// </summary>
+    public ChargeCaptureSortField? Sort { get; set; }
+
+    /// <summary>
+    /// Sort direction. Defaults to descending order if not provided.
+    /// </summary>
+    public SortDirection? SortDirection { get; set; }
+
     public string? PageToken { get; set; }
 
     /// <summary>

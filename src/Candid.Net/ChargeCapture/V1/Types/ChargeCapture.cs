@@ -32,6 +32,10 @@ public record ChargeCapture
     [JsonPropertyName("date_of_service")]
     public DateOnly? DateOfService { get; set; }
 
+    [JsonPropertyName("updates")]
+    public IEnumerable<ChargeCapturePostBilledChange> Updates { get; set; } =
+        new List<ChargeCapturePostBilledChange>();
+
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

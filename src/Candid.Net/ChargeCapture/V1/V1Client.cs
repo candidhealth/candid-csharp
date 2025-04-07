@@ -202,6 +202,8 @@ public partial class V1Client
     ///     new GetAllChargeCapturesRequest
     ///     {
     ///         Limit = 1,
+    ///         Sort = ChargeCaptureSortField.CreatedAt,
+    ///         SortDirection = Candid.Net.SortDirection.Asc,
     ///         PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
     ///         PatientExternalId = "string",
     ///         Status = ChargeCaptureStatus.Planned,
@@ -222,6 +224,14 @@ public partial class V1Client
         if (request.Limit != null)
         {
             _query["limit"] = request.Limit.ToString();
+        }
+        if (request.Sort != null)
+        {
+            _query["sort"] = request.Sort.Value.Stringify();
+        }
+        if (request.SortDirection != null)
+        {
+            _query["sort_direction"] = request.SortDirection.Value.Stringify();
         }
         if (request.PageToken != null)
         {
