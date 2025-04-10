@@ -128,7 +128,7 @@ public partial class V3Client
     ///         NetworkTypes = [Candid.Net.NetworkType.Ppo],
     ///         PayerPlanGroupIds = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
     ///         CptCode = "string",
-    ///         Modifiers = [ProcedureModifier.TwentyTwo],
+    ///         Modifiers = [ProcedureModifier.Av],
     ///     }
     /// );
     /// </code>
@@ -231,7 +231,7 @@ public partial class V3Client
     ///         NetworkTypes = [Candid.Net.NetworkType.Ppo],
     ///         PayerPlanGroupIds = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
     ///         CptCode = "string",
-    ///         Modifiers = [ProcedureModifier.TwentyTwo],
+    ///         Modifiers = [ProcedureModifier.Av],
     ///     }
     /// );
     /// </code>
@@ -388,7 +388,7 @@ public partial class V3Client
     ///                         "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///                     },
     ///                     CptCode = "string",
-    ///                     Modifiers = new HashSet&lt;ProcedureModifier&gt;() { ProcedureModifier.TwentyTwo },
+    ///                     Modifiers = new HashSet&lt;ProcedureModifier&gt;() { ProcedureModifier.Av },
     ///                 },
     ///                 Entries = new List&lt;RateEntry&gt;()
     ///                 {

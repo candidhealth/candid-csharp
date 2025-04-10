@@ -209,6 +209,7 @@ public partial class V1Client
     ///         Status = ChargeCaptureStatus.Planned,
     ///         ChargeExternalId = "string",
     ///         DateOfService = new DateOnly(2023, 1, 15),
+    ///         BundleId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///         ExcludeBundled = true,
     ///     }
     /// );
@@ -252,6 +253,10 @@ public partial class V1Client
         if (request.DateOfService != null)
         {
             _query["date_of_service"] = request.DateOfService.Value.ToString(Constants.DateFormat);
+        }
+        if (request.BundleId != null)
+        {
+            _query["bundle_id"] = request.BundleId.ToString();
         }
         if (request.ExcludeBundled != null)
         {

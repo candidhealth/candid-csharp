@@ -9,6 +9,15 @@ namespace Candid.Net;
 [JsonConverter(typeof(EnumSerializer<ProcedureModifier>))]
 public enum ProcedureModifier
 {
+    [EnumMember(Value = "AV")]
+    Av,
+
+    [EnumMember(Value = "AU")]
+    Au,
+
+    [EnumMember(Value = "AW")]
+    Aw,
+
     [EnumMember(Value = "22")]
     TwentyTwo,
 

@@ -39,7 +39,7 @@ public partial class V1Client
     ///             DrugDescription = "string",
     ///         },
     ///         Description = "string",
-    ///         Modifiers = new List&lt;ProcedureModifier&gt;() { ProcedureModifier.TwentyTwo },
+    ///         Modifiers = new List&lt;ProcedureModifier&gt;() { ProcedureModifier.Av },
     ///     }
     /// );
     /// </code>

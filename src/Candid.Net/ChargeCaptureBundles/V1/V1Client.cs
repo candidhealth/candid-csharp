@@ -59,6 +59,46 @@ public partial class V1Client
 
     /// <example>
     /// <code>
+    /// await client.ChargeCaptureBundles.V1.GetSummaryAsync();
+    /// </code>
+    /// </example>
+    public async Task<ChargeCaptureBundleSummary> GetSummaryAsync(
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client.MakeRequestAsync(
+            new RawClient.JsonApiRequest
+            {
+                BaseUrl = _client.Options.Environment.CandidApi,
+                Method = HttpMethod.Get,
+                Path = "/api/charge_capture_bundle/v1/summary",
+                Options = options,
+            },
+            cancellationToken
+        );
+        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            try
+            {
+                return JsonUtils.Deserialize<ChargeCaptureBundleSummary>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            responseBody
+        );
+    }
+
+    /// <example>
+    /// <code>
     /// await client.ChargeCaptureBundles.V1.ResubmitAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code>
     /// </example>
@@ -108,7 +148,7 @@ public partial class V1Client
     ///         SortDirection = Candid.Net.SortDirection.Asc,
     ///         PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
     ///         PatientExternalId = "string",
-    ///         BundleStatus = ChargeCaptureBundleStatus.InProgress,
+    ///         BundleStatus = ChargeCaptureBundleStatus.NotStarted,
     ///         ChargeStatus = ChargeCaptureStatus.Planned,
     ///         ChargeExternalId = "string",
     ///         DateOfService = new DateOnly(2023, 1, 15),

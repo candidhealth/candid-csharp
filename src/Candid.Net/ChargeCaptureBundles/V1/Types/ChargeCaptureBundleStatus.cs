@@ -9,6 +9,9 @@ namespace Candid.Net.ChargeCaptureBundles.V1;
 [JsonConverter(typeof(EnumSerializer<ChargeCaptureBundleStatus>))]
 public enum ChargeCaptureBundleStatus
 {
+    [EnumMember(Value = "not-started")]
+    NotStarted,
+
     [EnumMember(Value = "in-progress")]
     InProgress,
 
@@ -17,6 +20,9 @@ public enum ChargeCaptureBundleStatus
 
     [EnumMember(Value = "successful")]
     Successful,
+
+    [EnumMember(Value = "successful-dry-run")]
+    SuccessfulDryRun,
 
     [EnumMember(Value = "aborted")]
     Aborted,

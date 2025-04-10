@@ -47,6 +47,11 @@ public record GetAllChargeCapturesRequest
     public DateOnly? DateOfService { get; set; }
 
     /// <summary>
+    /// The ID of the charge capture bundle to which this charge capture belongs.
+    /// </summary>
+    public string? BundleId { get; set; }
+
+    /// <summary>
     /// Whether to exclude charge captures which are associated with a charge capture bundle.
     /// </summary>
     public bool? ExcludeBundled { get; set; }

@@ -21,7 +21,7 @@ public partial class V2Client
     /// await client.ServiceLines.V2.CreateAsync(
     ///     new ServiceLineCreateStandalone
     ///     {
-    ///         Modifiers = new List&lt;ProcedureModifier&gt;() { ProcedureModifier.TwentyTwo },
+    ///         Modifiers = new List&lt;ProcedureModifier&gt;() { ProcedureModifier.Av },
     ///         ChargeAmountCents = 1,
     ///         DiagnosisIdZero = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///         DiagnosisIdOne = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
@@ -121,7 +121,7 @@ public partial class V2Client
     ///     new ServiceLineUpdate
     ///     {
     ///         EditReason = "string",
-    ///         Modifiers = new List&lt;ProcedureModifier&gt;() { ProcedureModifier.TwentyTwo },
+    ///         Modifiers = new List&lt;ProcedureModifier&gt;() { ProcedureModifier.Av },
     ///         ChargeAmountCents = 1,
     ///         DiagnosisIdZero = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///         DiagnosisIdOne = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
