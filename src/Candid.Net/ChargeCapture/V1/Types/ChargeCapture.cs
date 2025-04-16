@@ -32,6 +32,9 @@ public record ChargeCapture
     [JsonPropertyName("date_of_service")]
     public DateOnly? DateOfService { get; set; }
 
+    [JsonPropertyName("error")]
+    public ChargeCaptureError? Error { get; set; }
+
     [JsonPropertyName("updates")]
     public IEnumerable<ChargeCapturePostBilledChange> Updates { get; set; } =
         new List<ChargeCapturePostBilledChange>();

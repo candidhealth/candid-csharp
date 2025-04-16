@@ -131,4 +131,7 @@ public enum TaskCategory
 
     [EnumMember(Value = "incorrect_referring_provider_info")]
     IncorrectReferringProviderInfo,
+
+    [EnumMember(Value = "payer_configuration_error")]
+    PayerConfigurationError,
 }

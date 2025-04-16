@@ -292,4 +292,50 @@ public partial class V1Client
             responseBody
         );
     }
+
+    /// <example>
+    /// <code>
+    /// await client.ChargeCapture.V1.UpdatePostBilledChangeAsync(
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///     new ChargeCapturePostBilledChangeUpdate { Resolved = true }
+    /// );
+    /// </code>
+    /// </example>
+    public async Task<ChargeCapturePostBilledChange> UpdatePostBilledChangeAsync(
+        string chargeCaptureChangeId,
+        ChargeCapturePostBilledChangeUpdate request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client.MakeRequestAsync(
+            new RawClient.JsonApiRequest
+            {
+                BaseUrl = _client.Options.Environment.CandidApi,
+                Method = HttpMethodExtensions.Patch,
+                Path = $"/api/charge_captures/v1/changes/{chargeCaptureChangeId}",
+                Body = request,
+                Options = options,
+            },
+            cancellationToken
+        );
+        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            try
+            {
+                return JsonUtils.Deserialize<ChargeCapturePostBilledChange>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            responseBody
+        );
+    }
 }

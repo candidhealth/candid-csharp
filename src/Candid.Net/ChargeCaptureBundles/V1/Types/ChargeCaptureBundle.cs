@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Candid.Net.ChargeCapture.V1;
 using Candid.Net.Core;
 
 #nullable enable
@@ -31,7 +32,7 @@ public record ChargeCaptureBundle
     /// Errors can correspond to the Bundle as a whole or specific underlying Charge Captures.
     /// </summary>
     [JsonPropertyName("errors")]
-    public IEnumerable<ChargeBundleError> Errors { get; set; } = new List<ChargeBundleError>();
+    public IEnumerable<ChargeCaptureError> Errors { get; set; } = new List<ChargeCaptureError>();
 
     public override string ToString()
     {

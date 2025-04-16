@@ -3,9 +3,9 @@ using Candid.Net.Core;
 
 #nullable enable
 
-namespace Candid.Net.ChargeCaptureBundles.V1;
+namespace Candid.Net.ChargeCapture.V1;
 
-public record ChargeBundleError
+public record ChargeCaptureError
 {
     [JsonPropertyName("id")]
     public required string Id { get; set; }

@@ -614,6 +614,57 @@ await client.ChargeCapture.V1.GetAllAsync(
 </dl>
 </details>
 
+<details><summary><code>client.ChargeCapture.V1.<a href="/src/Candid.Net/ChargeCapture/V1/V1Client.cs">UpdatePostBilledChangeAsync</a>(chargeCaptureChangeId, ChargeCapturePostBilledChangeUpdate { ... }) -> ChargeCapturePostBilledChange</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.ChargeCapture.V1.UpdatePostBilledChangeAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new ChargeCapturePostBilledChangeUpdate { Resolved = true }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**chargeCaptureChangeId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `ChargeCapturePostBilledChangeUpdate` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Contracts V2
 <details><summary><code>client.Contracts.V2.<a href="/src/Candid.Net/Contracts/V2/V2Client.cs">GetAsync</a>(contractId) -> ContractWithProviders</code></summary>
 <dl>
@@ -3348,3 +3399,180 @@ await client.ExpectedNetworkStatus.V1.ComputeAsync(
 </dd>
 </dl>
 </details>
+
+## ExpectedNetworkStatus V2
+<details><summary><code>client.ExpectedNetworkStatus.V2.<a href="/src/Candid.Net/ExpectedNetworkStatus/V2/V2Client.cs">ComputeForRenderingProviderAsync</a>(renderingProviderId, ExpectedNetworkStatusRequestV2 { ... }) -> ExpectedNetworkStatusResponseV2</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Computes the expected network status for a given rendering provider.
+This endpoint is not available to all customers. Reach out to the Candid sales team
+to discuss enabling this endpoint if it is not available for your organization.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.ExpectedNetworkStatus.V2.ComputeForRenderingProviderAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new ExpectedNetworkStatusRequestV2
+    {
+        ServiceType = ServiceType.NewPatientVideoAppt,
+        PlaceOfServiceCode = FacilityTypeCode.Pharmacy,
+        SubscriberInformation = new ExpectedNetworkStatusSubscriberInformation
+        {
+            PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+            MemberId = "string",
+            InsuranceType = new InsuranceType
+            {
+                LineOfBusiness = LineOfBusiness.Medicare,
+                InsuranceTypeCodes = Candid.Net.InsuranceTypeCode.C01,
+            },
+        },
+        PatientAddress = new StreetAddressShortZip
+        {
+            Address1 = "123 Main St",
+            Address2 = "Apt 1",
+            City = "New York",
+            State = State.Ny,
+            ZipCode = "10001",
+            ZipPlusFourCode = "1234",
+        },
+        BillingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        OrganizationServiceFacilityId = "30F55EE6-8C0E-43FC-A7FC-DAC00D5BF569",
+        DateOfService = new DateOnly(2023, 1, 15),
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**renderingProviderId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `ExpectedNetworkStatusRequestV2` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ExpectedNetworkStatus.V2.<a href="/src/Candid.Net/ExpectedNetworkStatus/V2/V2Client.cs">ComputeAllInNetworkProvidersAsync</a>(ComputeAllInNetworkProvidersRequest { ... }) -> ComputeAllInNetworkProvidersResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Computes all the in network providers for a given set of inputs.
+This endpoint is not available to all customers. Reach out to the Candid sales team
+to discuss enabling this endpoint if it is not available for your organization.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.ExpectedNetworkStatus.V2.ComputeAllInNetworkProvidersAsync(
+    new ComputeAllInNetworkProvidersRequest
+    {
+        ServiceType = ServiceType.NewPatientVideoAppt,
+        PlaceOfServiceCode = FacilityTypeCode.Pharmacy,
+        SubscriberInformation = new ExpectedNetworkStatusSubscriberInformation
+        {
+            PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+            MemberId = "string",
+            InsuranceType = new InsuranceType
+            {
+                LineOfBusiness = LineOfBusiness.Medicare,
+                InsuranceTypeCodes = Candid.Net.InsuranceTypeCode.C01,
+            },
+        },
+        PatientAddress = new StreetAddressShortZip
+        {
+            Address1 = "123 Main St",
+            Address2 = "Apt 1",
+            City = "New York",
+            State = State.Ny,
+            ZipCode = "10001",
+            ZipPlusFourCode = "1234",
+        },
+        BillingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        OrganizationServiceFacilityId = "30F55EE6-8C0E-43FC-A7FC-DAC00D5BF569",
+        DateOfService = new DateOnly(2023, 1, 15),
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ComputeAllInNetworkProvidersRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>

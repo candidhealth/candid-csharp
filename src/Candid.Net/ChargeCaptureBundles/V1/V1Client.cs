@@ -72,7 +72,7 @@ public partial class V1Client
             {
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
-                Path = "/api/charge_capture_bundle/v1/summary",
+                Path = "/api/charge_capture_bundle/v1/all/summary",
                 Options = options,
             },
             cancellationToken
