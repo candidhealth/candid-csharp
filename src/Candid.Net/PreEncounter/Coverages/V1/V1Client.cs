@@ -476,6 +476,53 @@ public partial class V1Client
     }
 
     /// <summary>
+    /// Finds all coverages associated with the given ppg_id and updates the ppg_fields for each coverage.
+    /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.PreEncounter.Coverages.V1.BatchUpdatePpgAsync(
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///     new PayerPlanGroupFields
+    ///     {
+    ///         PayerPlanGroupId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         PayerId = "string",
+    ///         PayerName = "string",
+    ///         PlanType = Candid.Net.PreEncounter.Coverages.V1.NetworkType.SelfPay,
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
+    public async System.Threading.Tasks.Task BatchUpdatePpgAsync(
+        string ppgId,
+        PayerPlanGroupFields request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client.MakeRequestAsync(
+            new RawClient.JsonApiRequest
+            {
+                BaseUrl = _client.Options.Environment.PreEncounter,
+                Method = HttpMethod.Post,
+                Path = $"/coverages/v1/batch-update-ppg/{ppgId}",
+                Body = request,
+                Options = options,
+            },
+            cancellationToken
+        );
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            return;
+        }
+        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            responseBody
+        );
+    }
+
+    /// <summary>
     /// Initiates an eligibility check. Returns the metadata of the check if successfully initiated.
     /// </summary>
     /// <example>

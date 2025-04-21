@@ -83,6 +83,12 @@ public record Patient
     [JsonPropertyName("sexual_orientation")]
     public SexualOrientation? SexualOrientation { get; set; }
 
+    /// <summary>
+    /// The pronouns of the patient.
+    /// </summary>
+    [JsonPropertyName("pronouns")]
+    public IEnumerable<string>? Pronouns { get; set; }
+
     [JsonPropertyName("race")]
     public Race? Race { get; set; }
 

@@ -21,6 +21,12 @@ public enum Gender
     [EnumMember(Value = "TWO_SPIRIT")]
     TwoSpirit,
 
+    [EnumMember(Value = "FEMALE_TO_MALE")]
+    FemaleToMale,
+
+    [EnumMember(Value = "MALE_TO_FEMALE")]
+    MaleToFemale,
+
     [EnumMember(Value = "OTHER")]
     Other,
 
