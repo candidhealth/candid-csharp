@@ -39,6 +39,9 @@ public record ChargeCapture
     public IEnumerable<ChargeCapturePostBilledChange> Updates { get; set; } =
         new List<ChargeCapturePostBilledChange>();
 
+    [JsonPropertyName("bundle_id")]
+    public string? BundleId { get; set; }
+
     public override string ToString()
     {
         return JsonUtils.Serialize(this);
