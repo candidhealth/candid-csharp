@@ -26,4 +26,7 @@ public enum ChargeCaptureBundleStatus
 
     [EnumMember(Value = "aborted")]
     Aborted,
+
+    [EnumMember(Value = "held")]
+    Held,
 }

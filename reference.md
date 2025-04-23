@@ -3333,3 +3333,68 @@ await client.Encounters.V4.UpdateAsync(
 
 ## ExpectedNetworkStatus V1
 <details><summary><code>client.ExpectedNetworkStatus.V1.<a href="/src/Candid.Net/ExpectedNetworkStatus/V1/V1Client.cs">ComputeAsync</a>(ExpectedNetworkStatusRequest { ... }) -> ExpectedNetworkStatusResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Computes the expected network status given the provided information.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.ExpectedNetworkStatus.V1.ComputeAsync(
+    new ExpectedNetworkStatusRequest
+    {
+        ExternalPatientId = "string",
+        SubscriberPayerId = "string",
+        SubscriberPayerName = "string",
+        SubscriberInsuranceType = Candid.Net.InsuranceTypeCode.C01,
+        SubscriberPlanName = "string",
+        BillingProviderNpi = "string",
+        BillingProviderTin = "string",
+        RenderingProviderNpi = "string",
+        ContractedState = State.Aa,
+        DateOfService = "string",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ExpectedNetworkStatusRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>

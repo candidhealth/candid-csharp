@@ -21,6 +21,14 @@ public record ChargeCaptureBundle
     public required ChargeCaptureBundleStatus Status { get; set; }
 
     /// <summary>
+    /// A dictionary of characteristics that are used to group charge captures together based on the bundling configuration.
+    /// Example: {"service_facility.npi": "99999999", "date_of_service": "2023-01-01"}
+    /// </summary>
+    [JsonPropertyName("characteristics")]
+    public Dictionary<string, string> Characteristics { get; set; } =
+        new Dictionary<string, string>();
+
+    /// <summary>
     /// All the underlying ChargeCaptures that are present in a ChargeCaptureBundle.
     /// </summary>
     [JsonPropertyName("charge_captures")]

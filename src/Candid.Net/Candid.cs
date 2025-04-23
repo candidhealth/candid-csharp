@@ -33,6 +33,7 @@ using Candid.Net.PayerPlanGroups;
 using Candid.Net.Payers;
 using Candid.Net.PreEncounter;
 using Candid.Net.ServiceLines;
+using Candid.Net.Superbills;
 using Candid.Net.Tasks;
 using Candid.Net.WriteOffs;
 
@@ -52,7 +53,7 @@ public partial class Candid
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Candid.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Candid.Net/0.41.2" },
+                { "User-Agent", "Candid.Net/0.41.3" },
             }
         );
         clientOptions ??= new ClientOptions();
@@ -104,6 +105,7 @@ public partial class Candid
         PayerPlanGroups = new PayerPlanGroupsClient(_client);
         Payers = new PayersClient(_client);
         ServiceLines = new ServiceLinesClient(_client);
+        Superbills = new SuperbillsClient(_client);
         Tasks = new TasksClient(_client);
         WriteOffs = new WriteOffsClient(_client);
         PreEncounter = new PreEncounterClient(_client);
@@ -180,6 +182,8 @@ public partial class Candid
     public PayersClient Payers { get; init; }
 
     public ServiceLinesClient ServiceLines { get; init; }
+
+    public SuperbillsClient Superbills { get; init; }
 
     public TasksClient Tasks { get; init; }
 
