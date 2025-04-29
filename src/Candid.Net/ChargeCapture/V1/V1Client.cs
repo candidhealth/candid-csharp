@@ -24,7 +24,6 @@ public partial class V1Client
     ///         Data = new ChargeCaptureData(),
     ///         ChargeExternalId = "string",
     ///         EhrSourceUrl = "string",
-    ///         DateOfService = new DateOnly(2023, 1, 15),
     ///         PatientExternalId = "string",
     ///         Status = ChargeCaptureStatus.Planned,
     ///     }
@@ -112,7 +111,6 @@ public partial class V1Client
     ///         EhrSourceUrl = "string",
     ///         PatientExternalId = "string",
     ///         Status = ChargeCaptureStatus.Planned,
-    ///         DateOfService = new DateOnly(2023, 1, 15),
     ///     }
     /// );
     /// </code>

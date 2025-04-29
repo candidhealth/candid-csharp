@@ -21,12 +21,6 @@ public enum ChargeCaptureStatus
     [EnumMember(Value = "aborted")]
     Aborted,
 
-    [EnumMember(Value = "billed")]
-    Billed,
-
     [EnumMember(Value = "entered-in-error")]
     EnteredInError,
-
-    [EnumMember(Value = "unknown")]
-    Unknown,
 }

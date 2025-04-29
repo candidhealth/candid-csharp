@@ -12,9 +12,6 @@ public enum ChargeCaptureBundleStatus
     [EnumMember(Value = "not-started")]
     NotStarted,
 
-    [EnumMember(Value = "in-progress")]
-    InProgress,
-
     [EnumMember(Value = "in-error")]
     InError,
 
