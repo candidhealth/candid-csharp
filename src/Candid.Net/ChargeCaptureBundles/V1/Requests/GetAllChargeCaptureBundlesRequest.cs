@@ -53,6 +53,51 @@ public record GetAllChargeCaptureBundlesRequest
     public DateOnly? DateOfService { get; set; }
 
     /// <summary>
+    /// A list of claim IDs to filter by. This will return all charge capture bundles that have a resulting claim with one of the IDs in this list.
+    /// </summary>
+    public IEnumerable<string> ClaimIds { get; set; } = new List<string>();
+
+    /// <summary>
+    /// A list of bundle IDs to filter by.
+    /// </summary>
+    public IEnumerable<string> BundleIds { get; set; } = new List<string>();
+
+    /// <summary>
+    /// A list of billing provider NPIs to filter by. This will return all charge capture bundles which include one or more charges with one of the NPIs in this list.
+    /// </summary>
+    public IEnumerable<string> BillingProviderNpis { get; set; } = new List<string>();
+
+    /// <summary>
+    /// A string to filter by. This will return all charge capture bundles which include one or more charges with this service facility name.
+    /// </summary>
+    public string? ServiceFacilityName { get; set; }
+
+    /// <summary>
+    /// A list of primary payer IDs to filter by. This will return all charge capture bundles which include one or more charges with one of the primary payer IDs in this list.
+    /// </summary>
+    public IEnumerable<string> PrimaryPayerIds { get; set; } = new List<string>();
+
+    /// <summary>
+    /// A list of rendering provider NPIs to filter by. This will return all charge capture bundles which include one or more charges with one of the NPIs in this list.
+    /// </summary>
+    public IEnumerable<string> RenderingProviderNpis { get; set; } = new List<string>();
+
+    /// <summary>
+    /// A list of rendering provider names to filter by. This will return all charge capture bundles which include one or more charges with one of the names in this list.
+    /// </summary>
+    public IEnumerable<string> RenderingProviderNames { get; set; } = new List<string>();
+
+    /// <summary>
+    /// A list of supervising provider NPIs to filter by. This will return all charge capture bundles which include one or more charges with one of the NPIs in this list.
+    /// </summary>
+    public IEnumerable<string> SupervisingProviderNpis { get; set; } = new List<string>();
+
+    /// <summary>
+    /// A list of supervising provider names to filter by. This will return all charge capture bundles which include one or more charges with one of the names in this list.
+    /// </summary>
+    public IEnumerable<string> SupervisingProviderNames { get; set; } = new List<string>();
+
+    /// <summary>
     /// If true, only return bundles that have charge captures that have been updated since the bundle has had a status of BILLED. See the updates property on ChargeCapture for more details.
     /// </summary>
     public bool? HasChargeCaptureUpdates { get; set; }

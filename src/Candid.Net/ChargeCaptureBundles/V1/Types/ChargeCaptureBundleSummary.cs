@@ -8,16 +8,22 @@ namespace Candid.Net.ChargeCaptureBundles.V1;
 public record ChargeCaptureBundleSummary
 {
     /// <summary>
-    /// The count of charge captures which are not in a bundle or in a bundle with a status other than SUCCESSFUL.
+    /// The count of charge captures which are not part of a bundle with a created claim.
     /// </summary>
-    [JsonPropertyName("charge_capture_unbundled_count")]
-    public required int ChargeCaptureUnbundledCount { get; set; }
+    [JsonPropertyName("charge_capture_charges_not_linked_to_claims_count")]
+    public required int ChargeCaptureChargesNotLinkedToClaimsCount { get; set; }
 
     /// <summary>
     /// The count of charge capture bundles that have a bundle status of NOT_STARTED.
     /// </summary>
     [JsonPropertyName("charge_capture_bundles_not_started_count")]
     public required int ChargeCaptureBundlesNotStartedCount { get; set; }
+
+    /// <summary>
+    /// The count of charge capture bundles that have a bundle status of HELD.
+    /// </summary>
+    [JsonPropertyName("charge_capture_held_bundles_count")]
+    public required int ChargeCaptureHeldBundlesCount { get; set; }
 
     /// <summary>
     /// The count of charge capture bundles that have a bundle status of IN_ERROR.

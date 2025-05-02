@@ -7,8 +7,13 @@ namespace Candid.Net.PreEncounter.Coverages.V1;
 
 public record MemberInfo
 {
+    /// <summary>
+    /// Stedi requires that you supply at least one of these fields in the request: memberId, dateOfBirth, or lastName.
+    /// However, each payer has different requirements, so you should supply as many of the fields necessary for each payer
+    /// to identify the subscriber/dependent in their system.
+    /// </summary>
     [JsonPropertyName("member_id")]
-    public required string MemberId { get; set; }
+    public string? MemberId { get; set; }
 
     [JsonPropertyName("first_name")]
     public required string FirstName { get; set; }
@@ -16,8 +21,13 @@ public record MemberInfo
     [JsonPropertyName("last_name")]
     public required string LastName { get; set; }
 
+    /// <summary>
+    /// Stedi requires that you supply at least one of these fields in the request: memberId, dateOfBirth, or lastName.
+    /// However, each payer has different requirements, so you should supply as many of the fields necessary for each payer
+    /// to identify the subscriber/dependent in their system.
+    /// </summary>
     [JsonPropertyName("date_of_birth")]
-    public required DateOnly DateOfBirth { get; set; }
+    public DateOnly? DateOfBirth { get; set; }
 
     public override string ToString()
     {

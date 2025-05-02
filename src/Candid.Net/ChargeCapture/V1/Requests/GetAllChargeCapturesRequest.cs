@@ -47,14 +47,59 @@ public record GetAllChargeCapturesRequest
     public DateOnly? DateOfService { get; set; }
 
     /// <summary>
-    /// The ID of the charge capture bundle to which this charge capture belongs.
+    /// A list of claim IDs to filter by. This will return all charge captures that have a resulting claim with one of the IDs in this list.
+    /// </summary>
+    public IEnumerable<string> ClaimIds { get; set; } = new List<string>();
+
+    /// <summary>
+    /// A list of bundle IDs to filter by. Use `bundle_ids` instead.
     /// </summary>
     public string? BundleId { get; set; }
 
     /// <summary>
-    /// Whether to exclude charge captures which are associated with a charge capture bundle.
+    /// A list of bundle IDs to filter by.
     /// </summary>
-    public bool? ExcludeBundled { get; set; }
+    public IEnumerable<string> BundleIds { get; set; } = new List<string>();
+
+    /// <summary>
+    /// A list of billing provider NPIs to filter by. This will return all charge captures with one of the NPIs in this list.
+    /// </summary>
+    public IEnumerable<string> BillingProviderNpis { get; set; } = new List<string>();
+
+    /// <summary>
+    /// A string to filter by. This will return all charge captures with this service facility name.
+    /// </summary>
+    public string? ServiceFacilityName { get; set; }
+
+    /// <summary>
+    /// A list of primary payer IDs to filter by. This will return all charge captures with one of the primary payer IDs in this list.
+    /// </summary>
+    public IEnumerable<string> PrimaryPayerIds { get; set; } = new List<string>();
+
+    /// <summary>
+    /// A list of rendering provider NPIs to filter by. This will return all charge captures with one of the NPIs in this list.
+    /// </summary>
+    public IEnumerable<string> RenderingProviderNpis { get; set; } = new List<string>();
+
+    /// <summary>
+    /// A list of rendering provider names to filter by. This will return all charge captures with one of the names in this list.
+    /// </summary>
+    public IEnumerable<string> RenderingProviderNames { get; set; } = new List<string>();
+
+    /// <summary>
+    /// A list of supervising provider NPIs to filter by. This will return all charge captures with one of the NPIs in this list.
+    /// </summary>
+    public IEnumerable<string> SupervisingProviderNpis { get; set; } = new List<string>();
+
+    /// <summary>
+    /// A list of supervising provider names to filter by. This will return all charge captures with one of the names in this list.
+    /// </summary>
+    public IEnumerable<string> SupervisingProviderNames { get; set; } = new List<string>();
+
+    /// <summary>
+    /// Whether to exclude charge captures which are part of a bundle that has a created claim.
+    /// </summary>
+    public bool? ExcludeChargesLinkedToClaims { get; set; }
 
     public override string ToString()
     {

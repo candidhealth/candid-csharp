@@ -341,6 +341,15 @@ await client.ChargeCaptureBundles.V1.GetAllAsync(
         ChargeStatus = ChargeCaptureStatus.Planned,
         ChargeExternalId = "string",
         DateOfService = new DateOnly(2023, 1, 15),
+        ClaimIds = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
+        BundleIds = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
+        BillingProviderNpis = ["string"],
+        ServiceFacilityName = "string",
+        PrimaryPayerIds = ["string"],
+        RenderingProviderNpis = ["string"],
+        RenderingProviderNames = ["string"],
+        SupervisingProviderNpis = ["string"],
+        SupervisingProviderNames = ["string"],
         HasChargeCaptureUpdates = true,
     }
 );
@@ -582,8 +591,17 @@ await client.ChargeCapture.V1.GetAllAsync(
         Status = ChargeCaptureStatus.Planned,
         ChargeExternalId = "string",
         DateOfService = new DateOnly(2023, 1, 15),
+        ClaimIds = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
         BundleId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-        ExcludeBundled = true,
+        BundleIds = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
+        BillingProviderNpis = ["string"],
+        ServiceFacilityName = "string",
+        PrimaryPayerIds = ["string"],
+        RenderingProviderNpis = ["string"],
+        RenderingProviderNames = ["string"],
+        SupervisingProviderNpis = ["string"],
+        SupervisingProviderNames = ["string"],
+        ExcludeChargesLinkedToClaims = true,
     }
 );
 ```

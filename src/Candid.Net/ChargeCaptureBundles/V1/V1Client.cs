@@ -152,6 +152,15 @@ public partial class V1Client
     ///         ChargeStatus = ChargeCaptureStatus.Planned,
     ///         ChargeExternalId = "string",
     ///         DateOfService = new DateOnly(2023, 1, 15),
+    ///         ClaimIds = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
+    ///         BundleIds = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
+    ///         BillingProviderNpis = ["string"],
+    ///         ServiceFacilityName = "string",
+    ///         PrimaryPayerIds = ["string"],
+    ///         RenderingProviderNpis = ["string"],
+    ///         RenderingProviderNames = ["string"],
+    ///         SupervisingProviderNpis = ["string"],
+    ///         SupervisingProviderNames = ["string"],
     ///         HasChargeCaptureUpdates = true,
     ///     }
     /// );
@@ -164,6 +173,14 @@ public partial class V1Client
     )
     {
         var _query = new Dictionary<string, object>();
+        _query["claim_ids"] = request.ClaimIds.Select(_value => _value.ToString()).ToList();
+        _query["bundle_ids"] = request.BundleIds.Select(_value => _value.ToString()).ToList();
+        _query["billing_provider_npis"] = request.BillingProviderNpis;
+        _query["primary_payer_ids"] = request.PrimaryPayerIds;
+        _query["rendering_provider_npis"] = request.RenderingProviderNpis;
+        _query["rendering_provider_names"] = request.RenderingProviderNames;
+        _query["supervising_provider_npis"] = request.SupervisingProviderNpis;
+        _query["supervising_provider_names"] = request.SupervisingProviderNames;
         if (request.Limit != null)
         {
             _query["limit"] = request.Limit.ToString();
@@ -199,6 +216,10 @@ public partial class V1Client
         if (request.DateOfService != null)
         {
             _query["date_of_service"] = request.DateOfService.Value.ToString(Constants.DateFormat);
+        }
+        if (request.ServiceFacilityName != null)
+        {
+            _query["service_facility_name"] = request.ServiceFacilityName;
         }
         if (request.HasChargeCaptureUpdates != null)
         {

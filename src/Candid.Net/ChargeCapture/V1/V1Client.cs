@@ -207,8 +207,17 @@ public partial class V1Client
     ///         Status = ChargeCaptureStatus.Planned,
     ///         ChargeExternalId = "string",
     ///         DateOfService = new DateOnly(2023, 1, 15),
+    ///         ClaimIds = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
     ///         BundleId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         ExcludeBundled = true,
+    ///         BundleIds = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
+    ///         BillingProviderNpis = ["string"],
+    ///         ServiceFacilityName = "string",
+    ///         PrimaryPayerIds = ["string"],
+    ///         RenderingProviderNpis = ["string"],
+    ///         RenderingProviderNames = ["string"],
+    ///         SupervisingProviderNpis = ["string"],
+    ///         SupervisingProviderNames = ["string"],
+    ///         ExcludeChargesLinkedToClaims = true,
     ///     }
     /// );
     /// </code>
@@ -220,6 +229,14 @@ public partial class V1Client
     )
     {
         var _query = new Dictionary<string, object>();
+        _query["claim_ids"] = request.ClaimIds.Select(_value => _value.ToString()).ToList();
+        _query["bundle_ids"] = request.BundleIds.Select(_value => _value.ToString()).ToList();
+        _query["billing_provider_npis"] = request.BillingProviderNpis;
+        _query["primary_payer_ids"] = request.PrimaryPayerIds;
+        _query["rendering_provider_npis"] = request.RenderingProviderNpis;
+        _query["rendering_provider_names"] = request.RenderingProviderNames;
+        _query["supervising_provider_npis"] = request.SupervisingProviderNpis;
+        _query["supervising_provider_names"] = request.SupervisingProviderNames;
         if (request.Limit != null)
         {
             _query["limit"] = request.Limit.ToString();
@@ -256,9 +273,14 @@ public partial class V1Client
         {
             _query["bundle_id"] = request.BundleId.ToString();
         }
-        if (request.ExcludeBundled != null)
+        if (request.ServiceFacilityName != null)
         {
-            _query["exclude_bundled"] = request.ExcludeBundled.ToString();
+            _query["service_facility_name"] = request.ServiceFacilityName;
+        }
+        if (request.ExcludeChargesLinkedToClaims != null)
+        {
+            _query["exclude_charges_linked_to_claims"] =
+                request.ExcludeChargesLinkedToClaims.ToString();
         }
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
