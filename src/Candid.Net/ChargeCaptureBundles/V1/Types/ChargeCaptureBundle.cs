@@ -25,8 +25,8 @@ public record ChargeCaptureBundle
     /// Example: {"service_facility.npi": "99999999", "date_of_service": "2023-01-01"}
     /// </summary>
     [JsonPropertyName("characteristics")]
-    public Dictionary<string, string> Characteristics { get; set; } =
-        new Dictionary<string, string>();
+    public Dictionary<string, string?> Characteristics { get; set; } =
+        new Dictionary<string, string?>();
 
     /// <summary>
     /// All the underlying ChargeCaptures that are present in a ChargeCaptureBundle.

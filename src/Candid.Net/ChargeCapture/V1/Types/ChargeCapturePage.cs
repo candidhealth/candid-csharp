@@ -10,6 +10,9 @@ public record ChargeCapturePage
     [JsonPropertyName("items")]
     public IEnumerable<ChargeCapture> Items { get; set; } = new List<ChargeCapture>();
 
+    [JsonPropertyName("item_count")]
+    public required int ItemCount { get; set; }
+
     [JsonPropertyName("prev_page_token")]
     public string? PrevPageToken { get; set; }
 

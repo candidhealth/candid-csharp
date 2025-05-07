@@ -50,7 +50,13 @@ public record GetAllChargeCaptureBundlesRequest
     /// Date formatted as YYYY-MM-DD; eg: 2019-08-24.
     /// This date must be the local date in the timezone where the service occurred.
     /// </summary>
-    public DateOnly? DateOfService { get; set; }
+    public DateOnly? DateOfServiceMin { get; set; }
+
+    /// <summary>
+    /// Date formatted as YYYY-MM-DD; eg: 2019-08-24.
+    /// This date must be the local date in the timezone where the service occurred.
+    /// </summary>
+    public DateOnly? DateOfServiceMax { get; set; }
 
     /// <summary>
     /// A list of claim IDs to filter by. This will return all charge capture bundles that have a resulting claim with one of the IDs in this list.

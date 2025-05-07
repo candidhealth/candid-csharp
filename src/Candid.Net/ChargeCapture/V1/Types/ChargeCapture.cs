@@ -16,6 +16,9 @@ public record ChargeCapture
     [JsonPropertyName("charge_capture_data")]
     public required ChargeCaptureData ChargeCaptureData { get; set; }
 
+    [JsonPropertyName("date_of_service")]
+    public DateOnly? DateOfService { get; set; }
+
     [JsonPropertyName("patient_external_id")]
     public required string PatientExternalId { get; set; }
 

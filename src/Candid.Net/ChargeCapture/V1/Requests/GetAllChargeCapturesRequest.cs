@@ -44,7 +44,13 @@ public record GetAllChargeCapturesRequest
     /// Date formatted as YYYY-MM-DD; eg: 2019-08-24.
     /// This date must be the local date in the timezone where the service occurred.
     /// </summary>
-    public DateOnly? DateOfService { get; set; }
+    public DateOnly? DateOfServiceMin { get; set; }
+
+    /// <summary>
+    /// Date formatted as YYYY-MM-DD; eg: 2019-08-24.
+    /// This date must be the local date in the timezone where the service occurred.
+    /// </summary>
+    public DateOnly? DateOfServiceMax { get; set; }
 
     /// <summary>
     /// A list of claim IDs to filter by. This will return all charge captures that have a resulting claim with one of the IDs in this list.
@@ -97,9 +103,84 @@ public record GetAllChargeCapturesRequest
     public IEnumerable<string> SupervisingProviderNames { get; set; } = new List<string>();
 
     /// <summary>
-    /// Whether to exclude charge captures which are part of a bundle that has a created claim.
+    /// Whether to exclude charge captures which are part of a claim creation.
     /// </summary>
     public bool? ExcludeChargesLinkedToClaims { get; set; }
+
+    /// <summary>
+    /// The patient ID from the external EMR platform for the patient
+    /// </summary>
+    public string? PatientExternalIdRankedSort { get; set; }
+
+    /// <summary>
+    /// The charge capture status to show first
+    /// </summary>
+    public ChargeCaptureStatus? StatusRankedSort { get; set; }
+
+    /// <summary>
+    /// A client-specified unique ID to associate with this encounter;
+    /// for example, your internal encounter ID or a Dr. Chrono encounter ID.
+    /// This field should not contain PHI.
+    /// </summary>
+    public string? ChargeExternalIdRankedSort { get; set; }
+
+    /// <summary>
+    /// Date formatted as YYYY-MM-DD; eg: 2019-08-24.
+    /// This date must be the local date in the timezone where the service occurred.
+    /// </summary>
+    public DateOnly? DateOfServiceMinRankedSort { get; set; }
+
+    /// <summary>
+    /// Date formatted as YYYY-MM-DD; eg: 2019-08-24.
+    /// This date must be the local date in the timezone where the service occurred.
+    /// </summary>
+    public DateOnly? DateOfServiceMaxRankedSort { get; set; }
+
+    /// <summary>
+    /// A list of claim IDs to show first. This will return all charge captures that have a resulting claim with one of the IDs in this list.
+    /// </summary>
+    public IEnumerable<string> ClaimIdsRankedSort { get; set; } = new List<string>();
+
+    /// <summary>
+    /// A list of bundle IDs to show first.
+    /// </summary>
+    public IEnumerable<string> BundleIdsRankedSort { get; set; } = new List<string>();
+
+    /// <summary>
+    /// A list of billing provider NPIs to show first. This will return all charge captures with one of the NPIs in this list.
+    /// </summary>
+    public IEnumerable<string> BillingProviderNpisRankedSort { get; set; } = new List<string>();
+
+    /// <summary>
+    /// A string to show first. This will return all charge captures with this service facility name.
+    /// </summary>
+    public string? ServiceFacilityNameRankedSort { get; set; }
+
+    /// <summary>
+    /// A list of primary payer IDs to show first. This will return all charge captures with one of the primary payer IDs in this list.
+    /// </summary>
+    public IEnumerable<string> PrimaryPayerIdsRankedSort { get; set; } = new List<string>();
+
+    /// <summary>
+    /// A list of rendering provider NPIs to show first. This will return all charge captures with one of the NPIs in this list.
+    /// </summary>
+    public IEnumerable<string> RenderingProviderNpisRankedSort { get; set; } = new List<string>();
+
+    /// <summary>
+    /// A list of rendering provider names to show first. This will return all charge captures with one of the names in this list.
+    /// </summary>
+    public IEnumerable<string> RenderingProviderNamesRankedSort { get; set; } = new List<string>();
+
+    /// <summary>
+    /// A list of supervising provider NPIs to show first. This will return all charge captures with one of the NPIs in this list.
+    /// </summary>
+    public IEnumerable<string> SupervisingProviderNpisRankedSort { get; set; } = new List<string>();
+
+    /// <summary>
+    /// A list of supervising provider names to show first. This will return all charge captures with one of the names in this list.
+    /// </summary>
+    public IEnumerable<string> SupervisingProviderNamesRankedSort { get; set; } =
+        new List<string>();
 
     public override string ToString()
     {

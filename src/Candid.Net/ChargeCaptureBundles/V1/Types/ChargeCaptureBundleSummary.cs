@@ -8,7 +8,7 @@ namespace Candid.Net.ChargeCaptureBundles.V1;
 public record ChargeCaptureBundleSummary
 {
     /// <summary>
-    /// The count of charge captures which are not part of a bundle with a created claim.
+    /// The count of charge captures which are not part of a claim creation.
     /// </summary>
     [JsonPropertyName("charge_capture_charges_not_linked_to_claims_count")]
     public required int ChargeCaptureChargesNotLinkedToClaimsCount { get; set; }

@@ -151,7 +151,8 @@ public partial class V1Client
     ///         BundleStatus = ChargeCaptureBundleStatus.NotStarted,
     ///         ChargeStatus = ChargeCaptureStatus.Planned,
     ///         ChargeExternalId = "string",
-    ///         DateOfService = new DateOnly(2023, 1, 15),
+    ///         DateOfServiceMin = new DateOnly(2023, 1, 15),
+    ///         DateOfServiceMax = new DateOnly(2023, 1, 15),
     ///         ClaimIds = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
     ///         BundleIds = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
     ///         BillingProviderNpis = ["string"],
@@ -213,9 +214,17 @@ public partial class V1Client
         {
             _query["charge_external_id"] = request.ChargeExternalId;
         }
-        if (request.DateOfService != null)
+        if (request.DateOfServiceMin != null)
         {
-            _query["date_of_service"] = request.DateOfService.Value.ToString(Constants.DateFormat);
+            _query["date_of_service_min"] = request.DateOfServiceMin.Value.ToString(
+                Constants.DateFormat
+            );
+        }
+        if (request.DateOfServiceMax != null)
+        {
+            _query["date_of_service_max"] = request.DateOfServiceMax.Value.ToString(
+                Constants.DateFormat
+            );
         }
         if (request.ServiceFacilityName != null)
         {

@@ -340,7 +340,8 @@ await client.ChargeCaptureBundles.V1.GetAllAsync(
         BundleStatus = ChargeCaptureBundleStatus.NotStarted,
         ChargeStatus = ChargeCaptureStatus.Planned,
         ChargeExternalId = "string",
-        DateOfService = new DateOnly(2023, 1, 15),
+        DateOfServiceMin = new DateOnly(2023, 1, 15),
+        DateOfServiceMax = new DateOnly(2023, 1, 15),
         ClaimIds = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
         BundleIds = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
         BillingProviderNpis = ["string"],
@@ -590,7 +591,8 @@ await client.ChargeCapture.V1.GetAllAsync(
         PatientExternalId = "string",
         Status = ChargeCaptureStatus.Planned,
         ChargeExternalId = "string",
-        DateOfService = new DateOnly(2023, 1, 15),
+        DateOfServiceMin = new DateOnly(2023, 1, 15),
+        DateOfServiceMax = new DateOnly(2023, 1, 15),
         ClaimIds = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
         BundleId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
         BundleIds = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
@@ -602,6 +604,20 @@ await client.ChargeCapture.V1.GetAllAsync(
         SupervisingProviderNpis = ["string"],
         SupervisingProviderNames = ["string"],
         ExcludeChargesLinkedToClaims = true,
+        PatientExternalIdRankedSort = "string",
+        StatusRankedSort = ChargeCaptureStatus.Planned,
+        ChargeExternalIdRankedSort = "string",
+        DateOfServiceMinRankedSort = new DateOnly(2023, 1, 15),
+        DateOfServiceMaxRankedSort = new DateOnly(2023, 1, 15),
+        ClaimIdsRankedSort = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
+        BundleIdsRankedSort = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
+        BillingProviderNpisRankedSort = ["string"],
+        ServiceFacilityNameRankedSort = "string",
+        PrimaryPayerIdsRankedSort = ["string"],
+        RenderingProviderNpisRankedSort = ["string"],
+        RenderingProviderNamesRankedSort = ["string"],
+        SupervisingProviderNpisRankedSort = ["string"],
+        SupervisingProviderNamesRankedSort = ["string"],
     }
 );
 ```
@@ -3345,7 +3361,3 @@ await client.Encounters.V4.UpdateAsync(
 
 </dd>
 </dl>
-</details>
-
-## ExpectedNetworkStatus V1
-<details><summary><code>client.ExpectedNetworkStatus.V1.<a href="/src/Candid.Net/ExpectedNetworkStatus/V1/V1Client.cs">ComputeAsync</a>(ExpectedNetworkStatusRequest { ... }) -> ExpectedNetworkStatusResponse</code></summary>

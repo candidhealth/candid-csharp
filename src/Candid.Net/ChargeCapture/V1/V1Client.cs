@@ -206,7 +206,8 @@ public partial class V1Client
     ///         PatientExternalId = "string",
     ///         Status = ChargeCaptureStatus.Planned,
     ///         ChargeExternalId = "string",
-    ///         DateOfService = new DateOnly(2023, 1, 15),
+    ///         DateOfServiceMin = new DateOnly(2023, 1, 15),
+    ///         DateOfServiceMax = new DateOnly(2023, 1, 15),
     ///         ClaimIds = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
     ///         BundleId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///         BundleIds = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
@@ -218,6 +219,20 @@ public partial class V1Client
     ///         SupervisingProviderNpis = ["string"],
     ///         SupervisingProviderNames = ["string"],
     ///         ExcludeChargesLinkedToClaims = true,
+    ///         PatientExternalIdRankedSort = "string",
+    ///         StatusRankedSort = ChargeCaptureStatus.Planned,
+    ///         ChargeExternalIdRankedSort = "string",
+    ///         DateOfServiceMinRankedSort = new DateOnly(2023, 1, 15),
+    ///         DateOfServiceMaxRankedSort = new DateOnly(2023, 1, 15),
+    ///         ClaimIdsRankedSort = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
+    ///         BundleIdsRankedSort = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
+    ///         BillingProviderNpisRankedSort = ["string"],
+    ///         ServiceFacilityNameRankedSort = "string",
+    ///         PrimaryPayerIdsRankedSort = ["string"],
+    ///         RenderingProviderNpisRankedSort = ["string"],
+    ///         RenderingProviderNamesRankedSort = ["string"],
+    ///         SupervisingProviderNpisRankedSort = ["string"],
+    ///         SupervisingProviderNamesRankedSort = ["string"],
     ///     }
     /// );
     /// </code>
@@ -237,6 +252,19 @@ public partial class V1Client
         _query["rendering_provider_names"] = request.RenderingProviderNames;
         _query["supervising_provider_npis"] = request.SupervisingProviderNpis;
         _query["supervising_provider_names"] = request.SupervisingProviderNames;
+        _query["claim_ids_ranked_sort"] = request
+            .ClaimIdsRankedSort.Select(_value => _value.ToString())
+            .ToList();
+        _query["bundle_ids_ranked_sort"] = request
+            .BundleIdsRankedSort.Select(_value => _value.ToString())
+            .ToList();
+        _query["billing_provider_npis_ranked_sort"] = request.BillingProviderNpisRankedSort;
+        _query["primary_payer_ids_ranked_sort"] = request.PrimaryPayerIdsRankedSort;
+        _query["rendering_provider_npis_ranked_sort"] = request.RenderingProviderNpisRankedSort;
+        _query["rendering_provider_names_ranked_sort"] = request.RenderingProviderNamesRankedSort;
+        _query["supervising_provider_npis_ranked_sort"] = request.SupervisingProviderNpisRankedSort;
+        _query["supervising_provider_names_ranked_sort"] =
+            request.SupervisingProviderNamesRankedSort;
         if (request.Limit != null)
         {
             _query["limit"] = request.Limit.ToString();
@@ -265,9 +293,17 @@ public partial class V1Client
         {
             _query["charge_external_id"] = request.ChargeExternalId;
         }
-        if (request.DateOfService != null)
+        if (request.DateOfServiceMin != null)
         {
-            _query["date_of_service"] = request.DateOfService.Value.ToString(Constants.DateFormat);
+            _query["date_of_service_min"] = request.DateOfServiceMin.Value.ToString(
+                Constants.DateFormat
+            );
+        }
+        if (request.DateOfServiceMax != null)
+        {
+            _query["date_of_service_max"] = request.DateOfServiceMax.Value.ToString(
+                Constants.DateFormat
+            );
         }
         if (request.BundleId != null)
         {
@@ -281,6 +317,32 @@ public partial class V1Client
         {
             _query["exclude_charges_linked_to_claims"] =
                 request.ExcludeChargesLinkedToClaims.ToString();
+        }
+        if (request.PatientExternalIdRankedSort != null)
+        {
+            _query["patient_external_id_ranked_sort"] = request.PatientExternalIdRankedSort;
+        }
+        if (request.StatusRankedSort != null)
+        {
+            _query["status_ranked_sort"] = request.StatusRankedSort.Value.Stringify();
+        }
+        if (request.ChargeExternalIdRankedSort != null)
+        {
+            _query["charge_external_id_ranked_sort"] = request.ChargeExternalIdRankedSort;
+        }
+        if (request.DateOfServiceMinRankedSort != null)
+        {
+            _query["date_of_service_min_ranked_sort"] =
+                request.DateOfServiceMinRankedSort.Value.ToString(Constants.DateFormat);
+        }
+        if (request.DateOfServiceMaxRankedSort != null)
+        {
+            _query["date_of_service_max_ranked_sort"] =
+                request.DateOfServiceMaxRankedSort.Value.ToString(Constants.DateFormat);
+        }
+        if (request.ServiceFacilityNameRankedSort != null)
+        {
+            _query["service_facility_name_ranked_sort"] = request.ServiceFacilityNameRankedSort;
         }
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
