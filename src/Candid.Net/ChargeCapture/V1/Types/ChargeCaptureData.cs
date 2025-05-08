@@ -50,7 +50,7 @@ public record ChargeCaptureData
     /// used in the billing process.
     /// </summary>
     [JsonPropertyName("billing_notes")]
-    public IEnumerable<BillingNote>? BillingNotes { get; set; }
+    public IEnumerable<BillingNoteOptional>? BillingNotes { get; set; }
 
     /// <summary>
     /// Whether this patient has authorized insurance payments to be made to you, not them. If false, patient may receive reimbursement. Box 13 on the CMS-1500 claim form.
