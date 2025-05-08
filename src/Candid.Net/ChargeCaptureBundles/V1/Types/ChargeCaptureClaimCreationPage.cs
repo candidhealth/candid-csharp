@@ -5,10 +5,11 @@ using Candid.Net.Core;
 
 namespace Candid.Net.ChargeCaptureBundles.V1;
 
-public record ChargeCaptureBundlePage
+public record ChargeCaptureClaimCreationPage
 {
     [JsonPropertyName("items")]
-    public IEnumerable<ChargeCaptureBundle> Items { get; set; } = new List<ChargeCaptureBundle>();
+    public IEnumerable<ChargeCaptureClaimCreation> Items { get; set; } =
+        new List<ChargeCaptureClaimCreation>();
 
     [JsonPropertyName("prev_page_token")]
     public string? PrevPageToken { get; set; }

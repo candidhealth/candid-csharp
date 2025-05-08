@@ -12,14 +12,14 @@ public record ChargeCaptureError
 
     /// <summary>
     /// The underlying Charge Capture that this error object references.
-    /// The Charge Capture referenced will be a part of the bundle tied to this error.
-    /// Errors may also refer to all charge_captures present in a bundle, in which case this field will be null.
+    /// The Charge Capture referenced will be a part of the Claim Creation tied to this error.
+    /// Errors may also refer to all charge_captures present in a Claim Creation, in which case this field will be null.
     /// </summary>
     [JsonPropertyName("charge_capture_id")]
     public string? ChargeCaptureId { get; set; }
 
     /// <summary>
-    /// A human readable error explaining why this charge capture bundle failed to create a claim.
+    /// A human readable error explaining why this charge capture Claim Creation failed to create a claim.
     /// </summary>
     [JsonPropertyName("message")]
     public required string Message { get; set; }
@@ -32,10 +32,10 @@ public record ChargeCaptureError
     public string? FieldInError { get; set; }
 
     /// <summary>
-    /// The ID of the ChargeCaptureBundle associated with this Error.
+    /// The ID of the ChargeCaptureClaimCreation associated with this Error.
     /// </summary>
-    [JsonPropertyName("bundle_id")]
-    public required string BundleId { get; set; }
+    [JsonPropertyName("claim_creation_id")]
+    public required string ClaimCreationId { get; set; }
 
     public override string ToString()
     {

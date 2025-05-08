@@ -21,8 +21,8 @@ public partial class V1Client
     /// await client.ChargeCaptureBundles.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code>
     /// </example>
-    public async Task<ChargeCaptureBundle> GetAsync(
-        string chargeCaptureBundleId,
+    public async Task<ChargeCaptureClaimCreation> GetAsync(
+        string chargeCaptureClaimCreationId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -32,7 +32,7 @@ public partial class V1Client
             {
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
-                Path = $"/api/charge_capture_bundle/v1/{chargeCaptureBundleId}",
+                Path = $"/api/charge_capture_claim_creation/v1/{chargeCaptureClaimCreationId}",
                 Options = options,
             },
             cancellationToken
@@ -42,7 +42,7 @@ public partial class V1Client
         {
             try
             {
-                return JsonUtils.Deserialize<ChargeCaptureBundle>(responseBody)!;
+                return JsonUtils.Deserialize<ChargeCaptureClaimCreation>(responseBody)!;
             }
             catch (JsonException e)
             {
@@ -62,7 +62,7 @@ public partial class V1Client
     /// await client.ChargeCaptureBundles.V1.GetSummaryAsync();
     /// </code>
     /// </example>
-    public async Task<ChargeCaptureBundleSummary> GetSummaryAsync(
+    public async Task<ChargeCaptureClaimCreationSummary> GetSummaryAsync(
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -72,7 +72,7 @@ public partial class V1Client
             {
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
-                Path = "/api/charge_capture_bundle/v1/all/summary",
+                Path = "/api/charge_capture_claim_creation/v1/all/summary",
                 Options = options,
             },
             cancellationToken
@@ -82,48 +82,7 @@ public partial class V1Client
         {
             try
             {
-                return JsonUtils.Deserialize<ChargeCaptureBundleSummary>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new CandidException("Failed to deserialize response", e);
-            }
-        }
-
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
-    }
-
-    /// <example>
-    /// <code>
-    /// await client.ChargeCaptureBundles.V1.ResubmitAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
-    /// </code>
-    /// </example>
-    public async Task<ChargeCaptureBundle> ResubmitAsync(
-        string chargeCaptureBundleId,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.CandidApi,
-                Method = HttpMethod.Post,
-                Path = $"/api/charge_capture_bundle/v1/{chargeCaptureBundleId}",
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            try
-            {
-                return JsonUtils.Deserialize<ChargeCaptureBundle>(responseBody)!;
+                return JsonUtils.Deserialize<ChargeCaptureClaimCreationSummary>(responseBody)!;
             }
             catch (JsonException e)
             {
@@ -141,20 +100,20 @@ public partial class V1Client
     /// <example>
     /// <code>
     /// await client.ChargeCaptureBundles.V1.GetAllAsync(
-    ///     new GetAllChargeCaptureBundlesRequest
+    ///     new GetAllChargeCaptureClaimCreationsRequest
     ///     {
     ///         Limit = 1,
-    ///         Sort = ChargeCaptureBundleSortField.CreatedAt,
+    ///         Sort = ChargeCaptureClaimCreationSortField.CreatedAt,
     ///         SortDirection = Candid.Net.SortDirection.Asc,
     ///         PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
     ///         PatientExternalId = "string",
-    ///         BundleStatus = ChargeCaptureBundleStatus.NotStarted,
+    ///         ClaimCreationStatus = ChargeCaptureClaimCreationStatus.NotStarted,
     ///         ChargeStatus = ChargeCaptureStatus.Planned,
     ///         ChargeExternalId = "string",
     ///         DateOfServiceMin = new DateOnly(2023, 1, 15),
     ///         DateOfServiceMax = new DateOnly(2023, 1, 15),
     ///         ClaimIds = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
-    ///         BundleIds = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
+    ///         ClaimCreationIds = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
     ///         BillingProviderNpis = ["string"],
     ///         ServiceFacilityName = "string",
     ///         PrimaryPayerIds = ["string"],
@@ -167,15 +126,17 @@ public partial class V1Client
     /// );
     /// </code>
     /// </example>
-    public async Task<ChargeCaptureBundlePage> GetAllAsync(
-        GetAllChargeCaptureBundlesRequest request,
+    public async Task<ChargeCaptureClaimCreationPage> GetAllAsync(
+        GetAllChargeCaptureClaimCreationsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         var _query = new Dictionary<string, object>();
         _query["claim_ids"] = request.ClaimIds.Select(_value => _value.ToString()).ToList();
-        _query["bundle_ids"] = request.BundleIds.Select(_value => _value.ToString()).ToList();
+        _query["claim_creation_ids"] = request
+            .ClaimCreationIds.Select(_value => _value.ToString())
+            .ToList();
         _query["billing_provider_npis"] = request.BillingProviderNpis;
         _query["primary_payer_ids"] = request.PrimaryPayerIds;
         _query["rendering_provider_npis"] = request.RenderingProviderNpis;
@@ -202,9 +163,9 @@ public partial class V1Client
         {
             _query["patient_external_id"] = request.PatientExternalId;
         }
-        if (request.BundleStatus != null)
+        if (request.ClaimCreationStatus != null)
         {
-            _query["bundle_status"] = request.BundleStatus.Value.Stringify();
+            _query["claim_creation_status"] = request.ClaimCreationStatus.Value.Stringify();
         }
         if (request.ChargeStatus != null)
         {
@@ -239,7 +200,7 @@ public partial class V1Client
             {
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Get,
-                Path = "/api/charge_capture_bundle/v1",
+                Path = "/api/charge_capture_claim_creation/v1",
                 Query = _query,
                 Options = options,
             },
@@ -250,7 +211,7 @@ public partial class V1Client
         {
             try
             {
-                return JsonUtils.Deserialize<ChargeCaptureBundlePage>(responseBody)!;
+                return JsonUtils.Deserialize<ChargeCaptureClaimCreationPage>(responseBody)!;
             }
             catch (JsonException e)
             {

@@ -9,6 +9,7 @@ using Candid.Net.Core;
 using Candid.Net.Credentialing;
 using Candid.Net.CustomSchemas;
 using Candid.Net.Eligibility;
+using Candid.Net.EncounterAttachments;
 using Candid.Net.EncounterProviders;
 using Candid.Net.Encounters;
 using Candid.Net.ExpectedNetworkStatus;
@@ -53,7 +54,7 @@ public partial class Candid
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Candid.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Candid.Net/0.42.5" },
+                { "User-Agent", "Candid.Net/0.43.0" },
             }
         );
         clientOptions ??= new ClientOptions();
@@ -82,6 +83,7 @@ public partial class Candid
         Credentialing = new CredentialingClient(_client);
         CustomSchemas = new CustomSchemasClient(_client);
         Eligibility = new EligibilityClient(_client);
+        EncounterAttachments = new EncounterAttachmentsClient(_client);
         EncounterProviders = new EncounterProvidersClient(_client);
         Encounters = new EncountersClient(_client);
         ExpectedNetworkStatus = new ExpectedNetworkStatusClient(_client);
@@ -136,6 +138,8 @@ public partial class Candid
     public CustomSchemasClient CustomSchemas { get; init; }
 
     public EligibilityClient Eligibility { get; init; }
+
+    public EncounterAttachmentsClient EncounterAttachments { get; init; }
 
     public EncounterProvidersClient EncounterProviders { get; init; }
 

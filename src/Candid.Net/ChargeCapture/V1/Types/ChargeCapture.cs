@@ -35,8 +35,8 @@ public record ChargeCapture
     public IEnumerable<ChargeCapturePostBilledChange> Updates { get; set; } =
         new List<ChargeCapturePostBilledChange>();
 
-    [JsonPropertyName("bundle_id")]
-    public string? BundleId { get; set; }
+    [JsonPropertyName("claim_creation_id")]
+    public string? ClaimCreationId { get; set; }
 
     public override string ToString()
     {

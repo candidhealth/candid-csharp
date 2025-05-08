@@ -5,7 +5,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.ChargeCaptureBundles.V1;
 
-public record GetAllChargeCaptureBundlesRequest
+public record GetAllChargeCaptureClaimCreationsRequest
 {
     /// <summary>
     /// Maximum number of entities per page, defaults to 100.
@@ -15,7 +15,7 @@ public record GetAllChargeCaptureBundlesRequest
     /// <summary>
     /// Defaults to created_at
     /// </summary>
-    public ChargeCaptureBundleSortField? Sort { get; set; }
+    public ChargeCaptureClaimCreationSortField? Sort { get; set; }
 
     /// <summary>
     /// Sort direction. Defaults to descending order if not provided.
@@ -30,9 +30,9 @@ public record GetAllChargeCaptureBundlesRequest
     public string? PatientExternalId { get; set; }
 
     /// <summary>
-    /// the status of the charge capture bundle, refers to whether it was able to create an encounter.
+    /// the status of the charge capture Claim Creation, refers to whether it was able to create a claim.
     /// </summary>
-    public ChargeCaptureBundleStatus? BundleStatus { get; set; }
+    public ChargeCaptureClaimCreationStatus? ClaimCreationStatus { get; set; }
 
     /// <summary>
     /// the status of the charge captures
@@ -59,52 +59,52 @@ public record GetAllChargeCaptureBundlesRequest
     public DateOnly? DateOfServiceMax { get; set; }
 
     /// <summary>
-    /// A list of claim IDs to filter by. This will return all charge capture bundles that have a resulting claim with one of the IDs in this list.
+    /// A list of claim IDs to filter by. This will return all charge capture claim_creations that have a resulting claim with one of the IDs in this list.
     /// </summary>
     public IEnumerable<string> ClaimIds { get; set; } = new List<string>();
 
     /// <summary>
-    /// A list of bundle IDs to filter by.
+    /// A list of Claim Creation IDs to filter by.
     /// </summary>
-    public IEnumerable<string> BundleIds { get; set; } = new List<string>();
+    public IEnumerable<string> ClaimCreationIds { get; set; } = new List<string>();
 
     /// <summary>
-    /// A list of billing provider NPIs to filter by. This will return all charge capture bundles which include one or more charges with one of the NPIs in this list.
+    /// A list of billing provider NPIs to filter by. This will return all charge capture claim_creations which include one or more charges with one of the NPIs in this list.
     /// </summary>
     public IEnumerable<string> BillingProviderNpis { get; set; } = new List<string>();
 
     /// <summary>
-    /// A string to filter by. This will return all charge capture bundles which include one or more charges with this service facility name.
+    /// A string to filter by. This will return all charge capture claim_creations which include one or more charges with this service facility name.
     /// </summary>
     public string? ServiceFacilityName { get; set; }
 
     /// <summary>
-    /// A list of primary payer IDs to filter by. This will return all charge capture bundles which include one or more charges with one of the primary payer IDs in this list.
+    /// A list of primary payer IDs to filter by. This will return all charge capture claim_creations which include one or more charges with one of the primary payer IDs in this list.
     /// </summary>
     public IEnumerable<string> PrimaryPayerIds { get; set; } = new List<string>();
 
     /// <summary>
-    /// A list of rendering provider NPIs to filter by. This will return all charge capture bundles which include one or more charges with one of the NPIs in this list.
+    /// A list of rendering provider NPIs to filter by. This will return all charge capture claim_creations which include one or more charges with one of the NPIs in this list.
     /// </summary>
     public IEnumerable<string> RenderingProviderNpis { get; set; } = new List<string>();
 
     /// <summary>
-    /// A list of rendering provider names to filter by. This will return all charge capture bundles which include one or more charges with one of the names in this list.
+    /// A list of rendering provider names to filter by. This will return all charge capture claim_creations which include one or more charges with one of the names in this list.
     /// </summary>
     public IEnumerable<string> RenderingProviderNames { get; set; } = new List<string>();
 
     /// <summary>
-    /// A list of supervising provider NPIs to filter by. This will return all charge capture bundles which include one or more charges with one of the NPIs in this list.
+    /// A list of supervising provider NPIs to filter by. This will return all charge capture claim_creations which include one or more charges with one of the NPIs in this list.
     /// </summary>
     public IEnumerable<string> SupervisingProviderNpis { get; set; } = new List<string>();
 
     /// <summary>
-    /// A list of supervising provider names to filter by. This will return all charge capture bundles which include one or more charges with one of the names in this list.
+    /// A list of supervising provider names to filter by. This will return all charge capture claim_creations which include one or more charges with one of the names in this list.
     /// </summary>
     public IEnumerable<string> SupervisingProviderNames { get; set; } = new List<string>();
 
     /// <summary>
-    /// If true, only return bundles that have charge captures that have been updated since the bundle has had a status of BILLED. See the updates property on ChargeCapture for more details.
+    /// If true, only return claim_creations that have charge captures that have been updated since the Claim Creation has had a status of BILLED. See the updates property on ChargeCapture for more details.
     /// </summary>
     public bool? HasChargeCaptureUpdates { get; set; }
 

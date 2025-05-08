@@ -58,14 +58,9 @@ public record GetAllChargeCapturesRequest
     public IEnumerable<string> ClaimIds { get; set; } = new List<string>();
 
     /// <summary>
-    /// A list of bundle IDs to filter by. Use `bundle_ids` instead.
+    /// A list of Claim Creation IDs to filter by.
     /// </summary>
-    public string? BundleId { get; set; }
-
-    /// <summary>
-    /// A list of bundle IDs to filter by.
-    /// </summary>
-    public IEnumerable<string> BundleIds { get; set; } = new List<string>();
+    public IEnumerable<string> ClaimCreationIds { get; set; } = new List<string>();
 
     /// <summary>
     /// A list of billing provider NPIs to filter by. This will return all charge captures with one of the NPIs in this list.
@@ -142,9 +137,9 @@ public record GetAllChargeCapturesRequest
     public IEnumerable<string> ClaimIdsRankedSort { get; set; } = new List<string>();
 
     /// <summary>
-    /// A list of bundle IDs to show first.
+    /// A list of Claim Creation IDs to show first.
     /// </summary>
-    public IEnumerable<string> BundleIdsRankedSort { get; set; } = new List<string>();
+    public IEnumerable<string> ClaimCreationIdsRankedSort { get; set; } = new List<string>();
 
     /// <summary>
     /// A list of billing provider NPIs to show first. This will return all charge captures with one of the NPIs in this list.

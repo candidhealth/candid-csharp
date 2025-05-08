@@ -20,23 +20,7 @@ public partial class V2Client
     /// <code>
     /// await client.EncounterProviders.V2.UpdateReferringProviderAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new ReferringProviderUpdate
-    ///     {
-    ///         Npi = "string",
-    ///         TaxonomyCode = "string",
-    ///         Address = new StreetAddressLongZip
-    ///         {
-    ///             Address1 = "123 Main St",
-    ///             Address2 = "Apt 1",
-    ///             City = "New York",
-    ///             State = State.Ny,
-    ///             ZipCode = "10001",
-    ///             ZipPlusFourCode = "1234",
-    ///         },
-    ///         FirstName = "string",
-    ///         LastName = "string",
-    ///         OrganizationName = "string",
-    ///     }
+    ///     new ReferringProviderUpdate()
     /// );
     /// </code>
     /// </example>
@@ -82,24 +66,7 @@ public partial class V2Client
     /// <code>
     /// await client.EncounterProviders.V2.UpdateInitialReferringProviderAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new InitialReferringProviderUpdate
-    ///     {
-    ///         Npi = "string",
-    ///         TaxonomyCode = "string",
-    ///         Address = new StreetAddressLongZip
-    ///         {
-    ///             Address1 = "123 Main St",
-    ///             Address2 = "Apt 1",
-    ///             City = "New York",
-    ///             State = State.Ny,
-    ///             ZipCode = "10001",
-    ///             ZipPlusFourCode = "1234",
-    ///         },
-    ///         Qualifier = QualifierCode.Dq,
-    ///         FirstName = "string",
-    ///         LastName = "string",
-    ///         OrganizationName = "string",
-    ///     }
+    ///     new InitialReferringProviderUpdate()
     /// );
     /// </code>
     /// </example>
@@ -145,23 +112,7 @@ public partial class V2Client
     /// <code>
     /// await client.EncounterProviders.V2.UpdateSupervisingProviderAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new SupervisingProviderUpdate
-    ///     {
-    ///         Npi = "string",
-    ///         TaxonomyCode = "string",
-    ///         Address = new StreetAddressLongZip
-    ///         {
-    ///             Address1 = "123 Main St",
-    ///             Address2 = "Apt 1",
-    ///             City = "New York",
-    ///             State = State.Ny,
-    ///             ZipCode = "10001",
-    ///             ZipPlusFourCode = "1234",
-    ///         },
-    ///         FirstName = "string",
-    ///         LastName = "string",
-    ///         OrganizationName = "string",
-    ///     }
+    ///     new SupervisingProviderUpdate()
     /// );
     /// </code>
     /// </example>
@@ -220,9 +171,6 @@ public partial class V2Client
     ///             ZipCode = "10001",
     ///             ZipPlusFourCode = "1234",
     ///         },
-    ///         FirstName = "string",
-    ///         LastName = "string",
-    ///         OrganizationName = "string",
     ///     }
     /// );
     /// </code>
@@ -282,9 +230,6 @@ public partial class V2Client
     ///             ZipCode = "10001",
     ///             ZipPlusFourCode = "1234",
     ///         },
-    ///         FirstName = "string",
-    ///         LastName = "string",
-    ///         OrganizationName = "string",
     ///     }
     /// );
     /// </code>
@@ -345,9 +290,6 @@ public partial class V2Client
     ///             ZipPlusFourCode = "1234",
     ///         },
     ///         Qualifier = QualifierCode.Dq,
-    ///         FirstName = "string",
-    ///         LastName = "string",
-    ///         OrganizationName = "string",
     ///     }
     /// );
     /// </code>
@@ -408,9 +350,6 @@ public partial class V2Client
     ///             ZipCode = "10001",
     ///             ZipPlusFourCode = "1234",
     ///         },
-    ///         FirstName = "string",
-    ///         LastName = "string",
-    ///         OrganizationName = "string",
     ///     }
     /// );
     /// </code>
@@ -470,9 +409,6 @@ public partial class V2Client
     ///             ZipCode = "10001",
     ///             ZipPlusFourCode = "1234",
     ///         },
-    ///         FirstName = "string",
-    ///         LastName = "string",
-    ///         OrganizationName = "string",
     ///     }
     /// );
     /// </code>

@@ -6,8 +6,8 @@ using Candid.Net.Core;
 
 namespace Candid.Net.ChargeCaptureBundles.V1;
 
-[JsonConverter(typeof(EnumSerializer<ChargeCaptureBundleSortField>))]
-public enum ChargeCaptureBundleSortField
+[JsonConverter(typeof(EnumSerializer<ChargeCaptureClaimCreationSortField>))]
+public enum ChargeCaptureClaimCreationSortField
 {
     [EnumMember(Value = "created_at")]
     CreatedAt,

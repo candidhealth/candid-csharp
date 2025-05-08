@@ -6,8 +6,8 @@ using Candid.Net.Core;
 
 namespace Candid.Net.ChargeCaptureBundles.V1;
 
-[JsonConverter(typeof(EnumSerializer<ChargeCaptureBundleStatus>))]
-public enum ChargeCaptureBundleStatus
+[JsonConverter(typeof(EnumSerializer<ChargeCaptureClaimCreationStatus>))]
+public enum ChargeCaptureClaimCreationStatus
 {
     [EnumMember(Value = "not-started")]
     NotStarted,

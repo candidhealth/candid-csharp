@@ -63,9 +63,6 @@ public partial class V2Client
     ///                 ZipCode = "10001",
     ///                 ZipPlusFourCode = "1234",
     ///             },
-    ///             FirstName = "string",
-    ///             LastName = "string",
-    ///             OrganizationName = "string",
     ///         },
     ///         TestResults = new List&lt;TestResult&gt;()
     ///         {

@@ -6,7 +6,7 @@ using Candid.Net.Core;
 
 namespace Candid.Net.ChargeCaptureBundles.V1;
 
-public record ChargeCaptureBundle
+public record ChargeCaptureClaimCreation
 {
     [JsonPropertyName("id")]
     public required string Id { get; set; }
@@ -15,10 +15,10 @@ public record ChargeCaptureBundle
     public string? CreatedEncounterId { get; set; }
 
     /// <summary>
-    /// Status of the Bundle, Successful means that the Bundle created a corresponding Claim
+    /// Status of the Claim Creation, Successful means that the Claim Creation created a corresponding Claim
     /// </summary>
     [JsonPropertyName("status")]
-    public required ChargeCaptureBundleStatus Status { get; set; }
+    public required ChargeCaptureClaimCreationStatus Status { get; set; }
 
     /// <summary>
     /// A dictionary of characteristics that are used to group charge captures together based on the bundling configuration.
@@ -29,15 +29,8 @@ public record ChargeCaptureBundle
         new Dictionary<string, string?>();
 
     /// <summary>
-    /// All the underlying ChargeCaptures that are present in a ChargeCaptureBundle.
-    /// </summary>
-    [JsonPropertyName("charge_captures")]
-    public IEnumerable<ChargeCapture.V1.ChargeCapture> ChargeCaptures { get; set; } =
-        new List<ChargeCapture.V1.ChargeCapture>();
-
-    /// <summary>
-    /// All errors that were found when the bundle was attempted to be created.
-    /// Errors can correspond to the Bundle as a whole or specific underlying Charge Captures.
+    /// All errors that were found when the Claim was attempted to be created.
+    /// Errors can correspond to the Claim Creation as a whole or specific underlying Charge Captures.
     /// </summary>
     [JsonPropertyName("errors")]
     public IEnumerable<ChargeCaptureError> Errors { get; set; } = new List<ChargeCaptureError>();
