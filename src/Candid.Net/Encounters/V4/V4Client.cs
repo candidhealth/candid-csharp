@@ -242,6 +242,9 @@ public partial class V4Client
     ///             TaxonomyCode = "string",
     ///             ProviderCommercialLicenseType =
     ///                 BillingProviderCommercialLicenseType.LicensedClinicalSocialWorker,
+    ///             FirstName = "string",
+    ///             LastName = "string",
+    ///             OrganizationName = "string",
     ///         },
     ///         RenderingProvider = new RenderingProvider
     ///         {
@@ -256,6 +259,9 @@ public partial class V4Client
     ///                 ZipCode = "10001",
     ///                 ZipPlusFourCode = "1234",
     ///             },
+    ///             FirstName = "string",
+    ///             LastName = "string",
+    ///             OrganizationName = "string",
     ///         },
     ///         ReferringProvider = new ReferringProvider
     ///         {
@@ -270,6 +276,9 @@ public partial class V4Client
     ///                 ZipCode = "10001",
     ///                 ZipPlusFourCode = "1234",
     ///             },
+    ///             FirstName = "string",
+    ///             LastName = "string",
+    ///             OrganizationName = "string",
     ///         },
     ///         InitialReferringProvider = new InitialReferringProvider
     ///         {
@@ -285,6 +294,9 @@ public partial class V4Client
     ///                 ZipPlusFourCode = "1234",
     ///             },
     ///             Qualifier = QualifierCode.Dq,
+    ///             FirstName = "string",
+    ///             LastName = "string",
+    ///             OrganizationName = "string",
     ///         },
     ///         SupervisingProvider = new SupervisingProvider
     ///         {
@@ -299,6 +311,9 @@ public partial class V4Client
     ///                 ZipCode = "10001",
     ///                 ZipPlusFourCode = "1234",
     ///             },
+    ///             FirstName = "string",
+    ///             LastName = "string",
+    ///             OrganizationName = "string",
     ///         },
     ///         ServiceFacility = new EncounterServiceFacilityBase
     ///         {
@@ -322,8 +337,28 @@ public partial class V4Client
     ///                 MemberId = "string",
     ///                 PayerName = "string",
     ///                 PayerId = "string",
+    ///                 RxBin = "string",
+    ///                 RxPcn = "string",
+    ///                 ImageUrlFront = "string",
+    ///                 ImageUrlBack = "string",
+    ///                 EmrPayerCrosswalk = EmrPayerCrosswalk.Healthie,
+    ///                 GroupNumber = "string",
+    ///                 PlanName = "string",
+    ///                 PlanType = SourceOfPaymentCode.SelfPay,
+    ///                 InsuranceType = Candid.Net.InsuranceTypeCode.C01,
+    ///                 PayerPlanGroupId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///             },
     ///             PatientRelationshipToSubscriberCode = PatientRelationshipToInsuredCodeAll.Spouse,
+    ///             DateOfBirth = new DateOnly(2023, 1, 15),
+    ///             Address = new StreetAddressShortZip
+    ///             {
+    ///                 Address1 = "123 Main St",
+    ///                 Address2 = "Apt 1",
+    ///                 City = "New York",
+    ///                 State = State.Ny,
+    ///                 ZipCode = "10001",
+    ///                 ZipPlusFourCode = "1234",
+    ///             },
     ///             FirstName = "string",
     ///             LastName = "string",
     ///             Gender = Candid.Net.Gender.Male,
@@ -335,8 +370,28 @@ public partial class V4Client
     ///                 MemberId = "string",
     ///                 PayerName = "string",
     ///                 PayerId = "string",
+    ///                 RxBin = "string",
+    ///                 RxPcn = "string",
+    ///                 ImageUrlFront = "string",
+    ///                 ImageUrlBack = "string",
+    ///                 EmrPayerCrosswalk = EmrPayerCrosswalk.Healthie,
+    ///                 GroupNumber = "string",
+    ///                 PlanName = "string",
+    ///                 PlanType = SourceOfPaymentCode.SelfPay,
+    ///                 InsuranceType = Candid.Net.InsuranceTypeCode.C01,
+    ///                 PayerPlanGroupId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///             },
     ///             PatientRelationshipToSubscriberCode = PatientRelationshipToInsuredCodeAll.Spouse,
+    ///             DateOfBirth = new DateOnly(2023, 1, 15),
+    ///             Address = new StreetAddressShortZip
+    ///             {
+    ///                 Address1 = "123 Main St",
+    ///                 Address2 = "Apt 1",
+    ///                 City = "New York",
+    ///                 State = State.Ny,
+    ///                 ZipCode = "10001",
+    ///                 ZipPlusFourCode = "1234",
+    ///             },
     ///             FirstName = "string",
     ///             LastName = "string",
     ///             Gender = Candid.Net.Gender.Male,
@@ -348,8 +403,28 @@ public partial class V4Client
     ///                 MemberId = "string",
     ///                 PayerName = "string",
     ///                 PayerId = "string",
+    ///                 RxBin = "string",
+    ///                 RxPcn = "string",
+    ///                 ImageUrlFront = "string",
+    ///                 ImageUrlBack = "string",
+    ///                 EmrPayerCrosswalk = EmrPayerCrosswalk.Healthie,
+    ///                 GroupNumber = "string",
+    ///                 PlanName = "string",
+    ///                 PlanType = SourceOfPaymentCode.SelfPay,
+    ///                 InsuranceType = Candid.Net.InsuranceTypeCode.C01,
+    ///                 PayerPlanGroupId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///             },
     ///             PatientRelationshipToSubscriberCode = PatientRelationshipToInsuredCodeAll.Spouse,
+    ///             DateOfBirth = new DateOnly(2023, 1, 15),
+    ///             Address = new StreetAddressShortZip
+    ///             {
+    ///                 Address1 = "123 Main St",
+    ///                 Address2 = "Apt 1",
+    ///                 City = "New York",
+    ///                 State = State.Ny,
+    ///                 ZipCode = "10001",
+    ///                 ZipPlusFourCode = "1234",
+    ///             },
     ///             FirstName = "string",
     ///             LastName = "string",
     ///             Gender = Candid.Net.Gender.Male,
@@ -480,6 +555,8 @@ public partial class V4Client
     ///         EpsdtReferral = new EpsdtReferral
     ///         {
     ///             ConditionIndicator1 = EpsdtReferralConditionIndicatorCode.Av,
+    ///             ConditionIndicator2 = EpsdtReferralConditionIndicatorCode.Av,
+    ///             ConditionIndicator3 = EpsdtReferralConditionIndicatorCode.Av,
     ///         },
     ///         ClaimSupplementalInformation = new List&lt;ClaimSupplementalInformation&gt;()
     ///         {
@@ -647,6 +724,9 @@ public partial class V4Client
     ///             TaxonomyCode = "string",
     ///             ProviderCommercialLicenseType =
     ///                 BillingProviderCommercialLicenseType.LicensedClinicalSocialWorker,
+    ///             FirstName = "string",
+    ///             LastName = "string",
+    ///             OrganizationName = "string",
     ///         },
     ///         RenderingProvider = new RenderingProvider
     ///         {
@@ -661,6 +741,9 @@ public partial class V4Client
     ///                 ZipCode = "10001",
     ///                 ZipPlusFourCode = "1234",
     ///             },
+    ///             FirstName = "string",
+    ///             LastName = "string",
+    ///             OrganizationName = "string",
     ///         },
     ///         InitialReferringProvider = new InitialReferringProvider
     ///         {
@@ -676,6 +759,9 @@ public partial class V4Client
     ///                 ZipPlusFourCode = "1234",
     ///             },
     ///             Qualifier = QualifierCode.Dq,
+    ///             FirstName = "string",
+    ///             LastName = "string",
+    ///             OrganizationName = "string",
     ///         },
     ///         SupervisingProvider = new SupervisingProvider
     ///         {
@@ -690,6 +776,9 @@ public partial class V4Client
     ///                 ZipCode = "10001",
     ///                 ZipPlusFourCode = "1234",
     ///             },
+    ///             FirstName = "string",
+    ///             LastName = "string",
+    ///             OrganizationName = "string",
     ///         },
     ///         ServiceFacility = new EncounterServiceFacilityBase
     ///         {
@@ -927,113 +1016,6 @@ public partial class V4Client
     ///     {
     ///         DiagnosisIds = new List&lt;string&gt;() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
     ///         PlaceOfServiceCodeAsSubmitted = FacilityTypeCode.Pharmacy,
-    ///         BenefitsAssignedToProvider = true,
-    ///         PriorAuthorizationNumber = "string",
-    ///         ExternalId = "string",
-    ///         DateOfService = new DateOnly(2023, 1, 15),
-    ///         TagIds = new List&lt;string&gt;() { },
-    ///         ClinicalNotes = new List&lt;ClinicalNoteCategoryCreate&gt;() { },
-    ///         PayToAddress = new StreetAddressLongZip
-    ///         {
-    ///             Address1 = "123 Main St",
-    ///             Address2 = "Apt 1",
-    ///             City = "New York",
-    ///             State = State.Ny,
-    ///             ZipCode = "10001",
-    ///             ZipPlusFourCode = "1234",
-    ///         },
-    ///         BillableStatus = BillableStatusType.Billable,
-    ///         ResponsibleParty = ResponsiblePartyType.InsurancePay,
-    ///         ProviderAcceptsAssignment = true,
-    ///         Synchronicity = SynchronicityType.Synchronous,
-    ///         PlaceOfServiceCode = FacilityTypeCode.Pharmacy,
-    ///         AppointmentType = "string",
-    ///         EndDateOfService = new DateOnly(2023, 1, 15),
-    ///         SubscriberPrimary = new SubscriberCreate
-    ///         {
-    ///             InsuranceCard = new InsuranceCardCreate
-    ///             {
-    ///                 MemberId = "string",
-    ///                 PayerName = "string",
-    ///                 PayerId = "string",
-    ///             },
-    ///             PatientRelationshipToSubscriberCode = PatientRelationshipToInsuredCodeAll.Spouse,
-    ///             FirstName = "string",
-    ///             LastName = "string",
-    ///             Gender = Candid.Net.Gender.Male,
-    ///         },
-    ///         SubscriberSecondary = new SubscriberCreate
-    ///         {
-    ///             InsuranceCard = new InsuranceCardCreate
-    ///             {
-    ///                 MemberId = "string",
-    ///                 PayerName = "string",
-    ///                 PayerId = "string",
-    ///             },
-    ///             PatientRelationshipToSubscriberCode = PatientRelationshipToInsuredCodeAll.Spouse,
-    ///             FirstName = "string",
-    ///             LastName = "string",
-    ///             Gender = Candid.Net.Gender.Male,
-    ///         },
-    ///         SubscriberTertiary = new SubscriberCreate
-    ///         {
-    ///             InsuranceCard = new InsuranceCardCreate
-    ///             {
-    ///                 MemberId = "string",
-    ///                 PayerName = "string",
-    ///                 PayerId = "string",
-    ///             },
-    ///             PatientRelationshipToSubscriberCode = PatientRelationshipToInsuredCodeAll.Spouse,
-    ///             FirstName = "string",
-    ///             LastName = "string",
-    ///             Gender = Candid.Net.Gender.Male,
-    ///         },
-    ///         AdditionalInformation = "string",
-    ///         ServiceAuthorizationExceptionCode = ServiceAuthorizationExceptionCode.C1,
-    ///         AdmissionDate = new DateOnly(2023, 1, 15),
-    ///         DischargeDate = new DateOnly(2023, 1, 15),
-    ///         OnsetOfCurrentIllnessOrSymptomDate = new DateOnly(2023, 1, 15),
-    ///         LastMenstrualPeriodDate = new DateOnly(2023, 1, 15),
-    ///         DelayReasonCode = DelayReasonCode.C1,
-    ///         Patient = new PatientUpdate(),
-    ///         PatientAuthorizedRelease = true,
-    ///         SchemaInstances = new List&lt;SchemaInstance&gt;() { },
-    ///         Vitals = new VitalsUpdate
-    ///         {
-    ///             HeightIn = 70,
-    ///             WeightLbs = 165,
-    ///             BloodPressureSystolicMmhg = 115,
-    ///             BloodPressureDiastolicMmhg = 85,
-    ///             BodyTemperatureF = 98,
-    ///             HemoglobinGdl = 15.1,
-    ///             HematocritPct = 51.2,
-    ///         },
-    ///         ExistingMedications = new List&lt;Medication&gt;() { },
-    ///         RenderingProvider = new RenderingProviderUpdate(),
-    ///         ServiceFacility = new EncounterServiceFacilityUpdate
-    ///         {
-    ///             OrganizationName = "Test Organization",
-    ///             Address = new StreetAddressLongZip
-    ///             {
-    ///                 Address1 = "123 Main St",
-    ///                 Address2 = "Apt 1",
-    ///                 City = "New York",
-    ///                 State = State.Ny,
-    ///                 ZipCode = "10001",
-    ///                 ZipPlusFourCode = "1234",
-    ///             },
-    ///         },
-    ///         Guarantor = new GuarantorUpdate(),
-    ///         BillingProvider = new BillingProviderUpdate(),
-    ///         SupervisingProvider = new SupervisingProviderUpdate(),
-    ///         ReferringProvider = new ReferringProviderUpdate(),
-    ///         InitialReferringProvider = new InitialReferringProviderUpdate(),
-    ///         ReferralNumber = "string",
-    ///         EpsdtReferral = new EpsdtReferral
-    ///         {
-    ///             ConditionIndicator1 = EpsdtReferralConditionIndicatorCode.Av,
-    ///         },
-    ///         ClaimSupplementalInformation = new List&lt;ClaimSupplementalInformation&gt;() { },
     ///     }
     /// );
     /// </code>

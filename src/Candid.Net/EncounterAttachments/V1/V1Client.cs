@@ -59,7 +59,7 @@ public partial class V1Client
 
     /// <summary>
     /// Uploads a file to the encounter. The file will be stored in the
-    /// encounter's attachments. The maximum file size is 25MB.
+    /// encounter's attachments.
     /// </summary>
     public async Task<string> CreateAsync(
         string encounterId,

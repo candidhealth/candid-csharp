@@ -11,4 +11,10 @@ public enum EncounterAttachmentType
 {
     [EnumMember(Value = "DOCUMENTATION")]
     Documentation,
+
+    [EnumMember(Value = "EOB")]
+    Eob,
+
+    [EnumMember(Value = "OTHER")]
+    Other,
 }
