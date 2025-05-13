@@ -198,6 +198,12 @@ public record Encounter
     public IEnumerable<ClaimSupplementalInformation>? ClaimSupplementalInformation { get; set; }
 
     /// <summary>
+    /// When Medicaid is billed as the secondary payer the Carrier Code is used to identify the primary payer. This is required for certain states.
+    /// </summary>
+    [JsonPropertyName("secondary_payer_carrier_code")]
+    public string? SecondaryPayerCarrierCode { get; set; }
+
+    /// <summary>
     /// The date and time the encounter was last submitted to a payer.
     /// </summary>
     [JsonPropertyName("last_submitted_at")]

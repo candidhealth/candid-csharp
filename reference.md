@@ -2916,6 +2916,7 @@ await client.Encounters.V4.CreateAsync(
                 AttachmentTransmissionCode = ReportTransmissionCode.Cbm,
             },
         },
+        SecondaryPayerCarrierCode = "string",
         ExternalId = "string",
         DateOfService = new DateOnly(2023, 1, 15),
         EndDateOfService = new DateOnly(2023, 1, 15),
@@ -3343,6 +3344,5010 @@ await client.Encounters.V4.CreateFromPreEncounterPatientAsync(
 <dd>
 
 **request:** `EncounterCreateFromPreEncounter` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Encounters.V4.<a href="/src/Candid.Net/Encounters/V4/V4Client.cs">UpdateAsync</a>(encounterId, EncounterUpdate { ... }) -> Encounters.V4.Encounter</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Encounters.V4.UpdateAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new EncounterUpdate
+    {
+        PayToAddress = new StreetAddressLongZip
+        {
+            Address1 = "123 Main St",
+            Address2 = "Apt 1",
+            City = "New York",
+            State = State.Ny,
+            ZipCode = "10001",
+            ZipPlusFourCode = "1234",
+        },
+        DiagnosisIds = new List<string>() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
+        InitialReferringProvider = new InitialReferringProviderUpdate
+        {
+            Npi = "string",
+            TaxonomyCode = "string",
+            Address = new StreetAddressLongZip
+            {
+                Address1 = "123 Main St",
+                Address2 = "Apt 1",
+                City = "New York",
+                State = State.Ny,
+                ZipCode = "10001",
+                ZipPlusFourCode = "1234",
+            },
+            Qualifier = QualifierCode.Dq,
+            FirstName = "string",
+            LastName = "string",
+            OrganizationName = "string",
+        },
+        ReferringProvider = new ReferringProviderUpdate
+        {
+            Npi = "string",
+            TaxonomyCode = "string",
+            Address = new StreetAddressLongZip
+            {
+                Address1 = "123 Main St",
+                Address2 = "Apt 1",
+                City = "New York",
+                State = State.Ny,
+                ZipCode = "10001",
+                ZipPlusFourCode = "1234",
+            },
+            FirstName = "string",
+            LastName = "string",
+            OrganizationName = "string",
+        },
+        Patient = new PatientUpdate
+        {
+            FirstName = "string",
+            LastName = "string",
+            Gender = Candid.Net.Gender.Male,
+            ExternalId = "string",
+            DateOfBirth = new DateOnly(2023, 1, 15),
+            Address = new StreetAddressShortZip
+            {
+                Address1 = "123 Main St",
+                Address2 = "Apt 1",
+                City = "New York",
+                State = State.Ny,
+                ZipCode = "10001",
+                ZipPlusFourCode = "1234",
+            },
+            PhoneNumbers = new List<PhoneNumber>()
+            {
+                new PhoneNumber { Number = "1234567890", Type = PhoneNumberType.Home },
+            },
+            PhoneConsent = true,
+            Email = "johndoe@joincandidhealth.com",
+            EmailConsent = true,
+            NonInsurancePayers = new List<string>() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
+            NonInsurancePayersInfo = new List<PatientNonInsurancePayerInfoCreate>()
+            {
+                new PatientNonInsurancePayerInfoCreate
+                {
+                    NonInsurancePayerId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+                    MemberId = "string",
+                    ClinicalTrialInfo = new List<PatientClinicalTrialInfoCreate>()
+                    {
+                        new PatientClinicalTrialInfoCreate
+                        {
+                            ClinicalTrialId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+                        },
+                    },
+                },
+            },
+        },
+        RenderingProvider = new RenderingProviderUpdate
+        {
+            Npi = "string",
+            TaxonomyCode = "string",
+            Address = new StreetAddressLongZip
+            {
+                Address1 = "123 Main St",
+                Address2 = "Apt 1",
+                City = "New York",
+                State = State.Ny,
+                ZipCode = "10001",
+                ZipPlusFourCode = "1234",
+            },
+            FirstName = "string",
+            LastName = "string",
+            OrganizationName = "string",
+        },
+        ServiceFacility = new EncounterServiceFacilityUpdate
+        {
+            OrganizationName = "Test Organization",
+            Address = new StreetAddressLongZip
+            {
+                Address1 = "123 Main St",
+                Address2 = "Apt 1",
+                City = "New York",
+                State = State.Ny,
+                ZipCode = "10001",
+                ZipPlusFourCode = "1234",
+            },
+        },
+        SupervisingProvider = new SupervisingProviderUpdate
+        {
+            Npi = "string",
+            TaxonomyCode = "string",
+            Address = new StreetAddressLongZip
+            {
+                Address1 = "123 Main St",
+                Address2 = "Apt 1",
+                City = "New York",
+                State = State.Ny,
+                ZipCode = "10001",
+                ZipPlusFourCode = "1234",
+            },
+            FirstName = "string",
+            LastName = "string",
+            OrganizationName = "string",
+        },
+        BillingProvider = new BillingProviderUpdate
+        {
+            Address = new StreetAddressLongZip
+            {
+                Address1 = "123 Main St",
+                Address2 = "Apt 1",
+                City = "New York",
+                State = State.Ny,
+                ZipCode = "10001",
+                ZipPlusFourCode = "1234",
+            },
+            TaxId = "string",
+            Npi = "string",
+            TaxonomyCode = "string",
+            ProviderCommercialLicenseType =
+                BillingProviderCommercialLicenseType.LicensedClinicalSocialWorker,
+            FirstName = "string",
+            LastName = "string",
+            OrganizationName = "string",
+        },
+        PlaceOfServiceCodeAsSubmitted = FacilityTypeCode.Pharmacy,
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**encounterId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `EncounterUpdate` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## ExpectedNetworkStatus V1
+<details><summary><code>client.ExpectedNetworkStatus.V1.<a href="/src/Candid.Net/ExpectedNetworkStatus/V1/V1Client.cs">ComputeAsync</a>(ExpectedNetworkStatusRequest { ... }) -> ExpectedNetworkStatusResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Computes the expected network status given the provided information.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.ExpectedNetworkStatus.V1.ComputeAsync(
+    new ExpectedNetworkStatusRequest
+    {
+        ExternalPatientId = "string",
+        SubscriberPayerId = "string",
+        SubscriberPayerName = "string",
+        SubscriberInsuranceType = Candid.Net.InsuranceTypeCode.C01,
+        SubscriberPlanName = "string",
+        BillingProviderNpi = "string",
+        BillingProviderTin = "string",
+        RenderingProviderNpi = "string",
+        ContractedState = State.Aa,
+        DateOfService = "string",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ExpectedNetworkStatusRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## ExpectedNetworkStatus V2
+<details><summary><code>client.ExpectedNetworkStatus.V2.<a href="/src/Candid.Net/ExpectedNetworkStatus/V2/V2Client.cs">ComputeForRenderingProviderAsync</a>(renderingProviderId, ExpectedNetworkStatusRequestV2 { ... }) -> ExpectedNetworkStatusResponseV2</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Computes the expected network status for a given rendering provider.
+This endpoint is not available to all customers. Reach out to the Candid sales team
+to discuss enabling this endpoint if it is not available for your organization.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.ExpectedNetworkStatus.V2.ComputeForRenderingProviderAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new ExpectedNetworkStatusRequestV2
+    {
+        ServiceType = ServiceType.NewPatientVideoAppt,
+        PlaceOfServiceCode = FacilityTypeCode.Pharmacy,
+        SubscriberInformation = new ExpectedNetworkStatusSubscriberInformation
+        {
+            PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+            MemberId = "string",
+            InsuranceType = new InsuranceType
+            {
+                LineOfBusiness = LineOfBusiness.Medicare,
+                InsuranceTypeCodes = Candid.Net.InsuranceTypeCode.C01,
+            },
+        },
+        PatientAddress = new StreetAddressShortZip
+        {
+            Address1 = "123 Main St",
+            Address2 = "Apt 1",
+            City = "New York",
+            State = State.Ny,
+            ZipCode = "10001",
+            ZipPlusFourCode = "1234",
+        },
+        BillingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        OrganizationServiceFacilityId = "30F55EE6-8C0E-43FC-A7FC-DAC00D5BF569",
+        DateOfService = new DateOnly(2023, 1, 15),
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**renderingProviderId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `ExpectedNetworkStatusRequestV2` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ExpectedNetworkStatus.V2.<a href="/src/Candid.Net/ExpectedNetworkStatus/V2/V2Client.cs">ComputeAllInNetworkProvidersAsync</a>(ComputeAllInNetworkProvidersRequest { ... }) -> ComputeAllInNetworkProvidersResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Computes all the in network providers for a given set of inputs.
+This endpoint is not available to all customers. Reach out to the Candid sales team
+to discuss enabling this endpoint if it is not available for your organization.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.ExpectedNetworkStatus.V2.ComputeAllInNetworkProvidersAsync(
+    new ComputeAllInNetworkProvidersRequest
+    {
+        ServiceType = ServiceType.NewPatientVideoAppt,
+        PlaceOfServiceCode = FacilityTypeCode.Pharmacy,
+        SubscriberInformation = new ExpectedNetworkStatusSubscriberInformation
+        {
+            PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+            MemberId = "string",
+            InsuranceType = new InsuranceType
+            {
+                LineOfBusiness = LineOfBusiness.Medicare,
+                InsuranceTypeCodes = Candid.Net.InsuranceTypeCode.C01,
+            },
+        },
+        PatientAddress = new StreetAddressShortZip
+        {
+            Address1 = "123 Main St",
+            Address2 = "Apt 1",
+            City = "New York",
+            State = State.Ny,
+            ZipCode = "10001",
+            ZipPlusFourCode = "1234",
+        },
+        BillingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        OrganizationServiceFacilityId = "30F55EE6-8C0E-43FC-A7FC-DAC00D5BF569",
+        DateOfService = new DateOnly(2023, 1, 15),
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ComputeAllInNetworkProvidersRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Exports V3
+<details><summary><code>client.Exports.V3.<a href="/src/Candid.Net/Exports/V3/V3Client.cs">GetExportsAsync</a>(GetExportsRequest { ... }) -> GetExportsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve CSV-formatted reports on claim submissions and outcomes. This endpoint returns Export objects that contain an
+authenticated URL to a customer's reports with a 2min TTL. The schema for the CSV export can be found [here](https://app.joincandidhealth.com/files/exports_schema.csv).
+
+**Schema changes:** Changing column order, removing columns, or changing the name of a column is considered a
+[Breaking Change](../../../api-principles/breaking-changes). Adding new columns to the end of the Exports file is not considered a
+Breaking Change and happens periodically. For this reason, it is important that any downstream automation or processes built on top
+of Candid Health's export files be resilient to the addition of new columns at the end of the file.
+
+**SLA guarantees:** Files for a given date are guaranteed to be available after 3 business days. For example, Friday's file will be
+available by Wednesday at the latest. If file generation is still in progress upon request before 3 business days have passed, the
+caller will receive a 422 response. If the file has already been generated, it will be served. Historic files should be available
+up to 90 days in the past by default. Please email our [Support team](mailto:support@joincandidhealth.com) with any data requests
+outside of these stated guarantees.
+
+**New Customers:** This endpoint is not enabled by default for new Candid customers. To have this endpoint enabled for your organization,
+please email our [Support team](mailto:support@joincandidhealth.com) with the request.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Exports.V3.GetExportsAsync(
+    new GetExportsRequest
+    {
+        StartDate = new DateOnly(2023, 10, 1),
+        EndDate = new DateOnly(2023, 10, 2),
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `GetExportsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## ExternalPaymentAccountConfig V1
+<details><summary><code>client.ExternalPaymentAccountConfig.V1.<a href="/src/Candid.Net/ExternalPaymentAccountConfig/V1/V1Client.cs">GetMultiAsync</a>(GetExternalPaymentAccountConfigsRequest { ... }) -> ExternalPaymentAccountConfigPage</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.ExternalPaymentAccountConfig.V1.GetMultiAsync(
+    new GetExternalPaymentAccountConfigsRequest
+    {
+        Limit = 1,
+        PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `GetExternalPaymentAccountConfigsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## FeeSchedules V3
+<details><summary><code>client.FeeSchedules.V3.<a href="/src/Candid.Net/FeeSchedules/V3/V3Client.cs">GetMatchAsync</a>(serviceLineId) -> MatchResult?</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets the rate that matches a service line. No result means no rate exists matching the service line's dimensions.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.FeeSchedules.V3.GetMatchAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**serviceLineId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.FeeSchedules.V3.<a href="/src/Candid.Net/FeeSchedules/V3/V3Client.cs">TestMatchAsync</a>(serviceLineId, rateId) -> MatchTestResult</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Tests a service line against a rate to see if it matches.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.FeeSchedules.V3.TestMatchAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**serviceLineId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**rateId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.FeeSchedules.V3.<a href="/src/Candid.Net/FeeSchedules/V3/V3Client.cs">GetMultiAsync</a>(GetMultiRequest { ... }) -> RatesPage</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets a list of dimensions with their rates. The rates returned will always be the most recent versions of those rates.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.FeeSchedules.V3.GetMultiAsync(
+    new GetMultiRequest
+    {
+        PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
+        Limit = 1,
+        ActiveDate = new DateOnly(2023, 1, 15),
+        PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        OrganizationBillingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        States = [State.Aa],
+        ZipCodes = ["string"],
+        LicenseTypes = [LicenseType.Md],
+        FacilityTypeCodes = [FacilityTypeCode.Pharmacy],
+        NetworkTypes = [Candid.Net.NetworkType.Ppo],
+        PayerPlanGroupIds = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
+        CptCode = "string",
+        Modifiers = [ProcedureModifier.Av],
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `GetMultiRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.FeeSchedules.V3.<a href="/src/Candid.Net/FeeSchedules/V3/V3Client.cs">GetUniqueValuesForDimensionAsync</a>(GetUniqueDimensionValuesRequest { ... }) -> DimensionsPage</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets unique values for a dimension based on other selection criteria. The response is a list of dimensions with your criteria and the unique values populated. This API is useful for driving pivots on dimension values.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.FeeSchedules.V3.GetUniqueValuesForDimensionAsync(
+    new GetUniqueDimensionValuesRequest
+    {
+        PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
+        Limit = 1,
+        PivotDimension = DimensionName.PayerUuid,
+        PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        OrganizationBillingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        States = [State.Aa],
+        ZipCodes = ["string"],
+        LicenseTypes = [LicenseType.Md],
+        FacilityTypeCodes = [FacilityTypeCode.Pharmacy],
+        NetworkTypes = [Candid.Net.NetworkType.Ppo],
+        PayerPlanGroupIds = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
+        CptCode = "string",
+        Modifiers = [ProcedureModifier.Av],
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `GetUniqueDimensionValuesRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.FeeSchedules.V3.<a href="/src/Candid.Net/FeeSchedules/V3/V3Client.cs">GetRateHistoryAsync</a>(rateId) -> IEnumerable<Rate></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets every version of a rate.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.FeeSchedules.V3.GetRateHistoryAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**rateId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.FeeSchedules.V3.<a href="/src/Candid.Net/FeeSchedules/V3/V3Client.cs">UploadFeeScheduleAsync</a>(FeeScheduleUploadRequest { ... }) -> IEnumerable<Rate></code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Uploads a new fee schedule.\n Each rate may either be totally new as qualified by it's dimensions or a new version for an existing rate.\n If adding a new version to an existing rate, the rate must be posted with the next version number (previous version + 1) or a EntityConflictError will be returned.\n Use the dry run flag to discover already existing rates and to run validations. If validations for any rate fail, no rates will be saved to the system.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.FeeSchedules.V3.UploadFeeScheduleAsync(
+    new FeeScheduleUploadRequest
+    {
+        DryRun = true,
+        Rates = new List<object>()
+        {
+            new NewRate
+            {
+                Dimensions = new Dimensions
+                {
+                    PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+                    OrganizationBillingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+                    States = new HashSet<State>() { State.Aa },
+                    ZipCodes = new HashSet<string>() { "string" },
+                    LicenseTypes = new HashSet<LicenseType>() { LicenseType.Md },
+                    FacilityTypeCodes = new HashSet<FacilityTypeCode>()
+                    {
+                        FacilityTypeCode.Pharmacy,
+                    },
+                    NetworkTypes = new HashSet<Candid.Net.NetworkType>()
+                    {
+                        Candid.Net.NetworkType.Ppo,
+                    },
+                    PayerPlanGroupIds = new HashSet<string>()
+                    {
+                        "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+                    },
+                    CptCode = "string",
+                    Modifiers = new HashSet<ProcedureModifier>() { ProcedureModifier.Av },
+                },
+                Entries = new List<RateEntry>()
+                {
+                    new RateEntry
+                    {
+                        StartDate = new DateOnly(2024, 4, 11),
+                        RateCents = 33000,
+                        IsDeactivated = false,
+                    },
+                },
+            },
+        },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `FeeScheduleUploadRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.FeeSchedules.V3.<a href="/src/Candid.Net/FeeSchedules/V3/V3Client.cs">DeleteRateAsync</a>(rateId, version)</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Soft deletes a rate from the system. Only the most recent version of a rate can be deleted.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.FeeSchedules.V3.DeleteRateAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32", 1);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**rateId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**version:** `int` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.FeeSchedules.V3.<a href="/src/Candid.Net/FeeSchedules/V3/V3Client.cs">GetPayerThresholdsDefaultAsync</a>() -> PayerThreshold</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets the default payer threshold
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.FeeSchedules.V3.GetPayerThresholdsDefaultAsync();
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.FeeSchedules.V3.<a href="/src/Candid.Net/FeeSchedules/V3/V3Client.cs">GetPayerThresholdsAsync</a>(PayerThresholdGetRequest { ... }) -> PayerThresholdsPage</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets a list of payers and thresholds by their uuids
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.FeeSchedules.V3.GetPayerThresholdsAsync(
+    new PayerThresholdGetRequest { PayerUuids = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"] }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `PayerThresholdGetRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.FeeSchedules.V3.<a href="/src/Candid.Net/FeeSchedules/V3/V3Client.cs">SetPayerThresholdAsync</a>(payerUuid, PayerThreshold { ... }) -> PayerThreshold</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Sets the threshold information for a payer
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.FeeSchedules.V3.SetPayerThresholdAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new PayerThreshold
+    {
+        UpperThresholdCents = 1,
+        LowerThresholdCents = 1,
+        DisablePaidIncorrectly = true,
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**payerUuid:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `PayerThreshold` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Guarantor V1
+<details><summary><code>client.Guarantor.V1.<a href="/src/Candid.Net/Guarantor/V1/V1Client.cs">CreateAsync</a>(encounterId, GuarantorCreate { ... }) -> Guarantor.V1.Guarantor</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a new guarantor and returns the newly created Guarantor object.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Guarantor.V1.CreateAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new GuarantorCreate
+    {
+        PhoneNumbers = new List<PhoneNumber>()
+        {
+            new PhoneNumber { Number = "1234567890", Type = PhoneNumberType.Home },
+        },
+        PhoneConsent = true,
+        Email = "johndoe@joincandidhealth.com",
+        EmailConsent = true,
+        FirstName = "string",
+        LastName = "string",
+        ExternalId = "string",
+        DateOfBirth = new DateOnly(2023, 1, 15),
+        Address = new StreetAddressShortZip
+        {
+            Address1 = "123 Main St",
+            Address2 = "Apt 1",
+            City = "New York",
+            State = State.Ny,
+            ZipCode = "10001",
+            ZipPlusFourCode = "1234",
+        },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**encounterId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `GuarantorCreate` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Guarantor.V1.<a href="/src/Candid.Net/Guarantor/V1/V1Client.cs">GetAsync</a>(guarantorId) -> Guarantor.V1.Guarantor</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a guarantor by its `guarantor_id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Guarantor.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**guarantorId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Guarantor.V1.<a href="/src/Candid.Net/Guarantor/V1/V1Client.cs">UpdateAsync</a>(guarantorId, GuarantorUpdate { ... }) -> Guarantor.V1.Guarantor</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates a guarantor by its `guarantor_id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Guarantor.V1.UpdateAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new GuarantorUpdate
+    {
+        FirstName = "string",
+        LastName = "string",
+        ExternalId = "string",
+        DateOfBirth = new DateOnly(2023, 1, 15),
+        Address = new StreetAddressShortZip
+        {
+            Address1 = "123 Main St",
+            Address2 = "Apt 1",
+            City = "New York",
+            State = State.Ny,
+            ZipCode = "10001",
+            ZipPlusFourCode = "1234",
+        },
+        PhoneNumbers = new List<PhoneNumber>()
+        {
+            new PhoneNumber { Number = "1234567890", Type = PhoneNumberType.Home },
+        },
+        PhoneConsent = true,
+        Email = "johndoe@joincandidhealth.com",
+        EmailConsent = true,
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**guarantorId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `GuarantorUpdate` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## ImportInvoice V1
+<details><summary><code>client.ImportInvoice.V1.<a href="/src/Candid.Net/ImportInvoice/V1/V1Client.cs">ImportInvoiceAsync</a>(CreateImportInvoiceRequest { ... }) -> ImportInvoice.V1.ImportInvoice</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Import an existing invoice from a third party service to reflect state in Candid.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.ImportInvoice.V1.ImportInvoiceAsync(
+    new CreateImportInvoiceRequest
+    {
+        ExternalPaymentAccountConfigId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        PatientExternalId = "string",
+        ExternalCustomerIdentifier = "string",
+        Note = "string",
+        DueDate = new DateOnly(2023, 1, 15),
+        Items = new List<InvoiceItemCreate>()
+        {
+            new InvoiceItemCreate
+            {
+                Attribution = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+                AmountCents = 1,
+            },
+        },
+        Status = Candid.Net.Invoices.V2.InvoiceStatus.Draft,
+        ExternalIdentifier = "string",
+        CustomerInvoiceUrl = "string",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `CreateImportInvoiceRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ImportInvoice.V1.<a href="/src/Candid.Net/ImportInvoice/V1/V1Client.cs">GetMultiAsync</a>(SearchImportedInvoicesRequest { ... }) -> ImportInvoicesPage</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns all Invoices for the authenticated user's organziation with all filters applied.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.ImportInvoice.V1.GetMultiAsync(
+    new SearchImportedInvoicesRequest
+    {
+        PatientExternalId = "string",
+        EncounterExternalId = "string",
+        Note = "string",
+        DueDateBefore = new DateOnly(2023, 1, 15),
+        DueDateAfter = new DateOnly(2023, 1, 15),
+        Status = [Candid.Net.Invoices.V2.InvoiceStatus.Draft],
+        Limit = 1,
+        Sort = InvoiceSortField.CreatedAt,
+        SortDirection = Candid.Net.SortDirection.Asc,
+        PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `SearchImportedInvoicesRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ImportInvoice.V1.<a href="/src/Candid.Net/ImportInvoice/V1/V1Client.cs">GetAsync</a>(invoiceId) -> ImportInvoice.V1.ImportInvoice</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve and view an import invoice
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.ImportInvoice.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**invoiceId:** `string` — InvoiceId to be returned
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ImportInvoice.V1.<a href="/src/Candid.Net/ImportInvoice/V1/V1Client.cs">UpdateAsync</a>(invoiceId, ImportInvoiceUpdateRequest { ... }) -> ImportInvoice.V1.ImportInvoice</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update the information on the imported invoice
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.ImportInvoice.V1.UpdateAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new ImportInvoiceUpdateRequest
+    {
+        CustomerInvoiceUrl = "string",
+        Status = Candid.Net.Invoices.V2.InvoiceStatus.Draft,
+        Note = "string",
+        DueDate = new DateOnly(2023, 1, 15),
+        Items = new InvoiceItemInfoUpdate
+        {
+            UpdateType = InvoiceItemUpdateType.Append,
+            Items = new List<InvoiceItemCreate>()
+            {
+                new InvoiceItemCreate
+                {
+                    Attribution = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+                    AmountCents = 1,
+                },
+            },
+        },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**invoiceId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `ImportInvoiceUpdateRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## InsuranceAdjudications V1
+<details><summary><code>client.InsuranceAdjudications.V1.<a href="/src/Candid.Net/InsuranceAdjudications/V1/V1Client.cs">GetAsync</a>(insuranceAdjudicationId) -> InsuranceAdjudication</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a previously created insurance adjudication by its `insurance_adjudication_id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.InsuranceAdjudications.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**insuranceAdjudicationId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.InsuranceAdjudications.V1.<a href="/src/Candid.Net/InsuranceAdjudications/V1/V1Client.cs">CreateAsync</a>(InsuranceAdjudicationCreate { ... }) -> InsuranceAdjudication</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a new insurance adjudication record and returns the newly created InsuranceAdjudication object.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.InsuranceAdjudications.V1.CreateAsync(
+    new InsuranceAdjudicationCreate
+    {
+        PayerIdentifier = new PayerInfo(),
+        Payee = new Payee { PayeeName = "string", PayeeIdentifier = "string" },
+        PostDate = new DateOnly(2023, 1, 15),
+        CheckNumber = "string",
+        CheckDate = new DateOnly(2023, 1, 15),
+        Note = "string",
+        Claims = new Dictionary<string, IEnumerable<ClaimAdjudicationCreate>>()
+        {
+            {
+                "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+                new List<ClaimAdjudicationCreate>()
+                {
+                    new ClaimAdjudicationCreate
+                    {
+                        ClaimStatusCode = ClaimStatusCodeCreate.ProcessedAsPrimary,
+                        ServiceLines = new Dictionary<
+                            string,
+                            IEnumerable<ServiceLineAdjudicationCreate>
+                        >()
+                        { },
+                        Carcs = new List<ClaimAdjustmentReasonCode>() { },
+                    },
+                }
+            },
+        },
+        RemitDraftId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `InsuranceAdjudicationCreate` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.InsuranceAdjudications.V1.<a href="/src/Candid.Net/InsuranceAdjudications/V1/V1Client.cs">DeleteAsync</a>(insuranceAdjudicationId)</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes the insurance adjudication record matching the provided insurance_adjudication_id.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.InsuranceAdjudications.V1.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**insuranceAdjudicationId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## InsurancePayments V1
+<details><summary><code>client.InsurancePayments.V1.<a href="/src/Candid.Net/InsurancePayments/V1/V1Client.cs">GetMultiAsync</a>(GetMultiInsurancePaymentRequest { ... }) -> InsurancePaymentsPage</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns all non-ERA originated insurance payments satisfying the search criteria
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.InsurancePayments.V1.GetMultiAsync(
+    new GetMultiInsurancePaymentRequest
+    {
+        Limit = 1,
+        PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        ClaimId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        ServiceLineId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        BillingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        Sort = InsurancePaymentSortField.AmountCents,
+        SortDirection = Candid.Net.SortDirection.Asc,
+        PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `GetMultiInsurancePaymentRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.InsurancePayments.V1.<a href="/src/Candid.Net/InsurancePayments/V1/V1Client.cs">GetAsync</a>(insurancePaymentId) -> InsurancePayment</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a previously created insurance payment by its `insurance_payment_id`.
+If the payment does not exist, a `403` will be thrown.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.InsurancePayments.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**insurancePaymentId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## InsuranceRefunds V1
+<details><summary><code>client.InsuranceRefunds.V1.<a href="/src/Candid.Net/InsuranceRefunds/V1/V1Client.cs">GetMultiAsync</a>(GetMultiInsuranceRefundsRequest { ... }) -> InsuranceRefundsPage</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns all insurance refunds satisfying the search criteria AND whose organization_id matches
+the current organization_id of the authenticated user.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.InsuranceRefunds.V1.GetMultiAsync(
+    new GetMultiInsuranceRefundsRequest
+    {
+        Limit = 1,
+        PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        ClaimId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        ServiceLineId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        BillingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        Sort = InsuranceRefundSortField.AmountCents,
+        SortDirection = Candid.Net.SortDirection.Asc,
+        PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `GetMultiInsuranceRefundsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.InsuranceRefunds.V1.<a href="/src/Candid.Net/InsuranceRefunds/V1/V1Client.cs">GetAsync</a>(insuranceRefundId) -> InsuranceRefund</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a previously created insurance refund by its `insurance_refund_id`.
+If the refund does not exist, a `403` will be thrown.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.InsuranceRefunds.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**insuranceRefundId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.InsuranceRefunds.V1.<a href="/src/Candid.Net/InsuranceRefunds/V1/V1Client.cs">CreateAsync</a>(InsuranceRefundCreate { ... }) -> InsuranceRefund</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a new insurance refund record and returns the newly created `InsuranceRefund` object.
+The allocations can describe whether the refund is being applied toward a specific service line,
+claim, or billing provider.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.InsuranceRefunds.V1.CreateAsync(
+    new InsuranceRefundCreate
+    {
+        PayerIdentifier = new PayerInfo(),
+        AmountCents = 1,
+        RefundTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
+        RefundNote = "string",
+        Allocations = new List<AllocationCreate>()
+        {
+            new AllocationCreate
+            {
+                AmountCents = 1,
+                Target = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+            },
+        },
+        RefundReason = RefundReason.Overcharged,
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `InsuranceRefundCreate` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.InsuranceRefunds.V1.<a href="/src/Candid.Net/InsuranceRefunds/V1/V1Client.cs">UpdateAsync</a>(insuranceRefundId, InsuranceRefundUpdate { ... }) -> InsuranceRefund</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates the patient refund record matching the provided insurance_refund_id. If updating the refund amount,
+then the allocations must be appropriately updated as well.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.InsuranceRefunds.V1.UpdateAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new InsuranceRefundUpdate
+    {
+        RefundTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
+        RefundNote = "string",
+        RefundReason = RefundReason.Overcharged,
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**insuranceRefundId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `InsuranceRefundUpdate` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.InsuranceRefunds.V1.<a href="/src/Candid.Net/InsuranceRefunds/V1/V1Client.cs">DeleteAsync</a>(insuranceRefundId)</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes the insurance refund record matching the provided `insurance_refund_id`.
+If the matching record's organization_id does not match the authenticated user's
+current organization_id, then a response code of `403` will be returned.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.InsuranceRefunds.V1.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**insuranceRefundId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## MedicationDispense V1
+<details><summary><code>client.MedicationDispense.V1.<a href="/src/Candid.Net/MedicationDispense/V1/V1Client.cs">CreateAsync</a>(MedicationDispenseCreate { ... }) -> Encounters.V4.Encounter</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.MedicationDispense.V1.CreateAsync(
+    new MedicationDispenseCreate
+    {
+        MedicationDispenseExternalId = "string",
+        PatientExternalId = "string",
+        ProcedureCode = "string",
+        Quantity = "string",
+        Units = ServiceLineUnits.Mj,
+        DateOfService = new DateOnly(2023, 1, 15),
+        DrugIdentification = new DrugIdentification
+        {
+            ServiceIdQualifier = ServiceIdQualifier.EanUcc13,
+            NationalDrugCode = "string",
+            NationalDrugUnitCount = "string",
+            MeasurementUnitCode = MeasurementUnitCode.Milliliters,
+            LinkSequenceNumber = "string",
+            PharmacyPrescriptionNumber = "string",
+            ConversionFormula = "string",
+            DrugDescription = "string",
+        },
+        Description = "string",
+        Modifiers = new List<ProcedureModifier>() { ProcedureModifier.Av },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `MedicationDispenseCreate` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## NonInsurancePayerPayments V1
+<details><summary><code>client.NonInsurancePayerPayments.V1.<a href="/src/Candid.Net/NonInsurancePayerPayments/V1/V1Client.cs">GetMultiAsync</a>(GetMultiNonInsurancePayerPaymentRequest { ... }) -> NonInsurancePayerPaymentsPage</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns all non-insurance payer payments
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.NonInsurancePayerPayments.V1.GetMultiAsync(
+    new GetMultiNonInsurancePayerPaymentRequest
+    {
+        Limit = 1,
+        NonInsurancePayerId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        CheckNumber = ["string"],
+        InvoiceId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        Sort = NonInsurancePayerPaymentSortField.AmountCents,
+        SortDirection = Candid.Net.SortDirection.Asc,
+        PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `GetMultiNonInsurancePayerPaymentRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.NonInsurancePayerPayments.V1.<a href="/src/Candid.Net/NonInsurancePayerPayments/V1/V1Client.cs">GetAsync</a>(nonInsurancePayerPaymentId) -> NonInsurancePayerPayment</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a previously created non-insurance payer payment by its `non_insurance_payer_payment_id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.NonInsurancePayerPayments.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**nonInsurancePayerPaymentId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.NonInsurancePayerPayments.V1.<a href="/src/Candid.Net/NonInsurancePayerPayments/V1/V1Client.cs">CreateAsync</a>(NonInsurancePayerPaymentCreate { ... }) -> NonInsurancePayerPayment</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.NonInsurancePayerPayments.V1.CreateAsync(
+    new NonInsurancePayerPaymentCreate
+    {
+        NonInsurancePayerId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        AmountCents = 1,
+        PaymentTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
+        PaymentNote = "string",
+        CheckNumber = "string",
+        Allocations = new List<AllocationCreate>()
+        {
+            new AllocationCreate
+            {
+                AmountCents = 1,
+                Target = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+            },
+        },
+        InvoiceId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `NonInsurancePayerPaymentCreate` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.NonInsurancePayerPayments.V1.<a href="/src/Candid.Net/NonInsurancePayerPayments/V1/V1Client.cs">UpdateAsync</a>(nonInsurancePayerPaymentId, UpdateNonInsurancePayerPaymentRequest { ... }) -> NonInsurancePayerPayment</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.NonInsurancePayerPayments.V1.UpdateAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new UpdateNonInsurancePayerPaymentRequest
+    {
+        PaymentTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
+        PaymentNote = "string",
+        InvoiceId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**nonInsurancePayerPaymentId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `UpdateNonInsurancePayerPaymentRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.NonInsurancePayerPayments.V1.<a href="/src/Candid.Net/NonInsurancePayerPayments/V1/V1Client.cs">DeleteAsync</a>(nonInsurancePayerPaymentId)</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes the non-insurance payer payment record matching the provided `non_insurance_payer_payment_id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.NonInsurancePayerPayments.V1.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**nonInsurancePayerPaymentId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## NonInsurancePayerRefunds V1
+<details><summary><code>client.NonInsurancePayerRefunds.V1.<a href="/src/Candid.Net/NonInsurancePayerRefunds/V1/V1Client.cs">GetMultiAsync</a>(GetMultiNonInsurancePayerRefundsRequest { ... }) -> NonInsurancePayerRefundsPage</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns all non-insurance payer refunds satisfying the search criteria
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.NonInsurancePayerRefunds.V1.GetMultiAsync(
+    new GetMultiNonInsurancePayerRefundsRequest
+    {
+        Limit = 1,
+        NonInsurancePayerId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        CheckNumber = ["string"],
+        InvoiceId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        Sort = NonInsurancePayerRefundSortField.AmountCents,
+        SortDirection = Candid.Net.SortDirection.Asc,
+        PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `GetMultiNonInsurancePayerRefundsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.NonInsurancePayerRefunds.V1.<a href="/src/Candid.Net/NonInsurancePayerRefunds/V1/V1Client.cs">GetAsync</a>(nonInsurancePayerRefundId) -> NonInsurancePayerRefund</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a previously created non-insurance payer refund by its `non_insurance_payer_refund_id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.NonInsurancePayerRefunds.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**nonInsurancePayerRefundId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.NonInsurancePayerRefunds.V1.<a href="/src/Candid.Net/NonInsurancePayerRefunds/V1/V1Client.cs">CreateAsync</a>(NonInsurancePayerRefundCreate { ... }) -> NonInsurancePayerRefund</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a new non-insurance payer refund record and returns the newly created `NonInsurancePayerRefund` object.
+The allocations can describe whether the refund is being applied toward a specific service line,
+claim, or billing provider.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.NonInsurancePayerRefunds.V1.CreateAsync(
+    new NonInsurancePayerRefundCreate
+    {
+        NonInsurancePayerId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        InvoiceId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        AmountCents = 1,
+        RefundTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
+        RefundNote = "string",
+        CheckNumber = "string",
+        Allocations = new List<AllocationCreate>()
+        {
+            new AllocationCreate
+            {
+                AmountCents = 1,
+                Target = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+            },
+        },
+        RefundReason = RefundReason.Overcharged,
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `NonInsurancePayerRefundCreate` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.NonInsurancePayerRefunds.V1.<a href="/src/Candid.Net/NonInsurancePayerRefunds/V1/V1Client.cs">UpdateAsync</a>(nonInsurancePayerRefundId, NonInsurancePayerRefundUpdate { ... }) -> NonInsurancePayerRefund</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates the non-insurance payer refund record matching the provided non_insurance_payer_refund_id. If updating the refund amount,
+then the allocations must be appropriately updated as well.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.NonInsurancePayerRefunds.V1.UpdateAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new NonInsurancePayerRefundUpdate
+    {
+        RefundTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
+        RefundNote = "string",
+        RefundReason = RefundReason.Overcharged,
+        InvoiceId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**nonInsurancePayerRefundId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `NonInsurancePayerRefundUpdate` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.NonInsurancePayerRefunds.V1.<a href="/src/Candid.Net/NonInsurancePayerRefunds/V1/V1Client.cs">DeleteAsync</a>(nonInsurancePayerRefundId)</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes the non-insurance payer refund record matching the provided `non_insurance_payer_refund_id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.NonInsurancePayerRefunds.V1.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**nonInsurancePayerRefundId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## NonInsurancePayers V1
+<details><summary><code>client.NonInsurancePayers.V1.<a href="/src/Candid.Net/NonInsurancePayers/V1/V1Client.cs">CreateAsync</a>(CreateNonInsurancePayerRequest { ... }) -> NonInsurancePayer</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.NonInsurancePayers.V1.CreateAsync(
+    new CreateNonInsurancePayerRequest
+    {
+        Name = "string",
+        Description = "string",
+        Category = "string",
+        Address = new StreetAddressShortZip
+        {
+            Address1 = "123 Main St",
+            Address2 = "Apt 1",
+            City = "New York",
+            State = State.Ny,
+            ZipCode = "10001",
+            ZipPlusFourCode = "1234",
+        },
+        ClinicalTrials = new List<MutableClinicalTrial>()
+        {
+            new MutableClinicalTrial
+            {
+                Name = "string",
+                ClinicalTrialNumber = "string",
+                ClinicalTrialPhase = ClinicalTrialPhase.PhaseOne,
+            },
+        },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `CreateNonInsurancePayerRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.NonInsurancePayers.V1.<a href="/src/Candid.Net/NonInsurancePayers/V1/V1Client.cs">ToggleEnablementAsync</a>(nonInsurancePayerId, ToggleNonInsurancePayerEnablementRequest { ... }) -> NonInsurancePayer</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.NonInsurancePayers.V1.ToggleEnablementAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new ToggleNonInsurancePayerEnablementRequest { Enabled = true }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**nonInsurancePayerId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `ToggleNonInsurancePayerEnablementRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.NonInsurancePayers.V1.<a href="/src/Candid.Net/NonInsurancePayers/V1/V1Client.cs">GetMultiAsync</a>(GetMultiNonInsurancePayersRequest { ... }) -> NonInsurancePayerPage</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.NonInsurancePayers.V1.GetMultiAsync(
+    new GetMultiNonInsurancePayersRequest
+    {
+        Name = "string",
+        Category = "string",
+        Enabled = true,
+        Sort = NonInsurancePayerSortField.Name,
+        SortDirection = Candid.Net.SortDirection.Asc,
+        Limit = 1,
+        PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `GetMultiNonInsurancePayersRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.NonInsurancePayers.V1.<a href="/src/Candid.Net/NonInsurancePayers/V1/V1Client.cs">GetAsync</a>(nonInsurancePayerId) -> NonInsurancePayer</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.NonInsurancePayers.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**nonInsurancePayerId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.NonInsurancePayers.V1.<a href="/src/Candid.Net/NonInsurancePayers/V1/V1Client.cs">UpdateAsync</a>(nonInsurancePayerId, NonInsurancePayerUpdateRequest { ... }) -> NonInsurancePayer</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.NonInsurancePayers.V1.UpdateAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new NonInsurancePayerUpdateRequest
+    {
+        Name = "string",
+        Description = "no-properties-union",
+        Category = "no-properties-union",
+        Address = "no-properties-union",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**nonInsurancePayerId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `NonInsurancePayerUpdateRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.NonInsurancePayers.V1.<a href="/src/Candid.Net/NonInsurancePayers/V1/V1Client.cs">DeleteAsync</a>(nonInsurancePayerId)</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.NonInsurancePayers.V1.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**nonInsurancePayerId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## OrganizationServiceFacilities V2
+<details><summary><code>client.OrganizationServiceFacilities.V2.<a href="/src/Candid.Net/OrganizationServiceFacilities/V2/V2Client.cs">GetAsync</a>(organizationServiceFacilityId) -> OrganizationServiceFacility</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.OrganizationServiceFacilities.V2.GetAsync("30F55EE6-8C0E-43FC-A7FC-DAC00D5BF569");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**organizationServiceFacilityId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.OrganizationServiceFacilities.V2.<a href="/src/Candid.Net/OrganizationServiceFacilities/V2/V2Client.cs">GetMultiAsync</a>(GetAllOrganizationServiceFacilitiesRequest { ... }) -> OrganizationServiceFacilityPage</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.OrganizationServiceFacilities.V2.GetMultiAsync(
+    new GetAllOrganizationServiceFacilitiesRequest
+    {
+        Limit = 100,
+        Name = "Test Service Facility",
+        PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `GetAllOrganizationServiceFacilitiesRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.OrganizationServiceFacilities.V2.<a href="/src/Candid.Net/OrganizationServiceFacilities/V2/V2Client.cs">CreateAsync</a>(OrganizationServiceFacilityCreate { ... }) -> OrganizationServiceFacility</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.OrganizationServiceFacilities.V2.CreateAsync(
+    new OrganizationServiceFacilityCreate
+    {
+        Name = "Test Service Facility",
+        Aliases = new List<string>() { "Test Service Facility Alias" },
+        Description = "Test Service Facility Description",
+        Status = ServiceFacilityStatus.Active,
+        OperationalStatus = ServiceFacilityOperationalStatus.Closed,
+        Mode = ServiceFacilityMode.Instance,
+        Type = ServiceFacilityType.DiagnosticsOrTherapeuticsUnit,
+        PhysicalType = ServiceFacilityPhysicalType.Site,
+        Telecoms = new List<string>() { "555-555-5555" },
+        Address = new StreetAddressLongZip
+        {
+            Address1 = "123 Main St",
+            Address2 = "Apt 1",
+            City = "New York",
+            State = State.Ny,
+            ZipCode = "10001",
+            ZipPlusFourCode = "1234",
+        },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `OrganizationServiceFacilityCreate` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.OrganizationServiceFacilities.V2.<a href="/src/Candid.Net/OrganizationServiceFacilities/V2/V2Client.cs">UpdateAsync</a>(organizationServiceFacilityId, OrganizationServiceFacilityUpdate { ... }) -> OrganizationServiceFacility</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.OrganizationServiceFacilities.V2.UpdateAsync(
+    "30F55EE6-8C0E-43FC-A7FC-DAC00D5BF569",
+    new OrganizationServiceFacilityUpdate
+    {
+        Name = "Test Service Facility",
+        Aliases = new List<string>() { "Test Service Facility Alias" },
+        Description = "Test Service Facility Description",
+        Status = ServiceFacilityStatus.Active,
+        OperationalStatus = ServiceFacilityOperationalStatus.Closed,
+        Mode = ServiceFacilityMode.Instance,
+        Type = ServiceFacilityType.DiagnosticsOrTherapeuticsUnit,
+        PhysicalType = ServiceFacilityPhysicalType.Site,
+        Telecoms = new List<string>() { "555-555-5555" },
+        Address = new StreetAddressLongZip
+        {
+            Address1 = "123 Main St",
+            Address2 = "Apt 1",
+            City = "New York",
+            State = State.Ny,
+            ZipCode = "10001",
+            ZipPlusFourCode = "1234",
+        },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**organizationServiceFacilityId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `OrganizationServiceFacilityUpdate` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.OrganizationServiceFacilities.V2.<a href="/src/Candid.Net/OrganizationServiceFacilities/V2/V2Client.cs">DeleteAsync</a>(organizationServiceFacilityId)</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.OrganizationServiceFacilities.V2.DeleteAsync("30F55EE6-8C0E-43FC-A7FC-DAC00D5BF569");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**organizationServiceFacilityId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## OrganizationProviders V3
+<details><summary><code>client.OrganizationProviders.V3.<a href="/src/Candid.Net/OrganizationProviders/V3/V3Client.cs">GetAsync</a>(organizationProviderId) -> OrganizationProviderV2</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.OrganizationProviders.V3.GetAsync("965A563A-0285-4910-9569-E3739C0F6EAB");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**organizationProviderId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.OrganizationProviders.V3.<a href="/src/Candid.Net/OrganizationProviders/V3/V3Client.cs">GetMultiAsync</a>(GetAllOrganizationProvidersRequestV2 { ... }) -> OrganizationProviderPageV2</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.OrganizationProviders.V3.GetMultiAsync(
+    new GetAllOrganizationProvidersRequestV2
+    {
+        Limit = 100,
+        SearchTerm = "john",
+        Npi = "1234567890",
+        IsRendering = true,
+        IsBilling = true,
+        PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
+        Sort = OrganizationProviderSortOptions.ProviderNameAsc,
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `GetAllOrganizationProvidersRequestV2` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.OrganizationProviders.V3.<a href="/src/Candid.Net/OrganizationProviders/V3/V3Client.cs">CreateAsync</a>(OrganizationProviderCreateV2 { ... }) -> OrganizationProviderV2</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.OrganizationProviders.V3.CreateAsync(
+    new OrganizationProviderCreateV2
+    {
+        Npi = "string",
+        IsRendering = true,
+        IsBilling = true,
+        FirstName = "string",
+        LastName = "string",
+        OrganizationName = "string",
+        ProviderType = ProviderType.Individual,
+        TaxId = "string",
+        TaxonomyCode = "string",
+        LicenseType = LicenseType.Md,
+        Addresses = new List<OrganizationProviderAddress>()
+        {
+            new OrganizationProviderAddress
+            {
+                Address = new StreetAddressLongZip
+                {
+                    Address1 = "123 Main St",
+                    Address2 = "Apt 1",
+                    City = "New York",
+                    State = State.Ny,
+                    ZipCode = "10001",
+                    ZipPlusFourCode = "1234",
+                },
+                AddressType = AddressType.Default,
+            },
+        },
+        EmploymentStartDate = new DateOnly(2023, 1, 15),
+        EmploymentTerminationDate = new DateOnly(2023, 1, 15),
+        Qualifications = new List<IdentifierCreate>()
+        {
+            new IdentifierCreate
+            {
+                Period = new DateRangeOptionalEnd { StartDate = "string" },
+                IdentifierCode = IdentifierCode.Mcr,
+                IdentifierValue = new MedicareProviderIdentifier(),
+            },
+        },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `OrganizationProviderCreateV2` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.OrganizationProviders.V3.<a href="/src/Candid.Net/OrganizationProviders/V3/V3Client.cs">UpdateAsync</a>(organizationProviderId, OrganizationProviderUpdateV2 { ... }) -> OrganizationProviderV2</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.OrganizationProviders.V3.UpdateAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new OrganizationProviderUpdateV2
+    {
+        Npi = "string",
+        IsRendering = true,
+        IsBilling = true,
+        FirstName = "string",
+        LastName = "string",
+        OrganizationName = "string",
+        ProviderType = ProviderType.Individual,
+        TaxId = "string",
+        TaxonomyCode = "string",
+        LicenseType = LicenseType.Md,
+        Addresses = new List<OrganizationProviderAddress>()
+        {
+            new OrganizationProviderAddress
+            {
+                Address = new StreetAddressLongZip
+                {
+                    Address1 = "123 Main St",
+                    Address2 = "Apt 1",
+                    City = "New York",
+                    State = State.Ny,
+                    ZipCode = "10001",
+                    ZipPlusFourCode = "1234",
+                },
+                AddressType = AddressType.Default,
+            },
+        },
+        EmploymentStartDate = "string",
+        EmploymentTerminationDate = "string",
+        Qualifications = new List<object>()
+        {
+            new IdentifierCreate
+            {
+                Period = new DateRangeOptionalEnd { StartDate = "string" },
+                IdentifierCode = IdentifierCode.Mcr,
+                IdentifierValue = new MedicareProviderIdentifier(),
+            },
+        },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**organizationProviderId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `OrganizationProviderUpdateV2` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## PatientPayments V4
+<details><summary><code>client.PatientPayments.V4.<a href="/src/Candid.Net/PatientPayments/V4/V4Client.cs">GetMultiAsync</a>(GetMultiPatientPaymentsRequest { ... }) -> PatientPaymentsPage</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns all patient payments satisfying the search criteria AND whose organization_id matches
+the current organization_id of the authenticated user.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PatientPayments.V4.GetMultiAsync(
+    new GetMultiPatientPaymentsRequest
+    {
+        Limit = 1,
+        PatientExternalId = "string",
+        ClaimId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        ServiceLineId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        BillingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        Unattributed = true,
+        InvoiceId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        Sources = [PatientTransactionSource.ManualEntry],
+        Sort = PatientPaymentSortField.PaymentSource,
+        SortDirection = Candid.Net.SortDirection.Asc,
+        PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `GetMultiPatientPaymentsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PatientPayments.V4.<a href="/src/Candid.Net/PatientPayments/V4/V4Client.cs">GetAsync</a>(patientPaymentId) -> PatientPayments.V4.PatientPayment</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a previously created patient payment by its `patient_payment_id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PatientPayments.V4.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**patientPaymentId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PatientPayments.V4.<a href="/src/Candid.Net/PatientPayments/V4/V4Client.cs">CreateAsync</a>(PatientPaymentCreate { ... }) -> PatientPayments.V4.PatientPayment</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a new patient payment record and returns the newly created PatientPayment object.
+The allocations can describe whether the payment is being applied toward a specific service line,
+claim, or billing provider.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PatientPayments.V4.CreateAsync(
+    new PatientPaymentCreate
+    {
+        AmountCents = 1,
+        PaymentTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
+        PaymentNote = "string",
+        PatientExternalId = "string",
+        Allocations = new List<AllocationCreate>()
+        {
+            new AllocationCreate
+            {
+                AmountCents = 1,
+                Target = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+            },
+        },
+        Invoice = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `PatientPaymentCreate` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PatientPayments.V4.<a href="/src/Candid.Net/PatientPayments/V4/V4Client.cs">UpdateAsync</a>(patientPaymentId, PatientPaymentUpdate { ... }) -> PatientPayments.V4.PatientPayment</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates the patient payment record matching the provided patient_payment_id.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PatientPayments.V4.UpdateAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new PatientPaymentUpdate
+    {
+        PaymentTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
+        PaymentNote = "string",
+        Invoice = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**patientPaymentId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `PatientPaymentUpdate` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PatientPayments.V4.<a href="/src/Candid.Net/PatientPayments/V4/V4Client.cs">DeleteAsync</a>(patientPaymentId)</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes the patient payment record matching the provided patient_payment_id.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PatientPayments.V4.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**patientPaymentId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## PatientRefunds V1
+<details><summary><code>client.PatientRefunds.V1.<a href="/src/Candid.Net/PatientRefunds/V1/V1Client.cs">GetMultiAsync</a>(GetMultiPatientRefundsRequest { ... }) -> PatientRefundsPage</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns all patient refunds satisfying the search criteria AND whose organization_id matches
+the current organization_id of the authenticated user.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PatientRefunds.V1.GetMultiAsync(
+    new GetMultiPatientRefundsRequest
+    {
+        Limit = 1,
+        PatientExternalId = "string",
+        ClaimId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        ServiceLineId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        BillingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        Unattributed = true,
+        InvoiceId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        Sources = [PatientTransactionSource.ManualEntry],
+        Sort = PatientRefundSortField.RefundSource,
+        SortDirection = Candid.Net.SortDirection.Asc,
+        PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `GetMultiPatientRefundsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PatientRefunds.V1.<a href="/src/Candid.Net/PatientRefunds/V1/V1Client.cs">GetAsync</a>(patientRefundId) -> PatientRefund</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a previously created patient refund by its `patient_refund_id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PatientRefunds.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**patientRefundId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PatientRefunds.V1.<a href="/src/Candid.Net/PatientRefunds/V1/V1Client.cs">CreateAsync</a>(PatientRefundCreate { ... }) -> PatientRefund</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a new patient refund record and returns the newly created PatientRefund object.
+The allocations can describe whether the refund is being applied toward a specific service line,
+claim, or billing provider.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PatientRefunds.V1.CreateAsync(
+    new PatientRefundCreate
+    {
+        AmountCents = 1,
+        RefundTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
+        RefundNote = "string",
+        PatientExternalId = "string",
+        Allocations = new List<AllocationCreate>()
+        {
+            new AllocationCreate
+            {
+                AmountCents = 1,
+                Target = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+            },
+        },
+        Invoice = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        RefundReason = RefundReason.Overcharged,
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `PatientRefundCreate` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PatientRefunds.V1.<a href="/src/Candid.Net/PatientRefunds/V1/V1Client.cs">UpdateAsync</a>(patientRefundId, PatientRefundUpdate { ... }) -> PatientRefund</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates the patient refund record matching the provided patient_refund_id.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PatientRefunds.V1.UpdateAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new PatientRefundUpdate
+    {
+        RefundTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
+        RefundNote = "string",
+        Invoice = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        RefundReason = RefundReason.Overcharged,
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**patientRefundId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `PatientRefundUpdate` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PatientRefunds.V1.<a href="/src/Candid.Net/PatientRefunds/V1/V1Client.cs">DeleteAsync</a>(patientRefundId)</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes the patient refund record matching the provided patient_refund_id.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PatientRefunds.V1.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**patientRefundId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## PayerPlanGroups V1
+<details><summary><code>client.PayerPlanGroups.V1.<a href="/src/Candid.Net/PayerPlanGroups/V1/V1Client.cs">GetMultiAsync</a>(PayerPlanGroupGetMultiRequest { ... }) -> PayerPlanGroupPage</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns all payer plan groups matching filter criteria.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PayerPlanGroups.V1.GetMultiAsync(
+    new PayerPlanGroupGetMultiRequest
+    {
+        PlanGroupName = ["string"],
+        PayerUuid = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
+        PayerId = ["string"],
+        PlanType = [SourceOfPaymentCode.SelfPay],
+        IsActive = true,
+        PayerPlanGroupId = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
+        Limit = 1,
+        SortBySimilarity = "string",
+        Sort = PayerPlanGroupSortField.PlanGroupName,
+        SortDirection = Candid.Net.SortDirection.Asc,
+        PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `PayerPlanGroupGetMultiRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PayerPlanGroups.V1.<a href="/src/Candid.Net/PayerPlanGroups/V1/V1Client.cs">GetAsync</a>(payerPlanGroupId) -> PayerPlanGroup</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Return a plan group with a given ID.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PayerPlanGroups.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**payerPlanGroupId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PayerPlanGroups.V1.<a href="/src/Candid.Net/PayerPlanGroups/V1/V1Client.cs">CreateAsync</a>(MutablePayerPlanGroup { ... }) -> PayerPlanGroup</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create a payer plan group
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PayerPlanGroups.V1.CreateAsync(
+    new MutablePayerPlanGroup
+    {
+        PlanGroupName = "string",
+        PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        PlanType = SourceOfPaymentCode.SelfPay,
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `MutablePayerPlanGroup` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PayerPlanGroups.V1.<a href="/src/Candid.Net/PayerPlanGroups/V1/V1Client.cs">UpdateAsync</a>(payerPlanGroupId, MutablePayerPlanGroup { ... }) -> PayerPlanGroup</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update any of the fields on a payer plan group
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PayerPlanGroups.V1.UpdateAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new MutablePayerPlanGroup
+    {
+        PlanGroupName = "string",
+        PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        PlanType = SourceOfPaymentCode.SelfPay,
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**payerPlanGroupId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MutablePayerPlanGroup` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PayerPlanGroups.V1.<a href="/src/Candid.Net/PayerPlanGroups/V1/V1Client.cs">DeactivateAsync</a>(payerPlanGroupId) -> PayerPlanGroup</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Marks the payer plan group as deactivated
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PayerPlanGroups.V1.DeactivateAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**payerPlanGroupId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Payers V3
+<details><summary><code>client.Payers.V3.<a href="/src/Candid.Net/Payers/V3/V3Client.cs">GetAsync</a>(payerUuid) -> Payer</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Payers.V3.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**payerUuid:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Payers.V3.<a href="/src/Candid.Net/Payers/V3/V3Client.cs">GetAllAsync</a>(GetAllPayersRequest { ... }) -> PayerPage</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Payers.V3.GetAllAsync(
+    new GetAllPayersRequest
+    {
+        Limit = 100,
+        SearchTerm = "john",
+        PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `GetAllPayersRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## ServiceLines V2
+<details><summary><code>client.ServiceLines.V2.<a href="/src/Candid.Net/ServiceLines/V2/V2Client.cs">CreateAsync</a>(ServiceLineCreateStandalone { ... }) -> ServiceLine</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.ServiceLines.V2.CreateAsync(
+    new ServiceLineCreateStandalone
+    {
+        Modifiers = new List<ProcedureModifier>() { ProcedureModifier.Av },
+        ChargeAmountCents = 1,
+        DiagnosisIdZero = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        DiagnosisIdOne = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        DiagnosisIdTwo = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        DiagnosisIdThree = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        DenialReason = new ServiceLineDenialReason
+        {
+            Reason = DenialReasonContent.AuthorizationRequired,
+        },
+        PlaceOfServiceCode = FacilityTypeCode.Pharmacy,
+        ProcedureCode = "string",
+        Quantity = "string",
+        Units = ServiceLineUnits.Mj,
+        ClaimId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        Description = "string",
+        DateOfService = new DateOnly(2023, 1, 15),
+        EndDateOfService = new DateOnly(2023, 1, 15),
+        DrugIdentification = new DrugIdentification
+        {
+            ServiceIdQualifier = ServiceIdQualifier.EanUcc13,
+            NationalDrugCode = "string",
+            NationalDrugUnitCount = "string",
+            MeasurementUnitCode = MeasurementUnitCode.Milliliters,
+            LinkSequenceNumber = "string",
+            PharmacyPrescriptionNumber = "string",
+            ConversionFormula = "string",
+            DrugDescription = "string",
+        },
+        OrderingProvider = new OrderingProvider
+        {
+            Npi = "string",
+            TaxonomyCode = "string",
+            Address = new StreetAddressLongZip
+            {
+                Address1 = "123 Main St",
+                Address2 = "Apt 1",
+                City = "New York",
+                State = State.Ny,
+                ZipCode = "10001",
+                ZipPlusFourCode = "1234",
+            },
+            FirstName = "string",
+            LastName = "string",
+            OrganizationName = "string",
+        },
+        TestResults = new List<TestResult>()
+        {
+            new TestResult { Value = 1.1, ResultType = TestResultType.Hematocrit },
+        },
+        HasEpsdtIndicator = true,
+        HasFamilyPlanningIndicator = true,
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ServiceLineCreateStandalone` 
     
 </dd>
 </dl>

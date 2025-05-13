@@ -12,12 +12,64 @@ namespace Candid.Net.Encounters.V4;
 public record EncounterUpdate
 {
     /// <summary>
+    /// Specifies the address to which payments for the claim should be sent.
+    /// </summary>
+    [JsonPropertyName("pay_to_address")]
+    public StreetAddressLongZip? PayToAddress { get; set; }
+
+    /// <summary>
     /// Ideally, this field should contain no more than 12 diagnoses. However, more diagnoses
     /// may be submitted at this time, and coders will later prioritize the 12 that will be
     /// submitted to the payor.
     /// </summary>
     [JsonPropertyName("diagnosis_ids")]
     public IEnumerable<string>? DiagnosisIds { get; set; }
+
+    /// <summary>
+    /// The second iteration of Loop ID-2310. Use code "P3 - Primary Care Provider" in this loop to
+    /// indicate the initial referral from the primary care provider or whatever provider wrote the initial referral for this patient's episode of care being billed/reported in this transaction.
+    /// </summary>
+    [JsonPropertyName("initial_referring_provider")]
+    public InitialReferringProviderUpdate? InitialReferringProvider { get; set; }
+
+    /// <summary>
+    /// The final provider who referred the services that were rendered.
+    /// All physicians who order services or refer Medicare beneficiaries must
+    /// report this data.
+    /// </summary>
+    [JsonPropertyName("referring_provider")]
+    public ReferringProviderUpdate? ReferringProvider { get; set; }
+
+    /// <summary>
+    /// Contains the identification information of the individual receiving medical services.
+    /// </summary>
+    [JsonPropertyName("patient")]
+    public PatientUpdate? Patient { get; set; }
+
+    /// <summary>
+    /// The rendering provider is the practitioner -- physician, nurse practitioner, etc. -- performing the service.
+    /// For telehealth services, the rendering provider performs the visit, asynchronous communication, or other service. The rendering provider address should generally be the same as the service facility address.
+    /// </summary>
+    [JsonPropertyName("rendering_provider")]
+    public RenderingProviderUpdate? RenderingProvider { get; set; }
+
+    /// <summary>
+    /// Encounter Service facility is typically the location a medical service was rendered, such as a provider office or hospital. For telehealth, service facility can represent the provider's location when the service was delivered (e.g., home), or the location where an in-person visit would have taken place, whichever is easier to identify. If the provider is in-network, service facility may be defined in payer contracts. Box 32 on the CMS-1500 claim form. Note that for an in-network claim to be successfully adjudicated, the service facility address listed on claims must match what was provided to the payer during the credentialing process.
+    /// </summary>
+    [JsonPropertyName("service_facility")]
+    public EncounterServiceFacilityUpdate? ServiceFacility { get; set; }
+
+    /// <summary>
+    /// Required when the rendering provider is supervised by a physician. If not required by this implementation guide, do not send.
+    /// </summary>
+    [JsonPropertyName("supervising_provider")]
+    public SupervisingProviderUpdate? SupervisingProvider { get; set; }
+
+    /// <summary>
+    /// The billing provider is the provider or business entity submitting the claim. Billing provider may be, but is not necessarily, the same person/NPI as the rendering provider. From a payer's perspective, this represents the person or entity being reimbursed. When a contract exists with the target payer, the billing provider should be the entity contracted with the payer. In some circumstances, this will be an individual provider. In that case, submit that provider's NPI and the tax ID (TIN) that the provider gave to the payer during contracting. In other cases, the billing entity will be a medical group. If so, submit the group NPI and the group's tax ID. Box 33 on the CMS-1500 claim form.
+    /// </summary>
+    [JsonPropertyName("billing_provider")]
+    public BillingProviderUpdate? BillingProvider { get; set; }
 
     /// <summary>
     /// Box 24B on the CMS-1500 claim form. 837p Loop2300, CLM-05-1. 02 for telemedicine, 11 for in-person. Full list [here](https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set).
@@ -66,12 +118,6 @@ public record EncounterUpdate
     /// </summary>
     [JsonPropertyName("clinical_notes")]
     public IEnumerable<ClinicalNoteCategoryCreate>? ClinicalNotes { get; set; }
-
-    /// <summary>
-    /// Specifies the address to which payments for the claim should be sent.
-    /// </summary>
-    [JsonPropertyName("pay_to_address")]
-    public StreetAddressLongZip? PayToAddress { get; set; }
 
     /// <summary>
     /// Defines if the Encounter is to be billed by Candid to the responsible_party. Examples for when this should be set to NOT_BILLABLE include if the Encounter has not occurred yet or if there is no intention of ever billing the responsible_party.
@@ -193,12 +239,6 @@ public record EncounterUpdate
     public DelayReasonCode? DelayReasonCode { get; set; }
 
     /// <summary>
-    /// Contains the identification information of the individual receiving medical services.
-    /// </summary>
-    [JsonPropertyName("patient")]
-    public PatientUpdate? Patient { get; set; }
-
-    /// <summary>
     /// Whether this patient has authorized the release of medical information
     /// for billing purpose.
     /// Box 12 on the CMS-1500 claim form.
@@ -230,50 +270,10 @@ public record EncounterUpdate
     public IEnumerable<Medication>? ExistingMedications { get; set; }
 
     /// <summary>
-    /// The rendering provider is the practitioner -- physician, nurse practitioner, etc. -- performing the service.
-    /// For telehealth services, the rendering provider performs the visit, asynchronous communication, or other service. The rendering provider address should generally be the same as the service facility address.
-    /// </summary>
-    [JsonPropertyName("rendering_provider")]
-    public RenderingProviderUpdate? RenderingProvider { get; set; }
-
-    /// <summary>
-    /// Encounter Service facility is typically the location a medical service was rendered, such as a provider office or hospital. For telehealth, service facility can represent the provider's location when the service was delivered (e.g., home), or the location where an in-person visit would have taken place, whichever is easier to identify. If the provider is in-network, service facility may be defined in payer contracts. Box 32 on the CMS-1500 claim form. Note that for an in-network claim to be successfully adjudicated, the service facility address listed on claims must match what was provided to the payer during the credentialing process.
-    /// </summary>
-    [JsonPropertyName("service_facility")]
-    public EncounterServiceFacilityUpdate? ServiceFacility { get; set; }
-
-    /// <summary>
     /// Personal and contact info for the guarantor of the patient responsibility.
     /// </summary>
     [JsonPropertyName("guarantor")]
     public GuarantorUpdate? Guarantor { get; set; }
-
-    /// <summary>
-    /// The billing provider is the provider or business entity submitting the claim. Billing provider may be, but is not necessarily, the same person/NPI as the rendering provider. From a payer's perspective, this represents the person or entity being reimbursed. When a contract exists with the target payer, the billing provider should be the entity contracted with the payer. In some circumstances, this will be an individual provider. In that case, submit that provider's NPI and the tax ID (TIN) that the provider gave to the payer during contracting. In other cases, the billing entity will be a medical group. If so, submit the group NPI and the group's tax ID. Box 33 on the CMS-1500 claim form.
-    /// </summary>
-    [JsonPropertyName("billing_provider")]
-    public BillingProviderUpdate? BillingProvider { get; set; }
-
-    /// <summary>
-    /// Required when the rendering provider is supervised by a physician. If not required by this implementation guide, do not send.
-    /// </summary>
-    [JsonPropertyName("supervising_provider")]
-    public SupervisingProviderUpdate? SupervisingProvider { get; set; }
-
-    /// <summary>
-    /// The final provider who referred the services that were rendered.
-    /// All physicians who order services or refer Medicare beneficiaries must
-    /// report this data.
-    /// </summary>
-    [JsonPropertyName("referring_provider")]
-    public ReferringProviderUpdate? ReferringProvider { get; set; }
-
-    /// <summary>
-    /// The second iteration of Loop ID-2310. Use code "P3 - Primary Care Provider" in this loop to
-    /// indicate the initial referral from the primary care provider or whatever provider wrote the initial referral for this patient's episode of care being billed/reported in this transaction.
-    /// </summary>
-    [JsonPropertyName("initial_referring_provider")]
-    public InitialReferringProviderUpdate? InitialReferringProvider { get; set; }
 
     /// <summary>
     /// Refers to REF\*9F on the 837p. Value cannot be greater than 50 characters.
@@ -292,6 +292,12 @@ public record EncounterUpdate
     /// </summary>
     [JsonPropertyName("claim_supplemental_information")]
     public IEnumerable<ClaimSupplementalInformation>? ClaimSupplementalInformation { get; set; }
+
+    /// <summary>
+    /// When Medicaid is billed as the secondary payer the Carrier Code is used to identify the primary payer. This is required for certain states.
+    /// </summary>
+    [JsonPropertyName("secondary_payer_carrier_code")]
+    public string? SecondaryPayerCarrierCode { get; set; }
 
     public override string ToString()
     {

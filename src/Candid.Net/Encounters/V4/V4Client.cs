@@ -566,6 +566,7 @@ public partial class V4Client
     ///                 AttachmentTransmissionCode = ReportTransmissionCode.Cbm,
     ///             },
     ///         },
+    ///         SecondaryPayerCarrierCode = "string",
     ///         ExternalId = "string",
     ///         DateOfService = new DateOnly(2023, 1, 15),
     ///         EndDateOfService = new DateOnly(2023, 1, 15),
@@ -1014,7 +1015,158 @@ public partial class V4Client
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///     new EncounterUpdate
     ///     {
+    ///         PayToAddress = new StreetAddressLongZip
+    ///         {
+    ///             Address1 = "123 Main St",
+    ///             Address2 = "Apt 1",
+    ///             City = "New York",
+    ///             State = State.Ny,
+    ///             ZipCode = "10001",
+    ///             ZipPlusFourCode = "1234",
+    ///         },
     ///         DiagnosisIds = new List&lt;string&gt;() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
+    ///         InitialReferringProvider = new InitialReferringProviderUpdate
+    ///         {
+    ///             Npi = "string",
+    ///             TaxonomyCode = "string",
+    ///             Address = new StreetAddressLongZip
+    ///             {
+    ///                 Address1 = "123 Main St",
+    ///                 Address2 = "Apt 1",
+    ///                 City = "New York",
+    ///                 State = State.Ny,
+    ///                 ZipCode = "10001",
+    ///                 ZipPlusFourCode = "1234",
+    ///             },
+    ///             Qualifier = QualifierCode.Dq,
+    ///             FirstName = "string",
+    ///             LastName = "string",
+    ///             OrganizationName = "string",
+    ///         },
+    ///         ReferringProvider = new ReferringProviderUpdate
+    ///         {
+    ///             Npi = "string",
+    ///             TaxonomyCode = "string",
+    ///             Address = new StreetAddressLongZip
+    ///             {
+    ///                 Address1 = "123 Main St",
+    ///                 Address2 = "Apt 1",
+    ///                 City = "New York",
+    ///                 State = State.Ny,
+    ///                 ZipCode = "10001",
+    ///                 ZipPlusFourCode = "1234",
+    ///             },
+    ///             FirstName = "string",
+    ///             LastName = "string",
+    ///             OrganizationName = "string",
+    ///         },
+    ///         Patient = new PatientUpdate
+    ///         {
+    ///             FirstName = "string",
+    ///             LastName = "string",
+    ///             Gender = Candid.Net.Gender.Male,
+    ///             ExternalId = "string",
+    ///             DateOfBirth = new DateOnly(2023, 1, 15),
+    ///             Address = new StreetAddressShortZip
+    ///             {
+    ///                 Address1 = "123 Main St",
+    ///                 Address2 = "Apt 1",
+    ///                 City = "New York",
+    ///                 State = State.Ny,
+    ///                 ZipCode = "10001",
+    ///                 ZipPlusFourCode = "1234",
+    ///             },
+    ///             PhoneNumbers = new List&lt;PhoneNumber&gt;()
+    ///             {
+    ///                 new PhoneNumber { Number = "1234567890", Type = PhoneNumberType.Home },
+    ///             },
+    ///             PhoneConsent = true,
+    ///             Email = "johndoe@joincandidhealth.com",
+    ///             EmailConsent = true,
+    ///             NonInsurancePayers = new List&lt;string&gt;() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
+    ///             NonInsurancePayersInfo = new List&lt;PatientNonInsurancePayerInfoCreate&gt;()
+    ///             {
+    ///                 new PatientNonInsurancePayerInfoCreate
+    ///                 {
+    ///                     NonInsurancePayerId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///                     MemberId = "string",
+    ///                     ClinicalTrialInfo = new List&lt;PatientClinicalTrialInfoCreate&gt;()
+    ///                     {
+    ///                         new PatientClinicalTrialInfoCreate
+    ///                         {
+    ///                             ClinicalTrialId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///                         },
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///         RenderingProvider = new RenderingProviderUpdate
+    ///         {
+    ///             Npi = "string",
+    ///             TaxonomyCode = "string",
+    ///             Address = new StreetAddressLongZip
+    ///             {
+    ///                 Address1 = "123 Main St",
+    ///                 Address2 = "Apt 1",
+    ///                 City = "New York",
+    ///                 State = State.Ny,
+    ///                 ZipCode = "10001",
+    ///                 ZipPlusFourCode = "1234",
+    ///             },
+    ///             FirstName = "string",
+    ///             LastName = "string",
+    ///             OrganizationName = "string",
+    ///         },
+    ///         ServiceFacility = new EncounterServiceFacilityUpdate
+    ///         {
+    ///             OrganizationName = "Test Organization",
+    ///             Address = new StreetAddressLongZip
+    ///             {
+    ///                 Address1 = "123 Main St",
+    ///                 Address2 = "Apt 1",
+    ///                 City = "New York",
+    ///                 State = State.Ny,
+    ///                 ZipCode = "10001",
+    ///                 ZipPlusFourCode = "1234",
+    ///             },
+    ///         },
+    ///         SupervisingProvider = new SupervisingProviderUpdate
+    ///         {
+    ///             Npi = "string",
+    ///             TaxonomyCode = "string",
+    ///             Address = new StreetAddressLongZip
+    ///             {
+    ///                 Address1 = "123 Main St",
+    ///                 Address2 = "Apt 1",
+    ///                 City = "New York",
+    ///                 State = State.Ny,
+    ///                 ZipCode = "10001",
+    ///                 ZipPlusFourCode = "1234",
+    ///             },
+    ///             FirstName = "string",
+    ///             LastName = "string",
+    ///             OrganizationName = "string",
+    ///         },
+    ///         BillingProvider = new BillingProviderUpdate
+    ///         {
+    ///             Address = new StreetAddressLongZip
+    ///             {
+    ///                 Address1 = "123 Main St",
+    ///                 Address2 = "Apt 1",
+    ///                 City = "New York",
+    ///                 State = State.Ny,
+    ///                 ZipCode = "10001",
+    ///                 ZipPlusFourCode = "1234",
+    ///             },
+    ///             TaxId = "string",
+    ///             Npi = "string",
+    ///             TaxonomyCode = "string",
+    ///             ProviderCommercialLicenseType =
+    ///                 BillingProviderCommercialLicenseType.LicensedClinicalSocialWorker,
+    ///             FirstName = "string",
+    ///             LastName = "string",
+    ///             OrganizationName = "string",
+    ///         },
     ///         PlaceOfServiceCodeAsSubmitted = FacilityTypeCode.Pharmacy,
     ///     }
     /// );
