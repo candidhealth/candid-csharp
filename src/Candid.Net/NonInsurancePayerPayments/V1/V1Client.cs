@@ -22,16 +22,7 @@ public partial class V1Client
     /// <example>
     /// <code>
     /// await client.NonInsurancePayerPayments.V1.GetMultiAsync(
-    ///     new GetMultiNonInsurancePayerPaymentRequest
-    ///     {
-    ///         Limit = 1,
-    ///         NonInsurancePayerId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         CheckNumber = ["string"],
-    ///         InvoiceId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         Sort = NonInsurancePayerPaymentSortField.AmountCents,
-    ///         SortDirection = Candid.Net.SortDirection.Asc,
-    ///         PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
-    ///     }
+    ///     new GetMultiNonInsurancePayerPaymentRequest()
     /// );
     /// </code>
     /// </example>
@@ -149,9 +140,6 @@ public partial class V1Client
     ///     {
     ///         NonInsurancePayerId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///         AmountCents = 1,
-    ///         PaymentTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
-    ///         PaymentNote = "string",
-    ///         CheckNumber = "string",
     ///         Allocations = new List&lt;AllocationCreate&gt;()
     ///         {
     ///             new AllocationCreate
@@ -159,8 +147,12 @@ public partial class V1Client
     ///                 AmountCents = 1,
     ///                 Target = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///             },
+    ///             new AllocationCreate
+    ///             {
+    ///                 AmountCents = 1,
+    ///                 Target = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///             },
     ///         },
-    ///         InvoiceId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///     }
     /// );
     /// </code>
@@ -206,12 +198,7 @@ public partial class V1Client
     /// <code>
     /// await client.NonInsurancePayerPayments.V1.UpdateAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new UpdateNonInsurancePayerPaymentRequest
-    ///     {
-    ///         PaymentTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
-    ///         PaymentNote = "string",
-    ///         InvoiceId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     }
+    ///     new UpdateNonInsurancePayerPaymentRequest()
     /// );
     /// </code>
     /// </example>

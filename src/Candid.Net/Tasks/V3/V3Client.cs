@@ -59,24 +59,7 @@ public partial class V3Client
 
     /// <example>
     /// <code>
-    /// await client.Tasks.V3.GetMultiAsync(
-    ///     new GetAllTasksRequest
-    ///     {
-    ///         Limit = 1,
-    ///         PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
-    ///         Status = TaskStatus.Finished,
-    ///         TaskType = TaskType.CustomerDataRequest,
-    ///         Categories = "string",
-    ///         UpdatedSince = new DateTime(2024, 01, 15, 09, 30, 00, 000),
-    ///         EncounterId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         SearchTerm = "string",
-    ///         AssignedToId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         DateOfServiceMin = new DateOnly(2023, 1, 15),
-    ///         DateOfServiceMax = new DateOnly(2023, 1, 15),
-    ///         BillingProviderNpi = "string",
-    ///         Sort = TaskSortOptions.UpdatedAtAsc,
-    ///     }
-    /// );
+    /// await client.Tasks.V3.GetMultiAsync(new GetAllTasksRequest());
     /// </code>
     /// </example>
     public async Task<TaskPage> GetMultiAsync(
@@ -221,11 +204,8 @@ public partial class V3Client
     ///     {
     ///         EncounterId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///         TaskType = TaskType.CustomerDataRequest,
-    ///         Description = "string",
-    ///         BlocksClaimSubmission = true,
-    ///         AssigneeUserId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         Category = TaskCategory.Other,
-    ///         WorkQueueId = "string",
+    ///         Description = "description",
+    ///         WorkQueueId = "work_queue_id",
     ///     }
     /// );
     /// </code>
@@ -269,15 +249,7 @@ public partial class V3Client
 
     /// <example>
     /// <code>
-    /// await client.Tasks.V3.UpdateAsync(
-    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new TaskUpdateV3
-    ///     {
-    ///         Status = TaskStatus.Finished,
-    ///         AssigneeUserId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         BlocksClaimSubmission = true,
-    ///     }
-    /// );
+    /// await client.Tasks.V3.UpdateAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32", new TaskUpdateV3());
     /// </code>
     /// </example>
     public async Task<Task> UpdateAsync(

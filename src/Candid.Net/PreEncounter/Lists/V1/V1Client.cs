@@ -21,16 +21,7 @@ public partial class V1Client
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.PreEncounter.Lists.V1.GetPatientListAsync(
-    ///     new PatientListRequest
-    ///     {
-    ///         PageToken = "string",
-    ///         Limit = 1,
-    ///         SortField = "string",
-    ///         SortDirection = Candid.Net.PreEncounter.SortDirection.Asc,
-    ///         Filters = "string",
-    ///     }
-    /// );
+    /// await client.PreEncounter.Lists.V1.GetPatientListAsync(new PatientListRequest());
     /// </code>
     /// </example>
     public async Task<PatientListPage> GetPatientListAsync(
@@ -96,16 +87,7 @@ public partial class V1Client
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.PreEncounter.Lists.V1.GetAppointmentListAsync(
-    ///     new AppointmentsGetListRequest
-    ///     {
-    ///         SortField = "string",
-    ///         SortDirection = Candid.Net.PreEncounter.SortDirection.Asc,
-    ///         Limit = 1,
-    ///         PageToken = "string",
-    ///         Filters = "string",
-    ///     }
-    /// );
+    /// await client.PreEncounter.Lists.V1.GetAppointmentListAsync(new AppointmentsGetListRequest());
     /// </code>
     /// </example>
     public async Task<AppointmentListPage> GetAppointmentListAsync(

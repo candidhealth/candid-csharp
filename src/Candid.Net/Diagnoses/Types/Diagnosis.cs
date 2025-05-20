@@ -35,12 +35,11 @@ public record Diagnosis
     /// Empty string not allowed.
     /// Should be of the appropriate format for the provided `code_type`.
     /// Must obey the ICD-10 format if an ICD-10 code_type is provided, specifically:
-    ///
-    /// - Letter
-    /// - Digit
-    /// - Digit or the letter `A` or `B`
-    /// - (Optional) Period `.`
-    /// - Up to 4 (or as few as 0) letters and digits
+    ///   - Letter
+    ///   - Digit
+    ///   - Digit or the letter `A` or `B`
+    ///   - (Optional) Period `.`
+    ///   - Up to 4 (or as few as 0) letters and digits
     /// </summary>
     [JsonPropertyName("code")]
     public required string Code { get; set; }

@@ -22,22 +22,7 @@ public partial class V4Client
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.PatientPayments.V4.GetMultiAsync(
-    ///     new GetMultiPatientPaymentsRequest
-    ///     {
-    ///         Limit = 1,
-    ///         PatientExternalId = "string",
-    ///         ClaimId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         ServiceLineId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         BillingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         Unattributed = true,
-    ///         InvoiceId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         Sources = [PatientTransactionSource.ManualEntry],
-    ///         Sort = PatientPaymentSortField.PaymentSource,
-    ///         SortDirection = Candid.Net.SortDirection.Asc,
-    ///         PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
-    ///     }
-    /// );
+    /// await client.PatientPayments.V4.GetMultiAsync(new GetMultiPatientPaymentsRequest());
     /// </code>
     /// </example>
     public async Task<PatientPaymentsPage> GetMultiAsync(
@@ -174,9 +159,7 @@ public partial class V4Client
     ///     new PatientPaymentCreate
     ///     {
     ///         AmountCents = 1,
-    ///         PaymentTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
-    ///         PaymentNote = "string",
-    ///         PatientExternalId = "string",
+    ///         PatientExternalId = "patient_external_id",
     ///         Allocations = new List&lt;AllocationCreate&gt;()
     ///         {
     ///             new AllocationCreate
@@ -184,8 +167,12 @@ public partial class V4Client
     ///                 AmountCents = 1,
     ///                 Target = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///             },
+    ///             new AllocationCreate
+    ///             {
+    ///                 AmountCents = 1,
+    ///                 Target = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///             },
     ///         },
-    ///         Invoice = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///     }
     /// );
     /// </code>
@@ -234,12 +221,7 @@ public partial class V4Client
     /// <code>
     /// await client.PatientPayments.V4.UpdateAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new PatientPaymentUpdate
-    ///     {
-    ///         PaymentTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
-    ///         PaymentNote = "string",
-    ///         Invoice = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     }
+    ///     new PatientPaymentUpdate()
     /// );
     /// </code>
     /// </example>

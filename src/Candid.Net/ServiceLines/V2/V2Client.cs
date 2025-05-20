@@ -21,58 +21,10 @@ public partial class V2Client
     /// await client.ServiceLines.V2.CreateAsync(
     ///     new ServiceLineCreateStandalone
     ///     {
-    ///         Modifiers = new List&lt;ProcedureModifier&gt;() { ProcedureModifier.Av },
-    ///         ChargeAmountCents = 1,
-    ///         DiagnosisIdZero = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         DiagnosisIdOne = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         DiagnosisIdTwo = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         DiagnosisIdThree = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         DenialReason = new ServiceLineDenialReason
-    ///         {
-    ///             Reason = DenialReasonContent.AuthorizationRequired,
-    ///         },
-    ///         PlaceOfServiceCode = FacilityTypeCode.Pharmacy,
-    ///         ProcedureCode = "string",
-    ///         Quantity = "string",
+    ///         ProcedureCode = "procedure_code",
+    ///         Quantity = "quantity",
     ///         Units = ServiceLineUnits.Mj,
     ///         ClaimId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         Description = "string",
-    ///         DateOfService = new DateOnly(2023, 1, 15),
-    ///         EndDateOfService = new DateOnly(2023, 1, 15),
-    ///         DrugIdentification = new DrugIdentification
-    ///         {
-    ///             ServiceIdQualifier = ServiceIdQualifier.EanUcc13,
-    ///             NationalDrugCode = "string",
-    ///             NationalDrugUnitCount = "string",
-    ///             MeasurementUnitCode = MeasurementUnitCode.Milliliters,
-    ///             LinkSequenceNumber = "string",
-    ///             PharmacyPrescriptionNumber = "string",
-    ///             ConversionFormula = "string",
-    ///             DrugDescription = "string",
-    ///         },
-    ///         OrderingProvider = new OrderingProvider
-    ///         {
-    ///             Npi = "string",
-    ///             TaxonomyCode = "string",
-    ///             Address = new StreetAddressLongZip
-    ///             {
-    ///                 Address1 = "123 Main St",
-    ///                 Address2 = "Apt 1",
-    ///                 City = "New York",
-    ///                 State = State.Ny,
-    ///                 ZipCode = "10001",
-    ///                 ZipPlusFourCode = "1234",
-    ///             },
-    ///             FirstName = "string",
-    ///             LastName = "string",
-    ///             OrganizationName = "string",
-    ///         },
-    ///         TestResults = new List&lt;TestResult&gt;()
-    ///         {
-    ///             new TestResult { Value = 1.1, ResultType = TestResultType.Hematocrit },
-    ///         },
-    ///         HasEpsdtIndicator = true,
-    ///         HasFamilyPlanningIndicator = true,
     ///     }
     /// );
     /// </code>
@@ -118,44 +70,7 @@ public partial class V2Client
     /// <code>
     /// await client.ServiceLines.V2.UpdateAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new ServiceLineUpdate
-    ///     {
-    ///         EditReason = "string",
-    ///         Modifiers = new List&lt;ProcedureModifier&gt;() { ProcedureModifier.Av },
-    ///         ChargeAmountCents = 1,
-    ///         DiagnosisIdZero = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         DiagnosisIdOne = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         DiagnosisIdTwo = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         DiagnosisIdThree = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         DrugIdentification = new DrugIdentification
-    ///         {
-    ///             ServiceIdQualifier = ServiceIdQualifier.EanUcc13,
-    ///             NationalDrugCode = "string",
-    ///             NationalDrugUnitCount = "string",
-    ///             MeasurementUnitCode = MeasurementUnitCode.Milliliters,
-    ///             LinkSequenceNumber = "string",
-    ///             PharmacyPrescriptionNumber = "string",
-    ///             ConversionFormula = "string",
-    ///             DrugDescription = "string",
-    ///         },
-    ///         DenialReason = new ServiceLineDenialReason
-    ///         {
-    ///             Reason = DenialReasonContent.AuthorizationRequired,
-    ///         },
-    ///         PlaceOfServiceCode = FacilityTypeCode.Pharmacy,
-    ///         Units = ServiceLineUnits.Mj,
-    ///         ProcedureCode = "string",
-    ///         Quantity = "string",
-    ///         Description = "string",
-    ///         DateOfService = new DateOnly(2023, 1, 15),
-    ///         EndDateOfService = new DateOnly(2023, 1, 15),
-    ///         TestResults = new List&lt;TestResult&gt;()
-    ///         {
-    ///             new TestResult { Value = 1.1, ResultType = TestResultType.Hematocrit },
-    ///         },
-    ///         HasEpsdtIndicator = true,
-    ///         HasFamilyPlanningIndicator = true,
-    ///     }
+    ///     new ServiceLineUpdate()
     /// );
     /// </code>
     /// </example>

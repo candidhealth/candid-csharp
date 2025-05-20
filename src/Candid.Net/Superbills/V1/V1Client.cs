@@ -21,18 +21,9 @@ public partial class V1Client
     /// await client.Superbills.V1.CreateSuperbillAsync(
     ///     new CreateSuperbillRequest
     ///     {
-    ///         PatientExternalId = "string",
+    ///         PatientExternalId = "patient_external_id",
     ///         DateRangeMin = new DateOnly(2023, 1, 15),
     ///         DateRangeMax = new DateOnly(2023, 1, 15),
-    ///         PayToAddress = new StreetAddressShortZip
-    ///         {
-    ///             Address1 = "123 Main St",
-    ///             Address2 = "Apt 1",
-    ///             City = "New York",
-    ///             State = State.Ny,
-    ///             ZipCode = "10001",
-    ///             ZipPlusFourCode = "1234",
-    ///         },
     ///     }
     /// );
     /// </code>

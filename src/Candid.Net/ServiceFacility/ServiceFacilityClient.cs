@@ -19,19 +19,7 @@ public partial class ServiceFacilityClient
     /// <code>
     /// await client.ServiceFacility.UpdateAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new EncounterServiceFacilityUpdate
-    ///     {
-    ///         OrganizationName = "Test Organization",
-    ///         Address = new StreetAddressLongZip
-    ///         {
-    ///             Address1 = "123 Main St",
-    ///             Address2 = "Apt 1",
-    ///             City = "New York",
-    ///             State = State.Ny,
-    ///             ZipCode = "10001",
-    ///             ZipPlusFourCode = "1234",
-    ///         },
-    ///     }
+    ///     new EncounterServiceFacilityUpdate()
     /// );
     /// </code>
     /// </example>

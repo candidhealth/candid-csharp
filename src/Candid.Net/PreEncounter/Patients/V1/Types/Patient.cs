@@ -9,13 +9,13 @@ namespace Candid.Net.PreEncounter.Patients.V1;
 public record Patient
 {
     /// <summary>
-    /// The unique UUID identifier for a Patient. Patient ID is used in machine contexts.
+    /// The unique UUID identifier for a Patient.  Patient ID is used in machine contexts.
     /// </summary>
     [JsonPropertyName("id")]
     public required string Id { get; set; }
 
     /// <summary>
-    /// The medical record number for the patient. Human-friendly Candid generated MRNs are of the form "YYMMDDXXXX", where "YYYYMMDD" is the date of patient creation and "XXXX" is a zero-padded incrementing integer.
+    /// The medical record number for the patient.  Human-friendly Candid generated MRNs are of the form "YYMMDDXXXX", where "YYYYMMDD" is the date of patient creation and "XXXX" is a zero-padded incrementing integer.
     /// </summary>
     [JsonPropertyName("mrn")]
     public required string Mrn { get; set; }
@@ -27,13 +27,13 @@ public record Patient
     public required string OrganizationId { get; set; }
 
     /// <summary>
-    /// True if the object is deactivated. Deactivated objects are not returned in search results but are returned in all other endpoints including scan.
+    /// True if the object is deactivated.  Deactivated objects are not returned in search results but are returned in all other endpoints including scan.
     /// </summary>
     [JsonPropertyName("deactivated")]
     public required bool Deactivated { get; set; }
 
     /// <summary>
-    /// The version of the object. Any update to any property of an object object will create a new version.
+    /// The version of the object.  Any update to any property of an object object will create a new version.
     /// </summary>
     [JsonPropertyName("version")]
     public required int Version { get; set; }
@@ -102,13 +102,13 @@ public record Patient
     public MaritalStatus? MaritalStatus { get; set; }
 
     /// <summary>
-    /// Time of death for the patient. Leave unset if the patient is not deceased.
+    /// Time of death for the patient.  Leave unset if the patient is not deceased.
     /// </summary>
     [JsonPropertyName("deceased")]
     public DateTime? Deceased { get; set; }
 
     /// <summary>
-    /// The number of siblings the patient was born with. Leave unset if the patient was not part of a multiple birth.
+    /// The number of siblings the patient was born with.  Leave unset if the patient was not part of a multiple birth.
     /// </summary>
     [JsonPropertyName("multiple_birth")]
     public int? MultipleBirth { get; set; }
@@ -150,7 +150,7 @@ public record Patient
     public string? Language { get; set; }
 
     /// <summary>
-    /// Information about the upstream system that owns this patient data. Leave unset if Candid owns patient data.
+    /// Information about the upstream system that owns this patient data.  Leave unset if Candid owns patient data.
     /// </summary>
     [JsonPropertyName("external_provenance")]
     public ExternalProvenance? ExternalProvenance { get; set; }

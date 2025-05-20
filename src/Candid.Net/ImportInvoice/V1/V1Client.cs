@@ -25,10 +25,8 @@ public partial class V1Client
     ///     new CreateImportInvoiceRequest
     ///     {
     ///         ExternalPaymentAccountConfigId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         PatientExternalId = "string",
-    ///         ExternalCustomerIdentifier = "string",
-    ///         Note = "string",
-    ///         DueDate = new DateOnly(2023, 1, 15),
+    ///         PatientExternalId = "patient_external_id",
+    ///         ExternalCustomerIdentifier = "external_customer_identifier",
     ///         Items = new List&lt;InvoiceItemCreate&gt;()
     ///         {
     ///             new InvoiceItemCreate
@@ -36,10 +34,14 @@ public partial class V1Client
     ///                 Attribution = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///                 AmountCents = 1,
     ///             },
+    ///             new InvoiceItemCreate
+    ///             {
+    ///                 Attribution = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///                 AmountCents = 1,
+    ///             },
     ///         },
     ///         Status = Candid.Net.Invoices.V2.InvoiceStatus.Draft,
-    ///         ExternalIdentifier = "string",
-    ///         CustomerInvoiceUrl = "string",
+    ///         ExternalIdentifier = "external_identifier",
     ///     }
     /// );
     /// </code>
@@ -86,21 +88,7 @@ public partial class V1Client
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.ImportInvoice.V1.GetMultiAsync(
-    ///     new SearchImportedInvoicesRequest
-    ///     {
-    ///         PatientExternalId = "string",
-    ///         EncounterExternalId = "string",
-    ///         Note = "string",
-    ///         DueDateBefore = new DateOnly(2023, 1, 15),
-    ///         DueDateAfter = new DateOnly(2023, 1, 15),
-    ///         Status = [Candid.Net.Invoices.V2.InvoiceStatus.Draft],
-    ///         Limit = 1,
-    ///         Sort = InvoiceSortField.CreatedAt,
-    ///         SortDirection = Candid.Net.SortDirection.Asc,
-    ///         PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
-    ///     }
-    /// );
+    /// await client.ImportInvoice.V1.GetMultiAsync(new SearchImportedInvoicesRequest());
     /// </code>
     /// </example>
     public async Task<ImportInvoicesPage> GetMultiAsync(
@@ -229,25 +217,7 @@ public partial class V1Client
     /// <code>
     /// await client.ImportInvoice.V1.UpdateAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new ImportInvoiceUpdateRequest
-    ///     {
-    ///         CustomerInvoiceUrl = "string",
-    ///         Status = Candid.Net.Invoices.V2.InvoiceStatus.Draft,
-    ///         Note = "string",
-    ///         DueDate = new DateOnly(2023, 1, 15),
-    ///         Items = new InvoiceItemInfoUpdate
-    ///         {
-    ///             UpdateType = InvoiceItemUpdateType.Append,
-    ///             Items = new List&lt;InvoiceItemCreate&gt;()
-    ///             {
-    ///                 new InvoiceItemCreate
-    ///                 {
-    ///                     Attribution = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///                     AmountCents = 1,
-    ///                 },
-    ///             },
-    ///         },
-    ///     }
+    ///     new ImportInvoiceUpdateRequest()
     /// );
     /// </code>
     /// </example>

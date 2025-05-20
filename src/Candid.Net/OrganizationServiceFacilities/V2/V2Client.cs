@@ -18,7 +18,7 @@ public partial class V2Client
 
     /// <example>
     /// <code>
-    /// await client.OrganizationServiceFacilities.V2.GetAsync("30F55EE6-8C0E-43FC-A7FC-DAC00D5BF569");
+    /// await client.OrganizationServiceFacilities.V2.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code>
     /// </example>
     public async Task<OrganizationServiceFacility> GetAsync(

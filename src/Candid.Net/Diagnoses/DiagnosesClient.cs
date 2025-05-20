@@ -24,10 +24,9 @@ public partial class DiagnosesClient
     /// await client.Diagnoses.CreateAsync(
     ///     new StandaloneDiagnosisCreate
     ///     {
-    ///         EncounterId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         Name = "string",
     ///         CodeType = DiagnosisTypeCode.Abf,
-    ///         Code = "string",
+    ///         Code = "code",
+    ///         EncounterId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///     }
     /// );
     /// </code>
@@ -74,15 +73,7 @@ public partial class DiagnosesClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Diagnoses.UpdateAsync(
-    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new DiagnosisUpdate
-    ///     {
-    ///         Name = "string",
-    ///         CodeType = DiagnosisTypeCode.Abf,
-    ///         Code = "string",
-    ///     }
-    /// );
+    /// await client.Diagnoses.UpdateAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32", new DiagnosisUpdate());
     /// </code>
     /// </example>
     public async Task<Diagnosis> UpdateAsync(

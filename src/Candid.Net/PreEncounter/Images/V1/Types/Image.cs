@@ -11,7 +11,7 @@ public record Image
     public required string Id { get; set; }
 
     /// <summary>
-    /// A signed URL to the image. This url can be used to upload an image to GCP storage or to read the image contents.
+    /// A signed URL to the image.  This url can be used to upload an image to GCP storage or to read the image contents.
     /// </summary>
     [JsonPropertyName("signed_url")]
     public required string SignedUrl { get; set; }
@@ -23,13 +23,13 @@ public record Image
     public required string OrganizationId { get; set; }
 
     /// <summary>
-    /// True if the object is deactivated. Deactivated objects are not returned in search results but are returned in all other endpoints including scan.
+    /// True if the object is deactivated.  Deactivated objects are not returned in search results but are returned in all other endpoints including scan.
     /// </summary>
     [JsonPropertyName("deactivated")]
     public required bool Deactivated { get; set; }
 
     /// <summary>
-    /// The version of the object. Any update to any property of an object object will create a new version.
+    /// The version of the object.  Any update to any property of an object object will create a new version.
     /// </summary>
     [JsonPropertyName("version")]
     public required int Version { get; set; }

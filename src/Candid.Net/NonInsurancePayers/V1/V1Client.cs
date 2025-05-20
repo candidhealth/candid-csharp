@@ -19,30 +19,7 @@ public partial class V1Client
     /// <example>
     /// <code>
     /// await client.NonInsurancePayers.V1.CreateAsync(
-    ///     new CreateNonInsurancePayerRequest
-    ///     {
-    ///         Name = "string",
-    ///         Description = "string",
-    ///         Category = "string",
-    ///         Address = new StreetAddressShortZip
-    ///         {
-    ///             Address1 = "123 Main St",
-    ///             Address2 = "Apt 1",
-    ///             City = "New York",
-    ///             State = State.Ny,
-    ///             ZipCode = "10001",
-    ///             ZipPlusFourCode = "1234",
-    ///         },
-    ///         ClinicalTrials = new List&lt;MutableClinicalTrial&gt;()
-    ///         {
-    ///             new MutableClinicalTrial
-    ///             {
-    ///                 Name = "string",
-    ///                 ClinicalTrialNumber = "string",
-    ///                 ClinicalTrialPhase = ClinicalTrialPhase.PhaseOne,
-    ///             },
-    ///         },
-    ///     }
+    ///     new CreateNonInsurancePayerRequest { Name = "name" }
     /// );
     /// </code>
     /// </example>
@@ -131,18 +108,7 @@ public partial class V1Client
 
     /// <example>
     /// <code>
-    /// await client.NonInsurancePayers.V1.GetMultiAsync(
-    ///     new GetMultiNonInsurancePayersRequest
-    ///     {
-    ///         Name = "string",
-    ///         Category = "string",
-    ///         Enabled = true,
-    ///         Sort = NonInsurancePayerSortField.Name,
-    ///         SortDirection = Candid.Net.SortDirection.Asc,
-    ///         Limit = 1,
-    ///         PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
-    ///     }
-    /// );
+    /// await client.NonInsurancePayers.V1.GetMultiAsync(new GetMultiNonInsurancePayersRequest());
     /// </code>
     /// </example>
     public async Task<NonInsurancePayerPage> GetMultiAsync(
@@ -256,13 +222,7 @@ public partial class V1Client
     /// <code>
     /// await client.NonInsurancePayers.V1.UpdateAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new NonInsurancePayerUpdateRequest
-    ///     {
-    ///         Name = "string",
-    ///         Description = "no-properties-union",
-    ///         Category = "no-properties-union",
-    ///         Address = "no-properties-union",
-    ///     }
+    ///     new NonInsurancePayerUpdateRequest()
     /// );
     /// </code>
     /// </example>

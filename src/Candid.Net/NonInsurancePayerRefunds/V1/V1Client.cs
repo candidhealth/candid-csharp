@@ -22,16 +22,7 @@ public partial class V1Client
     /// <example>
     /// <code>
     /// await client.NonInsurancePayerRefunds.V1.GetMultiAsync(
-    ///     new GetMultiNonInsurancePayerRefundsRequest
-    ///     {
-    ///         Limit = 1,
-    ///         NonInsurancePayerId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         CheckNumber = ["string"],
-    ///         InvoiceId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         Sort = NonInsurancePayerRefundSortField.AmountCents,
-    ///         SortDirection = Candid.Net.SortDirection.Asc,
-    ///         PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
-    ///     }
+    ///     new GetMultiNonInsurancePayerRefundsRequest()
     /// );
     /// </code>
     /// </example>
@@ -153,11 +144,7 @@ public partial class V1Client
     ///     new NonInsurancePayerRefundCreate
     ///     {
     ///         NonInsurancePayerId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         InvoiceId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///         AmountCents = 1,
-    ///         RefundTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
-    ///         RefundNote = "string",
-    ///         CheckNumber = "string",
     ///         Allocations = new List&lt;AllocationCreate&gt;()
     ///         {
     ///             new AllocationCreate
@@ -165,8 +152,12 @@ public partial class V1Client
     ///                 AmountCents = 1,
     ///                 Target = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///             },
+    ///             new AllocationCreate
+    ///             {
+    ///                 AmountCents = 1,
+    ///                 Target = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///             },
     ///         },
-    ///         RefundReason = RefundReason.Overcharged,
     ///     }
     /// );
     /// </code>
@@ -216,13 +207,7 @@ public partial class V1Client
     /// <code>
     /// await client.NonInsurancePayerRefunds.V1.UpdateAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new NonInsurancePayerRefundUpdate
-    ///     {
-    ///         RefundTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
-    ///         RefundNote = "string",
-    ///         RefundReason = RefundReason.Overcharged,
-    ///         InvoiceId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     }
+    ///     new NonInsurancePayerRefundUpdate()
     /// );
     /// </code>
     /// </example>

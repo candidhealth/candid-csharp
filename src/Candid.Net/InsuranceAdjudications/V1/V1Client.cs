@@ -68,12 +68,9 @@ public partial class V1Client
     /// await client.InsuranceAdjudications.V1.CreateAsync(
     ///     new InsuranceAdjudicationCreate
     ///     {
-    ///         PayerIdentifier = new PayerInfo(),
-    ///         Payee = new Payee { PayeeName = "string", PayeeIdentifier = "string" },
-    ///         PostDate = new DateOnly(2023, 1, 15),
-    ///         CheckNumber = "string",
+    ///         PayerIdentifier = new PayerInfo { PayerId = "payer_id", PayerName = "payer_name" },
+    ///         Payee = new Payee { PayeeName = "payee_name", PayeeIdentifier = "payee_identifier" },
     ///         CheckDate = new DateOnly(2023, 1, 15),
-    ///         Note = "string",
     ///         Claims = new Dictionary&lt;string, IEnumerable&lt;ClaimAdjudicationCreate&gt;&gt;()
     ///         {
     ///             {
@@ -87,13 +84,156 @@ public partial class V1Client
     ///                             string,
     ///                             IEnumerable&lt;ServiceLineAdjudicationCreate&gt;
     ///                         &gt;()
-    ///                         { },
-    ///                         Carcs = new List&lt;ClaimAdjustmentReasonCode&gt;() { },
+    ///                         {
+    ///                             {
+    ///                                 "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///                                 new List&lt;ServiceLineAdjudicationCreate&gt;()
+    ///                                 {
+    ///                                     new ServiceLineAdjudicationCreate
+    ///                                     {
+    ///                                         Carcs = new List&lt;ClaimAdjustmentReasonCode&gt;()
+    ///                                         {
+    ///                                             new ClaimAdjustmentReasonCode
+    ///                                             {
+    ///                                                 GroupCode = ClaimAdjustmentGroupCodes.Co,
+    ///                                                 ReasonCode = Carc.Carc1,
+    ///                                                 AmountCents = 1,
+    ///                                             },
+    ///                                             new ClaimAdjustmentReasonCode
+    ///                                             {
+    ///                                                 GroupCode = ClaimAdjustmentGroupCodes.Co,
+    ///                                                 ReasonCode = Carc.Carc1,
+    ///                                                 AmountCents = 1,
+    ///                                             },
+    ///                                         },
+    ///                                         Rarcs = new List&lt;RemittanceAdviceRemarkCode&gt;()
+    ///                                         {
+    ///                                             new RemittanceAdviceRemarkCode { ReasonCode = Rarc.M1 },
+    ///                                             new RemittanceAdviceRemarkCode { ReasonCode = Rarc.M1 },
+    ///                                         },
+    ///                                     },
+    ///                                     new ServiceLineAdjudicationCreate
+    ///                                     {
+    ///                                         Carcs = new List&lt;ClaimAdjustmentReasonCode&gt;()
+    ///                                         {
+    ///                                             new ClaimAdjustmentReasonCode
+    ///                                             {
+    ///                                                 GroupCode = ClaimAdjustmentGroupCodes.Co,
+    ///                                                 ReasonCode = Carc.Carc1,
+    ///                                                 AmountCents = 1,
+    ///                                             },
+    ///                                             new ClaimAdjustmentReasonCode
+    ///                                             {
+    ///                                                 GroupCode = ClaimAdjustmentGroupCodes.Co,
+    ///                                                 ReasonCode = Carc.Carc1,
+    ///                                                 AmountCents = 1,
+    ///                                             },
+    ///                                         },
+    ///                                         Rarcs = new List&lt;RemittanceAdviceRemarkCode&gt;()
+    ///                                         {
+    ///                                             new RemittanceAdviceRemarkCode { ReasonCode = Rarc.M1 },
+    ///                                             new RemittanceAdviceRemarkCode { ReasonCode = Rarc.M1 },
+    ///                                         },
+    ///                                     },
+    ///                                 }
+    ///                             },
+    ///                         },
+    ///                         Carcs = new List&lt;ClaimAdjustmentReasonCode&gt;()
+    ///                         {
+    ///                             new ClaimAdjustmentReasonCode
+    ///                             {
+    ///                                 GroupCode = ClaimAdjustmentGroupCodes.Co,
+    ///                                 ReasonCode = Carc.Carc1,
+    ///                                 AmountCents = 1,
+    ///                             },
+    ///                             new ClaimAdjustmentReasonCode
+    ///                             {
+    ///                                 GroupCode = ClaimAdjustmentGroupCodes.Co,
+    ///                                 ReasonCode = Carc.Carc1,
+    ///                                 AmountCents = 1,
+    ///                             },
+    ///                         },
+    ///                     },
+    ///                     new ClaimAdjudicationCreate
+    ///                     {
+    ///                         ClaimStatusCode = ClaimStatusCodeCreate.ProcessedAsPrimary,
+    ///                         ServiceLines = new Dictionary&lt;
+    ///                             string,
+    ///                             IEnumerable&lt;ServiceLineAdjudicationCreate&gt;
+    ///                         &gt;()
+    ///                         {
+    ///                             {
+    ///                                 "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///                                 new List&lt;ServiceLineAdjudicationCreate&gt;()
+    ///                                 {
+    ///                                     new ServiceLineAdjudicationCreate
+    ///                                     {
+    ///                                         Carcs = new List&lt;ClaimAdjustmentReasonCode&gt;()
+    ///                                         {
+    ///                                             new ClaimAdjustmentReasonCode
+    ///                                             {
+    ///                                                 GroupCode = ClaimAdjustmentGroupCodes.Co,
+    ///                                                 ReasonCode = Carc.Carc1,
+    ///                                                 AmountCents = 1,
+    ///                                             },
+    ///                                             new ClaimAdjustmentReasonCode
+    ///                                             {
+    ///                                                 GroupCode = ClaimAdjustmentGroupCodes.Co,
+    ///                                                 ReasonCode = Carc.Carc1,
+    ///                                                 AmountCents = 1,
+    ///                                             },
+    ///                                         },
+    ///                                         Rarcs = new List&lt;RemittanceAdviceRemarkCode&gt;()
+    ///                                         {
+    ///                                             new RemittanceAdviceRemarkCode { ReasonCode = Rarc.M1 },
+    ///                                             new RemittanceAdviceRemarkCode { ReasonCode = Rarc.M1 },
+    ///                                         },
+    ///                                     },
+    ///                                     new ServiceLineAdjudicationCreate
+    ///                                     {
+    ///                                         Carcs = new List&lt;ClaimAdjustmentReasonCode&gt;()
+    ///                                         {
+    ///                                             new ClaimAdjustmentReasonCode
+    ///                                             {
+    ///                                                 GroupCode = ClaimAdjustmentGroupCodes.Co,
+    ///                                                 ReasonCode = Carc.Carc1,
+    ///                                                 AmountCents = 1,
+    ///                                             },
+    ///                                             new ClaimAdjustmentReasonCode
+    ///                                             {
+    ///                                                 GroupCode = ClaimAdjustmentGroupCodes.Co,
+    ///                                                 ReasonCode = Carc.Carc1,
+    ///                                                 AmountCents = 1,
+    ///                                             },
+    ///                                         },
+    ///                                         Rarcs = new List&lt;RemittanceAdviceRemarkCode&gt;()
+    ///                                         {
+    ///                                             new RemittanceAdviceRemarkCode { ReasonCode = Rarc.M1 },
+    ///                                             new RemittanceAdviceRemarkCode { ReasonCode = Rarc.M1 },
+    ///                                         },
+    ///                                     },
+    ///                                 }
+    ///                             },
+    ///                         },
+    ///                         Carcs = new List&lt;ClaimAdjustmentReasonCode&gt;()
+    ///                         {
+    ///                             new ClaimAdjustmentReasonCode
+    ///                             {
+    ///                                 GroupCode = ClaimAdjustmentGroupCodes.Co,
+    ///                                 ReasonCode = Carc.Carc1,
+    ///                                 AmountCents = 1,
+    ///                             },
+    ///                             new ClaimAdjustmentReasonCode
+    ///                             {
+    ///                                 GroupCode = ClaimAdjustmentGroupCodes.Co,
+    ///                                 ReasonCode = Carc.Carc1,
+    ///                                 AmountCents = 1,
+    ///                             },
+    ///                         },
     ///                     },
     ///                 }
     ///             },
     ///         },
-    ///         RemitDraftId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///     }
     /// );
     /// </code>

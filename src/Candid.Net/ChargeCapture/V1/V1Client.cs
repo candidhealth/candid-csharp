@@ -22,9 +22,8 @@ public partial class V1Client
     ///     new CreateChargeCaptureRequest
     ///     {
     ///         Data = new ChargeCaptureData(),
-    ///         ChargeExternalId = "string",
-    ///         EhrSourceUrl = "string",
-    ///         PatientExternalId = "string",
+    ///         ChargeExternalId = "charge_external_id",
+    ///         PatientExternalId = "patient_external_id",
     ///         Status = ChargeCaptureStatus.Planned,
     ///     }
     /// );
@@ -104,14 +103,7 @@ public partial class V1Client
     /// <code>
     /// await client.ChargeCapture.V1.UpdateAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new ChargeCaptureUpdate
-    ///     {
-    ///         Data = new ChargeCaptureData(),
-    ///         ChargeExternalId = "string",
-    ///         EhrSourceUrl = "string",
-    ///         PatientExternalId = "string",
-    ///         Status = ChargeCaptureStatus.Planned,
-    ///     }
+    ///     new ChargeCaptureUpdate()
     /// );
     /// </code>
     /// </example>
@@ -196,44 +188,7 @@ public partial class V1Client
 
     /// <example>
     /// <code>
-    /// await client.ChargeCapture.V1.GetAllAsync(
-    ///     new GetAllChargeCapturesRequest
-    ///     {
-    ///         Limit = 1,
-    ///         Sort = ChargeCaptureSortField.CreatedAt,
-    ///         SortDirection = Candid.Net.SortDirection.Asc,
-    ///         PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
-    ///         PatientExternalId = "string",
-    ///         Status = ChargeCaptureStatus.Planned,
-    ///         ChargeExternalId = "string",
-    ///         DateOfServiceMin = new DateOnly(2023, 1, 15),
-    ///         DateOfServiceMax = new DateOnly(2023, 1, 15),
-    ///         ClaimIds = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
-    ///         ClaimCreationIds = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
-    ///         BillingProviderNpis = ["string"],
-    ///         ServiceFacilityName = "string",
-    ///         PrimaryPayerIds = ["string"],
-    ///         RenderingProviderNpis = ["string"],
-    ///         RenderingProviderNames = ["string"],
-    ///         SupervisingProviderNpis = ["string"],
-    ///         SupervisingProviderNames = ["string"],
-    ///         ExcludeChargesLinkedToClaims = true,
-    ///         PatientExternalIdRankedSort = "string",
-    ///         StatusRankedSort = ChargeCaptureStatus.Planned,
-    ///         ChargeExternalIdRankedSort = "string",
-    ///         DateOfServiceMinRankedSort = new DateOnly(2023, 1, 15),
-    ///         DateOfServiceMaxRankedSort = new DateOnly(2023, 1, 15),
-    ///         ClaimIdsRankedSort = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
-    ///         ClaimCreationIdsRankedSort = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
-    ///         BillingProviderNpisRankedSort = ["string"],
-    ///         ServiceFacilityNameRankedSort = "string",
-    ///         PrimaryPayerIdsRankedSort = ["string"],
-    ///         RenderingProviderNpisRankedSort = ["string"],
-    ///         RenderingProviderNamesRankedSort = ["string"],
-    ///         SupervisingProviderNpisRankedSort = ["string"],
-    ///         SupervisingProviderNamesRankedSort = ["string"],
-    ///     }
-    /// );
+    /// await client.ChargeCapture.V1.GetAllAsync(new GetAllChargeCapturesRequest());
     /// </code>
     /// </example>
     public async Task<ChargeCapturePage> GetAllAsync(
@@ -377,7 +332,11 @@ public partial class V1Client
     /// await client.ChargeCapture.V1.UpdatePostBilledChangesAsync(
     ///     new ChargeCapturePostBilledChangeUpdate
     ///     {
-    ///         ChargeCaptureChangeIds = new List&lt;string&gt;() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
+    ///         ChargeCaptureChangeIds = new List&lt;string&gt;()
+    ///         {
+    ///             "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///             "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         },
     ///         Resolved = true,
     ///     }
     /// );

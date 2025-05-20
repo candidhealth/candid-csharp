@@ -19,11 +19,7 @@ public partial class V1Client
     /// <example>
     /// <code>
     /// await client.ExternalPaymentAccountConfig.V1.GetMultiAsync(
-    ///     new GetExternalPaymentAccountConfigsRequest
-    ///     {
-    ///         Limit = 1,
-    ///         PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
-    ///     }
+    ///     new GetExternalPaymentAccountConfigsRequest()
     /// );
     /// </code>
     /// </example>

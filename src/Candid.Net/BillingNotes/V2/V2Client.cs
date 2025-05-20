@@ -19,11 +19,7 @@ public partial class V2Client
     /// <example>
     /// <code>
     /// await client.BillingNotes.V2.CreateAsync(
-    ///     new StandaloneBillingNoteCreate
-    ///     {
-    ///         EncounterId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         Text = "string",
-    ///     }
+    ///     new StandaloneBillingNoteCreate { EncounterId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" }
     /// );
     /// </code>
     /// </example>
@@ -101,7 +97,7 @@ public partial class V2Client
     /// <code>
     /// await client.BillingNotes.V2.UpdateAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new BillingNoteUpdate { Text = "string" }
+    ///     new BillingNoteUpdate { Text = "text" }
     /// );
     /// </code>
     /// </example>

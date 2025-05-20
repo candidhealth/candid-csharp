@@ -22,22 +22,7 @@ public partial class V1Client
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.PatientRefunds.V1.GetMultiAsync(
-    ///     new GetMultiPatientRefundsRequest
-    ///     {
-    ///         Limit = 1,
-    ///         PatientExternalId = "string",
-    ///         ClaimId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         ServiceLineId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         BillingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         Unattributed = true,
-    ///         InvoiceId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         Sources = [PatientTransactionSource.ManualEntry],
-    ///         Sort = PatientRefundSortField.RefundSource,
-    ///         SortDirection = Candid.Net.SortDirection.Asc,
-    ///         PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
-    ///     }
-    /// );
+    /// await client.PatientRefunds.V1.GetMultiAsync(new GetMultiPatientRefundsRequest());
     /// </code>
     /// </example>
     public async Task<PatientRefundsPage> GetMultiAsync(
@@ -174,9 +159,7 @@ public partial class V1Client
     ///     new PatientRefundCreate
     ///     {
     ///         AmountCents = 1,
-    ///         RefundTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
-    ///         RefundNote = "string",
-    ///         PatientExternalId = "string",
+    ///         PatientExternalId = "patient_external_id",
     ///         Allocations = new List&lt;AllocationCreate&gt;()
     ///         {
     ///             new AllocationCreate
@@ -184,9 +167,12 @@ public partial class V1Client
     ///                 AmountCents = 1,
     ///                 Target = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///             },
+    ///             new AllocationCreate
+    ///             {
+    ///                 AmountCents = 1,
+    ///                 Target = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///             },
     ///         },
-    ///         Invoice = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         RefundReason = RefundReason.Overcharged,
     ///     }
     /// );
     /// </code>
@@ -235,13 +221,7 @@ public partial class V1Client
     /// <code>
     /// await client.PatientRefunds.V1.UpdateAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new PatientRefundUpdate
-    ///     {
-    ///         RefundTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
-    ///         RefundNote = "string",
-    ///         Invoice = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         RefundReason = RefundReason.Overcharged,
-    ///     }
+    ///     new PatientRefundUpdate()
     /// );
     /// </code>
     /// </example>

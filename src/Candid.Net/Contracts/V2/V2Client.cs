@@ -59,18 +59,7 @@ public partial class V2Client
 
     /// <example>
     /// <code>
-    /// await client.Contracts.V2.GetMultiAsync(
-    ///     new GetMultiContractsRequest
-    ///     {
-    ///         PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
-    ///         Limit = 1,
-    ///         ContractingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         RenderingProviderIds = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
-    ///         PayerNames = ["string"],
-    ///         States = [State.Aa],
-    ///         ContractStatus = ContractStatus.Pending,
-    ///     }
-    /// );
+    /// await client.Contracts.V2.GetMultiAsync(new GetMultiContractsRequest());
     /// </code>
     /// </example>
     public async Task<ContractsPage> GetMultiAsync(
@@ -100,6 +89,14 @@ public partial class V2Client
         if (request.ContractStatus != null)
         {
             _query["contract_status"] = request.ContractStatus.Value.Stringify();
+        }
+        if (request.Sort != null)
+        {
+            _query["sort"] = request.Sort.Value.Stringify();
+        }
+        if (request.SortDirection != null)
+        {
+            _query["sort_direction"] = request.SortDirection.Value.Stringify();
         }
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest
@@ -143,22 +140,6 @@ public partial class V2Client
     ///         ContractingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///         RenderingProviderIds = new HashSet&lt;string&gt;() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
     ///         PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         EffectiveDate = "string",
-    ///         ExpirationDate = "string",
-    ///         Regions = new RegionStates(),
-    ///         ContractStatus = ContractStatus.Pending,
-    ///         AuthorizedSignatory = new AuthorizedSignatory
-    ///         {
-    ///             FirstName = "string",
-    ///             LastName = "string",
-    ///             Title = "string",
-    ///             Email = "string",
-    ///             Phone = "string",
-    ///             Fax = "string",
-    ///         },
-    ///         CommercialInsuranceTypes = "no-properties-union",
-    ///         MedicareInsuranceTypes = "no-properties-union",
-    ///         MedicaidInsuranceTypes = "no-properties-union",
     ///     }
     /// );
     /// </code>
@@ -235,29 +216,7 @@ public partial class V2Client
 
     /// <example>
     /// <code>
-    /// await client.Contracts.V2.UpdateAsync(
-    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new ContractUpdate
-    ///     {
-    ///         RenderingProviderIds = new HashSet&lt;string&gt;() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
-    ///         EffectiveDate = "string",
-    ///         ExpirationDate = "string",
-    ///         Regions = new RegionStates { States = new List&lt;State&gt;() { State.Aa } },
-    ///         ContractStatus = ContractStatus.Pending,
-    ///         AuthorizedSignatory = new AuthorizedSignatory
-    ///         {
-    ///             FirstName = "string",
-    ///             LastName = "string",
-    ///             Title = "string",
-    ///             Email = "string",
-    ///             Phone = "string",
-    ///             Fax = "string",
-    ///         },
-    ///         CommercialInsuranceTypes = "no-properties-union",
-    ///         MedicareInsuranceTypes = "no-properties-union",
-    ///         MedicaidInsuranceTypes = "no-properties-union",
-    ///     }
-    /// );
+    /// await client.Contracts.V2.UpdateAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32", new ContractUpdate());
     /// </code>
     /// </example>
     public async Task<ContractWithProviders> UpdateAsync(

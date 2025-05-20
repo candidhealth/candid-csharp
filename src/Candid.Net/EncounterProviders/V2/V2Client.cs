@@ -20,23 +20,7 @@ public partial class V2Client
     /// <code>
     /// await client.EncounterProviders.V2.UpdateReferringProviderAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new ReferringProviderUpdate
-    ///     {
-    ///         Npi = "string",
-    ///         TaxonomyCode = "string",
-    ///         Address = new StreetAddressLongZip
-    ///         {
-    ///             Address1 = "123 Main St",
-    ///             Address2 = "Apt 1",
-    ///             City = "New York",
-    ///             State = State.Ny,
-    ///             ZipCode = "10001",
-    ///             ZipPlusFourCode = "1234",
-    ///         },
-    ///         FirstName = "string",
-    ///         LastName = "string",
-    ///         OrganizationName = "string",
-    ///     }
+    ///     new ReferringProviderUpdate()
     /// );
     /// </code>
     /// </example>
@@ -82,24 +66,7 @@ public partial class V2Client
     /// <code>
     /// await client.EncounterProviders.V2.UpdateInitialReferringProviderAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new InitialReferringProviderUpdate
-    ///     {
-    ///         Npi = "string",
-    ///         TaxonomyCode = "string",
-    ///         Address = new StreetAddressLongZip
-    ///         {
-    ///             Address1 = "123 Main St",
-    ///             Address2 = "Apt 1",
-    ///             City = "New York",
-    ///             State = State.Ny,
-    ///             ZipCode = "10001",
-    ///             ZipPlusFourCode = "1234",
-    ///         },
-    ///         Qualifier = QualifierCode.Dq,
-    ///         FirstName = "string",
-    ///         LastName = "string",
-    ///         OrganizationName = "string",
-    ///     }
+    ///     new InitialReferringProviderUpdate()
     /// );
     /// </code>
     /// </example>
@@ -145,23 +112,7 @@ public partial class V2Client
     /// <code>
     /// await client.EncounterProviders.V2.UpdateSupervisingProviderAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new SupervisingProviderUpdate
-    ///     {
-    ///         Npi = "string",
-    ///         TaxonomyCode = "string",
-    ///         Address = new StreetAddressLongZip
-    ///         {
-    ///             Address1 = "123 Main St",
-    ///             Address2 = "Apt 1",
-    ///             City = "New York",
-    ///             State = State.Ny,
-    ///             ZipCode = "10001",
-    ///             ZipPlusFourCode = "1234",
-    ///         },
-    ///         FirstName = "string",
-    ///         LastName = "string",
-    ///         OrganizationName = "string",
-    ///     }
+    ///     new SupervisingProviderUpdate()
     /// );
     /// </code>
     /// </example>
@@ -207,23 +158,7 @@ public partial class V2Client
     /// <code>
     /// await client.EncounterProviders.V2.UpdateOrderingProviderAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new OrderingProviderUpdate
-    ///     {
-    ///         Npi = "string",
-    ///         TaxonomyCode = "string",
-    ///         Address = new StreetAddressLongZip
-    ///         {
-    ///             Address1 = "123 Main St",
-    ///             Address2 = "Apt 1",
-    ///             City = "New York",
-    ///             State = State.Ny,
-    ///             ZipCode = "10001",
-    ///             ZipPlusFourCode = "1234",
-    ///         },
-    ///         FirstName = "string",
-    ///         LastName = "string",
-    ///         OrganizationName = "string",
-    ///     }
+    ///     new OrderingProviderUpdate()
     /// );
     /// </code>
     /// </example>
@@ -269,23 +204,7 @@ public partial class V2Client
     /// <code>
     /// await client.EncounterProviders.V2.CreateReferringProviderAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new ReferringProvider
-    ///     {
-    ///         Npi = "string",
-    ///         TaxonomyCode = "string",
-    ///         Address = new StreetAddressLongZip
-    ///         {
-    ///             Address1 = "123 Main St",
-    ///             Address2 = "Apt 1",
-    ///             City = "New York",
-    ///             State = State.Ny,
-    ///             ZipCode = "10001",
-    ///             ZipPlusFourCode = "1234",
-    ///         },
-    ///         FirstName = "string",
-    ///         LastName = "string",
-    ///         OrganizationName = "string",
-    ///     }
+    ///     new ReferringProvider { Npi = "npi" }
     /// );
     /// </code>
     /// </example>
@@ -331,24 +250,7 @@ public partial class V2Client
     /// <code>
     /// await client.EncounterProviders.V2.CreateInitialReferringProviderAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new InitialReferringProvider
-    ///     {
-    ///         Npi = "string",
-    ///         TaxonomyCode = "string",
-    ///         Address = new StreetAddressLongZip
-    ///         {
-    ///             Address1 = "123 Main St",
-    ///             Address2 = "Apt 1",
-    ///             City = "New York",
-    ///             State = State.Ny,
-    ///             ZipCode = "10001",
-    ///             ZipPlusFourCode = "1234",
-    ///         },
-    ///         Qualifier = QualifierCode.Dq,
-    ///         FirstName = "string",
-    ///         LastName = "string",
-    ///         OrganizationName = "string",
-    ///     }
+    ///     new InitialReferringProvider { Npi = "npi" }
     /// );
     /// </code>
     /// </example>
@@ -395,23 +297,7 @@ public partial class V2Client
     /// <code>
     /// await client.EncounterProviders.V2.CreateSupervisingProviderAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new SupervisingProvider
-    ///     {
-    ///         Npi = "string",
-    ///         TaxonomyCode = "string",
-    ///         Address = new StreetAddressLongZip
-    ///         {
-    ///             Address1 = "123 Main St",
-    ///             Address2 = "Apt 1",
-    ///             City = "New York",
-    ///             State = State.Ny,
-    ///             ZipCode = "10001",
-    ///             ZipPlusFourCode = "1234",
-    ///         },
-    ///         FirstName = "string",
-    ///         LastName = "string",
-    ///         OrganizationName = "string",
-    ///     }
+    ///     new SupervisingProvider { Npi = "npi" }
     /// );
     /// </code>
     /// </example>
@@ -457,23 +343,7 @@ public partial class V2Client
     /// <code>
     /// await client.EncounterProviders.V2.CreateOrderingProviderAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new OrderingProvider
-    ///     {
-    ///         Npi = "string",
-    ///         TaxonomyCode = "string",
-    ///         Address = new StreetAddressLongZip
-    ///         {
-    ///             Address1 = "123 Main St",
-    ///             Address2 = "Apt 1",
-    ///             City = "New York",
-    ///             State = State.Ny,
-    ///             ZipCode = "10001",
-    ///             ZipPlusFourCode = "1234",
-    ///         },
-    ///         FirstName = "string",
-    ///         LastName = "string",
-    ///         OrganizationName = "string",
-    ///     }
+    ///     new OrderingProvider { Npi = "npi" }
     /// );
     /// </code>
     /// </example>

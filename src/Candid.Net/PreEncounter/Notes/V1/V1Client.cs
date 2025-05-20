@@ -21,7 +21,7 @@ public partial class V1Client
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.PreEncounter.Notes.V1.GetAsync("string");
+    /// await client.PreEncounter.Notes.V1.GetAsync("id");
     /// </code>
     /// </example>
     public async Task<Note> GetAsync(
@@ -65,14 +65,7 @@ public partial class V1Client
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.PreEncounter.Notes.V1.CreateAsync(
-    ///     new MutableNote
-    ///     {
-    ///         Value = "string",
-    ///         AuthorEmail = "string",
-    ///         AuthorName = "string",
-    ///     }
-    /// );
+    /// await client.PreEncounter.Notes.V1.CreateAsync(new MutableNote { Value = "value" });
     /// </code>
     /// </example>
     public async Task<Note> CreateAsync(
@@ -118,14 +111,9 @@ public partial class V1Client
     /// <example>
     /// <code>
     /// await client.PreEncounter.Notes.V1.UpdateAsync(
-    ///     "string",
-    ///     "string",
-    ///     new MutableNote
-    ///     {
-    ///         Value = "string",
-    ///         AuthorEmail = "string",
-    ///         AuthorName = "string",
-    ///     }
+    ///     "id",
+    ///     "version",
+    ///     new MutableNote { Value = "value" }
     /// );
     /// </code>
     /// </example>
@@ -169,11 +157,11 @@ public partial class V1Client
     }
 
     /// <summary>
-    /// Sets a note as deactivated. The path must contain the most recent version to prevent races.
+    /// Sets a note as deactivated.  The path must contain the most recent version to prevent races.
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.PreEncounter.Notes.V1.DeactivateAsync("string", "string");
+    /// await client.PreEncounter.Notes.V1.DeactivateAsync("id", "version");
     /// </code>
     /// </example>
     public async System.Threading.Tasks.Task DeactivateAsync(

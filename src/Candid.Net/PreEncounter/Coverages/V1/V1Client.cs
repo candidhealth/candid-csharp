@@ -29,50 +29,22 @@ public partial class V1Client
     ///         {
     ///             Name = new HumanName
     ///             {
-    ///                 Family = "string",
-    ///                 Given = new List&lt;string&gt;() { "string" },
+    ///                 Family = "family",
+    ///                 Given = new List&lt;string&gt;() { "given", "given" },
     ///                 Use = NameUse.Usual,
-    ///                 Period = new Period(),
-    ///                 Suffix = "string",
     ///             },
     ///             DateOfBirth = new DateOnly(2023, 1, 15),
     ///             BiologicalSex = Sex.Female,
-    ///             Address = new Candid.Net.PreEncounter.Address
-    ///             {
-    ///                 Use = AddressUse.Home,
-    ///                 Line = new List&lt;string&gt;() { "string" },
-    ///                 City = "string",
-    ///                 State = "string",
-    ///                 PostalCode = "string",
-    ///                 Country = "string",
-    ///                 Period = new Period(),
-    ///             },
     ///         },
     ///         Relationship = Relationship.Self,
-    ///         Patient = "string",
+    ///         Patient = "patient",
     ///         InsurancePlan = new InsurancePlan
     ///         {
-    ///             MemberId = "string",
-    ///             PayerId = "string",
-    ///             PayerName = "string",
-    ///             AdditionalPayerInformation = new AdditionalPayerInformation(),
-    ///             GroupNumber = "string",
-    ///             Name = "string",
-    ///             PlanType = Candid.Net.PreEncounter.Coverages.V1.NetworkType.SelfPay,
-    ///             Type = Candid.Net.PreEncounter.Coverages.V1.InsuranceTypeCode.C01,
-    ///             Period = new Period(),
-    ///             InsuranceCardImageLocator = "string",
-    ///             PayerPlanGroupId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///             MemberId = "member_id",
+    ///             PayerId = "payer_id",
+    ///             PayerName = "payer_name",
     ///         },
     ///         Verified = true,
-    ///         EligibilityChecks = new List&lt;EligibilityCheckMetadata&gt;() { },
-    ///         LatestEligibilityCheck = new LatestEligibilityCheck
-    ///         {
-    ///             CheckId = "string",
-    ///             Status = EligibilityStatus.Active,
-    ///             InitiatedAt = new DateTime(2024, 01, 15, 09, 30, 00, 000),
-    ///         },
-    ///         Benefits = new CoverageBenefits(),
     ///     }
     /// );
     /// </code>
@@ -115,13 +87,13 @@ public partial class V1Client
     }
 
     /// <summary>
-    /// Updates a Coverage. The path must contain the most recent version to prevent race conditions. Updating historic versions is not supported.
+    /// Updates a Coverage.  The path must contain the most recent version to prevent race conditions.  Updating historic versions is not supported.
     /// </summary>
     /// <example>
     /// <code>
     /// await client.PreEncounter.Coverages.V1.UpdateAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     "string",
+    ///     "version",
     ///     new MutableCoverage
     ///     {
     ///         Status = CoverageStatus.Active,
@@ -129,50 +101,22 @@ public partial class V1Client
     ///         {
     ///             Name = new HumanName
     ///             {
-    ///                 Family = "string",
-    ///                 Given = new List&lt;string&gt;() { "string" },
+    ///                 Family = "family",
+    ///                 Given = new List&lt;string&gt;() { "given", "given" },
     ///                 Use = NameUse.Usual,
-    ///                 Period = new Period(),
-    ///                 Suffix = "string",
     ///             },
     ///             DateOfBirth = new DateOnly(2023, 1, 15),
     ///             BiologicalSex = Sex.Female,
-    ///             Address = new Candid.Net.PreEncounter.Address
-    ///             {
-    ///                 Use = AddressUse.Home,
-    ///                 Line = new List&lt;string&gt;() { "string" },
-    ///                 City = "string",
-    ///                 State = "string",
-    ///                 PostalCode = "string",
-    ///                 Country = "string",
-    ///                 Period = new Period(),
-    ///             },
     ///         },
     ///         Relationship = Relationship.Self,
-    ///         Patient = "string",
+    ///         Patient = "patient",
     ///         InsurancePlan = new InsurancePlan
     ///         {
-    ///             MemberId = "string",
-    ///             PayerId = "string",
-    ///             PayerName = "string",
-    ///             AdditionalPayerInformation = new AdditionalPayerInformation(),
-    ///             GroupNumber = "string",
-    ///             Name = "string",
-    ///             PlanType = Candid.Net.PreEncounter.Coverages.V1.NetworkType.SelfPay,
-    ///             Type = Candid.Net.PreEncounter.Coverages.V1.InsuranceTypeCode.C01,
-    ///             Period = new Period(),
-    ///             InsuranceCardImageLocator = "string",
-    ///             PayerPlanGroupId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///             MemberId = "member_id",
+    ///             PayerId = "payer_id",
+    ///             PayerName = "payer_name",
     ///         },
     ///         Verified = true,
-    ///         EligibilityChecks = new List&lt;EligibilityCheckMetadata&gt;() { },
-    ///         LatestEligibilityCheck = new LatestEligibilityCheck
-    ///         {
-    ///             CheckId = "string",
-    ///             Status = EligibilityStatus.Active,
-    ///             InitiatedAt = new DateTime(2024, 01, 15, 09, 30, 00, 000),
-    ///         },
-    ///         Benefits = new CoverageBenefits(),
     ///     }
     /// );
     /// </code>
@@ -222,13 +166,7 @@ public partial class V1Client
     /// <example>
     /// <code>
     /// await client.PreEncounter.Coverages.V1.GetMultiPaginatedAsync(
-    ///     new CoverageGetMultiPaginatedRequest
-    ///     {
-    ///         PatientId = "string",
-    ///         PayerPlanGroupId = "string",
-    ///         PageToken = "string",
-    ///         Limit = 1,
-    ///     }
+    ///     new CoverageGetMultiPaginatedRequest()
     /// );
     /// </code>
     /// </example>
@@ -331,7 +269,7 @@ public partial class V1Client
     }
 
     /// <summary>
-    /// Gets a coverage along with it's full history. The return list is ordered by version ascending.
+    /// Gets a coverage along with it's full history.  The return list is ordered by version ascending.
     /// </summary>
     /// <example>
     /// <code>
@@ -379,9 +317,7 @@ public partial class V1Client
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.PreEncounter.Coverages.V1.GetMultiAsync(
-    ///     new CoverageGetMultiRequest { PatientId = "string" }
-    /// );
+    /// await client.PreEncounter.Coverages.V1.GetMultiAsync(new CoverageGetMultiRequest());
     /// </code>
     /// </example>
     public async Task<IEnumerable<Coverage>> GetMultiAsync(
@@ -427,7 +363,7 @@ public partial class V1Client
     }
 
     /// <summary>
-    /// Scans up to 100 coverage updates. The since query parameter is inclusive, and the result list is ordered by updatedAt ascending.
+    /// Scans up to 100 coverage updates.  The since query parameter is inclusive, and the result list is ordered by updatedAt ascending.
     /// </summary>
     /// <example>
     /// <code>
@@ -485,8 +421,8 @@ public partial class V1Client
     ///     new PayerPlanGroupFields
     ///     {
     ///         PayerPlanGroupId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         PayerId = "string",
-    ///         PayerName = "string",
+    ///         PayerId = "payer_id",
+    ///         PayerName = "payer_name",
     ///         PlanType = Candid.Net.PreEncounter.Coverages.V1.NetworkType.SelfPay,
     ///     }
     /// );
@@ -533,7 +469,7 @@ public partial class V1Client
     ///     {
     ///         ServiceCode = ServiceTypeCode.MedicalCare,
     ///         DateOfService = new DateOnly(2023, 1, 15),
-    ///         Npi = "string",
+    ///         Npi = "npi",
     ///     }
     /// );
     /// </code>
@@ -583,7 +519,7 @@ public partial class V1Client
     /// <code>
     /// await client.PreEncounter.Coverages.V1.GetEligibilityAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     "string"
+    ///     "check_id"
     /// );
     /// </code>
     /// </example>

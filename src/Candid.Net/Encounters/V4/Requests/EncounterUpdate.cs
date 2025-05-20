@@ -108,7 +108,7 @@ public record EncounterUpdate
     public DateOnly? DateOfService { get; set; }
 
     /// <summary>
-    /// Names of tags that should be on the encounter. Note all tags on encounter will be overridden with this list.
+    /// Names of tags that should be on the encounter.  Note all tags on encounter will be overridden with this list.
     /// </summary>
     [JsonPropertyName("tag_ids")]
     public IEnumerable<string>? TagIds { get; set; }
@@ -191,7 +191,7 @@ public record EncounterUpdate
     public string? AdditionalInformation { get; set; }
 
     /// <summary>
-    /// 837p Loop2300 REF\*4N
+    /// 837p Loop2300 REF*4N
     /// Required when mandated by government law or regulation to obtain authorization for specific service(s) but, for the
     /// reasons listed in one of the enum values of ServiceAuthorizationExceptionCode, the service was performed without
     /// obtaining the authorization.
@@ -200,7 +200,7 @@ public record EncounterUpdate
     public ServiceAuthorizationExceptionCode? ServiceAuthorizationExceptionCode { get; set; }
 
     /// <summary>
-    /// 837p Loop2300 DTP\*435, CMS-1500 Box 18
+    /// 837p Loop2300 DTP*435, CMS-1500 Box 18
     /// Required on all ambulance claims when the patient was known to be admitted to the hospital.
     /// OR
     /// Required on all claims involving inpatient medical visits.
@@ -209,14 +209,14 @@ public record EncounterUpdate
     public DateOnly? AdmissionDate { get; set; }
 
     /// <summary>
-    /// 837p Loop2300 DTP\*096, CMS-1500 Box 18
+    /// 837p Loop2300 DTP*096, CMS-1500 Box 18
     /// Required for inpatient claims when the patient was discharged from the facility and the discharge date is known.
     /// </summary>
     [JsonPropertyName("discharge_date")]
     public DateOnly? DischargeDate { get; set; }
 
     /// <summary>
-    /// 837p Loop2300 DTP\*431, CMS-1500 Box 14
+    /// 837p Loop2300 DTP*431, CMS-1500 Box 14
     /// Required for the initial medical service or visit performed in response to a medical emergency when the date is available and is different than the date of service.
     /// OR
     /// This date is the onset of acute symptoms for the current illness or condition.
@@ -225,7 +225,7 @@ public record EncounterUpdate
     public DateOnly? OnsetOfCurrentIllnessOrSymptomDate { get; set; }
 
     /// <summary>
-    /// 837p Loop2300 DTP\*484, CMS-1500 Box 14
+    /// 837p Loop2300 DTP*484, CMS-1500 Box 14
     /// Required when, in the judgment of the provider, the services on this claim are related to the patient's pregnancy.de
     /// </summary>
     [JsonPropertyName("last_menstrual_period_date")]
@@ -276,7 +276,7 @@ public record EncounterUpdate
     public GuarantorUpdate? Guarantor { get; set; }
 
     /// <summary>
-    /// Refers to REF\*9F on the 837p. Value cannot be greater than 50 characters.
+    /// Refers to REF*9F on the 837p. Value cannot be greater than 50 characters.
     /// </summary>
     [JsonPropertyName("referral_number")]
     public string? ReferralNumber { get; set; }

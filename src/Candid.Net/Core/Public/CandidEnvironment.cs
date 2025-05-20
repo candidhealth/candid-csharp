@@ -14,6 +14,12 @@ public class CandidEnvironment
         PreEncounter = "https://pre-api-staging.joincandidhealth.com",
     };
 
+    public static CandidEnvironment CANDID_STAGING = new CandidEnvironment
+    {
+        CandidApi = "https://staging-api.joincandidhealth.com",
+        PreEncounter = "https://staging-pre-api.joincandidhealth.com",
+    };
+
     /// <summary>
     /// URL for the CandidApi service
     /// </summary>

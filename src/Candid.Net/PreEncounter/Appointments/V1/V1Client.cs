@@ -17,55 +17,17 @@ public partial class V1Client
     }
 
     /// <summary>
-    /// Adds an appointment. VersionConflictError is returned when the placer_appointment_id is already in use.
+    /// Adds an appointment.  VersionConflictError is returned when the placer_appointment_id is already in use.
     /// </summary>
     /// <example>
     /// <code>
     /// await client.PreEncounter.Appointments.V1.CreateAsync(
     ///     new MutableAppointment
     ///     {
-    ///         PatientId = "string",
+    ///         PatientId = "patient_id",
     ///         StartTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
-    ///         Status = AppointmentStatus.Pending,
     ///         ServiceDuration = 1,
-    ///         Services = new List&lt;Service&gt;()
-    ///         {
-    ///             new Service
-    ///             {
-    ///                 UniversalServiceIdentifier = UniversalServiceIdentifier.MdVisit,
-    ///                 StartTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
-    ///             },
-    ///         },
-    ///         PlacerAppointmentId = "string",
-    ///         AttendingDoctor = new ExternalProvider
-    ///         {
-    ///             Name = new HumanName
-    ///             {
-    ///                 Family = "string",
-    ///                 Given = new List&lt;string&gt;() { "string" },
-    ///                 Use = NameUse.Usual,
-    ///                 Period = new Period(),
-    ///                 Suffix = "string",
-    ///             },
-    ///             Type = ExternalProviderType.Primary,
-    ///             Npi = "string",
-    ///             Telecoms = new List&lt;ContactPoint&gt;()
-    ///             {
-    ///                 new ContactPoint { Value = "string", Use = ContactPointUse.Home },
-    ///             },
-    ///             Addresses = new List&lt;Candid.Net.PreEncounter.Address&gt;() { },
-    ///             Period = new Period(),
-    ///             CanonicalId = "string",
-    ///             Fax = "string",
-    ///         },
-    ///         EstimatedCopayCents = 1,
-    ///         EstimatedPatientResponsibilityCents = 1,
-    ///         PatientDepositCents = 1,
-    ///         CheckedInTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
-    ///         Notes = "string",
-    ///         LocationResourceId = "string",
-    ///         AutomatedEligibilityCheckComplete = true,
-    ///         WorkQueue = AppointmentWorkQueue.EmergentIssue,
+    ///         Services = new List&lt;Service&gt;() { new Service(), new Service() },
     ///     }
     /// );
     /// </code>
@@ -112,16 +74,7 @@ public partial class V1Client
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.PreEncounter.Appointments.V1.GetVisitsAsync(
-    ///     new VisitsRequest
-    ///     {
-    ///         PageToken = "string",
-    ///         Limit = 1,
-    ///         SortField = "string",
-    ///         SortDirection = Candid.Net.PreEncounter.SortDirection.Asc,
-    ///         Filters = "string",
-    ///     }
-    /// );
+    /// await client.PreEncounter.Appointments.V1.GetVisitsAsync(new VisitsRequest());
     /// </code>
     /// </example>
     public async Task<VisitsPage> GetVisitsAsync(
@@ -187,7 +140,7 @@ public partial class V1Client
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.PreEncounter.Appointments.V1.GetAsync("string");
+    /// await client.PreEncounter.Appointments.V1.GetAsync("id");
     /// </code>
     /// </example>
     public async Task<Appointment> GetAsync(
@@ -227,11 +180,11 @@ public partial class V1Client
     }
 
     /// <summary>
-    /// Gets an appointment along with it's full history. The return list is ordered by version ascending.
+    /// Gets an appointment along with it's full history.  The return list is ordered by version ascending.
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.PreEncounter.Appointments.V1.GetHistoryAsync("string");
+    /// await client.PreEncounter.Appointments.V1.GetHistoryAsync("id");
     /// </code>
     /// </example>
     public async Task<IEnumerable<Appointment>> GetHistoryAsync(
@@ -271,57 +224,19 @@ public partial class V1Client
     }
 
     /// <summary>
-    /// Updates an appointment. The path must contain the most recent version to prevent race conditions. Updating historic versions is not supported.
+    /// Updates an appointment.  The path must contain the most recent version to prevent race conditions.  Updating historic versions is not supported.
     /// </summary>
     /// <example>
     /// <code>
     /// await client.PreEncounter.Appointments.V1.UpdateAsync(
-    ///     "string",
-    ///     "string",
+    ///     "id",
+    ///     "version",
     ///     new MutableAppointment
     ///     {
-    ///         PatientId = "string",
+    ///         PatientId = "patient_id",
     ///         StartTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
-    ///         Status = AppointmentStatus.Pending,
     ///         ServiceDuration = 1,
-    ///         Services = new List&lt;Service&gt;()
-    ///         {
-    ///             new Service
-    ///             {
-    ///                 UniversalServiceIdentifier = UniversalServiceIdentifier.MdVisit,
-    ///                 StartTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
-    ///             },
-    ///         },
-    ///         PlacerAppointmentId = "string",
-    ///         AttendingDoctor = new ExternalProvider
-    ///         {
-    ///             Name = new HumanName
-    ///             {
-    ///                 Family = "string",
-    ///                 Given = new List&lt;string&gt;() { "string" },
-    ///                 Use = NameUse.Usual,
-    ///                 Period = new Period(),
-    ///                 Suffix = "string",
-    ///             },
-    ///             Type = ExternalProviderType.Primary,
-    ///             Npi = "string",
-    ///             Telecoms = new List&lt;ContactPoint&gt;()
-    ///             {
-    ///                 new ContactPoint { Value = "string", Use = ContactPointUse.Home },
-    ///             },
-    ///             Addresses = new List&lt;Candid.Net.PreEncounter.Address&gt;() { },
-    ///             Period = new Period(),
-    ///             CanonicalId = "string",
-    ///             Fax = "string",
-    ///         },
-    ///         EstimatedCopayCents = 1,
-    ///         EstimatedPatientResponsibilityCents = 1,
-    ///         PatientDepositCents = 1,
-    ///         CheckedInTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
-    ///         Notes = "string",
-    ///         LocationResourceId = "string",
-    ///         AutomatedEligibilityCheckComplete = true,
-    ///         WorkQueue = AppointmentWorkQueue.EmergentIssue,
+    ///         Services = new List&lt;Service&gt;() { new Service(), new Service() },
     ///     }
     /// );
     /// </code>
@@ -366,7 +281,7 @@ public partial class V1Client
     }
 
     /// <summary>
-    /// Scans up to 100 appointment updates. The since query parameter is inclusive, and the result list is ordered by updatedAt ascending.
+    /// Scans up to 100 appointment updates.  The since query parameter is inclusive, and the result list is ordered by updatedAt ascending.
     /// </summary>
     /// <example>
     /// <code>
@@ -415,11 +330,11 @@ public partial class V1Client
     }
 
     /// <summary>
-    /// Sets an appointment as deactivated. The path must contain the most recent version to prevent race conditions. Deactivating historic versions is not supported. Subsequent updates via PUT to the appointment will "reactivate" the appointment and set the deactivated flag to false.
+    /// Sets an appointment as deactivated.  The path must contain the most recent version to prevent race conditions.  Deactivating historic versions is not supported. Subsequent updates via PUT to the appointment will "reactivate" the appointment and set the deactivated flag to false.
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.PreEncounter.Appointments.V1.DeactivateAsync("string", "string");
+    /// await client.PreEncounter.Appointments.V1.DeactivateAsync("id", "version");
     /// </code>
     /// </example>
     public async System.Threading.Tasks.Task DeactivateAsync(

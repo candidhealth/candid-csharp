@@ -18,120 +18,155 @@ public partial class V1Client
     }
 
     /// <summary>
-    /// Adds a patient. VersionConflictError is returned when the patient's external ID is already in use.
+    /// Adds a patient.  VersionConflictError is returned when the patient's external ID is already in use.
     /// </summary>
     /// <example>
     /// <code>
     /// await client.PreEncounter.Patients.V1.CreateAsync(
     ///     new CreatePatientRequest
     ///     {
-    ///         SkipDuplicateCheck = true,
     ///         Body = new MutablePatient
     ///         {
     ///             Name = new HumanName
     ///             {
-    ///                 Family = "string",
-    ///                 Given = new List&lt;string&gt;() { "string" },
+    ///                 Family = "family",
+    ///                 Given = new List&lt;string&gt;() { "given", "given" },
     ///                 Use = NameUse.Usual,
-    ///                 Period = new Period(),
-    ///                 Suffix = "string",
     ///             },
     ///             OtherNames = new List&lt;HumanName&gt;()
     ///             {
     ///                 new HumanName
     ///                 {
-    ///                     Family = "string",
-    ///                     Given = new List&lt;string&gt;() { "string" },
+    ///                     Family = "family",
+    ///                     Given = new List&lt;string&gt;() { "given", "given" },
     ///                     Use = NameUse.Usual,
-    ///                     Period = new Period(),
-    ///                     Suffix = "string",
+    ///                 },
+    ///                 new HumanName
+    ///                 {
+    ///                     Family = "family",
+    ///                     Given = new List&lt;string&gt;() { "given", "given" },
+    ///                     Use = NameUse.Usual,
     ///                 },
     ///             },
-    ///             OtherIdentifiers = new List&lt;ExternalIdentifier&gt;()
-    ///             {
-    ///                 new ExternalIdentifier { Value = "string", System = "string" },
-    ///             },
-    ///             Gender = Candid.Net.PreEncounter.Gender.Man,
     ///             BirthDate = new DateOnly(2023, 1, 15),
-    ///             SocialSecurityNumber = "string",
     ///             BiologicalSex = Sex.Female,
-    ///             SexualOrientation = SexualOrientation.Heterosexual,
-    ///             Pronouns = new List&lt;string&gt;() { "string" },
-    ///             Race = Race.AmericanIndianOrAlaskaNative,
-    ///             Ethnicity = Ethnicity.HispanicOrLatino,
-    ///             DisabilityStatus = DisabilityStatus.Disabled,
-    ///             MaritalStatus = MaritalStatus.Annulled,
-    ///             Deceased = new DateTime(2024, 01, 15, 09, 30, 00, 000),
-    ///             MultipleBirth = 1,
     ///             PrimaryAddress = new Candid.Net.PreEncounter.Address
     ///             {
     ///                 Use = AddressUse.Home,
-    ///                 Line = new List&lt;string&gt;() { "string" },
-    ///                 City = "string",
-    ///                 State = "string",
-    ///                 PostalCode = "string",
-    ///                 Country = "string",
-    ///                 Period = new Period(),
+    ///                 Line = new List&lt;string&gt;() { "line", "line" },
+    ///                 City = "city",
+    ///                 State = "state",
+    ///                 PostalCode = "postal_code",
+    ///                 Country = "country",
     ///             },
     ///             OtherAddresses = new List&lt;Candid.Net.PreEncounter.Address&gt;()
     ///             {
     ///                 new Candid.Net.PreEncounter.Address
     ///                 {
     ///                     Use = AddressUse.Home,
-    ///                     Line = new List&lt;string&gt;() { "string" },
-    ///                     City = "string",
-    ///                     State = "string",
-    ///                     PostalCode = "string",
-    ///                     Country = "string",
-    ///                     Period = new Period(),
+    ///                     Line = new List&lt;string&gt;() { "line", "line" },
+    ///                     City = "city",
+    ///                     State = "state",
+    ///                     PostalCode = "postal_code",
+    ///                     Country = "country",
+    ///                 },
+    ///                 new Candid.Net.PreEncounter.Address
+    ///                 {
+    ///                     Use = AddressUse.Home,
+    ///                     Line = new List&lt;string&gt;() { "line", "line" },
+    ///                     City = "city",
+    ///                     State = "state",
+    ///                     PostalCode = "postal_code",
+    ///                     Country = "country",
     ///                 },
     ///             },
-    ///             PrimaryTelecom = new ContactPoint { Value = "string", Use = ContactPointUse.Home },
+    ///             PrimaryTelecom = new ContactPoint { Value = "value", Use = ContactPointUse.Home },
     ///             OtherTelecoms = new List&lt;ContactPoint&gt;()
     ///             {
-    ///                 new ContactPoint { Value = "string", Use = ContactPointUse.Home },
-    ///             },
-    ///             Email = "string",
-    ///             ElectronicCommunicationOptIn = true,
-    ///             Photo = "string",
-    ///             Language = "string",
-    ///             ExternalProvenance = new ExternalProvenance
-    ///             {
-    ///                 ExternalId = "string",
-    ///                 SystemName = "string",
+    ///                 new ContactPoint { Value = "value", Use = ContactPointUse.Home },
+    ///                 new ContactPoint { Value = "value", Use = ContactPointUse.Home },
     ///             },
     ///             Contacts = new List&lt;Contact&gt;()
     ///             {
     ///                 new Contact
     ///                 {
-    ///                     Relationship = new List&lt;Relationship&gt;() { Relationship.Self },
+    ///                     Relationship = new List&lt;Relationship&gt;()
+    ///                     {
+    ///                         Relationship.Self,
+    ///                         Relationship.Self,
+    ///                     },
     ///                     Name = new HumanName
     ///                     {
-    ///                         Family = "string",
-    ///                         Given = new List&lt;string&gt;() { "string" },
+    ///                         Family = "family",
+    ///                         Given = new List&lt;string&gt;() { "given", "given" },
     ///                         Use = NameUse.Usual,
-    ///                         Period = new Period(),
-    ///                         Suffix = "string",
     ///                     },
     ///                     Telecoms = new List&lt;ContactPoint&gt;()
     ///                     {
-    ///                         new ContactPoint { Value = "string", Use = ContactPointUse.Home },
+    ///                         new ContactPoint { Value = "value", Use = ContactPointUse.Home },
+    ///                         new ContactPoint { Value = "value", Use = ContactPointUse.Home },
     ///                     },
     ///                     Addresses = new List&lt;Candid.Net.PreEncounter.Address&gt;()
     ///                     {
     ///                         new Candid.Net.PreEncounter.Address
     ///                         {
     ///                             Use = AddressUse.Home,
-    ///                             Line = new List&lt;string&gt;() { "string" },
-    ///                             City = "string",
-    ///                             State = "string",
-    ///                             PostalCode = "string",
-    ///                             Country = "string",
-    ///                             Period = new Period(),
+    ///                             Line = new List&lt;string&gt;() { "line", "line" },
+    ///                             City = "city",
+    ///                             State = "state",
+    ///                             PostalCode = "postal_code",
+    ///                             Country = "country",
+    ///                         },
+    ///                         new Candid.Net.PreEncounter.Address
+    ///                         {
+    ///                             Use = AddressUse.Home,
+    ///                             Line = new List&lt;string&gt;() { "line", "line" },
+    ///                             City = "city",
+    ///                             State = "state",
+    ///                             PostalCode = "postal_code",
+    ///                             Country = "country",
     ///                         },
     ///                     },
-    ///                     Period = new Period(),
-    ///                     HipaaAuthorization = true,
+    ///                 },
+    ///                 new Contact
+    ///                 {
+    ///                     Relationship = new List&lt;Relationship&gt;()
+    ///                     {
+    ///                         Relationship.Self,
+    ///                         Relationship.Self,
+    ///                     },
+    ///                     Name = new HumanName
+    ///                     {
+    ///                         Family = "family",
+    ///                         Given = new List&lt;string&gt;() { "given", "given" },
+    ///                         Use = NameUse.Usual,
+    ///                     },
+    ///                     Telecoms = new List&lt;ContactPoint&gt;()
+    ///                     {
+    ///                         new ContactPoint { Value = "value", Use = ContactPointUse.Home },
+    ///                         new ContactPoint { Value = "value", Use = ContactPointUse.Home },
+    ///                     },
+    ///                     Addresses = new List&lt;Candid.Net.PreEncounter.Address&gt;()
+    ///                     {
+    ///                         new Candid.Net.PreEncounter.Address
+    ///                         {
+    ///                             Use = AddressUse.Home,
+    ///                             Line = new List&lt;string&gt;() { "line", "line" },
+    ///                             City = "city",
+    ///                             State = "state",
+    ///                             PostalCode = "postal_code",
+    ///                             Country = "country",
+    ///                         },
+    ///                         new Candid.Net.PreEncounter.Address
+    ///                         {
+    ///                             Use = AddressUse.Home,
+    ///                             Line = new List&lt;string&gt;() { "line", "line" },
+    ///                             City = "city",
+    ///                             State = "state",
+    ///                             PostalCode = "postal_code",
+    ///                             Country = "country",
+    ///                         },
+    ///                     },
     ///                 },
     ///             },
     ///             GeneralPractitioners = new List&lt;ExternalProvider&gt;()
@@ -140,106 +175,39 @@ public partial class V1Client
     ///                 {
     ///                     Name = new HumanName
     ///                     {
-    ///                         Family = "string",
-    ///                         Given = new List&lt;string&gt;() { "string" },
+    ///                         Family = "family",
+    ///                         Given = new List&lt;string&gt;() { "given", "given" },
     ///                         Use = NameUse.Usual,
-    ///                         Period = new Period(),
-    ///                         Suffix = "string",
     ///                     },
-    ///                     Type = ExternalProviderType.Primary,
-    ///                     Npi = "string",
     ///                     Telecoms = new List&lt;ContactPoint&gt;()
     ///                     {
-    ///                         new ContactPoint { Value = "string", Use = ContactPointUse.Home },
+    ///                         new ContactPoint { Value = "value", Use = ContactPointUse.Home },
+    ///                         new ContactPoint { Value = "value", Use = ContactPointUse.Home },
     ///                     },
-    ///                     Addresses = new List&lt;Candid.Net.PreEncounter.Address&gt;() { },
-    ///                     Period = new Period(),
-    ///                     CanonicalId = "string",
-    ///                     Fax = "string",
+    ///                 },
+    ///                 new ExternalProvider
+    ///                 {
+    ///                     Name = new HumanName
+    ///                     {
+    ///                         Family = "family",
+    ///                         Given = new List&lt;string&gt;() { "given", "given" },
+    ///                         Use = NameUse.Usual,
+    ///                     },
+    ///                     Telecoms = new List&lt;ContactPoint&gt;()
+    ///                     {
+    ///                         new ContactPoint { Value = "value", Use = ContactPointUse.Home },
+    ///                         new ContactPoint { Value = "value", Use = ContactPointUse.Home },
+    ///                     },
     ///                 },
     ///             },
     ///             FilingOrder = new FilingOrder
     ///             {
-    ///                 Coverages = new List&lt;string&gt;() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
-    ///             },
-    ///             NonInsurancePayers = new List&lt;string&gt;() { "string" },
-    ///             NonInsurancePayerAssociations = new List&lt;CanonicalNonInsurancePayerAssociation&gt;()
-    ///             {
-    ///                 new CanonicalNonInsurancePayerAssociation { Id = "string" },
-    ///             },
-    ///             Guarantor = new Candid.Net.PreEncounter.Patients.V1.Guarantor
-    ///             {
-    ///                 Name = new HumanName
+    ///                 Coverages = new List&lt;string&gt;()
     ///                 {
-    ///                     Family = "string",
-    ///                     Given = new List&lt;string&gt;() { "string" },
-    ///                     Use = NameUse.Usual,
-    ///                     Period = new Period(),
-    ///                     Suffix = "string",
-    ///                 },
-    ///                 Telecom = new ContactPoint { Value = "string", Use = ContactPointUse.Home },
-    ///                 Email = "string",
-    ///                 BirthDate = new DateOnly(2023, 1, 15),
-    ///                 Address = new Candid.Net.PreEncounter.Address
-    ///                 {
-    ///                     Use = AddressUse.Home,
-    ///                     Line = new List&lt;string&gt;() { "string" },
-    ///                     City = "string",
-    ///                     State = "string",
-    ///                     PostalCode = "string",
-    ///                     Country = "string",
-    ///                     Period = new Period(),
+    ///                     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///                     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///                 },
     ///             },
-    ///             SelfPay = true,
-    ///             Authorizations = new List&lt;Authorization&gt;()
-    ///             {
-    ///                 new Authorization
-    ///                 {
-    ///                     PayerId = "string",
-    ///                     PayerName = "string",
-    ///                     AdditionalPayerInformation = new AdditionalPayerInformation(),
-    ///                     AuthorizationNumber = "string",
-    ///                     CptCode = "string",
-    ///                     ApplyForAllCptCodes = true,
-    ///                     Units = AuthorizationUnit.Visit,
-    ///                     Quantity = 1,
-    ///                     Period = new Period(),
-    ///                     Notes = "string",
-    ///                 },
-    ///             },
-    ///             Referrals = new List&lt;Referral&gt;()
-    ///             {
-    ///                 new Referral
-    ///                 {
-    ///                     Provider = new ExternalProvider
-    ///                     {
-    ///                         Name = new HumanName
-    ///                         {
-    ///                             Family = "string",
-    ///                             Given = new List&lt;string&gt;() { "string" },
-    ///                             Use = NameUse.Usual,
-    ///                             Period = new Period(),
-    ///                             Suffix = "string",
-    ///                         },
-    ///                         Type = ExternalProviderType.Primary,
-    ///                         Npi = "string",
-    ///                         Telecoms = new List&lt;ContactPoint&gt;()
-    ///                         {
-    ///                             new ContactPoint { Value = "string", Use = ContactPointUse.Home },
-    ///                         },
-    ///                         Addresses = new List&lt;Candid.Net.PreEncounter.Address&gt;() { },
-    ///                         Period = new Period(),
-    ///                         CanonicalId = "string",
-    ///                         Fax = "string",
-    ///                     },
-    ///                     ReferralNumber = "string",
-    ///                 },
-    ///             },
-    ///             PrimaryServiceFacilityId = "string",
-    ///             DoNotInvoiceReason = DoNotInvoiceReason.Bankruptcy,
-    ///             NoteIds = new List&lt;string&gt;() { "string" },
-    ///             TagIds = new List&lt;string&gt;() { "string" },
     ///         },
     ///     }
     /// );
@@ -289,121 +257,155 @@ public partial class V1Client
     }
 
     /// <summary>
-    /// Adds a patient and hydrates their MRN with a pre-existing MRN. Once this patient is created their MRN will not be editable. BadRequestError is returned when the MRN is greater than 20 characters. VersionConflictError is returned when the patient's external ID is already in use.
+    /// Adds a patient and hydrates their MRN with a pre-existing MRN.  Once this patient is created their MRN will not be editable. BadRequestError is returned when the MRN is greater than 20 characters. VersionConflictError is returned when the patient's external ID is already in use.
     /// </summary>
     /// <example>
     /// <code>
     /// await client.PreEncounter.Patients.V1.CreateWithMrnAsync(
     ///     new CreatePatientWithMrnRequest
     ///     {
-    ///         SkipDuplicateCheck = true,
     ///         Body = new MutablePatientWithMrn
     ///         {
-    ///             Mrn = "string",
     ///             Name = new HumanName
     ///             {
-    ///                 Family = "string",
-    ///                 Given = new List&lt;string&gt;() { "string" },
+    ///                 Family = "family",
+    ///                 Given = new List&lt;string&gt;() { "given", "given" },
     ///                 Use = NameUse.Usual,
-    ///                 Period = new Period(),
-    ///                 Suffix = "string",
     ///             },
     ///             OtherNames = new List&lt;HumanName&gt;()
     ///             {
     ///                 new HumanName
     ///                 {
-    ///                     Family = "string",
-    ///                     Given = new List&lt;string&gt;() { "string" },
+    ///                     Family = "family",
+    ///                     Given = new List&lt;string&gt;() { "given", "given" },
     ///                     Use = NameUse.Usual,
-    ///                     Period = new Period(),
-    ///                     Suffix = "string",
+    ///                 },
+    ///                 new HumanName
+    ///                 {
+    ///                     Family = "family",
+    ///                     Given = new List&lt;string&gt;() { "given", "given" },
+    ///                     Use = NameUse.Usual,
     ///                 },
     ///             },
-    ///             OtherIdentifiers = new List&lt;ExternalIdentifier&gt;()
-    ///             {
-    ///                 new ExternalIdentifier { Value = "string", System = "string" },
-    ///             },
-    ///             Gender = Candid.Net.PreEncounter.Gender.Man,
     ///             BirthDate = new DateOnly(2023, 1, 15),
-    ///             SocialSecurityNumber = "string",
     ///             BiologicalSex = Sex.Female,
-    ///             SexualOrientation = SexualOrientation.Heterosexual,
-    ///             Pronouns = new List&lt;string&gt;() { "string" },
-    ///             Race = Race.AmericanIndianOrAlaskaNative,
-    ///             Ethnicity = Ethnicity.HispanicOrLatino,
-    ///             DisabilityStatus = DisabilityStatus.Disabled,
-    ///             MaritalStatus = MaritalStatus.Annulled,
-    ///             Deceased = new DateTime(2024, 01, 15, 09, 30, 00, 000),
-    ///             MultipleBirth = 1,
     ///             PrimaryAddress = new Candid.Net.PreEncounter.Address
     ///             {
     ///                 Use = AddressUse.Home,
-    ///                 Line = new List&lt;string&gt;() { "string" },
-    ///                 City = "string",
-    ///                 State = "string",
-    ///                 PostalCode = "string",
-    ///                 Country = "string",
-    ///                 Period = new Period(),
+    ///                 Line = new List&lt;string&gt;() { "line", "line" },
+    ///                 City = "city",
+    ///                 State = "state",
+    ///                 PostalCode = "postal_code",
+    ///                 Country = "country",
     ///             },
     ///             OtherAddresses = new List&lt;Candid.Net.PreEncounter.Address&gt;()
     ///             {
     ///                 new Candid.Net.PreEncounter.Address
     ///                 {
     ///                     Use = AddressUse.Home,
-    ///                     Line = new List&lt;string&gt;() { "string" },
-    ///                     City = "string",
-    ///                     State = "string",
-    ///                     PostalCode = "string",
-    ///                     Country = "string",
-    ///                     Period = new Period(),
+    ///                     Line = new List&lt;string&gt;() { "line", "line" },
+    ///                     City = "city",
+    ///                     State = "state",
+    ///                     PostalCode = "postal_code",
+    ///                     Country = "country",
+    ///                 },
+    ///                 new Candid.Net.PreEncounter.Address
+    ///                 {
+    ///                     Use = AddressUse.Home,
+    ///                     Line = new List&lt;string&gt;() { "line", "line" },
+    ///                     City = "city",
+    ///                     State = "state",
+    ///                     PostalCode = "postal_code",
+    ///                     Country = "country",
     ///                 },
     ///             },
-    ///             PrimaryTelecom = new ContactPoint { Value = "string", Use = ContactPointUse.Home },
+    ///             PrimaryTelecom = new ContactPoint { Value = "value", Use = ContactPointUse.Home },
     ///             OtherTelecoms = new List&lt;ContactPoint&gt;()
     ///             {
-    ///                 new ContactPoint { Value = "string", Use = ContactPointUse.Home },
-    ///             },
-    ///             Email = "string",
-    ///             ElectronicCommunicationOptIn = true,
-    ///             Photo = "string",
-    ///             Language = "string",
-    ///             ExternalProvenance = new ExternalProvenance
-    ///             {
-    ///                 ExternalId = "string",
-    ///                 SystemName = "string",
+    ///                 new ContactPoint { Value = "value", Use = ContactPointUse.Home },
+    ///                 new ContactPoint { Value = "value", Use = ContactPointUse.Home },
     ///             },
     ///             Contacts = new List&lt;Contact&gt;()
     ///             {
     ///                 new Contact
     ///                 {
-    ///                     Relationship = new List&lt;Relationship&gt;() { Relationship.Self },
+    ///                     Relationship = new List&lt;Relationship&gt;()
+    ///                     {
+    ///                         Relationship.Self,
+    ///                         Relationship.Self,
+    ///                     },
     ///                     Name = new HumanName
     ///                     {
-    ///                         Family = "string",
-    ///                         Given = new List&lt;string&gt;() { "string" },
+    ///                         Family = "family",
+    ///                         Given = new List&lt;string&gt;() { "given", "given" },
     ///                         Use = NameUse.Usual,
-    ///                         Period = new Period(),
-    ///                         Suffix = "string",
     ///                     },
     ///                     Telecoms = new List&lt;ContactPoint&gt;()
     ///                     {
-    ///                         new ContactPoint { Value = "string", Use = ContactPointUse.Home },
+    ///                         new ContactPoint { Value = "value", Use = ContactPointUse.Home },
+    ///                         new ContactPoint { Value = "value", Use = ContactPointUse.Home },
     ///                     },
     ///                     Addresses = new List&lt;Candid.Net.PreEncounter.Address&gt;()
     ///                     {
     ///                         new Candid.Net.PreEncounter.Address
     ///                         {
     ///                             Use = AddressUse.Home,
-    ///                             Line = new List&lt;string&gt;() { "string" },
-    ///                             City = "string",
-    ///                             State = "string",
-    ///                             PostalCode = "string",
-    ///                             Country = "string",
-    ///                             Period = new Period(),
+    ///                             Line = new List&lt;string&gt;() { "line", "line" },
+    ///                             City = "city",
+    ///                             State = "state",
+    ///                             PostalCode = "postal_code",
+    ///                             Country = "country",
+    ///                         },
+    ///                         new Candid.Net.PreEncounter.Address
+    ///                         {
+    ///                             Use = AddressUse.Home,
+    ///                             Line = new List&lt;string&gt;() { "line", "line" },
+    ///                             City = "city",
+    ///                             State = "state",
+    ///                             PostalCode = "postal_code",
+    ///                             Country = "country",
     ///                         },
     ///                     },
-    ///                     Period = new Period(),
-    ///                     HipaaAuthorization = true,
+    ///                 },
+    ///                 new Contact
+    ///                 {
+    ///                     Relationship = new List&lt;Relationship&gt;()
+    ///                     {
+    ///                         Relationship.Self,
+    ///                         Relationship.Self,
+    ///                     },
+    ///                     Name = new HumanName
+    ///                     {
+    ///                         Family = "family",
+    ///                         Given = new List&lt;string&gt;() { "given", "given" },
+    ///                         Use = NameUse.Usual,
+    ///                     },
+    ///                     Telecoms = new List&lt;ContactPoint&gt;()
+    ///                     {
+    ///                         new ContactPoint { Value = "value", Use = ContactPointUse.Home },
+    ///                         new ContactPoint { Value = "value", Use = ContactPointUse.Home },
+    ///                     },
+    ///                     Addresses = new List&lt;Candid.Net.PreEncounter.Address&gt;()
+    ///                     {
+    ///                         new Candid.Net.PreEncounter.Address
+    ///                         {
+    ///                             Use = AddressUse.Home,
+    ///                             Line = new List&lt;string&gt;() { "line", "line" },
+    ///                             City = "city",
+    ///                             State = "state",
+    ///                             PostalCode = "postal_code",
+    ///                             Country = "country",
+    ///                         },
+    ///                         new Candid.Net.PreEncounter.Address
+    ///                         {
+    ///                             Use = AddressUse.Home,
+    ///                             Line = new List&lt;string&gt;() { "line", "line" },
+    ///                             City = "city",
+    ///                             State = "state",
+    ///                             PostalCode = "postal_code",
+    ///                             Country = "country",
+    ///                         },
+    ///                     },
     ///                 },
     ///             },
     ///             GeneralPractitioners = new List&lt;ExternalProvider&gt;()
@@ -412,106 +414,40 @@ public partial class V1Client
     ///                 {
     ///                     Name = new HumanName
     ///                     {
-    ///                         Family = "string",
-    ///                         Given = new List&lt;string&gt;() { "string" },
+    ///                         Family = "family",
+    ///                         Given = new List&lt;string&gt;() { "given", "given" },
     ///                         Use = NameUse.Usual,
-    ///                         Period = new Period(),
-    ///                         Suffix = "string",
     ///                     },
-    ///                     Type = ExternalProviderType.Primary,
-    ///                     Npi = "string",
     ///                     Telecoms = new List&lt;ContactPoint&gt;()
     ///                     {
-    ///                         new ContactPoint { Value = "string", Use = ContactPointUse.Home },
+    ///                         new ContactPoint { Value = "value", Use = ContactPointUse.Home },
+    ///                         new ContactPoint { Value = "value", Use = ContactPointUse.Home },
     ///                     },
-    ///                     Addresses = new List&lt;Candid.Net.PreEncounter.Address&gt;() { },
-    ///                     Period = new Period(),
-    ///                     CanonicalId = "string",
-    ///                     Fax = "string",
+    ///                 },
+    ///                 new ExternalProvider
+    ///                 {
+    ///                     Name = new HumanName
+    ///                     {
+    ///                         Family = "family",
+    ///                         Given = new List&lt;string&gt;() { "given", "given" },
+    ///                         Use = NameUse.Usual,
+    ///                     },
+    ///                     Telecoms = new List&lt;ContactPoint&gt;()
+    ///                     {
+    ///                         new ContactPoint { Value = "value", Use = ContactPointUse.Home },
+    ///                         new ContactPoint { Value = "value", Use = ContactPointUse.Home },
+    ///                     },
     ///                 },
     ///             },
     ///             FilingOrder = new FilingOrder
     ///             {
-    ///                 Coverages = new List&lt;string&gt;() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
-    ///             },
-    ///             NonInsurancePayers = new List&lt;string&gt;() { "string" },
-    ///             NonInsurancePayerAssociations = new List&lt;CanonicalNonInsurancePayerAssociation&gt;()
-    ///             {
-    ///                 new CanonicalNonInsurancePayerAssociation { Id = "string" },
-    ///             },
-    ///             Guarantor = new Candid.Net.PreEncounter.Patients.V1.Guarantor
-    ///             {
-    ///                 Name = new HumanName
+    ///                 Coverages = new List&lt;string&gt;()
     ///                 {
-    ///                     Family = "string",
-    ///                     Given = new List&lt;string&gt;() { "string" },
-    ///                     Use = NameUse.Usual,
-    ///                     Period = new Period(),
-    ///                     Suffix = "string",
-    ///                 },
-    ///                 Telecom = new ContactPoint { Value = "string", Use = ContactPointUse.Home },
-    ///                 Email = "string",
-    ///                 BirthDate = new DateOnly(2023, 1, 15),
-    ///                 Address = new Candid.Net.PreEncounter.Address
-    ///                 {
-    ///                     Use = AddressUse.Home,
-    ///                     Line = new List&lt;string&gt;() { "string" },
-    ///                     City = "string",
-    ///                     State = "string",
-    ///                     PostalCode = "string",
-    ///                     Country = "string",
-    ///                     Period = new Period(),
+    ///                     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///                     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///                 },
     ///             },
-    ///             SelfPay = true,
-    ///             Authorizations = new List&lt;Authorization&gt;()
-    ///             {
-    ///                 new Authorization
-    ///                 {
-    ///                     PayerId = "string",
-    ///                     PayerName = "string",
-    ///                     AdditionalPayerInformation = new AdditionalPayerInformation(),
-    ///                     AuthorizationNumber = "string",
-    ///                     CptCode = "string",
-    ///                     ApplyForAllCptCodes = true,
-    ///                     Units = AuthorizationUnit.Visit,
-    ///                     Quantity = 1,
-    ///                     Period = new Period(),
-    ///                     Notes = "string",
-    ///                 },
-    ///             },
-    ///             Referrals = new List&lt;Referral&gt;()
-    ///             {
-    ///                 new Referral
-    ///                 {
-    ///                     Provider = new ExternalProvider
-    ///                     {
-    ///                         Name = new HumanName
-    ///                         {
-    ///                             Family = "string",
-    ///                             Given = new List&lt;string&gt;() { "string" },
-    ///                             Use = NameUse.Usual,
-    ///                             Period = new Period(),
-    ///                             Suffix = "string",
-    ///                         },
-    ///                         Type = ExternalProviderType.Primary,
-    ///                         Npi = "string",
-    ///                         Telecoms = new List&lt;ContactPoint&gt;()
-    ///                         {
-    ///                             new ContactPoint { Value = "string", Use = ContactPointUse.Home },
-    ///                         },
-    ///                         Addresses = new List&lt;Candid.Net.PreEncounter.Address&gt;() { },
-    ///                         Period = new Period(),
-    ///                         CanonicalId = "string",
-    ///                         Fax = "string",
-    ///                     },
-    ///                     ReferralNumber = "string",
-    ///                 },
-    ///             },
-    ///             PrimaryServiceFacilityId = "string",
-    ///             DoNotInvoiceReason = DoNotInvoiceReason.Bankruptcy,
-    ///             NoteIds = new List&lt;string&gt;() { "string" },
-    ///             TagIds = new List&lt;string&gt;() { "string" },
+    ///             Mrn = "mrn",
     ///         },
     ///     }
     /// );
@@ -565,16 +501,7 @@ public partial class V1Client
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.PreEncounter.Patients.V1.GetMultiAsync(
-    ///     new PatientsSearchRequestPaginated
-    ///     {
-    ///         Limit = 1,
-    ///         Mrn = "string",
-    ///         PageToken = "string",
-    ///         SortField = "string",
-    ///         SortDirection = Candid.Net.PreEncounter.SortDirection.Asc,
-    ///     }
-    /// );
+    /// await client.PreEncounter.Patients.V1.GetMultiAsync(new PatientsSearchRequestPaginated());
     /// </code>
     /// </example>
     public async Task<PatientPage> GetMultiAsync(
@@ -636,12 +563,12 @@ public partial class V1Client
     }
 
     /// <summary>
-    /// Searches for referring providers that match the query parameters. The search is case-insensitive, supports fuzzy matching, and matches against provider name and NPI. The search criteria must be an alphanumeric string, and the search is limited to the first 20 results.
+    /// Searches for referring providers that match the query parameters.  The search is case-insensitive, supports fuzzy matching, and matches against provider name and NPI. The search criteria must be an alphanumeric string, and the search is limited to the first 20 results.
     /// </summary>
     /// <example>
     /// <code>
     /// await client.PreEncounter.Patients.V1.SearchProvidersAsync(
-    ///     new SearchProvidersRequest { SearchCriteria = "string" }
+    ///     new SearchProvidersRequest { SearchCriteria = "search_criteria" }
     /// );
     /// </code>
     /// </example>
@@ -689,7 +616,7 @@ public partial class V1Client
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.PreEncounter.Patients.V1.GetAsync("string");
+    /// await client.PreEncounter.Patients.V1.GetAsync("id");
     /// </code>
     /// </example>
     public async Task<Patient> GetAsync(
@@ -729,11 +656,11 @@ public partial class V1Client
     }
 
     /// <summary>
-    /// Gets a patient along with it's full history. The return list is ordered by version ascending.
+    /// Gets a patient along with it's full history.  The return list is ordered by version ascending.
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.PreEncounter.Patients.V1.GetHistoryAsync("string");
+    /// await client.PreEncounter.Patients.V1.GetHistoryAsync("id");
     /// </code>
     /// </example>
     public async Task<IEnumerable<Patient>> GetHistoryAsync(
@@ -773,119 +700,147 @@ public partial class V1Client
     }
 
     /// <summary>
-    /// Updates a patient. The path must contain the most recent version to prevent race conditions. Updating historic versions is not supported.
+    /// Updates a patient.  The path must contain the most recent version to prevent race conditions.  Updating historic versions is not supported.
     /// </summary>
     /// <example>
     /// <code>
     /// await client.PreEncounter.Patients.V1.UpdateAsync(
-    ///     "string",
-    ///     "string",
+    ///     "id",
+    ///     "version",
     ///     new MutablePatient
     ///     {
     ///         Name = new HumanName
     ///         {
-    ///             Family = "string",
-    ///             Given = new List&lt;string&gt;() { "string" },
+    ///             Family = "family",
+    ///             Given = new List&lt;string&gt;() { "given", "given" },
     ///             Use = NameUse.Usual,
-    ///             Period = new Period(),
-    ///             Suffix = "string",
     ///         },
     ///         OtherNames = new List&lt;HumanName&gt;()
     ///         {
     ///             new HumanName
     ///             {
-    ///                 Family = "string",
-    ///                 Given = new List&lt;string&gt;() { "string" },
+    ///                 Family = "family",
+    ///                 Given = new List&lt;string&gt;() { "given", "given" },
     ///                 Use = NameUse.Usual,
-    ///                 Period = new Period(),
-    ///                 Suffix = "string",
+    ///             },
+    ///             new HumanName
+    ///             {
+    ///                 Family = "family",
+    ///                 Given = new List&lt;string&gt;() { "given", "given" },
+    ///                 Use = NameUse.Usual,
     ///             },
     ///         },
-    ///         OtherIdentifiers = new List&lt;ExternalIdentifier&gt;()
-    ///         {
-    ///             new ExternalIdentifier { Value = "string", System = "string" },
-    ///         },
-    ///         Gender = Candid.Net.PreEncounter.Gender.Man,
     ///         BirthDate = new DateOnly(2023, 1, 15),
-    ///         SocialSecurityNumber = "string",
     ///         BiologicalSex = Sex.Female,
-    ///         SexualOrientation = SexualOrientation.Heterosexual,
-    ///         Pronouns = new List&lt;string&gt;() { "string" },
-    ///         Race = Race.AmericanIndianOrAlaskaNative,
-    ///         Ethnicity = Ethnicity.HispanicOrLatino,
-    ///         DisabilityStatus = DisabilityStatus.Disabled,
-    ///         MaritalStatus = MaritalStatus.Annulled,
-    ///         Deceased = new DateTime(2024, 01, 15, 09, 30, 00, 000),
-    ///         MultipleBirth = 1,
     ///         PrimaryAddress = new Candid.Net.PreEncounter.Address
     ///         {
     ///             Use = AddressUse.Home,
-    ///             Line = new List&lt;string&gt;() { "string" },
-    ///             City = "string",
-    ///             State = "string",
-    ///             PostalCode = "string",
-    ///             Country = "string",
-    ///             Period = new Period(),
+    ///             Line = new List&lt;string&gt;() { "line", "line" },
+    ///             City = "city",
+    ///             State = "state",
+    ///             PostalCode = "postal_code",
+    ///             Country = "country",
     ///         },
     ///         OtherAddresses = new List&lt;Candid.Net.PreEncounter.Address&gt;()
     ///         {
     ///             new Candid.Net.PreEncounter.Address
     ///             {
     ///                 Use = AddressUse.Home,
-    ///                 Line = new List&lt;string&gt;() { "string" },
-    ///                 City = "string",
-    ///                 State = "string",
-    ///                 PostalCode = "string",
-    ///                 Country = "string",
-    ///                 Period = new Period(),
+    ///                 Line = new List&lt;string&gt;() { "line", "line" },
+    ///                 City = "city",
+    ///                 State = "state",
+    ///                 PostalCode = "postal_code",
+    ///                 Country = "country",
+    ///             },
+    ///             new Candid.Net.PreEncounter.Address
+    ///             {
+    ///                 Use = AddressUse.Home,
+    ///                 Line = new List&lt;string&gt;() { "line", "line" },
+    ///                 City = "city",
+    ///                 State = "state",
+    ///                 PostalCode = "postal_code",
+    ///                 Country = "country",
     ///             },
     ///         },
-    ///         PrimaryTelecom = new ContactPoint { Value = "string", Use = ContactPointUse.Home },
+    ///         PrimaryTelecom = new ContactPoint { Value = "value", Use = ContactPointUse.Home },
     ///         OtherTelecoms = new List&lt;ContactPoint&gt;()
     ///         {
-    ///             new ContactPoint { Value = "string", Use = ContactPointUse.Home },
-    ///         },
-    ///         Email = "string",
-    ///         ElectronicCommunicationOptIn = true,
-    ///         Photo = "string",
-    ///         Language = "string",
-    ///         ExternalProvenance = new ExternalProvenance
-    ///         {
-    ///             ExternalId = "string",
-    ///             SystemName = "string",
+    ///             new ContactPoint { Value = "value", Use = ContactPointUse.Home },
+    ///             new ContactPoint { Value = "value", Use = ContactPointUse.Home },
     ///         },
     ///         Contacts = new List&lt;Contact&gt;()
     ///         {
     ///             new Contact
     ///             {
-    ///                 Relationship = new List&lt;Relationship&gt;() { Relationship.Self },
+    ///                 Relationship = new List&lt;Relationship&gt;() { Relationship.Self, Relationship.Self },
     ///                 Name = new HumanName
     ///                 {
-    ///                     Family = "string",
-    ///                     Given = new List&lt;string&gt;() { "string" },
+    ///                     Family = "family",
+    ///                     Given = new List&lt;string&gt;() { "given", "given" },
     ///                     Use = NameUse.Usual,
-    ///                     Period = new Period(),
-    ///                     Suffix = "string",
     ///                 },
     ///                 Telecoms = new List&lt;ContactPoint&gt;()
     ///                 {
-    ///                     new ContactPoint { Value = "string", Use = ContactPointUse.Home },
+    ///                     new ContactPoint { Value = "value", Use = ContactPointUse.Home },
+    ///                     new ContactPoint { Value = "value", Use = ContactPointUse.Home },
     ///                 },
     ///                 Addresses = new List&lt;Candid.Net.PreEncounter.Address&gt;()
     ///                 {
     ///                     new Candid.Net.PreEncounter.Address
     ///                     {
     ///                         Use = AddressUse.Home,
-    ///                         Line = new List&lt;string&gt;() { "string" },
-    ///                         City = "string",
-    ///                         State = "string",
-    ///                         PostalCode = "string",
-    ///                         Country = "string",
-    ///                         Period = new Period(),
+    ///                         Line = new List&lt;string&gt;() { "line", "line" },
+    ///                         City = "city",
+    ///                         State = "state",
+    ///                         PostalCode = "postal_code",
+    ///                         Country = "country",
+    ///                     },
+    ///                     new Candid.Net.PreEncounter.Address
+    ///                     {
+    ///                         Use = AddressUse.Home,
+    ///                         Line = new List&lt;string&gt;() { "line", "line" },
+    ///                         City = "city",
+    ///                         State = "state",
+    ///                         PostalCode = "postal_code",
+    ///                         Country = "country",
     ///                     },
     ///                 },
-    ///                 Period = new Period(),
-    ///                 HipaaAuthorization = true,
+    ///             },
+    ///             new Contact
+    ///             {
+    ///                 Relationship = new List&lt;Relationship&gt;() { Relationship.Self, Relationship.Self },
+    ///                 Name = new HumanName
+    ///                 {
+    ///                     Family = "family",
+    ///                     Given = new List&lt;string&gt;() { "given", "given" },
+    ///                     Use = NameUse.Usual,
+    ///                 },
+    ///                 Telecoms = new List&lt;ContactPoint&gt;()
+    ///                 {
+    ///                     new ContactPoint { Value = "value", Use = ContactPointUse.Home },
+    ///                     new ContactPoint { Value = "value", Use = ContactPointUse.Home },
+    ///                 },
+    ///                 Addresses = new List&lt;Candid.Net.PreEncounter.Address&gt;()
+    ///                 {
+    ///                     new Candid.Net.PreEncounter.Address
+    ///                     {
+    ///                         Use = AddressUse.Home,
+    ///                         Line = new List&lt;string&gt;() { "line", "line" },
+    ///                         City = "city",
+    ///                         State = "state",
+    ///                         PostalCode = "postal_code",
+    ///                         Country = "country",
+    ///                     },
+    ///                     new Candid.Net.PreEncounter.Address
+    ///                     {
+    ///                         Use = AddressUse.Home,
+    ///                         Line = new List&lt;string&gt;() { "line", "line" },
+    ///                         City = "city",
+    ///                         State = "state",
+    ///                         PostalCode = "postal_code",
+    ///                         Country = "country",
+    ///                     },
+    ///                 },
     ///             },
     ///         },
     ///         GeneralPractitioners = new List&lt;ExternalProvider&gt;()
@@ -894,106 +849,39 @@ public partial class V1Client
     ///             {
     ///                 Name = new HumanName
     ///                 {
-    ///                     Family = "string",
-    ///                     Given = new List&lt;string&gt;() { "string" },
+    ///                     Family = "family",
+    ///                     Given = new List&lt;string&gt;() { "given", "given" },
     ///                     Use = NameUse.Usual,
-    ///                     Period = new Period(),
-    ///                     Suffix = "string",
     ///                 },
-    ///                 Type = ExternalProviderType.Primary,
-    ///                 Npi = "string",
     ///                 Telecoms = new List&lt;ContactPoint&gt;()
     ///                 {
-    ///                     new ContactPoint { Value = "string", Use = ContactPointUse.Home },
+    ///                     new ContactPoint { Value = "value", Use = ContactPointUse.Home },
+    ///                     new ContactPoint { Value = "value", Use = ContactPointUse.Home },
     ///                 },
-    ///                 Addresses = new List&lt;Candid.Net.PreEncounter.Address&gt;() { },
-    ///                 Period = new Period(),
-    ///                 CanonicalId = "string",
-    ///                 Fax = "string",
+    ///             },
+    ///             new ExternalProvider
+    ///             {
+    ///                 Name = new HumanName
+    ///                 {
+    ///                     Family = "family",
+    ///                     Given = new List&lt;string&gt;() { "given", "given" },
+    ///                     Use = NameUse.Usual,
+    ///                 },
+    ///                 Telecoms = new List&lt;ContactPoint&gt;()
+    ///                 {
+    ///                     new ContactPoint { Value = "value", Use = ContactPointUse.Home },
+    ///                     new ContactPoint { Value = "value", Use = ContactPointUse.Home },
+    ///                 },
     ///             },
     ///         },
     ///         FilingOrder = new FilingOrder
     ///         {
-    ///             Coverages = new List&lt;string&gt;() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
-    ///         },
-    ///         NonInsurancePayers = new List&lt;string&gt;() { "string" },
-    ///         NonInsurancePayerAssociations = new List&lt;CanonicalNonInsurancePayerAssociation&gt;()
-    ///         {
-    ///             new CanonicalNonInsurancePayerAssociation { Id = "string" },
-    ///         },
-    ///         Guarantor = new Candid.Net.PreEncounter.Patients.V1.Guarantor
-    ///         {
-    ///             Name = new HumanName
+    ///             Coverages = new List&lt;string&gt;()
     ///             {
-    ///                 Family = "string",
-    ///                 Given = new List&lt;string&gt;() { "string" },
-    ///                 Use = NameUse.Usual,
-    ///                 Period = new Period(),
-    ///                 Suffix = "string",
-    ///             },
-    ///             Telecom = new ContactPoint { Value = "string", Use = ContactPointUse.Home },
-    ///             Email = "string",
-    ///             BirthDate = new DateOnly(2023, 1, 15),
-    ///             Address = new Candid.Net.PreEncounter.Address
-    ///             {
-    ///                 Use = AddressUse.Home,
-    ///                 Line = new List&lt;string&gt;() { "string" },
-    ///                 City = "string",
-    ///                 State = "string",
-    ///                 PostalCode = "string",
-    ///                 Country = "string",
-    ///                 Period = new Period(),
+    ///                 "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///                 "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///             },
     ///         },
-    ///         SelfPay = true,
-    ///         Authorizations = new List&lt;Authorization&gt;()
-    ///         {
-    ///             new Authorization
-    ///             {
-    ///                 PayerId = "string",
-    ///                 PayerName = "string",
-    ///                 AdditionalPayerInformation = new AdditionalPayerInformation(),
-    ///                 AuthorizationNumber = "string",
-    ///                 CptCode = "string",
-    ///                 ApplyForAllCptCodes = true,
-    ///                 Units = AuthorizationUnit.Visit,
-    ///                 Quantity = 1,
-    ///                 Period = new Period(),
-    ///                 Notes = "string",
-    ///             },
-    ///         },
-    ///         Referrals = new List&lt;Referral&gt;()
-    ///         {
-    ///             new Referral
-    ///             {
-    ///                 Provider = new ExternalProvider
-    ///                 {
-    ///                     Name = new HumanName
-    ///                     {
-    ///                         Family = "string",
-    ///                         Given = new List&lt;string&gt;() { "string" },
-    ///                         Use = NameUse.Usual,
-    ///                         Period = new Period(),
-    ///                         Suffix = "string",
-    ///                     },
-    ///                     Type = ExternalProviderType.Primary,
-    ///                     Npi = "string",
-    ///                     Telecoms = new List&lt;ContactPoint&gt;()
-    ///                     {
-    ///                         new ContactPoint { Value = "string", Use = ContactPointUse.Home },
-    ///                     },
-    ///                     Addresses = new List&lt;Candid.Net.PreEncounter.Address&gt;() { },
-    ///                     Period = new Period(),
-    ///                     CanonicalId = "string",
-    ///                     Fax = "string",
-    ///                 },
-    ///                 ReferralNumber = "string",
-    ///             },
-    ///         },
-    ///         PrimaryServiceFacilityId = "string",
-    ///         DoNotInvoiceReason = DoNotInvoiceReason.Bankruptcy,
-    ///         NoteIds = new List&lt;string&gt;() { "string" },
-    ///         TagIds = new List&lt;string&gt;() { "string" },
     ///     }
     /// );
     /// </code>
@@ -1038,11 +926,11 @@ public partial class V1Client
     }
 
     /// <summary>
-    /// Sets a patient as deactivated. The path must contain the most recent version plus 1 to prevent race conditions. Deactivating historic versions is not supported.
+    /// Sets a patient as deactivated.  The path must contain the most recent version plus 1 to prevent race conditions.  Deactivating historic versions is not supported.
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.PreEncounter.Patients.V1.DeactivateAsync("string", "string");
+    /// await client.PreEncounter.Patients.V1.DeactivateAsync("id", "version");
     /// </code>
     /// </example>
     public async System.Threading.Tasks.Task DeactivateAsync(
@@ -1075,11 +963,11 @@ public partial class V1Client
     }
 
     /// <summary>
-    /// Removes the deactivated flag for a patient. The path must contain the most recent version plus 1 to prevent race conditions. Reactivating historic versions is not supported.
+    /// Removes the deactivated flag for a patient.  The path must contain the most recent version plus 1 to prevent race conditions.  Reactivating historic versions is not supported.
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.PreEncounter.Patients.V1.ReactivateAsync("string", "string");
+    /// await client.PreEncounter.Patients.V1.ReactivateAsync("id", "version");
     /// </code>
     /// </example>
     public async System.Threading.Tasks.Task ReactivateAsync(
@@ -1116,9 +1004,7 @@ public partial class V1Client
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.PreEncounter.Patients.V1.SearchAsync(
-    ///     new PatientGetMultiRequest { Mrn = "string", SimilarNameOrdering = "string" }
-    /// );
+    /// await client.PreEncounter.Patients.V1.SearchAsync(new PatientGetMultiRequest());
     /// </code>
     /// </example>
     public async Task<IEnumerable<Patient>> SearchAsync(
@@ -1168,7 +1054,7 @@ public partial class V1Client
     }
 
     /// <summary>
-    /// Scans up to 100 patient updates. The since query parameter is inclusive, and the result list is ordered by updatedAt ascending.
+    /// Scans up to 100 patient updates.  The since query parameter is inclusive, and the result list is ordered by updatedAt ascending.
     /// </summary>
     /// <example>
     /// <code>

@@ -17,7 +17,7 @@ public partial class V3Client
     }
 
     /// <summary>
-    /// Gets the rate that matches a service line. No result means no rate exists matching the service line's dimensions.
+    /// Gets the rate that matches a service line.  No result means no rate exists matching the service line's dimensions.
     /// </summary>
     /// <example>
     /// <code>
@@ -113,24 +113,7 @@ public partial class V3Client
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.FeeSchedules.V3.GetMultiAsync(
-    ///     new GetMultiRequest
-    ///     {
-    ///         PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
-    ///         Limit = 1,
-    ///         ActiveDate = new DateOnly(2023, 1, 15),
-    ///         PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         OrganizationBillingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         States = [State.Aa],
-    ///         ZipCodes = ["string"],
-    ///         LicenseTypes = [LicenseType.Md],
-    ///         FacilityTypeCodes = [FacilityTypeCode.Pharmacy],
-    ///         NetworkTypes = [Candid.Net.NetworkType.Ppo],
-    ///         PayerPlanGroupIds = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
-    ///         CptCode = "string",
-    ///         Modifiers = [ProcedureModifier.Av],
-    ///     }
-    /// );
+    /// await client.FeeSchedules.V3.GetMultiAsync(new GetMultiRequest());
     /// </code>
     /// </example>
     public async Task<RatesPage> GetMultiAsync(
@@ -217,22 +200,7 @@ public partial class V3Client
     /// <example>
     /// <code>
     /// await client.FeeSchedules.V3.GetUniqueValuesForDimensionAsync(
-    ///     new GetUniqueDimensionValuesRequest
-    ///     {
-    ///         PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
-    ///         Limit = 1,
-    ///         PivotDimension = DimensionName.PayerUuid,
-    ///         PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         OrganizationBillingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         States = [State.Aa],
-    ///         ZipCodes = ["string"],
-    ///         LicenseTypes = [LicenseType.Md],
-    ///         FacilityTypeCodes = [FacilityTypeCode.Pharmacy],
-    ///         NetworkTypes = [Candid.Net.NetworkType.Ppo],
-    ///         PayerPlanGroupIds = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
-    ///         CptCode = "string",
-    ///         Modifiers = [ProcedureModifier.Av],
-    ///     }
+    ///     new GetUniqueDimensionValuesRequest { PivotDimension = DimensionName.PayerUuid }
     /// );
     /// </code>
     /// </example>
@@ -356,7 +324,7 @@ public partial class V3Client
     }
 
     /// <summary>
-    /// Uploads a new fee schedule.\n Each rate may either be totally new as qualified by it's dimensions or a new version for an existing rate.\n If adding a new version to an existing rate, the rate must be posted with the next version number (previous version + 1) or a EntityConflictError will be returned.\n Use the dry run flag to discover already existing rates and to run validations. If validations for any rate fail, no rates will be saved to the system.
+    /// Uploads a new fee schedule.\n Each rate may either be totally new as qualified by it's dimensions or a new version for an existing rate.\n If adding a new version to an existing rate, the rate must be posted with the next version number (previous version + 1) or a EntityConflictError will be returned.\n Use the dry run flag to discover already existing rates and to run validations.  If validations for any rate fail, no rates will be saved to the system.
     /// </summary>
     /// <example>
     /// <code>
@@ -373,7 +341,7 @@ public partial class V3Client
     ///                     PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///                     OrganizationBillingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///                     States = new HashSet&lt;State&gt;() { State.Aa },
-    ///                     ZipCodes = new HashSet&lt;string&gt;() { "string" },
+    ///                     ZipCodes = new HashSet&lt;string&gt;() { "zip_codes" },
     ///                     LicenseTypes = new HashSet&lt;LicenseType&gt;() { LicenseType.Md },
     ///                     FacilityTypeCodes = new HashSet&lt;FacilityTypeCode&gt;()
     ///                     {
@@ -387,16 +355,62 @@ public partial class V3Client
     ///                     {
     ///                         "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///                     },
-    ///                     CptCode = "string",
+    ///                     CptCode = "cpt_code",
     ///                     Modifiers = new HashSet&lt;ProcedureModifier&gt;() { ProcedureModifier.Av },
     ///                 },
     ///                 Entries = new List&lt;RateEntry&gt;()
     ///                 {
     ///                     new RateEntry
     ///                     {
-    ///                         StartDate = new DateOnly(2024, 4, 11),
-    ///                         RateCents = 33000,
-    ///                         IsDeactivated = false,
+    ///                         StartDate = new DateOnly(2023, 1, 15),
+    ///                         RateCents = 1,
+    ///                         IsDeactivated = true,
+    ///                     },
+    ///                     new RateEntry
+    ///                     {
+    ///                         StartDate = new DateOnly(2023, 1, 15),
+    ///                         RateCents = 1,
+    ///                         IsDeactivated = true,
+    ///                     },
+    ///                 },
+    ///             },
+    ///             new NewRate
+    ///             {
+    ///                 Dimensions = new Dimensions
+    ///                 {
+    ///                     PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///                     OrganizationBillingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///                     States = new HashSet&lt;State&gt;() { State.Aa },
+    ///                     ZipCodes = new HashSet&lt;string&gt;() { "zip_codes" },
+    ///                     LicenseTypes = new HashSet&lt;LicenseType&gt;() { LicenseType.Md },
+    ///                     FacilityTypeCodes = new HashSet&lt;FacilityTypeCode&gt;()
+    ///                     {
+    ///                         FacilityTypeCode.Pharmacy,
+    ///                     },
+    ///                     NetworkTypes = new HashSet&lt;Candid.Net.NetworkType&gt;()
+    ///                     {
+    ///                         Candid.Net.NetworkType.Ppo,
+    ///                     },
+    ///                     PayerPlanGroupIds = new HashSet&lt;string&gt;()
+    ///                     {
+    ///                         "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///                     },
+    ///                     CptCode = "cpt_code",
+    ///                     Modifiers = new HashSet&lt;ProcedureModifier&gt;() { ProcedureModifier.Av },
+    ///                 },
+    ///                 Entries = new List&lt;RateEntry&gt;()
+    ///                 {
+    ///                     new RateEntry
+    ///                     {
+    ///                         StartDate = new DateOnly(2023, 1, 15),
+    ///                         RateCents = 1,
+    ///                         IsDeactivated = true,
+    ///                     },
+    ///                     new RateEntry
+    ///                     {
+    ///                         StartDate = new DateOnly(2023, 1, 15),
+    ///                         RateCents = 1,
+    ///                         IsDeactivated = true,
     ///                     },
     ///                 },
     ///             },
@@ -443,7 +457,7 @@ public partial class V3Client
     }
 
     /// <summary>
-    /// Soft deletes a rate from the system. Only the most recent version of a rate can be deleted.
+    /// Soft deletes a rate from the system.  Only the most recent version of a rate can be deleted.
     /// </summary>
     /// <example>
     /// <code>
@@ -578,12 +592,7 @@ public partial class V3Client
     /// <code>
     /// await client.FeeSchedules.V3.SetPayerThresholdAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new PayerThreshold
-    ///     {
-    ///         UpperThresholdCents = 1,
-    ///         LowerThresholdCents = 1,
-    ///         DisablePaidIncorrectly = true,
-    ///     }
+    ///     new PayerThreshold { DisablePaidIncorrectly = true }
     /// );
     /// </code>
     /// </example>

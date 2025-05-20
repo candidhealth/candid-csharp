@@ -21,7 +21,7 @@ public partial class V1Client
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.PreEncounter.Tags.V1.GetAsync("string");
+    /// await client.PreEncounter.Tags.V1.GetAsync("id");
     /// </code>
     /// </example>
     public async Task<Tag> GetAsync(
@@ -65,9 +65,7 @@ public partial class V1Client
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.PreEncounter.Tags.V1.GetAllAsync(
-    ///     new GetAllTagsRequest { Limit = 1, PageToken = "string" }
-    /// );
+    /// await client.PreEncounter.Tags.V1.GetAllAsync(new GetAllTagsRequest());
     /// </code>
     /// </example>
     public async Task<TagPage> GetAllAsync(
@@ -121,7 +119,7 @@ public partial class V1Client
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.PreEncounter.Tags.V1.CreateAsync(new MutableTag { Value = "string" });
+    /// await client.PreEncounter.Tags.V1.CreateAsync(new MutableTag { Value = "value" });
     /// </code>
     /// </example>
     public async Task<Tag> CreateAsync(
@@ -166,11 +164,7 @@ public partial class V1Client
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.PreEncounter.Tags.V1.UpdateAsync(
-    ///     "string",
-    ///     "string",
-    ///     new MutableTag { Value = "string" }
-    /// );
+    /// await client.PreEncounter.Tags.V1.UpdateAsync("id", "version", new MutableTag { Value = "value" });
     /// </code>
     /// </example>
     public async Task<Tag> UpdateAsync(
@@ -213,11 +207,11 @@ public partial class V1Client
     }
 
     /// <summary>
-    /// Sets a tag as deactivated. The path must contain the most recent version to prevent races.
+    /// Sets a tag as deactivated.  The path must contain the most recent version to prevent races.
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.PreEncounter.Tags.V1.DeactivateAsync("string", "string");
+    /// await client.PreEncounter.Tags.V1.DeactivateAsync("id", "version");
     /// </code>
     /// </example>
     public async System.Threading.Tasks.Task DeactivateAsync(

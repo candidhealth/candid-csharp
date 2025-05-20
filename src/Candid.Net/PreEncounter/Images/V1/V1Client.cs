@@ -17,23 +17,17 @@ public partial class V1Client
     }
 
     /// <summary>
-    /// Adds an image. VersionConflictError is returned if a front or back of this coverage already exists.
+    /// Adds an image.  VersionConflictError is returned if a front or back of this coverage already exists.
     /// </summary>
     /// <example>
     /// <code>
     /// await client.PreEncounter.Images.V1.CreateAsync(
     ///     new MutableImage
     ///     {
-    ///         FileName = "string",
-    ///         DisplayName = "string",
-    ///         FileType = "string",
+    ///         FileName = "file_name",
+    ///         DisplayName = "display_name",
+    ///         FileType = "file_type",
     ///         Status = ImageStatus.Pending,
-    ///         Coverage = new CoverageAssociation
-    ///         {
-    ///             Id = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///             Side = CoverageImageSide.Front,
-    ///         },
-    ///         Patient = new PatientAssociation { Id = "string", Notes = "string" },
     ///     }
     /// );
     /// </code>
@@ -80,7 +74,7 @@ public partial class V1Client
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.PreEncounter.Images.V1.GetAsync("string");
+    /// await client.PreEncounter.Images.V1.GetAsync("id");
     /// </code>
     /// </example>
     public async Task<Image> GetAsync(
@@ -120,25 +114,19 @@ public partial class V1Client
     }
 
     /// <summary>
-    /// Updates an Image. The path must contain the most recent version to prevent races.
+    /// Updates an Image.  The path must contain the most recent version to prevent races.
     /// </summary>
     /// <example>
     /// <code>
     /// await client.PreEncounter.Images.V1.UpdateAsync(
-    ///     "string",
-    ///     "string",
+    ///     "id",
+    ///     "version",
     ///     new MutableImage
     ///     {
-    ///         FileName = "string",
-    ///         DisplayName = "string",
-    ///         FileType = "string",
+    ///         FileName = "file_name",
+    ///         DisplayName = "display_name",
+    ///         FileType = "file_type",
     ///         Status = ImageStatus.Pending,
-    ///         Coverage = new CoverageAssociation
-    ///         {
-    ///             Id = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///             Side = CoverageImageSide.Front,
-    ///         },
-    ///         Patient = new PatientAssociation { Id = "string", Notes = "string" },
     ///     }
     /// );
     /// </code>
@@ -183,11 +171,11 @@ public partial class V1Client
     }
 
     /// <summary>
-    /// Sets an Image as deactivated. The path must contain the most recent version to prevent races.
+    /// Sets an Image as deactivated.  The path must contain the most recent version to prevent races.
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.PreEncounter.Images.V1.DeactivateAsync("string", "string");
+    /// await client.PreEncounter.Images.V1.DeactivateAsync("id", "version");
     /// </code>
     /// </example>
     public async System.Threading.Tasks.Task DeactivateAsync(
@@ -224,9 +212,7 @@ public partial class V1Client
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.PreEncounter.Images.V1.GetMultiAsync(
-    ///     new ImageGetMultiRequest { PatientId = "string", CoverageId = "string" }
-    /// );
+    /// await client.PreEncounter.Images.V1.GetMultiAsync(new ImageGetMultiRequest());
     /// </code>
     /// </example>
     public async Task<IEnumerable<Image>> GetMultiAsync(

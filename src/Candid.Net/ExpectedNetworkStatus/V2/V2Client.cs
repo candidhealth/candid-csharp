@@ -32,7 +32,7 @@ public partial class V2Client
     ///         SubscriberInformation = new ExpectedNetworkStatusSubscriberInformation
     ///         {
     ///             PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///             MemberId = "string",
+    ///             MemberId = "member_id",
     ///             InsuranceType = new InsuranceType
     ///             {
     ///                 LineOfBusiness = LineOfBusiness.Medicare,
@@ -41,15 +41,13 @@ public partial class V2Client
     ///         },
     ///         PatientAddress = new StreetAddressShortZip
     ///         {
-    ///             Address1 = "123 Main St",
-    ///             Address2 = "Apt 1",
-    ///             City = "New York",
-    ///             State = State.Ny,
-    ///             ZipCode = "10001",
-    ///             ZipPlusFourCode = "1234",
+    ///             Address1 = "address1",
+    ///             City = "city",
+    ///             State = State.Aa,
+    ///             ZipCode = "zip_code",
     ///         },
     ///         BillingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         OrganizationServiceFacilityId = "30F55EE6-8C0E-43FC-A7FC-DAC00D5BF569",
+    ///         OrganizationServiceFacilityId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///         DateOfService = new DateOnly(2023, 1, 15),
     ///     }
     /// );
@@ -108,7 +106,7 @@ public partial class V2Client
     ///         SubscriberInformation = new ExpectedNetworkStatusSubscriberInformation
     ///         {
     ///             PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///             MemberId = "string",
+    ///             MemberId = "member_id",
     ///             InsuranceType = new InsuranceType
     ///             {
     ///                 LineOfBusiness = LineOfBusiness.Medicare,
@@ -117,15 +115,13 @@ public partial class V2Client
     ///         },
     ///         PatientAddress = new StreetAddressShortZip
     ///         {
-    ///             Address1 = "123 Main St",
-    ///             Address2 = "Apt 1",
-    ///             City = "New York",
-    ///             State = State.Ny,
-    ///             ZipCode = "10001",
-    ///             ZipPlusFourCode = "1234",
+    ///             Address1 = "address1",
+    ///             City = "city",
+    ///             State = State.Aa,
+    ///             ZipCode = "zip_code",
     ///         },
     ///         BillingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         OrganizationServiceFacilityId = "30F55EE6-8C0E-43FC-A7FC-DAC00D5BF569",
+    ///         OrganizationServiceFacilityId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///         DateOfService = new DateOnly(2023, 1, 15),
     ///     }
     /// );

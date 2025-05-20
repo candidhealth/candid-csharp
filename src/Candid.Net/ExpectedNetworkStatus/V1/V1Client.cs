@@ -24,16 +24,13 @@ public partial class V1Client
     /// await client.ExpectedNetworkStatus.V1.ComputeAsync(
     ///     new ExpectedNetworkStatusRequest
     ///     {
-    ///         ExternalPatientId = "string",
-    ///         SubscriberPayerId = "string",
-    ///         SubscriberPayerName = "string",
-    ///         SubscriberInsuranceType = Candid.Net.InsuranceTypeCode.C01,
-    ///         SubscriberPlanName = "string",
-    ///         BillingProviderNpi = "string",
-    ///         BillingProviderTin = "string",
-    ///         RenderingProviderNpi = "string",
+    ///         SubscriberPayerId = "subscriber_payer_id",
+    ///         SubscriberPayerName = "subscriber_payer_name",
+    ///         BillingProviderNpi = "billing_provider_npi",
+    ///         BillingProviderTin = "billing_provider_tin",
+    ///         RenderingProviderNpi = "rendering_provider_npi",
     ///         ContractedState = State.Aa,
-    ///         DateOfService = "string",
+    ///         DateOfService = "date_of_service",
     ///     }
     /// );
     /// </code>

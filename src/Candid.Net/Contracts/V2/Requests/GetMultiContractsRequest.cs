@@ -30,6 +30,16 @@ public record GetMultiContractsRequest
     /// </summary>
     public ContractStatus? ContractStatus { get; set; }
 
+    /// <summary>
+    /// Potentially sort by a contract related attribute.  Defaults to created_at
+    /// </summary>
+    public ContractSortField? Sort { get; set; }
+
+    /// <summary>
+    /// Direction of sort, defaulting to desc
+    /// </summary>
+    public SortDirection? SortDirection { get; set; }
+
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

@@ -21,21 +21,7 @@ public partial class V1Client
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.WriteOffs.V1.GetMultiAsync(
-    ///     new GetMultiWriteOffsRequest
-    ///     {
-    ///         Limit = 1,
-    ///         PatientExternalId = "string",
-    ///         PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         ServiceLineId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         ClaimId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         BillingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         Sort = WriteOffSortField.AmountCents,
-    ///         SortDirection = Candid.Net.SortDirection.Asc,
-    ///         PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
-    ///         AccountTypes = [AccountType.Patient],
-    ///     }
-    /// );
+    /// await client.WriteOffs.V1.GetMultiAsync(new GetMultiWriteOffsRequest());
     /// </code>
     /// </example>
     public async Task<WriteOffsPage> GetMultiAsync(
@@ -173,7 +159,13 @@ public partial class V1Client
     ///             new PatientWriteOffCreate
     ///             {
     ///                 WriteOffTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
-    ///                 WriteOffNote = "string",
+    ///                 WriteOffReason = PatientWriteOffReason.SmallBalance,
+    ///                 ServiceLineId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///                 AmountCents = 1,
+    ///             },
+    ///             new PatientWriteOffCreate
+    ///             {
+    ///                 WriteOffTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
     ///                 WriteOffReason = PatientWriteOffReason.SmallBalance,
     ///                 ServiceLineId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///                 AmountCents = 1,

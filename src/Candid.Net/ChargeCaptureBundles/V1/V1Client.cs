@@ -99,31 +99,7 @@ public partial class V1Client
 
     /// <example>
     /// <code>
-    /// await client.ChargeCaptureBundles.V1.GetAllAsync(
-    ///     new GetAllChargeCaptureClaimCreationsRequest
-    ///     {
-    ///         Limit = 1,
-    ///         Sort = ChargeCaptureClaimCreationSortField.CreatedAt,
-    ///         SortDirection = Candid.Net.SortDirection.Asc,
-    ///         PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
-    ///         PatientExternalId = "string",
-    ///         ClaimCreationStatus = ChargeCaptureClaimCreationStatus.NotStarted,
-    ///         ChargeStatus = ChargeCaptureStatus.Planned,
-    ///         ChargeExternalId = "string",
-    ///         DateOfServiceMin = new DateOnly(2023, 1, 15),
-    ///         DateOfServiceMax = new DateOnly(2023, 1, 15),
-    ///         ClaimIds = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
-    ///         ClaimCreationIds = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
-    ///         BillingProviderNpis = ["string"],
-    ///         ServiceFacilityName = "string",
-    ///         PrimaryPayerIds = ["string"],
-    ///         RenderingProviderNpis = ["string"],
-    ///         RenderingProviderNames = ["string"],
-    ///         SupervisingProviderNpis = ["string"],
-    ///         SupervisingProviderNames = ["string"],
-    ///         HasChargeCaptureUpdates = true,
-    ///     }
-    /// );
+    /// await client.ChargeCaptureBundles.V1.GetAllAsync(new GetAllChargeCaptureClaimCreationsRequest());
     /// </code>
     /// </example>
     public async Task<ChargeCaptureClaimCreationPage> GetAllAsync(

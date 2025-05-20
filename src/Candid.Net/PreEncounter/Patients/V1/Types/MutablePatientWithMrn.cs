@@ -69,13 +69,13 @@ public record MutablePatientWithMrn
     public MaritalStatus? MaritalStatus { get; set; }
 
     /// <summary>
-    /// Time of death for the patient. Leave unset if the patient is not deceased.
+    /// Time of death for the patient.  Leave unset if the patient is not deceased.
     /// </summary>
     [JsonPropertyName("deceased")]
     public DateTime? Deceased { get; set; }
 
     /// <summary>
-    /// The number of siblings the patient was born with. Leave unset if the patient was not part of a multiple birth.
+    /// The number of siblings the patient was born with.  Leave unset if the patient was not part of a multiple birth.
     /// </summary>
     [JsonPropertyName("multiple_birth")]
     public int? MultipleBirth { get; set; }
@@ -117,7 +117,7 @@ public record MutablePatientWithMrn
     public string? Language { get; set; }
 
     /// <summary>
-    /// Information about the upstream system that owns this patient data. Leave unset if Candid owns patient data.
+    /// Information about the upstream system that owns this patient data.  Leave unset if Candid owns patient data.
     /// </summary>
     [JsonPropertyName("external_provenance")]
     public ExternalProvenance? ExternalProvenance { get; set; }

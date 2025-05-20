@@ -144,41 +144,30 @@ public partial class V3Client
     /// await client.OrganizationProviders.V3.CreateAsync(
     ///     new OrganizationProviderCreateV2
     ///     {
-    ///         Npi = "string",
+    ///         Npi = "npi",
     ///         IsRendering = true,
     ///         IsBilling = true,
-    ///         FirstName = "string",
-    ///         LastName = "string",
-    ///         OrganizationName = "string",
     ///         ProviderType = ProviderType.Individual,
-    ///         TaxId = "string",
-    ///         TaxonomyCode = "string",
     ///         LicenseType = LicenseType.Md,
-    ///         Addresses = new List&lt;OrganizationProviderAddress&gt;()
-    ///         {
-    ///             new OrganizationProviderAddress
-    ///             {
-    ///                 Address = new StreetAddressLongZip
-    ///                 {
-    ///                     Address1 = "123 Main St",
-    ///                     Address2 = "Apt 1",
-    ///                     City = "New York",
-    ///                     State = State.Ny,
-    ///                     ZipCode = "10001",
-    ///                     ZipPlusFourCode = "1234",
-    ///                 },
-    ///                 AddressType = AddressType.Default,
-    ///             },
-    ///         },
-    ///         EmploymentStartDate = new DateOnly(2023, 1, 15),
-    ///         EmploymentTerminationDate = new DateOnly(2023, 1, 15),
     ///         Qualifications = new List&lt;IdentifierCreate&gt;()
     ///         {
     ///             new IdentifierCreate
     ///             {
-    ///                 Period = new DateRangeOptionalEnd { StartDate = "string" },
     ///                 IdentifierCode = IdentifierCode.Mcr,
-    ///                 IdentifierValue = new MedicareProviderIdentifier(),
+    ///                 IdentifierValue = new MedicareProviderIdentifier
+    ///                 {
+    ///                     State = State.Aa,
+    ///                     ProviderNumber = "provider_number",
+    ///                 },
+    ///             },
+    ///             new IdentifierCreate
+    ///             {
+    ///                 IdentifierCode = IdentifierCode.Mcr,
+    ///                 IdentifierValue = new MedicareProviderIdentifier
+    ///                 {
+    ///                     State = State.Aa,
+    ///                     ProviderNumber = "provider_number",
+    ///                 },
     ///             },
     ///         },
     ///     }
@@ -226,46 +215,7 @@ public partial class V3Client
     /// <code>
     /// await client.OrganizationProviders.V3.UpdateAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new OrganizationProviderUpdateV2
-    ///     {
-    ///         Npi = "string",
-    ///         IsRendering = true,
-    ///         IsBilling = true,
-    ///         FirstName = "string",
-    ///         LastName = "string",
-    ///         OrganizationName = "string",
-    ///         ProviderType = ProviderType.Individual,
-    ///         TaxId = "string",
-    ///         TaxonomyCode = "string",
-    ///         LicenseType = LicenseType.Md,
-    ///         Addresses = new List&lt;OrganizationProviderAddress&gt;()
-    ///         {
-    ///             new OrganizationProviderAddress
-    ///             {
-    ///                 Address = new StreetAddressLongZip
-    ///                 {
-    ///                     Address1 = "123 Main St",
-    ///                     Address2 = "Apt 1",
-    ///                     City = "New York",
-    ///                     State = State.Ny,
-    ///                     ZipCode = "10001",
-    ///                     ZipPlusFourCode = "1234",
-    ///                 },
-    ///                 AddressType = AddressType.Default,
-    ///             },
-    ///         },
-    ///         EmploymentStartDate = "string",
-    ///         EmploymentTerminationDate = "string",
-    ///         Qualifications = new List&lt;object&gt;()
-    ///         {
-    ///             new IdentifierCreate
-    ///             {
-    ///                 Period = new DateRangeOptionalEnd { StartDate = "string" },
-    ///                 IdentifierCode = IdentifierCode.Mcr,
-    ///                 IdentifierValue = new MedicareProviderIdentifier(),
-    ///             },
-    ///         },
-    ///     }
+    ///     new OrganizationProviderUpdateV2()
     /// );
     /// </code>
     /// </example>

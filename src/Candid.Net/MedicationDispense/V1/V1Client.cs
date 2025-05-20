@@ -21,25 +21,12 @@ public partial class V1Client
     /// await client.MedicationDispense.V1.CreateAsync(
     ///     new MedicationDispenseCreate
     ///     {
-    ///         MedicationDispenseExternalId = "string",
-    ///         PatientExternalId = "string",
-    ///         ProcedureCode = "string",
-    ///         Quantity = "string",
+    ///         MedicationDispenseExternalId = "medication_dispense_external_id",
+    ///         PatientExternalId = "patient_external_id",
+    ///         ProcedureCode = "procedure_code",
+    ///         Quantity = "quantity",
     ///         Units = ServiceLineUnits.Mj,
     ///         DateOfService = new DateOnly(2023, 1, 15),
-    ///         DrugIdentification = new DrugIdentification
-    ///         {
-    ///             ServiceIdQualifier = ServiceIdQualifier.EanUcc13,
-    ///             NationalDrugCode = "string",
-    ///             NationalDrugUnitCount = "string",
-    ///             MeasurementUnitCode = MeasurementUnitCode.Milliliters,
-    ///             LinkSequenceNumber = "string",
-    ///             PharmacyPrescriptionNumber = "string",
-    ///             ConversionFormula = "string",
-    ///             DrugDescription = "string",
-    ///         },
-    ///         Description = "string",
-    ///         Modifiers = new List&lt;ProcedureModifier&gt;() { ProcedureModifier.Av },
     ///     }
     /// );
     /// </code>

@@ -25,32 +25,9 @@ public partial class V1Client
     /// await client.PreEncounter.EligibilityChecks.V1.PostAsync(
     ///     new EligibilityRequest
     ///     {
-    ///         PayerId = "string",
-    ///         Provider = new IndividualProvider
-    ///         {
-    ///             FirstName = "string",
-    ///             LastName = "string",
-    ///             Npi = "string",
-    ///         },
-    ///         Subscriber = new MemberInfo
-    ///         {
-    ///             MemberId = "string",
-    ///             FirstName = "string",
-    ///             LastName = "string",
-    ///             DateOfBirth = new DateOnly(2023, 1, 15),
-    ///         },
-    ///         Dependent = new MemberInfo
-    ///         {
-    ///             MemberId = "string",
-    ///             FirstName = "string",
-    ///             LastName = "string",
-    ///             DateOfBirth = new DateOnly(2023, 1, 15),
-    ///         },
-    ///         Encounter = new Candid.Net.PreEncounter.EligibilityChecks.V1.Encounter
-    ///         {
-    ///             DateOfService = new DateOnly(2023, 1, 15),
-    ///             ServiceTypeCodes = new List&lt;string&gt;() { "string" },
-    ///         },
+    ///         PayerId = "payer_id",
+    ///         Provider = new IndividualProvider { Npi = "npi" },
+    ///         Subscriber = new MemberInfo { FirstName = "first_name", LastName = "last_name" },
     ///     }
     /// );
     /// </code>

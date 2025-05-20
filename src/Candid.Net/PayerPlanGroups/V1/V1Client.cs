@@ -21,22 +21,7 @@ public partial class V1Client
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.PayerPlanGroups.V1.GetMultiAsync(
-    ///     new PayerPlanGroupGetMultiRequest
-    ///     {
-    ///         PlanGroupName = ["string"],
-    ///         PayerUuid = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
-    ///         PayerId = ["string"],
-    ///         PlanType = [SourceOfPaymentCode.SelfPay],
-    ///         IsActive = true,
-    ///         PayerPlanGroupId = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"],
-    ///         Limit = 1,
-    ///         SortBySimilarity = "string",
-    ///         Sort = PayerPlanGroupSortField.PlanGroupName,
-    ///         SortDirection = Candid.Net.SortDirection.Asc,
-    ///         PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
-    ///     }
-    /// );
+    /// await client.PayerPlanGroups.V1.GetMultiAsync(new PayerPlanGroupGetMultiRequest());
     /// </code>
     /// </example>
     public async Task<PayerPlanGroupPage> GetMultiAsync(
@@ -160,7 +145,7 @@ public partial class V1Client
     /// await client.PayerPlanGroups.V1.CreateAsync(
     ///     new MutablePayerPlanGroup
     ///     {
-    ///         PlanGroupName = "string",
+    ///         PlanGroupName = "plan_group_name",
     ///         PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///         PlanType = SourceOfPaymentCode.SelfPay,
     ///     }
@@ -213,7 +198,7 @@ public partial class V1Client
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///     new MutablePayerPlanGroup
     ///     {
-    ///         PlanGroupName = "string",
+    ///         PlanGroupName = "plan_group_name",
     ///         PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///         PlanType = SourceOfPaymentCode.SelfPay,
     ///     }

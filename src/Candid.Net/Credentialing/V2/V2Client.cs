@@ -24,11 +24,10 @@ public partial class V2Client
     ///         RenderingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///         ContractingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///         PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         StartDate = new DateOnly(2023, 1, 15),
-    ///         EndDate = new DateOnly(2023, 1, 15),
-    ///         Regions = new RegionStates { States = new List&lt;State&gt;() { State.Aa } },
-    ///         SubmittedDate = new DateOnly(2023, 1, 15),
-    ///         PayerLoadedDate = new DateOnly(2023, 1, 15),
+    ///         Regions = new RegionStates
+    ///         {
+    ///             States = new List&lt;State&gt;() { State.Aa, State.Aa },
+    ///         },
     ///     }
     /// );
     /// </code>
@@ -113,17 +112,7 @@ public partial class V2Client
 
     /// <example>
     /// <code>
-    /// await client.Credentialing.V2.GetAllAsync(
-    ///     new GetAllProviderCredentialingSpansRequest
-    ///     {
-    ///         Limit = 1,
-    ///         PageToken = "eyJ0b2tlbiI6IjEiLCJwYWdlX3Rva2VuIjoiMiJ9",
-    ///         PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         ProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         AsRenderingProvider = true,
-    ///         AsContractingProvider = true,
-    ///     }
-    /// );
+    /// await client.Credentialing.V2.GetAllAsync(new GetAllProviderCredentialingSpansRequest());
     /// </code>
     /// </example>
     public async Task<ProviderCredentialingSpanPage> GetAllAsync(
@@ -228,16 +217,7 @@ public partial class V2Client
     /// <code>
     /// await client.Credentialing.V2.UpdateAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new ProviderCredentialingSpanUpdate
-    ///     {
-    ///         ContractingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         StartDate = new DateOnly(2023, 1, 15),
-    ///         EndDate = new DateOnly(2023, 1, 15),
-    ///         Regions = new RegionStates { States = new List&lt;State&gt;() { State.Aa } },
-    ///         SubmittedDate = new DateOnly(2023, 1, 15),
-    ///         PayerLoadedDate = new DateOnly(2023, 1, 15),
-    ///     }
+    ///     new ProviderCredentialingSpanUpdate()
     /// );
     /// </code>
     /// </example>
