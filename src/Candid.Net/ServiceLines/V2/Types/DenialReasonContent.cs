@@ -24,6 +24,9 @@ public enum DenialReasonContent
     [EnumMember(Value = "Duplicate Claim")]
     DuplicateClaim,
 
+    [EnumMember(Value = "Full Contractual Adjustment")]
+    FullContractualAdjustment,
+
     [EnumMember(Value = "Incorrect Place of Service")]
     IncorrectPlaceOfService,
 

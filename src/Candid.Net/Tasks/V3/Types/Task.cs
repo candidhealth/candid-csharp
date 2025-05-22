@@ -68,6 +68,9 @@ public record Task
     [JsonPropertyName("category")]
     public TaskCategory? Category { get; set; }
 
+    [JsonPropertyName("configurable_rule_id")]
+    public string? ConfigurableRuleId { get; set; }
+
     public override string ToString()
     {
         return JsonUtils.Serialize(this);
