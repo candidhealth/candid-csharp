@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
+using Candid.Net.PreEncounter.EligibilityChecks.V1;
 
 #nullable enable
 

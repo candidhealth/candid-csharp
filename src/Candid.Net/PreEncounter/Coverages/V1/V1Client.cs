@@ -2,6 +2,7 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading;
 using Candid.Net.Core;
+using Candid.Net.PreEncounter.EligibilityChecks.V1;
 
 #nullable enable
 

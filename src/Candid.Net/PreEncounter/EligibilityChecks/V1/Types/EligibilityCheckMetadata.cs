@@ -1,9 +1,10 @@
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
+using Candid.Net.PreEncounter.Coverages.V1;
 
 #nullable enable
 
-namespace Candid.Net.PreEncounter.Coverages.V1;
+namespace Candid.Net.PreEncounter.EligibilityChecks.V1;
 
 public record EligibilityCheckMetadata
 {

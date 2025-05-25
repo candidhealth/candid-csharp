@@ -33,6 +33,9 @@ public enum DenialReasonContent
     [EnumMember(Value = "Incorrect Patient Gender")]
     IncorrectPatientGender,
 
+    [EnumMember(Value = "Incorrect Patient Info")]
+    IncorrectPatientInfo,
+
     [EnumMember(Value = "Bundled")]
     Bundled,
 

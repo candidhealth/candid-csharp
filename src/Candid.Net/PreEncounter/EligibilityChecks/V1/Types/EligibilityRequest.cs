@@ -10,6 +10,13 @@ namespace Candid.Net.PreEncounter.EligibilityChecks.V1;
 public record EligibilityRequest
 {
     /// <summary>
+    /// A unique identifier for the eligibility check within the batch. Candid returns this identifier in the response for the
+    /// /batch/{batch_id} polling endpoint so you can correlate benefit responses with the original eligibility check.
+    /// </summary>
+    [JsonPropertyName("submitter_transaction_identifier")]
+    public string? SubmitterTransactionIdentifier { get; set; }
+
+    /// <summary>
     /// Supported payer ID values can be found [here](https://www.stedi.com/healthcare/network).
     /// </summary>
     [JsonPropertyName("payer_id")]

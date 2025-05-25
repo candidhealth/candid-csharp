@@ -4,7 +4,7 @@ using Candid.Net.Core;
 
 #nullable enable
 
-namespace Candid.Net.PreEncounter.Coverages.V1;
+namespace Candid.Net.PreEncounter.EligibilityChecks.V1;
 
 [JsonConverter(typeof(EnumSerializer<EligibilityCheckStatus>))]
 public enum EligibilityCheckStatus
