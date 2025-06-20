@@ -12,6 +12,12 @@ namespace Candid.Net.Encounters.V4;
 public record Encounter
 {
     /// <summary>
+    /// If the encounter was created from ingested charge captures, this is the associated Charge Capture Claim Creation Id.
+    /// </summary>
+    [JsonPropertyName("claim_creation_id")]
+    public string? ClaimCreationId { get; set; }
+
+    /// <summary>
     /// A patient control number (PCN) is a unique identifier assigned to a patient within a healthcare system or facility.
     /// It's used to track and manage a patient's medical records, treatments, and other healthcare-related information.
     /// </summary>
@@ -110,7 +116,7 @@ public record Encounter
     public IEnumerable<Diagnosis> Diagnoses { get; set; } = new List<Diagnosis>();
 
     /// <summary>
-    /// Holds a collection of clinical observations made by healthcare providers during patient encounters.
+    /// Holds a collection of clinical observations made by healthcare providers during patient encounters. Please note that medical records for appeals should be sent using the Encounter Attachments API.
     /// </summary>
     [JsonPropertyName("clinical_notes")]
     public IEnumerable<ClinicalNoteCategory> ClinicalNotes { get; set; } =

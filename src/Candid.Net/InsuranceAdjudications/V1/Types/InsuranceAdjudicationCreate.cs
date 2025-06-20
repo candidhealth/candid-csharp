@@ -23,6 +23,9 @@ public record InsuranceAdjudicationCreate
     [JsonPropertyName("check_date")]
     public required DateOnly CheckDate { get; set; }
 
+    [JsonPropertyName("check_amount_cents")]
+    public int? CheckAmountCents { get; set; }
+
     [JsonPropertyName("note")]
     public string? Note { get; set; }
 

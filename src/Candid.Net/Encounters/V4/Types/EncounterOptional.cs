@@ -1,8 +1,6 @@
 using System.Text.Json.Serialization;
 using Candid.Net;
 using Candid.Net.Core;
-using Candid.Net.CustomSchemas.V1;
-using Candid.Net.Guarantor.V1;
 
 #nullable enable
 
@@ -45,12 +43,6 @@ public record EncounterOptional
     /// </summary>
     [JsonPropertyName("tag_ids")]
     public IEnumerable<string>? TagIds { get; set; }
-
-    /// <summary>
-    /// Holds a collection of clinical observations made by healthcare providers during patient encounters.
-    /// </summary>
-    [JsonPropertyName("clinical_notes")]
-    public IEnumerable<ClinicalNoteCategoryCreate>? ClinicalNotes { get; set; }
 
     /// <summary>
     /// Defines if the Encounter is to be billed by Candid to the responsible_party. Examples for when this should be set to NOT_BILLABLE include if the Encounter has not occurred yet or if there is no intention of ever billing the responsible_party.
@@ -97,24 +89,6 @@ public record EncounterOptional
     /// </summary>
     [JsonPropertyName("end_date_of_service")]
     public DateOnly? EndDateOfService { get; set; }
-
-    /// <summary>
-    /// Contains details of the primary insurance subscriber.
-    /// </summary>
-    [JsonPropertyName("subscriber_primary")]
-    public SubscriberCreate? SubscriberPrimary { get; set; }
-
-    /// <summary>
-    /// Contains details of the secondary insurance subscriber.
-    /// </summary>
-    [JsonPropertyName("subscriber_secondary")]
-    public SubscriberCreate? SubscriberSecondary { get; set; }
-
-    /// <summary>
-    /// Contains details of the tertiary insurance subscriber.
-    /// </summary>
-    [JsonPropertyName("subscriber_tertiary")]
-    public SubscriberCreate? SubscriberTertiary { get; set; }
 
     /// <summary>
     /// Defines additional information on the claim needed by the payer.
@@ -180,15 +154,6 @@ public record EncounterOptional
     public bool? PatientAuthorizedRelease { get; set; }
 
     /// <summary>
-    /// Key-value pairs that must adhere to a schema created via the Custom Schema API. Multiple schema
-    /// instances cannot be created for the same schema on an encounter. Updating schema instances utilizes PUT
-    /// semantics, so the schema instances on the encounter will be set to whatever inputs are provided. If null
-    /// is provided as an input, then the encounter's schema instances will be cleared.
-    /// </summary>
-    [JsonPropertyName("schema_instances")]
-    public IEnumerable<SchemaInstance>? SchemaInstances { get; set; }
-
-    /// <summary>
     /// If a vitals entity already exists for the encounter, then all values will be updated to the provided values.
     /// Otherwise, a new vitals object will be created for the encounter.
     /// </summary>
@@ -196,35 +161,10 @@ public record EncounterOptional
     public VitalsUpdate? Vitals { get; set; }
 
     /// <summary>
-    /// Existing medications that should be on the encounter.
-    /// Note all current existing medications on encounter will be overridden with this list.
-    /// </summary>
-    [JsonPropertyName("existing_medications")]
-    public IEnumerable<Medication>? ExistingMedications { get; set; }
-
-    /// <summary>
-    /// Personal and contact info for the guarantor of the patient responsibility.
-    /// </summary>
-    [JsonPropertyName("guarantor")]
-    public GuarantorUpdate? Guarantor { get; set; }
-
-    /// <summary>
     /// Refers to REF*9F on the 837p. Value cannot be greater than 50 characters.
     /// </summary>
     [JsonPropertyName("referral_number")]
     public string? ReferralNumber { get; set; }
-
-    /// <summary>
-    /// Refers Box 24H on the CMS1500 form and Loop 2300 CRC - EPSDT Referral on the 837P form
-    /// </summary>
-    [JsonPropertyName("epsdt_referral")]
-    public EpsdtReferral? EpsdtReferral { get; set; }
-
-    /// <summary>
-    /// Refers to Loop 2300 - Segment PWK on the 837P form. No more than 10 entries are permitted.
-    /// </summary>
-    [JsonPropertyName("claim_supplemental_information")]
-    public IEnumerable<ClaimSupplementalInformation>? ClaimSupplementalInformation { get; set; }
 
     /// <summary>
     /// When Medicaid is billed as the secondary payer the Carrier Code is used to identify the primary payer. This is required for certain states.

@@ -20,6 +20,18 @@ public record CreateChargeCaptureRequest
     public required string ChargeExternalId { get; set; }
 
     /// <summary>
+    /// An optional string field denoting the originating system of the charge.
+    /// </summary>
+    [JsonPropertyName("originating_system")]
+    public string? OriginatingSystem { get; set; }
+
+    /// <summary>
+    /// An optional string field denoting the user defined category of the claim creation.
+    /// </summary>
+    [JsonPropertyName("claim_creation_category")]
+    public string? ClaimCreationCategory { get; set; }
+
+    /// <summary>
     /// External URL reference that links to Charge Capture details within the external system (e.g. the EHR visit page). Send full URL format for the external link (e.g. https://emr_charge_capture_url.com/123).
     /// </summary>
     [JsonPropertyName("ehr_source_url")]

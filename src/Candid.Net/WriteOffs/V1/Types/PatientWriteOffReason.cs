@@ -41,4 +41,7 @@ public enum PatientWriteOffReason
 
     [EnumMember(Value = "DECEASED")]
     Deceased,
+
+    [EnumMember(Value = "BANKRUPTCY")]
+    Bankruptcy,
 }

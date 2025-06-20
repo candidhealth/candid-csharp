@@ -56,4 +56,7 @@ public enum InsuranceWriteOffReason
 
     [EnumMember(Value = "CONTRACTUAL_ADJUSTMENT")]
     ContractualAdjustment,
+
+    [EnumMember(Value = "PRIMARY_PAID_MAX_BENEFITS")]
+    PrimaryPaidMaxBenefits,
 }

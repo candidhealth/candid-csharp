@@ -1188,6 +1188,9 @@ public enum ProcedureModifier
     [EnumMember(Value = "W3")]
     W3,
 
+    [EnumMember(Value = "X4")]
+    X4,
+
     [EnumMember(Value = "XE")]
     Xe,
 
@@ -1199,4 +1202,7 @@ public enum ProcedureModifier
 
     [EnumMember(Value = "XU")]
     Xu,
+
+    [EnumMember(Value = "XY")]
+    Xy,
 }

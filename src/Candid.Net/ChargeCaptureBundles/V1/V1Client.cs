@@ -99,6 +99,44 @@ public partial class V1Client
 
     /// <example>
     /// <code>
+    /// await client.ChargeCaptureBundles.V1.ResolveChargeCreationErrorAsync(
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///     new ChargeCaptureBundleErrorResolution()
+    /// );
+    /// </code>
+    /// </example>
+    public async System.Threading.Tasks.Task ResolveChargeCreationErrorAsync(
+        string chargeCaptureBundleErrorId,
+        ChargeCaptureBundleErrorResolution request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client.MakeRequestAsync(
+            new RawClient.JsonApiRequest
+            {
+                BaseUrl = _client.Options.Environment.CandidApi,
+                Method = HttpMethodExtensions.Patch,
+                Path = $"/api/charge_capture_claim_creation/v1/error/{chargeCaptureBundleErrorId}",
+                Body = request,
+                Options = options,
+            },
+            cancellationToken
+        );
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            return;
+        }
+        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            responseBody
+        );
+    }
+
+    /// <example>
+    /// <code>
     /// await client.ChargeCaptureBundles.V1.GetAllAsync(new GetAllChargeCaptureClaimCreationsRequest());
     /// </code>
     /// </example>

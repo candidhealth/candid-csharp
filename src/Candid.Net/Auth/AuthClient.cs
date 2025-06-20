@@ -1,4 +1,4 @@
-using Candid.Net.Auth.V2;
+using Candid.Net.Auth.Default;
 using Candid.Net.Core;
 
 #nullable enable
@@ -12,8 +12,8 @@ public partial class AuthClient
     internal AuthClient(RawClient client)
     {
         _client = client;
-        V2 = new V2Client(_client);
+        Default = new DefaultClient(_client);
     }
 
-    public V2Client V2 { get; }
+    public DefaultClient Default { get; }
 }

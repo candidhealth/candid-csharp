@@ -29,6 +29,12 @@ public record Authorization
     [JsonPropertyName("apply_for_all_cpt_codes")]
     public bool? ApplyForAllCptCodes { get; set; }
 
+    /// <summary>
+    /// If true, indicates that prior authorization is not required and prior authorization number will not be set on the claim for this authorization.
+    /// </summary>
+    [JsonPropertyName("no_prior_authorization_required")]
+    public bool? NoPriorAuthorizationRequired { get; set; }
+
     [JsonPropertyName("units")]
     public required AuthorizationUnit Units { get; set; }
 

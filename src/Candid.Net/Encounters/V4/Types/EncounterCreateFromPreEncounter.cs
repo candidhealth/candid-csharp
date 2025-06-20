@@ -60,7 +60,7 @@ public record EncounterCreateFromPreEncounter
     public IEnumerable<DiagnosisCreate> Diagnoses { get; set; } = new List<DiagnosisCreate>();
 
     /// <summary>
-    /// Holds a collection of clinical observations made by healthcare providers during patient encounters.
+    /// Holds a collection of clinical observations made by healthcare providers during patient encounters. Please note that medical records for appeals should be sent using the Encounter Attachments API.
     /// </summary>
     [JsonPropertyName("clinical_notes")]
     public IEnumerable<ClinicalNoteCategoryCreate>? ClinicalNotes { get; set; }

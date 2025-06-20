@@ -28,6 +28,12 @@ public record ChargeCapture
     [JsonPropertyName("ehr_source_url")]
     public string? EhrSourceUrl { get; set; }
 
+    [JsonPropertyName("originating_system")]
+    public string? OriginatingSystem { get; set; }
+
+    [JsonPropertyName("claim_creation_category")]
+    public string? ClaimCreationCategory { get; set; }
+
     [JsonPropertyName("error")]
     public ChargeCaptureError? Error { get; set; }
 

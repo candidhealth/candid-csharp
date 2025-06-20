@@ -35,7 +35,7 @@ public record PatientUpdateWithOptionalAddress
     public StreetAddressShortZipOptional? Address { get; set; }
 
     [JsonPropertyName("phone_numbers")]
-    public IEnumerable<PhoneNumber>? PhoneNumbers { get; set; }
+    public IEnumerable<PhoneNumberOptional>? PhoneNumbers { get; set; }
 
     [JsonPropertyName("phone_consent")]
     public bool? PhoneConsent { get; set; }
@@ -56,7 +56,7 @@ public record PatientUpdateWithOptionalAddress
     /// On update, we will replace the existing list of non-insurance payers with the new list if populated.
     /// </summary>
     [JsonPropertyName("non_insurance_payers_info")]
-    public IEnumerable<PatientNonInsurancePayerInfoCreate>? NonInsurancePayersInfo { get; set; }
+    public IEnumerable<PatientNonInsurancePayerInfoCreateOptional>? NonInsurancePayersInfo { get; set; }
 
     public override string ToString()
     {

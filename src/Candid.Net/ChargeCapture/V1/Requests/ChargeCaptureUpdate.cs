@@ -26,6 +26,18 @@ public record ChargeCaptureUpdate
     public string? EhrSourceUrl { get; set; }
 
     /// <summary>
+    /// An optional string field denoting the originating system of the charge.
+    /// </summary>
+    [JsonPropertyName("originating_system")]
+    public string? OriginatingSystem { get; set; }
+
+    /// <summary>
+    /// An optional string field denoting the user defined category of the claim creation.
+    /// </summary>
+    [JsonPropertyName("claim_creation_category")]
+    public string? ClaimCreationCategory { get; set; }
+
+    /// <summary>
     /// The patient ID from the external EMR platform for the patient
     /// </summary>
     [JsonPropertyName("patient_external_id")]

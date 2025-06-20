@@ -1,5 +1,5 @@
 using Candid.Net.Auth;
-using Candid.Net.Auth.V2;
+using Candid.Net.Auth.Default;
 using Candid.Net.BillingNotes;
 using Candid.Net.ChargeCapture;
 using Candid.Net.ChargeCaptureBundles;
@@ -54,7 +54,7 @@ public partial class Candid
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Candid.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Candid.Net/1.0.0" },
+                { "User-Agent", "Candid.Net/1.3.0" },
             }
         );
         clientOptions ??= new ClientOptions();
@@ -68,7 +68,7 @@ public partial class Candid
         var tokenProvider = new OAuthTokenProvider(
             clientId,
             clientSecret,
-            new V2Client(new RawClient(clientOptions.Clone()))
+            new DefaultClient(new RawClient(clientOptions.Clone()))
         );
         clientOptions.Headers["Authorization"] = new Func<string>(
             () => tokenProvider.GetAccessTokenAsync().Result
@@ -119,6 +119,7 @@ public partial class Candid
         Individual = new IndividualClient(_client);
         ServiceFacility = new ServiceFacilityClient(_client);
         Tags = new TagsClient(_client);
+        YesNoIndicator = new YesNoIndicatorClient(_client);
     }
 
     public AuthClient Auth { get; init; }
@@ -210,4 +211,6 @@ public partial class Candid
     public ServiceFacilityClient ServiceFacility { get; init; }
 
     public TagsClient Tags { get; init; }
+
+    public YesNoIndicatorClient YesNoIndicator { get; init; }
 }

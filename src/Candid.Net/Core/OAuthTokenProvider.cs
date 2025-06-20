@@ -1,4 +1,4 @@
-using Candid.Net.Auth.V2;
+using Candid.Net.Auth.Default;
 
 #nullable enable
 
@@ -16,9 +16,9 @@ public partial class OAuthTokenProvider
 
     private string _clientSecret;
 
-    private V2Client _client;
+    private DefaultClient _client;
 
-    public OAuthTokenProvider(string clientId, string clientSecret, V2Client client)
+    public OAuthTokenProvider(string clientId, string clientSecret, DefaultClient client)
     {
         _clientId = clientId;
         _clientSecret = clientSecret;

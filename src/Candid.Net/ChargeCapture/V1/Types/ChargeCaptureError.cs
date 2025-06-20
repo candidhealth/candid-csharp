@@ -25,6 +25,24 @@ public record ChargeCaptureError
     public required string Message { get; set; }
 
     /// <summary>
+    /// Whether or not the error has been resolved as part of user workflows
+    /// </summary>
+    [JsonPropertyName("resolved")]
+    public bool? Resolved { get; set; }
+
+    /// <summary>
+    /// A string denoting who resolved the error within candid's system.
+    /// </summary>
+    [JsonPropertyName("resolved_by")]
+    public string? ResolvedBy { get; set; }
+
+    /// <summary>
+    /// A string denoting how or why an error was resolved.
+    /// </summary>
+    [JsonPropertyName("resolution_reason")]
+    public string? ResolutionReason { get; set; }
+
+    /// <summary>
     /// The field of the corresponding underlying ChargeCapture that has a field that is failing validations,
     /// is not present but marked as required, or otherwise in error.
     /// </summary>

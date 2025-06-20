@@ -5,13 +5,13 @@ using Candid.Net.Core;
 
 #nullable enable
 
-namespace Candid.Net.Auth.V2;
+namespace Candid.Net.Auth.Default;
 
-public partial class V2Client
+public partial class DefaultClient
 {
     private RawClient _client;
 
-    internal V2Client(RawClient client)
+    internal DefaultClient(RawClient client)
     {
         _client = client;
     }
@@ -23,7 +23,21 @@ public partial class V2Client
     /// &lt;/Callout&gt;
     ///
     /// Candid Health utilizes the [OAuth 2.0 bearer token authentication scheme](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) in our auth flow. You obtain the bearer token for all
-    /// subsequent API requests via the `/auth/token` endpoint defined below, which requires you to provide your `client_id` and `client_secret`. Your `client_id` and `client_secret` can be [generated](https://support.joincandidhealth.com/hc/en-us/articles/23065219476244--Generating-Candid-API-Keys) from the "Users & Credentials" tab by your org admin.
+    /// subsequent API requests via the `/auth/v2/token` endpoint defined below, which requires you to provide your `client_id` and `client_secret`. Your `client_id` and `client_secret` can be [generated](https://support.joincandidhealth.com/hc/en-us/articles/23065219476244--Generating-Candid-API-Keys) from the "Users & Credentials" tab by your org admin.
+    ///
+    /// The `/auth/v2/token` endpoint accepts both `Content-Type: application/json` and `Content-Type: application/x-www-form-urlencoded`. The request body should contain the `client_id` and `client_secret` as follows:
+    ///
+    /// ```json
+    /// {
+    ///   "client_id": "YOUR_CLIENT_ID",
+    ///   "client_secret": "YOUR_CLIENT_SECRET"
+    /// }
+    /// ```
+    /// or as URL-encoded form data:
+    ///
+    /// ```
+    /// client_id=YOUR_CLIENT_ID&client_secret=YOUR_CLIENT_SECRET
+    /// ```
     ///
     /// The bearer token is a signed [JWT](https://jwt.io/). The public key for the JWT can be found [here](https://candidhealth.auth0.com/pem) for any verification workflows.
     ///
@@ -37,7 +51,7 @@ public partial class V2Client
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Auth.V2.GetTokenAsync(
+    /// await client.Auth.Default.GetTokenAsync(
     ///     new AuthGetTokenRequest { ClientId = "YOUR_CLIENT_ID", ClientSecret = "YOUR_CLIENT_SECRET" }
     /// );
     /// </code>

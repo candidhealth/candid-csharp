@@ -3,7 +3,7 @@ using Candid.Net.Core;
 
 #nullable enable
 
-namespace Candid.Net.Auth.V2;
+namespace Candid.Net.Auth.Default;
 
 public record AuthGetTokenResponse
 {
