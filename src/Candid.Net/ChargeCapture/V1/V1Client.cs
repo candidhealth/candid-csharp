@@ -259,6 +259,18 @@ public partial class V1Client
             _query["date_of_service_max_ranked_sort"] =
                 request.DateOfServiceMaxRankedSort.Value.ToString(Constants.DateFormat);
         }
+        if (request.SearchTerm != null)
+        {
+            _query["search_term"] = request.SearchTerm;
+        }
+        if (request.BillableStatus != null)
+        {
+            _query["billable_status"] = request.BillableStatus.Value.Stringify();
+        }
+        if (request.ResponsibleParty != null)
+        {
+            _query["responsible_party"] = request.ResponsibleParty.Value.Stringify();
+        }
         if (request.ServiceFacilityNameRankedSort != null)
         {
             _query["service_facility_name_ranked_sort"] = request.ServiceFacilityNameRankedSort;

@@ -101,6 +101,12 @@ public record ServiceLineCreateStandalone
     [JsonPropertyName("has_family_planning_indicator")]
     public bool? HasFamilyPlanningIndicator { get; set; }
 
+    /// <summary>
+    /// Maps to NTE02 loop 2400 on the EDI 837.
+    /// </summary>
+    [JsonPropertyName("note")]
+    public string? Note { get; set; }
+
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

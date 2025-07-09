@@ -222,6 +222,12 @@ public record Encounter
     public required DateTime CreatedAt { get; set; }
 
     /// <summary>
+    /// The party (payer, patient, etc.) responsible for the remainder of the balance on the claim.
+    /// </summary>
+    [JsonPropertyName("next_responsible_party")]
+    public NextResponsibleParty? NextResponsibleParty { get; set; }
+
+    /// <summary>
     /// A client-specified unique ID to associate with this encounter;
     /// for example, your internal encounter ID or a Dr. Chrono encounter ID.
     /// This field should not contain PHI.

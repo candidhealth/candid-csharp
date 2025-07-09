@@ -302,4 +302,7 @@ public enum LicenseType
 
     [EnumMember(Value = "PA-C")]
     PaC,
+
+    [EnumMember(Value = "AMFT")]
+    Amft,
 }
