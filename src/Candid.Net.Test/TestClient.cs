@@ -1,4 +1,4 @@
-using Candid.Net.Auth.V2;
+using Candid.Net.Auth.Default;
 using Candid.Net.Core;
 using Candid.Net.Encounters.V4;
 using Candid.Net.Exports.V3;
