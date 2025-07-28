@@ -4,6 +4,7 @@ using Candid.Net.BillingNotes.V2;
 using Candid.Net.Core;
 using Candid.Net.CustomSchemas.V1;
 using Candid.Net.EncounterProviders.V2;
+using Candid.Net.X12.V1;
 
 #nullable enable
 
@@ -11,6 +12,12 @@ namespace Candid.Net.Encounters.V4;
 
 public record Encounter
 {
+    /// <summary>
+    /// 837i-REF1000 -- an optional state indicating where an accident related to the encounter occurred.
+    /// </summary>
+    [JsonPropertyName("accident_state_or_province_code")]
+    public State? AccidentStateOrProvinceCode { get; set; }
+
     /// <summary>
     /// If the encounter was created from ingested charge captures, this is the associated Charge Capture Claim Creation Id.
     /// </summary>
@@ -54,6 +61,73 @@ public record Encounter
     /// </summary>
     [JsonPropertyName("rendering_provider")]
     public required EncounterProvider RenderingProvider { get; set; }
+
+    /// <summary>
+    /// 837i NM1 2500 variant for Loop ID-2310.  Used to indicate the individual whom has overall responsibility for the patient in institutional claims processing.
+    /// </summary>
+    [JsonPropertyName("attending_provider")]
+    public RenderingProvider? AttendingProvider { get; set; }
+
+    /// <summary>
+    /// 837i Loop 2300 DTP-03
+    /// Extension of the admission date with hour (0-23) details.
+    /// Required for institutional submission.
+    /// </summary>
+    [JsonPropertyName("admission_hour")]
+    public int? AdmissionHour { get; set; }
+
+    /// <summary>
+    /// 837i Loop 2300 CL1-01
+    /// Code used to indicate the priority of an admission or visit.
+    /// </summary>
+    [JsonPropertyName("admission_type_code")]
+    public TypeOfAdmissionOrVisitCode? AdmissionTypeCode { get; set; }
+
+    /// <summary>
+    /// 837i Loop 2300 CLI1-02
+    /// Code used to indicate the conditions under which an admission occurs.
+    /// </summary>
+    [JsonPropertyName("admission_source_code")]
+    public PointOfOriginForAdmissionOrVisitCode? AdmissionSourceCode { get; set; }
+
+    /// <summary>
+    /// 837i Loop 2300 DTP-03
+    /// Extension of the discharge date with hour (0-23) details.
+    /// Required for institutional submission.
+    /// </summary>
+    [JsonPropertyName("discharge_hour")]
+    public int? DischargeHour { get; set; }
+
+    /// <summary>
+    /// 837i CL1-03
+    /// Code indicating patient status as of the "statement covers through date".
+    /// </summary>
+    [JsonPropertyName("discharge_status")]
+    public PatientDischargeStatusCode? DischargeStatus { get; set; }
+
+    /// <summary>
+    /// 837i NM1 2500 variant for Loop ID-2310.  Used to indicate the individual whom has primary responsibility for surgical procedures in institutional claims processing.
+    /// </summary>
+    [JsonPropertyName("operating_provider")]
+    public RenderingProvider? OperatingProvider { get; set; }
+
+    /// <summary>
+    /// 837i NM1 2500 variant for Loop ID-2310.  Used to indicate the individual whom has secondary responsibility for surgical procedures in institutional claims processing.  Only used when operating_provider is also set.
+    /// </summary>
+    [JsonPropertyName("other_operating_provider")]
+    public RenderingProvider? OtherOperatingProvider { get; set; }
+
+    /// <summary>
+    /// Describes the currently expected target form for this encounter.  This effects what validations and queues the form is processed under.  When this value is not set, it should be assumed to be TARGET_PROFESSIONAL.
+    /// </summary>
+    [JsonPropertyName("submission_expectation")]
+    public EncounterSubmissionExpectation? SubmissionExpectation { get; set; }
+
+    /// <summary>
+    /// Used by institutional forms to indicate how the bill is to be interpreted. Professional forms are not required to submit this attribute.
+    /// </summary>
+    [JsonPropertyName("type_of_bill")]
+    public TypeOfBillComposite? TypeOfBill { get; set; }
 
     [JsonPropertyName("referring_provider")]
     public EncounterProvider? ReferringProvider { get; set; }

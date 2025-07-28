@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using Candid.Net;
 using Candid.Net.Core;
+using Candid.Net.X12.V1;
 
 #nullable enable
 
@@ -15,7 +16,7 @@ public record ClaimSubmissionRecordCreate
     public required DateTime SubmittedAt { get; set; }
 
     [JsonPropertyName("claim_frequency_code")]
-    public ClaimFrequencyTypeCode? ClaimFrequencyCode { get; set; }
+    public TypeOfBillFrequencyCode? ClaimFrequencyCode { get; set; }
 
     [JsonPropertyName("payer_responsibility")]
     public ClaimSubmissionPayerResponsibilityType? PayerResponsibility { get; set; }

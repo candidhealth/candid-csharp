@@ -15,6 +15,12 @@ public record PatientListItem
     [JsonPropertyName("primary_coverage")]
     public MutableCoverage? PrimaryCoverage { get; set; }
 
+    [JsonPropertyName("secondary_coverage")]
+    public MutableCoverage? SecondaryCoverage { get; set; }
+
+    [JsonPropertyName("tertiary_coverage")]
+    public MutableCoverage? TertiaryCoverage { get; set; }
+
     [JsonPropertyName("next_appointment")]
     public MutableAppointment? NextAppointment { get; set; }
 

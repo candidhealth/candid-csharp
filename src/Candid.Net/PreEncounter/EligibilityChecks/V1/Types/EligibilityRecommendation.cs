@@ -3,12 +3,21 @@ using Candid.Net.Core;
 
 #nullable enable
 
-namespace Candid.Net.PreEncounter.Tags.V1;
+namespace Candid.Net.PreEncounter.EligibilityChecks.V1;
 
-public record Tag
+public record EligibilityRecommendation
 {
+    /// <summary>
+    /// The unique UUID identifier for an EligibilityRecommendation.
+    /// </summary>
     [JsonPropertyName("id")]
     public required string Id { get; set; }
+
+    [JsonPropertyName("recommendation")]
+    public required object Recommendation { get; set; }
+
+    [JsonPropertyName("patient")]
+    public required EligibilityRecommendationPatientInfo Patient { get; set; }
 
     /// <summary>
     /// The organization that owns this object.
@@ -36,15 +45,6 @@ public record Tag
     /// </summary>
     [JsonPropertyName("updating_user_id")]
     public required string UpdatingUserId { get; set; }
-
-    [JsonPropertyName("value")]
-    public required string Value { get; set; }
-
-    [JsonPropertyName("description")]
-    public string? Description { get; set; }
-
-    [JsonPropertyName("alert")]
-    public bool? Alert { get; set; }
 
     public override string ToString()
     {

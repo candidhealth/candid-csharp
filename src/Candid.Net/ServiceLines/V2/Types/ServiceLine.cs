@@ -103,6 +103,9 @@ public record ServiceLine
     [JsonPropertyName("ordering_provider")]
     public EncounterProvider? OrderingProvider { get; set; }
 
+    [JsonPropertyName("revenue_code")]
+    public string? RevenueCode { get; set; }
+
     /// <summary>
     /// String representation of a Decimal that can be parsed by most libraries.
     /// A ServiceLine quantity cannot contain more than one digit of precision.
