@@ -66,6 +66,81 @@ public partial class V1Client
         );
     }
 
+    /// <summary>
+    /// Create a Charge Capture from a pre-encounter patient and appointment. This endpoint is intended to be used by consumers who are managing
+    /// patients and appointments in the pre-encounter service and is currently under development. Consumers who are not taking advantage
+    /// of the pre-encounter service should use the standard create endpoint.
+    ///
+    /// At encounter creation time, information from the provided patient and appointment objects will be populated
+    /// where applicable. In particular, the following fields are populated from the patient and appointment objects:
+    ///   - Patient
+    ///   - Referring Provider
+    ///   - Subscriber Primary
+    ///   - Subscriber Secondary
+    ///   - Referral Number
+    ///   - Responsible Party
+    ///   - Guarantor
+    ///
+    /// Note that these fields should not be populated in the ChargeCaptureData property of this endpoint, as they will be overwritten at encounter creation time.
+    ///
+    /// Utilizing this endpoint opts you into automatic updating of the encounter when the patient or appointment is updated, assuming the
+    /// encounter has not already been submitted or adjudicated.
+    /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.ChargeCapture.V1.CreateFromPreEncounterPatientAsync(
+    ///     new CreateChargeCaptureFromPreEncounterRequest
+    ///     {
+    ///         Data = new ChargeCaptureData(),
+    ///         ChargeExternalId = "charge_external_id",
+    ///         PreEncounterPatientId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         PreEncounterAppointmentIds = new List&lt;string&gt;()
+    ///         {
+    ///             "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///             "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         },
+    ///         Status = ChargeCaptureStatus.Planned,
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
+    public async Task<ChargeCapture> CreateFromPreEncounterPatientAsync(
+        CreateChargeCaptureFromPreEncounterRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client.MakeRequestAsync(
+            new RawClient.JsonApiRequest
+            {
+                BaseUrl = _client.Options.Environment.CandidApi,
+                Method = HttpMethod.Post,
+                Path = "/api/charge_captures/v1/create-from-pre-encounter",
+                Body = request,
+                Options = options,
+            },
+            cancellationToken
+        );
+        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            try
+            {
+                return JsonUtils.Deserialize<ChargeCapture>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            responseBody
+        );
+    }
+
     /// <example>
     /// <code>
     /// await client.ChargeCapture.V1.UpdateAsync(

@@ -88,7 +88,7 @@ public partial class V1Client
     }
 
     /// <summary>
-    /// Updates a Coverage.  The path must contain the most recent version to prevent race conditions.  Updating historic versions is not supported.
+    /// Updates a Coverage. The path must contain the next version number to prevent race conditions. For example, if the current version of the coverage is n, you will need to send a request to this endpoint with `/{id}/n+1` to update the coverage. Updating historic versions is not supported.
     /// </summary>
     /// <example>
     /// <code>

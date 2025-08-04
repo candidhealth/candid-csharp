@@ -18,7 +18,6 @@ public partial class V1Client
 
     /// <summary>
     /// Sends real-time eligibility checks to payers through Stedi.
-    /// &lt;Warning&gt;Please only send one concurrent request to this endpoint. Batch requests must be made in succession, otherwise, it will cause this service to fail. A batch endpoint is in development - please reach out to the Candid team for more information.&lt;/Warning&gt;
     /// </summary>
     /// <example>
     /// <code>
@@ -132,8 +131,6 @@ public partial class V1Client
 
     /// <summary>
     /// Polls the status of a batch eligibility check.
-    /// &lt;Note&gt;Batch eligibility checks are not yet available. Please reach out to the Candid team for more information.&lt;/Note&gt;
-    /// path-parameters:
     /// </summary>
     /// <example>
     /// <code>
@@ -308,11 +305,7 @@ public partial class V1Client
     ///         Patient = new EligibilityRecommendationPatientInfo(),
     ///         Recommendation = new MedicareAdvantageRecommendation
     ///         {
-    ///             Payload = new MedicareAdvantageRecommendationPayload
-    ///             {
-    ///                 PayerId = "payer_id",
-    ///                 PayerName = "payer_name",
-    ///             },
+    ///             Payload = new MedicareAdvantageRecommendationPayload(),
     ///         },
     ///     }
     /// );

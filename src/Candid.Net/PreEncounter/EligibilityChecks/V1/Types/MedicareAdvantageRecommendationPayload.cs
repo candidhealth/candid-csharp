@@ -7,11 +7,14 @@ namespace Candid.Net.PreEncounter.EligibilityChecks.V1;
 
 public record MedicareAdvantageRecommendationPayload
 {
+    [JsonPropertyName("ma_benefit")]
+    public object? MaBenefit { get; set; }
+
     [JsonPropertyName("payer_id")]
-    public required string PayerId { get; set; }
+    public string? PayerId { get; set; }
 
     [JsonPropertyName("payer_name")]
-    public required string PayerName { get; set; }
+    public string? PayerName { get; set; }
 
     [JsonPropertyName("member_id")]
     public string? MemberId { get; set; }

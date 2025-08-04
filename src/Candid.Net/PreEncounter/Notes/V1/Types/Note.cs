@@ -26,7 +26,7 @@ public record Note
     public required bool Deactivated { get; set; }
 
     /// <summary>
-    /// The version of the object.  Any update to any property of an object object will create a new version.
+    /// The version of the object. Any update to any property of an object object will create a new version.
     /// </summary>
     [JsonPropertyName("version")]
     public required int Version { get; set; }
