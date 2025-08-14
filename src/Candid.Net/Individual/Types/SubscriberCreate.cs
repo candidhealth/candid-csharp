@@ -8,6 +8,9 @@ namespace Candid.Net;
 
 public record SubscriberCreate
 {
+    /// <summary>
+    /// Please reference our [Payer Information](https://docs.joincandidhealth.com/introduction/payer-information) documentation for more details on how to populate the `insurance_card` fields.
+    /// </summary>
     [JsonPropertyName("insurance_card")]
     public required InsuranceCardCreate InsuranceCard { get; set; }
 

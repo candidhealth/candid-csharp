@@ -33,6 +33,11 @@ public record GetAllOrganizationProvidersRequestV2
     public bool? IsBilling { get; set; }
 
     /// <summary>
+    /// Filter to the provided organization provider IDs.
+    /// </summary>
+    public IEnumerable<string> OrganizationProviderIds { get; set; } = new List<string>();
+
+    /// <summary>
     /// The page token to continue paging through a previous request.
     /// </summary>
     public string? PageToken { get; set; }

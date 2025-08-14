@@ -80,6 +80,9 @@ public partial class V3Client
     )
     {
         var _query = new Dictionary<string, object>();
+        _query["organization_provider_ids"] = request
+            .OrganizationProviderIds.Select(_value => _value.ToString())
+            .ToList();
         if (request.Limit != null)
         {
             _query["limit"] = request.Limit.ToString();

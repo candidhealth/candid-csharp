@@ -633,4 +633,60 @@ public partial class V3Client
             responseBody
         );
     }
+
+    /// <summary>
+    /// Hard deletes rates from the system that match the provided dimensions.  This is a destructive operation and cannot be undone.  If an empty dimensions object is provided, all rates will be hard deleted.  The maximum number of rates this API will delete at a time is 10000.  Returns the number of rates deleted and if that number is the maximum, the caller should call this API again to continue deleting rates.
+    /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.FeeSchedules.V3.HardDeleteRatesAsync(
+    ///     new OptionalDimensions
+    ///     {
+    ///         States = new HashSet&lt;State&gt;() { State.Aa },
+    ///         ZipCodes = new HashSet&lt;string&gt;() { "zip_codes" },
+    ///         LicenseTypes = new HashSet&lt;LicenseType&gt;() { LicenseType.Md },
+    ///         FacilityTypeCodes = new HashSet&lt;FacilityTypeCode&gt;() { FacilityTypeCode.Pharmacy },
+    ///         NetworkTypes = new HashSet&lt;Candid.Net.NetworkType&gt;() { Candid.Net.NetworkType.Ppo },
+    ///         PayerPlanGroupIds = new HashSet&lt;string&gt;() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
+    ///         Modifiers = new HashSet&lt;ProcedureModifier&gt;() { ProcedureModifier.Av },
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
+    public async Task<int> HardDeleteRatesAsync(
+        OptionalDimensions request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client.MakeRequestAsync(
+            new RawClient.JsonApiRequest
+            {
+                BaseUrl = _client.Options.Environment.CandidApi,
+                Method = HttpMethod.Post,
+                Path = "/api/fee-schedules/v3/hard-delete",
+                Body = request,
+                Options = options,
+            },
+            cancellationToken
+        );
+        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            try
+            {
+                return JsonUtils.Deserialize<int>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            responseBody
+        );
+    }
 }

@@ -8,7 +8,24 @@ public record GetMultiNonInsurancePayersRequest
 {
     public string? Name { get; set; }
 
+    /// <summary>
+    /// Fuzzy-match category names of non-insurance payers.
+    /// </summary>
     public string? Category { get; set; }
+
+    /// <summary>
+    /// Filter by one or more categories by name.
+    /// When multiple are present, non-insurance payers with any of the specified
+    /// categories will be matched.
+    /// </summary>
+    public IEnumerable<string> CategoriesExact { get; set; } = new List<string>();
+
+    /// <summary>
+    /// Filter by one or more clinical trials by their `clinical_trial_id`.
+    /// When multiple are present, non-insurance payers with any of the specified
+    /// clinical trials will be matched.
+    /// </summary>
+    public IEnumerable<string> ClinicalTrialIds { get; set; } = new List<string>();
 
     public bool? Enabled { get; set; }
 

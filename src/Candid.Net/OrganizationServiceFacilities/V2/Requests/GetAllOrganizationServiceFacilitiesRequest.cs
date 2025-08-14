@@ -17,6 +17,11 @@ public record GetAllOrganizationServiceFacilitiesRequest
     public string? Name { get; set; }
 
     /// <summary>
+    /// Filter to the provided organization service facility IDs.
+    /// </summary>
+    public IEnumerable<string> OrganizationServiceFacilityIds { get; set; } = new List<string>();
+
+    /// <summary>
     /// The page token to continue paging through a previous request.
     /// </summary>
     public string? PageToken { get; set; }

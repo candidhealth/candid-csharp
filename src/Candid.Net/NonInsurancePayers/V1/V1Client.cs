@@ -118,6 +118,10 @@ public partial class V1Client
     )
     {
         var _query = new Dictionary<string, object>();
+        _query["categories_exact"] = request.CategoriesExact;
+        _query["clinical_trial_ids"] = request
+            .ClinicalTrialIds.Select(_value => _value.ToString())
+            .ToList();
         if (request.Name != null)
         {
             _query["name"] = request.Name;
@@ -163,6 +167,69 @@ public partial class V1Client
             try
             {
                 return JsonUtils.Deserialize<NonInsurancePayerPage>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            responseBody
+        );
+    }
+
+    /// <summary>
+    /// Returns a paginated list of all non-insurance payer categories.
+    ///
+    /// Non-insurance payer categories are simply strings and are not stored as a
+    /// separate object in Candid. They are created when added to at least one
+    /// non-insurance payer's `category` field and are deleted when there are no
+    /// longer any non-insurance payers that contain them.
+    /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.NonInsurancePayers.V1.GetCategoriesAsync(new GetNonInsurancePayersCategoriesRequest());
+    /// </code>
+    /// </example>
+    public async Task<NonInsurancePayerCategoriesPage> GetCategoriesAsync(
+        GetNonInsurancePayersCategoriesRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _query = new Dictionary<string, object>();
+        if (request.SearchTerm != null)
+        {
+            _query["search_term"] = request.SearchTerm;
+        }
+        if (request.Limit != null)
+        {
+            _query["limit"] = request.Limit.ToString();
+        }
+        if (request.PageToken != null)
+        {
+            _query["page_token"] = request.PageToken;
+        }
+        var response = await _client.MakeRequestAsync(
+            new RawClient.JsonApiRequest
+            {
+                BaseUrl = _client.Options.Environment.CandidApi,
+                Method = HttpMethod.Get,
+                Path = "/api/non-insurance-payers/v1/categories",
+                Query = _query,
+                Options = options,
+            },
+            cancellationToken
+        );
+        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            try
+            {
+                return JsonUtils.Deserialize<NonInsurancePayerCategoriesPage>(responseBody)!;
             }
             catch (JsonException e)
             {

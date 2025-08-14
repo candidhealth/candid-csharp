@@ -53,6 +53,9 @@ public record MutableAppointment
     [JsonPropertyName("patient_deposit_cents")]
     public int? PatientDepositCents { get; set; }
 
+    [JsonPropertyName("appointment_details")]
+    public string? AppointmentDetails { get; set; }
+
     /// <summary>
     /// The timestamp when the patient checked in for their appointment. If status is CHECKED_IN, checked_in_timestamp must be set. If checked_in_timestamp is set, status must be CHECKED_IN.
     /// </summary>

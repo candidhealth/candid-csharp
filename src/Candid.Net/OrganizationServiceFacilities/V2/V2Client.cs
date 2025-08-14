@@ -76,6 +76,9 @@ public partial class V2Client
     )
     {
         var _query = new Dictionary<string, object>();
+        _query["organization_service_facility_ids"] = request
+            .OrganizationServiceFacilityIds.Select(_value => _value.ToString())
+            .ToList();
         if (request.Limit != null)
         {
             _query["limit"] = request.Limit.ToString();
