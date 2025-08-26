@@ -5,13 +5,13 @@ using Candid.Net.Core;
 
 namespace Candid.Net.Credentialing.V2;
 
-public record ProviderCredentialingSpanCreate
+public record FacilityCredentialingSpanCreate
 {
     /// <summary>
-    /// The ID of the rendering provider covered by the credentialing span.
+    /// The ID of the service facility covered by the credentialing span.
     /// </summary>
-    [JsonPropertyName("rendering_provider_id")]
-    public required string RenderingProviderId { get; set; }
+    [JsonPropertyName("service_facility_id")]
+    public required string ServiceFacilityId { get; set; }
 
     /// <summary>
     /// The ID of the billing provider for which the service facility is covered by the credentialing span.
@@ -36,12 +36,6 @@ public record ProviderCredentialingSpanCreate
     /// </summary>
     [JsonPropertyName("end_date")]
     public DateOnly? EndDate { get; set; }
-
-    /// <summary>
-    /// The states covered by the credentialing span. A span may be national and cover all states.
-    /// </summary>
-    [JsonPropertyName("regions")]
-    public required object Regions { get; set; }
 
     /// <summary>
     /// Date that the credential paperwork was submitted.

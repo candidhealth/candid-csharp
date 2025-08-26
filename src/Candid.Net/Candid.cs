@@ -17,6 +17,7 @@ using Candid.Net.Exports;
 using Candid.Net.ExternalPaymentAccountConfig;
 using Candid.Net.FeeSchedules;
 using Candid.Net.Guarantor;
+using Candid.Net.HealthCareCodeInformation;
 using Candid.Net.ImportInvoice;
 using Candid.Net.InsuranceAdjudications;
 using Candid.Net.InsurancePayments;
@@ -28,6 +29,7 @@ using Candid.Net.NonInsurancePayerRefunds;
 using Candid.Net.NonInsurancePayers;
 using Candid.Net.OrganizationProviders;
 using Candid.Net.OrganizationServiceFacilities;
+using Candid.Net.PatientAr;
 using Candid.Net.PatientPayments;
 using Candid.Net.PatientRefunds;
 using Candid.Net.PayerPlanGroups;
@@ -54,7 +56,7 @@ public partial class Candid
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Candid.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Candid.Net/1.6.0" },
+                { "User-Agent", "Candid.Net/1.7.0" },
             }
         );
         clientOptions ??= new ClientOptions();
@@ -91,6 +93,7 @@ public partial class Candid
         ExternalPaymentAccountConfig = new ExternalPaymentAccountConfigClient(_client);
         FeeSchedules = new FeeSchedulesClient(_client);
         Guarantor = new GuarantorClient(_client);
+        HealthCareCodeInformation = new HealthCareCodeInformationClient(_client);
         ImportInvoice = new ImportInvoiceClient(_client);
         InsuranceAdjudications = new InsuranceAdjudicationsClient(_client);
         InsurancePayments = new InsurancePaymentsClient(_client);
@@ -100,8 +103,9 @@ public partial class Candid
         NonInsurancePayerPayments = new NonInsurancePayerPaymentsClient(_client);
         NonInsurancePayerRefunds = new NonInsurancePayerRefundsClient(_client);
         NonInsurancePayers = new NonInsurancePayersClient(_client);
-        OrganizationServiceFacilities = new OrganizationServiceFacilitiesClient(_client);
         OrganizationProviders = new OrganizationProvidersClient(_client);
+        OrganizationServiceFacilities = new OrganizationServiceFacilitiesClient(_client);
+        PatientAr = new PatientArClient(_client);
         PatientPayments = new PatientPaymentsClient(_client);
         PatientRefunds = new PatientRefundsClient(_client);
         PayerPlanGroups = new PayerPlanGroupsClient(_client);
@@ -156,6 +160,8 @@ public partial class Candid
 
     public GuarantorClient Guarantor { get; init; }
 
+    public HealthCareCodeInformationClient HealthCareCodeInformation { get; init; }
+
     public ImportInvoiceClient ImportInvoice { get; init; }
 
     public InsuranceAdjudicationsClient InsuranceAdjudications { get; init; }
@@ -174,9 +180,11 @@ public partial class Candid
 
     public NonInsurancePayersClient NonInsurancePayers { get; init; }
 
+    public OrganizationProvidersClient OrganizationProviders { get; init; }
+
     public OrganizationServiceFacilitiesClient OrganizationServiceFacilities { get; init; }
 
-    public OrganizationProvidersClient OrganizationProviders { get; init; }
+    public PatientArClient PatientAr { get; init; }
 
     public PatientPaymentsClient PatientPayments { get; init; }
 

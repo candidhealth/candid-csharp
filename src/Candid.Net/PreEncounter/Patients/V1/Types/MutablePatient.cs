@@ -162,6 +162,12 @@ public record MutablePatient
     [JsonPropertyName("tag_ids")]
     public IEnumerable<string>? TagIds { get; set; }
 
+    /// <summary>
+    /// Information about the patient source, if applicable.
+    /// </summary>
+    [JsonPropertyName("origination_detail")]
+    public OriginationDetail? OriginationDetail { get; set; }
+
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

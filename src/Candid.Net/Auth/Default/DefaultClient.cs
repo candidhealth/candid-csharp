@@ -92,4 +92,48 @@ public partial class DefaultClient
             responseBody
         );
     }
+
+    /// <example>
+    /// <code>
+    /// await client.Auth.Default.GetMachineTokenForOrgIdAsync(
+    ///     new AuthGetTokenForOrgRequest { OrgId = "org_id" }
+    /// );
+    /// </code>
+    /// </example>
+    public async Task<AuthGetTokenResponse> GetMachineTokenForOrgIdAsync(
+        AuthGetTokenForOrgRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client.MakeRequestAsync(
+            new RawClient.JsonApiRequest
+            {
+                BaseUrl = _client.Options.Environment.CandidApi,
+                Method = HttpMethod.Post,
+                Path = "/api/auth/v2/machine-token-for-org-id",
+                Body = request,
+                Options = options,
+            },
+            cancellationToken
+        );
+        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            try
+            {
+                return JsonUtils.Deserialize<AuthGetTokenResponse>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            responseBody
+        );
+    }
 }

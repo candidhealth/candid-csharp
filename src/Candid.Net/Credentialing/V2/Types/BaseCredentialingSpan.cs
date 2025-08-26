@@ -1,29 +1,25 @@
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
+using Candid.Net.OrganizationProviders.V3;
+using Candid.Net.Payers.V3;
 
 #nullable enable
 
 namespace Candid.Net.Credentialing.V2;
 
-public record ProviderCredentialingSpanCreate
+public record BaseCredentialingSpan
 {
     /// <summary>
-    /// The ID of the rendering provider covered by the credentialing span.
+    /// The practice location at which the rendering provider is covered by the credentialing span.
     /// </summary>
-    [JsonPropertyName("rendering_provider_id")]
-    public required string RenderingProviderId { get; set; }
+    [JsonPropertyName("contracting_provider")]
+    public required OrganizationProviderV2 ContractingProvider { get; set; }
 
     /// <summary>
-    /// The ID of the billing provider for which the service facility is covered by the credentialing span.
+    /// The payer doing the credentialing.
     /// </summary>
-    [JsonPropertyName("contracting_provider_id")]
-    public required string ContractingProviderId { get; set; }
-
-    /// <summary>
-    /// The ID of the payer covered by the credentialing span.
-    /// </summary>
-    [JsonPropertyName("payer_uuid")]
-    public required string PayerUuid { get; set; }
+    [JsonPropertyName("payer")]
+    public required Payer Payer { get; set; }
 
     /// <summary>
     /// Start date of the credentialing span.
@@ -38,22 +34,28 @@ public record ProviderCredentialingSpanCreate
     public DateOnly? EndDate { get; set; }
 
     /// <summary>
-    /// The states covered by the credentialing span. A span may be national and cover all states.
-    /// </summary>
-    [JsonPropertyName("regions")]
-    public required object Regions { get; set; }
-
-    /// <summary>
     /// Date that the credential paperwork was submitted.
     /// </summary>
     [JsonPropertyName("submitted_date")]
     public DateOnly? SubmittedDate { get; set; }
 
     /// <summary>
+    /// Status of the credentialing span.
+    /// </summary>
+    [JsonPropertyName("credentialing_status")]
+    public required CredentialingSpanStatus CredentialingStatus { get; set; }
+
+    /// <summary>
     /// Date that the payer loaded the credentialing span into their system.
     /// </summary>
     [JsonPropertyName("payer_loaded_date")]
     public DateOnly? PayerLoadedDate { get; set; }
+
+    /// <summary>
+    /// Is the credentialing span enabled?
+    /// </summary>
+    [JsonPropertyName("is_enabled")]
+    public required bool IsEnabled { get; set; }
 
     public override string ToString()
     {
