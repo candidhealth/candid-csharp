@@ -3,19 +3,24 @@ using Candid.Net.Auth.Default;
 using Candid.Net.BillingNotes;
 using Candid.Net.ChargeCapture;
 using Candid.Net.ChargeCaptureBundles;
-using Candid.Net.ClaimSubmission;
+using Candid.Net.Claims;
+using Candid.Net.Commons;
 using Candid.Net.Contracts;
 using Candid.Net.Core;
 using Candid.Net.Credentialing;
 using Candid.Net.CustomSchemas;
+using Candid.Net.Diagnoses;
 using Candid.Net.Eligibility;
 using Candid.Net.EncounterAttachments;
 using Candid.Net.EncounterProviders;
 using Candid.Net.Encounters;
+using Candid.Net.EncountersUniversal;
+using Candid.Net.Era;
 using Candid.Net.ExpectedNetworkStatus;
 using Candid.Net.Exports;
 using Candid.Net.ExternalPaymentAccountConfig;
 using Candid.Net.FeeSchedules;
+using Candid.Net.Financials;
 using Candid.Net.Guarantor;
 using Candid.Net.HealthCareCodeInformation;
 using Candid.Net.ImportInvoice;
@@ -35,10 +40,13 @@ using Candid.Net.PatientRefunds;
 using Candid.Net.PayerPlanGroups;
 using Candid.Net.Payers;
 using Candid.Net.PreEncounter;
+using Candid.Net.ServiceFacility;
 using Candid.Net.ServiceLines;
 using Candid.Net.Superbills;
+using Candid.Net.Tags;
 using Candid.Net.Tasks;
 using Candid.Net.WriteOffs;
+using Candid.Net.YesNoIndicator;
 
 #nullable enable
 
@@ -56,7 +64,7 @@ public partial class Candid
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Candid.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Candid.Net/1.7.0" },
+                { "User-Agent", "Candid.Net/1.8.0" },
             }
         );
         clientOptions ??= new ClientOptions();
@@ -80,13 +88,13 @@ public partial class Candid
         BillingNotes = new BillingNotesClient(_client);
         ChargeCaptureBundles = new ChargeCaptureBundlesClient(_client);
         ChargeCapture = new ChargeCaptureClient(_client);
-        ClaimSubmission = new ClaimSubmissionClient(_client);
         Contracts = new ContractsClient(_client);
         Credentialing = new CredentialingClient(_client);
         CustomSchemas = new CustomSchemasClient(_client);
         Eligibility = new EligibilityClient(_client);
         EncounterAttachments = new EncounterAttachmentsClient(_client);
         EncounterProviders = new EncounterProvidersClient(_client);
+        EncountersUniversal = new EncountersUniversalClient(_client);
         Encounters = new EncountersClient(_client);
         ExpectedNetworkStatus = new ExpectedNetworkStatusClient(_client);
         Exports = new ExportsClient(_client);
@@ -120,7 +128,6 @@ public partial class Candid
         Diagnoses = new DiagnosesClient(_client);
         Era = new EraClient(_client);
         Financials = new FinancialsClient(_client);
-        Individual = new IndividualClient(_client);
         ServiceFacility = new ServiceFacilityClient(_client);
         Tags = new TagsClient(_client);
         YesNoIndicator = new YesNoIndicatorClient(_client);
@@ -134,8 +141,6 @@ public partial class Candid
 
     public ChargeCaptureClient ChargeCapture { get; init; }
 
-    public ClaimSubmissionClient ClaimSubmission { get; init; }
-
     public ContractsClient Contracts { get; init; }
 
     public CredentialingClient Credentialing { get; init; }
@@ -147,6 +152,8 @@ public partial class Candid
     public EncounterAttachmentsClient EncounterAttachments { get; init; }
 
     public EncounterProvidersClient EncounterProviders { get; init; }
+
+    public EncountersUniversalClient EncountersUniversal { get; init; }
 
     public EncountersClient Encounters { get; init; }
 
@@ -213,8 +220,6 @@ public partial class Candid
     public EraClient Era { get; init; }
 
     public FinancialsClient Financials { get; init; }
-
-    public IndividualClient Individual { get; init; }
 
     public ServiceFacilityClient ServiceFacility { get; init; }
 

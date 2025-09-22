@@ -1,7 +1,6 @@
 using System.Text.Json.Serialization;
-using Candid.Net;
+using Candid.Net.Commons;
 using Candid.Net.Core;
-using Candid.Net.Payers.V3;
 
 #nullable enable
 
@@ -13,7 +12,7 @@ public record PayerPlanGroup
     public required string PayerPlanGroupId { get; set; }
 
     [JsonPropertyName("payer")]
-    public required Payer Payer { get; set; }
+    public required Payers.V3.Payer Payer { get; set; }
 
     [JsonPropertyName("is_active")]
     public required bool IsActive { get; set; }

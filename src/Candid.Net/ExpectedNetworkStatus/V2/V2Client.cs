@@ -36,7 +36,7 @@ public partial class V2Client
     ///             InsuranceType = new InsuranceType
     ///             {
     ///                 LineOfBusiness = LineOfBusiness.Medicare,
-    ///                 InsuranceTypeCodes = Candid.Net.InsuranceTypeCode.C01,
+    ///                 InsuranceTypeCodes = Candid.Net.Commons.InsuranceTypeCode.C01,
     ///             },
     ///         },
     ///         PatientAddress = new StreetAddressShortZip
@@ -110,7 +110,7 @@ public partial class V2Client
     ///             InsuranceType = new InsuranceType
     ///             {
     ///                 LineOfBusiness = LineOfBusiness.Medicare,
-    ///                 InsuranceTypeCodes = Candid.Net.InsuranceTypeCode.C01,
+    ///                 InsuranceTypeCodes = Candid.Net.Commons.InsuranceTypeCode.C01,
     ///             },
     ///         },
     ///         PatientAddress = new StreetAddressShortZip

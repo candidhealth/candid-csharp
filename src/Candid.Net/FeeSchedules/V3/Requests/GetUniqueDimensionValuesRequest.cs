@@ -1,4 +1,4 @@
-using Candid.Net;
+using Candid.Net.Commons;
 using Candid.Net.Core;
 using Candid.Net.OrganizationProviders.V2;
 
@@ -33,7 +33,8 @@ public record GetUniqueDimensionValuesRequest
     public IEnumerable<FacilityTypeCode> FacilityTypeCodes { get; set; } =
         new List<FacilityTypeCode>();
 
-    public IEnumerable<NetworkType> NetworkTypes { get; set; } = new List<NetworkType>();
+    public IEnumerable<Commons.NetworkType> NetworkTypes { get; set; } =
+        new List<Commons.NetworkType>();
 
     public IEnumerable<string> PayerPlanGroupIds { get; set; } = new List<string>();
 

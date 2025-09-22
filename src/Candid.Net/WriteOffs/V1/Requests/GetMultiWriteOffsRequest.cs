@@ -1,5 +1,5 @@
-using Candid.Net;
 using Candid.Net.Core;
+using Candid.Net.Financials;
 
 #nullable enable
 
@@ -30,7 +30,7 @@ public record GetMultiWriteOffsRequest
     /// <summary>
     /// Sort direction. Defaults to descending order if not provided.
     /// </summary>
-    public SortDirection? SortDirection { get; set; }
+    public Commons.SortDirection? SortDirection { get; set; }
 
     public string? PageToken { get; set; }
 

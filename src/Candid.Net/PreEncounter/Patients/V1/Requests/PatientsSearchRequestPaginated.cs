@@ -17,7 +17,7 @@ public record PatientsSearchRequestPaginated
     /// <summary>
     /// Defaults to ascending.
     /// </summary>
-    public SortDirection? SortDirection { get; set; }
+    public Common.SortDirection? SortDirection { get; set; }
 
     public override string ToString()
     {

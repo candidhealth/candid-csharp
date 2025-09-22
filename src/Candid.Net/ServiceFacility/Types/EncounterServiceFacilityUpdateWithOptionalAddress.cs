@@ -1,9 +1,10 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Commons;
 using Candid.Net.Core;
 
 #nullable enable
 
-namespace Candid.Net;
+namespace Candid.Net.ServiceFacility;
 
 public record EncounterServiceFacilityUpdateWithOptionalAddress
 {

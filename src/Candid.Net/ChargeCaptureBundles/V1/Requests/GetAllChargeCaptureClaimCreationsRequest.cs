@@ -20,7 +20,7 @@ public record GetAllChargeCaptureClaimCreationsRequest
     /// <summary>
     /// Sort direction. Defaults to descending order if not provided.
     /// </summary>
-    public SortDirection? SortDirection { get; set; }
+    public Commons.SortDirection? SortDirection { get; set; }
 
     public string? PageToken { get; set; }
 

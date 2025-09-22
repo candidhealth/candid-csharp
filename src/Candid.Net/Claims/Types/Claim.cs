@@ -4,7 +4,7 @@ using Candid.Net.ServiceLines.V2;
 
 #nullable enable
 
-namespace Candid.Net;
+namespace Candid.Net.Claims;
 
 public record Claim
 {
@@ -30,7 +30,7 @@ public record Claim
     public IEnumerable<ServiceLine> ServiceLines { get; set; } = new List<ServiceLine>();
 
     [JsonPropertyName("eras")]
-    public IEnumerable<Era> Eras { get; set; } = new List<Era>();
+    public IEnumerable<Era.Era> Eras { get; set; } = new List<Era.Era>();
 
     public override string ToString()
     {

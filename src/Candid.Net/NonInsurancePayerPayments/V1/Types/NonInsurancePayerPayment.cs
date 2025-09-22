@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
-using Candid.Net;
 using Candid.Net.Core;
+using Candid.Net.Financials;
 using Candid.Net.NonInsurancePayers.V1;
 
 #nullable enable

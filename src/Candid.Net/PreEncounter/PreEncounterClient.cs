@@ -1,5 +1,6 @@
 using Candid.Net.Core;
 using Candid.Net.PreEncounter.Appointments;
+using Candid.Net.PreEncounter.Common;
 using Candid.Net.PreEncounter.Coverages;
 using Candid.Net.PreEncounter.EligibilityChecks;
 using Candid.Net.PreEncounter.Images;

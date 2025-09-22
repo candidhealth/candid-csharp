@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
-using Candid.Net.PreEncounter;
+using Candid.Net.PreEncounter.Common;
 
 #nullable enable
 
@@ -30,7 +30,7 @@ public record MutablePatientWithMrn
     public IEnumerable<ExternalIdentifier>? OtherIdentifiers { get; set; }
 
     [JsonPropertyName("gender")]
-    public Gender? Gender { get; set; }
+    public Common.Gender? Gender { get; set; }
 
     [JsonPropertyName("birth_date")]
     public required DateOnly BirthDate { get; set; }
@@ -84,19 +84,19 @@ public record MutablePatientWithMrn
     /// The primary address for the patient.
     /// </summary>
     [JsonPropertyName("primary_address")]
-    public required Address PrimaryAddress { get; set; }
+    public required Common.Address PrimaryAddress { get; set; }
 
     /// <summary>
     /// Other addresses for the patient.
     /// </summary>
     [JsonPropertyName("other_addresses")]
-    public IEnumerable<Address> OtherAddresses { get; set; } = new List<Address>();
+    public IEnumerable<Common.Address> OtherAddresses { get; set; } = new List<Common.Address>();
 
     /// <summary>
     /// The primary phone number for the patient.
     /// </summary>
     [JsonPropertyName("primary_telecom")]
-    public required ContactPoint PrimaryTelecom { get; set; }
+    public ContactPoint? PrimaryTelecom { get; set; }
 
     /// <summary>
     /// Other phone numbers for the patient.
@@ -173,6 +173,12 @@ public record MutablePatientWithMrn
     /// </summary>
     [JsonPropertyName("origination_detail")]
     public OriginationDetail? OriginationDetail { get; set; }
+
+    /// <summary>
+    /// Metadata for the patient used for patient inference from encounters.
+    /// </summary>
+    [JsonPropertyName("inferred_patient_metadata")]
+    public InferredPatientMetadata? InferredPatientMetadata { get; set; }
 
     public override string ToString()
     {

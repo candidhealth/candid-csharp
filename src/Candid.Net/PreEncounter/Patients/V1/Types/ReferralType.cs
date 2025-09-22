@@ -14,4 +14,7 @@ public enum ReferralType
 
     [EnumMember(Value = "ROTATION")]
     Rotation,
+
+    [EnumMember(Value = "OVERNIGHT")]
+    Overnight,
 }

@@ -45,7 +45,7 @@ public record SearchImportedInvoicesRequest
     /// <summary>
     /// Sort direction. Defaults to descending order
     /// </summary>
-    public SortDirection? SortDirection { get; set; }
+    public Commons.SortDirection? SortDirection { get; set; }
 
     public string? PageToken { get; set; }
 

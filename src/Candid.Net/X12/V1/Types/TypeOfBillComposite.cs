@@ -20,7 +20,7 @@ public record TypeOfBillComposite
     public required TypeOfFacilityCode TypeOfFacility { get; set; }
 
     /// <summary>
-    /// The FL04 Institutional type of care code for the bill.  The second digit of the composite code.
+    /// The FL04 Institutional type of care code for the bill.  The third digit of the composite code.
     /// </summary>
     [JsonPropertyName("type_of_care")]
     public required TypeOfCareCode TypeOfCare { get; set; }

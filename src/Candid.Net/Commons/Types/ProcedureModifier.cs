@@ -4,7 +4,7 @@ using Candid.Net.Core;
 
 #nullable enable
 
-namespace Candid.Net;
+namespace Candid.Net.Commons;
 
 [JsonConverter(typeof(EnumSerializer<ProcedureModifier>))]
 public enum ProcedureModifier
@@ -17,6 +17,36 @@ public enum ProcedureModifier
 
     [EnumMember(Value = "AW")]
     Aw,
+
+    [EnumMember(Value = "07")]
+    Seven,
+
+    [EnumMember(Value = "08")]
+    Eight,
+
+    [EnumMember(Value = "09")]
+    Nine,
+
+    [EnumMember(Value = "10")]
+    Ten,
+
+    [EnumMember(Value = "11")]
+    Eleven,
+
+    [EnumMember(Value = "12")]
+    Twelve,
+
+    [EnumMember(Value = "13")]
+    Thirteen,
+
+    [EnumMember(Value = "14")]
+    Fourteen,
+
+    [EnumMember(Value = "15")]
+    Fifteen,
+
+    [EnumMember(Value = "16")]
+    Sixteen,
 
     [EnumMember(Value = "22")]
     TwentyTwo,
@@ -35,6 +65,9 @@ public enum ProcedureModifier
 
     [EnumMember(Value = "27")]
     TwentySeven,
+
+    [EnumMember(Value = "28")]
+    TwentyEight,
 
     [EnumMember(Value = "32")]
     ThirtyTwo,

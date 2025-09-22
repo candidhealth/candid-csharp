@@ -1,9 +1,10 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Commons;
 using Candid.Net.Core;
 
 #nullable enable
 
-namespace Candid.Net;
+namespace Candid.Net.Identifiers;
 
 public record Identifier
 {

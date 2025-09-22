@@ -1,5 +1,5 @@
 using System.Text.Json.Serialization;
-using Candid.Net;
+using Candid.Net.Commons;
 using Candid.Net.Core;
 
 #nullable enable
@@ -48,7 +48,7 @@ public record InsuranceCardCreate
     public SourceOfPaymentCode? PlanType { get; set; }
 
     [JsonPropertyName("insurance_type")]
-    public InsuranceTypeCode? InsuranceType { get; set; }
+    public Commons.InsuranceTypeCode? InsuranceType { get; set; }
 
     [JsonPropertyName("payer_plan_group_id")]
     public string? PayerPlanGroupId { get; set; }

@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
-using Candid.Net;
 using Candid.Net.ClinicalTrials.V1;
+using Candid.Net.Commons;
 using Candid.Net.Core;
 
 #nullable enable

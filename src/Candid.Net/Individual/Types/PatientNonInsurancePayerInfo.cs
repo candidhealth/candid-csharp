@@ -4,7 +4,7 @@ using Candid.Net.NonInsurancePayers.V1;
 
 #nullable enable
 
-namespace Candid.Net;
+namespace Candid.Net.Individual;
 
 public record PatientNonInsurancePayerInfo
 {

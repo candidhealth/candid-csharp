@@ -4,7 +4,7 @@ using Candid.Net.Core;
 
 #nullable enable
 
-namespace Candid.Net.Tasks;
+namespace Candid.Net.Tasks.Commons;
 
 [JsonConverter(typeof(EnumSerializer<TaskStatus>))]
 public enum TaskStatus

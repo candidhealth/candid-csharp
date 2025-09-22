@@ -2,7 +2,7 @@ using Candid.Net.Core;
 
 #nullable enable
 
-namespace Candid.Net;
+namespace Candid.Net.Claims;
 
 public partial class ClaimsClient
 {

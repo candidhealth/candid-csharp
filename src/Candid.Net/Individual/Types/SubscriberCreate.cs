@@ -1,10 +1,11 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Commons;
 using Candid.Net.Core;
 using Candid.Net.InsuranceCards.V2;
 
 #nullable enable
 
-namespace Candid.Net;
+namespace Candid.Net.Individual;
 
 public record SubscriberCreate
 {

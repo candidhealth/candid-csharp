@@ -1,5 +1,5 @@
 using System.Text.Json.Serialization;
-using Candid.Net;
+using Candid.Net.Commons;
 using Candid.Net.Core;
 
 #nullable enable
@@ -19,7 +19,7 @@ public record EncounterBase
     /// <summary>
     /// Date formatted as YYYY-MM-DD; eg: 2019-08-24.
     /// This date must be the local date in the timezone where the service occurred.
-    /// Box 24a on the CMS-1500 claim form.
+    /// Box 24a on the CMS-1500 claim form or Form Locator 45 on the UB-04 claim form.
     /// If service occurred over a range of dates, this should be the start date.
     /// date_of_service must be defined on either the encounter or the service lines but not both.
     /// If there are greater than zero service lines, it is recommended to specify date_of_service on the service_line instead of on the encounter to prepare for future API versions.
@@ -40,7 +40,7 @@ public record EncounterBase
     /// <summary>
     /// Whether this patient has authorized the release of medical information
     /// for billing purpose.
-    /// Box 12 on the CMS-1500 claim form.
+    /// Box 12 on the CMS-1500 claim form  or Form Locator 52 on a UB-04 claim form.
     /// </summary>
     [JsonPropertyName("patient_authorized_release")]
     public required bool PatientAuthorizedRelease { get; set; }
@@ -48,7 +48,7 @@ public record EncounterBase
     /// <summary>
     /// Whether this patient has authorized insurance payments to be made to you,
     /// not them. If false, patient may receive reimbursement.
-    /// Box 13 on the CMS-1500 claim form.
+    /// Box 13 on the CMS-1500 claim form or Form Locator 53 on a UB-04 claim form.
     /// </summary>
     [JsonPropertyName("benefits_assigned_to_provider")]
     public required bool BenefitsAssignedToProvider { get; set; }
@@ -56,7 +56,7 @@ public record EncounterBase
     /// <summary>
     /// Whether you have accepted the patient's authorization for insurance payments
     /// to be made to you, not them.
-    /// Box 27 on the CMS-1500 claim form.
+    /// Box 27 on the CMS-1500 claim form. There is no exact equivalent of this field on a UB-04 claim, however contributes to the concept of Form Locator 53.
     /// </summary>
     [JsonPropertyName("provider_accepts_assignment")]
     public required bool ProviderAcceptsAssignment { get; set; }
@@ -69,9 +69,6 @@ public record EncounterBase
 
     [JsonPropertyName("existing_medications")]
     public IEnumerable<Medication>? ExistingMedications { get; set; }
-
-    [JsonPropertyName("vitals")]
-    public Vitals? Vitals { get; set; }
 
     [JsonPropertyName("interventions")]
     public IEnumerable<Intervention>? Interventions { get; set; }
@@ -92,6 +89,9 @@ public record EncounterBase
     [JsonPropertyName("synchronicity")]
     public SynchronicityType? Synchronicity { get; set; }
 
+    [JsonPropertyName("vitals")]
+    public Vitals? Vitals { get; set; }
+
     /// <summary>
     /// Defines if the Encounter is to be billed by Candid to the responsible_party.
     /// Examples for when this should be set to NOT_BILLABLE include
@@ -102,7 +102,7 @@ public record EncounterBase
 
     /// <summary>
     /// Defines additional information on the claim needed by the payer.
-    /// Box 19 on the CMS-1500 claim form.
+    /// Box 19 on the CMS-1500 claim form or Form Locator 80 on a UB-04 claim form.
     /// </summary>
     [JsonPropertyName("additional_information")]
     public string? AdditionalInformation { get; set; }
@@ -117,7 +117,7 @@ public record EncounterBase
     public ServiceAuthorizationExceptionCode? ServiceAuthorizationExceptionCode { get; set; }
 
     /// <summary>
-    /// 837p Loop2300 DTP*435, CMS-1500 Box 18
+    /// 837p Loop2300 DTP*435, CMS-1500 Box 18 or UB-04 Form Locator 12.
     /// Required on all ambulance claims when the patient was known to be admitted to the hospital.
     /// OR
     /// Required on all claims involving inpatient medical visits.
@@ -126,8 +126,7 @@ public record EncounterBase
     public DateOnly? AdmissionDate { get; set; }
 
     /// <summary>
-    /// 837p Loop2300 DTP*096, CMS-1500 Box 18
-    /// Required for inpatient claims when the patient was discharged from the facility and the discharge date is known.
+    /// 837p Loop2300 DTP*096, CMS-1500 Box 18 Required for inpatient claims when the patient was discharged from the facility and the discharge date is known. Not used on an institutional claim.
     /// </summary>
     [JsonPropertyName("discharge_date")]
     public DateOnly? DischargeDate { get; set; }
@@ -137,6 +136,7 @@ public record EncounterBase
     /// Required for the initial medical service or visit performed in response to a medical emergency when the date is available and is different than the date of service.
     /// OR
     /// This date is the onset of acute symptoms for the current illness or condition.
+    ///  For UB-04 claims, this is populated separately via occurrence codes.
     /// </summary>
     [JsonPropertyName("onset_of_current_illness_or_symptom_date")]
     public DateOnly? OnsetOfCurrentIllnessOrSymptomDate { get; set; }
@@ -144,6 +144,7 @@ public record EncounterBase
     /// <summary>
     /// 837p Loop2300 DTP*484, CMS-1500 Box 14
     /// Required when, in the judgment of the provider, the services on this claim are related to the patient's pregnancy.
+    /// This field is populated separately via occurrence codes for UB-04 claim forms.
     /// </summary>
     [JsonPropertyName("last_menstrual_period_date")]
     public DateOnly? LastMenstrualPeriodDate { get; set; }

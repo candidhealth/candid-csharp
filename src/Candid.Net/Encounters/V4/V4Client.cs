@@ -2,6 +2,7 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading;
 using Candid.Net.Core;
+using Candid.Net.EncountersUniversal;
 
 #nullable enable
 
@@ -183,14 +184,19 @@ public partial class V4Client
 
     /// <example>
     /// <code>
-    /// await client.Encounters.V4.CreateAsync(
-    ///     new EncounterCreate
+    /// await client.Encounters.V4.CreateUniversalAsync(
+    ///     new UniversalEncounterCreate
     ///     {
+    ///         ExternalId = "external_id",
+    ///         PatientAuthorizedRelease = true,
+    ///         BenefitsAssignedToProvider = true,
+    ///         ProviderAcceptsAssignment = true,
+    ///         BillableStatus = BillableStatusType.Billable,
     ///         Patient = new PatientCreate
     ///         {
     ///             FirstName = "first_name",
     ///             LastName = "last_name",
-    ///             Gender = Candid.Net.Gender.Male,
+    ///             Gender = Candid.Net.Individual.Gender.Male,
     ///             ExternalId = "external_id",
     ///             DateOfBirth = new DateOnly(2023, 1, 15),
     ///             Address = new StreetAddressShortZip
@@ -201,6 +207,7 @@ public partial class V4Client
     ///                 ZipCode = "zip_code",
     ///             },
     ///         },
+    ///         ResponsibleParty = ResponsiblePartyType.InsurancePay,
     ///         BillingProvider = new BillingProvider
     ///         {
     ///             Address = new StreetAddressLongZip
@@ -214,14 +221,94 @@ public partial class V4Client
     ///             TaxId = "tax_id",
     ///             Npi = "npi",
     ///         },
-    ///         RenderingProvider = new RenderingProvider { Npi = "npi" },
+    ///         SubmissionExpectation = EncounterSubmissionExpectation.TargetProfessional,
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
+    public async Task<Encounter> CreateUniversalAsync(
+        UniversalEncounterCreate request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client.MakeRequestAsync(
+            new RawClient.JsonApiRequest
+            {
+                BaseUrl = _client.Options.Environment.CandidApi,
+                Method = HttpMethod.Post,
+                Path = "/api/encounters/v4/universal",
+                Body = request,
+                Options = options,
+            },
+            cancellationToken
+        );
+        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            try
+            {
+                return JsonUtils.Deserialize<Encounter>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            responseBody
+        );
+    }
+
+    /// <example>
+    /// <code>
+    /// await client.Encounters.V4.CreateAsync(
+    ///     new EncounterCreate
+    ///     {
+    ///         ExternalId = "external_id",
+    ///         PatientAuthorizedRelease = true,
+    ///         BenefitsAssignedToProvider = true,
+    ///         ProviderAcceptsAssignment = true,
+    ///         BillableStatus = BillableStatusType.Billable,
+    ///         Patient = new PatientCreate
+    ///         {
+    ///             FirstName = "first_name",
+    ///             LastName = "last_name",
+    ///             Gender = Candid.Net.Individual.Gender.Male,
+    ///             ExternalId = "external_id",
+    ///             DateOfBirth = new DateOnly(2023, 1, 15),
+    ///             Address = new StreetAddressShortZip
+    ///             {
+    ///                 Address1 = "address1",
+    ///                 City = "city",
+    ///                 State = State.Aa,
+    ///                 ZipCode = "zip_code",
+    ///             },
+    ///         },
     ///         ResponsibleParty = ResponsiblePartyType.InsurancePay,
+    ///         BillingProvider = new BillingProvider
+    ///         {
+    ///             Address = new StreetAddressLongZip
+    ///             {
+    ///                 Address1 = "address1",
+    ///                 City = "city",
+    ///                 State = State.Aa,
+    ///                 ZipCode = "zip_code",
+    ///                 ZipPlusFourCode = "zip_plus_four_code",
+    ///             },
+    ///             TaxId = "tax_id",
+    ///             Npi = "npi",
+    ///         },
     ///         Diagnoses = new List&lt;DiagnosisCreate&gt;()
     ///         {
     ///             new DiagnosisCreate { CodeType = DiagnosisTypeCode.Abf, Code = "code" },
     ///             new DiagnosisCreate { CodeType = DiagnosisTypeCode.Abf, Code = "code" },
     ///         },
     ///         PlaceOfServiceCode = FacilityTypeCode.Pharmacy,
+    ///         RenderingProvider = new RenderingProvider { Npi = "npi" },
     ///     }
     /// );
     /// </code>
@@ -238,6 +325,95 @@ public partial class V4Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Post,
                 Path = "/api/encounters/v4",
+                Body = request,
+                Options = options,
+            },
+            cancellationToken
+        );
+        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            try
+            {
+                return JsonUtils.Deserialize<Encounter>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            responseBody
+        );
+    }
+
+    /// <summary>
+    /// Create an encounter from a pre-encounter patient and appointment. This endpoint is intended to be used by consumers who are managing
+    /// patients and appointments in the pre-encounter service and is currently under development. Consumers who are not taking advantage
+    /// of the pre-encounter service should use the standard create endpoint.
+    ///
+    /// The endpoint will create an encounter from the provided fields, pulling information from the provided patient and appointment objects
+    /// where applicable. In particular, the following fields are populated from the patient and appointment objects:
+    ///   - Patient
+    ///   - Referring Provider
+    ///   - Subscriber Primary
+    ///   - Subscriber Secondary
+    ///   - Referral Number
+    ///   - Responsible Party
+    ///   - Guarantor
+    ///
+    /// Utilizing this endpoint opts you into automatic updating of the encounter when the patient or appointment is updated, assuming the
+    /// encounter has not already been submitted or adjudicated.
+    /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.Encounters.V4.CreateFromPreEncounterPatientUniversalAsync(
+    ///     new UniversalEncounterCreateFromPreEncounter
+    ///     {
+    ///         ExternalId = "external_id",
+    ///         PatientAuthorizedRelease = true,
+    ///         BenefitsAssignedToProvider = true,
+    ///         ProviderAcceptsAssignment = true,
+    ///         BillableStatus = BillableStatusType.Billable,
+    ///         PreEncounterPatientId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         PreEncounterAppointmentIds = new List&lt;string&gt;()
+    ///         {
+    ///             "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///             "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         },
+    ///         BillingProvider = new BillingProvider
+    ///         {
+    ///             Address = new StreetAddressLongZip
+    ///             {
+    ///                 Address1 = "address1",
+    ///                 City = "city",
+    ///                 State = State.Aa,
+    ///                 ZipCode = "zip_code",
+    ///                 ZipPlusFourCode = "zip_plus_four_code",
+    ///             },
+    ///             TaxId = "tax_id",
+    ///             Npi = "npi",
+    ///         },
+    ///         SubmissionExpectation = EncounterSubmissionExpectation.TargetProfessional,
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
+    public async Task<Encounter> CreateFromPreEncounterPatientUniversalAsync(
+        UniversalEncounterCreateFromPreEncounter request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client.MakeRequestAsync(
+            new RawClient.JsonApiRequest
+            {
+                BaseUrl = _client.Options.Environment.CandidApi,
+                Method = HttpMethod.Post,
+                Path = "/api/encounters/v4/create-from-pre-encounter/universal",
                 Body = request,
                 Options = options,
             },
@@ -311,12 +487,12 @@ public partial class V4Client
     ///             Npi = "npi",
     ///         },
     ///         RenderingProvider = new RenderingProvider { Npi = "npi" },
+    ///         PlaceOfServiceCode = FacilityTypeCode.Pharmacy,
     ///         Diagnoses = new List&lt;DiagnosisCreate&gt;()
     ///         {
     ///             new DiagnosisCreate { CodeType = DiagnosisTypeCode.Abf, Code = "code" },
     ///             new DiagnosisCreate { CodeType = DiagnosisTypeCode.Abf, Code = "code" },
     ///         },
-    ///         PlaceOfServiceCode = FacilityTypeCode.Pharmacy,
     ///     }
     /// );
     /// </code>
@@ -333,6 +509,52 @@ public partial class V4Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Post,
                 Path = "/api/encounters/v4/create-from-pre-encounter",
+                Body = request,
+                Options = options,
+            },
+            cancellationToken
+        );
+        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            try
+            {
+                return JsonUtils.Deserialize<Encounter>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            responseBody
+        );
+    }
+
+    /// <example>
+    /// <code>
+    /// await client.Encounters.V4.UpdateUniversalAsync(
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///     new UniversalEncounterUpdate()
+    /// );
+    /// </code>
+    /// </example>
+    public async Task<Encounter> UpdateUniversalAsync(
+        string encounterId,
+        UniversalEncounterUpdate request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client.MakeRequestAsync(
+            new RawClient.JsonApiRequest
+            {
+                BaseUrl = _client.Options.Environment.CandidApi,
+                Method = HttpMethodExtensions.Patch,
+                Path = $"/api/encounters/v4/{encounterId}/universal",
                 Body = request,
                 Options = options,
             },

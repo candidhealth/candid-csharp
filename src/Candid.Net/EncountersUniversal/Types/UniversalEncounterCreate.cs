@@ -1,37 +1,126 @@
 using System.Text.Json.Serialization;
-using Candid.Net;
 using Candid.Net.BillingNotes.V2;
 using Candid.Net.ClaimSubmission.V1;
+using Candid.Net.Commons;
 using Candid.Net.Core;
 using Candid.Net.CustomSchemas.V1;
 using Candid.Net.EncounterProviders.V2;
+using Candid.Net.Encounters.V4;
 using Candid.Net.Guarantor.V1;
+using Candid.Net.HealthCareCodeInformation.V1;
+using Candid.Net.Individual;
+using Candid.Net.ServiceFacility;
 using Candid.Net.ServiceLines.V2;
+using Candid.Net.X12.V1;
 
 #nullable enable
 
-namespace Candid.Net.Encounters.V4;
+namespace Candid.Net.EncountersUniversal;
 
-public record EncounterCreate
+public record UniversalEncounterCreate
 {
     /// <summary>
-    /// Contains the identification information of the individual receiving medical services.
-    /// </summary>
-    [JsonPropertyName("patient")]
-    public required PatientCreate Patient { get; set; }
-
-    /// <summary>
-    /// The billing provider is the provider or business entity submitting the claim. Billing provider may be, but is not necessarily, the same person/NPI as the rendering provider. From a payer's perspective, this represents the person or entity being reimbursed. When a contract exists with the target payer, the billing provider should be the entity contracted with the payer. In some circumstances, this will be an individual provider. In that case, submit that provider's NPI and the tax ID (TIN) that the provider gave to the payer during contracting. In other cases, the billing entity will be a medical group. If so, submit the group NPI and the group's tax ID. Box 33 on the CMS-1500 claim form.
+    /// The billing provider is the provider or business entity submitting the claim. Billing provider may be, but is not necessarily, the same person/NPI as the rendering provider. From a payer's perspective, this represents the person or entity being reimbursed. When a contract exists with the target payer, the billing provider should be the entity contracted with the payer. In some circumstances, this will be an individual provider. In that case, submit that provider's NPI and the tax ID (TIN) that the provider gave to the payer during contracting. In other cases, the billing entity will be a medical group. If so, submit the group NPI and the group's tax ID. Box 33 on the CMS-1500 claim or Form Locator 1 on a UB-04 claim form.
     /// </summary>
     [JsonPropertyName("billing_provider")]
     public required BillingProvider BillingProvider { get; set; }
+
+    /// <summary>
+    /// Box 24B on the CMS-1500 claim form. 837p Loop2300, CLM-05-1. This box is not used on a UB-04 or 837i claim form. 02 for telemedicine, 11 for in-person. Full list [here](https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set).
+    /// </summary>
+    [JsonPropertyName("place_of_service_code")]
+    public FacilityTypeCode? PlaceOfServiceCode { get; set; }
 
     /// <summary>
     /// The rendering provider is the practitioner -- physician, nurse practitioner, etc. -- performing the service.
     /// For telehealth services, the rendering provider performs the visit, asynchronous communication, or other service. The rendering provider address should generally be the same as the service facility address.
     /// </summary>
     [JsonPropertyName("rendering_provider")]
-    public required RenderingProvider RenderingProvider { get; set; }
+    public RenderingProvider? RenderingProvider { get; set; }
+
+    [JsonPropertyName("service_lines")]
+    public IEnumerable<UniversalServiceLineCreate>? ServiceLines { get; set; }
+
+    /// <summary>
+    /// The health care code information associated with this encounter, which includes things such as diagnoses, vitals, procedures, occurrences, reason for visit, and numerous other code related fields.
+    /// </summary>
+    [JsonPropertyName("health_care_code_information")]
+    public HealthCareCodeInformationCreate? HealthCareCodeInformation { get; set; }
+
+    /// <summary>
+    /// Describes the currently expected target form for this encounter.  This can change later, but it orients this encounter in the pipeline and effects reporting.
+    /// </summary>
+    [JsonPropertyName("submission_expectation")]
+    public required EncounterSubmissionExpectation SubmissionExpectation { get; set; }
+
+    /// <summary>
+    /// 837i NM1 2500 variant for Loop ID-2310.  Used to indicate the individual whom has overall responsibility for the patient in institutional claims processing.
+    /// </summary>
+    [JsonPropertyName("attending_provider")]
+    public RenderingProvider? AttendingProvider { get; set; }
+
+    /// <summary>
+    /// 837i Loop 2300 DTP-03
+    /// Extension of the admission date with hour (0-23 integer) details.
+    /// </summary>
+    [JsonPropertyName("admission_hour")]
+    public int? AdmissionHour { get; set; }
+
+    /// <summary>
+    /// 837i Loop 2300 CL1-01 Code used to indicate the priority of an admission or visit. Equivalent to Form Locator 14 Priority of Admission on a UB-04 claim, not used on CMS-1500 claim forms.
+    /// </summary>
+    [JsonPropertyName("admission_type_code")]
+    public TypeOfAdmissionOrVisitCode? AdmissionTypeCode { get; set; }
+
+    /// <summary>
+    /// 837i Loop 2300 CLI1-02 Code used to indicate the conditions under which an admission occurs. Equivalent to Form Locator 15 Point of Origin on a UB-04 claim, not used on CMS-1500 claim forms.
+    /// </summary>
+    [JsonPropertyName("admission_source_code")]
+    public PointOfOriginForAdmissionOrVisitCode? AdmissionSourceCode { get; set; }
+
+    /// <summary>
+    /// 837i Loop 2300 DTP-03
+    /// Extension of the discharge date with hour (0-23 integer) details.
+    /// </summary>
+    [JsonPropertyName("discharge_hour")]
+    public int? DischargeHour { get; set; }
+
+    /// <summary>
+    /// 837i CL1-03 or Form Locator 17 on a UB-04 claim form. This is a required field on UB-04 claims.
+    /// Code indicating patient status as of the "statement covers through date" .
+    /// </summary>
+    [JsonPropertyName("discharge_status")]
+    public PatientDischargeStatusCode? DischargeStatus { get; set; }
+
+    /// <summary>
+    /// 837i NM1 2500 variant for Loop ID-2310.  Used to indicate the individual whom has primary responsibility for surgical procedures in institutional claims processing.
+    /// </summary>
+    [JsonPropertyName("operating_provider")]
+    public RenderingProvider? OperatingProvider { get; set; }
+
+    /// <summary>
+    /// 837i NM1 2500 variant for Loop ID-2310.  Used to indicate the individual whom has secondary responsibility for surgical procedures in institutional claims processing.  Only used when operating_provider is also set.
+    /// </summary>
+    [JsonPropertyName("other_operating_provider")]
+    public RenderingProvider? OtherOperatingProvider { get; set; }
+
+    /// <summary>
+    /// Four digit code used in institutional forms to indicate the type of bill (e.g., hospital inpatient, hospital outpatient). First digit is a leading 0, followed by the type_of_facility, type_of_care, then frequency_code. Professional forms are not required to submit this attribute. You may send the 4 digit code via raw_code, or each individual digit separately via composite_codes.
+    /// </summary>
+    [JsonPropertyName("type_of_bill")]
+    public object? TypeOfBill { get; set; }
+
+    /// <summary>
+    /// 837i-REF1000 -- an optional state indicating where an accident related to the encounter occurred.
+    /// </summary>
+    [JsonPropertyName("accident_state_or_province_code")]
+    public State? AccidentStateOrProvinceCode { get; set; }
+
+    /// <summary>
+    /// Contains the identification information of the individual receiving medical services.
+    /// </summary>
+    [JsonPropertyName("patient")]
+    public required PatientCreate Patient { get; set; }
 
     /// <summary>
     /// The final provider who referred the services that were rendered.
@@ -42,8 +131,9 @@ public record EncounterCreate
     public ReferringProvider? ReferringProvider { get; set; }
 
     /// <summary>
-    /// The second iteration of Loop ID-2310. Use code "P3 - Primary Care Provider" in this loop to
+    /// The second iteration of Loop ID-2310 on an 837P form. Use code "P3 - Primary Care Provider" in this loop to
     /// indicate the initial referral from the primary care provider or whatever provider wrote the initial referral for this patient's episode of care being billed/reported in this transaction.
+    /// Not used in an 837i claim
     /// </summary>
     [JsonPropertyName("initial_referring_provider")]
     public InitialReferringProvider? InitialReferringProvider { get; set; }
@@ -55,7 +145,7 @@ public record EncounterCreate
     public SupervisingProvider? SupervisingProvider { get; set; }
 
     /// <summary>
-    /// Encounter Service facility is typically the location a medical service was rendered, such as a provider office or hospital. For telehealth, service facility can represent the provider's location when the service was delivered (e.g., home), or the location where an in-person visit would have taken place, whichever is easier to identify. If the provider is in-network, service facility may be defined in payer contracts. Box 32 on the CMS-1500 claim form. Note that for an in-network claim to be successfully adjudicated, the service facility address listed on claims must match what was provided to the payer during the credentialing process.
+    /// Encounter Service facility is typically the location a medical service was rendered, such as a provider office or hospital. For telehealth, service facility can represent the provider's location when the service was delivered (e.g., home), or the location where an in-person visit would have taken place, whichever is easier to identify. If the provider is in-network, service facility may be defined in payer contracts. Box 32 on the CMS-1500 claim form. There is no equivalent on the paper UB-04 claim form, but this field is equivalent to Loop 2310E Service Facility Location details on an 837i form, and is used when this is different to the entity identified as the Billing Provider. Note that for an in-network claim to be successfully adjudicated, the service facility address listed
     /// </summary>
     [JsonPropertyName("service_facility")]
     public EncounterServiceFacilityBase? ServiceFacility { get; set; }
@@ -82,7 +172,7 @@ public record EncounterCreate
     public SubscriberCreate? SubscriberTertiary { get; set; }
 
     /// <summary>
-    /// Box 23 on the CMS-1500 claim form.
+    /// Box 23 on the CMS-1500 claim form or Form Locator 63 on a UB-04 claim form.
     /// </summary>
     [JsonPropertyName("prior_authorization_number")]
     public string? PriorAuthorizationNumber { get; set; }
@@ -92,14 +182,6 @@ public record EncounterCreate
     /// </summary>
     [JsonPropertyName("responsible_party")]
     public required ResponsiblePartyType ResponsibleParty { get; set; }
-
-    /// <summary>
-    /// Ideally, this field should contain no more than 12 diagnoses. However, more diagnoses
-    /// may be submitted at this time, and coders will later prioritize the 12 that will be
-    /// submitted to the payor.
-    /// </summary>
-    [JsonPropertyName("diagnoses")]
-    public IEnumerable<DiagnosisCreate> Diagnoses { get; set; } = new List<DiagnosisCreate>();
 
     /// <summary>
     /// Holds a collection of clinical observations made by healthcare providers during patient encounters. Please note that medical records for appeals should be sent using the Encounter Attachments API.
@@ -114,22 +196,8 @@ public record EncounterCreate
     [JsonPropertyName("billing_notes")]
     public IEnumerable<BillingNoteBase>? BillingNotes { get; set; }
 
-    /// <summary>
-    /// Box 24B on the CMS-1500 claim form. 837p Loop2300, CLM-05-1. 02 for telemedicine, 11 for in-person. Full list [here](https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set).
-    /// </summary>
-    [JsonPropertyName("place_of_service_code")]
-    public required FacilityTypeCode PlaceOfServiceCode { get; set; }
-
     [JsonPropertyName("patient_histories")]
     public IEnumerable<PatientHistoryCategory>? PatientHistories { get; set; }
-
-    /// <summary>
-    /// Each service line must be linked to a diagnosis. Concretely,
-    /// `service_line.diagnosis_pointers`must contain at least one entry which should be
-    /// in bounds of the diagnoses list field.
-    /// </summary>
-    [JsonPropertyName("service_lines")]
-    public IEnumerable<ServiceLineCreate>? ServiceLines { get; set; }
 
     /// <summary>
     /// Personal and contact info for the guarantor of the patient responsibility.
@@ -158,19 +226,19 @@ public record EncounterCreate
     public IEnumerable<SchemaInstance>? SchemaInstances { get; set; }
 
     /// <summary>
-    /// Refers to REF*9F on the 837p. Value cannot be greater than 50 characters.
+    /// Refers to REF*9F on the 837p and 837i. Value cannot be greater than 50 characters.
     /// </summary>
     [JsonPropertyName("referral_number")]
     public string? ReferralNumber { get; set; }
 
     /// <summary>
-    /// Refers Box 24H on the CMS1500 form and Loop 2300 CRC - EPSDT Referral on the 837P form
+    /// Refers to Box 24H on the CMS1500 form and Loop 2300 CRC - EPSDT Referral on the 837P and 837i form
     /// </summary>
     [JsonPropertyName("epsdt_referral")]
     public EpsdtReferral? EpsdtReferral { get; set; }
 
     /// <summary>
-    /// Refers to Loop 2300 - Segment PWK on the 837P form. No more than 10 entries are permitted.
+    /// Refers to Loop 2300 - Segment PWK on the 837P and 837i forms. No more than 10 entries are permitted.
     /// </summary>
     [JsonPropertyName("claim_supplemental_information")]
     public IEnumerable<ClaimSupplementalInformation>? ClaimSupplementalInformation { get; set; }
@@ -192,7 +260,7 @@ public record EncounterCreate
     /// <summary>
     /// Date formatted as YYYY-MM-DD; eg: 2019-08-24.
     /// This date must be the local date in the timezone where the service occurred.
-    /// Box 24a on the CMS-1500 claim form.
+    /// Box 24a on the CMS-1500 claim form or Form Locator 45 on the UB-04 claim form.
     /// If service occurred over a range of dates, this should be the start date.
     /// date_of_service must be defined on either the encounter or the service lines but not both.
     /// If there are greater than zero service lines, it is recommended to specify date_of_service on the service_line instead of on the encounter to prepare for future API versions.
@@ -213,7 +281,7 @@ public record EncounterCreate
     /// <summary>
     /// Whether this patient has authorized the release of medical information
     /// for billing purpose.
-    /// Box 12 on the CMS-1500 claim form.
+    /// Box 12 on the CMS-1500 claim form  or Form Locator 52 on a UB-04 claim form.
     /// </summary>
     [JsonPropertyName("patient_authorized_release")]
     public required bool PatientAuthorizedRelease { get; set; }
@@ -221,7 +289,7 @@ public record EncounterCreate
     /// <summary>
     /// Whether this patient has authorized insurance payments to be made to you,
     /// not them. If false, patient may receive reimbursement.
-    /// Box 13 on the CMS-1500 claim form.
+    /// Box 13 on the CMS-1500 claim form or Form Locator 53 on a UB-04 claim form.
     /// </summary>
     [JsonPropertyName("benefits_assigned_to_provider")]
     public required bool BenefitsAssignedToProvider { get; set; }
@@ -229,7 +297,7 @@ public record EncounterCreate
     /// <summary>
     /// Whether you have accepted the patient's authorization for insurance payments
     /// to be made to you, not them.
-    /// Box 27 on the CMS-1500 claim form.
+    /// Box 27 on the CMS-1500 claim form. There is no exact equivalent of this field on a UB-04 claim, however contributes to the concept of Form Locator 53.
     /// </summary>
     [JsonPropertyName("provider_accepts_assignment")]
     public required bool ProviderAcceptsAssignment { get; set; }
@@ -242,9 +310,6 @@ public record EncounterCreate
 
     [JsonPropertyName("existing_medications")]
     public IEnumerable<Medication>? ExistingMedications { get; set; }
-
-    [JsonPropertyName("vitals")]
-    public Vitals? Vitals { get; set; }
 
     [JsonPropertyName("interventions")]
     public IEnumerable<Intervention>? Interventions { get; set; }
@@ -265,6 +330,9 @@ public record EncounterCreate
     [JsonPropertyName("synchronicity")]
     public SynchronicityType? Synchronicity { get; set; }
 
+    [JsonPropertyName("vitals")]
+    public Vitals? Vitals { get; set; }
+
     /// <summary>
     /// Defines if the Encounter is to be billed by Candid to the responsible_party.
     /// Examples for when this should be set to NOT_BILLABLE include
@@ -275,7 +343,7 @@ public record EncounterCreate
 
     /// <summary>
     /// Defines additional information on the claim needed by the payer.
-    /// Box 19 on the CMS-1500 claim form.
+    /// Box 19 on the CMS-1500 claim form or Form Locator 80 on a UB-04 claim form.
     /// </summary>
     [JsonPropertyName("additional_information")]
     public string? AdditionalInformation { get; set; }
@@ -290,7 +358,7 @@ public record EncounterCreate
     public ServiceAuthorizationExceptionCode? ServiceAuthorizationExceptionCode { get; set; }
 
     /// <summary>
-    /// 837p Loop2300 DTP*435, CMS-1500 Box 18
+    /// 837p Loop2300 DTP*435, CMS-1500 Box 18 or UB-04 Form Locator 12.
     /// Required on all ambulance claims when the patient was known to be admitted to the hospital.
     /// OR
     /// Required on all claims involving inpatient medical visits.
@@ -299,8 +367,7 @@ public record EncounterCreate
     public DateOnly? AdmissionDate { get; set; }
 
     /// <summary>
-    /// 837p Loop2300 DTP*096, CMS-1500 Box 18
-    /// Required for inpatient claims when the patient was discharged from the facility and the discharge date is known.
+    /// 837p Loop2300 DTP*096, CMS-1500 Box 18 Required for inpatient claims when the patient was discharged from the facility and the discharge date is known. Not used on an institutional claim.
     /// </summary>
     [JsonPropertyName("discharge_date")]
     public DateOnly? DischargeDate { get; set; }
@@ -310,6 +377,7 @@ public record EncounterCreate
     /// Required for the initial medical service or visit performed in response to a medical emergency when the date is available and is different than the date of service.
     /// OR
     /// This date is the onset of acute symptoms for the current illness or condition.
+    ///  For UB-04 claims, this is populated separately via occurrence codes.
     /// </summary>
     [JsonPropertyName("onset_of_current_illness_or_symptom_date")]
     public DateOnly? OnsetOfCurrentIllnessOrSymptomDate { get; set; }
@@ -317,6 +385,7 @@ public record EncounterCreate
     /// <summary>
     /// 837p Loop2300 DTP*484, CMS-1500 Box 14
     /// Required when, in the judgment of the provider, the services on this claim are related to the patient's pregnancy.
+    /// This field is populated separately via occurrence codes for UB-04 claim forms.
     /// </summary>
     [JsonPropertyName("last_menstrual_period_date")]
     public DateOnly? LastMenstrualPeriodDate { get; set; }

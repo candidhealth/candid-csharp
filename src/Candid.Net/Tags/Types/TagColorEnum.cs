@@ -4,7 +4,7 @@ using Candid.Net.Core;
 
 #nullable enable
 
-namespace Candid.Net;
+namespace Candid.Net.Tags;
 
 [JsonConverter(typeof(EnumSerializer<TagColorEnum>))]
 public enum TagColorEnum

@@ -1,7 +1,6 @@
 using System.Text.Json.Serialization;
-using Candid.Net;
 using Candid.Net.Core;
-using Candid.Net.Payers.V3;
+using Candid.Net.Financials;
 
 #nullable enable
 
@@ -13,7 +12,7 @@ public record InsurancePayment
     public required string InsurancePaymentId { get; set; }
 
     [JsonPropertyName("payer")]
-    public required Payer Payer { get; set; }
+    public required Payers.V3.Payer Payer { get; set; }
 
     [JsonPropertyName("amount_cents")]
     public required int AmountCents { get; set; }

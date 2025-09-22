@@ -4,7 +4,7 @@ using Candid.Net.Core;
 
 #nullable enable
 
-namespace Candid.Net;
+namespace Candid.Net.Financials;
 
 [JsonConverter(typeof(EnumSerializer<AccountType>))]
 public enum AccountType

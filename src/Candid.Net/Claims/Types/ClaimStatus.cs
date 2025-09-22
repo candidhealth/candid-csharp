@@ -4,7 +4,7 @@ using Candid.Net.Core;
 
 #nullable enable
 
-namespace Candid.Net;
+namespace Candid.Net.Claims;
 
 [JsonConverter(typeof(EnumSerializer<ClaimStatus>))]
 public enum ClaimStatus

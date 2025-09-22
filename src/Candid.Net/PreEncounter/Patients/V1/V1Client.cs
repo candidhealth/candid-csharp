@@ -2,7 +2,7 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading;
 using Candid.Net.Core;
-using Candid.Net.PreEncounter;
+using Candid.Net.PreEncounter.Common;
 
 #nullable enable
 
@@ -50,7 +50,7 @@ public partial class V1Client
     ///             },
     ///             BirthDate = new DateOnly(2023, 1, 15),
     ///             BiologicalSex = Sex.Female,
-    ///             PrimaryAddress = new Candid.Net.PreEncounter.Address
+    ///             PrimaryAddress = new Candid.Net.PreEncounter.Common.Address
     ///             {
     ///                 Use = AddressUse.Home,
     ///                 Line = new List&lt;string&gt;() { "line", "line" },
@@ -59,9 +59,9 @@ public partial class V1Client
     ///                 PostalCode = "postal_code",
     ///                 Country = "country",
     ///             },
-    ///             OtherAddresses = new List&lt;Candid.Net.PreEncounter.Address&gt;()
+    ///             OtherAddresses = new List&lt;Candid.Net.PreEncounter.Common.Address&gt;()
     ///             {
-    ///                 new Candid.Net.PreEncounter.Address
+    ///                 new Candid.Net.PreEncounter.Common.Address
     ///                 {
     ///                     Use = AddressUse.Home,
     ///                     Line = new List&lt;string&gt;() { "line", "line" },
@@ -70,7 +70,7 @@ public partial class V1Client
     ///                     PostalCode = "postal_code",
     ///                     Country = "country",
     ///                 },
-    ///                 new Candid.Net.PreEncounter.Address
+    ///                 new Candid.Net.PreEncounter.Common.Address
     ///                 {
     ///                     Use = AddressUse.Home,
     ///                     Line = new List&lt;string&gt;() { "line", "line" },
@@ -80,7 +80,6 @@ public partial class V1Client
     ///                     Country = "country",
     ///                 },
     ///             },
-    ///             PrimaryTelecom = new ContactPoint { Value = "value", Use = ContactPointUse.Home },
     ///             OtherTelecoms = new List&lt;ContactPoint&gt;()
     ///             {
     ///                 new ContactPoint { Value = "value", Use = ContactPointUse.Home },
@@ -106,9 +105,9 @@ public partial class V1Client
     ///                         new ContactPoint { Value = "value", Use = ContactPointUse.Home },
     ///                         new ContactPoint { Value = "value", Use = ContactPointUse.Home },
     ///                     },
-    ///                     Addresses = new List&lt;Candid.Net.PreEncounter.Address&gt;()
+    ///                     Addresses = new List&lt;Candid.Net.PreEncounter.Common.Address&gt;()
     ///                     {
-    ///                         new Candid.Net.PreEncounter.Address
+    ///                         new Candid.Net.PreEncounter.Common.Address
     ///                         {
     ///                             Use = AddressUse.Home,
     ///                             Line = new List&lt;string&gt;() { "line", "line" },
@@ -117,7 +116,7 @@ public partial class V1Client
     ///                             PostalCode = "postal_code",
     ///                             Country = "country",
     ///                         },
-    ///                         new Candid.Net.PreEncounter.Address
+    ///                         new Candid.Net.PreEncounter.Common.Address
     ///                         {
     ///                             Use = AddressUse.Home,
     ///                             Line = new List&lt;string&gt;() { "line", "line" },
@@ -146,9 +145,9 @@ public partial class V1Client
     ///                         new ContactPoint { Value = "value", Use = ContactPointUse.Home },
     ///                         new ContactPoint { Value = "value", Use = ContactPointUse.Home },
     ///                     },
-    ///                     Addresses = new List&lt;Candid.Net.PreEncounter.Address&gt;()
+    ///                     Addresses = new List&lt;Candid.Net.PreEncounter.Common.Address&gt;()
     ///                     {
-    ///                         new Candid.Net.PreEncounter.Address
+    ///                         new Candid.Net.PreEncounter.Common.Address
     ///                         {
     ///                             Use = AddressUse.Home,
     ///                             Line = new List&lt;string&gt;() { "line", "line" },
@@ -157,7 +156,7 @@ public partial class V1Client
     ///                             PostalCode = "postal_code",
     ///                             Country = "country",
     ///                         },
-    ///                         new Candid.Net.PreEncounter.Address
+    ///                         new Candid.Net.PreEncounter.Common.Address
     ///                         {
     ///                             Use = AddressUse.Home,
     ///                             Line = new List&lt;string&gt;() { "line", "line" },
@@ -289,7 +288,7 @@ public partial class V1Client
     ///             },
     ///             BirthDate = new DateOnly(2023, 1, 15),
     ///             BiologicalSex = Sex.Female,
-    ///             PrimaryAddress = new Candid.Net.PreEncounter.Address
+    ///             PrimaryAddress = new Candid.Net.PreEncounter.Common.Address
     ///             {
     ///                 Use = AddressUse.Home,
     ///                 Line = new List&lt;string&gt;() { "line", "line" },
@@ -298,9 +297,9 @@ public partial class V1Client
     ///                 PostalCode = "postal_code",
     ///                 Country = "country",
     ///             },
-    ///             OtherAddresses = new List&lt;Candid.Net.PreEncounter.Address&gt;()
+    ///             OtherAddresses = new List&lt;Candid.Net.PreEncounter.Common.Address&gt;()
     ///             {
-    ///                 new Candid.Net.PreEncounter.Address
+    ///                 new Candid.Net.PreEncounter.Common.Address
     ///                 {
     ///                     Use = AddressUse.Home,
     ///                     Line = new List&lt;string&gt;() { "line", "line" },
@@ -309,7 +308,7 @@ public partial class V1Client
     ///                     PostalCode = "postal_code",
     ///                     Country = "country",
     ///                 },
-    ///                 new Candid.Net.PreEncounter.Address
+    ///                 new Candid.Net.PreEncounter.Common.Address
     ///                 {
     ///                     Use = AddressUse.Home,
     ///                     Line = new List&lt;string&gt;() { "line", "line" },
@@ -319,7 +318,6 @@ public partial class V1Client
     ///                     Country = "country",
     ///                 },
     ///             },
-    ///             PrimaryTelecom = new ContactPoint { Value = "value", Use = ContactPointUse.Home },
     ///             OtherTelecoms = new List&lt;ContactPoint&gt;()
     ///             {
     ///                 new ContactPoint { Value = "value", Use = ContactPointUse.Home },
@@ -345,9 +343,9 @@ public partial class V1Client
     ///                         new ContactPoint { Value = "value", Use = ContactPointUse.Home },
     ///                         new ContactPoint { Value = "value", Use = ContactPointUse.Home },
     ///                     },
-    ///                     Addresses = new List&lt;Candid.Net.PreEncounter.Address&gt;()
+    ///                     Addresses = new List&lt;Candid.Net.PreEncounter.Common.Address&gt;()
     ///                     {
-    ///                         new Candid.Net.PreEncounter.Address
+    ///                         new Candid.Net.PreEncounter.Common.Address
     ///                         {
     ///                             Use = AddressUse.Home,
     ///                             Line = new List&lt;string&gt;() { "line", "line" },
@@ -356,7 +354,7 @@ public partial class V1Client
     ///                             PostalCode = "postal_code",
     ///                             Country = "country",
     ///                         },
-    ///                         new Candid.Net.PreEncounter.Address
+    ///                         new Candid.Net.PreEncounter.Common.Address
     ///                         {
     ///                             Use = AddressUse.Home,
     ///                             Line = new List&lt;string&gt;() { "line", "line" },
@@ -385,9 +383,9 @@ public partial class V1Client
     ///                         new ContactPoint { Value = "value", Use = ContactPointUse.Home },
     ///                         new ContactPoint { Value = "value", Use = ContactPointUse.Home },
     ///                     },
-    ///                     Addresses = new List&lt;Candid.Net.PreEncounter.Address&gt;()
+    ///                     Addresses = new List&lt;Candid.Net.PreEncounter.Common.Address&gt;()
     ///                     {
-    ///                         new Candid.Net.PreEncounter.Address
+    ///                         new Candid.Net.PreEncounter.Common.Address
     ///                         {
     ///                             Use = AddressUse.Home,
     ///                             Line = new List&lt;string&gt;() { "line", "line" },
@@ -396,7 +394,7 @@ public partial class V1Client
     ///                             PostalCode = "postal_code",
     ///                             Country = "country",
     ///                         },
-    ///                         new Candid.Net.PreEncounter.Address
+    ///                         new Candid.Net.PreEncounter.Common.Address
     ///                         {
     ///                             Use = AddressUse.Home,
     ///                             Line = new List&lt;string&gt;() { "line", "line" },
@@ -656,6 +654,50 @@ public partial class V1Client
     }
 
     /// <summary>
+    /// Gets a patient by mrn.
+    /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.PreEncounter.Patients.V1.GetByMrnAsync("mrn");
+    /// </code>
+    /// </example>
+    public async Task<Patient> GetByMrnAsync(
+        string mrn,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client.MakeRequestAsync(
+            new RawClient.JsonApiRequest
+            {
+                BaseUrl = _client.Options.Environment.PreEncounter,
+                Method = HttpMethod.Get,
+                Path = $"/patients/v1/mrn/{mrn}",
+                Options = options,
+            },
+            cancellationToken
+        );
+        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            try
+            {
+                return JsonUtils.Deserialize<Patient>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            responseBody
+        );
+    }
+
+    /// <summary>
     /// Gets a patient along with it's full history.  The return list is ordered by version ascending.
     /// </summary>
     /// <example>
@@ -732,7 +774,7 @@ public partial class V1Client
     ///         },
     ///         BirthDate = new DateOnly(2023, 1, 15),
     ///         BiologicalSex = Sex.Female,
-    ///         PrimaryAddress = new Candid.Net.PreEncounter.Address
+    ///         PrimaryAddress = new Candid.Net.PreEncounter.Common.Address
     ///         {
     ///             Use = AddressUse.Home,
     ///             Line = new List&lt;string&gt;() { "line", "line" },
@@ -741,9 +783,9 @@ public partial class V1Client
     ///             PostalCode = "postal_code",
     ///             Country = "country",
     ///         },
-    ///         OtherAddresses = new List&lt;Candid.Net.PreEncounter.Address&gt;()
+    ///         OtherAddresses = new List&lt;Candid.Net.PreEncounter.Common.Address&gt;()
     ///         {
-    ///             new Candid.Net.PreEncounter.Address
+    ///             new Candid.Net.PreEncounter.Common.Address
     ///             {
     ///                 Use = AddressUse.Home,
     ///                 Line = new List&lt;string&gt;() { "line", "line" },
@@ -752,7 +794,7 @@ public partial class V1Client
     ///                 PostalCode = "postal_code",
     ///                 Country = "country",
     ///             },
-    ///             new Candid.Net.PreEncounter.Address
+    ///             new Candid.Net.PreEncounter.Common.Address
     ///             {
     ///                 Use = AddressUse.Home,
     ///                 Line = new List&lt;string&gt;() { "line", "line" },
@@ -762,7 +804,6 @@ public partial class V1Client
     ///                 Country = "country",
     ///             },
     ///         },
-    ///         PrimaryTelecom = new ContactPoint { Value = "value", Use = ContactPointUse.Home },
     ///         OtherTelecoms = new List&lt;ContactPoint&gt;()
     ///         {
     ///             new ContactPoint { Value = "value", Use = ContactPointUse.Home },
@@ -784,9 +825,9 @@ public partial class V1Client
     ///                     new ContactPoint { Value = "value", Use = ContactPointUse.Home },
     ///                     new ContactPoint { Value = "value", Use = ContactPointUse.Home },
     ///                 },
-    ///                 Addresses = new List&lt;Candid.Net.PreEncounter.Address&gt;()
+    ///                 Addresses = new List&lt;Candid.Net.PreEncounter.Common.Address&gt;()
     ///                 {
-    ///                     new Candid.Net.PreEncounter.Address
+    ///                     new Candid.Net.PreEncounter.Common.Address
     ///                     {
     ///                         Use = AddressUse.Home,
     ///                         Line = new List&lt;string&gt;() { "line", "line" },
@@ -795,7 +836,7 @@ public partial class V1Client
     ///                         PostalCode = "postal_code",
     ///                         Country = "country",
     ///                     },
-    ///                     new Candid.Net.PreEncounter.Address
+    ///                     new Candid.Net.PreEncounter.Common.Address
     ///                     {
     ///                         Use = AddressUse.Home,
     ///                         Line = new List&lt;string&gt;() { "line", "line" },
@@ -820,9 +861,9 @@ public partial class V1Client
     ///                     new ContactPoint { Value = "value", Use = ContactPointUse.Home },
     ///                     new ContactPoint { Value = "value", Use = ContactPointUse.Home },
     ///                 },
-    ///                 Addresses = new List&lt;Candid.Net.PreEncounter.Address&gt;()
+    ///                 Addresses = new List&lt;Candid.Net.PreEncounter.Common.Address&gt;()
     ///                 {
-    ///                     new Candid.Net.PreEncounter.Address
+    ///                     new Candid.Net.PreEncounter.Common.Address
     ///                     {
     ///                         Use = AddressUse.Home,
     ///                         Line = new List&lt;string&gt;() { "line", "line" },
@@ -831,7 +872,7 @@ public partial class V1Client
     ///                         PostalCode = "postal_code",
     ///                         Country = "country",
     ///                     },
-    ///                     new Candid.Net.PreEncounter.Address
+    ///                     new Candid.Net.PreEncounter.Common.Address
     ///                     {
     ///                         Use = AddressUse.Home,
     ///                         Line = new List&lt;string&gt;() { "line", "line" },

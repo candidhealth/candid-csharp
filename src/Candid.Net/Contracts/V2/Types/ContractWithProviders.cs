@@ -1,6 +1,5 @@
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
-using Candid.Net.Payers.V3;
 
 #nullable enable
 
@@ -33,7 +32,7 @@ public record ContractWithProviders
     /// The insurance company under contract
     /// </summary>
     [JsonPropertyName("payer")]
-    public required Payer Payer { get; set; }
+    public required Payers.V3.Payer Payer { get; set; }
 
     /// <summary>
     /// The starting day upon which the contract is effective

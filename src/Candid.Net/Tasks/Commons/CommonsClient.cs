@@ -2,7 +2,7 @@ using Candid.Net.Core;
 
 #nullable enable
 
-namespace Candid.Net.Tasks;
+namespace Candid.Net.Tasks.Commons;
 
 public partial class CommonsClient
 {

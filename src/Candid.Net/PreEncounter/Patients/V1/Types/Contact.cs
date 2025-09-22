@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
-using Candid.Net.PreEncounter;
+using Candid.Net.PreEncounter.Common;
 
 #nullable enable
 
@@ -18,7 +18,7 @@ public record Contact
     public IEnumerable<ContactPoint> Telecoms { get; set; } = new List<ContactPoint>();
 
     [JsonPropertyName("addresses")]
-    public IEnumerable<Address> Addresses { get; set; } = new List<Address>();
+    public IEnumerable<Common.Address> Addresses { get; set; } = new List<Common.Address>();
 
     [JsonPropertyName("period")]
     public Period? Period { get; set; }

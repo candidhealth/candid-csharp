@@ -4,7 +4,7 @@ using Candid.Net.Core;
 
 #nullable enable
 
-namespace Candid.Net;
+namespace Candid.Net.Identifiers;
 
 [JsonConverter(typeof(EnumSerializer<IdentifierCode>))]
 public enum IdentifierCode

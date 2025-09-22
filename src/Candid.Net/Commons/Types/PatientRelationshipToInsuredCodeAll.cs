@@ -4,7 +4,7 @@ using Candid.Net.Core;
 
 #nullable enable
 
-namespace Candid.Net;
+namespace Candid.Net.Commons;
 
 [JsonConverter(typeof(EnumSerializer<PatientRelationshipToInsuredCodeAll>))]
 public enum PatientRelationshipToInsuredCodeAll

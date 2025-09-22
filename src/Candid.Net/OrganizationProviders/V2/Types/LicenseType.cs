@@ -305,4 +305,10 @@ public enum LicenseType
 
     [EnumMember(Value = "AMFT")]
     Amft,
+
+    [EnumMember(Value = "CDN")]
+    Cdn,
+
+    [EnumMember(Value = "CNS")]
+    Cns,
 }

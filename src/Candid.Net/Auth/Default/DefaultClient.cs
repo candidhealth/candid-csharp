@@ -96,7 +96,12 @@ public partial class DefaultClient
     /// <example>
     /// <code>
     /// await client.Auth.Default.GetMachineTokenForOrgIdAsync(
-    ///     new AuthGetTokenForOrgRequest { OrgId = "org_id" }
+    ///     new AuthGetTokenForOrgRequest
+    ///     {
+    ///         OrgId = "org_id",
+    ///         ClientId = "client_id",
+    ///         ClientSecret = "client_secret",
+    ///     }
     /// );
     /// </code>
     /// </example>

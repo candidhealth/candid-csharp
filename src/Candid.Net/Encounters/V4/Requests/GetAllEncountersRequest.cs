@@ -1,4 +1,4 @@
-using Candid.Net;
+using Candid.Net.Claims;
 using Candid.Net.Core;
 
 #nullable enable

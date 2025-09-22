@@ -3,7 +3,7 @@ using Candid.Net.Core;
 
 #nullable enable
 
-namespace Candid.Net;
+namespace Candid.Net.Diagnoses;
 
 public record StandaloneDiagnosisCreate
 {
@@ -42,7 +42,7 @@ public record StandaloneDiagnosisCreate
     /// A "U" indicates that it is unknown whether the onset occurred prior to admission to the hospital or not.
     /// </summary>
     [JsonPropertyName("present_on_admission_indicator")]
-    public YesNoIndicator? PresentOnAdmissionIndicator { get; set; }
+    public YesNoIndicator.YesNoIndicator? PresentOnAdmissionIndicator { get; set; }
 
     public override string ToString()
     {

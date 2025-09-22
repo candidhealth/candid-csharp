@@ -1,4 +1,4 @@
-using Candid.Net;
+using Candid.Net.Commons;
 using Candid.Net.Core;
 
 #nullable enable
@@ -40,7 +40,7 @@ public record PayerPlanGroupGetMultiRequest
     /// <summary>
     /// Sort direction. Defaults to ascending order if not provided.
     /// </summary>
-    public SortDirection? SortDirection { get; set; }
+    public Commons.SortDirection? SortDirection { get; set; }
 
     public string? PageToken { get; set; }
 

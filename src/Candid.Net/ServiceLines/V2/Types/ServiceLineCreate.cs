@@ -1,5 +1,5 @@
 using System.Text.Json.Serialization;
-using Candid.Net;
+using Candid.Net.Commons;
 using Candid.Net.Core;
 using Candid.Net.EncounterProviders.V2;
 
@@ -9,6 +9,15 @@ namespace Candid.Net.ServiceLines.V2;
 
 public record ServiceLineCreate
 {
+    /// <summary>
+    /// Indices (zero-indexed) of all the diagnoses this service line references
+    /// </summary>
+    [JsonPropertyName("diagnosis_pointers")]
+    public IEnumerable<int> DiagnosisPointers { get; set; } = new List<int>();
+
+    [JsonPropertyName("procedure_code")]
+    public required string ProcedureCode { get; set; }
+
     [JsonPropertyName("modifiers")]
     public IEnumerable<ProcedureModifier>? Modifiers { get; set; }
 
@@ -26,13 +35,11 @@ public record ServiceLineCreate
     [JsonPropertyName("has_family_planning_indicator")]
     public bool? HasFamilyPlanningIndicator { get; set; }
 
-    [JsonPropertyName("procedure_code")]
-    public required string ProcedureCode { get; set; }
-
     /// <summary>
     /// String representation of a Decimal that can be parsed by most libraries.
-    /// A ServiceLine quantity cannot contain more than one digit of precision.
-    /// Example: 1.1 is valid, 1.11 is not.
+    /// For professional claims, a ServiceLine quantity cannot contain more than one digit of precision
+    /// (Example: 1.1 is valid, 1.11 is not). For institutional claims, a ServiceLine quantity cannot contain
+    /// more than three decimal digits of precision.
     /// </summary>
     [JsonPropertyName("quantity")]
     public required string Quantity { get; set; }
@@ -41,30 +48,22 @@ public record ServiceLineCreate
     public required ServiceLineUnits Units { get; set; }
 
     /// <summary>
-    /// The total amount charged for this service line taking quantity into account. For example, if a single unit
-    /// costs 100 cents and 2 units were rendered, the `charge_amount_cents` should be 200. Should be greater than or
-    /// equal to 0.
+    /// The total amount charged for this service line, factoring in quantity. If procedure_code is updated and this is not, the system will attempt to set it based on chargemasters entries and the service line’s quantity. For example, if a single unit has an entry of 100 cents and 2 units were rendered, the charge_amount_cents will be set to 200, if there is no chargemaster entry, it will default to the amount set in this field.
     /// </summary>
     [JsonPropertyName("charge_amount_cents")]
     public int? ChargeAmountCents { get; set; }
-
-    /// <summary>
-    /// Indices (zero-indexed) of all the diagnoses this service line references
-    /// </summary>
-    [JsonPropertyName("diagnosis_pointers")]
-    public IEnumerable<int> DiagnosisPointers { get; set; } = new List<int>();
 
     [JsonPropertyName("drug_identification")]
     public DrugIdentification? DrugIdentification { get; set; }
 
     /// <summary>
-    /// 837p Loop2300, SV105. If your organization does not intend to submit claims with a different place of service at the service line level, this field should not be populated. 02 for telemedicine, 11 for in-person. Full list [here](https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set).
+    /// 837p Loop2300, SV105. This enum is not used or required for institutional claims. If your organization does not intend to submit claims with a different place of service at the service line level, this field should not be populated. 02 for telemedicine, 11 for in-person. Full list [here](https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set).
     /// </summary>
     [JsonPropertyName("place_of_service_code")]
     public FacilityTypeCode? PlaceOfServiceCode { get; set; }
 
     /// <summary>
-    /// A free-form description to clarify the related data elements and their content. Maps to SV1-01, C003-07 on the 837-P.
+    /// A free-form description to clarify the related data elements and their content. Maps to SV1-01, C003-07 on a 837-P and SV2-02, C003-07 on a 837-I form.
     /// </summary>
     [JsonPropertyName("description")]
     public string? Description { get; set; }
@@ -84,6 +83,7 @@ public record ServiceLineCreate
 
     /// <summary>
     /// Contains a list of test results. Test result types may map to MEA-02 on the 837-P (ex: Hemoglobin, Hematocrit).
+    /// This is unused by 837-i and ignored for institutional service lines.
     /// No more than 5 MEA-02 test results may be submitted per service line.
     /// </summary>
     [JsonPropertyName("test_results")]

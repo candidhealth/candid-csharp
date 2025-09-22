@@ -4,7 +4,7 @@ using Candid.Net.Core;
 
 #nullable enable
 
-namespace Candid.Net.PreEncounter;
+namespace Candid.Net.PreEncounter.Common;
 
 [JsonConverter(typeof(EnumSerializer<ExternalProviderType>))]
 public enum ExternalProviderType

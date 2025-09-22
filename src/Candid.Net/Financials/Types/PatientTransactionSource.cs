@@ -4,7 +4,7 @@ using Candid.Net.Core;
 
 #nullable enable
 
-namespace Candid.Net;
+namespace Candid.Net.Financials;
 
 [JsonConverter(typeof(EnumSerializer<PatientTransactionSource>))]
 public enum PatientTransactionSource
@@ -29,4 +29,7 @@ public enum PatientTransactionSource
 
     [EnumMember(Value = "HEALTHIE")]
     Healthie,
+
+    [EnumMember(Value = "REALLOCATION")]
+    Reallocation,
 }

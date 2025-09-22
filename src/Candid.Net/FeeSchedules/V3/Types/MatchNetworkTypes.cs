@@ -8,7 +8,7 @@ namespace Candid.Net.FeeSchedules.V3;
 public record MatchNetworkTypes
 {
     [JsonPropertyName("value")]
-    public HashSet<NetworkType> Value { get; set; } = new HashSet<NetworkType>();
+    public HashSet<Commons.NetworkType> Value { get; set; } = new HashSet<Commons.NetworkType>();
 
     [JsonPropertyName("match")]
     public required bool Match { get; set; }

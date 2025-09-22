@@ -18,7 +18,7 @@ public record PatientListRequest
     /// <summary>
     /// Defaults to ascending.
     /// </summary>
-    public SortDirection? SortDirection { get; set; }
+    public Common.SortDirection? SortDirection { get; set; }
 
     public string? Filters { get; set; }
 

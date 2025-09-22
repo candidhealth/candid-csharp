@@ -1,7 +1,6 @@
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
 using Candid.Net.OrganizationProviders.V3;
-using Candid.Net.Payers.V3;
 
 #nullable enable
 
@@ -46,7 +45,7 @@ public record ProviderCredentialingSpan
     /// The payer doing the credentialing.
     /// </summary>
     [JsonPropertyName("payer")]
-    public required Payer Payer { get; set; }
+    public required Payers.V3.Payer Payer { get; set; }
 
     /// <summary>
     /// Start date of the credentialing span.

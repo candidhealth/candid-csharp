@@ -1,4 +1,4 @@
-using Candid.Net;
+using Candid.Net.Commons;
 using Candid.Net.Core;
 
 #nullable enable
@@ -38,7 +38,7 @@ public record GetMultiContractsRequest
     /// <summary>
     /// Direction of sort, defaulting to desc
     /// </summary>
-    public SortDirection? SortDirection { get; set; }
+    public Commons.SortDirection? SortDirection { get; set; }
 
     public override string ToString()
     {

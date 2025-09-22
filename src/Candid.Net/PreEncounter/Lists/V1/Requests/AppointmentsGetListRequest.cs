@@ -14,7 +14,7 @@ public record AppointmentsGetListRequest
     /// <summary>
     /// Defaults to asc.
     /// </summary>
-    public SortDirection? SortDirection { get; set; }
+    public Common.SortDirection? SortDirection { get; set; }
 
     /// <summary>
     /// Defaults to 100.

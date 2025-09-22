@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
-using Candid.Net;
 using Candid.Net.Core;
+using Candid.Net.EraCommons;
 using Candid.Net.X12.V1;
 
 #nullable enable

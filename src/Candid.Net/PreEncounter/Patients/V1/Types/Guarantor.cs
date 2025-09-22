@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
-using Candid.Net.PreEncounter;
+using Candid.Net.PreEncounter.Common;
 
 #nullable enable
 
@@ -18,10 +18,10 @@ public record Guarantor
     public string? Email { get; set; }
 
     [JsonPropertyName("birth_date")]
-    public required DateOnly BirthDate { get; set; }
+    public DateOnly? BirthDate { get; set; }
 
     [JsonPropertyName("address")]
-    public required Address Address { get; set; }
+    public required Common.Address Address { get; set; }
 
     public override string ToString()
     {

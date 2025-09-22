@@ -2,7 +2,7 @@ using Candid.Net.Core;
 
 #nullable enable
 
-namespace Candid.Net;
+namespace Candid.Net.Commons;
 
 /// <summary>
 /// This exception type will be thrown for any non-2XX API responses.

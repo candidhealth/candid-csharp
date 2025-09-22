@@ -31,7 +31,7 @@ public record GetMultiNonInsurancePayersRequest
 
     public NonInsurancePayerSortField? Sort { get; set; }
 
-    public SortDirection? SortDirection { get; set; }
+    public Commons.SortDirection? SortDirection { get; set; }
 
     /// <summary>
     /// Defaults to 100

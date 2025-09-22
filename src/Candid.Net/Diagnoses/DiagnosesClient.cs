@@ -5,7 +5,7 @@ using Candid.Net.Core;
 
 #nullable enable
 
-namespace Candid.Net;
+namespace Candid.Net.Diagnoses;
 
 public partial class DiagnosesClient
 {

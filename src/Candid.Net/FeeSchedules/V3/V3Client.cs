@@ -347,9 +347,9 @@ public partial class V3Client
     ///                     {
     ///                         FacilityTypeCode.Pharmacy,
     ///                     },
-    ///                     NetworkTypes = new HashSet&lt;Candid.Net.NetworkType&gt;()
+    ///                     NetworkTypes = new HashSet&lt;Candid.Net.Commons.NetworkType&gt;()
     ///                     {
-    ///                         Candid.Net.NetworkType.Ppo,
+    ///                         Candid.Net.Commons.NetworkType.Ppo,
     ///                     },
     ///                     PayerPlanGroupIds = new HashSet&lt;string&gt;()
     ///                     {
@@ -387,9 +387,9 @@ public partial class V3Client
     ///                     {
     ///                         FacilityTypeCode.Pharmacy,
     ///                     },
-    ///                     NetworkTypes = new HashSet&lt;Candid.Net.NetworkType&gt;()
+    ///                     NetworkTypes = new HashSet&lt;Candid.Net.Commons.NetworkType&gt;()
     ///                     {
-    ///                         Candid.Net.NetworkType.Ppo,
+    ///                         Candid.Net.Commons.NetworkType.Ppo,
     ///                     },
     ///                     PayerPlanGroupIds = new HashSet&lt;string&gt;()
     ///                     {
@@ -646,7 +646,10 @@ public partial class V3Client
     ///         ZipCodes = new HashSet&lt;string&gt;() { "zip_codes" },
     ///         LicenseTypes = new HashSet&lt;LicenseType&gt;() { LicenseType.Md },
     ///         FacilityTypeCodes = new HashSet&lt;FacilityTypeCode&gt;() { FacilityTypeCode.Pharmacy },
-    ///         NetworkTypes = new HashSet&lt;Candid.Net.NetworkType&gt;() { Candid.Net.NetworkType.Ppo },
+    ///         NetworkTypes = new HashSet&lt;Candid.Net.Commons.NetworkType&gt;()
+    ///         {
+    ///             Candid.Net.Commons.NetworkType.Ppo,
+    ///         },
     ///         PayerPlanGroupIds = new HashSet&lt;string&gt;() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
     ///         Modifiers = new HashSet&lt;ProcedureModifier&gt;() { ProcedureModifier.Av },
     ///     }
@@ -665,6 +668,60 @@ public partial class V3Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Post,
                 Path = "/api/fee-schedules/v3/hard-delete",
+                Body = request,
+                Options = options,
+            },
+            cancellationToken
+        );
+        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            try
+            {
+                return JsonUtils.Deserialize<int>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            responseBody
+        );
+    }
+
+    /// <summary>
+    /// Hard deletes specific rates from the system by their IDs. This is a destructive operation and cannot be undone. Limited to 100 rate IDs maximum per request. For bulk deletion of more than 100 rates, use the hard_delete_rates endpoint with dimension filters. Returns the number of rates deleted.
+    /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.FeeSchedules.V3.HardDeleteRatesByIdsAsync(
+    ///     new HardDeleteRatesByIdsRequest
+    ///     {
+    ///         RateIds = new List&lt;string&gt;()
+    ///         {
+    ///             "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///             "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         },
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
+    public async Task<int> HardDeleteRatesByIdsAsync(
+        HardDeleteRatesByIdsRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client.MakeRequestAsync(
+            new RawClient.JsonApiRequest
+            {
+                BaseUrl = _client.Options.Environment.CandidApi,
+                Method = HttpMethod.Post,
+                Path = "/api/fee-schedules/v3/hard-delete-by-ids",
                 Body = request,
                 Options = options,
             },

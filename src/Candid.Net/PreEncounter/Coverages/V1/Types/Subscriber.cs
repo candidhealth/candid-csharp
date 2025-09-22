@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
-using Candid.Net.PreEncounter;
+using Candid.Net.PreEncounter.Common;
 
 #nullable enable
 
@@ -12,13 +12,13 @@ public record Subscriber
     public required HumanName Name { get; set; }
 
     [JsonPropertyName("date_of_birth")]
-    public required DateOnly DateOfBirth { get; set; }
+    public DateOnly? DateOfBirth { get; set; }
 
     [JsonPropertyName("biological_sex")]
     public required Sex BiologicalSex { get; set; }
 
     [JsonPropertyName("address")]
-    public Address? Address { get; set; }
+    public Common.Address? Address { get; set; }
 
     public override string ToString()
     {

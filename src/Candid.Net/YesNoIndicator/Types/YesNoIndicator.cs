@@ -4,7 +4,7 @@ using Candid.Net.Core;
 
 #nullable enable
 
-namespace Candid.Net;
+namespace Candid.Net.YesNoIndicator;
 
 [JsonConverter(typeof(EnumSerializer<YesNoIndicator>))]
 public enum YesNoIndicator

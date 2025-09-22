@@ -21,10 +21,10 @@ public partial class V2Client
     /// await client.ServiceLines.V2.CreateAsync(
     ///     new ServiceLineCreateStandalone
     ///     {
-    ///         ProcedureCode = "procedure_code",
     ///         Quantity = "quantity",
     ///         Units = ServiceLineUnits.Mj,
     ///         ClaimId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         ProcedureCode = "procedure_code",
     ///     }
     /// );
     /// </code>
@@ -41,6 +41,101 @@ public partial class V2Client
                 BaseUrl = _client.Options.Environment.CandidApi,
                 Method = HttpMethod.Post,
                 Path = "/api/service-lines/v2",
+                Body = request,
+                Options = options,
+            },
+            cancellationToken
+        );
+        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            try
+            {
+                return JsonUtils.Deserialize<ServiceLine>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            responseBody
+        );
+    }
+
+    /// <example>
+    /// <code>
+    /// await client.ServiceLines.V2.CreateUniversalAsync(
+    ///     new UniversalServiceLineCreateStandalone
+    ///     {
+    ///         Quantity = "quantity",
+    ///         Units = ServiceLineUnits.Mj,
+    ///         ClaimId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///     }
+    /// );
+    /// </code>
+    /// </example>
+    public async Task<ServiceLine> CreateUniversalAsync(
+        UniversalServiceLineCreateStandalone request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client.MakeRequestAsync(
+            new RawClient.JsonApiRequest
+            {
+                BaseUrl = _client.Options.Environment.CandidApi,
+                Method = HttpMethod.Post,
+                Path = "/api/service-lines/v2/universal",
+                Body = request,
+                Options = options,
+            },
+            cancellationToken
+        );
+        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            try
+            {
+                return JsonUtils.Deserialize<ServiceLine>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        throw new CandidApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            responseBody
+        );
+    }
+
+    /// <example>
+    /// <code>
+    /// await client.ServiceLines.V2.UpdateUniversalAsync(
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///     new UniversalServiceLineUpdate()
+    /// );
+    /// </code>
+    /// </example>
+    public async Task<ServiceLine> UpdateUniversalAsync(
+        string serviceLineId,
+        UniversalServiceLineUpdate request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client.MakeRequestAsync(
+            new RawClient.JsonApiRequest
+            {
+                BaseUrl = _client.Options.Environment.CandidApi,
+                Method = HttpMethodExtensions.Patch,
+                Path = $"/api/service-lines/v2/{serviceLineId}/universal",
                 Body = request,
                 Options = options,
             },

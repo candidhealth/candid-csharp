@@ -3,7 +3,7 @@ using Candid.Net.Core;
 
 #nullable enable
 
-namespace Candid.Net.PreEncounter;
+namespace Candid.Net.PreEncounter.Common;
 
 public record ExternalProvider
 {

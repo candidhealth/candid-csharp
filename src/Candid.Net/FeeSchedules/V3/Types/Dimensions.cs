@@ -1,5 +1,5 @@
 using System.Text.Json.Serialization;
-using Candid.Net;
+using Candid.Net.Commons;
 using Candid.Net.Core;
 using Candid.Net.OrganizationProviders.V2;
 
@@ -29,7 +29,8 @@ public record Dimensions
         new HashSet<FacilityTypeCode>();
 
     [JsonPropertyName("network_types")]
-    public HashSet<NetworkType> NetworkTypes { get; set; } = new HashSet<NetworkType>();
+    public HashSet<Commons.NetworkType> NetworkTypes { get; set; } =
+        new HashSet<Commons.NetworkType>();
 
     [JsonPropertyName("payer_plan_group_ids")]
     public HashSet<string> PayerPlanGroupIds { get; set; } = new HashSet<string>();
