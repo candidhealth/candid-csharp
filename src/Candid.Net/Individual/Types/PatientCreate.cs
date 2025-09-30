@@ -33,6 +33,12 @@ public record PatientCreate
     public bool? EmailConsent { get; set; }
 
     /// <summary>
+    /// Defaults to false
+    /// </summary>
+    [JsonPropertyName("auto_charge_consent")]
+    public bool? AutoChargeConsent { get; set; }
+
+    /// <summary>
     /// The ID used to identify this individual in your system. For example, your internal patient ID or an EHR patient ID.
     /// </summary>
     [JsonPropertyName("external_id")]

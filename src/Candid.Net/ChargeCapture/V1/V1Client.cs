@@ -250,6 +250,10 @@ public partial class V1Client
         _query["rendering_provider_names"] = request.RenderingProviderNames;
         _query["supervising_provider_npis"] = request.SupervisingProviderNpis;
         _query["supervising_provider_names"] = request.SupervisingProviderNames;
+        _query["claim_creation_category"] = request.ClaimCreationCategory;
+        _query["tags"] = request.Tags;
+        _query["primary_payer_names"] = request.PrimaryPayerNames;
+        _query["patient_names"] = request.PatientNames;
         _query["claim_ids_ranked_sort"] = request
             .ClaimIdsRankedSort.Select(_value => _value.ToString())
             .ToList();
@@ -263,6 +267,10 @@ public partial class V1Client
         _query["supervising_provider_npis_ranked_sort"] = request.SupervisingProviderNpisRankedSort;
         _query["supervising_provider_names_ranked_sort"] =
             request.SupervisingProviderNamesRankedSort;
+        _query["claim_creation_category_ranked_sort"] = request.ClaimCreationCategoryRankedSort;
+        _query["tags_ranked_sort"] = request.TagsRankedSort;
+        _query["primary_payer_names_ranked_sort"] = request.PrimaryPayerNamesRankedSort;
+        _query["patient_names_ranked_sort"] = request.PatientNamesRankedSort;
         if (request.Limit != null)
         {
             _query["limit"] = request.Limit.ToString();
@@ -349,6 +357,10 @@ public partial class V1Client
         if (request.ServiceFacilityNameRankedSort != null)
         {
             _query["service_facility_name_ranked_sort"] = request.ServiceFacilityNameRankedSort;
+        }
+        if (request.ClaimStatus != null)
+        {
+            _query["claim_status"] = request.ClaimStatus.Value.Stringify();
         }
         var response = await _client.MakeRequestAsync(
             new RawClient.JsonApiRequest

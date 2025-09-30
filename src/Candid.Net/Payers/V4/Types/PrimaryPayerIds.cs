@@ -5,13 +5,13 @@ using Candid.Net.Core;
 
 namespace Candid.Net.Payers.V4;
 
-public record PayerIds
+public record PrimaryPayerIds
 {
     /// <summary>
     /// The payer ID for claim submission
     /// </summary>
     [JsonPropertyName("claims_payer_id")]
-    public string? ClaimsPayerId { get; set; }
+    public required string ClaimsPayerId { get; set; }
 
     /// <summary>
     /// The payer ID for eligibility

@@ -41,6 +41,9 @@ public record GuarantorUpdate
     [JsonPropertyName("email_consent")]
     public bool? EmailConsent { get; set; }
 
+    [JsonPropertyName("auto_charge_consent")]
+    public bool? AutoChargeConsent { get; set; }
+
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

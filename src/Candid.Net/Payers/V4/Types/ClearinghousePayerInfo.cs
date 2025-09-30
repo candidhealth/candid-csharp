@@ -25,6 +25,30 @@ public record ClearinghousePayerInfo
     [JsonPropertyName("institutional_payer_ids")]
     public required PayerIds InstitutionalPayerIds { get; set; }
 
+    /// <summary>
+    /// The support state for claims submission
+    /// </summary>
+    [JsonPropertyName("professional_claims_support")]
+    public required SupportState ProfessionalClaimsSupport { get; set; }
+
+    /// <summary>
+    /// The support state for institutional claims submission
+    /// </summary>
+    [JsonPropertyName("institutional_claims_support")]
+    public required SupportState InstitutionalClaimsSupport { get; set; }
+
+    /// <summary>
+    /// The support state for eligibility
+    /// </summary>
+    [JsonPropertyName("eligibility_support")]
+    public required SupportState EligibilitySupport { get; set; }
+
+    /// <summary>
+    /// The support state for remittance
+    /// </summary>
+    [JsonPropertyName("remittance_support")]
+    public required SupportState RemittanceSupport { get; set; }
+
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

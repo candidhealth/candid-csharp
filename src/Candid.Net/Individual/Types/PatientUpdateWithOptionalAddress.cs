@@ -47,6 +47,9 @@ public record PatientUpdateWithOptionalAddress
     [JsonPropertyName("email_consent")]
     public bool? EmailConsent { get; set; }
 
+    [JsonPropertyName("auto_charge_consent")]
+    public bool? AutoChargeConsent { get; set; }
+
     /// <summary>
     /// On update, we will replace the existing list of non-insurance payers with the new list if populated.
     /// </summary>

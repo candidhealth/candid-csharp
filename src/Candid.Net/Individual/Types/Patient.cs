@@ -24,6 +24,9 @@ public record Patient
     [JsonPropertyName("email_consent")]
     public required bool EmailConsent { get; set; }
 
+    [JsonPropertyName("auto_charge_consent")]
+    public bool? AutoChargeConsent { get; set; }
+
     [JsonPropertyName("non_insurance_payers")]
     public IEnumerable<NonInsurancePayer> NonInsurancePayers { get; set; } =
         new List<NonInsurancePayer>();

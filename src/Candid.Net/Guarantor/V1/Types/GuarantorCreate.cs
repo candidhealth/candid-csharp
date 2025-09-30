@@ -26,6 +26,12 @@ public record GuarantorCreate
     [JsonPropertyName("email_consent")]
     public bool? EmailConsent { get; set; }
 
+    /// <summary>
+    /// Defaults to false
+    /// </summary>
+    [JsonPropertyName("auto_charge_consent")]
+    public bool? AutoChargeConsent { get; set; }
+
     [JsonPropertyName("first_name")]
     public required string FirstName { get; set; }
 

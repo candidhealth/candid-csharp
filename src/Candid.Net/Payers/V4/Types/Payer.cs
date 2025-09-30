@@ -18,7 +18,7 @@ public record Payer
     /// The primary national payer IDs of the payer.
     /// </summary>
     [JsonPropertyName("payer_ids")]
-    public required PayerIds PayerIds { get; set; }
+    public required PrimaryPayerIds PayerIds { get; set; }
 
     /// <summary>
     /// The primary display name of the payer.

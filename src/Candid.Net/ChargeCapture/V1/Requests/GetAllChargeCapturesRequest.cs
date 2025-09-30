@@ -1,3 +1,4 @@
+using Candid.Net.Claims;
 using Candid.Net.Core;
 using Candid.Net.Encounters.V4;
 
@@ -99,6 +100,26 @@ public record GetAllChargeCapturesRequest
     public IEnumerable<string> SupervisingProviderNames { get; set; } = new List<string>();
 
     /// <summary>
+    /// A list of claim creation categories to filter by. This will return all charge capture claim_creations which include one or more charges with one of the names in this list.
+    /// </summary>
+    public IEnumerable<string> ClaimCreationCategory { get; set; } = new List<string>();
+
+    /// <summary>
+    /// A list of tags to filter by. This will return all charge captures with one of the tags.
+    /// </summary>
+    public IEnumerable<string> Tags { get; set; } = new List<string>();
+
+    /// <summary>
+    /// A list of primary payer names to filter by. This will return all charge captures with one of the names.
+    /// </summary>
+    public IEnumerable<string> PrimaryPayerNames { get; set; } = new List<string>();
+
+    /// <summary>
+    /// A list of patient names to filter by. This will return all charge captures with one of the names.
+    /// </summary>
+    public IEnumerable<string> PatientNames { get; set; } = new List<string>();
+
+    /// <summary>
     /// Whether to exclude charge captures which are part of a claim creation.
     /// </summary>
     public bool? ExcludeChargesLinkedToClaims { get; set; }
@@ -194,6 +215,31 @@ public record GetAllChargeCapturesRequest
     /// </summary>
     public IEnumerable<string> SupervisingProviderNamesRankedSort { get; set; } =
         new List<string>();
+
+    /// <summary>
+    /// the status of the claim to filter by created from charge capture bundle.
+    /// </summary>
+    public ClaimStatus? ClaimStatus { get; set; }
+
+    /// <summary>
+    /// A list of claim creation categories to sort by. This will return all charge capture claim_creations which include one or more charges with one of the names in this list.
+    /// </summary>
+    public IEnumerable<string> ClaimCreationCategoryRankedSort { get; set; } = new List<string>();
+
+    /// <summary>
+    /// A list of tags. This will return all charge captures with one of the tags.
+    /// </summary>
+    public IEnumerable<string> TagsRankedSort { get; set; } = new List<string>();
+
+    /// <summary>
+    /// A list of primary payer names to sort by. This will return all charge captures with one of the names.
+    /// </summary>
+    public IEnumerable<string> PrimaryPayerNamesRankedSort { get; set; } = new List<string>();
+
+    /// <summary>
+    /// A list of patient names to sort by. This will return all charge captures with one of the names.
+    /// </summary>
+    public IEnumerable<string> PatientNamesRankedSort { get; set; } = new List<string>();
 
     public override string ToString()
     {

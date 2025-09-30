@@ -157,6 +157,10 @@ public partial class V1Client
         _query["rendering_provider_names"] = request.RenderingProviderNames;
         _query["supervising_provider_npis"] = request.SupervisingProviderNpis;
         _query["supervising_provider_names"] = request.SupervisingProviderNames;
+        _query["claim_creation_category"] = request.ClaimCreationCategory;
+        _query["tags"] = request.Tags;
+        _query["primary_payer_names"] = request.PrimaryPayerNames;
+        _query["patient_names"] = request.PatientNames;
         if (request.Limit != null)
         {
             _query["limit"] = request.Limit.ToString();
@@ -204,6 +208,10 @@ public partial class V1Client
         if (request.ServiceFacilityName != null)
         {
             _query["service_facility_name"] = request.ServiceFacilityName;
+        }
+        if (request.ClaimStatus != null)
+        {
+            _query["claim_status"] = request.ClaimStatus.Value.Stringify();
         }
         if (request.HasChargeCaptureUpdates != null)
         {
