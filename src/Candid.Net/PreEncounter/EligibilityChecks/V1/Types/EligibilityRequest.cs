@@ -1,14 +1,22 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Core;
 using Candid.Net.PreEncounter.Coverages.V1;
 using OneOf;
 
-#nullable enable
-
 namespace Candid.Net.PreEncounter.EligibilityChecks.V1;
 
-public record EligibilityRequest
+/// <summary>
+/// An object representing the data for an eligibility request.
+/// </summary>
+[Serializable]
+public record EligibilityRequest : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// A unique identifier for the eligibility check within the batch. Candid returns this identifier in the response for the
     /// /batch/{batch_id} polling endpoint so you can correlate benefit responses with the original eligibility check.
@@ -40,6 +48,13 @@ public record EligibilityRequest
     [JsonPropertyName("encounter")]
     public Encounter? Encounter { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

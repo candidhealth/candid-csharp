@@ -1,12 +1,17 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Core;
-
-#nullable enable
 
 namespace Candid.Net.Credentialing.V2;
 
-public record FacilityCredentialingSpanPage
+[Serializable]
+public record FacilityCredentialingSpanPage : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("items")]
     public IEnumerable<FacilityCredentialingSpan> Items { get; set; } =
         new List<FacilityCredentialingSpan>();
@@ -17,6 +22,13 @@ public record FacilityCredentialingSpanPage
     [JsonPropertyName("next_page_token")]
     public string? NextPageToken { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

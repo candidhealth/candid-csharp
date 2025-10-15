@@ -4,8 +4,6 @@ using System.Threading;
 using Candid.Net.Core;
 using Candid.Net.PreEncounter.EligibilityChecks.V1;
 
-#nullable enable
-
 namespace Candid.Net.PreEncounter.Coverages.V1;
 
 public partial class V1Client
@@ -20,8 +18,7 @@ public partial class V1Client
     /// <summary>
     /// Creates a new Coverage. A Coverage provides the high-level identifiers and descriptors of a specific insurance plan for a specific individual - typically the information you can find on an insurance card. Additionally a coverage will include detailed benefits information covered by the specific plan for the individual.
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.PreEncounter.Coverages.V1.CreateAsync(
     ///     new MutableCoverage
     ///     {
@@ -47,28 +44,29 @@ public partial class V1Client
     ///         Verified = true,
     ///     }
     /// );
-    /// </code>
-    /// </example>
-    public async Task<Coverage> CreateAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<Coverage> CreateAsync(
         MutableCoverage request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.PreEncounter,
-                Method = HttpMethod.Post,
-                Path = "/coverages/v1",
-                Body = request,
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Post,
+                    Path = "/coverages/v1",
+                    Body = request,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<Coverage>(responseBody)!;
@@ -79,18 +77,20 @@ public partial class V1Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
     /// Updates a Coverage. The path must contain the next version number to prevent race conditions. For example, if the current version of the coverage is n, you will need to send a request to this endpoint with `/{id}/n+1` to update the coverage. Updating historic versions is not supported.
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.PreEncounter.Coverages.V1.UpdateAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///     "version",
@@ -118,9 +118,8 @@ public partial class V1Client
     ///         Verified = true,
     ///     }
     /// );
-    /// </code>
-    /// </example>
-    public async Task<Coverage> UpdateAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<Coverage> UpdateAsync(
         string id,
         string version,
         MutableCoverage request,
@@ -128,20 +127,26 @@ public partial class V1Client
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.PreEncounter,
-                Method = HttpMethod.Put,
-                Path = $"/coverages/v1/{id}/{version}",
-                Body = request,
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Put,
+                    Path = string.Format(
+                        "/coverages/v1/{0}/{1}",
+                        ValueConvert.ToPathParameterString(id),
+                        ValueConvert.ToPathParameterString(version)
+                    ),
+                    Body = request,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<Coverage>(responseBody)!;
@@ -152,24 +157,25 @@ public partial class V1Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
     /// Returns a page of Coverages based on the search criteria.
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.PreEncounter.Coverages.V1.GetMultiPaginatedAsync(
     ///     new CoverageGetMultiPaginatedRequest()
     /// );
-    /// </code>
-    /// </example>
-    public async Task<CoveragesPage> GetMultiPaginatedAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<CoveragesPage> GetMultiPaginatedAsync(
         CoverageGetMultiPaginatedRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -190,22 +196,24 @@ public partial class V1Client
         }
         if (request.Limit != null)
         {
-            _query["limit"] = request.Limit.ToString();
+            _query["limit"] = request.Limit.Value.ToString();
         }
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.PreEncounter,
-                Method = HttpMethod.Get,
-                Path = "/coverages/v1/get-multi-paginated",
-                Query = _query,
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Get,
+                    Path = "/coverages/v1/get-multi-paginated",
+                    Query = _query,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<CoveragesPage>(responseBody)!;
@@ -216,40 +224,46 @@ public partial class V1Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
     /// gets a specific Coverage
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.PreEncounter.Coverages.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
-    /// </code>
-    /// </example>
-    public async Task<Coverage> GetAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<Coverage> GetAsync(
         string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.PreEncounter,
-                Method = HttpMethod.Get,
-                Path = $"/coverages/v1/{id}",
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Get,
+                    Path = string.Format(
+                        "/coverages/v1/{0}",
+                        ValueConvert.ToPathParameterString(id)
+                    ),
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<Coverage>(responseBody)!;
@@ -260,40 +274,46 @@ public partial class V1Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
     /// Gets a coverage along with it's full history.  The return list is ordered by version ascending.
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.PreEncounter.Coverages.V1.GetHistoryAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
-    /// </code>
-    /// </example>
-    public async Task<IEnumerable<Coverage>> GetHistoryAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<IEnumerable<Coverage>> GetHistoryAsync(
         string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.PreEncounter,
-                Method = HttpMethod.Get,
-                Path = $"/coverages/v1/{id}/history",
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Get,
+                    Path = string.Format(
+                        "/coverages/v1/{0}/history",
+                        ValueConvert.ToPathParameterString(id)
+                    ),
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<IEnumerable<Coverage>>(responseBody)!;
@@ -304,22 +324,23 @@ public partial class V1Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
     /// Returns a list of Coverages based on the search criteria.
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.PreEncounter.Coverages.V1.GetMultiAsync(new CoverageGetMultiRequest());
-    /// </code>
-    /// </example>
-    public async Task<IEnumerable<Coverage>> GetMultiAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<IEnumerable<Coverage>> GetMultiAsync(
         CoverageGetMultiRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -330,20 +351,22 @@ public partial class V1Client
         {
             _query["patient_id"] = request.PatientId;
         }
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.PreEncounter,
-                Method = HttpMethod.Get,
-                Path = "/coverages/v1",
-                Query = _query,
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Get,
+                    Path = "/coverages/v1",
+                    Query = _query,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<IEnumerable<Coverage>>(responseBody)!;
@@ -354,24 +377,25 @@ public partial class V1Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
     /// Scans up to 100 coverage updates.  The since query parameter is inclusive, and the result list is ordered by updatedAt ascending.
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.PreEncounter.Coverages.V1.ScanAsync(
     ///     new CoverageScanRequest { Since = new DateTime(2024, 01, 15, 09, 30, 00, 000) }
     /// );
-    /// </code>
-    /// </example>
-    public async Task<IEnumerable<Coverage>> ScanAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<IEnumerable<Coverage>> ScanAsync(
         CoverageScanRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -379,20 +403,22 @@ public partial class V1Client
     {
         var _query = new Dictionary<string, object>();
         _query["since"] = request.Since.ToString(Constants.DateTimeFormat);
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.PreEncounter,
-                Method = HttpMethod.Get,
-                Path = "/coverages/v1/updates/scan",
-                Query = _query,
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Get,
+                    Path = "/coverages/v1/updates/scan",
+                    Query = _query,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<IEnumerable<Coverage>>(responseBody)!;
@@ -403,18 +429,20 @@ public partial class V1Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
     /// Finds all coverages associated with the given ppg_id and updates the ppg_fields for each coverage.
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.PreEncounter.Coverages.V1.BatchUpdatePpgAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///     new PayerPlanGroupFields
@@ -425,8 +453,7 @@ public partial class V1Client
     ///         PlanType = Candid.Net.PreEncounter.Coverages.V1.NetworkType.SelfPay,
     ///     }
     /// );
-    /// </code>
-    /// </example>
+    /// </code></example>
     public async System.Threading.Tasks.Task BatchUpdatePpgAsync(
         string ppgId,
         PayerPlanGroupFields request,
@@ -434,34 +461,40 @@ public partial class V1Client
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.PreEncounter,
-                Method = HttpMethod.Post,
-                Path = $"/coverages/v1/batch-update-ppg/{ppgId}",
-                Body = request,
-                Options = options,
-            },
-            cancellationToken
-        );
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Post,
+                    Path = string.Format(
+                        "/coverages/v1/batch-update-ppg/{0}",
+                        ValueConvert.ToPathParameterString(ppgId)
+                    ),
+                    Body = request,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
             return;
         }
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
     /// Initiates an eligibility check. Returns the metadata of the check if successfully initiated.
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.PreEncounter.Coverages.V1.CheckEligibilityAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///     new CheckEligibilityRequest
@@ -471,29 +504,33 @@ public partial class V1Client
     ///         Npi = "npi",
     ///     }
     /// );
-    /// </code>
-    /// </example>
-    public async Task<EligibilityCheckMetadata> CheckEligibilityAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<EligibilityCheckMetadata> CheckEligibilityAsync(
         string id,
         CheckEligibilityRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.PreEncounter,
-                Method = HttpMethod.Post,
-                Path = $"/coverages/v1/{id}/eligibility",
-                Body = request,
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Post,
+                    Path = string.Format(
+                        "/coverages/v1/{0}/eligibility",
+                        ValueConvert.ToPathParameterString(id)
+                    ),
+                    Body = request,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<EligibilityCheckMetadata>(responseBody)!;
@@ -504,44 +541,51 @@ public partial class V1Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
     /// Gets the eligibility of a patient for a specific coverage if successful.
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.PreEncounter.Coverages.V1.GetEligibilityAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///     "check_id"
     /// );
-    /// </code>
-    /// </example>
-    public async Task<CoverageEligibilityCheckResponse> GetEligibilityAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<CoverageEligibilityCheckResponse> GetEligibilityAsync(
         string id,
         string checkId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.PreEncounter,
-                Method = HttpMethod.Get,
-                Path = $"/coverages/v1/{id}/eligibility/{checkId}",
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Get,
+                    Path = string.Format(
+                        "/coverages/v1/{0}/eligibility/{1}",
+                        ValueConvert.ToPathParameterString(id),
+                        ValueConvert.ToPathParameterString(checkId)
+                    ),
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<CoverageEligibilityCheckResponse>(responseBody)!;
@@ -552,10 +596,13 @@ public partial class V1Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 }

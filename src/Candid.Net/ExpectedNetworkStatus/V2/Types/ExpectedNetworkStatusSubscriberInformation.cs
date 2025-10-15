@@ -1,12 +1,17 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Core;
-
-#nullable enable
 
 namespace Candid.Net.ExpectedNetworkStatus.V2;
 
-public record ExpectedNetworkStatusSubscriberInformation
+[Serializable]
+public record ExpectedNetworkStatusSubscriberInformation : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// The UUID that corresponds with the payer on the patient’s insurance card
     /// </summary>
@@ -25,6 +30,13 @@ public record ExpectedNetworkStatusSubscriberInformation
     [JsonPropertyName("insurance_type")]
     public required InsuranceType InsuranceType { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

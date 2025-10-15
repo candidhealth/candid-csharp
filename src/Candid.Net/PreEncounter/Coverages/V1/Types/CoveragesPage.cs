@@ -1,12 +1,17 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Core;
-
-#nullable enable
 
 namespace Candid.Net.PreEncounter.Coverages.V1;
 
-public record CoveragesPage
+[Serializable]
+public record CoveragesPage : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("items")]
     public IEnumerable<Coverage> Items { get; set; } = new List<Coverage>();
 
@@ -19,6 +24,13 @@ public record CoveragesPage
     [JsonPropertyName("total")]
     public required int Total { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

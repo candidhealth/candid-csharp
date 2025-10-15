@@ -1,12 +1,20 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Core;
-
-#nullable enable
 
 namespace Candid.Net.PreEncounter.EligibilityChecks.V1;
 
-public record MedicareAdvantageRecommendationPayload
+/// <summary>
+/// An object representing the payload for a Medicare Advantage recommendation.
+/// </summary>
+[Serializable]
+public record MedicareAdvantageRecommendationPayload : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("ma_benefit")]
     public object? MaBenefit { get; set; }
 
@@ -19,6 +27,13 @@ public record MedicareAdvantageRecommendationPayload
     [JsonPropertyName("member_id")]
     public string? MemberId { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

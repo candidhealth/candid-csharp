@@ -1,12 +1,20 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Core;
-
-#nullable enable
 
 namespace Candid.Net.PreEncounter.EligibilityChecks.V1;
 
-public record EligibilityRecommendation
+/// <summary>
+/// An eligibility recommendation object that contains an EligibilityRecommendationType and a payload of data denoting the recommendation.
+/// </summary>
+[Serializable]
+public record EligibilityRecommendation : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// The unique UUID identifier for an EligibilityRecommendation.
     /// </summary>
@@ -14,7 +22,7 @@ public record EligibilityRecommendation
     public required string Id { get; set; }
 
     [JsonPropertyName("recommendation")]
-    public required object Recommendation { get; set; }
+    public required EligibilityRecommendationPayload Recommendation { get; set; }
 
     [JsonPropertyName("patient")]
     public required EligibilityRecommendationPatientInfo Patient { get; set; }
@@ -46,6 +54,13 @@ public record EligibilityRecommendation
     [JsonPropertyName("updating_user_id")]
     public required string UpdatingUserId { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

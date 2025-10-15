@@ -3,8 +3,6 @@ using System.Text.Json;
 using System.Threading;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.ExpectedNetworkStatus.V2;
 
 public partial class V2Client
@@ -21,8 +19,7 @@ public partial class V2Client
     /// This endpoint is not available to all customers. Reach out to the Candid sales team
     /// to discuss enabling this endpoint if it is not available for your organization.
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.ExpectedNetworkStatus.V2.ComputeForRenderingProviderAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///     new ExpectedNetworkStatusRequestV2
@@ -36,7 +33,11 @@ public partial class V2Client
     ///             InsuranceType = new InsuranceType
     ///             {
     ///                 LineOfBusiness = LineOfBusiness.Medicare,
-    ///                 InsuranceTypeCodes = Candid.Net.Commons.InsuranceTypeCode.C01,
+    ///                 InsuranceTypeCodes = new InsuranceTypeCodes(
+    ///                     new Candid.Net.ExpectedNetworkStatus.V2.InsuranceTypeCodes.InsuranceTypeCode(
+    ///                         Candid.Net.Commons.InsuranceTypeCode.C01
+    ///                     )
+    ///                 ),
     ///             },
     ///         },
     ///         PatientAddress = new StreetAddressShortZip
@@ -51,29 +52,33 @@ public partial class V2Client
     ///         DateOfService = new DateOnly(2023, 1, 15),
     ///     }
     /// );
-    /// </code>
-    /// </example>
-    public async Task<ExpectedNetworkStatusResponseV2> ComputeForRenderingProviderAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<ExpectedNetworkStatusResponseV2> ComputeForRenderingProviderAsync(
         string renderingProviderId,
         ExpectedNetworkStatusRequestV2 request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.CandidApi,
-                Method = HttpMethod.Post,
-                Path = $"/api/expected-network-status/v2/compute/{renderingProviderId}",
-                Body = request,
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Post,
+                    Path = string.Format(
+                        "/api/expected-network-status/v2/compute/{0}",
+                        ValueConvert.ToPathParameterString(renderingProviderId)
+                    ),
+                    Body = request,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<ExpectedNetworkStatusResponseV2>(responseBody)!;
@@ -84,11 +89,14 @@ public partial class V2Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
@@ -96,8 +104,7 @@ public partial class V2Client
     /// This endpoint is not available to all customers. Reach out to the Candid sales team
     /// to discuss enabling this endpoint if it is not available for your organization.
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.ExpectedNetworkStatus.V2.ComputeAllInNetworkProvidersAsync(
     ///     new ComputeAllInNetworkProvidersRequest
     ///     {
@@ -110,7 +117,11 @@ public partial class V2Client
     ///             InsuranceType = new InsuranceType
     ///             {
     ///                 LineOfBusiness = LineOfBusiness.Medicare,
-    ///                 InsuranceTypeCodes = Candid.Net.Commons.InsuranceTypeCode.C01,
+    ///                 InsuranceTypeCodes = new InsuranceTypeCodes(
+    ///                     new Candid.Net.ExpectedNetworkStatus.V2.InsuranceTypeCodes.InsuranceTypeCode(
+    ///                         Candid.Net.Commons.InsuranceTypeCode.C01
+    ///                     )
+    ///                 ),
     ///             },
     ///         },
     ///         PatientAddress = new StreetAddressShortZip
@@ -125,28 +136,29 @@ public partial class V2Client
     ///         DateOfService = new DateOnly(2023, 1, 15),
     ///     }
     /// );
-    /// </code>
-    /// </example>
-    public async Task<ComputeAllInNetworkProvidersResponse> ComputeAllInNetworkProvidersAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<ComputeAllInNetworkProvidersResponse> ComputeAllInNetworkProvidersAsync(
         ComputeAllInNetworkProvidersRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.CandidApi,
-                Method = HttpMethod.Post,
-                Path = "/api/expected-network-status/v2/compute",
-                Body = request,
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Post,
+                    Path = "/api/expected-network-status/v2/compute",
+                    Body = request,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<ComputeAllInNetworkProvidersResponse>(responseBody)!;
@@ -157,10 +169,13 @@ public partial class V2Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 }

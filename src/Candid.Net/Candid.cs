@@ -3,8 +3,6 @@ using Candid.Net.Auth.Default;
 using Candid.Net.BillingNotes;
 using Candid.Net.ChargeCapture;
 using Candid.Net.ChargeCaptureBundles;
-using Candid.Net.Claims;
-using Candid.Net.Commons;
 using Candid.Net.Contracts;
 using Candid.Net.Core;
 using Candid.Net.Credentialing;
@@ -14,20 +12,16 @@ using Candid.Net.Eligibility;
 using Candid.Net.EncounterAttachments;
 using Candid.Net.EncounterProviders;
 using Candid.Net.Encounters;
-using Candid.Net.EncountersUniversal;
-using Candid.Net.Era;
 using Candid.Net.ExpectedNetworkStatus;
 using Candid.Net.Exports;
 using Candid.Net.ExternalPaymentAccountConfig;
 using Candid.Net.FeeSchedules;
-using Candid.Net.Financials;
 using Candid.Net.Guarantor;
 using Candid.Net.HealthCareCodeInformation;
 using Candid.Net.ImportInvoice;
 using Candid.Net.InsuranceAdjudications;
 using Candid.Net.InsurancePayments;
 using Candid.Net.InsuranceRefunds;
-using Candid.Net.Invoices;
 using Candid.Net.MedicationDispense;
 using Candid.Net.NonInsurancePayerPayments;
 using Candid.Net.NonInsurancePayerRefunds;
@@ -43,18 +37,14 @@ using Candid.Net.PreEncounter;
 using Candid.Net.ServiceFacility;
 using Candid.Net.ServiceLines;
 using Candid.Net.Superbills;
-using Candid.Net.Tags;
 using Candid.Net.Tasks;
 using Candid.Net.WriteOffs;
-using Candid.Net.YesNoIndicator;
-
-#nullable enable
 
 namespace Candid.Net;
 
 public partial class Candid
 {
-    private RawClient _client;
+    private readonly RawClient _client;
 
     public Candid(string clientId, string clientSecret, ClientOptions? clientOptions = null)
     {
@@ -64,7 +54,7 @@ public partial class Candid
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Candid.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Candid.Net/1.8.1" },
+                { "User-Agent", "Candid.Net/1.9.0" },
             }
         );
         clientOptions ??= new ClientOptions();
@@ -80,8 +70,8 @@ public partial class Candid
             clientSecret,
             new DefaultClient(new RawClient(clientOptions.Clone()))
         );
-        clientOptions.Headers["Authorization"] = new Func<string>(
-            () => tokenProvider.GetAccessTokenAsync().Result
+        clientOptions.Headers["Authorization"] = new Func<string>(() =>
+            tokenProvider.GetAccessTokenAsync().Result
         );
         _client = new RawClient(clientOptions);
         Auth = new AuthClient(_client);
@@ -94,7 +84,6 @@ public partial class Candid
         Eligibility = new EligibilityClient(_client);
         EncounterAttachments = new EncounterAttachmentsClient(_client);
         EncounterProviders = new EncounterProvidersClient(_client);
-        EncountersUniversal = new EncountersUniversalClient(_client);
         Encounters = new EncountersClient(_client);
         ExpectedNetworkStatus = new ExpectedNetworkStatusClient(_client);
         Exports = new ExportsClient(_client);
@@ -106,7 +95,6 @@ public partial class Candid
         InsuranceAdjudications = new InsuranceAdjudicationsClient(_client);
         InsurancePayments = new InsurancePaymentsClient(_client);
         InsuranceRefunds = new InsuranceRefundsClient(_client);
-        Invoices = new InvoicesClient(_client);
         MedicationDispense = new MedicationDispenseClient(_client);
         NonInsurancePayerPayments = new NonInsurancePayerPaymentsClient(_client);
         NonInsurancePayerRefunds = new NonInsurancePayerRefundsClient(_client);
@@ -123,107 +111,85 @@ public partial class Candid
         Tasks = new TasksClient(_client);
         WriteOffs = new WriteOffsClient(_client);
         PreEncounter = new PreEncounterClient(_client);
-        Claims = new ClaimsClient(_client);
-        Commons = new CommonsClient(_client);
         Diagnoses = new DiagnosesClient(_client);
-        Era = new EraClient(_client);
-        Financials = new FinancialsClient(_client);
         ServiceFacility = new ServiceFacilityClient(_client);
-        Tags = new TagsClient(_client);
-        YesNoIndicator = new YesNoIndicatorClient(_client);
     }
 
-    public AuthClient Auth { get; init; }
+    public AuthClient Auth { get; }
 
-    public BillingNotesClient BillingNotes { get; init; }
+    public BillingNotesClient BillingNotes { get; }
 
-    public ChargeCaptureBundlesClient ChargeCaptureBundles { get; init; }
+    public ChargeCaptureBundlesClient ChargeCaptureBundles { get; }
 
-    public ChargeCaptureClient ChargeCapture { get; init; }
+    public ChargeCaptureClient ChargeCapture { get; }
 
-    public ContractsClient Contracts { get; init; }
+    public ContractsClient Contracts { get; }
 
-    public CredentialingClient Credentialing { get; init; }
+    public CredentialingClient Credentialing { get; }
 
-    public CustomSchemasClient CustomSchemas { get; init; }
+    public CustomSchemasClient CustomSchemas { get; }
 
-    public EligibilityClient Eligibility { get; init; }
+    public EligibilityClient Eligibility { get; }
 
-    public EncounterAttachmentsClient EncounterAttachments { get; init; }
+    public EncounterAttachmentsClient EncounterAttachments { get; }
 
-    public EncounterProvidersClient EncounterProviders { get; init; }
+    public EncounterProvidersClient EncounterProviders { get; }
 
-    public EncountersUniversalClient EncountersUniversal { get; init; }
+    public EncountersClient Encounters { get; }
 
-    public EncountersClient Encounters { get; init; }
+    public ExpectedNetworkStatusClient ExpectedNetworkStatus { get; }
 
-    public ExpectedNetworkStatusClient ExpectedNetworkStatus { get; init; }
+    public ExportsClient Exports { get; }
 
-    public ExportsClient Exports { get; init; }
+    public ExternalPaymentAccountConfigClient ExternalPaymentAccountConfig { get; }
 
-    public ExternalPaymentAccountConfigClient ExternalPaymentAccountConfig { get; init; }
+    public FeeSchedulesClient FeeSchedules { get; }
 
-    public FeeSchedulesClient FeeSchedules { get; init; }
+    public GuarantorClient Guarantor { get; }
 
-    public GuarantorClient Guarantor { get; init; }
+    public HealthCareCodeInformationClient HealthCareCodeInformation { get; }
 
-    public HealthCareCodeInformationClient HealthCareCodeInformation { get; init; }
+    public ImportInvoiceClient ImportInvoice { get; }
 
-    public ImportInvoiceClient ImportInvoice { get; init; }
+    public InsuranceAdjudicationsClient InsuranceAdjudications { get; }
 
-    public InsuranceAdjudicationsClient InsuranceAdjudications { get; init; }
+    public InsurancePaymentsClient InsurancePayments { get; }
 
-    public InsurancePaymentsClient InsurancePayments { get; init; }
+    public InsuranceRefundsClient InsuranceRefunds { get; }
 
-    public InsuranceRefundsClient InsuranceRefunds { get; init; }
+    public MedicationDispenseClient MedicationDispense { get; }
 
-    public InvoicesClient Invoices { get; init; }
+    public NonInsurancePayerPaymentsClient NonInsurancePayerPayments { get; }
 
-    public MedicationDispenseClient MedicationDispense { get; init; }
+    public NonInsurancePayerRefundsClient NonInsurancePayerRefunds { get; }
 
-    public NonInsurancePayerPaymentsClient NonInsurancePayerPayments { get; init; }
+    public NonInsurancePayersClient NonInsurancePayers { get; }
 
-    public NonInsurancePayerRefundsClient NonInsurancePayerRefunds { get; init; }
+    public OrganizationProvidersClient OrganizationProviders { get; }
 
-    public NonInsurancePayersClient NonInsurancePayers { get; init; }
+    public OrganizationServiceFacilitiesClient OrganizationServiceFacilities { get; }
 
-    public OrganizationProvidersClient OrganizationProviders { get; init; }
+    public PatientArClient PatientAr { get; }
 
-    public OrganizationServiceFacilitiesClient OrganizationServiceFacilities { get; init; }
+    public PatientPaymentsClient PatientPayments { get; }
 
-    public PatientArClient PatientAr { get; init; }
+    public PatientRefundsClient PatientRefunds { get; }
 
-    public PatientPaymentsClient PatientPayments { get; init; }
+    public PayerPlanGroupsClient PayerPlanGroups { get; }
 
-    public PatientRefundsClient PatientRefunds { get; init; }
+    public PayersClient Payers { get; }
 
-    public PayerPlanGroupsClient PayerPlanGroups { get; init; }
+    public ServiceLinesClient ServiceLines { get; }
 
-    public PayersClient Payers { get; init; }
+    public SuperbillsClient Superbills { get; }
 
-    public ServiceLinesClient ServiceLines { get; init; }
+    public TasksClient Tasks { get; }
 
-    public SuperbillsClient Superbills { get; init; }
+    public WriteOffsClient WriteOffs { get; }
 
-    public TasksClient Tasks { get; init; }
+    public PreEncounterClient PreEncounter { get; }
 
-    public WriteOffsClient WriteOffs { get; init; }
+    public DiagnosesClient Diagnoses { get; }
 
-    public PreEncounterClient PreEncounter { get; init; }
-
-    public ClaimsClient Claims { get; init; }
-
-    public CommonsClient Commons { get; init; }
-
-    public DiagnosesClient Diagnoses { get; init; }
-
-    public EraClient Era { get; init; }
-
-    public FinancialsClient Financials { get; init; }
-
-    public ServiceFacilityClient ServiceFacility { get; init; }
-
-    public TagsClient Tags { get; init; }
-
-    public YesNoIndicatorClient YesNoIndicator { get; init; }
+    public ServiceFacilityClient ServiceFacility { get; }
 }

@@ -1,38 +1,98 @@
-using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.PreEncounter.Common;
 
-[JsonConverter(typeof(EnumSerializer<Race>))]
-public enum Race
+[JsonConverter(typeof(StringEnumSerializer<Race>))]
+[Serializable]
+public readonly record struct Race : IStringEnum
 {
-    [EnumMember(Value = "AMERICAN_INDIAN_OR_ALASKA_NATIVE")]
-    AmericanIndianOrAlaskaNative,
+    public static readonly Race AmericanIndianOrAlaskaNative = new(
+        Values.AmericanIndianOrAlaskaNative
+    );
 
-    [EnumMember(Value = "WHITE")]
-    White,
+    public static readonly Race White = new(Values.White);
 
-    [EnumMember(Value = "BLACK")]
-    Black,
+    public static readonly Race Black = new(Values.Black);
 
-    [EnumMember(Value = "ASIAN")]
-    Asian,
+    public static readonly Race Asian = new(Values.Asian);
 
-    [EnumMember(Value = "NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER")]
-    NativeHawaiianOrOtherPacificIslander,
+    public static readonly Race NativeHawaiianOrOtherPacificIslander = new(
+        Values.NativeHawaiianOrOtherPacificIslander
+    );
 
-    [EnumMember(Value = "MIDDLE_EASTERN_OR_NORTH_AFRICAN")]
-    MiddleEasternOrNorthAfrican,
+    public static readonly Race MiddleEasternOrNorthAfrican = new(
+        Values.MiddleEasternOrNorthAfrican
+    );
 
-    [EnumMember(Value = "OTHER")]
-    Other,
+    public static readonly Race Other = new(Values.Other);
 
-    [EnumMember(Value = "UNKNOWN")]
-    Unknown,
+    public static readonly Race Unknown = new(Values.Unknown);
 
-    [EnumMember(Value = "REFUSED")]
-    Refused,
+    public static readonly Race Refused = new(Values.Refused);
+
+    public Race(string value)
+    {
+        Value = value;
+    }
+
+    /// <summary>
+    /// The string value of the enum.
+    /// </summary>
+    public string Value { get; }
+
+    /// <summary>
+    /// Create a string enum with the given value.
+    /// </summary>
+    public static Race FromCustom(string value)
+    {
+        return new Race(value);
+    }
+
+    public bool Equals(string? other)
+    {
+        return Value.Equals(other);
+    }
+
+    /// <summary>
+    /// Returns the string value of the enum.
+    /// </summary>
+    public override string ToString()
+    {
+        return Value;
+    }
+
+    public static bool operator ==(Race value1, string value2) => value1.Value.Equals(value2);
+
+    public static bool operator !=(Race value1, string value2) => !value1.Value.Equals(value2);
+
+    public static explicit operator string(Race value) => value.Value;
+
+    public static explicit operator Race(string value) => new(value);
+
+    /// <summary>
+    /// Constant strings for enum values
+    /// </summary>
+    [Serializable]
+    public static class Values
+    {
+        public const string AmericanIndianOrAlaskaNative = "AMERICAN_INDIAN_OR_ALASKA_NATIVE";
+
+        public const string White = "WHITE";
+
+        public const string Black = "BLACK";
+
+        public const string Asian = "ASIAN";
+
+        public const string NativeHawaiianOrOtherPacificIslander =
+            "NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER";
+
+        public const string MiddleEasternOrNorthAfrican = "MIDDLE_EASTERN_OR_NORTH_AFRICAN";
+
+        public const string Other = "OTHER";
+
+        public const string Unknown = "UNKNOWN";
+
+        public const string Refused = "REFUSED";
+    }
 }

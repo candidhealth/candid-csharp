@@ -1,13 +1,21 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Core;
 using Candid.Net.PreEncounter.Common;
 
-#nullable enable
-
 namespace Candid.Net.PreEncounter.Appointments.V1;
 
-public record MutableAppointment
+/// <summary>
+/// An object representing a appointment.
+/// </summary>
+[Serializable]
+public record MutableAppointment : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// The Candid-defined patient identifier.
     /// </summary>
@@ -83,6 +91,13 @@ public record MutableAppointment
     [JsonPropertyName("work_queue")]
     public AppointmentWorkQueue? WorkQueue { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

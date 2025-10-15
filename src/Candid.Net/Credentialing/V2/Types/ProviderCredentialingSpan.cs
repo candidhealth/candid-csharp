@@ -1,13 +1,19 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
+using Candid.Net.Commons;
 using Candid.Net.Core;
 using Candid.Net.OrganizationProviders.V3;
 
-#nullable enable
-
 namespace Candid.Net.Credentialing.V2;
 
-public record ProviderCredentialingSpan
+[Serializable]
+public record ProviderCredentialingSpan : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("provider_credentialing_span_id")]
     public required string ProviderCredentialingSpanId { get; set; }
 
@@ -21,7 +27,7 @@ public record ProviderCredentialingSpan
     /// The states covered by the credentialing span. A span may be national and cover all states.
     /// </summary>
     [JsonPropertyName("regions")]
-    public required object Regions { get; set; }
+    public required Regions Regions { get; set; }
 
     /// <summary>
     /// Provider ID for the related medallion payer enrollment.
@@ -45,7 +51,7 @@ public record ProviderCredentialingSpan
     /// The payer doing the credentialing.
     /// </summary>
     [JsonPropertyName("payer")]
-    public required Payers.V3.Payer Payer { get; set; }
+    public required Candid.Net.Payers.V3.Payer Payer { get; set; }
 
     /// <summary>
     /// Start date of the credentialing span.
@@ -83,6 +89,13 @@ public record ProviderCredentialingSpan
     [JsonPropertyName("is_enabled")]
     public required bool IsEnabled { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

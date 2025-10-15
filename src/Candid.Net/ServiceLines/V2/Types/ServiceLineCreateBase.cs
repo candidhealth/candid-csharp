@@ -1,14 +1,19 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Commons;
 using Candid.Net.Core;
 using Candid.Net.EncounterProviders.V2;
 
-#nullable enable
-
 namespace Candid.Net.ServiceLines.V2;
 
-public record ServiceLineCreateBase
+[Serializable]
+public record ServiceLineCreateBase : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("procedure_code")]
     public required string ProcedureCode { get; set; }
 
@@ -51,7 +56,7 @@ public record ServiceLineCreateBase
     public DrugIdentification? DrugIdentification { get; set; }
 
     /// <summary>
-    /// 837p Loop2300, SV105. This enum is not used or required for institutional claims. If your organization does not intend to submit claims with a different place of service at the service line level, this field should not be populated. 02 for telemedicine, 11 for in-person. Full list [here](https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set).
+    /// 837p Loop2300, SV105. This enum is not used or required in 837i claims. If your organization does not intend to submit claims with a different place of service at the service line level, this field should not be populated. 02 for telemedicine, 11 for in-person. Full list [here](https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set).
     /// </summary>
     [JsonPropertyName("place_of_service_code")]
     public FacilityTypeCode? PlaceOfServiceCode { get; set; }
@@ -89,6 +94,13 @@ public record ServiceLineCreateBase
     [JsonPropertyName("note")]
     public string? Note { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

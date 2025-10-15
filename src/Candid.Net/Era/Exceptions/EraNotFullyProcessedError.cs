@@ -1,12 +1,11 @@
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.Era;
 
 /// <summary>
 /// This exception type will be thrown for any non-2XX API responses.
 /// </summary>
+[Serializable]
 public class EraNotFullyProcessedError(EraNotFullyProcessedErrorMessage body)
     : CandidApiException("EraNotFullyProcessedError", 409, body)
 {

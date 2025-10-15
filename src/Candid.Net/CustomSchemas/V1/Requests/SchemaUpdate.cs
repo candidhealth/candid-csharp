@@ -1,10 +1,9 @@
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.CustomSchemas.V1;
 
+[Serializable]
 public record SchemaUpdate
 {
     [JsonPropertyName("name")]
@@ -19,6 +18,7 @@ public record SchemaUpdate
     [JsonPropertyName("fields_to_add")]
     public IEnumerable<SchemaField>? FieldsToAdd { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

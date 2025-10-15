@@ -1,15 +1,20 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Commons;
 using Candid.Net.Core;
 using Candid.Net.EncounterProviders.V2;
 using Candid.Net.Invoices.V2;
 
-#nullable enable
-
 namespace Candid.Net.ServiceLines.V2;
 
-public record ServiceLine
+[Serializable]
+public record ServiceLine : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("created_at")]
     public required DateTime CreatedAt { get; set; }
 
@@ -74,7 +79,7 @@ public record ServiceLine
     public IEnumerable<ServiceLineAdjustment>? ServiceLineManualAdjustments { get; set; }
 
     [JsonPropertyName("related_invoices")]
-    public IEnumerable<Invoices.Invoice>? RelatedInvoices { get; set; }
+    public IEnumerable<Candid.Net.Invoices.Invoice>? RelatedInvoices { get; set; }
 
     [JsonPropertyName("related_invoice_info")]
     public IEnumerable<InvoiceInfo>? RelatedInvoiceInfo { get; set; }
@@ -171,6 +176,13 @@ public record ServiceLine
     [JsonPropertyName("note")]
     public string? Note { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

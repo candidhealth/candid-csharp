@@ -1,10 +1,10 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Commons;
 using Candid.Net.Core;
-
-#nullable enable
 
 namespace Candid.Net.Contracts.V2;
 
+[Serializable]
 public record ContractCreate
 {
     /// <summary>
@@ -44,7 +44,7 @@ public record ContractCreate
     /// It may also be set to "national" for the entirety of the US.
     /// </summary>
     [JsonPropertyName("regions")]
-    public required object Regions { get; set; }
+    public required Regions Regions { get; set; }
 
     [JsonPropertyName("contract_status")]
     public ContractStatus? ContractStatus { get; set; }
@@ -56,20 +56,21 @@ public record ContractCreate
     /// The commercial plan insurance types this contract applies.
     /// </summary>
     [JsonPropertyName("commercial_insurance_types")]
-    public required object CommercialInsuranceTypes { get; set; }
+    public required InsuranceTypes CommercialInsuranceTypes { get; set; }
 
     /// <summary>
     /// The Medicare plan insurance types this contract applies.
     /// </summary>
     [JsonPropertyName("medicare_insurance_types")]
-    public required object MedicareInsuranceTypes { get; set; }
+    public required InsuranceTypes MedicareInsuranceTypes { get; set; }
 
     /// <summary>
     /// The Medicaid plan insurance types this contract applies.
     /// </summary>
     [JsonPropertyName("medicaid_insurance_types")]
-    public required object MedicaidInsuranceTypes { get; set; }
+    public required InsuranceTypes MedicaidInsuranceTypes { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

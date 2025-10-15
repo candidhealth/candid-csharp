@@ -1,23 +1,73 @@
-using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.Encounters.V4;
 
-[JsonConverter(typeof(EnumSerializer<PatientHistoryCategoryEnum>))]
-public enum PatientHistoryCategoryEnum
+[JsonConverter(typeof(StringEnumSerializer<PatientHistoryCategoryEnum>))]
+[Serializable]
+public readonly record struct PatientHistoryCategoryEnum : IStringEnum
 {
-    [EnumMember(Value = "present_illness")]
-    PresentIllness,
+    public static readonly PatientHistoryCategoryEnum PresentIllness = new(Values.PresentIllness);
 
-    [EnumMember(Value = "medical")]
-    Medical,
+    public static readonly PatientHistoryCategoryEnum Medical = new(Values.Medical);
 
-    [EnumMember(Value = "family")]
-    Family,
+    public static readonly PatientHistoryCategoryEnum Family = new(Values.Family);
 
-    [EnumMember(Value = "social")]
-    Social,
+    public static readonly PatientHistoryCategoryEnum Social = new(Values.Social);
+
+    public PatientHistoryCategoryEnum(string value)
+    {
+        Value = value;
+    }
+
+    /// <summary>
+    /// The string value of the enum.
+    /// </summary>
+    public string Value { get; }
+
+    /// <summary>
+    /// Create a string enum with the given value.
+    /// </summary>
+    public static PatientHistoryCategoryEnum FromCustom(string value)
+    {
+        return new PatientHistoryCategoryEnum(value);
+    }
+
+    public bool Equals(string? other)
+    {
+        return Value.Equals(other);
+    }
+
+    /// <summary>
+    /// Returns the string value of the enum.
+    /// </summary>
+    public override string ToString()
+    {
+        return Value;
+    }
+
+    public static bool operator ==(PatientHistoryCategoryEnum value1, string value2) =>
+        value1.Value.Equals(value2);
+
+    public static bool operator !=(PatientHistoryCategoryEnum value1, string value2) =>
+        !value1.Value.Equals(value2);
+
+    public static explicit operator string(PatientHistoryCategoryEnum value) => value.Value;
+
+    public static explicit operator PatientHistoryCategoryEnum(string value) => new(value);
+
+    /// <summary>
+    /// Constant strings for enum values
+    /// </summary>
+    [Serializable]
+    public static class Values
+    {
+        public const string PresentIllness = "present_illness";
+
+        public const string Medical = "medical";
+
+        public const string Family = "family";
+
+        public const string Social = "social";
+    }
 }

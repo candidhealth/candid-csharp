@@ -1,194 +1,667 @@
-using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.Encounters.V4;
 
-[JsonConverter(typeof(EnumSerializer<ReportTypeCode>))]
-public enum ReportTypeCode
+[JsonConverter(typeof(StringEnumSerializer<ReportTypeCode>))]
+[Serializable]
+public readonly record struct ReportTypeCode : IStringEnum
 {
-    [EnumMember(Value = "03")]
-    C03,
+    /// <summary>
+    /// Report Justifying Treatment Beyond Utilization Guidelines
+    /// </summary>
+    public static readonly ReportTypeCode C03 = new(Values.C03);
 
-    [EnumMember(Value = "04")]
-    C04,
+    /// <summary>
+    /// Drugs Administered
+    /// </summary>
+    public static readonly ReportTypeCode C04 = new(Values.C04);
 
-    [EnumMember(Value = "05")]
-    C05,
+    /// <summary>
+    /// Treatment Diagnosis
+    /// </summary>
+    public static readonly ReportTypeCode C05 = new(Values.C05);
 
-    [EnumMember(Value = "06")]
-    C06,
+    /// <summary>
+    /// Initial Assessment
+    /// </summary>
+    public static readonly ReportTypeCode C06 = new(Values.C06);
 
-    [EnumMember(Value = "07")]
-    C07,
+    /// <summary>
+    /// Functional Goals
+    /// </summary>
+    public static readonly ReportTypeCode C07 = new(Values.C07);
 
-    [EnumMember(Value = "08")]
-    C08,
+    /// <summary>
+    /// Plan of Treatment
+    /// </summary>
+    public static readonly ReportTypeCode C08 = new(Values.C08);
 
-    [EnumMember(Value = "09")]
-    C09,
+    /// <summary>
+    /// Progress Report
+    /// </summary>
+    public static readonly ReportTypeCode C09 = new(Values.C09);
 
-    [EnumMember(Value = "10")]
-    C10,
+    /// <summary>
+    /// Continued Treatment
+    /// </summary>
+    public static readonly ReportTypeCode C10 = new(Values.C10);
 
-    [EnumMember(Value = "11")]
-    C11,
+    /// <summary>
+    /// Chemical Analysis
+    /// </summary>
+    public static readonly ReportTypeCode C11 = new(Values.C11);
 
-    [EnumMember(Value = "13")]
-    C13,
+    /// <summary>
+    /// Certified Test Report
+    /// </summary>
+    public static readonly ReportTypeCode C13 = new(Values.C13);
 
-    [EnumMember(Value = "15")]
-    C15,
+    /// <summary>
+    /// Justification for Admission
+    /// </summary>
+    public static readonly ReportTypeCode C15 = new(Values.C15);
 
-    [EnumMember(Value = "21")]
-    C21,
+    /// <summary>
+    /// Recovery Plan
+    /// </summary>
+    public static readonly ReportTypeCode C21 = new(Values.C21);
 
-    [EnumMember(Value = "A3")]
-    Ca3,
+    /// <summary>
+    /// Allergies/Sensitivities Document
+    /// </summary>
+    public static readonly ReportTypeCode Ca3 = new(Values.Ca3);
 
-    [EnumMember(Value = "A4")]
-    Ca4,
+    /// <summary>
+    /// Autopsy Report
+    /// </summary>
+    public static readonly ReportTypeCode Ca4 = new(Values.Ca4);
 
-    [EnumMember(Value = "AM")]
-    Cam,
+    /// <summary>
+    /// Ambulance Certification
+    /// </summary>
+    public static readonly ReportTypeCode Cam = new(Values.Cam);
 
-    [EnumMember(Value = "AS")]
-    Cas,
+    /// <summary>
+    /// Admission Summary
+    /// </summary>
+    public static readonly ReportTypeCode Cas = new(Values.Cas);
 
-    [EnumMember(Value = "B2")]
-    Cb2,
+    /// <summary>
+    /// Prescription
+    /// </summary>
+    public static readonly ReportTypeCode Cb2 = new(Values.Cb2);
 
-    [EnumMember(Value = "B3")]
-    Cb3,
+    /// <summary>
+    /// Physician Order
+    /// </summary>
+    public static readonly ReportTypeCode Cb3 = new(Values.Cb3);
 
-    [EnumMember(Value = "B4")]
-    Cb4,
+    /// <summary>
+    /// Referral Form
+    /// </summary>
+    public static readonly ReportTypeCode Cb4 = new(Values.Cb4);
 
-    [EnumMember(Value = "BR")]
-    Cbr,
+    /// <summary>
+    /// Benchmark Testing Results
+    /// </summary>
+    public static readonly ReportTypeCode Cbr = new(Values.Cbr);
 
-    [EnumMember(Value = "BS")]
-    Cbs,
+    /// <summary>
+    /// Baseline
+    /// </summary>
+    public static readonly ReportTypeCode Cbs = new(Values.Cbs);
 
-    [EnumMember(Value = "BT")]
-    Cbt,
+    /// <summary>
+    /// Blanket Test Results
+    /// </summary>
+    public static readonly ReportTypeCode Cbt = new(Values.Cbt);
 
-    [EnumMember(Value = "CB")]
-    Ccb,
+    /// <summary>
+    /// Chiropractic Justification
+    /// </summary>
+    public static readonly ReportTypeCode Ccb = new(Values.Ccb);
 
-    [EnumMember(Value = "CK")]
-    Cck,
+    /// <summary>
+    /// Consent Form(s)
+    /// </summary>
+    public static readonly ReportTypeCode Cck = new(Values.Cck);
 
-    [EnumMember(Value = "CT")]
-    Cct,
+    /// <summary>
+    /// Certification
+    /// </summary>
+    public static readonly ReportTypeCode Cct = new(Values.Cct);
 
-    [EnumMember(Value = "D2")]
-    Cd2,
+    /// <summary>
+    /// Drug Profile Document
+    /// </summary>
+    public static readonly ReportTypeCode Cd2 = new(Values.Cd2);
 
-    [EnumMember(Value = "DA")]
-    Cda,
+    /// <summary>
+    /// Dental Models
+    /// </summary>
+    public static readonly ReportTypeCode Cda = new(Values.Cda);
 
-    [EnumMember(Value = "DB")]
-    Cdb,
+    /// <summary>
+    /// Durable Medical Equipment Prescription
+    /// </summary>
+    public static readonly ReportTypeCode Cdb = new(Values.Cdb);
 
-    [EnumMember(Value = "DG")]
-    Cdg,
+    /// <summary>
+    /// Diagnostic Report
+    /// </summary>
+    public static readonly ReportTypeCode Cdg = new(Values.Cdg);
 
-    [EnumMember(Value = "DJ")]
-    Cdj,
+    /// <summary>
+    /// Discharge Monitoring Report
+    /// </summary>
+    public static readonly ReportTypeCode Cdj = new(Values.Cdj);
 
-    [EnumMember(Value = "DS")]
-    Cds,
+    /// <summary>
+    /// Discharge Summary
+    /// </summary>
+    public static readonly ReportTypeCode Cds = new(Values.Cds);
 
-    [EnumMember(Value = "EB")]
-    Ceb,
+    /// <summary>
+    /// Explanation of Benefits (Coordination of Benefits or Medicare Secondary Payor)
+    /// </summary>
+    public static readonly ReportTypeCode Ceb = new(Values.Ceb);
 
-    [EnumMember(Value = "HC")]
-    Chc,
+    /// <summary>
+    /// Health Certificate
+    /// </summary>
+    public static readonly ReportTypeCode Chc = new(Values.Chc);
 
-    [EnumMember(Value = "HR")]
-    Chr,
+    /// <summary>
+    /// Health Clinic Records
+    /// </summary>
+    public static readonly ReportTypeCode Chr = new(Values.Chr);
 
-    [EnumMember(Value = "I5")]
-    Ci5,
+    /// <summary>
+    /// Immunization Record
+    /// </summary>
+    public static readonly ReportTypeCode Ci5 = new(Values.Ci5);
 
-    [EnumMember(Value = "IR")]
-    Cir,
+    /// <summary>
+    /// State School Immunization Records
+    /// </summary>
+    public static readonly ReportTypeCode Cir = new(Values.Cir);
 
-    [EnumMember(Value = "LA")]
-    Cla,
+    /// <summary>
+    /// Laboratory Results
+    /// </summary>
+    public static readonly ReportTypeCode Cla = new(Values.Cla);
 
-    [EnumMember(Value = "M1")]
-    Cm1,
+    /// <summary>
+    /// Medical Record Attachment
+    /// </summary>
+    public static readonly ReportTypeCode Cm1 = new(Values.Cm1);
 
-    [EnumMember(Value = "MT")]
-    Cmt,
+    /// <summary>
+    /// Models
+    /// </summary>
+    public static readonly ReportTypeCode Cmt = new(Values.Cmt);
 
-    [EnumMember(Value = "NN")]
-    Cnn,
+    /// <summary>
+    /// Nursing Notes
+    /// </summary>
+    public static readonly ReportTypeCode Cnn = new(Values.Cnn);
 
-    [EnumMember(Value = "OB")]
-    Cob,
+    /// <summary>
+    /// Operative Note
+    /// </summary>
+    public static readonly ReportTypeCode Cob = new(Values.Cob);
 
-    [EnumMember(Value = "OC")]
-    Coc,
+    /// <summary>
+    /// Oxygen Content Averaging Report
+    /// </summary>
+    public static readonly ReportTypeCode Coc = new(Values.Coc);
 
-    [EnumMember(Value = "OD")]
-    Cod,
+    /// <summary>
+    /// Orders and Treatments Document
+    /// </summary>
+    public static readonly ReportTypeCode Cod = new(Values.Cod);
 
-    [EnumMember(Value = "OE")]
-    Coe,
+    /// <summary>
+    /// Objective Physical Examination (including vital signs) Document
+    /// </summary>
+    public static readonly ReportTypeCode Coe = new(Values.Coe);
 
-    [EnumMember(Value = "OX")]
-    Cox,
+    /// <summary>
+    /// Oxygen Therapy Certification
+    /// </summary>
+    public static readonly ReportTypeCode Cox = new(Values.Cox);
 
-    [EnumMember(Value = "OZ")]
-    Coz,
+    /// <summary>
+    /// Support Data for Claim
+    /// </summary>
+    public static readonly ReportTypeCode Coz = new(Values.Coz);
 
-    [EnumMember(Value = "P4")]
-    Cp4,
+    /// <summary>
+    /// Pathology Report
+    /// </summary>
+    public static readonly ReportTypeCode Cp4 = new(Values.Cp4);
 
-    [EnumMember(Value = "P5")]
-    Cp5,
+    /// <summary>
+    /// Patient Medical History Document
+    /// </summary>
+    public static readonly ReportTypeCode Cp5 = new(Values.Cp5);
 
-    [EnumMember(Value = "PE")]
-    Cpe,
+    /// <summary>
+    /// Parenteral or Enteral Certification
+    /// </summary>
+    public static readonly ReportTypeCode Cpe = new(Values.Cpe);
 
-    [EnumMember(Value = "PN")]
-    Cpn,
+    /// <summary>
+    /// Physical Therapy Notes
+    /// </summary>
+    public static readonly ReportTypeCode Cpn = new(Values.Cpn);
 
-    [EnumMember(Value = "PO")]
-    Cpo,
+    /// <summary>
+    /// Prosthetics or Orthotic Certification
+    /// </summary>
+    public static readonly ReportTypeCode Cpo = new(Values.Cpo);
 
-    [EnumMember(Value = "PQ")]
-    Cpq,
+    /// <summary>
+    /// Paramedical Results
+    /// </summary>
+    public static readonly ReportTypeCode Cpq = new(Values.Cpq);
 
-    [EnumMember(Value = "PY")]
-    Cpy,
+    /// <summary>
+    /// Physician's Report
+    /// </summary>
+    public static readonly ReportTypeCode Cpy = new(Values.Cpy);
 
-    [EnumMember(Value = "PZ")]
-    Cpz,
+    /// <summary>
+    /// Physical Therapy Certification
+    /// </summary>
+    public static readonly ReportTypeCode Cpz = new(Values.Cpz);
 
-    [EnumMember(Value = "RB")]
-    Crb,
+    /// <summary>
+    /// Radiology Films
+    /// </summary>
+    public static readonly ReportTypeCode Crb = new(Values.Crb);
 
-    [EnumMember(Value = "RR")]
-    Crr,
+    /// <summary>
+    /// Radiology Reports
+    /// </summary>
+    public static readonly ReportTypeCode Crr = new(Values.Crr);
 
-    [EnumMember(Value = "RT")]
-    Crt,
+    /// <summary>
+    /// Report of Tests and Analysis Report
+    /// </summary>
+    public static readonly ReportTypeCode Crt = new(Values.Crt);
 
-    [EnumMember(Value = "RX")]
-    Crx,
+    /// <summary>
+    /// Renewable Oxygen Content Averaging Report
+    /// </summary>
+    public static readonly ReportTypeCode Crx = new(Values.Crx);
 
-    [EnumMember(Value = "SG")]
-    Csg,
+    /// <summary>
+    /// Symptoms Document
+    /// </summary>
+    public static readonly ReportTypeCode Csg = new(Values.Csg);
 
-    [EnumMember(Value = "V5")]
-    Cv5,
+    /// <summary>
+    /// Death Notification
+    /// </summary>
+    public static readonly ReportTypeCode Cv5 = new(Values.Cv5);
 
-    [EnumMember(Value = "XP")]
-    Cxp,
+    /// <summary>
+    /// Photographs
+    /// </summary>
+    public static readonly ReportTypeCode Cxp = new(Values.Cxp);
+
+    public ReportTypeCode(string value)
+    {
+        Value = value;
+    }
+
+    /// <summary>
+    /// The string value of the enum.
+    /// </summary>
+    public string Value { get; }
+
+    /// <summary>
+    /// Create a string enum with the given value.
+    /// </summary>
+    public static ReportTypeCode FromCustom(string value)
+    {
+        return new ReportTypeCode(value);
+    }
+
+    public bool Equals(string? other)
+    {
+        return Value.Equals(other);
+    }
+
+    /// <summary>
+    /// Returns the string value of the enum.
+    /// </summary>
+    public override string ToString()
+    {
+        return Value;
+    }
+
+    public static bool operator ==(ReportTypeCode value1, string value2) =>
+        value1.Value.Equals(value2);
+
+    public static bool operator !=(ReportTypeCode value1, string value2) =>
+        !value1.Value.Equals(value2);
+
+    public static explicit operator string(ReportTypeCode value) => value.Value;
+
+    public static explicit operator ReportTypeCode(string value) => new(value);
+
+    /// <summary>
+    /// Constant strings for enum values
+    /// </summary>
+    [Serializable]
+    public static class Values
+    {
+        /// <summary>
+        /// Report Justifying Treatment Beyond Utilization Guidelines
+        /// </summary>
+        public const string C03 = "03";
+
+        /// <summary>
+        /// Drugs Administered
+        /// </summary>
+        public const string C04 = "04";
+
+        /// <summary>
+        /// Treatment Diagnosis
+        /// </summary>
+        public const string C05 = "05";
+
+        /// <summary>
+        /// Initial Assessment
+        /// </summary>
+        public const string C06 = "06";
+
+        /// <summary>
+        /// Functional Goals
+        /// </summary>
+        public const string C07 = "07";
+
+        /// <summary>
+        /// Plan of Treatment
+        /// </summary>
+        public const string C08 = "08";
+
+        /// <summary>
+        /// Progress Report
+        /// </summary>
+        public const string C09 = "09";
+
+        /// <summary>
+        /// Continued Treatment
+        /// </summary>
+        public const string C10 = "10";
+
+        /// <summary>
+        /// Chemical Analysis
+        /// </summary>
+        public const string C11 = "11";
+
+        /// <summary>
+        /// Certified Test Report
+        /// </summary>
+        public const string C13 = "13";
+
+        /// <summary>
+        /// Justification for Admission
+        /// </summary>
+        public const string C15 = "15";
+
+        /// <summary>
+        /// Recovery Plan
+        /// </summary>
+        public const string C21 = "21";
+
+        /// <summary>
+        /// Allergies/Sensitivities Document
+        /// </summary>
+        public const string Ca3 = "A3";
+
+        /// <summary>
+        /// Autopsy Report
+        /// </summary>
+        public const string Ca4 = "A4";
+
+        /// <summary>
+        /// Ambulance Certification
+        /// </summary>
+        public const string Cam = "AM";
+
+        /// <summary>
+        /// Admission Summary
+        /// </summary>
+        public const string Cas = "AS";
+
+        /// <summary>
+        /// Prescription
+        /// </summary>
+        public const string Cb2 = "B2";
+
+        /// <summary>
+        /// Physician Order
+        /// </summary>
+        public const string Cb3 = "B3";
+
+        /// <summary>
+        /// Referral Form
+        /// </summary>
+        public const string Cb4 = "B4";
+
+        /// <summary>
+        /// Benchmark Testing Results
+        /// </summary>
+        public const string Cbr = "BR";
+
+        /// <summary>
+        /// Baseline
+        /// </summary>
+        public const string Cbs = "BS";
+
+        /// <summary>
+        /// Blanket Test Results
+        /// </summary>
+        public const string Cbt = "BT";
+
+        /// <summary>
+        /// Chiropractic Justification
+        /// </summary>
+        public const string Ccb = "CB";
+
+        /// <summary>
+        /// Consent Form(s)
+        /// </summary>
+        public const string Cck = "CK";
+
+        /// <summary>
+        /// Certification
+        /// </summary>
+        public const string Cct = "CT";
+
+        /// <summary>
+        /// Drug Profile Document
+        /// </summary>
+        public const string Cd2 = "D2";
+
+        /// <summary>
+        /// Dental Models
+        /// </summary>
+        public const string Cda = "DA";
+
+        /// <summary>
+        /// Durable Medical Equipment Prescription
+        /// </summary>
+        public const string Cdb = "DB";
+
+        /// <summary>
+        /// Diagnostic Report
+        /// </summary>
+        public const string Cdg = "DG";
+
+        /// <summary>
+        /// Discharge Monitoring Report
+        /// </summary>
+        public const string Cdj = "DJ";
+
+        /// <summary>
+        /// Discharge Summary
+        /// </summary>
+        public const string Cds = "DS";
+
+        /// <summary>
+        /// Explanation of Benefits (Coordination of Benefits or Medicare Secondary Payor)
+        /// </summary>
+        public const string Ceb = "EB";
+
+        /// <summary>
+        /// Health Certificate
+        /// </summary>
+        public const string Chc = "HC";
+
+        /// <summary>
+        /// Health Clinic Records
+        /// </summary>
+        public const string Chr = "HR";
+
+        /// <summary>
+        /// Immunization Record
+        /// </summary>
+        public const string Ci5 = "I5";
+
+        /// <summary>
+        /// State School Immunization Records
+        /// </summary>
+        public const string Cir = "IR";
+
+        /// <summary>
+        /// Laboratory Results
+        /// </summary>
+        public const string Cla = "LA";
+
+        /// <summary>
+        /// Medical Record Attachment
+        /// </summary>
+        public const string Cm1 = "M1";
+
+        /// <summary>
+        /// Models
+        /// </summary>
+        public const string Cmt = "MT";
+
+        /// <summary>
+        /// Nursing Notes
+        /// </summary>
+        public const string Cnn = "NN";
+
+        /// <summary>
+        /// Operative Note
+        /// </summary>
+        public const string Cob = "OB";
+
+        /// <summary>
+        /// Oxygen Content Averaging Report
+        /// </summary>
+        public const string Coc = "OC";
+
+        /// <summary>
+        /// Orders and Treatments Document
+        /// </summary>
+        public const string Cod = "OD";
+
+        /// <summary>
+        /// Objective Physical Examination (including vital signs) Document
+        /// </summary>
+        public const string Coe = "OE";
+
+        /// <summary>
+        /// Oxygen Therapy Certification
+        /// </summary>
+        public const string Cox = "OX";
+
+        /// <summary>
+        /// Support Data for Claim
+        /// </summary>
+        public const string Coz = "OZ";
+
+        /// <summary>
+        /// Pathology Report
+        /// </summary>
+        public const string Cp4 = "P4";
+
+        /// <summary>
+        /// Patient Medical History Document
+        /// </summary>
+        public const string Cp5 = "P5";
+
+        /// <summary>
+        /// Parenteral or Enteral Certification
+        /// </summary>
+        public const string Cpe = "PE";
+
+        /// <summary>
+        /// Physical Therapy Notes
+        /// </summary>
+        public const string Cpn = "PN";
+
+        /// <summary>
+        /// Prosthetics or Orthotic Certification
+        /// </summary>
+        public const string Cpo = "PO";
+
+        /// <summary>
+        /// Paramedical Results
+        /// </summary>
+        public const string Cpq = "PQ";
+
+        /// <summary>
+        /// Physician's Report
+        /// </summary>
+        public const string Cpy = "PY";
+
+        /// <summary>
+        /// Physical Therapy Certification
+        /// </summary>
+        public const string Cpz = "PZ";
+
+        /// <summary>
+        /// Radiology Films
+        /// </summary>
+        public const string Crb = "RB";
+
+        /// <summary>
+        /// Radiology Reports
+        /// </summary>
+        public const string Crr = "RR";
+
+        /// <summary>
+        /// Report of Tests and Analysis Report
+        /// </summary>
+        public const string Crt = "RT";
+
+        /// <summary>
+        /// Renewable Oxygen Content Averaging Report
+        /// </summary>
+        public const string Crx = "RX";
+
+        /// <summary>
+        /// Symptoms Document
+        /// </summary>
+        public const string Csg = "SG";
+
+        /// <summary>
+        /// Death Notification
+        /// </summary>
+        public const string Cv5 = "V5";
+
+        /// <summary>
+        /// Photographs
+        /// </summary>
+        public const string Cxp = "XP";
+    }
 }

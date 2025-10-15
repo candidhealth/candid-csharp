@@ -3,8 +3,6 @@ using System.Text.Json;
 using System.Threading;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.CustomSchemas.V1;
 
 public partial class V1Client
@@ -19,29 +17,29 @@ public partial class V1Client
     /// <summary>
     /// Returns all custom schemas.
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.CustomSchemas.V1.GetMultiAsync();
-    /// </code>
-    /// </example>
-    public async Task<SchemaGetMultiResponse> GetMultiAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<SchemaGetMultiResponse> GetMultiAsync(
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.CandidApi,
-                Method = HttpMethod.Get,
-                Path = "/api/custom-schemas/v1",
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Get,
+                    Path = "/api/custom-schemas/v1",
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<SchemaGetMultiResponse>(responseBody)!;
@@ -52,40 +50,46 @@ public partial class V1Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
     /// Return a custom schema with a given ID.
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.CustomSchemas.V1.GetAsync("ec096b13-f80a-471d-aaeb-54b021c9d582");
-    /// </code>
-    /// </example>
-    public async Task<Schema> GetAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<Schema> GetAsync(
         string schemaId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.CandidApi,
-                Method = HttpMethod.Get,
-                Path = $"/api/custom-schemas/v1/{schemaId}",
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Get,
+                    Path = string.Format(
+                        "/api/custom-schemas/v1/{0}",
+                        ValueConvert.ToPathParameterString(schemaId)
+                    ),
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<Schema>(responseBody)!;
@@ -96,19 +100,21 @@ public partial class V1Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
     /// Create custom schema with a set of typed keys. Schema keys can be referenced as inputs in user-configurable rules in the Rules
     /// Engine, and key-value pairs can be attached to claims via the Encounters API.
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.CustomSchemas.V1.CreateAsync(
     ///     new SchemaCreate
     ///     {
@@ -123,28 +129,29 @@ public partial class V1Client
     ///         },
     ///     }
     /// );
-    /// </code>
-    /// </example>
-    public async Task<Schema> CreateAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<Schema> CreateAsync(
         SchemaCreate request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.CandidApi,
-                Method = HttpMethod.Post,
-                Path = "/api/custom-schemas/v1",
-                Body = request,
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Post,
+                    Path = "/api/custom-schemas/v1",
+                    Body = request,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<Schema>(responseBody)!;
@@ -155,18 +162,20 @@ public partial class V1Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
     /// Update the name, description, or keys on a preexisting schema.
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.CustomSchemas.V1.UpdateAsync(
     ///     "ec096b13-f80a-471d-aaeb-54b021c9d582",
     ///     new SchemaUpdate
@@ -179,29 +188,33 @@ public partial class V1Client
     ///         },
     ///     }
     /// );
-    /// </code>
-    /// </example>
-    public async Task<Schema> UpdateAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<Schema> UpdateAsync(
         string schemaId,
         SchemaUpdate request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.CandidApi,
-                Method = HttpMethodExtensions.Patch,
-                Path = $"/api/custom-schemas/v1/{schemaId}",
-                Body = request,
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethodExtensions.Patch,
+                    Path = string.Format(
+                        "/api/custom-schemas/v1/{0}",
+                        ValueConvert.ToPathParameterString(schemaId)
+                    ),
+                    Body = request,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<Schema>(responseBody)!;
@@ -212,10 +225,13 @@ public partial class V1Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 }

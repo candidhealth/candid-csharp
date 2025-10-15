@@ -1,16 +1,18 @@
+using System.Text.Json.Serialization;
 using Candid.Net.Core;
-
-#nullable enable
 
 namespace Candid.Net.NonInsurancePayers.V1;
 
+[Serializable]
 public record GetMultiNonInsurancePayersRequest
 {
+    [JsonIgnore]
     public string? Name { get; set; }
 
     /// <summary>
     /// Fuzzy-match category names of non-insurance payers.
     /// </summary>
+    [JsonIgnore]
     public string? Category { get; set; }
 
     /// <summary>
@@ -18,6 +20,7 @@ public record GetMultiNonInsurancePayersRequest
     /// When multiple are present, non-insurance payers with any of the specified
     /// categories will be matched.
     /// </summary>
+    [JsonIgnore]
     public IEnumerable<string> CategoriesExact { get; set; } = new List<string>();
 
     /// <summary>
@@ -25,21 +28,28 @@ public record GetMultiNonInsurancePayersRequest
     /// When multiple are present, non-insurance payers with any of the specified
     /// clinical trials will be matched.
     /// </summary>
+    [JsonIgnore]
     public IEnumerable<string> ClinicalTrialIds { get; set; } = new List<string>();
 
+    [JsonIgnore]
     public bool? Enabled { get; set; }
 
+    [JsonIgnore]
     public NonInsurancePayerSortField? Sort { get; set; }
 
-    public Commons.SortDirection? SortDirection { get; set; }
+    [JsonIgnore]
+    public Candid.Net.Commons.SortDirection? SortDirection { get; set; }
 
     /// <summary>
     /// Defaults to 100
     /// </summary>
+    [JsonIgnore]
     public int? Limit { get; set; }
 
+    [JsonIgnore]
     public string? PageToken { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

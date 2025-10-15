@@ -3,8 +3,6 @@ using System.Text.Json;
 using System.Threading;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.PatientAr.V1;
 
 public partial class V1Client
@@ -22,12 +20,10 @@ public partial class V1Client
     /// Retrieve a list of inventory records based on the provided filters. Each inventory record provides the latest invoiceable status of the associated claim.
     /// The response is paginated, and the `page_token` can be used to retrieve subsequent pages. Initial requests should not include `page_token`.
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.PatientAr.V1.ListInventoryAsync(new GetInventoryRecordsRequest());
-    /// </code>
-    /// </example>
-    public async Task<ListInventoryPagedResponse> ListInventoryAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<ListInventoryPagedResponse> ListInventoryAsync(
         GetInventoryRecordsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -40,26 +36,28 @@ public partial class V1Client
         }
         if (request.Limit != null)
         {
-            _query["limit"] = request.Limit.ToString();
+            _query["limit"] = request.Limit.Value.ToString();
         }
         if (request.PageToken != null)
         {
             _query["page_token"] = request.PageToken;
         }
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.CandidApi,
-                Method = HttpMethod.Get,
-                Path = "/api/patient-ar/v1/inventory",
-                Query = _query,
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Get,
+                    Path = "/api/patient-ar/v1/inventory",
+                    Query = _query,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<ListInventoryPagedResponse>(responseBody)!;
@@ -70,11 +68,14 @@ public partial class V1Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
@@ -82,30 +83,33 @@ public partial class V1Client
     ///
     /// Provides detailed itemization of invoice data for a specific claim.
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.PatientAr.V1.ItemizeAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
-    /// </code>
-    /// </example>
-    public async Task<InvoiceItemizationResponse> ItemizeAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<InvoiceItemizationResponse> ItemizeAsync(
         string claimId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.CandidApi,
-                Method = HttpMethod.Get,
-                Path = $"/api/patient-ar/v1/invoice-itemization/{claimId}",
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Get,
+                    Path = string.Format(
+                        "/api/patient-ar/v1/invoice-itemization/{0}",
+                        ValueConvert.ToPathParameterString(claimId)
+                    ),
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<InvoiceItemizationResponse>(responseBody)!;
@@ -116,10 +120,13 @@ public partial class V1Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 }

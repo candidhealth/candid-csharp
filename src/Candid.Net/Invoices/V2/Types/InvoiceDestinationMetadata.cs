@@ -1,12 +1,17 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Core;
-
-#nullable enable
 
 namespace Candid.Net.Invoices.V2;
 
-public record InvoiceDestinationMetadata
+[Serializable]
+public record InvoiceDestinationMetadata : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// Defines which third-party service this invoice was created in
     /// </summary>
@@ -31,6 +36,13 @@ public record InvoiceDestinationMetadata
     [JsonPropertyName("destination_status")]
     public string? DestinationStatus { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

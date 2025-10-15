@@ -1,20 +1,25 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Core;
-
-#nullable enable
 
 namespace Candid.Net.WriteOffs.V1;
 
-public record InsuranceWriteOff
+[Serializable]
+public record InsuranceWriteOff : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("write_off_id")]
     public required string WriteOffId { get; set; }
 
     [JsonPropertyName("payer")]
-    public required Payers.V3.Payer Payer { get; set; }
+    public required Candid.Net.Payers.V3.Payer Payer { get; set; }
 
     [JsonPropertyName("write_off_target")]
-    public required object WriteOffTarget { get; set; }
+    public required InsuranceWriteOffTarget WriteOffTarget { get; set; }
 
     [JsonPropertyName("write_off_timestamp")]
     public required DateTime WriteOffTimestamp { get; set; }
@@ -34,6 +39,13 @@ public record InsuranceWriteOff
     [JsonPropertyName("amount_cents")]
     public required int AmountCents { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

@@ -3,8 +3,6 @@ using System.Text.Json;
 using System.Threading;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.Credentialing.V2;
 
 public partial class V2Client
@@ -16,8 +14,7 @@ public partial class V2Client
         _client = client;
     }
 
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.Credentialing.V2.CreateFacilityAsync(
     ///     new FacilityCredentialingSpanCreate
     ///     {
@@ -26,28 +23,29 @@ public partial class V2Client
     ///         PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///     }
     /// );
-    /// </code>
-    /// </example>
-    public async Task<FacilityCredentialingSpan> CreateFacilityAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<FacilityCredentialingSpan> CreateFacilityAsync(
         FacilityCredentialingSpanCreate request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.CandidApi,
-                Method = HttpMethod.Post,
-                Path = "/api/provider-credentialing-span/v2/facility",
-                Body = request,
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Post,
+                    Path = "/api/provider-credentialing-span/v2/facility",
+                    Body = request,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<FacilityCredentialingSpan>(responseBody)!;
@@ -58,37 +56,43 @@ public partial class V2Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.Credentialing.V2.GetFacilityAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
-    /// </code>
-    /// </example>
-    public async Task<FacilityCredentialingSpan> GetFacilityAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<FacilityCredentialingSpan> GetFacilityAsync(
         string facilityCredentialingId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.CandidApi,
-                Method = HttpMethod.Get,
-                Path = $"/api/provider-credentialing-span/v2/facility/{facilityCredentialingId}",
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Get,
+                    Path = string.Format(
+                        "/api/provider-credentialing-span/v2/facility/{0}",
+                        ValueConvert.ToPathParameterString(facilityCredentialingId)
+                    ),
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<FacilityCredentialingSpan>(responseBody)!;
@@ -99,19 +103,20 @@ public partial class V2Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.Credentialing.V2.GetAllFacilitiesAsync(new GetAllFacilityCredentialingSpansRequest());
-    /// </code>
-    /// </example>
-    public async Task<FacilityCredentialingSpanPage> GetAllFacilitiesAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<FacilityCredentialingSpanPage> GetAllFacilitiesAsync(
         GetAllFacilityCredentialingSpansRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -120,7 +125,7 @@ public partial class V2Client
         var _query = new Dictionary<string, object>();
         if (request.Limit != null)
         {
-            _query["limit"] = request.Limit.ToString();
+            _query["limit"] = request.Limit.Value.ToString();
         }
         if (request.PageToken != null)
         {
@@ -128,30 +133,32 @@ public partial class V2Client
         }
         if (request.PayerUuid != null)
         {
-            _query["payer_uuid"] = request.PayerUuid.ToString();
+            _query["payer_uuid"] = request.PayerUuid;
         }
         if (request.ContractingProviderId != null)
         {
-            _query["contracting_provider_id"] = request.ContractingProviderId.ToString();
+            _query["contracting_provider_id"] = request.ContractingProviderId;
         }
         if (request.ServiceFacilityId != null)
         {
-            _query["service_facility_id"] = request.ServiceFacilityId.ToString();
+            _query["service_facility_id"] = request.ServiceFacilityId;
         }
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.CandidApi,
-                Method = HttpMethod.Get,
-                Path = "/api/provider-credentialing-span/v2/facility",
-                Query = _query,
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Get,
+                    Path = "/api/provider-credentialing-span/v2/facility",
+                    Query = _query,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<FacilityCredentialingSpanPage>(responseBody)!;
@@ -162,51 +169,58 @@ public partial class V2Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
     /// Soft deletes a credentialing span rate from the system.
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.Credentialing.V2.DeleteFacilityAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
-    /// </code>
-    /// </example>
+    /// </code></example>
     public async System.Threading.Tasks.Task DeleteFacilityAsync(
         string facilityCredentialingId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.CandidApi,
-                Method = HttpMethod.Delete,
-                Path = $"/api/provider-credentialing-span/v2/facility/{facilityCredentialingId}",
-                Options = options,
-            },
-            cancellationToken
-        );
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Delete,
+                    Path = string.Format(
+                        "/api/provider-credentialing-span/v2/facility/{0}",
+                        ValueConvert.ToPathParameterString(facilityCredentialingId)
+                    ),
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
             return;
         }
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.Credentialing.V2.UpdateFacilityAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///     new FacilityCredentialingSpanUpdate
@@ -214,29 +228,33 @@ public partial class V2Client
     ///         ContractingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///     }
     /// );
-    /// </code>
-    /// </example>
-    public async Task<FacilityCredentialingSpan> UpdateFacilityAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<FacilityCredentialingSpan> UpdateFacilityAsync(
         string facilityCredentialingId,
         FacilityCredentialingSpanUpdate request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.CandidApi,
-                Method = HttpMethodExtensions.Patch,
-                Path = $"/api/provider-credentialing-span/v2/facility/{facilityCredentialingId}",
-                Body = request,
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethodExtensions.Patch,
+                    Path = string.Format(
+                        "/api/provider-credentialing-span/v2/facility/{0}",
+                        ValueConvert.ToPathParameterString(facilityCredentialingId)
+                    ),
+                    Body = request,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<FacilityCredentialingSpan>(responseBody)!;
@@ -247,49 +265,56 @@ public partial class V2Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.Credentialing.V2.CreateAsync(
     ///     new ProviderCredentialingSpanCreate
     ///     {
     ///         RenderingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///         ContractingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///         PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         Regions = new RegionStates
-    ///         {
-    ///             States = new List&lt;State&gt;() { State.Aa, State.Aa },
-    ///         },
+    ///         Regions = new Regions(
+    ///             new Regions.States(
+    ///                 new RegionStates
+    ///                 {
+    ///                     States = new List&lt;State&gt;() { State.Aa, State.Aa },
+    ///                 }
+    ///             )
+    ///         ),
     ///     }
     /// );
-    /// </code>
-    /// </example>
-    public async Task<ProviderCredentialingSpan> CreateAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<ProviderCredentialingSpan> CreateAsync(
         ProviderCredentialingSpanCreate request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.CandidApi,
-                Method = HttpMethod.Post,
-                Path = "/api/provider-credentialing-span/v2",
-                Body = request,
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Post,
+                    Path = "/api/provider-credentialing-span/v2",
+                    Body = request,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<ProviderCredentialingSpan>(responseBody)!;
@@ -300,37 +325,43 @@ public partial class V2Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.Credentialing.V2.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
-    /// </code>
-    /// </example>
-    public async Task<ProviderCredentialingSpan> GetAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<ProviderCredentialingSpan> GetAsync(
         string providerCredentialingId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.CandidApi,
-                Method = HttpMethod.Get,
-                Path = $"/api/provider-credentialing-span/v2/{providerCredentialingId}",
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Get,
+                    Path = string.Format(
+                        "/api/provider-credentialing-span/v2/{0}",
+                        ValueConvert.ToPathParameterString(providerCredentialingId)
+                    ),
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<ProviderCredentialingSpan>(responseBody)!;
@@ -341,19 +372,20 @@ public partial class V2Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.Credentialing.V2.GetAllAsync(new GetAllProviderCredentialingSpansRequest());
-    /// </code>
-    /// </example>
-    public async Task<ProviderCredentialingSpanPage> GetAllAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<ProviderCredentialingSpanPage> GetAllAsync(
         GetAllProviderCredentialingSpansRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -362,7 +394,7 @@ public partial class V2Client
         var _query = new Dictionary<string, object>();
         if (request.Limit != null)
         {
-            _query["limit"] = request.Limit.ToString();
+            _query["limit"] = request.Limit.Value.ToString();
         }
         if (request.PageToken != null)
         {
@@ -370,34 +402,40 @@ public partial class V2Client
         }
         if (request.PayerUuid != null)
         {
-            _query["payer_uuid"] = request.PayerUuid.ToString();
+            _query["payer_uuid"] = request.PayerUuid;
         }
         if (request.ProviderId != null)
         {
-            _query["provider_id"] = request.ProviderId.ToString();
+            _query["provider_id"] = request.ProviderId;
         }
         if (request.AsRenderingProvider != null)
         {
-            _query["as_rendering_provider"] = request.AsRenderingProvider.ToString();
+            _query["as_rendering_provider"] = JsonUtils.Serialize(
+                request.AsRenderingProvider.Value
+            );
         }
         if (request.AsContractingProvider != null)
         {
-            _query["as_contracting_provider"] = request.AsContractingProvider.ToString();
+            _query["as_contracting_provider"] = JsonUtils.Serialize(
+                request.AsContractingProvider.Value
+            );
         }
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.CandidApi,
-                Method = HttpMethod.Get,
-                Path = "/api/provider-credentialing-span/v2",
-                Query = _query,
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Get,
+                    Path = "/api/provider-credentialing-span/v2",
+                    Query = _query,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<ProviderCredentialingSpanPage>(responseBody)!;
@@ -408,78 +446,89 @@ public partial class V2Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
     /// Soft deletes a credentialing span rate from the system.
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.Credentialing.V2.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
-    /// </code>
-    /// </example>
+    /// </code></example>
     public async System.Threading.Tasks.Task DeleteAsync(
         string providerCredentialingId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.CandidApi,
-                Method = HttpMethod.Delete,
-                Path = $"/api/provider-credentialing-span/v2/{providerCredentialingId}",
-                Options = options,
-            },
-            cancellationToken
-        );
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Delete,
+                    Path = string.Format(
+                        "/api/provider-credentialing-span/v2/{0}",
+                        ValueConvert.ToPathParameterString(providerCredentialingId)
+                    ),
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
             return;
         }
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.Credentialing.V2.UpdateAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///     new ProviderCredentialingSpanUpdate()
     /// );
-    /// </code>
-    /// </example>
-    public async Task<ProviderCredentialingSpan> UpdateAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<ProviderCredentialingSpan> UpdateAsync(
         string providerCredentialingId,
         ProviderCredentialingSpanUpdate request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.CandidApi,
-                Method = HttpMethodExtensions.Patch,
-                Path = $"/api/provider-credentialing-span/v2/{providerCredentialingId}",
-                Body = request,
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethodExtensions.Patch,
+                    Path = string.Format(
+                        "/api/provider-credentialing-span/v2/{0}",
+                        ValueConvert.ToPathParameterString(providerCredentialingId)
+                    ),
+                    Body = request,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<ProviderCredentialingSpan>(responseBody)!;
@@ -490,10 +539,13 @@ public partial class V2Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 }

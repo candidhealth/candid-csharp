@@ -1,4 +1,6 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Commons;
 using Candid.Net.Core;
 using Candid.Net.CustomSchemas.V1;
@@ -8,12 +10,15 @@ using Candid.Net.Guarantor.V1;
 using Candid.Net.Individual;
 using Candid.Net.ServiceFacility;
 
-#nullable enable
-
 namespace Candid.Net.EncountersUniversal;
 
-public record UniversalEncounterUpdateBase
+[Serializable]
+public record UniversalEncounterUpdateBase : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// Refers to Box 24H on the CMS1500 form and Loop 2300 CRC - EPSDT Referral on the 837P and 837i form
     /// </summary>
@@ -289,6 +294,13 @@ public record UniversalEncounterUpdateBase
     [JsonPropertyName("secondary_payer_carrier_code")]
     public string? SecondaryPayerCarrierCode { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

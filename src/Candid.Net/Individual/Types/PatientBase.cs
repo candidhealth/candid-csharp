@@ -1,13 +1,18 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Commons;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.Individual;
 
-public record PatientBase
+[Serializable]
+public record PatientBase : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// The ID used to identify this individual in your system. For example, your internal patient ID or an EHR patient ID.
     /// </summary>
@@ -35,6 +40,13 @@ public record PatientBase
     [JsonPropertyName("gender")]
     public required Gender Gender { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

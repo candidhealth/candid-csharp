@@ -1,15 +1,11 @@
 using Candid.Net.Core;
 using Candid.Net.PreEncounter.Appointments;
-using Candid.Net.PreEncounter.Common;
 using Candid.Net.PreEncounter.Coverages;
 using Candid.Net.PreEncounter.EligibilityChecks;
 using Candid.Net.PreEncounter.Images;
 using Candid.Net.PreEncounter.Lists;
 using Candid.Net.PreEncounter.Notes;
 using Candid.Net.PreEncounter.Patients;
-using Candid.Net.PreEncounter.Tags;
-
-#nullable enable
 
 namespace Candid.Net.PreEncounter;
 
@@ -27,8 +23,7 @@ public partial class PreEncounterClient
         Lists = new ListsClient(_client);
         Notes = new NotesClient(_client);
         Patients = new PatientsClient(_client);
-        Tags = new TagsClient(_client);
-        Common = new CommonClient(_client);
+        Tags = new Candid.Net.PreEncounter.Tags.TagsClient(_client);
     }
 
     public AppointmentsClient Appointments { get; }
@@ -45,7 +40,5 @@ public partial class PreEncounterClient
 
     public PatientsClient Patients { get; }
 
-    public TagsClient Tags { get; }
-
-    public CommonClient Common { get; }
+    public Candid.Net.PreEncounter.Tags.TagsClient Tags { get; }
 }

@@ -1,14 +1,19 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Commons;
 using Candid.Net.Core;
 using Candid.Net.InsuranceCards.V2;
 
-#nullable enable
-
 namespace Candid.Net.Individual;
 
-public record Subscriber
+[Serializable]
+public record Subscriber : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("individual_id")]
     public required string IndividualId { get; set; }
 
@@ -33,6 +38,13 @@ public record Subscriber
     [JsonPropertyName("gender")]
     public required Gender Gender { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

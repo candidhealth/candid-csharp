@@ -1,8 +1,6 @@
 using Candid.Net.Auth.Default;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.Auth;
 
 public partial class AuthClient

@@ -1,4 +1,6 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.BillingNotes.V2;
 using Candid.Net.ClaimSubmission.V1;
 using Candid.Net.Commons;
@@ -9,12 +11,15 @@ using Candid.Net.EncounterProviders.V2;
 using Candid.Net.ServiceFacility;
 using Candid.Net.ServiceLines.V2;
 
-#nullable enable
-
 namespace Candid.Net.Encounters.V4;
 
-public record EncounterCreateFromPreEncounter
+[Serializable]
+public record EncounterCreateFromPreEncounter : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// The rendering provider is the practitioner -- physician, nurse practitioner, etc. -- performing the service.
     /// For telehealth services, the rendering provider performs the visit, asynchronous communication, or other service. The rendering provider address should generally be the same as the service facility address.
@@ -260,6 +265,13 @@ public record EncounterCreateFromPreEncounter
     [JsonPropertyName("delay_reason_code")]
     public DelayReasonCode? DelayReasonCode { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

@@ -3,8 +3,6 @@ using System.Text.Json;
 using System.Threading;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.ChargeCaptureBundles.V1;
 
 public partial class V1Client
@@ -16,30 +14,33 @@ public partial class V1Client
         _client = client;
     }
 
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.ChargeCaptureBundles.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
-    /// </code>
-    /// </example>
-    public async Task<ChargeCaptureClaimCreation> GetAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<ChargeCaptureClaimCreation> GetAsync(
         string chargeCaptureClaimCreationId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.CandidApi,
-                Method = HttpMethod.Get,
-                Path = $"/api/charge_capture_claim_creation/v1/{chargeCaptureClaimCreationId}",
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Get,
+                    Path = string.Format(
+                        "/api/charge_capture_claim_creation/v1/{0}",
+                        ValueConvert.ToPathParameterString(chargeCaptureClaimCreationId)
+                    ),
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<ChargeCaptureClaimCreation>(responseBody)!;
@@ -50,36 +51,39 @@ public partial class V1Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.ChargeCaptureBundles.V1.GetSummaryAsync();
-    /// </code>
-    /// </example>
-    public async Task<ChargeCaptureClaimCreationSummary> GetSummaryAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<ChargeCaptureClaimCreationSummary> GetSummaryAsync(
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.CandidApi,
-                Method = HttpMethod.Get,
-                Path = "/api/charge_capture_claim_creation/v1/all/summary",
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Get,
+                    Path = "/api/charge_capture_claim_creation/v1/all/summary",
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<ChargeCaptureClaimCreationSummary>(responseBody)!;
@@ -90,21 +94,22 @@ public partial class V1Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.ChargeCaptureBundles.V1.ResolveChargeCreationErrorAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///     new ChargeCaptureBundleErrorResolution()
     /// );
-    /// </code>
-    /// </example>
+    /// </code></example>
     public async System.Threading.Tasks.Task ResolveChargeCreationErrorAsync(
         string chargeCaptureBundleErrorId,
         ChargeCaptureBundleErrorResolution request,
@@ -112,45 +117,48 @@ public partial class V1Client
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.CandidApi,
-                Method = HttpMethodExtensions.Patch,
-                Path = $"/api/charge_capture_claim_creation/v1/error/{chargeCaptureBundleErrorId}",
-                Body = request,
-                Options = options,
-            },
-            cancellationToken
-        );
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethodExtensions.Patch,
+                    Path = string.Format(
+                        "/api/charge_capture_claim_creation/v1/error/{0}",
+                        ValueConvert.ToPathParameterString(chargeCaptureBundleErrorId)
+                    ),
+                    Body = request,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
             return;
         }
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.ChargeCaptureBundles.V1.GetAllAsync(new GetAllChargeCaptureClaimCreationsRequest());
-    /// </code>
-    /// </example>
-    public async Task<ChargeCaptureClaimCreationPage> GetAllAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<ChargeCaptureClaimCreationPage> GetAllAsync(
         GetAllChargeCaptureClaimCreationsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         var _query = new Dictionary<string, object>();
-        _query["claim_ids"] = request.ClaimIds.Select(_value => _value.ToString()).ToList();
-        _query["claim_creation_ids"] = request
-            .ClaimCreationIds.Select(_value => _value.ToString())
-            .ToList();
+        _query["claim_ids"] = request.ClaimIds;
+        _query["claim_creation_ids"] = request.ClaimCreationIds;
         _query["billing_provider_npis"] = request.BillingProviderNpis;
         _query["primary_payer_ids"] = request.PrimaryPayerIds;
         _query["rendering_provider_npis"] = request.RenderingProviderNpis;
@@ -163,7 +171,7 @@ public partial class V1Client
         _query["patient_names"] = request.PatientNames;
         if (request.Limit != null)
         {
-            _query["limit"] = request.Limit.ToString();
+            _query["limit"] = request.Limit.Value.ToString();
         }
         if (request.Sort != null)
         {
@@ -215,22 +223,26 @@ public partial class V1Client
         }
         if (request.HasChargeCaptureUpdates != null)
         {
-            _query["has_charge_capture_updates"] = request.HasChargeCaptureUpdates.ToString();
+            _query["has_charge_capture_updates"] = JsonUtils.Serialize(
+                request.HasChargeCaptureUpdates.Value
+            );
         }
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.CandidApi,
-                Method = HttpMethod.Get,
-                Path = "/api/charge_capture_claim_creation/v1",
-                Query = _query,
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Get,
+                    Path = "/api/charge_capture_claim_creation/v1",
+                    Query = _query,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<ChargeCaptureClaimCreationPage>(responseBody)!;
@@ -241,10 +253,13 @@ public partial class V1Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 }

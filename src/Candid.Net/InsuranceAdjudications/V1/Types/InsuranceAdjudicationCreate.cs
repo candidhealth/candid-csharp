@@ -1,15 +1,21 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Core;
+using Candid.Net.Payers.V3;
 using Candid.Net.Remits.V1;
-
-#nullable enable
 
 namespace Candid.Net.InsuranceAdjudications.V1;
 
-public record InsuranceAdjudicationCreate
+[Serializable]
+public record InsuranceAdjudicationCreate : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("payer_identifier")]
-    public required object PayerIdentifier { get; set; }
+    public required PayerIdentifier PayerIdentifier { get; set; }
 
     [JsonPropertyName("payee")]
     public required Payee Payee { get; set; }
@@ -36,6 +42,13 @@ public record InsuranceAdjudicationCreate
     [JsonPropertyName("remit_draft_id")]
     public string? RemitDraftId { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

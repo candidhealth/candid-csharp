@@ -1,13 +1,18 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Commons;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.Guarantor.V1;
 
-public record Guarantor
+[Serializable]
+public record Guarantor : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("guarantor_id")]
     public required string GuarantorId { get; set; }
 
@@ -24,7 +29,7 @@ public record Guarantor
     public required bool EmailConsent { get; set; }
 
     [JsonPropertyName("auto_charge_consent")]
-    public bool? AutoChargeConsent { get; set; }
+    public required bool AutoChargeConsent { get; set; }
 
     [JsonPropertyName("first_name")]
     public required string FirstName { get; set; }
@@ -41,6 +46,13 @@ public record Guarantor
     [JsonPropertyName("address")]
     public required StreetAddressShortZip Address { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

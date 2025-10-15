@@ -1,7 +1,4 @@
 using Candid.Net.Core;
-using Candid.Net.MedicationDispense.V1;
-
-#nullable enable
 
 namespace Candid.Net.MedicationDispense;
 
@@ -12,8 +9,8 @@ public partial class MedicationDispenseClient
     internal MedicationDispenseClient(RawClient client)
     {
         _client = client;
-        V1 = new V1Client(_client);
+        V1 = new Candid.Net.MedicationDispense.V1.V1Client(_client);
     }
 
-    public V1Client V1 { get; }
+    public Candid.Net.MedicationDispense.V1.V1Client V1 { get; }
 }

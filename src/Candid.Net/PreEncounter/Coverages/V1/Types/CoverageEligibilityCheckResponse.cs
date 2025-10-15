@@ -1,19 +1,31 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Core;
 using Candid.Net.PreEncounter.EligibilityChecks.V1;
 
-#nullable enable
-
 namespace Candid.Net.PreEncounter.Coverages.V1;
 
-public record CoverageEligibilityCheckResponse
+[Serializable]
+public record CoverageEligibilityCheckResponse : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("metadata")]
     public required EligibilityCheckMetadata Metadata { get; set; }
 
     [JsonPropertyName("check")]
     public EligibilityCheck? Check { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

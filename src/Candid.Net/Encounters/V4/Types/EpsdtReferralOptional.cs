@@ -1,13 +1,18 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Commons;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.Encounters.V4;
 
-public record EpsdtReferralOptional
+[Serializable]
+public record EpsdtReferralOptional : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("condition_indicator1")]
     public EpsdtReferralConditionIndicatorCode? ConditionIndicator1 { get; set; }
 
@@ -17,6 +22,13 @@ public record EpsdtReferralOptional
     [JsonPropertyName("condition_indicator3")]
     public EpsdtReferralConditionIndicatorCode? ConditionIndicator3 { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

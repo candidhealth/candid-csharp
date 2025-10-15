@@ -1,47 +1,105 @@
-using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.PreEncounter.Patients.V1;
 
-[JsonConverter(typeof(EnumSerializer<MaritalStatus>))]
-public enum MaritalStatus
+[JsonConverter(typeof(StringEnumSerializer<MaritalStatus>))]
+[Serializable]
+public readonly record struct MaritalStatus : IStringEnum
 {
-    [EnumMember(Value = "ANNULLED")]
-    Annulled,
+    public static readonly MaritalStatus Annulled = new(Values.Annulled);
 
-    [EnumMember(Value = "DIVORCED")]
-    Divorced,
+    public static readonly MaritalStatus Divorced = new(Values.Divorced);
 
-    [EnumMember(Value = "INTERLOCUTORY")]
-    Interlocutory,
+    public static readonly MaritalStatus Interlocutory = new(Values.Interlocutory);
 
-    [EnumMember(Value = "SEPARATED")]
-    Separated,
+    public static readonly MaritalStatus Separated = new(Values.Separated);
 
-    [EnumMember(Value = "MARRIED")]
-    Married,
+    public static readonly MaritalStatus Married = new(Values.Married);
 
-    [EnumMember(Value = "COMMON_LAW")]
-    CommonLaw,
+    public static readonly MaritalStatus CommonLaw = new(Values.CommonLaw);
 
-    [EnumMember(Value = "POLYGAMOUS")]
-    Polygamous,
+    public static readonly MaritalStatus Polygamous = new(Values.Polygamous);
 
-    [EnumMember(Value = "DOMESTIC_PARTNER")]
-    DomesticPartner,
+    public static readonly MaritalStatus DomesticPartner = new(Values.DomesticPartner);
 
-    [EnumMember(Value = "UNMARRIED")]
-    Unmarried,
+    public static readonly MaritalStatus Unmarried = new(Values.Unmarried);
 
-    [EnumMember(Value = "NEVER_MARRIED")]
-    NeverMarried,
+    public static readonly MaritalStatus NeverMarried = new(Values.NeverMarried);
 
-    [EnumMember(Value = "WIDOWED")]
-    Widowed,
+    public static readonly MaritalStatus Widowed = new(Values.Widowed);
 
-    [EnumMember(Value = "UNKNOWN")]
-    Unknown,
+    public static readonly MaritalStatus Unknown = new(Values.Unknown);
+
+    public MaritalStatus(string value)
+    {
+        Value = value;
+    }
+
+    /// <summary>
+    /// The string value of the enum.
+    /// </summary>
+    public string Value { get; }
+
+    /// <summary>
+    /// Create a string enum with the given value.
+    /// </summary>
+    public static MaritalStatus FromCustom(string value)
+    {
+        return new MaritalStatus(value);
+    }
+
+    public bool Equals(string? other)
+    {
+        return Value.Equals(other);
+    }
+
+    /// <summary>
+    /// Returns the string value of the enum.
+    /// </summary>
+    public override string ToString()
+    {
+        return Value;
+    }
+
+    public static bool operator ==(MaritalStatus value1, string value2) =>
+        value1.Value.Equals(value2);
+
+    public static bool operator !=(MaritalStatus value1, string value2) =>
+        !value1.Value.Equals(value2);
+
+    public static explicit operator string(MaritalStatus value) => value.Value;
+
+    public static explicit operator MaritalStatus(string value) => new(value);
+
+    /// <summary>
+    /// Constant strings for enum values
+    /// </summary>
+    [Serializable]
+    public static class Values
+    {
+        public const string Annulled = "ANNULLED";
+
+        public const string Divorced = "DIVORCED";
+
+        public const string Interlocutory = "INTERLOCUTORY";
+
+        public const string Separated = "SEPARATED";
+
+        public const string Married = "MARRIED";
+
+        public const string CommonLaw = "COMMON_LAW";
+
+        public const string Polygamous = "POLYGAMOUS";
+
+        public const string DomesticPartner = "DOMESTIC_PARTNER";
+
+        public const string Unmarried = "UNMARRIED";
+
+        public const string NeverMarried = "NEVER_MARRIED";
+
+        public const string Widowed = "WIDOWED";
+
+        public const string Unknown = "UNKNOWN";
+    }
 }

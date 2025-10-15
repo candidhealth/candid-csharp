@@ -1,10 +1,9 @@
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.ChargeCapture.V1;
 
+[Serializable]
 public record ChargeCapturePostBilledChangeUpdate
 {
     /// <summary>
@@ -21,6 +20,7 @@ public record ChargeCapturePostBilledChangeUpdate
     [JsonPropertyName("resolved")]
     public required bool Resolved { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

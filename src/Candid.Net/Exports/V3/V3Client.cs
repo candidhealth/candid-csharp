@@ -3,8 +3,6 @@ using System.Text.Json;
 using System.Threading;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.Exports.V3;
 
 public partial class V3Client
@@ -36,8 +34,7 @@ public partial class V3Client
     /// up to 90 days in the past by default. Please email our [Support team](mailto:support@joincandidhealth.com) with any data requests
     /// outside of these stated guarantees.
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.Exports.V3.GetExportsAsync(
     ///     new GetExportsRequest
     ///     {
@@ -45,9 +42,8 @@ public partial class V3Client
     ///         EndDate = new DateOnly(2023, 10, 2),
     ///     }
     /// );
-    /// </code>
-    /// </example>
-    public async Task<GetExportsResponse> GetExportsAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<GetExportsResponse> GetExportsAsync(
         GetExportsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -56,20 +52,22 @@ public partial class V3Client
         var _query = new Dictionary<string, object>();
         _query["start_date"] = request.StartDate.ToString(Constants.DateFormat);
         _query["end_date"] = request.EndDate.ToString(Constants.DateFormat);
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.CandidApi,
-                Method = HttpMethod.Get,
-                Path = "/api/exports/v3",
-                Query = _query,
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Get,
+                    Path = "/api/exports/v3",
+                    Query = _query,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<GetExportsResponse>(responseBody)!;
@@ -80,10 +78,13 @@ public partial class V3Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 }

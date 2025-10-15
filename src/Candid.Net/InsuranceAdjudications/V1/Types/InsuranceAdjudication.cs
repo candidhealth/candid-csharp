@@ -1,12 +1,17 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Core;
-
-#nullable enable
 
 namespace Candid.Net.InsuranceAdjudications.V1;
 
-public record InsuranceAdjudication
+[Serializable]
+public record InsuranceAdjudication : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("insurance_adjudication_id")]
     public required string InsuranceAdjudicationId { get; set; }
 
@@ -29,6 +34,13 @@ public record InsuranceAdjudication
     public Dictionary<string, IEnumerable<ClaimAdjudication>> Claims { get; set; } =
         new Dictionary<string, IEnumerable<ClaimAdjudication>>();
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

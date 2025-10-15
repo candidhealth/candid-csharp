@@ -2,10 +2,9 @@ using System.Text.Json.Serialization;
 using Candid.Net.Core;
 using Candid.Net.Financials;
 
-#nullable enable
-
 namespace Candid.Net.PatientRefunds.V1;
 
+[Serializable]
 public record PatientRefundCreate
 {
     [JsonPropertyName("amount_cents")]
@@ -29,6 +28,7 @@ public record PatientRefundCreate
     [JsonPropertyName("refund_reason")]
     public RefundReason? RefundReason { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

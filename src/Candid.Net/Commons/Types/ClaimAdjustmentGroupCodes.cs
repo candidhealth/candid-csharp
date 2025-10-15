@@ -1,41 +1,97 @@
-using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.Commons;
 
-[JsonConverter(typeof(EnumSerializer<ClaimAdjustmentGroupCodes>))]
-public enum ClaimAdjustmentGroupCodes
+[JsonConverter(typeof(StringEnumSerializer<ClaimAdjustmentGroupCodes>))]
+[Serializable]
+public readonly record struct ClaimAdjustmentGroupCodes : IStringEnum
 {
-    [EnumMember(Value = "CO")]
-    Co,
+    public static readonly ClaimAdjustmentGroupCodes Co = new(Values.Co);
 
-    [EnumMember(Value = "CR")]
-    Cr,
+    public static readonly ClaimAdjustmentGroupCodes Cr = new(Values.Cr);
 
-    [EnumMember(Value = "DE")]
-    De,
+    public static readonly ClaimAdjustmentGroupCodes De = new(Values.De);
 
-    [EnumMember(Value = "MA")]
-    Ma,
+    public static readonly ClaimAdjustmentGroupCodes Ma = new(Values.Ma);
 
-    [EnumMember(Value = "OA")]
-    Oa,
+    public static readonly ClaimAdjustmentGroupCodes Oa = new(Values.Oa);
 
-    [EnumMember(Value = "PI")]
-    Pi,
+    public static readonly ClaimAdjustmentGroupCodes Pi = new(Values.Pi);
 
-    [EnumMember(Value = "PR")]
-    Pr,
+    public static readonly ClaimAdjustmentGroupCodes Pr = new(Values.Pr);
 
-    [EnumMember(Value = "RR")]
-    Rr,
+    public static readonly ClaimAdjustmentGroupCodes Rr = new(Values.Rr);
 
-    [EnumMember(Value = "NC")]
-    Nc,
+    public static readonly ClaimAdjustmentGroupCodes Nc = new(Values.Nc);
 
-    [EnumMember(Value = "UNKNOWN")]
-    Unknown,
+    public static readonly ClaimAdjustmentGroupCodes Unknown = new(Values.Unknown);
+
+    public ClaimAdjustmentGroupCodes(string value)
+    {
+        Value = value;
+    }
+
+    /// <summary>
+    /// The string value of the enum.
+    /// </summary>
+    public string Value { get; }
+
+    /// <summary>
+    /// Create a string enum with the given value.
+    /// </summary>
+    public static ClaimAdjustmentGroupCodes FromCustom(string value)
+    {
+        return new ClaimAdjustmentGroupCodes(value);
+    }
+
+    public bool Equals(string? other)
+    {
+        return Value.Equals(other);
+    }
+
+    /// <summary>
+    /// Returns the string value of the enum.
+    /// </summary>
+    public override string ToString()
+    {
+        return Value;
+    }
+
+    public static bool operator ==(ClaimAdjustmentGroupCodes value1, string value2) =>
+        value1.Value.Equals(value2);
+
+    public static bool operator !=(ClaimAdjustmentGroupCodes value1, string value2) =>
+        !value1.Value.Equals(value2);
+
+    public static explicit operator string(ClaimAdjustmentGroupCodes value) => value.Value;
+
+    public static explicit operator ClaimAdjustmentGroupCodes(string value) => new(value);
+
+    /// <summary>
+    /// Constant strings for enum values
+    /// </summary>
+    [Serializable]
+    public static class Values
+    {
+        public const string Co = "CO";
+
+        public const string Cr = "CR";
+
+        public const string De = "DE";
+
+        public const string Ma = "MA";
+
+        public const string Oa = "OA";
+
+        public const string Pi = "PI";
+
+        public const string Pr = "PR";
+
+        public const string Rr = "RR";
+
+        public const string Nc = "NC";
+
+        public const string Unknown = "UNKNOWN";
+    }
 }

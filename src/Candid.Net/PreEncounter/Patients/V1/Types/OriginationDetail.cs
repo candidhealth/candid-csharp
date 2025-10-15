@@ -1,13 +1,18 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Core;
 using Candid.Net.PreEncounter.Common;
 
-#nullable enable
-
 namespace Candid.Net.PreEncounter.Patients.V1;
 
-public record OriginationDetail
+[Serializable]
+public record OriginationDetail : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("referral_source")]
     public required ReferralSource ReferralSource { get; set; }
 
@@ -20,6 +25,13 @@ public record OriginationDetail
     [JsonPropertyName("referral_type")]
     public ReferralType? ReferralType { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

@@ -1,10 +1,9 @@
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.Auth.Default;
 
+[Serializable]
 public record AuthGetTokenRequest
 {
     /// <summary>
@@ -19,6 +18,7 @@ public record AuthGetTokenRequest
     [JsonPropertyName("client_secret")]
     public required string ClientSecret { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

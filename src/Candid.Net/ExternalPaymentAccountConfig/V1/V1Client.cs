@@ -3,8 +3,6 @@ using System.Text.Json;
 using System.Threading;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.ExternalPaymentAccountConfig.V1;
 
 public partial class V1Client
@@ -16,14 +14,12 @@ public partial class V1Client
         _client = client;
     }
 
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.ExternalPaymentAccountConfig.V1.GetMultiAsync(
     ///     new GetExternalPaymentAccountConfigsRequest()
     /// );
-    /// </code>
-    /// </example>
-    public async Task<ExternalPaymentAccountConfigPage> GetMultiAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<ExternalPaymentAccountConfigPage> GetMultiAsync(
         GetExternalPaymentAccountConfigsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -32,26 +28,28 @@ public partial class V1Client
         var _query = new Dictionary<string, object>();
         if (request.Limit != null)
         {
-            _query["limit"] = request.Limit.ToString();
+            _query["limit"] = request.Limit.Value.ToString();
         }
         if (request.PageToken != null)
         {
             _query["page_token"] = request.PageToken;
         }
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.CandidApi,
-                Method = HttpMethod.Get,
-                Path = "/api/external-payment-account-config/v1",
-                Query = _query,
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Get,
+                    Path = "/api/external-payment-account-config/v1",
+                    Query = _query,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<ExternalPaymentAccountConfigPage>(responseBody)!;
@@ -62,10 +60,13 @@ public partial class V1Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 }

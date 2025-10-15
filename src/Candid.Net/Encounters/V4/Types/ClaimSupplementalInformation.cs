@@ -1,12 +1,17 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Core;
-
-#nullable enable
 
 namespace Candid.Net.Encounters.V4;
 
-public record ClaimSupplementalInformation
+[Serializable]
+public record ClaimSupplementalInformation : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("attachment_report_type_code")]
     public required ReportTypeCode AttachmentReportTypeCode { get; set; }
 
@@ -16,6 +21,13 @@ public record ClaimSupplementalInformation
     [JsonPropertyName("attachment_control_number")]
     public string? AttachmentControlNumber { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

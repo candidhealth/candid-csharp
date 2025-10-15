@@ -1,12 +1,17 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Core;
-
-#nullable enable
 
 namespace Candid.Net.Diagnoses;
 
-public record DiagnosisCreateOptional
+[Serializable]
+public record DiagnosisCreateOptional : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// Empty string not allowed.
     /// </summary>
@@ -41,6 +46,13 @@ public record DiagnosisCreateOptional
     [JsonPropertyName("present_on_admission_indicator")]
     public YesNoIndicator.YesNoIndicator? PresentOnAdmissionIndicator { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

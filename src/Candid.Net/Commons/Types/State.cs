@@ -1,197 +1,303 @@
-using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.Commons;
 
-[JsonConverter(typeof(EnumSerializer<State>))]
-public enum State
+[JsonConverter(typeof(StringEnumSerializer<State>))]
+[Serializable]
+public readonly record struct State : IStringEnum
 {
-    [EnumMember(Value = "AA")]
-    Aa,
+    public static readonly State Aa = new(Values.Aa);
 
-    [EnumMember(Value = "AE")]
-    Ae,
+    public static readonly State Ae = new(Values.Ae);
 
-    [EnumMember(Value = "AP")]
-    Ap,
+    public static readonly State Ap = new(Values.Ap);
 
-    [EnumMember(Value = "AL")]
-    Al,
+    public static readonly State Al = new(Values.Al);
 
-    [EnumMember(Value = "AK")]
-    Ak,
+    public static readonly State Ak = new(Values.Ak);
 
-    [EnumMember(Value = "AS")]
-    As,
+    public static readonly State As = new(Values.As);
 
-    [EnumMember(Value = "AZ")]
-    Az,
+    public static readonly State Az = new(Values.Az);
 
-    [EnumMember(Value = "AR")]
-    Ar,
+    public static readonly State Ar = new(Values.Ar);
 
-    [EnumMember(Value = "CA")]
-    Ca,
+    public static readonly State Ca = new(Values.Ca);
 
-    [EnumMember(Value = "CO")]
-    Co,
+    public static readonly State Co = new(Values.Co);
 
-    [EnumMember(Value = "CT")]
-    Ct,
+    public static readonly State Ct = new(Values.Ct);
 
-    [EnumMember(Value = "DC")]
-    Dc,
+    public static readonly State Dc = new(Values.Dc);
 
-    [EnumMember(Value = "DE")]
-    De,
+    public static readonly State De = new(Values.De);
 
-    [EnumMember(Value = "FL")]
-    Fl,
+    public static readonly State Fl = new(Values.Fl);
 
-    [EnumMember(Value = "FM")]
-    Fm,
+    public static readonly State Fm = new(Values.Fm);
 
-    [EnumMember(Value = "GA")]
-    Ga,
+    public static readonly State Ga = new(Values.Ga);
 
-    [EnumMember(Value = "GU")]
-    Gu,
+    public static readonly State Gu = new(Values.Gu);
 
-    [EnumMember(Value = "HI")]
-    Hi,
+    public static readonly State Hi = new(Values.Hi);
 
-    [EnumMember(Value = "ID")]
-    Id,
+    public static readonly State Id = new(Values.Id);
 
-    [EnumMember(Value = "IL")]
-    Il,
+    public static readonly State Il = new(Values.Il);
 
-    [EnumMember(Value = "IN")]
-    In,
+    public static readonly State In = new(Values.In);
 
-    [EnumMember(Value = "IA")]
-    Ia,
+    public static readonly State Ia = new(Values.Ia);
 
-    [EnumMember(Value = "KS")]
-    Ks,
+    public static readonly State Ks = new(Values.Ks);
 
-    [EnumMember(Value = "KY")]
-    Ky,
+    public static readonly State Ky = new(Values.Ky);
 
-    [EnumMember(Value = "LA")]
-    La,
+    public static readonly State La = new(Values.La);
 
-    [EnumMember(Value = "ME")]
-    Me,
+    public static readonly State Me = new(Values.Me);
 
-    [EnumMember(Value = "MD")]
-    Md,
+    public static readonly State Md = new(Values.Md);
 
-    [EnumMember(Value = "MA")]
-    Ma,
+    public static readonly State Ma = new(Values.Ma);
 
-    [EnumMember(Value = "MH")]
-    Mh,
+    public static readonly State Mh = new(Values.Mh);
 
-    [EnumMember(Value = "MI")]
-    Mi,
+    public static readonly State Mi = new(Values.Mi);
 
-    [EnumMember(Value = "MN")]
-    Mn,
+    public static readonly State Mn = new(Values.Mn);
 
-    [EnumMember(Value = "MP")]
-    Mp,
+    public static readonly State Mp = new(Values.Mp);
 
-    [EnumMember(Value = "MS")]
-    Ms,
+    public static readonly State Ms = new(Values.Ms);
 
-    [EnumMember(Value = "MO")]
-    Mo,
+    public static readonly State Mo = new(Values.Mo);
 
-    [EnumMember(Value = "MT")]
-    Mt,
+    public static readonly State Mt = new(Values.Mt);
 
-    [EnumMember(Value = "NE")]
-    Ne,
+    public static readonly State Ne = new(Values.Ne);
 
-    [EnumMember(Value = "NV")]
-    Nv,
+    public static readonly State Nv = new(Values.Nv);
 
-    [EnumMember(Value = "NH")]
-    Nh,
+    public static readonly State Nh = new(Values.Nh);
 
-    [EnumMember(Value = "NJ")]
-    Nj,
+    public static readonly State Nj = new(Values.Nj);
 
-    [EnumMember(Value = "NM")]
-    Nm,
+    public static readonly State Nm = new(Values.Nm);
 
-    [EnumMember(Value = "NY")]
-    Ny,
+    public static readonly State Ny = new(Values.Ny);
 
-    [EnumMember(Value = "NC")]
-    Nc,
+    public static readonly State Nc = new(Values.Nc);
 
-    [EnumMember(Value = "ND")]
-    Nd,
+    public static readonly State Nd = new(Values.Nd);
 
-    [EnumMember(Value = "OH")]
-    Oh,
+    public static readonly State Oh = new(Values.Oh);
 
-    [EnumMember(Value = "OK")]
-    Ok,
+    public static readonly State Ok = new(Values.Ok);
 
-    [EnumMember(Value = "OR")]
-    Or,
+    public static readonly State Or = new(Values.Or);
 
-    [EnumMember(Value = "PA")]
-    Pa,
+    public static readonly State Pa = new(Values.Pa);
 
-    [EnumMember(Value = "PR")]
-    Pr,
+    public static readonly State Pr = new(Values.Pr);
 
-    [EnumMember(Value = "PW")]
-    Pw,
+    public static readonly State Pw = new(Values.Pw);
 
-    [EnumMember(Value = "RI")]
-    Ri,
+    public static readonly State Ri = new(Values.Ri);
 
-    [EnumMember(Value = "SC")]
-    Sc,
+    public static readonly State Sc = new(Values.Sc);
 
-    [EnumMember(Value = "SD")]
-    Sd,
+    public static readonly State Sd = new(Values.Sd);
 
-    [EnumMember(Value = "TN")]
-    Tn,
+    public static readonly State Tn = new(Values.Tn);
 
-    [EnumMember(Value = "TX")]
-    Tx,
+    public static readonly State Tx = new(Values.Tx);
 
-    [EnumMember(Value = "UT")]
-    Ut,
+    public static readonly State Ut = new(Values.Ut);
 
-    [EnumMember(Value = "VI")]
-    Vi,
+    public static readonly State Vi = new(Values.Vi);
 
-    [EnumMember(Value = "VT")]
-    Vt,
+    public static readonly State Vt = new(Values.Vt);
 
-    [EnumMember(Value = "VA")]
-    Va,
+    public static readonly State Va = new(Values.Va);
 
-    [EnumMember(Value = "WA")]
-    Wa,
+    public static readonly State Wa = new(Values.Wa);
 
-    [EnumMember(Value = "WV")]
-    Wv,
+    public static readonly State Wv = new(Values.Wv);
 
-    [EnumMember(Value = "WI")]
-    Wi,
+    public static readonly State Wi = new(Values.Wi);
 
-    [EnumMember(Value = "WY")]
-    Wy,
+    public static readonly State Wy = new(Values.Wy);
+
+    public State(string value)
+    {
+        Value = value;
+    }
+
+    /// <summary>
+    /// The string value of the enum.
+    /// </summary>
+    public string Value { get; }
+
+    /// <summary>
+    /// Create a string enum with the given value.
+    /// </summary>
+    public static State FromCustom(string value)
+    {
+        return new State(value);
+    }
+
+    public bool Equals(string? other)
+    {
+        return Value.Equals(other);
+    }
+
+    /// <summary>
+    /// Returns the string value of the enum.
+    /// </summary>
+    public override string ToString()
+    {
+        return Value;
+    }
+
+    public static bool operator ==(State value1, string value2) => value1.Value.Equals(value2);
+
+    public static bool operator !=(State value1, string value2) => !value1.Value.Equals(value2);
+
+    public static explicit operator string(State value) => value.Value;
+
+    public static explicit operator State(string value) => new(value);
+
+    /// <summary>
+    /// Constant strings for enum values
+    /// </summary>
+    [Serializable]
+    public static class Values
+    {
+        public const string Aa = "AA";
+
+        public const string Ae = "AE";
+
+        public const string Ap = "AP";
+
+        public const string Al = "AL";
+
+        public const string Ak = "AK";
+
+        public const string As = "AS";
+
+        public const string Az = "AZ";
+
+        public const string Ar = "AR";
+
+        public const string Ca = "CA";
+
+        public const string Co = "CO";
+
+        public const string Ct = "CT";
+
+        public const string Dc = "DC";
+
+        public const string De = "DE";
+
+        public const string Fl = "FL";
+
+        public const string Fm = "FM";
+
+        public const string Ga = "GA";
+
+        public const string Gu = "GU";
+
+        public const string Hi = "HI";
+
+        public const string Id = "ID";
+
+        public const string Il = "IL";
+
+        public const string In = "IN";
+
+        public const string Ia = "IA";
+
+        public const string Ks = "KS";
+
+        public const string Ky = "KY";
+
+        public const string La = "LA";
+
+        public const string Me = "ME";
+
+        public const string Md = "MD";
+
+        public const string Ma = "MA";
+
+        public const string Mh = "MH";
+
+        public const string Mi = "MI";
+
+        public const string Mn = "MN";
+
+        public const string Mp = "MP";
+
+        public const string Ms = "MS";
+
+        public const string Mo = "MO";
+
+        public const string Mt = "MT";
+
+        public const string Ne = "NE";
+
+        public const string Nv = "NV";
+
+        public const string Nh = "NH";
+
+        public const string Nj = "NJ";
+
+        public const string Nm = "NM";
+
+        public const string Ny = "NY";
+
+        public const string Nc = "NC";
+
+        public const string Nd = "ND";
+
+        public const string Oh = "OH";
+
+        public const string Ok = "OK";
+
+        public const string Or = "OR";
+
+        public const string Pa = "PA";
+
+        public const string Pr = "PR";
+
+        public const string Pw = "PW";
+
+        public const string Ri = "RI";
+
+        public const string Sc = "SC";
+
+        public const string Sd = "SD";
+
+        public const string Tn = "TN";
+
+        public const string Tx = "TX";
+
+        public const string Ut = "UT";
+
+        public const string Vi = "VI";
+
+        public const string Vt = "VT";
+
+        public const string Va = "VA";
+
+        public const string Wa = "WA";
+
+        public const string Wv = "WV";
+
+        public const string Wi = "WI";
+
+        public const string Wy = "WY";
+    }
 }

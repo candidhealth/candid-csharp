@@ -1,12 +1,20 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Core;
-
-#nullable enable
 
 namespace Candid.Net.PreEncounter.Tags.V1;
 
-public record Tag
+/// <summary>
+/// A Tag object with immutable server-owned properties.
+/// </summary>
+[Serializable]
+public record Tag : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("id")]
     public required string Id { get; set; }
 
@@ -46,6 +54,13 @@ public record Tag
     [JsonPropertyName("alert")]
     public bool? Alert { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

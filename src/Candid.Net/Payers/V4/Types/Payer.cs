@@ -1,13 +1,18 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Commons;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.Payers.V4;
 
-public record Payer
+[Serializable]
+public record Payer : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// Auto-generated ID set on creation.
     /// </summary>
@@ -26,6 +31,12 @@ public record Payer
     [JsonPropertyName("payer_name")]
     public required string PayerName { get; set; }
 
+    /// <summary>
+    /// The alternate display names of the payer.
+    /// </summary>
+    [JsonPropertyName("alternate_payer_names")]
+    public IEnumerable<string> AlternatePayerNames { get; set; } = new List<string>();
+
     [JsonPropertyName("clearinghouse_payer_info")]
     public Dictionary<Clearinghouse, ClearinghousePayerInfo> ClearinghousePayerInfo { get; set; } =
         new Dictionary<Clearinghouse, ClearinghousePayerInfo>();
@@ -33,6 +44,13 @@ public record Payer
     [JsonPropertyName("street_address")]
     public StreetAddressLongZip? StreetAddress { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

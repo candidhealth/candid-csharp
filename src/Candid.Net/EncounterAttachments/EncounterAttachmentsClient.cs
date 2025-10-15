@@ -1,7 +1,4 @@
 using Candid.Net.Core;
-using Candid.Net.EncounterAttachments.V1;
-
-#nullable enable
 
 namespace Candid.Net.EncounterAttachments;
 
@@ -12,8 +9,8 @@ public partial class EncounterAttachmentsClient
     internal EncounterAttachmentsClient(RawClient client)
     {
         _client = client;
-        V1 = new V1Client(_client);
+        V1 = new Candid.Net.EncounterAttachments.V1.V1Client(_client);
     }
 
-    public V1Client V1 { get; }
+    public Candid.Net.EncounterAttachments.V1.V1Client V1 { get; }
 }

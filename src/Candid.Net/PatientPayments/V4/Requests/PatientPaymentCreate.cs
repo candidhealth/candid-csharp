@@ -2,10 +2,9 @@ using System.Text.Json.Serialization;
 using Candid.Net.Core;
 using Candid.Net.Financials;
 
-#nullable enable
-
 namespace Candid.Net.PatientPayments.V4;
 
+[Serializable]
 public record PatientPaymentCreate
 {
     [JsonPropertyName("amount_cents")]
@@ -26,6 +25,7 @@ public record PatientPaymentCreate
     [JsonPropertyName("invoice")]
     public string? Invoice { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

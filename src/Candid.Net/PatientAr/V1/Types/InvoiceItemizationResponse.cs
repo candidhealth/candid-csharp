@@ -1,12 +1,17 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Core;
-
-#nullable enable
 
 namespace Candid.Net.PatientAr.V1;
 
-public record InvoiceItemizationResponse
+[Serializable]
+public record InvoiceItemizationResponse : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// The ID of the claim associated with the invoice itemization.
     /// </summary>
@@ -29,6 +34,13 @@ public record InvoiceItemizationResponse
     public IEnumerable<ServiceLineItemization> ServiceLineItemization { get; set; } =
         new List<ServiceLineItemization>();
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

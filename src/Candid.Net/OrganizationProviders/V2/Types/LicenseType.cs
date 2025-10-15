@@ -1,314 +1,469 @@
-using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.OrganizationProviders.V2;
 
-[JsonConverter(typeof(EnumSerializer<LicenseType>))]
-public enum LicenseType
+[JsonConverter(typeof(StringEnumSerializer<LicenseType>))]
+[Serializable]
+public readonly record struct LicenseType : IStringEnum
 {
-    [EnumMember(Value = "MD")]
-    Md,
+    public static readonly LicenseType Md = new(Values.Md);
 
-    [EnumMember(Value = "NP")]
-    Np,
+    public static readonly LicenseType Np = new(Values.Np);
 
-    [EnumMember(Value = "PA")]
-    Pa,
+    public static readonly LicenseType Pa = new(Values.Pa);
 
-    [EnumMember(Value = "LMFT")]
-    Lmft,
+    public static readonly LicenseType Lmft = new(Values.Lmft);
 
-    [EnumMember(Value = "LCPC")]
-    Lcpc,
+    public static readonly LicenseType Lcpc = new(Values.Lcpc);
 
-    [EnumMember(Value = "LCSW")]
-    Lcsw,
+    public static readonly LicenseType Lcsw = new(Values.Lcsw);
 
-    [EnumMember(Value = "PMHNP")]
-    Pmhnp,
+    public static readonly LicenseType Pmhnp = new(Values.Pmhnp);
 
-    [EnumMember(Value = "FNP")]
-    Fnp,
+    public static readonly LicenseType Fnp = new(Values.Fnp);
 
-    [EnumMember(Value = "LPCC")]
-    Lpcc,
+    public static readonly LicenseType Lpcc = new(Values.Lpcc);
 
-    [EnumMember(Value = "DO")]
-    Do,
+    public static readonly LicenseType Do = new(Values.Do);
 
-    [EnumMember(Value = "RD")]
-    Rd,
+    public static readonly LicenseType Rd = new(Values.Rd);
 
-    [EnumMember(Value = "SLP")]
-    Slp,
+    public static readonly LicenseType Slp = new(Values.Slp);
 
-    [EnumMember(Value = "APRN")]
-    Aprn,
+    public static readonly LicenseType Aprn = new(Values.Aprn);
 
-    [EnumMember(Value = "LPC")]
-    Lpc,
+    public static readonly LicenseType Lpc = new(Values.Lpc);
 
-    [EnumMember(Value = "PHD")]
-    Phd,
+    public static readonly LicenseType Phd = new(Values.Phd);
 
-    [EnumMember(Value = "PSYD")]
-    Psyd,
+    public static readonly LicenseType Psyd = new(Values.Psyd);
 
-    [EnumMember(Value = "LMSW")]
-    Lmsw,
+    public static readonly LicenseType Lmsw = new(Values.Lmsw);
 
-    [EnumMember(Value = "LMHC")]
-    Lmhc,
+    public static readonly LicenseType Lmhc = new(Values.Lmhc);
 
-    [EnumMember(Value = "OTHER_MASTERS")]
-    OtherMasters,
+    public static readonly LicenseType OtherMasters = new(Values.OtherMasters);
 
-    [EnumMember(Value = "BCBA")]
-    Bcba,
+    public static readonly LicenseType Bcba = new(Values.Bcba);
 
-    [EnumMember(Value = "UNKNOWN")]
-    Unknown,
+    public static readonly LicenseType Unknown = new(Values.Unknown);
 
-    [EnumMember(Value = "RPH")]
-    Rph,
+    public static readonly LicenseType Rph = new(Values.Rph);
 
-    [EnumMember(Value = "PHT")]
-    Pht,
+    public static readonly LicenseType Pht = new(Values.Pht);
 
-    [EnumMember(Value = "LAC")]
-    Lac,
+    public static readonly LicenseType Lac = new(Values.Lac);
 
-    [EnumMember(Value = "LMT")]
-    Lmt,
+    public static readonly LicenseType Lmt = new(Values.Lmt);
 
-    [EnumMember(Value = "DC")]
-    Dc,
+    public static readonly LicenseType Dc = new(Values.Dc);
 
-    [EnumMember(Value = "ND")]
-    Nd,
+    public static readonly LicenseType Nd = new(Values.Nd);
 
-    [EnumMember(Value = "MA")]
-    Ma,
+    public static readonly LicenseType Ma = new(Values.Ma);
 
-    [EnumMember(Value = "PT")]
-    Pt,
+    public static readonly LicenseType Pt = new(Values.Pt);
 
-    [EnumMember(Value = "IBCLC")]
-    Ibclc,
+    public static readonly LicenseType Ibclc = new(Values.Ibclc);
 
-    [EnumMember(Value = "RN")]
-    Rn,
+    public static readonly LicenseType Rn = new(Values.Rn);
 
-    [EnumMember(Value = "DPT")]
-    Dpt,
+    public static readonly LicenseType Dpt = new(Values.Dpt);
 
-    [EnumMember(Value = "LCMHC")]
-    Lcmhc,
+    public static readonly LicenseType Lcmhc = new(Values.Lcmhc);
 
-    [EnumMember(Value = "CNM")]
-    Cnm,
+    public static readonly LicenseType Cnm = new(Values.Cnm);
 
-    [EnumMember(Value = "RNFA")]
-    Rnfa,
+    public static readonly LicenseType Rnfa = new(Values.Rnfa);
 
-    [EnumMember(Value = "ACSW")]
-    Acsw,
+    public static readonly LicenseType Acsw = new(Values.Acsw);
 
-    [EnumMember(Value = "APC")]
-    Apc,
+    public static readonly LicenseType Apc = new(Values.Apc);
 
-    [EnumMember(Value = "BCABA")]
-    Bcaba,
+    public static readonly LicenseType Bcaba = new(Values.Bcaba);
 
-    [EnumMember(Value = "BHA")]
-    Bha,
+    public static readonly LicenseType Bha = new(Values.Bha);
 
-    [EnumMember(Value = "OD")]
-    Od,
+    public static readonly LicenseType Od = new(Values.Od);
 
-    [EnumMember(Value = "DPM")]
-    Dpm,
+    public static readonly LicenseType Dpm = new(Values.Dpm);
 
-    [EnumMember(Value = "DA")]
-    Da,
+    public static readonly LicenseType Da = new(Values.Da);
 
-    [EnumMember(Value = "DDS")]
-    Dds,
+    public static readonly LicenseType Dds = new(Values.Dds);
 
-    [EnumMember(Value = "DEH")]
-    Deh,
+    public static readonly LicenseType Deh = new(Values.Deh);
 
-    [EnumMember(Value = "DMD")]
-    Dmd,
+    public static readonly LicenseType Dmd = new(Values.Dmd);
 
-    [EnumMember(Value = "PTA")]
-    Pta,
+    public static readonly LicenseType Pta = new(Values.Pta);
 
-    [EnumMember(Value = "LCADC")]
-    Lcadc,
+    public static readonly LicenseType Lcadc = new(Values.Lcadc);
 
-    [EnumMember(Value = "LCAT")]
-    Lcat,
+    public static readonly LicenseType Lcat = new(Values.Lcat);
 
-    [EnumMember(Value = "LCMHCS")]
-    Lcmhcs,
+    public static readonly LicenseType Lcmhcs = new(Values.Lcmhcs);
 
-    [EnumMember(Value = "LCMHCA")]
-    Lcmhca,
+    public static readonly LicenseType Lcmhca = new(Values.Lcmhca);
 
-    [EnumMember(Value = "LCSWA")]
-    Lcswa,
+    public static readonly LicenseType Lcswa = new(Values.Lcswa);
 
-    [EnumMember(Value = "LICSW")]
-    Licsw,
+    public static readonly LicenseType Licsw = new(Values.Licsw);
 
-    [EnumMember(Value = "LISW")]
-    Lisw,
+    public static readonly LicenseType Lisw = new(Values.Lisw);
 
-    [EnumMember(Value = "LMFTS")]
-    Lmfts,
+    public static readonly LicenseType Lmfts = new(Values.Lmfts);
 
-    [EnumMember(Value = "LMFTA")]
-    Lmfta,
+    public static readonly LicenseType Lmfta = new(Values.Lmfta);
 
-    [EnumMember(Value = "LPCI")]
-    Lpci,
+    public static readonly LicenseType Lpci = new(Values.Lpci);
 
-    [EnumMember(Value = "LSCSW")]
-    Lscsw,
+    public static readonly LicenseType Lscsw = new(Values.Lscsw);
 
-    [EnumMember(Value = "MHCA")]
-    Mhca,
+    public static readonly LicenseType Mhca = new(Values.Mhca);
 
-    [EnumMember(Value = "MHT")]
-    Mht,
+    public static readonly LicenseType Mht = new(Values.Mht);
 
-    [EnumMember(Value = "RBT")]
-    Rbt,
+    public static readonly LicenseType Rbt = new(Values.Rbt);
 
-    [EnumMember(Value = "RCSWI")]
-    Rcswi,
+    public static readonly LicenseType Rcswi = new(Values.Rcswi);
 
-    [EnumMember(Value = "RHMCI")]
-    Rhmci,
+    public static readonly LicenseType Rhmci = new(Values.Rhmci);
 
-    [EnumMember(Value = "LPN")]
-    Lpn,
+    public static readonly LicenseType Lpn = new(Values.Lpn);
 
-    [EnumMember(Value = "OTD")]
-    Otd,
+    public static readonly LicenseType Otd = new(Values.Otd);
 
-    [EnumMember(Value = "OMS")]
-    Oms,
+    public static readonly LicenseType Oms = new(Values.Oms);
 
-    [EnumMember(Value = "MFTA")]
-    Mfta,
+    public static readonly LicenseType Mfta = new(Values.Mfta);
 
-    [EnumMember(Value = "APCC")]
-    Apcc,
+    public static readonly LicenseType Apcc = new(Values.Apcc);
 
-    [EnumMember(Value = "DNP")]
-    Dnp,
+    public static readonly LicenseType Dnp = new(Values.Dnp);
 
-    [EnumMember(Value = "AGNPBC")]
-    Agnpbc,
+    public static readonly LicenseType Agnpbc = new(Values.Agnpbc);
 
-    [EnumMember(Value = "ANP")]
-    Anp,
+    public static readonly LicenseType Anp = new(Values.Anp);
 
-    [EnumMember(Value = "FNPPP")]
-    Fnppp,
+    public static readonly LicenseType Fnppp = new(Values.Fnppp);
 
-    [EnumMember(Value = "LCSWR")]
-    Lcswr,
+    public static readonly LicenseType Lcswr = new(Values.Lcswr);
 
-    [EnumMember(Value = "ALC")]
-    Alc,
+    public static readonly LicenseType Alc = new(Values.Alc);
 
-    [EnumMember(Value = "RMFTI")]
-    Rmfti,
+    public static readonly LicenseType Rmfti = new(Values.Rmfti);
 
-    [EnumMember(Value = "LAMFT")]
-    Lamft,
+    public static readonly LicenseType Lamft = new(Values.Lamft);
 
-    [EnumMember(Value = "LPCA")]
-    Lpca,
+    public static readonly LicenseType Lpca = new(Values.Lpca);
 
-    [EnumMember(Value = "LSWI")]
-    Lswi,
+    public static readonly LicenseType Lswi = new(Values.Lswi);
 
-    [EnumMember(Value = "CSW")]
-    Csw,
+    public static readonly LicenseType Csw = new(Values.Csw);
 
-    [EnumMember(Value = "CPC")]
-    Cpc,
+    public static readonly LicenseType Cpc = new(Values.Cpc);
 
-    [EnumMember(Value = "LGMFT")]
-    Lgmft,
+    public static readonly LicenseType Lgmft = new(Values.Lgmft);
 
-    [EnumMember(Value = "LLPC")]
-    Llpc,
+    public static readonly LicenseType Llpc = new(Values.Llpc);
 
-    [EnumMember(Value = "PLPC")]
-    Plpc,
+    public static readonly LicenseType Plpc = new(Values.Plpc);
 
-    [EnumMember(Value = "PLMFT")]
-    Plmft,
+    public static readonly LicenseType Plmft = new(Values.Plmft);
 
-    [EnumMember(Value = "LMHCA")]
-    Lmhca,
+    public static readonly LicenseType Lmhca = new(Values.Lmhca);
 
-    [EnumMember(Value = "CIT")]
-    Cit,
+    public static readonly LicenseType Cit = new(Values.Cit);
 
-    [EnumMember(Value = "CT")]
-    Ct,
+    public static readonly LicenseType Ct = new(Values.Ct);
 
-    [EnumMember(Value = "MFT")]
-    Mft,
+    public static readonly LicenseType Mft = new(Values.Mft);
 
-    [EnumMember(Value = "LSW")]
-    Lsw,
+    public static readonly LicenseType Lsw = new(Values.Lsw);
 
-    [EnumMember(Value = "PLMHP")]
-    Plmhp,
+    public static readonly LicenseType Plmhp = new(Values.Plmhp);
 
-    [EnumMember(Value = "PCMSW")]
-    Pcmsw,
+    public static readonly LicenseType Pcmsw = new(Values.Pcmsw);
 
-    [EnumMember(Value = "LMHP")]
-    Lmhp,
+    public static readonly LicenseType Lmhp = new(Values.Lmhp);
 
-    [EnumMember(Value = "OTR/L")]
-    Otrl,
+    public static readonly LicenseType Otrl = new(Values.Otrl);
 
-    [EnumMember(Value = "RPA")]
-    Rpa,
+    public static readonly LicenseType Rpa = new(Values.Rpa);
 
-    [EnumMember(Value = "COTA")]
-    Cota,
+    public static readonly LicenseType Cota = new(Values.Cota);
 
-    [EnumMember(Value = "CRNP")]
-    Crnp,
+    public static readonly LicenseType Crnp = new(Values.Crnp);
 
-    [EnumMember(Value = "SLP-CF")]
-    SlpCf,
+    public static readonly LicenseType SlpCf = new(Values.SlpCf);
 
-    [EnumMember(Value = "NP-C")]
-    NpC,
+    public static readonly LicenseType NpC = new(Values.NpC);
 
-    [EnumMember(Value = "PA-C")]
-    PaC,
+    public static readonly LicenseType PaC = new(Values.PaC);
 
-    [EnumMember(Value = "AMFT")]
-    Amft,
+    public static readonly LicenseType Amft = new(Values.Amft);
 
-    [EnumMember(Value = "CDN")]
-    Cdn,
+    public static readonly LicenseType Cdn = new(Values.Cdn);
 
-    [EnumMember(Value = "CNS")]
-    Cns,
+    public static readonly LicenseType Cns = new(Values.Cns);
+
+    public static readonly LicenseType Mdphd = new(Values.Mdphd);
+
+    public static readonly LicenseType Aud = new(Values.Aud);
+
+    public LicenseType(string value)
+    {
+        Value = value;
+    }
+
+    /// <summary>
+    /// The string value of the enum.
+    /// </summary>
+    public string Value { get; }
+
+    /// <summary>
+    /// Create a string enum with the given value.
+    /// </summary>
+    public static LicenseType FromCustom(string value)
+    {
+        return new LicenseType(value);
+    }
+
+    public bool Equals(string? other)
+    {
+        return Value.Equals(other);
+    }
+
+    /// <summary>
+    /// Returns the string value of the enum.
+    /// </summary>
+    public override string ToString()
+    {
+        return Value;
+    }
+
+    public static bool operator ==(LicenseType value1, string value2) =>
+        value1.Value.Equals(value2);
+
+    public static bool operator !=(LicenseType value1, string value2) =>
+        !value1.Value.Equals(value2);
+
+    public static explicit operator string(LicenseType value) => value.Value;
+
+    public static explicit operator LicenseType(string value) => new(value);
+
+    /// <summary>
+    /// Constant strings for enum values
+    /// </summary>
+    [Serializable]
+    public static class Values
+    {
+        public const string Md = "MD";
+
+        public const string Np = "NP";
+
+        public const string Pa = "PA";
+
+        public const string Lmft = "LMFT";
+
+        public const string Lcpc = "LCPC";
+
+        public const string Lcsw = "LCSW";
+
+        public const string Pmhnp = "PMHNP";
+
+        public const string Fnp = "FNP";
+
+        public const string Lpcc = "LPCC";
+
+        public const string Do = "DO";
+
+        public const string Rd = "RD";
+
+        public const string Slp = "SLP";
+
+        public const string Aprn = "APRN";
+
+        public const string Lpc = "LPC";
+
+        public const string Phd = "PHD";
+
+        public const string Psyd = "PSYD";
+
+        public const string Lmsw = "LMSW";
+
+        public const string Lmhc = "LMHC";
+
+        public const string OtherMasters = "OTHER_MASTERS";
+
+        public const string Bcba = "BCBA";
+
+        public const string Unknown = "UNKNOWN";
+
+        public const string Rph = "RPH";
+
+        public const string Pht = "PHT";
+
+        public const string Lac = "LAC";
+
+        public const string Lmt = "LMT";
+
+        public const string Dc = "DC";
+
+        public const string Nd = "ND";
+
+        public const string Ma = "MA";
+
+        public const string Pt = "PT";
+
+        public const string Ibclc = "IBCLC";
+
+        public const string Rn = "RN";
+
+        public const string Dpt = "DPT";
+
+        public const string Lcmhc = "LCMHC";
+
+        public const string Cnm = "CNM";
+
+        public const string Rnfa = "RNFA";
+
+        public const string Acsw = "ACSW";
+
+        public const string Apc = "APC";
+
+        public const string Bcaba = "BCABA";
+
+        public const string Bha = "BHA";
+
+        public const string Od = "OD";
+
+        public const string Dpm = "DPM";
+
+        public const string Da = "DA";
+
+        public const string Dds = "DDS";
+
+        public const string Deh = "DEH";
+
+        public const string Dmd = "DMD";
+
+        public const string Pta = "PTA";
+
+        public const string Lcadc = "LCADC";
+
+        public const string Lcat = "LCAT";
+
+        public const string Lcmhcs = "LCMHCS";
+
+        public const string Lcmhca = "LCMHCA";
+
+        public const string Lcswa = "LCSWA";
+
+        public const string Licsw = "LICSW";
+
+        public const string Lisw = "LISW";
+
+        public const string Lmfts = "LMFTS";
+
+        public const string Lmfta = "LMFTA";
+
+        public const string Lpci = "LPCI";
+
+        public const string Lscsw = "LSCSW";
+
+        public const string Mhca = "MHCA";
+
+        public const string Mht = "MHT";
+
+        public const string Rbt = "RBT";
+
+        public const string Rcswi = "RCSWI";
+
+        public const string Rhmci = "RHMCI";
+
+        public const string Lpn = "LPN";
+
+        public const string Otd = "OTD";
+
+        public const string Oms = "OMS";
+
+        public const string Mfta = "MFTA";
+
+        public const string Apcc = "APCC";
+
+        public const string Dnp = "DNP";
+
+        public const string Agnpbc = "AGNPBC";
+
+        public const string Anp = "ANP";
+
+        public const string Fnppp = "FNPPP";
+
+        public const string Lcswr = "LCSWR";
+
+        public const string Alc = "ALC";
+
+        public const string Rmfti = "RMFTI";
+
+        public const string Lamft = "LAMFT";
+
+        public const string Lpca = "LPCA";
+
+        public const string Lswi = "LSWI";
+
+        public const string Csw = "CSW";
+
+        public const string Cpc = "CPC";
+
+        public const string Lgmft = "LGMFT";
+
+        public const string Llpc = "LLPC";
+
+        public const string Plpc = "PLPC";
+
+        public const string Plmft = "PLMFT";
+
+        public const string Lmhca = "LMHCA";
+
+        public const string Cit = "CIT";
+
+        public const string Ct = "CT";
+
+        public const string Mft = "MFT";
+
+        public const string Lsw = "LSW";
+
+        public const string Plmhp = "PLMHP";
+
+        public const string Pcmsw = "PCMSW";
+
+        public const string Lmhp = "LMHP";
+
+        public const string Otrl = "OTR/L";
+
+        public const string Rpa = "RPA";
+
+        public const string Cota = "COTA";
+
+        public const string Crnp = "CRNP";
+
+        public const string SlpCf = "SLP-CF";
+
+        public const string NpC = "NP-C";
+
+        public const string PaC = "PA-C";
+
+        public const string Amft = "AMFT";
+
+        public const string Cdn = "CDN";
+
+        public const string Cns = "CNS";
+
+        public const string Mdphd = "MDPHD";
+
+        public const string Aud = "AuD";
+    }
 }

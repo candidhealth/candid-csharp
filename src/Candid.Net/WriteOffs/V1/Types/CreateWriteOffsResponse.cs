@@ -1,15 +1,27 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Core;
-
-#nullable enable
 
 namespace Candid.Net.WriteOffs.V1;
 
-public record CreateWriteOffsResponse
+[Serializable]
+public record CreateWriteOffsResponse : IJsonOnDeserialized
 {
-    [JsonPropertyName("write_offs")]
-    public IEnumerable<object> WriteOffs { get; set; } = new List<object>();
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
 
+    [JsonPropertyName("write_offs")]
+    public IEnumerable<WriteOff> WriteOffs { get; set; } = new List<WriteOff>();
+
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

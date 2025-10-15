@@ -1,35 +1,106 @@
-using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.ExpectedNetworkStatus.V2;
 
-[JsonConverter(typeof(EnumSerializer<Explanation>))]
-public enum Explanation
+[JsonConverter(typeof(StringEnumSerializer<Explanation>))]
+[Serializable]
+public readonly record struct Explanation : IStringEnum
 {
-    [EnumMember(Value = "Payer Routing and/or Billing Provider Routing Failed")]
-    RoutingFailed,
+    public static readonly Explanation RoutingFailed = new(Values.RoutingFailed);
 
-    [EnumMember(Value = "No Effective Contract with Payer")]
-    PayerMatchFailed,
+    public static readonly Explanation PayerMatchFailed = new(Values.PayerMatchFailed);
 
-    [EnumMember(Value = "No Effective Contract with Billing Provider")]
-    BillingProviderMatchFailed,
+    public static readonly Explanation BillingProviderMatchFailed = new(
+        Values.BillingProviderMatchFailed
+    );
 
-    [EnumMember(Value = "No Effective Contract with Covered Geography")]
-    CoveredGeographyMatchFailed,
+    public static readonly Explanation CoveredGeographyMatchFailed = new(
+        Values.CoveredGeographyMatchFailed
+    );
 
-    [EnumMember(Value = "No Effective Contract with Line of Business")]
-    LineOfBusinessMatchFailed,
+    public static readonly Explanation LineOfBusinessMatchFailed = new(
+        Values.LineOfBusinessMatchFailed
+    );
 
-    [EnumMember(Value = "No Effective Contract with Insurance Type")]
-    InsuranceTypeMatchFailed,
+    public static readonly Explanation InsuranceTypeMatchFailed = new(
+        Values.InsuranceTypeMatchFailed
+    );
 
-    [EnumMember(Value = "No Effective Contract with Rendering Provider")]
-    RenderingProviderMatchFailed,
+    public static readonly Explanation RenderingProviderMatchFailed = new(
+        Values.RenderingProviderMatchFailed
+    );
 
-    [EnumMember(Value = "Rendering Provider Not Credentialed")]
-    RenderingProviderCredentialingCheckFailed,
+    public static readonly Explanation RenderingProviderCredentialingCheckFailed = new(
+        Values.RenderingProviderCredentialingCheckFailed
+    );
+
+    public Explanation(string value)
+    {
+        Value = value;
+    }
+
+    /// <summary>
+    /// The string value of the enum.
+    /// </summary>
+    public string Value { get; }
+
+    /// <summary>
+    /// Create a string enum with the given value.
+    /// </summary>
+    public static Explanation FromCustom(string value)
+    {
+        return new Explanation(value);
+    }
+
+    public bool Equals(string? other)
+    {
+        return Value.Equals(other);
+    }
+
+    /// <summary>
+    /// Returns the string value of the enum.
+    /// </summary>
+    public override string ToString()
+    {
+        return Value;
+    }
+
+    public static bool operator ==(Explanation value1, string value2) =>
+        value1.Value.Equals(value2);
+
+    public static bool operator !=(Explanation value1, string value2) =>
+        !value1.Value.Equals(value2);
+
+    public static explicit operator string(Explanation value) => value.Value;
+
+    public static explicit operator Explanation(string value) => new(value);
+
+    /// <summary>
+    /// Constant strings for enum values
+    /// </summary>
+    [Serializable]
+    public static class Values
+    {
+        public const string RoutingFailed = "Payer Routing and/or Billing Provider Routing Failed";
+
+        public const string PayerMatchFailed = "No Effective Contract with Payer";
+
+        public const string BillingProviderMatchFailed =
+            "No Effective Contract with Billing Provider";
+
+        public const string CoveredGeographyMatchFailed =
+            "No Effective Contract with Covered Geography";
+
+        public const string LineOfBusinessMatchFailed =
+            "No Effective Contract with Line of Business";
+
+        public const string InsuranceTypeMatchFailed = "No Effective Contract with Insurance Type";
+
+        public const string RenderingProviderMatchFailed =
+            "No Effective Contract with Rendering Provider";
+
+        public const string RenderingProviderCredentialingCheckFailed =
+            "Rendering Provider Not Credentialed";
+    }
 }

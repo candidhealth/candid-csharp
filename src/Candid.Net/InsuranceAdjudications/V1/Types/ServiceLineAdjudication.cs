@@ -1,14 +1,19 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Core;
 using Candid.Net.ServiceLines.V2;
 using Candid.Net.X12.V1;
 
-#nullable enable
-
 namespace Candid.Net.InsuranceAdjudications.V1;
 
-public record ServiceLineAdjudication
+[Serializable]
+public record ServiceLineAdjudication : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("service_line_adjudication_id")]
     public required string ServiceLineAdjudicationId { get; set; }
 
@@ -41,6 +46,13 @@ public record ServiceLineAdjudication
     public IEnumerable<RemittanceAdviceRemarkCode> Rarcs { get; set; } =
         new List<RemittanceAdviceRemarkCode>();
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

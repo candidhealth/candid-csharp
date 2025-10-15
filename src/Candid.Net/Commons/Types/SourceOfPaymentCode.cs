@@ -1,83 +1,309 @@
-using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.Commons;
 
-[JsonConverter(typeof(EnumSerializer<SourceOfPaymentCode>))]
-public enum SourceOfPaymentCode
+[JsonConverter(typeof(StringEnumSerializer<SourceOfPaymentCode>))]
+[Serializable]
+public readonly record struct SourceOfPaymentCode : IStringEnum
 {
-    [EnumMember(Value = "09")]
-    SelfPay,
+    /// <summary>
+    /// Self-pay
+    /// </summary>
+    public static readonly SourceOfPaymentCode SelfPay = new(Values.SelfPay);
 
-    [EnumMember(Value = "11")]
-    OtherNonFederalPrograms,
+    /// <summary>
+    /// Other Non-Federal Programs
+    /// </summary>
+    public static readonly SourceOfPaymentCode OtherNonFederalPrograms = new(
+        Values.OtherNonFederalPrograms
+    );
 
-    [EnumMember(Value = "12")]
-    Ppo,
+    /// <summary>
+    /// Preferred Provider Organization (PPO)
+    /// </summary>
+    public static readonly SourceOfPaymentCode Ppo = new(Values.Ppo);
 
-    [EnumMember(Value = "13")]
-    Pos,
+    /// <summary>
+    /// Point of Service (POS)
+    /// </summary>
+    public static readonly SourceOfPaymentCode Pos = new(Values.Pos);
 
-    [EnumMember(Value = "14")]
-    Epo,
+    /// <summary>
+    /// Exclusive Provider Organization (EPO)
+    /// </summary>
+    public static readonly SourceOfPaymentCode Epo = new(Values.Epo);
 
-    [EnumMember(Value = "15")]
-    IndemnityInsurance,
+    /// <summary>
+    /// Indemnity Insurance
+    /// </summary>
+    public static readonly SourceOfPaymentCode IndemnityInsurance = new(Values.IndemnityInsurance);
 
-    [EnumMember(Value = "16")]
-    HmoMedicareRisk,
+    /// <summary>
+    /// Health Maintenance Organization (HMO) Medicare Risk
+    /// </summary>
+    public static readonly SourceOfPaymentCode HmoMedicareRisk = new(Values.HmoMedicareRisk);
 
-    [EnumMember(Value = "17")]
-    Dmo,
+    /// <summary>
+    /// Dental Maintenance Organization
+    /// </summary>
+    public static readonly SourceOfPaymentCode Dmo = new(Values.Dmo);
 
-    [EnumMember(Value = "AM")]
-    Auto,
+    /// <summary>
+    /// Automobile Medical
+    /// </summary>
+    public static readonly SourceOfPaymentCode Auto = new(Values.Auto);
 
-    [EnumMember(Value = "BL")]
-    BlueCrossBlueShield,
+    /// <summary>
+    /// Blue Cross/Blue Shield
+    /// </summary>
+    public static readonly SourceOfPaymentCode BlueCrossBlueShield = new(
+        Values.BlueCrossBlueShield
+    );
 
-    [EnumMember(Value = "CH")]
-    Champus,
+    /// <summary>
+    /// CHAMPUS
+    /// </summary>
+    public static readonly SourceOfPaymentCode Champus = new(Values.Champus);
 
-    [EnumMember(Value = "CI")]
-    CommercialInsuranceCo,
+    /// <summary>
+    /// Commercial Insurance Co.
+    /// </summary>
+    public static readonly SourceOfPaymentCode CommercialInsuranceCo = new(
+        Values.CommercialInsuranceCo
+    );
 
-    [EnumMember(Value = "DS")]
-    Disability,
+    /// <summary>
+    /// Disability
+    /// </summary>
+    public static readonly SourceOfPaymentCode Disability = new(Values.Disability);
 
-    [EnumMember(Value = "FI")]
-    FederalEmployees,
+    /// <summary>
+    /// Federal Employees Program
+    /// </summary>
+    public static readonly SourceOfPaymentCode FederalEmployees = new(Values.FederalEmployees);
 
-    [EnumMember(Value = "HM")]
-    Hmo,
+    /// <summary>
+    /// Health Maintenance Organization (HMO)
+    /// </summary>
+    public static readonly SourceOfPaymentCode Hmo = new(Values.Hmo);
 
-    [EnumMember(Value = "LM")]
-    Liability,
+    /// <summary>
+    /// Liability Medical
+    /// </summary>
+    public static readonly SourceOfPaymentCode Liability = new(Values.Liability);
 
-    [EnumMember(Value = "MA")]
-    MedicarePartA,
+    /// <summary>
+    /// Medicare Part A
+    /// </summary>
+    public static readonly SourceOfPaymentCode MedicarePartA = new(Values.MedicarePartA);
 
-    [EnumMember(Value = "MB")]
-    MedicarePartB,
+    /// <summary>
+    /// Medicare Part B
+    /// </summary>
+    public static readonly SourceOfPaymentCode MedicarePartB = new(Values.MedicarePartB);
 
-    [EnumMember(Value = "MC")]
-    Medicaid,
+    /// <summary>
+    /// Medicaid
+    /// </summary>
+    public static readonly SourceOfPaymentCode Medicaid = new(Values.Medicaid);
 
-    [EnumMember(Value = "OF")]
-    OtherFederalProgram,
+    /// <summary>
+    /// Other Federal Program
+    /// </summary>
+    public static readonly SourceOfPaymentCode OtherFederalProgram = new(
+        Values.OtherFederalProgram
+    );
 
-    [EnumMember(Value = "TV")]
-    TitleV,
+    /// <summary>
+    /// Title V
+    /// </summary>
+    public static readonly SourceOfPaymentCode TitleV = new(Values.TitleV);
 
-    [EnumMember(Value = "VA")]
-    VeteransAffairsPlan,
+    /// <summary>
+    /// Veterans Affairs Plan
+    /// </summary>
+    public static readonly SourceOfPaymentCode VeteransAffairsPlan = new(
+        Values.VeteransAffairsPlan
+    );
 
-    [EnumMember(Value = "WC")]
-    WorkersCompHealthClaim,
+    /// <summary>
+    /// Workers' Compensation Health Claim
+    /// </summary>
+    public static readonly SourceOfPaymentCode WorkersCompHealthClaim = new(
+        Values.WorkersCompHealthClaim
+    );
 
-    [EnumMember(Value = "ZZ")]
-    MutuallyDefined,
+    /// <summary>
+    /// Mutually Defined
+    /// </summary>
+    public static readonly SourceOfPaymentCode MutuallyDefined = new(Values.MutuallyDefined);
+
+    public SourceOfPaymentCode(string value)
+    {
+        Value = value;
+    }
+
+    /// <summary>
+    /// The string value of the enum.
+    /// </summary>
+    public string Value { get; }
+
+    /// <summary>
+    /// Create a string enum with the given value.
+    /// </summary>
+    public static SourceOfPaymentCode FromCustom(string value)
+    {
+        return new SourceOfPaymentCode(value);
+    }
+
+    public bool Equals(string? other)
+    {
+        return Value.Equals(other);
+    }
+
+    /// <summary>
+    /// Returns the string value of the enum.
+    /// </summary>
+    public override string ToString()
+    {
+        return Value;
+    }
+
+    public static bool operator ==(SourceOfPaymentCode value1, string value2) =>
+        value1.Value.Equals(value2);
+
+    public static bool operator !=(SourceOfPaymentCode value1, string value2) =>
+        !value1.Value.Equals(value2);
+
+    public static explicit operator string(SourceOfPaymentCode value) => value.Value;
+
+    public static explicit operator SourceOfPaymentCode(string value) => new(value);
+
+    /// <summary>
+    /// Constant strings for enum values
+    /// </summary>
+    [Serializable]
+    public static class Values
+    {
+        /// <summary>
+        /// Self-pay
+        /// </summary>
+        public const string SelfPay = "09";
+
+        /// <summary>
+        /// Other Non-Federal Programs
+        /// </summary>
+        public const string OtherNonFederalPrograms = "11";
+
+        /// <summary>
+        /// Preferred Provider Organization (PPO)
+        /// </summary>
+        public const string Ppo = "12";
+
+        /// <summary>
+        /// Point of Service (POS)
+        /// </summary>
+        public const string Pos = "13";
+
+        /// <summary>
+        /// Exclusive Provider Organization (EPO)
+        /// </summary>
+        public const string Epo = "14";
+
+        /// <summary>
+        /// Indemnity Insurance
+        /// </summary>
+        public const string IndemnityInsurance = "15";
+
+        /// <summary>
+        /// Health Maintenance Organization (HMO) Medicare Risk
+        /// </summary>
+        public const string HmoMedicareRisk = "16";
+
+        /// <summary>
+        /// Dental Maintenance Organization
+        /// </summary>
+        public const string Dmo = "17";
+
+        /// <summary>
+        /// Automobile Medical
+        /// </summary>
+        public const string Auto = "AM";
+
+        /// <summary>
+        /// Blue Cross/Blue Shield
+        /// </summary>
+        public const string BlueCrossBlueShield = "BL";
+
+        /// <summary>
+        /// CHAMPUS
+        /// </summary>
+        public const string Champus = "CH";
+
+        /// <summary>
+        /// Commercial Insurance Co.
+        /// </summary>
+        public const string CommercialInsuranceCo = "CI";
+
+        /// <summary>
+        /// Disability
+        /// </summary>
+        public const string Disability = "DS";
+
+        /// <summary>
+        /// Federal Employees Program
+        /// </summary>
+        public const string FederalEmployees = "FI";
+
+        /// <summary>
+        /// Health Maintenance Organization (HMO)
+        /// </summary>
+        public const string Hmo = "HM";
+
+        /// <summary>
+        /// Liability Medical
+        /// </summary>
+        public const string Liability = "LM";
+
+        /// <summary>
+        /// Medicare Part A
+        /// </summary>
+        public const string MedicarePartA = "MA";
+
+        /// <summary>
+        /// Medicare Part B
+        /// </summary>
+        public const string MedicarePartB = "MB";
+
+        /// <summary>
+        /// Medicaid
+        /// </summary>
+        public const string Medicaid = "MC";
+
+        /// <summary>
+        /// Other Federal Program
+        /// </summary>
+        public const string OtherFederalProgram = "OF";
+
+        /// <summary>
+        /// Title V
+        /// </summary>
+        public const string TitleV = "TV";
+
+        /// <summary>
+        /// Veterans Affairs Plan
+        /// </summary>
+        public const string VeteransAffairsPlan = "VA";
+
+        /// <summary>
+        /// Workers' Compensation Health Claim
+        /// </summary>
+        public const string WorkersCompHealthClaim = "WC";
+
+        /// <summary>
+        /// Mutually Defined
+        /// </summary>
+        public const string MutuallyDefined = "ZZ";
+    }
 }

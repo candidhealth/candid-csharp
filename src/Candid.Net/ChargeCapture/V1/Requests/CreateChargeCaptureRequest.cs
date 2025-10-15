@@ -1,10 +1,9 @@
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.ChargeCapture.V1;
 
+[Serializable]
 public record CreateChargeCaptureRequest
 {
     /// <summary>
@@ -49,6 +48,7 @@ public record CreateChargeCaptureRequest
     [JsonPropertyName("status")]
     public required ChargeCaptureStatus Status { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

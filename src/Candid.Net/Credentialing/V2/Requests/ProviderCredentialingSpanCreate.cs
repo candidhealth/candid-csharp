@@ -1,10 +1,10 @@
 using System.Text.Json.Serialization;
+using Candid.Net.Commons;
 using Candid.Net.Core;
-
-#nullable enable
 
 namespace Candid.Net.Credentialing.V2;
 
+[Serializable]
 public record ProviderCredentialingSpanCreate
 {
     /// <summary>
@@ -41,7 +41,7 @@ public record ProviderCredentialingSpanCreate
     /// The states covered by the credentialing span. A span may be national and cover all states.
     /// </summary>
     [JsonPropertyName("regions")]
-    public required object Regions { get; set; }
+    public required Regions Regions { get; set; }
 
     /// <summary>
     /// Date that the credential paperwork was submitted.
@@ -55,6 +55,7 @@ public record ProviderCredentialingSpanCreate
     [JsonPropertyName("payer_loaded_date")]
     public DateOnly? PayerLoadedDate { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

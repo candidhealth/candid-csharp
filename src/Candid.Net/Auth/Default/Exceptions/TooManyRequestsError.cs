@@ -1,12 +1,11 @@
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.Auth.Default;
 
 /// <summary>
 /// This exception type will be thrown for any non-2XX API responses.
 /// </summary>
+[Serializable]
 public class TooManyRequestsError(TooManyRequestsErrorType body)
     : CandidApiException("TooManyRequestsError", 429, body)
 {

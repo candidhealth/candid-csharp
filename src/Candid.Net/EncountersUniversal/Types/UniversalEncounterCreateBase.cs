@@ -1,4 +1,6 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.BillingNotes.V2;
 using Candid.Net.ClaimSubmission.V1;
 using Candid.Net.Commons;
@@ -10,12 +12,15 @@ using Candid.Net.Guarantor.V1;
 using Candid.Net.Individual;
 using Candid.Net.ServiceFacility;
 
-#nullable enable
-
 namespace Candid.Net.EncountersUniversal;
 
-public record UniversalEncounterCreateBase
+[Serializable]
+public record UniversalEncounterCreateBase : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// Contains the identification information of the individual receiving medical services.
     /// </summary>
@@ -297,6 +302,13 @@ public record UniversalEncounterCreateBase
     [JsonPropertyName("delay_reason_code")]
     public DelayReasonCode? DelayReasonCode { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

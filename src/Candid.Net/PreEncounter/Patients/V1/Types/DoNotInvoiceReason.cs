@@ -1,23 +1,73 @@
-using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.PreEncounter.Patients.V1;
 
-[JsonConverter(typeof(EnumSerializer<DoNotInvoiceReason>))]
-public enum DoNotInvoiceReason
+[JsonConverter(typeof(StringEnumSerializer<DoNotInvoiceReason>))]
+[Serializable]
+public readonly record struct DoNotInvoiceReason : IStringEnum
 {
-    [EnumMember(Value = "BANKRUPTCY")]
-    Bankruptcy,
+    public static readonly DoNotInvoiceReason Bankruptcy = new(Values.Bankruptcy);
 
-    [EnumMember(Value = "DECEASED")]
-    Deceased,
+    public static readonly DoNotInvoiceReason Deceased = new(Values.Deceased);
 
-    [EnumMember(Value = "HARDSHIP")]
-    Hardship,
+    public static readonly DoNotInvoiceReason Hardship = new(Values.Hardship);
 
-    [EnumMember(Value = "OTHER")]
-    Other,
+    public static readonly DoNotInvoiceReason Other = new(Values.Other);
+
+    public DoNotInvoiceReason(string value)
+    {
+        Value = value;
+    }
+
+    /// <summary>
+    /// The string value of the enum.
+    /// </summary>
+    public string Value { get; }
+
+    /// <summary>
+    /// Create a string enum with the given value.
+    /// </summary>
+    public static DoNotInvoiceReason FromCustom(string value)
+    {
+        return new DoNotInvoiceReason(value);
+    }
+
+    public bool Equals(string? other)
+    {
+        return Value.Equals(other);
+    }
+
+    /// <summary>
+    /// Returns the string value of the enum.
+    /// </summary>
+    public override string ToString()
+    {
+        return Value;
+    }
+
+    public static bool operator ==(DoNotInvoiceReason value1, string value2) =>
+        value1.Value.Equals(value2);
+
+    public static bool operator !=(DoNotInvoiceReason value1, string value2) =>
+        !value1.Value.Equals(value2);
+
+    public static explicit operator string(DoNotInvoiceReason value) => value.Value;
+
+    public static explicit operator DoNotInvoiceReason(string value) => new(value);
+
+    /// <summary>
+    /// Constant strings for enum values
+    /// </summary>
+    [Serializable]
+    public static class Values
+    {
+        public const string Bankruptcy = "BANKRUPTCY";
+
+        public const string Deceased = "DECEASED";
+
+        public const string Hardship = "HARDSHIP";
+
+        public const string Other = "OTHER";
+    }
 }

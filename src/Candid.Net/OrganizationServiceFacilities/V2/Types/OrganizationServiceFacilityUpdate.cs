@@ -1,13 +1,18 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Commons;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.OrganizationServiceFacilities.V2;
 
-public record OrganizationServiceFacilityUpdate
+[Serializable]
+public record OrganizationServiceFacilityUpdate : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// The name of the service facility.
     /// </summary>
@@ -27,11 +32,23 @@ public record OrganizationServiceFacilityUpdate
     public string? Description { get; set; }
 
     /// <summary>
+    /// An ID for this service facility used in an external system (e.g. your EMR). Service facilities can be queried by this field.
+    /// </summary>
+    [JsonPropertyName("external_id")]
+    public string? ExternalId { get; set; }
+
+    /// <summary>
     /// An NPI specific to the service facility if applicable, i.e. if it has one and is not under the billing provider's NPI.
     /// Box 32 section (a) of the CMS-1500 claim form.
     /// </summary>
     [JsonPropertyName("npi")]
     public string? Npi { get; set; }
+
+    /// <summary>
+    /// The Place of Service (POS) code for this service facility.
+    /// </summary>
+    [JsonPropertyName("place_of_service_code")]
+    public FacilityTypeCode? PlaceOfServiceCode { get; set; }
 
     /// <summary>
     /// The status of the service facility.
@@ -75,6 +92,13 @@ public record OrganizationServiceFacilityUpdate
     [JsonPropertyName("address")]
     public StreetAddressLongZip? Address { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

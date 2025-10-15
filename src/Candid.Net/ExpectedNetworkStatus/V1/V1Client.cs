@@ -3,8 +3,6 @@ using System.Text.Json;
 using System.Threading;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.ExpectedNetworkStatus.V1;
 
 public partial class V1Client
@@ -19,8 +17,7 @@ public partial class V1Client
     /// <summary>
     /// Computes the expected network status given the provided information.
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.ExpectedNetworkStatus.V1.ComputeAsync(
     ///     new ExpectedNetworkStatusRequest
     ///     {
@@ -33,28 +30,29 @@ public partial class V1Client
     ///         DateOfService = "date_of_service",
     ///     }
     /// );
-    /// </code>
-    /// </example>
-    public async Task<ExpectedNetworkStatusResponse> ComputeAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<ExpectedNetworkStatusResponse> ComputeAsync(
         ExpectedNetworkStatusRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.CandidApi,
-                Method = HttpMethod.Post,
-                Path = "/api/expected-network-status/v1",
-                Body = request,
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Post,
+                    Path = "/api/expected-network-status/v1",
+                    Body = request,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<ExpectedNetworkStatusResponse>(responseBody)!;
@@ -65,10 +63,13 @@ public partial class V1Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 }

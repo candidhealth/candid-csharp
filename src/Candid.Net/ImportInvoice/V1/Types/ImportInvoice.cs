@@ -1,13 +1,18 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Core;
 using Candid.Net.Invoices.V2;
 
-#nullable enable
-
 namespace Candid.Net.ImportInvoice.V1;
 
-public record ImportInvoice
+[Serializable]
+public record ImportInvoice : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("id")]
     public required string Id { get; set; }
 
@@ -33,7 +38,7 @@ public record ImportInvoice
     public required string ExternalCustomerIdentifier { get; set; }
 
     [JsonPropertyName("status")]
-    public required Invoices.V2.InvoiceStatus Status { get; set; }
+    public required Candid.Net.Invoices.V2.InvoiceStatus Status { get; set; }
 
     /// <summary>
     /// Id of the invoice being imported in the source system
@@ -59,6 +64,13 @@ public record ImportInvoice
     [JsonPropertyName("amount_cents")]
     public required int AmountCents { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

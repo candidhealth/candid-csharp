@@ -1,38 +1,45 @@
+using System.Text.Json.Serialization;
 using Candid.Net.Core;
-
-#nullable enable
 
 namespace Candid.Net.Credentialing.V2;
 
+[Serializable]
 public record GetAllProviderCredentialingSpansRequest
 {
     /// <summary>
     /// Maximum number of entities per page, defaults to 100.
     /// </summary>
+    [JsonIgnore]
     public int? Limit { get; set; }
 
+    [JsonIgnore]
     public string? PageToken { get; set; }
 
     /// <summary>
     /// Filter by payer.
     /// </summary>
+    [JsonIgnore]
     public string? PayerUuid { get; set; }
 
     /// <summary>
     /// Filter to a particular provider. Use in conjunction as_rendering_provider and as_contracting_provider.
     /// </summary>
+    [JsonIgnore]
     public string? ProviderId { get; set; }
 
     /// <summary>
     /// Filter to credentialing spans where the provider is a rendering provider. To use this filter provider_id is required.
     /// </summary>
+    [JsonIgnore]
     public bool? AsRenderingProvider { get; set; }
 
     /// <summary>
     /// Filter to credentialing spans where the provider is a contracting provider. To use this filter provider_id is required.
     /// </summary>
+    [JsonIgnore]
     public bool? AsContractingProvider { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

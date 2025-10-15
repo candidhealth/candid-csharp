@@ -1,14 +1,19 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Core;
 using Candid.Net.OrganizationProviders.V3;
 using Candid.Net.OrganizationServiceFacilities.V2;
 
-#nullable enable
-
 namespace Candid.Net.Credentialing.V2;
 
-public record FacilityCredentialingSpan
+[Serializable]
+public record FacilityCredentialingSpan : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("facility_credentialing_span_id")]
     public required string FacilityCredentialingSpanId { get; set; }
 
@@ -28,7 +33,7 @@ public record FacilityCredentialingSpan
     /// The payer doing the credentialing.
     /// </summary>
     [JsonPropertyName("payer")]
-    public required Payers.V3.Payer Payer { get; set; }
+    public required Candid.Net.Payers.V3.Payer Payer { get; set; }
 
     /// <summary>
     /// Start date of the credentialing span.
@@ -66,6 +71,13 @@ public record FacilityCredentialingSpan
     [JsonPropertyName("is_enabled")]
     public required bool IsEnabled { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

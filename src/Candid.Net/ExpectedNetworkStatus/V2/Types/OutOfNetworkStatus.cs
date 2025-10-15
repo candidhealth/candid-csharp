@@ -1,12 +1,17 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Core;
-
-#nullable enable
 
 namespace Candid.Net.ExpectedNetworkStatus.V2;
 
-public record OutOfNetworkStatus
+[Serializable]
+public record OutOfNetworkStatus : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("explanation")]
     public required Explanation Explanation { get; set; }
 
@@ -16,6 +21,13 @@ public record OutOfNetworkStatus
     [JsonPropertyName("routed_billing_provider_id")]
     public required string RoutedBillingProviderId { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

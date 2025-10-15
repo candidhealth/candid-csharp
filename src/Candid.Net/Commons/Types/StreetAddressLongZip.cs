@@ -1,12 +1,17 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Core;
-
-#nullable enable
 
 namespace Candid.Net.Commons;
 
-public record StreetAddressLongZip
+[Serializable]
+public record StreetAddressLongZip : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// 4-digit zip add-on code https://en.wikipedia.org/wiki/ZIP_Code#ZIP+4
     /// </summary>
@@ -31,6 +36,13 @@ public record StreetAddressLongZip
     [JsonPropertyName("zip_code")]
     public required string ZipCode { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

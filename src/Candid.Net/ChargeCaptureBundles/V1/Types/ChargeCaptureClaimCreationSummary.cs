@@ -1,12 +1,17 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Core;
-
-#nullable enable
 
 namespace Candid.Net.ChargeCaptureBundles.V1;
 
-public record ChargeCaptureClaimCreationSummary
+[Serializable]
+public record ChargeCaptureClaimCreationSummary : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// The count of charge captures which are not part of a Claim Creation.
     /// </summary>
@@ -37,6 +42,13 @@ public record ChargeCaptureClaimCreationSummary
     [JsonPropertyName("charge_capture_unresolved_change_count")]
     public required int ChargeCaptureUnresolvedChangeCount { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

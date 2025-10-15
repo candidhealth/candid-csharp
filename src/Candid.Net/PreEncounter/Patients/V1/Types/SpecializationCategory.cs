@@ -1,95 +1,173 @@
-using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.PreEncounter.Patients.V1;
 
-[JsonConverter(typeof(EnumSerializer<SpecializationCategory>))]
-public enum SpecializationCategory
+[JsonConverter(typeof(StringEnumSerializer<SpecializationCategory>))]
+[Serializable]
+public readonly record struct SpecializationCategory : IStringEnum
 {
-    [EnumMember(Value = "BEHAVIORAL_HEALTH_THERAPY")]
-    BehavioralHealthTherapy,
+    public static readonly SpecializationCategory BehavioralHealthTherapy = new(
+        Values.BehavioralHealthTherapy
+    );
 
-    [EnumMember(Value = "CARDIOLOGY")]
-    Cardiology,
+    public static readonly SpecializationCategory Cardiology = new(Values.Cardiology);
 
-    [EnumMember(Value = "DERMATOLOGY")]
-    Dermatology,
+    public static readonly SpecializationCategory Dermatology = new(Values.Dermatology);
 
-    [EnumMember(Value = "ENDOCRINOLOGY")]
-    Endocrinology,
+    public static readonly SpecializationCategory Endocrinology = new(Values.Endocrinology);
 
-    [EnumMember(Value = "ENT")]
-    Ent,
+    public static readonly SpecializationCategory Ent = new(Values.Ent);
 
-    [EnumMember(Value = "GASTROENTEROLOGY")]
-    Gastroenterology,
+    public static readonly SpecializationCategory Gastroenterology = new(Values.Gastroenterology);
 
-    [EnumMember(Value = "GENERAL_SURGERY")]
-    GeneralSurgery,
+    public static readonly SpecializationCategory GeneralSurgery = new(Values.GeneralSurgery);
 
-    [EnumMember(Value = "GENETICS")]
-    Genetics,
+    public static readonly SpecializationCategory Genetics = new(Values.Genetics);
 
-    [EnumMember(Value = "HEMATOLOGY")]
-    Hematology,
+    public static readonly SpecializationCategory Hematology = new(Values.Hematology);
 
-    [EnumMember(Value = "INFECTIOUS_DISEASE")]
-    InfectiousDisease,
+    public static readonly SpecializationCategory InfectiousDisease = new(Values.InfectiousDisease);
 
-    [EnumMember(Value = "NEUROLOGY")]
-    Neurology,
+    public static readonly SpecializationCategory Neurology = new(Values.Neurology);
 
-    [EnumMember(Value = "NUTRITIONAL_THERAPY")]
-    NutritionalTherapy,
+    public static readonly SpecializationCategory NutritionalTherapy = new(
+        Values.NutritionalTherapy
+    );
 
-    [EnumMember(Value = "OB_GYN")]
-    ObGyn,
+    public static readonly SpecializationCategory ObGyn = new(Values.ObGyn);
 
-    [EnumMember(Value = "ONCOLOGY")]
-    Oncology,
+    public static readonly SpecializationCategory Oncology = new(Values.Oncology);
 
-    [EnumMember(Value = "OPHTHALMOLOGY")]
-    Ophthalmology,
+    public static readonly SpecializationCategory Ophthalmology = new(Values.Ophthalmology);
 
-    [EnumMember(Value = "ORTHOPEDICS")]
-    Orthopedics,
+    public static readonly SpecializationCategory Orthopedics = new(Values.Orthopedics);
 
-    [EnumMember(Value = "PAIN_MANAGEMENT")]
-    PainManagement,
+    public static readonly SpecializationCategory PainManagement = new(Values.PainManagement);
 
-    [EnumMember(Value = "PEDIATRICS")]
-    Pediatrics,
+    public static readonly SpecializationCategory Pediatrics = new(Values.Pediatrics);
 
-    [EnumMember(Value = "PHYSICAL_THERAPY")]
-    PhysicalTherapy,
+    public static readonly SpecializationCategory PhysicalTherapy = new(Values.PhysicalTherapy);
 
-    [EnumMember(Value = "PODIATRY")]
-    Podiatry,
+    public static readonly SpecializationCategory Podiatry = new(Values.Podiatry);
 
-    [EnumMember(Value = "PRIMARY_CARE")]
-    PrimaryCare,
+    public static readonly SpecializationCategory PrimaryCare = new(Values.PrimaryCare);
 
-    [EnumMember(Value = "PSYCHIATRY")]
-    Psychiatry,
+    public static readonly SpecializationCategory Psychiatry = new(Values.Psychiatry);
 
-    [EnumMember(Value = "PULMONOLOGY")]
-    Pulmonology,
+    public static readonly SpecializationCategory Pulmonology = new(Values.Pulmonology);
 
-    [EnumMember(Value = "RADIOLOGY")]
-    Radiology,
+    public static readonly SpecializationCategory Radiology = new(Values.Radiology);
 
-    [EnumMember(Value = "RHEUMATOLOGY")]
-    Rheumatology,
+    public static readonly SpecializationCategory Rheumatology = new(Values.Rheumatology);
 
-    [EnumMember(Value = "SCREENING")]
-    Screening,
+    public static readonly SpecializationCategory Screening = new(Values.Screening);
 
-    [EnumMember(Value = "UROLOGY")]
-    Urology,
+    public static readonly SpecializationCategory Urology = new(Values.Urology);
 
-    [EnumMember(Value = "OTHER")]
-    Other,
+    public static readonly SpecializationCategory Other = new(Values.Other);
+
+    public SpecializationCategory(string value)
+    {
+        Value = value;
+    }
+
+    /// <summary>
+    /// The string value of the enum.
+    /// </summary>
+    public string Value { get; }
+
+    /// <summary>
+    /// Create a string enum with the given value.
+    /// </summary>
+    public static SpecializationCategory FromCustom(string value)
+    {
+        return new SpecializationCategory(value);
+    }
+
+    public bool Equals(string? other)
+    {
+        return Value.Equals(other);
+    }
+
+    /// <summary>
+    /// Returns the string value of the enum.
+    /// </summary>
+    public override string ToString()
+    {
+        return Value;
+    }
+
+    public static bool operator ==(SpecializationCategory value1, string value2) =>
+        value1.Value.Equals(value2);
+
+    public static bool operator !=(SpecializationCategory value1, string value2) =>
+        !value1.Value.Equals(value2);
+
+    public static explicit operator string(SpecializationCategory value) => value.Value;
+
+    public static explicit operator SpecializationCategory(string value) => new(value);
+
+    /// <summary>
+    /// Constant strings for enum values
+    /// </summary>
+    [Serializable]
+    public static class Values
+    {
+        public const string BehavioralHealthTherapy = "BEHAVIORAL_HEALTH_THERAPY";
+
+        public const string Cardiology = "CARDIOLOGY";
+
+        public const string Dermatology = "DERMATOLOGY";
+
+        public const string Endocrinology = "ENDOCRINOLOGY";
+
+        public const string Ent = "ENT";
+
+        public const string Gastroenterology = "GASTROENTEROLOGY";
+
+        public const string GeneralSurgery = "GENERAL_SURGERY";
+
+        public const string Genetics = "GENETICS";
+
+        public const string Hematology = "HEMATOLOGY";
+
+        public const string InfectiousDisease = "INFECTIOUS_DISEASE";
+
+        public const string Neurology = "NEUROLOGY";
+
+        public const string NutritionalTherapy = "NUTRITIONAL_THERAPY";
+
+        public const string ObGyn = "OB_GYN";
+
+        public const string Oncology = "ONCOLOGY";
+
+        public const string Ophthalmology = "OPHTHALMOLOGY";
+
+        public const string Orthopedics = "ORTHOPEDICS";
+
+        public const string PainManagement = "PAIN_MANAGEMENT";
+
+        public const string Pediatrics = "PEDIATRICS";
+
+        public const string PhysicalTherapy = "PHYSICAL_THERAPY";
+
+        public const string Podiatry = "PODIATRY";
+
+        public const string PrimaryCare = "PRIMARY_CARE";
+
+        public const string Psychiatry = "PSYCHIATRY";
+
+        public const string Pulmonology = "PULMONOLOGY";
+
+        public const string Radiology = "RADIOLOGY";
+
+        public const string Rheumatology = "RHEUMATOLOGY";
+
+        public const string Screening = "SCREENING";
+
+        public const string Urology = "UROLOGY";
+
+        public const string Other = "OTHER";
+    }
 }

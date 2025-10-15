@@ -1,15 +1,28 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Core;
-
-#nullable enable
 
 namespace Candid.Net.Encounters.V4;
 
-public record SchemaInstanceValidationFailure
+[Serializable]
+public record SchemaInstanceValidationFailure : IJsonOnDeserialized
 {
-    [JsonPropertyName("errors")]
-    public IEnumerable<object> Errors { get; set; } = new List<object>();
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
 
+    [JsonPropertyName("errors")]
+    public IEnumerable<SchemaInstanceValidationError> Errors { get; set; } =
+        new List<SchemaInstanceValidationError>();
+
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

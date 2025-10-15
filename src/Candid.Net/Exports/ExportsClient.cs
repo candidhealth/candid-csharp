@@ -1,7 +1,4 @@
 using Candid.Net.Core;
-using Candid.Net.Exports.V3;
-
-#nullable enable
 
 namespace Candid.Net.Exports;
 
@@ -12,8 +9,8 @@ public partial class ExportsClient
     internal ExportsClient(RawClient client)
     {
         _client = client;
-        V3 = new V3Client(_client);
+        V3 = new Candid.Net.Exports.V3.V3Client(_client);
     }
 
-    public V3Client V3 { get; }
+    public Candid.Net.Exports.V3.V3Client V3 { get; }
 }

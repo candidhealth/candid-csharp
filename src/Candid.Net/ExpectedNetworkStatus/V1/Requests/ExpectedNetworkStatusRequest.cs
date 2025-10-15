@@ -2,10 +2,9 @@ using System.Text.Json.Serialization;
 using Candid.Net.Commons;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.ExpectedNetworkStatus.V1;
 
+[Serializable]
 public record ExpectedNetworkStatusRequest
 {
     [JsonPropertyName("external_patient_id")]
@@ -18,7 +17,7 @@ public record ExpectedNetworkStatusRequest
     public required string SubscriberPayerName { get; set; }
 
     [JsonPropertyName("subscriber_insurance_type")]
-    public Commons.InsuranceTypeCode? SubscriberInsuranceType { get; set; }
+    public Candid.Net.Commons.InsuranceTypeCode? SubscriberInsuranceType { get; set; }
 
     /// <summary>
     /// The descriptive name of the insurance plan selected by the subscriber, often indicating coverage specifics or tier.
@@ -56,6 +55,7 @@ public record ExpectedNetworkStatusRequest
     [JsonPropertyName("date_of_service")]
     public required string DateOfService { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

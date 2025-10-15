@@ -1,12 +1,11 @@
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.Commons;
 
 /// <summary>
 /// This exception type will be thrown for any non-2XX API responses.
 /// </summary>
+[Serializable]
 public class UnprocessableEntityError(UnprocessableEntityErrorMessage body)
     : CandidApiException("UnprocessableEntityError", 422, body)
 {

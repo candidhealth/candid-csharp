@@ -1,15 +1,19 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Core;
-using Candid.Net.Tasks.Commons;
-
-#nullable enable
 
 namespace Candid.Net.Tasks.V3;
 
-public record TaskUpdateV3
+[Serializable]
+public record TaskUpdateV3 : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("status")]
-    public TaskStatus? Status { get; set; }
+    public Candid.Net.Tasks.Commons.TaskStatus? Status { get; set; }
 
     [JsonPropertyName("assignee_user_id")]
     public string? AssigneeUserId { get; set; }
@@ -17,6 +21,13 @@ public record TaskUpdateV3
     [JsonPropertyName("blocks_claim_submission")]
     public bool? BlocksClaimSubmission { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

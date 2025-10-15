@@ -1,13 +1,18 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Commons;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.ExpectedNetworkStatus.V2;
 
-public record ExpectedNetworkStatusRequestV2
+[Serializable]
+public record ExpectedNetworkStatusRequestV2 : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// For some payers, payer routing depends on whether the rendered service qualifies as a behavioral health visit
     /// (e.g. Blue Shield of California routes to Magellan for behavioral health visits).
@@ -51,6 +56,13 @@ public record ExpectedNetworkStatusRequestV2
     [JsonPropertyName("date_of_service")]
     public required DateOnly DateOfService { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

@@ -1,12 +1,17 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Core;
-
-#nullable enable
 
 namespace Candid.Net.OrganizationProviders.V2;
 
-public record OrganizationProviderBase
+[Serializable]
+public record OrganizationProviderBase : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// The NPI of the provider. This must be all digits [0-9] and exactly 10 characters long.
     /// </summary>
@@ -85,6 +90,13 @@ public record OrganizationProviderBase
     [JsonPropertyName("addresses")]
     public IEnumerable<OrganizationProviderAddress>? Addresses { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

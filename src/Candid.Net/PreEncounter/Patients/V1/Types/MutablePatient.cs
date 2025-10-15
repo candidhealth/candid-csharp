@@ -1,13 +1,21 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Core;
 using Candid.Net.PreEncounter.Common;
 
-#nullable enable
-
 namespace Candid.Net.PreEncounter.Patients.V1;
 
-public record MutablePatient
+/// <summary>
+/// An object representing patient demographics information.
+/// </summary>
+[Serializable]
+public record MutablePatient : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("name")]
     public required HumanName Name { get; set; }
 
@@ -24,7 +32,7 @@ public record MutablePatient
     public IEnumerable<ExternalIdentifier>? OtherIdentifiers { get; set; }
 
     [JsonPropertyName("gender")]
-    public Common.Gender? Gender { get; set; }
+    public Candid.Net.PreEncounter.Common.Gender? Gender { get; set; }
 
     [JsonPropertyName("birth_date")]
     public required DateOnly BirthDate { get; set; }
@@ -78,13 +86,14 @@ public record MutablePatient
     /// The primary address for the patient.
     /// </summary>
     [JsonPropertyName("primary_address")]
-    public required Common.Address PrimaryAddress { get; set; }
+    public required Candid.Net.PreEncounter.Common.Address PrimaryAddress { get; set; }
 
     /// <summary>
     /// Other addresses for the patient.
     /// </summary>
     [JsonPropertyName("other_addresses")]
-    public IEnumerable<Common.Address> OtherAddresses { get; set; } = new List<Common.Address>();
+    public IEnumerable<Candid.Net.PreEncounter.Common.Address> OtherAddresses { get; set; } =
+        new List<Candid.Net.PreEncounter.Common.Address>();
 
     /// <summary>
     /// The primary phone number for the patient.
@@ -151,6 +160,12 @@ public record MutablePatient
     public string? PrimaryServiceFacilityId { get; set; }
 
     /// <summary>
+    /// Associated service facilities for this patient.
+    /// </summary>
+    [JsonPropertyName("service_facilities")]
+    public IEnumerable<PatientServiceFacility>? ServiceFacilities { get; set; }
+
+    /// <summary>
     /// If this value is defined, the customer will not be invoiced.
     /// </summary>
     [JsonPropertyName("do_not_invoice_reason")]
@@ -174,6 +189,13 @@ public record MutablePatient
     [JsonPropertyName("inferred_patient_metadata")]
     public InferredPatientMetadata? InferredPatientMetadata { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

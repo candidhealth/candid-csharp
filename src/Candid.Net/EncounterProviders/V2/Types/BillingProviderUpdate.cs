@@ -1,13 +1,28 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Commons;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.EncounterProviders.V2;
 
-public record BillingProviderUpdate
+/// <summary>
+/// The billing provider is the provider or business entity submitting the claim.
+/// Billing provider may be, but is not necessarily, the same person/NPI as the rendering provider.
+/// From a payer's perspective, this represents the person or entity being reimbursed.
+/// When a contract exists with the target payer, the billing provider should be the entity contracted with the payer.
+/// In some circumstances, this will be an individual provider. In that case, submit that provider's NPI and the
+/// tax ID (TIN) that the provider gave to the payer during contracting.
+/// In other cases, the billing entity will be a medical group. If so, submit the group NPI and the group's tax ID.
+/// Box 33 on the CMS-1500 claim or Form Locator 1 on a UB-04 claim form.
+/// </summary>
+[Serializable]
+public record BillingProviderUpdate : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("address")]
     public StreetAddressLongZip? Address { get; set; }
 
@@ -48,6 +63,13 @@ public record BillingProviderUpdate
     [JsonPropertyName("organization_name")]
     public string? OrganizationName { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

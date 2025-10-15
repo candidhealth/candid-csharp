@@ -1,13 +1,18 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Core;
 using Candid.Net.ServiceLines.V2;
 
-#nullable enable
-
 namespace Candid.Net.Claims;
 
-public record Claim
+[Serializable]
+public record Claim : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("claim_id")]
     public required string ClaimId { get; set; }
 
@@ -32,6 +37,13 @@ public record Claim
     [JsonPropertyName("eras")]
     public IEnumerable<Era.Era> Eras { get; set; } = new List<Era.Era>();
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

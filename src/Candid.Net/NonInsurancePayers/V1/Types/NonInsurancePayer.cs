@@ -1,14 +1,19 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.ClinicalTrials.V1;
 using Candid.Net.Commons;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.NonInsurancePayers.V1;
 
-public record NonInsurancePayer
+[Serializable]
+public record NonInsurancePayer : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("non_insurance_payer_id")]
     public required string NonInsurancePayerId { get; set; }
 
@@ -30,6 +35,13 @@ public record NonInsurancePayer
     [JsonPropertyName("clinical_trials")]
     public IEnumerable<ClinicalTrial> ClinicalTrials { get; set; } = new List<ClinicalTrial>();
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

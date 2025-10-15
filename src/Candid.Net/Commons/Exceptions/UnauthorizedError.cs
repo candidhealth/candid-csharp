@@ -1,12 +1,11 @@
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.Commons;
 
 /// <summary>
 /// This exception type will be thrown for any non-2XX API responses.
 /// </summary>
+[Serializable]
 public class UnauthorizedError(UnauthorizedErrorMessage body)
     : CandidApiException("UnauthorizedError", 403, body)
 {

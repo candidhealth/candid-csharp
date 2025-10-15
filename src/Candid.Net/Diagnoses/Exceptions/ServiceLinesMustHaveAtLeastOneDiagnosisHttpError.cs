@@ -1,12 +1,11 @@
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.Diagnoses;
 
 /// <summary>
 /// This exception type will be thrown for any non-2XX API responses.
 /// </summary>
+[Serializable]
 public class ServiceLinesMustHaveAtLeastOneDiagnosisHttpError(
     ServiceLinesMustHaveAtLeastOneDiagnosisError body
 ) : CandidApiException("ServiceLinesMustHaveAtLeastOneDiagnosisHttpError", 422, body)

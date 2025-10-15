@@ -3,8 +3,6 @@ using System.Text.Json;
 using System.Threading;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.ChargeCapture.V1;
 
 public partial class V1Client
@@ -16,8 +14,7 @@ public partial class V1Client
         _client = client;
     }
 
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.ChargeCapture.V1.CreateAsync(
     ///     new CreateChargeCaptureRequest
     ///     {
@@ -27,28 +24,29 @@ public partial class V1Client
     ///         Status = ChargeCaptureStatus.Planned,
     ///     }
     /// );
-    /// </code>
-    /// </example>
-    public async Task<ChargeCapture> CreateAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<ChargeCapture> CreateAsync(
         CreateChargeCaptureRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.CandidApi,
-                Method = HttpMethod.Post,
-                Path = "/api/charge_captures/v1",
-                Body = request,
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Post,
+                    Path = "/api/charge_captures/v1",
+                    Body = request,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<ChargeCapture>(responseBody)!;
@@ -59,11 +57,14 @@ public partial class V1Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
@@ -86,8 +87,7 @@ public partial class V1Client
     /// Utilizing this endpoint opts you into automatic updating of the encounter when the patient or appointment is updated, assuming the
     /// encounter has not already been submitted or adjudicated.
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.ChargeCapture.V1.CreateFromPreEncounterPatientAsync(
     ///     new CreateChargeCaptureFromPreEncounterRequest
     ///     {
@@ -102,28 +102,29 @@ public partial class V1Client
     ///         Status = ChargeCaptureStatus.Planned,
     ///     }
     /// );
-    /// </code>
-    /// </example>
-    public async Task<ChargeCapture> CreateFromPreEncounterPatientAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<ChargeCapture> CreateFromPreEncounterPatientAsync(
         CreateChargeCaptureFromPreEncounterRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.CandidApi,
-                Method = HttpMethod.Post,
-                Path = "/api/charge_captures/v1/create-from-pre-encounter",
-                Body = request,
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Post,
+                    Path = "/api/charge_captures/v1/create-from-pre-encounter",
+                    Body = request,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<ChargeCapture>(responseBody)!;
@@ -134,42 +135,48 @@ public partial class V1Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.ChargeCapture.V1.UpdateAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///     new ChargeCaptureUpdate()
     /// );
-    /// </code>
-    /// </example>
-    public async Task<ChargeCapture> UpdateAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<ChargeCapture> UpdateAsync(
         string chargeCaptureId,
         ChargeCaptureUpdate request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.CandidApi,
-                Method = HttpMethodExtensions.Patch,
-                Path = $"/api/charge_captures/v1/{chargeCaptureId}",
-                Body = request,
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethodExtensions.Patch,
+                    Path = string.Format(
+                        "/api/charge_captures/v1/{0}",
+                        ValueConvert.ToPathParameterString(chargeCaptureId)
+                    ),
+                    Body = request,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<ChargeCapture>(responseBody)!;
@@ -180,37 +187,43 @@ public partial class V1Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.ChargeCapture.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
-    /// </code>
-    /// </example>
-    public async Task<ChargeCapture> GetAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<ChargeCapture> GetAsync(
         string chargeCaptureId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.CandidApi,
-                Method = HttpMethod.Get,
-                Path = $"/api/charge_captures/v1/{chargeCaptureId}",
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Get,
+                    Path = string.Format(
+                        "/api/charge_captures/v1/{0}",
+                        ValueConvert.ToPathParameterString(chargeCaptureId)
+                    ),
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<ChargeCapture>(responseBody)!;
@@ -221,29 +234,28 @@ public partial class V1Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.ChargeCapture.V1.GetAllAsync(new GetAllChargeCapturesRequest());
-    /// </code>
-    /// </example>
-    public async Task<ChargeCapturePage> GetAllAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<ChargeCapturePage> GetAllAsync(
         GetAllChargeCapturesRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         var _query = new Dictionary<string, object>();
-        _query["claim_ids"] = request.ClaimIds.Select(_value => _value.ToString()).ToList();
-        _query["claim_creation_ids"] = request
-            .ClaimCreationIds.Select(_value => _value.ToString())
-            .ToList();
+        _query["claim_ids"] = request.ClaimIds;
+        _query["claim_creation_ids"] = request.ClaimCreationIds;
         _query["billing_provider_npis"] = request.BillingProviderNpis;
         _query["primary_payer_ids"] = request.PrimaryPayerIds;
         _query["rendering_provider_npis"] = request.RenderingProviderNpis;
@@ -254,12 +266,8 @@ public partial class V1Client
         _query["tags"] = request.Tags;
         _query["primary_payer_names"] = request.PrimaryPayerNames;
         _query["patient_names"] = request.PatientNames;
-        _query["claim_ids_ranked_sort"] = request
-            .ClaimIdsRankedSort.Select(_value => _value.ToString())
-            .ToList();
-        _query["claim_creation_ids_ranked_sort"] = request
-            .ClaimCreationIdsRankedSort.Select(_value => _value.ToString())
-            .ToList();
+        _query["claim_ids_ranked_sort"] = request.ClaimIdsRankedSort;
+        _query["claim_creation_ids_ranked_sort"] = request.ClaimCreationIdsRankedSort;
         _query["billing_provider_npis_ranked_sort"] = request.BillingProviderNpisRankedSort;
         _query["primary_payer_ids_ranked_sort"] = request.PrimaryPayerIdsRankedSort;
         _query["rendering_provider_npis_ranked_sort"] = request.RenderingProviderNpisRankedSort;
@@ -273,7 +281,7 @@ public partial class V1Client
         _query["patient_names_ranked_sort"] = request.PatientNamesRankedSort;
         if (request.Limit != null)
         {
-            _query["limit"] = request.Limit.ToString();
+            _query["limit"] = request.Limit.Value.ToString();
         }
         if (request.Sort != null)
         {
@@ -317,8 +325,9 @@ public partial class V1Client
         }
         if (request.ExcludeChargesLinkedToClaims != null)
         {
-            _query["exclude_charges_linked_to_claims"] =
-                request.ExcludeChargesLinkedToClaims.ToString();
+            _query["exclude_charges_linked_to_claims"] = JsonUtils.Serialize(
+                request.ExcludeChargesLinkedToClaims.Value
+            );
         }
         if (request.PatientExternalIdRankedSort != null)
         {
@@ -362,20 +371,22 @@ public partial class V1Client
         {
             _query["claim_status"] = request.ClaimStatus.Value.Stringify();
         }
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.CandidApi,
-                Method = HttpMethod.Get,
-                Path = "/api/charge_captures/v1",
-                Query = _query,
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Get,
+                    Path = "/api/charge_captures/v1",
+                    Query = _query,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<ChargeCapturePage>(responseBody)!;
@@ -386,15 +397,17 @@ public partial class V1Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.ChargeCapture.V1.UpdatePostBilledChangesAsync(
     ///     new ChargeCapturePostBilledChangeUpdate
     ///     {
@@ -406,28 +419,31 @@ public partial class V1Client
     ///         Resolved = true,
     ///     }
     /// );
-    /// </code>
-    /// </example>
-    public async Task<IEnumerable<ChargeCapturePostBilledChange>> UpdatePostBilledChangesAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<
+        IEnumerable<ChargeCapturePostBilledChange>
+    > UpdatePostBilledChangesAsync(
         ChargeCapturePostBilledChangeUpdate request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.CandidApi,
-                Method = HttpMethodExtensions.Patch,
-                Path = "/api/charge_captures/v1/changes/",
-                Body = request,
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethodExtensions.Patch,
+                    Path = "/api/charge_captures/v1/changes/",
+                    Body = request,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<IEnumerable<ChargeCapturePostBilledChange>>(
@@ -440,10 +456,13 @@ public partial class V1Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 }

@@ -1,10 +1,9 @@
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.Diagnoses;
 
+[Serializable]
 public record DiagnosisUpdate
 {
     /// <summary>
@@ -41,6 +40,7 @@ public record DiagnosisUpdate
     [JsonPropertyName("present_on_admission_indicator")]
     public YesNoIndicator.YesNoIndicator? PresentOnAdmissionIndicator { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

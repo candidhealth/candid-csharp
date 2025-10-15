@@ -1,14 +1,19 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Commons;
 using Candid.Net.Core;
 using Candid.Net.EncounterProviders.V2;
 
-#nullable enable
-
 namespace Candid.Net.ServiceLines.V2;
 
-public record ServiceLineCreateStandalone
+[Serializable]
+public record ServiceLineCreateStandalone : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("diagnosis_id_zero")]
     public string? DiagnosisIdZero { get; set; }
 
@@ -107,6 +112,13 @@ public record ServiceLineCreateStandalone
     [JsonPropertyName("note")]
     public string? Note { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

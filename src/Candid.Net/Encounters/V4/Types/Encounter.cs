@@ -1,4 +1,6 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.BillingNotes.V2;
 using Candid.Net.Claims;
 using Candid.Net.Commons;
@@ -9,12 +11,15 @@ using Candid.Net.EncounterProviders.V2;
 using Candid.Net.ServiceFacility;
 using Candid.Net.X12.V1;
 
-#nullable enable
-
 namespace Candid.Net.Encounters.V4;
 
-public record Encounter
+[Serializable]
+public record Encounter : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// 837i-REF1000 -- an optional state indicating where an accident related to the encounter occurred.
     /// </summary>
@@ -44,13 +49,13 @@ public record Encounter
     /// Contains the identification information of the individual receiving medical services.
     /// </summary>
     [JsonPropertyName("patient")]
-    public required Individual.Patient Patient { get; set; }
+    public required Candid.Net.Individual.Patient Patient { get; set; }
 
     /// <summary>
     /// Personal and contact info for the guarantor of the patient responsibility.
     /// </summary>
     [JsonPropertyName("guarantor")]
-    public Guarantor.V1.Guarantor? Guarantor { get; set; }
+    public Candid.Net.Guarantor.V1.Guarantor? Guarantor { get; set; }
 
     /// <summary>
     /// The billing provider is the provider or business entity submitting the claim. Billing provider may be, but is not necessarily, the same person/NPI as the rendering provider. From a payer's perspective, this represents the person or entity being reimbursed. When a contract exists with the target payer, the billing provider should be the entity contracted with the payer. In some circumstances, this will be an individual provider. In that case, submit that provider's NPI and the tax ID (TIN) that the provider gave to the payer during contracting. In other cases, the billing entity will be a medical group. If so, submit the group NPI and the group's tax ID. Box 33 on the CMS-1500 claim form or Form Locator 1 on a UB-04 claim form.
@@ -151,19 +156,19 @@ public record Encounter
     /// Note: Cash Pay is no longer a valid payer_id in v4, please use responsible party to define self-pay claims.
     /// </summary>
     [JsonPropertyName("subscriber_primary")]
-    public Individual.Subscriber? SubscriberPrimary { get; set; }
+    public Candid.Net.Individual.Subscriber? SubscriberPrimary { get; set; }
 
     /// <summary>
     /// Contains details of the secondary insurance subscriber.
     /// </summary>
     [JsonPropertyName("subscriber_secondary")]
-    public Individual.Subscriber? SubscriberSecondary { get; set; }
+    public Candid.Net.Individual.Subscriber? SubscriberSecondary { get; set; }
 
     /// <summary>
     /// Contains details of the tertiary insurance subscriber.
     /// </summary>
     [JsonPropertyName("subscriber_tertiary")]
-    public Individual.Subscriber? SubscriberTertiary { get; set; }
+    public Candid.Net.Individual.Subscriber? SubscriberTertiary { get; set; }
 
     /// <summary>
     /// Box 23 on the CMS-1500 claim form or Form Locator 63 on a UB-04 claim form.
@@ -220,11 +225,11 @@ public record Encounter
         new List<PatientHistoryCategory>();
 
     [JsonPropertyName("patient_payments")]
-    public IEnumerable<PatientPayments.V3.PatientPayment> PatientPayments { get; set; } =
-        new List<PatientPayments.V3.PatientPayment>();
+    public IEnumerable<Candid.Net.PatientPayments.V3.PatientPayment> PatientPayments { get; set; } =
+        new List<Candid.Net.PatientPayments.V3.PatientPayment>();
 
     [JsonPropertyName("tags")]
-    public IEnumerable<Tags.Tag> Tags { get; set; } = new List<Tags.Tag>();
+    public IEnumerable<Candid.Net.Tags.Tag> Tags { get; set; } = new List<Candid.Net.Tags.Tag>();
 
     /// <summary>
     /// The entity that performed the coding of medical services for the claim.
@@ -449,6 +454,13 @@ public record Encounter
     [JsonPropertyName("delay_reason_code")]
     public DelayReasonCode? DelayReasonCode { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

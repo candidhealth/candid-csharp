@@ -1,10 +1,9 @@
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.Contracts.V2;
 
+[Serializable]
 public record ContractUpdate
 {
     /// <summary>
@@ -25,30 +24,31 @@ public record ContractUpdate
     /// An optional end day upon which the contract expires
     /// </summary>
     [JsonPropertyName("expiration_date")]
-    public object? ExpirationDate { get; set; }
+    public DateUpdate? ExpirationDate { get; set; }
 
     /// <summary>
     /// If present, the contract's rendering providers will be patched to this exact
     /// value, overriding what was set before.
     /// </summary>
     [JsonPropertyName("regions")]
-    public object? Regions { get; set; }
+    public RegionsUpdate? Regions { get; set; }
 
     [JsonPropertyName("contract_status")]
     public ContractStatus? ContractStatus { get; set; }
 
     [JsonPropertyName("authorized_signatory")]
-    public object? AuthorizedSignatory { get; set; }
+    public AuthorizedSignatoryUpdate? AuthorizedSignatory { get; set; }
 
     [JsonPropertyName("commercial_insurance_types")]
-    public object? CommercialInsuranceTypes { get; set; }
+    public InsuranceTypes? CommercialInsuranceTypes { get; set; }
 
     [JsonPropertyName("medicare_insurance_types")]
-    public object? MedicareInsuranceTypes { get; set; }
+    public InsuranceTypes? MedicareInsuranceTypes { get; set; }
 
     [JsonPropertyName("medicaid_insurance_types")]
-    public object? MedicaidInsuranceTypes { get; set; }
+    public InsuranceTypes? MedicaidInsuranceTypes { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

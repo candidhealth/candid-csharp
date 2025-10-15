@@ -1,12 +1,17 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Core;
-
-#nullable enable
 
 namespace Candid.Net.ClinicalTrials.V1;
 
-public record ClinicalTrial
+[Serializable]
+public record ClinicalTrial : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("clinical_trial_id")]
     public required string ClinicalTrialId { get; set; }
 
@@ -28,6 +33,13 @@ public record ClinicalTrial
     [JsonPropertyName("clinical_trial_phase")]
     public ClinicalTrialPhase? ClinicalTrialPhase { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

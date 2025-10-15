@@ -1,17 +1,65 @@
-using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.Commons;
 
-[JsonConverter(typeof(EnumSerializer<ServiceLineUnits>))]
-public enum ServiceLineUnits
+[JsonConverter(typeof(StringEnumSerializer<ServiceLineUnits>))]
+[Serializable]
+public readonly record struct ServiceLineUnits : IStringEnum
 {
-    [EnumMember(Value = "MJ")]
-    Mj,
+    public static readonly ServiceLineUnits Mj = new(Values.Mj);
 
-    [EnumMember(Value = "UN")]
-    Un,
+    public static readonly ServiceLineUnits Un = new(Values.Un);
+
+    public ServiceLineUnits(string value)
+    {
+        Value = value;
+    }
+
+    /// <summary>
+    /// The string value of the enum.
+    /// </summary>
+    public string Value { get; }
+
+    /// <summary>
+    /// Create a string enum with the given value.
+    /// </summary>
+    public static ServiceLineUnits FromCustom(string value)
+    {
+        return new ServiceLineUnits(value);
+    }
+
+    public bool Equals(string? other)
+    {
+        return Value.Equals(other);
+    }
+
+    /// <summary>
+    /// Returns the string value of the enum.
+    /// </summary>
+    public override string ToString()
+    {
+        return Value;
+    }
+
+    public static bool operator ==(ServiceLineUnits value1, string value2) =>
+        value1.Value.Equals(value2);
+
+    public static bool operator !=(ServiceLineUnits value1, string value2) =>
+        !value1.Value.Equals(value2);
+
+    public static explicit operator string(ServiceLineUnits value) => value.Value;
+
+    public static explicit operator ServiceLineUnits(string value) => new(value);
+
+    /// <summary>
+    /// Constant strings for enum values
+    /// </summary>
+    [Serializable]
+    public static class Values
+    {
+        public const string Mj = "MJ";
+
+        public const string Un = "UN";
+    }
 }

@@ -1,15 +1,15 @@
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.WriteOffs.V1;
 
+[Serializable]
 public record CreateWriteOffsRequest
 {
     [JsonPropertyName("write_offs")]
-    public IEnumerable<object> WriteOffs { get; set; } = new List<object>();
+    public IEnumerable<WriteOffCreate> WriteOffs { get; set; } = new List<WriteOffCreate>();
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

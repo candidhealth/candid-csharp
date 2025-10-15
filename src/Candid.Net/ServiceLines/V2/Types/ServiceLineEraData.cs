@@ -1,12 +1,17 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Core;
-
-#nullable enable
 
 namespace Candid.Net.ServiceLines.V2;
 
-public record ServiceLineEraData
+[Serializable]
+public record ServiceLineEraData : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("service_line_adjustments")]
     public IEnumerable<ServiceLineAdjustment> ServiceLineAdjustments { get; set; } =
         new List<ServiceLineAdjustment>();
@@ -14,6 +19,13 @@ public record ServiceLineEraData
     [JsonPropertyName("remittance_advice_remark_codes")]
     public IEnumerable<string> RemittanceAdviceRemarkCodes { get; set; } = new List<string>();
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

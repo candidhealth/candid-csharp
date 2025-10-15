@@ -1,12 +1,17 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Core;
-
-#nullable enable
 
 namespace Candid.Net.ImportInvoice.V1;
 
-public record ImportInvoiceUpdateRequest
+[Serializable]
+public record ImportInvoiceUpdateRequest : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// Link to the patient view of the invoice in the third-party service
     /// </summary>
@@ -14,7 +19,7 @@ public record ImportInvoiceUpdateRequest
     public string? CustomerInvoiceUrl { get; set; }
 
     [JsonPropertyName("status")]
-    public Invoices.V2.InvoiceStatus? Status { get; set; }
+    public Candid.Net.Invoices.V2.InvoiceStatus? Status { get; set; }
 
     [JsonPropertyName("note")]
     public string? Note { get; set; }
@@ -28,6 +33,13 @@ public record ImportInvoiceUpdateRequest
     [JsonPropertyName("items")]
     public InvoiceItemInfoUpdate? Items { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

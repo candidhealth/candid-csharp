@@ -1,13 +1,18 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Core;
 using Candid.Net.PreEncounter.Coverages.V1;
 
-#nullable enable
-
 namespace Candid.Net.PreEncounter.EligibilityChecks.V1;
 
-public record EligibilityCheckMetadata
+[Serializable]
+public record EligibilityCheckMetadata : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("check_id")]
     public required string CheckId { get; set; }
 
@@ -23,6 +28,13 @@ public record EligibilityCheckMetadata
     [JsonPropertyName("initiated_at")]
     public required DateTime InitiatedAt { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

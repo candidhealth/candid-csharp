@@ -1,12 +1,17 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Core;
-
-#nullable enable
 
 namespace Candid.Net.Invoices.V2;
 
-public record ClaimInvoiceItemInfo
+[Serializable]
+public record ClaimInvoiceItemInfo : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("claim_invoice_item")]
     public ClaimInvoiceItem? ClaimInvoiceItem { get; set; }
 
@@ -14,6 +19,13 @@ public record ClaimInvoiceItemInfo
     public Dictionary<string, ServiceLineInvoiceItem> ServiceLineInvoiceItems { get; set; } =
         new Dictionary<string, ServiceLineInvoiceItem>();
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

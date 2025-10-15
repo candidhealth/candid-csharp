@@ -1,13 +1,18 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Core;
 using Candid.Net.PreEncounter.Common;
 
-#nullable enable
-
 namespace Candid.Net.PreEncounter.Coverages.V1;
 
-public record InsurancePlan
+[Serializable]
+public record InsurancePlan : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("member_id")]
     public required string MemberId { get; set; }
 
@@ -44,6 +49,13 @@ public record InsurancePlan
     [JsonPropertyName("payer_plan_group_id")]
     public string? PayerPlanGroupId { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

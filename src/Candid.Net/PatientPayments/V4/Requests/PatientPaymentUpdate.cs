@@ -1,21 +1,22 @@
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
-
-#nullable enable
+using Candid.Net.Financials;
 
 namespace Candid.Net.PatientPayments.V4;
 
+[Serializable]
 public record PatientPaymentUpdate
 {
     [JsonPropertyName("payment_timestamp")]
     public DateTime? PaymentTimestamp { get; set; }
 
     [JsonPropertyName("payment_note")]
-    public object? PaymentNote { get; set; }
+    public NoteUpdate? PaymentNote { get; set; }
 
     [JsonPropertyName("invoice")]
-    public object? Invoice { get; set; }
+    public InvoiceUpdate? Invoice { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

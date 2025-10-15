@@ -1,13 +1,18 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Core;
 using Candid.Net.Tasks.Commons;
 
-#nullable enable
-
 namespace Candid.Net.Tasks.V3;
 
-public record Task
+[Serializable]
+public record Task : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("task_id")]
     public required string TaskId { get; set; }
 
@@ -39,7 +44,7 @@ public record Task
     public string? PayerId { get; set; }
 
     [JsonPropertyName("status")]
-    public required TaskStatus Status { get; set; }
+    public required Candid.Net.Tasks.Commons.TaskStatus Status { get; set; }
 
     [JsonPropertyName("notes")]
     public IEnumerable<TaskNote> Notes { get; set; } = new List<TaskNote>();
@@ -71,6 +76,13 @@ public record Task
     [JsonPropertyName("configurable_rule_id")]
     public string? ConfigurableRuleId { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

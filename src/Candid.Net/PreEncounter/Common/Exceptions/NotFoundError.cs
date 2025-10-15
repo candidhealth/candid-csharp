@@ -1,12 +1,11 @@
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.PreEncounter.Common;
 
 /// <summary>
 /// This exception type will be thrown for any non-2XX API responses.
 /// </summary>
+[Serializable]
 public class NotFoundError(ErrorBase4Xx body) : CandidApiException("NotFoundError", 404, body)
 {
     /// <summary>

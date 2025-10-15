@@ -1,17 +1,65 @@
-using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.ChargeCapture.V1;
 
-[JsonConverter(typeof(EnumSerializer<ChargeCaptureSortField>))]
-public enum ChargeCaptureSortField
+[JsonConverter(typeof(StringEnumSerializer<ChargeCaptureSortField>))]
+[Serializable]
+public readonly record struct ChargeCaptureSortField : IStringEnum
 {
-    [EnumMember(Value = "created_at")]
-    CreatedAt,
+    public static readonly ChargeCaptureSortField CreatedAt = new(Values.CreatedAt);
 
-    [EnumMember(Value = "date_of_service")]
-    DateOfService,
+    public static readonly ChargeCaptureSortField DateOfService = new(Values.DateOfService);
+
+    public ChargeCaptureSortField(string value)
+    {
+        Value = value;
+    }
+
+    /// <summary>
+    /// The string value of the enum.
+    /// </summary>
+    public string Value { get; }
+
+    /// <summary>
+    /// Create a string enum with the given value.
+    /// </summary>
+    public static ChargeCaptureSortField FromCustom(string value)
+    {
+        return new ChargeCaptureSortField(value);
+    }
+
+    public bool Equals(string? other)
+    {
+        return Value.Equals(other);
+    }
+
+    /// <summary>
+    /// Returns the string value of the enum.
+    /// </summary>
+    public override string ToString()
+    {
+        return Value;
+    }
+
+    public static bool operator ==(ChargeCaptureSortField value1, string value2) =>
+        value1.Value.Equals(value2);
+
+    public static bool operator !=(ChargeCaptureSortField value1, string value2) =>
+        !value1.Value.Equals(value2);
+
+    public static explicit operator string(ChargeCaptureSortField value) => value.Value;
+
+    public static explicit operator ChargeCaptureSortField(string value) => new(value);
+
+    /// <summary>
+    /// Constant strings for enum values
+    /// </summary>
+    [Serializable]
+    public static class Values
+    {
+        public const string CreatedAt = "created_at";
+
+        public const string DateOfService = "date_of_service";
+    }
 }

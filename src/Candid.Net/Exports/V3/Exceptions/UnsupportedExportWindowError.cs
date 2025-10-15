@@ -1,12 +1,11 @@
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.Exports.V3;
 
 /// <summary>
 /// This exception type will be thrown for any non-2XX API responses.
 /// </summary>
+[Serializable]
 public class UnsupportedExportWindowError(string body)
     : CandidApiException("UnsupportedExportWindowError", 422, body)
 {

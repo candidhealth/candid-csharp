@@ -1,12 +1,11 @@
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.Commons;
 
 /// <summary>
 /// This exception type will be thrown for any non-2XX API responses.
 /// </summary>
+[Serializable]
 public class HttpRequestValidationError(RequestValidationError body)
     : CandidApiException("HttpRequestValidationError", 422, body)
 {

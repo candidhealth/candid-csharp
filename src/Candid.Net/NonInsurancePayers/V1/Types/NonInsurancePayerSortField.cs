@@ -1,23 +1,73 @@
-using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.NonInsurancePayers.V1;
 
-[JsonConverter(typeof(EnumSerializer<NonInsurancePayerSortField>))]
-public enum NonInsurancePayerSortField
+[JsonConverter(typeof(StringEnumSerializer<NonInsurancePayerSortField>))]
+[Serializable]
+public readonly record struct NonInsurancePayerSortField : IStringEnum
 {
-    [EnumMember(Value = "NAME")]
-    Name,
+    public static readonly NonInsurancePayerSortField Name = new(Values.Name);
 
-    [EnumMember(Value = "CATEGORY")]
-    Category,
+    public static readonly NonInsurancePayerSortField Category = new(Values.Category);
 
-    [EnumMember(Value = "ENABLED")]
-    Enabled,
+    public static readonly NonInsurancePayerSortField Enabled = new(Values.Enabled);
 
-    [EnumMember(Value = "UPDATED_AT")]
-    UpdatedAt,
+    public static readonly NonInsurancePayerSortField UpdatedAt = new(Values.UpdatedAt);
+
+    public NonInsurancePayerSortField(string value)
+    {
+        Value = value;
+    }
+
+    /// <summary>
+    /// The string value of the enum.
+    /// </summary>
+    public string Value { get; }
+
+    /// <summary>
+    /// Create a string enum with the given value.
+    /// </summary>
+    public static NonInsurancePayerSortField FromCustom(string value)
+    {
+        return new NonInsurancePayerSortField(value);
+    }
+
+    public bool Equals(string? other)
+    {
+        return Value.Equals(other);
+    }
+
+    /// <summary>
+    /// Returns the string value of the enum.
+    /// </summary>
+    public override string ToString()
+    {
+        return Value;
+    }
+
+    public static bool operator ==(NonInsurancePayerSortField value1, string value2) =>
+        value1.Value.Equals(value2);
+
+    public static bool operator !=(NonInsurancePayerSortField value1, string value2) =>
+        !value1.Value.Equals(value2);
+
+    public static explicit operator string(NonInsurancePayerSortField value) => value.Value;
+
+    public static explicit operator NonInsurancePayerSortField(string value) => new(value);
+
+    /// <summary>
+    /// Constant strings for enum values
+    /// </summary>
+    [Serializable]
+    public static class Values
+    {
+        public const string Name = "NAME";
+
+        public const string Category = "CATEGORY";
+
+        public const string Enabled = "ENABLED";
+
+        public const string UpdatedAt = "UPDATED_AT";
+    }
 }

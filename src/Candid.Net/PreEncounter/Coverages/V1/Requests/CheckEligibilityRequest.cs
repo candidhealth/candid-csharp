@@ -1,10 +1,9 @@
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.PreEncounter.Coverages.V1;
 
+[Serializable]
 public record CheckEligibilityRequest
 {
     [JsonPropertyName("service_code")]
@@ -16,6 +15,7 @@ public record CheckEligibilityRequest
     [JsonPropertyName("npi")]
     public required string Npi { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

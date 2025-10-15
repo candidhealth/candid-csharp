@@ -3,8 +3,6 @@ using System.Text.Json;
 using System.Threading;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.ImportInvoice.V1;
 
 public partial class V1Client
@@ -19,8 +17,7 @@ public partial class V1Client
     /// <summary>
     /// Import an existing invoice from a third party service to reflect state in Candid.
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.ImportInvoice.V1.ImportInvoiceAsync(
     ///     new CreateImportInvoiceRequest
     ///     {
@@ -31,12 +28,20 @@ public partial class V1Client
     ///         {
     ///             new InvoiceItemCreate
     ///             {
-    ///                 Attribution = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///                 Attribution = new InvoiceItemAttributionCreate(
+    ///                     new InvoiceItemAttributionCreate.ServiceLineId(
+    ///                         "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
+    ///                     )
+    ///                 ),
     ///                 AmountCents = 1,
     ///             },
     ///             new InvoiceItemCreate
     ///             {
-    ///                 Attribution = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///                 Attribution = new InvoiceItemAttributionCreate(
+    ///                     new InvoiceItemAttributionCreate.ServiceLineId(
+    ///                         "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
+    ///                     )
+    ///                 ),
     ///                 AmountCents = 1,
     ///             },
     ///         },
@@ -44,28 +49,29 @@ public partial class V1Client
     ///         ExternalIdentifier = "external_identifier",
     ///     }
     /// );
-    /// </code>
-    /// </example>
-    public async Task<ImportInvoice> ImportInvoiceAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<ImportInvoice> ImportInvoiceAsync(
         CreateImportInvoiceRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.CandidApi,
-                Method = HttpMethod.Post,
-                Path = "/api/import-invoice/v1",
-                Body = request,
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Post,
+                    Path = "/api/import-invoice/v1",
+                    Body = request,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<ImportInvoice>(responseBody)!;
@@ -76,22 +82,23 @@ public partial class V1Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
     /// Returns all Invoices for the authenticated user's organziation with all filters applied.
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.ImportInvoice.V1.GetMultiAsync(new SearchImportedInvoicesRequest());
-    /// </code>
-    /// </example>
-    public async Task<ImportInvoicesPage> GetMultiAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<ImportInvoicesPage> GetMultiAsync(
         SearchImportedInvoicesRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -121,7 +128,7 @@ public partial class V1Client
         }
         if (request.Limit != null)
         {
-            _query["limit"] = request.Limit.ToString();
+            _query["limit"] = request.Limit.Value.ToString();
         }
         if (request.Sort != null)
         {
@@ -135,20 +142,22 @@ public partial class V1Client
         {
             _query["page_token"] = request.PageToken;
         }
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.CandidApi,
-                Method = HttpMethod.Get,
-                Path = "/api/import-invoice/v1",
-                Query = _query,
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Get,
+                    Path = "/api/import-invoice/v1",
+                    Query = _query,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<ImportInvoicesPage>(responseBody)!;
@@ -159,40 +168,46 @@ public partial class V1Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
     /// Retrieve and view an import invoice
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.ImportInvoice.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
-    /// </code>
-    /// </example>
-    public async Task<ImportInvoice> GetAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<ImportInvoice> GetAsync(
         string invoiceId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.CandidApi,
-                Method = HttpMethod.Get,
-                Path = $"/api/import-invoice/v1/{invoiceId}",
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Get,
+                    Path = string.Format(
+                        "/api/import-invoice/v1/{0}",
+                        ValueConvert.ToPathParameterString(invoiceId)
+                    ),
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<ImportInvoice>(responseBody)!;
@@ -203,45 +218,51 @@ public partial class V1Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
     /// Update the information on the imported invoice
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.ImportInvoice.V1.UpdateAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///     new ImportInvoiceUpdateRequest()
     /// );
-    /// </code>
-    /// </example>
-    public async Task<ImportInvoice> UpdateAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<ImportInvoice> UpdateAsync(
         string invoiceId,
         ImportInvoiceUpdateRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.CandidApi,
-                Method = HttpMethodExtensions.Patch,
-                Path = $"/api/import-invoice/v1/{invoiceId}",
-                Body = request,
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethodExtensions.Patch,
+                    Path = string.Format(
+                        "/api/import-invoice/v1/{0}",
+                        ValueConvert.ToPathParameterString(invoiceId)
+                    ),
+                    Body = request,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<ImportInvoice>(responseBody)!;
@@ -252,10 +273,13 @@ public partial class V1Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 }

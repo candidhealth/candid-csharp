@@ -1,6 +1,7 @@
 namespace Candid.Net;
 
+[Serializable]
 internal class Version
 {
-    public const string Current = "1.8.1";
+    public const string Current = "1.9.0";
 }

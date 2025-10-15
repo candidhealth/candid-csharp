@@ -1,10 +1,9 @@
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.Credentialing.V2;
 
+[Serializable]
 public record FacilityCredentialingSpanCreate
 {
     /// <summary>
@@ -49,6 +48,7 @@ public record FacilityCredentialingSpanCreate
     [JsonPropertyName("payer_loaded_date")]
     public DateOnly? PayerLoadedDate { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

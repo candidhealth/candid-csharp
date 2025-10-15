@@ -1,12 +1,11 @@
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.PatientAr.V1;
 
 /// <summary>
 /// This exception type will be thrown for any non-2XX API responses.
 /// </summary>
+[Serializable]
 public class InvalidFiltersError(InvalidFiltersErrorType body)
     : CandidApiException("InvalidFiltersError", 422, body)
 {

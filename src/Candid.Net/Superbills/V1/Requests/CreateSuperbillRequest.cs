@@ -2,10 +2,9 @@ using System.Text.Json.Serialization;
 using Candid.Net.Commons;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.Superbills.V1;
 
+[Serializable]
 public record CreateSuperbillRequest
 {
     /// <summary>
@@ -32,6 +31,7 @@ public record CreateSuperbillRequest
     [JsonPropertyName("pay_to_address")]
     public StreetAddressShortZip? PayToAddress { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

@@ -1,15 +1,18 @@
+using System.Text.Json.Serialization;
 using Candid.Net.Core;
-
-#nullable enable
 
 namespace Candid.Net.PreEncounter.Patients.V1;
 
+[Serializable]
 public record CreatePatientRequest
 {
+    [JsonIgnore]
     public bool? SkipDuplicateCheck { get; set; }
 
+    [JsonIgnore]
     public required MutablePatient Body { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

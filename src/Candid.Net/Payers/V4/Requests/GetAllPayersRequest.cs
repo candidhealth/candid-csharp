@@ -1,20 +1,24 @@
+using System.Text.Json.Serialization;
 using Candid.Net.Core;
-
-#nullable enable
 
 namespace Candid.Net.Payers.V4;
 
+[Serializable]
 public record GetAllPayersRequest
 {
     /// <summary>
     /// Maximum number of entities per page, defaults to 100.
     /// </summary>
+    [JsonIgnore]
     public int? Limit { get; set; }
 
+    [JsonIgnore]
     public string? SearchTerm { get; set; }
 
+    [JsonIgnore]
     public string? PageToken { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

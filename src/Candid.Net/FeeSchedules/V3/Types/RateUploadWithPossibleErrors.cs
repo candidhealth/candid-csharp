@@ -1,21 +1,33 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Core;
-
-#nullable enable
 
 namespace Candid.Net.FeeSchedules.V3;
 
-public record RateUploadWithPossibleErrors
+[Serializable]
+public record RateUploadWithPossibleErrors : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("rate_upload")]
-    public required object RateUpload { get; set; }
+    public required RateUpload RateUpload { get; set; }
 
     [JsonPropertyName("existing_rate")]
     public Rate? ExistingRate { get; set; }
 
     [JsonPropertyName("possible_errors")]
-    public IEnumerable<object> PossibleErrors { get; set; } = new List<object>();
+    public IEnumerable<ValidationError> PossibleErrors { get; set; } = new List<ValidationError>();
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

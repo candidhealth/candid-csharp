@@ -3,8 +3,6 @@ using System.Text.Json;
 using System.Threading;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.Eligibility.V2;
 
 public partial class V2Client
@@ -35,33 +33,33 @@ public partial class V2Client
     ///
     /// A schema of the response object can be found here: [Change Healthcare Docs](https://developers.changehealthcare.com/eligibilityandclaims/reference/medicaleligibility)
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.Eligibility.V2.SubmitEligibilityCheckAsync(
     ///     new Dictionary&lt;object, object?&gt;() { { "key", "value" } }
     /// );
-    /// </code>
-    /// </example>
-    public async Task<object> SubmitEligibilityCheckAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<object> SubmitEligibilityCheckAsync(
         object request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.CandidApi,
-                Method = HttpMethod.Post,
-                Path = "/api/eligibility/v2",
-                Body = request,
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Post,
+                    Path = "/api/eligibility/v2",
+                    Body = request,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<object>(responseBody)!;
@@ -72,11 +70,14 @@ public partial class V2Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
@@ -100,29 +101,29 @@ public partial class V2Client
     /// Check connection status of Availity API and partners here:
     /// - [Availity Trading Partner Connection Status](https://www.availity.com/status/)
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.Eligibility.V2.SubmitEligibilityCheckAvailityAsync();
-    /// </code>
-    /// </example>
-    public async Task<object> SubmitEligibilityCheckAvailityAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<object> SubmitEligibilityCheckAvailityAsync(
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.CandidApi,
-                Method = HttpMethod.Get,
-                Path = "/api/eligibility/v2/availity",
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Get,
+                    Path = "/api/eligibility/v2/availity",
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<object>(responseBody)!;
@@ -133,11 +134,14 @@ public partial class V2Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
@@ -157,33 +161,33 @@ public partial class V2Client
     /// Check connection status of Availity API and partners here:
     /// - [Availity Trading Partner Connection Status](https://www.availity.com/status/)
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.Eligibility.V2.SubmitEligibilityCheckAvailityPostAsync(
     ///     new Dictionary&lt;object, object?&gt;() { { "key", "value" } }
     /// );
-    /// </code>
-    /// </example>
-    public async Task<object> SubmitEligibilityCheckAvailityPostAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<object> SubmitEligibilityCheckAvailityPostAsync(
         object request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.CandidApi,
-                Method = HttpMethod.Post,
-                Path = "/api/eligibility/v2/availity",
-                Body = request,
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Post,
+                    Path = "/api/eligibility/v2/availity",
+                    Body = request,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<object>(responseBody)!;
@@ -194,10 +198,13 @@ public partial class V2Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 }

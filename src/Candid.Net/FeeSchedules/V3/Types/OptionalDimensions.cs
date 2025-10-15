@@ -1,14 +1,22 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.Commons;
 using Candid.Net.Core;
 using Candid.Net.OrganizationProviders.V2;
 
-#nullable enable
-
 namespace Candid.Net.FeeSchedules.V3;
 
-public record OptionalDimensions
+/// <summary>
+/// A dimensions object where all properties are optional.
+/// </summary>
+[Serializable]
+public record OptionalDimensions : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("payer_uuid")]
     public string? PayerUuid { get; set; }
 
@@ -29,8 +37,8 @@ public record OptionalDimensions
         new HashSet<FacilityTypeCode>();
 
     [JsonPropertyName("network_types")]
-    public HashSet<Commons.NetworkType> NetworkTypes { get; set; } =
-        new HashSet<Commons.NetworkType>();
+    public HashSet<Candid.Net.Commons.NetworkType> NetworkTypes { get; set; } =
+        new HashSet<Candid.Net.Commons.NetworkType>();
 
     [JsonPropertyName("payer_plan_group_ids")]
     public HashSet<string> PayerPlanGroupIds { get; set; } = new HashSet<string>();
@@ -41,6 +49,13 @@ public record OptionalDimensions
     [JsonPropertyName("modifiers")]
     public HashSet<ProcedureModifier> Modifiers { get; set; } = new HashSet<ProcedureModifier>();
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

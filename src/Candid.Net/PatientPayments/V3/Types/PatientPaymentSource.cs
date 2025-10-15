@@ -1,38 +1,95 @@
-using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.PatientPayments.V3;
 
-[JsonConverter(typeof(EnumSerializer<PatientPaymentSource>))]
-public enum PatientPaymentSource
+[JsonConverter(typeof(StringEnumSerializer<PatientPaymentSource>))]
+[Serializable]
+public readonly record struct PatientPaymentSource : IStringEnum
 {
-    [EnumMember(Value = "MANUAL_ENTRY")]
-    ManualEntry,
+    public static readonly PatientPaymentSource ManualEntry = new(Values.ManualEntry);
 
-    [EnumMember(Value = "CHARGEBEE_PAYMENTS")]
-    ChargebeePayments,
+    public static readonly PatientPaymentSource ChargebeePayments = new(Values.ChargebeePayments);
 
-    [EnumMember(Value = "CHARGEBEE MANUALLY VOIDED BY CANDID")]
-    ChargebeeManuallyVoidedByCandid,
+    public static readonly PatientPaymentSource ChargebeeManuallyVoidedByCandid = new(
+        Values.ChargebeeManuallyVoidedByCandid
+    );
 
-    [EnumMember(Value = "CHARGEBEE_REFUNDS")]
-    ChargebeeRefunds,
+    public static readonly PatientPaymentSource ChargebeeRefunds = new(Values.ChargebeeRefunds);
 
-    [EnumMember(Value = "SQUARE_REFUNDS")]
-    SquareRefunds,
+    public static readonly PatientPaymentSource SquareRefunds = new(Values.SquareRefunds);
 
-    [EnumMember(Value = "SQUARE_PAYMENTS")]
-    SquarePayments,
+    public static readonly PatientPaymentSource SquarePayments = new(Values.SquarePayments);
 
-    [EnumMember(Value = "STRIPE_CHARGES")]
-    StripeCharges,
+    public static readonly PatientPaymentSource StripeCharges = new(Values.StripeCharges);
 
-    [EnumMember(Value = "STRIPE_REFUNDS")]
-    StripeRefunds,
+    public static readonly PatientPaymentSource StripeRefunds = new(Values.StripeRefunds);
 
-    [EnumMember(Value = "ELATION_PAYMENTS")]
-    ElationPayments,
+    public static readonly PatientPaymentSource ElationPayments = new(Values.ElationPayments);
+
+    public PatientPaymentSource(string value)
+    {
+        Value = value;
+    }
+
+    /// <summary>
+    /// The string value of the enum.
+    /// </summary>
+    public string Value { get; }
+
+    /// <summary>
+    /// Create a string enum with the given value.
+    /// </summary>
+    public static PatientPaymentSource FromCustom(string value)
+    {
+        return new PatientPaymentSource(value);
+    }
+
+    public bool Equals(string? other)
+    {
+        return Value.Equals(other);
+    }
+
+    /// <summary>
+    /// Returns the string value of the enum.
+    /// </summary>
+    public override string ToString()
+    {
+        return Value;
+    }
+
+    public static bool operator ==(PatientPaymentSource value1, string value2) =>
+        value1.Value.Equals(value2);
+
+    public static bool operator !=(PatientPaymentSource value1, string value2) =>
+        !value1.Value.Equals(value2);
+
+    public static explicit operator string(PatientPaymentSource value) => value.Value;
+
+    public static explicit operator PatientPaymentSource(string value) => new(value);
+
+    /// <summary>
+    /// Constant strings for enum values
+    /// </summary>
+    [Serializable]
+    public static class Values
+    {
+        public const string ManualEntry = "MANUAL_ENTRY";
+
+        public const string ChargebeePayments = "CHARGEBEE_PAYMENTS";
+
+        public const string ChargebeeManuallyVoidedByCandid = "CHARGEBEE MANUALLY VOIDED BY CANDID";
+
+        public const string ChargebeeRefunds = "CHARGEBEE_REFUNDS";
+
+        public const string SquareRefunds = "SQUARE_REFUNDS";
+
+        public const string SquarePayments = "SQUARE_PAYMENTS";
+
+        public const string StripeCharges = "STRIPE_CHARGES";
+
+        public const string StripeRefunds = "STRIPE_REFUNDS";
+
+        public const string ElationPayments = "ELATION_PAYMENTS";
+    }
 }

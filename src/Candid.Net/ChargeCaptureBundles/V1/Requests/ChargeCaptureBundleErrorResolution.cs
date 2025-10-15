@@ -1,10 +1,9 @@
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.ChargeCaptureBundles.V1;
 
+[Serializable]
 public record ChargeCaptureBundleErrorResolution
 {
     /// <summary>
@@ -19,6 +18,7 @@ public record ChargeCaptureBundleErrorResolution
     [JsonPropertyName("resolution_reason")]
     public string? ResolutionReason { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

@@ -1,83 +1,326 @@
-using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.Commons;
 
-[JsonConverter(typeof(EnumSerializer<PatientRelationshipToInsuredCodeAll>))]
-public enum PatientRelationshipToInsuredCodeAll
+[JsonConverter(typeof(StringEnumSerializer<PatientRelationshipToInsuredCodeAll>))]
+[Serializable]
+public readonly record struct PatientRelationshipToInsuredCodeAll : IStringEnum
 {
-    [EnumMember(Value = "01")]
-    Spouse,
+    /// <summary>
+    /// Spouse
+    /// </summary>
+    public static readonly PatientRelationshipToInsuredCodeAll Spouse = new(Values.Spouse);
 
-    [EnumMember(Value = "04")]
-    Grandparent,
+    /// <summary>
+    /// Grandparent
+    /// </summary>
+    public static readonly PatientRelationshipToInsuredCodeAll Grandparent = new(
+        Values.Grandparent
+    );
 
-    [EnumMember(Value = "05")]
-    Grandchild,
+    /// <summary>
+    /// Grandchild
+    /// </summary>
+    public static readonly PatientRelationshipToInsuredCodeAll Grandchild = new(Values.Grandchild);
 
-    [EnumMember(Value = "07")]
-    NieceNephew,
+    /// <summary>
+    /// Niece/Nephew
+    /// </summary>
+    public static readonly PatientRelationshipToInsuredCodeAll NieceNephew = new(
+        Values.NieceNephew
+    );
 
-    [EnumMember(Value = "10")]
-    FosterChild,
+    /// <summary>
+    /// Foster Child
+    /// </summary>
+    public static readonly PatientRelationshipToInsuredCodeAll FosterChild = new(
+        Values.FosterChild
+    );
 
-    [EnumMember(Value = "15")]
-    WardOfTheCourt,
+    /// <summary>
+    /// Ward of the Court
+    /// </summary>
+    public static readonly PatientRelationshipToInsuredCodeAll WardOfTheCourt = new(
+        Values.WardOfTheCourt
+    );
 
-    [EnumMember(Value = "17")]
-    Stepchild,
+    /// <summary>
+    /// Stepchild
+    /// </summary>
+    public static readonly PatientRelationshipToInsuredCodeAll Stepchild = new(Values.Stepchild);
 
-    [EnumMember(Value = "18")]
-    Self,
+    /// <summary>
+    /// Self
+    /// </summary>
+    public static readonly PatientRelationshipToInsuredCodeAll Self = new(Values.Self);
 
-    [EnumMember(Value = "19")]
-    Child,
+    /// <summary>
+    /// Child
+    /// </summary>
+    public static readonly PatientRelationshipToInsuredCodeAll Child = new(Values.Child);
 
-    [EnumMember(Value = "20")]
-    Employee,
+    /// <summary>
+    /// Employee
+    /// </summary>
+    public static readonly PatientRelationshipToInsuredCodeAll Employee = new(Values.Employee);
 
-    [EnumMember(Value = "21")]
-    Unknown,
+    /// <summary>
+    /// Unknown
+    /// </summary>
+    public static readonly PatientRelationshipToInsuredCodeAll Unknown = new(Values.Unknown);
 
-    [EnumMember(Value = "22")]
-    HandicappedDependent,
+    /// <summary>
+    /// Handicapped Dependent
+    /// </summary>
+    public static readonly PatientRelationshipToInsuredCodeAll HandicappedDependent = new(
+        Values.HandicappedDependent
+    );
 
-    [EnumMember(Value = "23")]
-    SponsoredDependent,
+    /// <summary>
+    /// Sponsored Dependent
+    /// </summary>
+    public static readonly PatientRelationshipToInsuredCodeAll SponsoredDependent = new(
+        Values.SponsoredDependent
+    );
 
-    [EnumMember(Value = "24")]
-    DependentOfMinorDependent,
+    /// <summary>
+    /// Dependent of Minor Dependent
+    /// </summary>
+    public static readonly PatientRelationshipToInsuredCodeAll DependentOfMinorDependent = new(
+        Values.DependentOfMinorDependent
+    );
 
-    [EnumMember(Value = "29")]
-    SignificantOther,
+    /// <summary>
+    /// Significant Other
+    /// </summary>
+    public static readonly PatientRelationshipToInsuredCodeAll SignificantOther = new(
+        Values.SignificantOther
+    );
 
-    [EnumMember(Value = "32")]
-    Mother,
+    /// <summary>
+    /// Mother
+    /// </summary>
+    public static readonly PatientRelationshipToInsuredCodeAll Mother = new(Values.Mother);
 
-    [EnumMember(Value = "33")]
-    Father,
+    /// <summary>
+    /// Father
+    /// </summary>
+    public static readonly PatientRelationshipToInsuredCodeAll Father = new(Values.Father);
 
-    [EnumMember(Value = "36")]
-    EmancipatedMinor,
+    /// <summary>
+    /// Emancipated Minor
+    /// </summary>
+    public static readonly PatientRelationshipToInsuredCodeAll EmancipatedMinor = new(
+        Values.EmancipatedMinor
+    );
 
-    [EnumMember(Value = "39")]
-    OrganDonor,
+    /// <summary>
+    /// Organ Donor
+    /// </summary>
+    public static readonly PatientRelationshipToInsuredCodeAll OrganDonor = new(Values.OrganDonor);
 
-    [EnumMember(Value = "40")]
-    CadaverDonor,
+    /// <summary>
+    /// Cadaver Donor
+    /// </summary>
+    public static readonly PatientRelationshipToInsuredCodeAll CadaverDonor = new(
+        Values.CadaverDonor
+    );
 
-    [EnumMember(Value = "41")]
-    InjuredPlaintiff,
+    /// <summary>
+    /// Injured Plaintiff
+    /// </summary>
+    public static readonly PatientRelationshipToInsuredCodeAll InjuredPlaintiff = new(
+        Values.InjuredPlaintiff
+    );
 
-    [EnumMember(Value = "43")]
-    ChildNoFinancialResponsibility,
+    /// <summary>
+    /// Child (No Financial Responsibility)
+    /// </summary>
+    public static readonly PatientRelationshipToInsuredCodeAll ChildNoFinancialResponsibility = new(
+        Values.ChildNoFinancialResponsibility
+    );
 
-    [EnumMember(Value = "53")]
-    LifePartner,
+    /// <summary>
+    /// Life Partner
+    /// </summary>
+    public static readonly PatientRelationshipToInsuredCodeAll LifePartner = new(
+        Values.LifePartner
+    );
 
-    [EnumMember(Value = "G8")]
-    OtherRelationship,
+    /// <summary>
+    /// Other Relationship
+    /// </summary>
+    public static readonly PatientRelationshipToInsuredCodeAll OtherRelationship = new(
+        Values.OtherRelationship
+    );
+
+    public PatientRelationshipToInsuredCodeAll(string value)
+    {
+        Value = value;
+    }
+
+    /// <summary>
+    /// The string value of the enum.
+    /// </summary>
+    public string Value { get; }
+
+    /// <summary>
+    /// Create a string enum with the given value.
+    /// </summary>
+    public static PatientRelationshipToInsuredCodeAll FromCustom(string value)
+    {
+        return new PatientRelationshipToInsuredCodeAll(value);
+    }
+
+    public bool Equals(string? other)
+    {
+        return Value.Equals(other);
+    }
+
+    /// <summary>
+    /// Returns the string value of the enum.
+    /// </summary>
+    public override string ToString()
+    {
+        return Value;
+    }
+
+    public static bool operator ==(PatientRelationshipToInsuredCodeAll value1, string value2) =>
+        value1.Value.Equals(value2);
+
+    public static bool operator !=(PatientRelationshipToInsuredCodeAll value1, string value2) =>
+        !value1.Value.Equals(value2);
+
+    public static explicit operator string(PatientRelationshipToInsuredCodeAll value) =>
+        value.Value;
+
+    public static explicit operator PatientRelationshipToInsuredCodeAll(string value) => new(value);
+
+    /// <summary>
+    /// Constant strings for enum values
+    /// </summary>
+    [Serializable]
+    public static class Values
+    {
+        /// <summary>
+        /// Spouse
+        /// </summary>
+        public const string Spouse = "01";
+
+        /// <summary>
+        /// Grandparent
+        /// </summary>
+        public const string Grandparent = "04";
+
+        /// <summary>
+        /// Grandchild
+        /// </summary>
+        public const string Grandchild = "05";
+
+        /// <summary>
+        /// Niece/Nephew
+        /// </summary>
+        public const string NieceNephew = "07";
+
+        /// <summary>
+        /// Foster Child
+        /// </summary>
+        public const string FosterChild = "10";
+
+        /// <summary>
+        /// Ward of the Court
+        /// </summary>
+        public const string WardOfTheCourt = "15";
+
+        /// <summary>
+        /// Stepchild
+        /// </summary>
+        public const string Stepchild = "17";
+
+        /// <summary>
+        /// Self
+        /// </summary>
+        public const string Self = "18";
+
+        /// <summary>
+        /// Child
+        /// </summary>
+        public const string Child = "19";
+
+        /// <summary>
+        /// Employee
+        /// </summary>
+        public const string Employee = "20";
+
+        /// <summary>
+        /// Unknown
+        /// </summary>
+        public const string Unknown = "21";
+
+        /// <summary>
+        /// Handicapped Dependent
+        /// </summary>
+        public const string HandicappedDependent = "22";
+
+        /// <summary>
+        /// Sponsored Dependent
+        /// </summary>
+        public const string SponsoredDependent = "23";
+
+        /// <summary>
+        /// Dependent of Minor Dependent
+        /// </summary>
+        public const string DependentOfMinorDependent = "24";
+
+        /// <summary>
+        /// Significant Other
+        /// </summary>
+        public const string SignificantOther = "29";
+
+        /// <summary>
+        /// Mother
+        /// </summary>
+        public const string Mother = "32";
+
+        /// <summary>
+        /// Father
+        /// </summary>
+        public const string Father = "33";
+
+        /// <summary>
+        /// Emancipated Minor
+        /// </summary>
+        public const string EmancipatedMinor = "36";
+
+        /// <summary>
+        /// Organ Donor
+        /// </summary>
+        public const string OrganDonor = "39";
+
+        /// <summary>
+        /// Cadaver Donor
+        /// </summary>
+        public const string CadaverDonor = "40";
+
+        /// <summary>
+        /// Injured Plaintiff
+        /// </summary>
+        public const string InjuredPlaintiff = "41";
+
+        /// <summary>
+        /// Child (No Financial Responsibility)
+        /// </summary>
+        public const string ChildNoFinancialResponsibility = "43";
+
+        /// <summary>
+        /// Life Partner
+        /// </summary>
+        public const string LifePartner = "53";
+
+        /// <summary>
+        /// Other Relationship
+        /// </summary>
+        public const string OtherRelationship = "G8";
+    }
 }

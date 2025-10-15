@@ -1,4 +1,6 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
+using Candid.Net;
 using Candid.Net.BillingNotes.V2;
 using Candid.Net.ClaimSubmission.V1;
 using Candid.Net.Commons;
@@ -11,12 +13,15 @@ using Candid.Net.Individual;
 using Candid.Net.ServiceFacility;
 using Candid.Net.ServiceLines.V2;
 
-#nullable enable
-
 namespace Candid.Net.Encounters.V4;
 
-public record EncounterDeepOptional
+[Serializable]
+public record EncounterDeepOptional : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// If a vitals entity already exists for the encounter, then all values will be updated to the provided values.
     /// Otherwise, a new vitals object will be created for the encounter.
@@ -328,6 +333,13 @@ public record EncounterDeepOptional
     [JsonPropertyName("secondary_payer_carrier_code")]
     public string? SecondaryPayerCarrierCode { get; set; }
 
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

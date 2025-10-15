@@ -1,1220 +1,1667 @@
-using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.X12.V1;
 
-[JsonConverter(typeof(EnumSerializer<Carc>))]
-public enum Carc
+[JsonConverter(typeof(StringEnumSerializer<Carc>))]
+[Serializable]
+public readonly record struct Carc : IStringEnum
 {
-    [EnumMember(Value = "1")]
-    Carc1,
+    public static readonly Carc Carc1 = new(Values.Carc1);
 
-    [EnumMember(Value = "2")]
-    Carc2,
+    public static readonly Carc Carc2 = new(Values.Carc2);
 
-    [EnumMember(Value = "3")]
-    Carc3,
+    public static readonly Carc Carc3 = new(Values.Carc3);
 
-    [EnumMember(Value = "4")]
-    Carc4,
+    public static readonly Carc Carc4 = new(Values.Carc4);
 
-    [EnumMember(Value = "5")]
-    Carc5,
+    public static readonly Carc Carc5 = new(Values.Carc5);
 
-    [EnumMember(Value = "6")]
-    Carc6,
+    public static readonly Carc Carc6 = new(Values.Carc6);
 
-    [EnumMember(Value = "7")]
-    Carc7,
+    public static readonly Carc Carc7 = new(Values.Carc7);
 
-    [EnumMember(Value = "8")]
-    Carc8,
+    public static readonly Carc Carc8 = new(Values.Carc8);
 
-    [EnumMember(Value = "9")]
-    Carc9,
+    public static readonly Carc Carc9 = new(Values.Carc9);
 
-    [EnumMember(Value = "10")]
-    Carc10,
+    public static readonly Carc Carc10 = new(Values.Carc10);
 
-    [EnumMember(Value = "11")]
-    Carc11,
+    public static readonly Carc Carc11 = new(Values.Carc11);
 
-    [EnumMember(Value = "12")]
-    Carc12,
+    public static readonly Carc Carc12 = new(Values.Carc12);
 
-    [EnumMember(Value = "13")]
-    Carc13,
+    public static readonly Carc Carc13 = new(Values.Carc13);
 
-    [EnumMember(Value = "14")]
-    Carc14,
+    public static readonly Carc Carc14 = new(Values.Carc14);
 
-    [EnumMember(Value = "16")]
-    Carc16,
+    public static readonly Carc Carc16 = new(Values.Carc16);
 
-    [EnumMember(Value = "18")]
-    Carc18,
+    public static readonly Carc Carc18 = new(Values.Carc18);
 
-    [EnumMember(Value = "19")]
-    Carc19,
+    public static readonly Carc Carc19 = new(Values.Carc19);
 
-    [EnumMember(Value = "20")]
-    Carc20,
+    public static readonly Carc Carc20 = new(Values.Carc20);
 
-    [EnumMember(Value = "21")]
-    Carc21,
+    public static readonly Carc Carc21 = new(Values.Carc21);
 
-    [EnumMember(Value = "22")]
-    Carc22,
+    public static readonly Carc Carc22 = new(Values.Carc22);
 
-    [EnumMember(Value = "23")]
-    Carc23,
+    public static readonly Carc Carc23 = new(Values.Carc23);
 
-    [EnumMember(Value = "24")]
-    Carc24,
+    public static readonly Carc Carc24 = new(Values.Carc24);
 
-    [EnumMember(Value = "26")]
-    Carc26,
+    public static readonly Carc Carc26 = new(Values.Carc26);
 
-    [EnumMember(Value = "27")]
-    Carc27,
+    public static readonly Carc Carc27 = new(Values.Carc27);
 
-    [EnumMember(Value = "29")]
-    Carc29,
+    public static readonly Carc Carc29 = new(Values.Carc29);
 
-    [EnumMember(Value = "31")]
-    Carc31,
+    public static readonly Carc Carc31 = new(Values.Carc31);
 
-    [EnumMember(Value = "32")]
-    Carc32,
+    public static readonly Carc Carc32 = new(Values.Carc32);
 
-    [EnumMember(Value = "33")]
-    Carc33,
+    public static readonly Carc Carc33 = new(Values.Carc33);
 
-    [EnumMember(Value = "34")]
-    Carc34,
+    public static readonly Carc Carc34 = new(Values.Carc34);
 
-    [EnumMember(Value = "35")]
-    Carc35,
+    public static readonly Carc Carc35 = new(Values.Carc35);
 
-    [EnumMember(Value = "39")]
-    Carc39,
+    public static readonly Carc Carc39 = new(Values.Carc39);
 
-    [EnumMember(Value = "40")]
-    Carc40,
+    public static readonly Carc Carc40 = new(Values.Carc40);
 
-    [EnumMember(Value = "44")]
-    Carc44,
+    public static readonly Carc Carc44 = new(Values.Carc44);
 
-    [EnumMember(Value = "45")]
-    Carc45,
+    public static readonly Carc Carc45 = new(Values.Carc45);
 
-    [EnumMember(Value = "49")]
-    Carc49,
+    public static readonly Carc Carc49 = new(Values.Carc49);
 
-    [EnumMember(Value = "50")]
-    Carc50,
+    public static readonly Carc Carc50 = new(Values.Carc50);
 
-    [EnumMember(Value = "51")]
-    Carc51,
+    public static readonly Carc Carc51 = new(Values.Carc51);
 
-    [EnumMember(Value = "53")]
-    Carc53,
+    public static readonly Carc Carc53 = new(Values.Carc53);
 
-    [EnumMember(Value = "54")]
-    Carc54,
+    public static readonly Carc Carc54 = new(Values.Carc54);
 
-    [EnumMember(Value = "55")]
-    Carc55,
+    public static readonly Carc Carc55 = new(Values.Carc55);
 
-    [EnumMember(Value = "56")]
-    Carc56,
+    public static readonly Carc Carc56 = new(Values.Carc56);
 
-    [EnumMember(Value = "58")]
-    Carc58,
+    public static readonly Carc Carc58 = new(Values.Carc58);
 
-    [EnumMember(Value = "59")]
-    Carc59,
+    public static readonly Carc Carc59 = new(Values.Carc59);
 
-    [EnumMember(Value = "60")]
-    Carc60,
+    public static readonly Carc Carc60 = new(Values.Carc60);
 
-    [EnumMember(Value = "61")]
-    Carc61,
+    public static readonly Carc Carc61 = new(Values.Carc61);
 
-    [EnumMember(Value = "66")]
-    Carc66,
+    public static readonly Carc Carc66 = new(Values.Carc66);
 
-    [EnumMember(Value = "69")]
-    Carc69,
+    public static readonly Carc Carc69 = new(Values.Carc69);
 
-    [EnumMember(Value = "70")]
-    Carc70,
+    public static readonly Carc Carc70 = new(Values.Carc70);
 
-    [EnumMember(Value = "74")]
-    Carc74,
+    public static readonly Carc Carc74 = new(Values.Carc74);
 
-    [EnumMember(Value = "75")]
-    Carc75,
+    public static readonly Carc Carc75 = new(Values.Carc75);
 
-    [EnumMember(Value = "76")]
-    Carc76,
+    public static readonly Carc Carc76 = new(Values.Carc76);
 
-    [EnumMember(Value = "78")]
-    Carc78,
+    public static readonly Carc Carc78 = new(Values.Carc78);
 
-    [EnumMember(Value = "85")]
-    Carc85,
+    public static readonly Carc Carc85 = new(Values.Carc85);
 
-    [EnumMember(Value = "89")]
-    Carc89,
+    public static readonly Carc Carc89 = new(Values.Carc89);
 
-    [EnumMember(Value = "90")]
-    Carc90,
+    public static readonly Carc Carc90 = new(Values.Carc90);
 
-    [EnumMember(Value = "91")]
-    Carc91,
+    public static readonly Carc Carc91 = new(Values.Carc91);
 
-    [EnumMember(Value = "94")]
-    Carc94,
+    public static readonly Carc Carc94 = new(Values.Carc94);
 
-    [EnumMember(Value = "95")]
-    Carc95,
+    public static readonly Carc Carc95 = new(Values.Carc95);
 
-    [EnumMember(Value = "96")]
-    Carc96,
+    public static readonly Carc Carc96 = new(Values.Carc96);
 
-    [EnumMember(Value = "97")]
-    Carc97,
+    public static readonly Carc Carc97 = new(Values.Carc97);
 
-    [EnumMember(Value = "100")]
-    Carc100,
+    public static readonly Carc Carc100 = new(Values.Carc100);
 
-    [EnumMember(Value = "101")]
-    Carc101,
+    public static readonly Carc Carc101 = new(Values.Carc101);
 
-    [EnumMember(Value = "102")]
-    Carc102,
+    public static readonly Carc Carc102 = new(Values.Carc102);
 
-    [EnumMember(Value = "103")]
-    Carc103,
+    public static readonly Carc Carc103 = new(Values.Carc103);
 
-    [EnumMember(Value = "104")]
-    Carc104,
+    public static readonly Carc Carc104 = new(Values.Carc104);
 
-    [EnumMember(Value = "105")]
-    Carc105,
+    public static readonly Carc Carc105 = new(Values.Carc105);
 
-    [EnumMember(Value = "106")]
-    Carc106,
+    public static readonly Carc Carc106 = new(Values.Carc106);
 
-    [EnumMember(Value = "107")]
-    Carc107,
+    public static readonly Carc Carc107 = new(Values.Carc107);
 
-    [EnumMember(Value = "108")]
-    Carc108,
+    public static readonly Carc Carc108 = new(Values.Carc108);
 
-    [EnumMember(Value = "109")]
-    Carc109,
+    public static readonly Carc Carc109 = new(Values.Carc109);
 
-    [EnumMember(Value = "110")]
-    Carc110,
+    public static readonly Carc Carc110 = new(Values.Carc110);
 
-    [EnumMember(Value = "111")]
-    Carc111,
+    public static readonly Carc Carc111 = new(Values.Carc111);
 
-    [EnumMember(Value = "112")]
-    Carc112,
+    public static readonly Carc Carc112 = new(Values.Carc112);
 
-    [EnumMember(Value = "114")]
-    Carc114,
+    public static readonly Carc Carc114 = new(Values.Carc114);
 
-    [EnumMember(Value = "115")]
-    Carc115,
+    public static readonly Carc Carc115 = new(Values.Carc115);
 
-    [EnumMember(Value = "116")]
-    Carc116,
+    public static readonly Carc Carc116 = new(Values.Carc116);
 
-    [EnumMember(Value = "117")]
-    Carc117,
+    public static readonly Carc Carc117 = new(Values.Carc117);
 
-    [EnumMember(Value = "118")]
-    Carc118,
+    public static readonly Carc Carc118 = new(Values.Carc118);
 
-    [EnumMember(Value = "119")]
-    Carc119,
+    public static readonly Carc Carc119 = new(Values.Carc119);
 
-    [EnumMember(Value = "121")]
-    Carc121,
+    public static readonly Carc Carc121 = new(Values.Carc121);
 
-    [EnumMember(Value = "122")]
-    Carc122,
+    public static readonly Carc Carc122 = new(Values.Carc122);
 
-    [EnumMember(Value = "125")]
-    Carc125,
+    public static readonly Carc Carc125 = new(Values.Carc125);
 
-    [EnumMember(Value = "128")]
-    Carc128,
+    public static readonly Carc Carc128 = new(Values.Carc128);
 
-    [EnumMember(Value = "129")]
-    Carc129,
+    public static readonly Carc Carc129 = new(Values.Carc129);
 
-    [EnumMember(Value = "130")]
-    Carc130,
+    public static readonly Carc Carc130 = new(Values.Carc130);
 
-    [EnumMember(Value = "131")]
-    Carc131,
+    public static readonly Carc Carc131 = new(Values.Carc131);
 
-    [EnumMember(Value = "132")]
-    Carc132,
+    public static readonly Carc Carc132 = new(Values.Carc132);
 
-    [EnumMember(Value = "133")]
-    Carc133,
+    public static readonly Carc Carc133 = new(Values.Carc133);
 
-    [EnumMember(Value = "134")]
-    Carc134,
+    public static readonly Carc Carc134 = new(Values.Carc134);
 
-    [EnumMember(Value = "135")]
-    Carc135,
+    public static readonly Carc Carc135 = new(Values.Carc135);
 
-    [EnumMember(Value = "136")]
-    Carc136,
+    public static readonly Carc Carc136 = new(Values.Carc136);
 
-    [EnumMember(Value = "137")]
-    Carc137,
+    public static readonly Carc Carc137 = new(Values.Carc137);
 
-    [EnumMember(Value = "139")]
-    Carc139,
+    public static readonly Carc Carc139 = new(Values.Carc139);
 
-    [EnumMember(Value = "140")]
-    Carc140,
+    public static readonly Carc Carc140 = new(Values.Carc140);
 
-    [EnumMember(Value = "142")]
-    Carc142,
+    public static readonly Carc Carc142 = new(Values.Carc142);
 
-    [EnumMember(Value = "143")]
-    Carc143,
+    public static readonly Carc Carc143 = new(Values.Carc143);
 
-    [EnumMember(Value = "144")]
-    Carc144,
+    public static readonly Carc Carc144 = new(Values.Carc144);
 
-    [EnumMember(Value = "146")]
-    Carc146,
+    public static readonly Carc Carc146 = new(Values.Carc146);
 
-    [EnumMember(Value = "147")]
-    Carc147,
+    public static readonly Carc Carc147 = new(Values.Carc147);
 
-    [EnumMember(Value = "148")]
-    Carc148,
+    public static readonly Carc Carc148 = new(Values.Carc148);
 
-    [EnumMember(Value = "149")]
-    Carc149,
+    public static readonly Carc Carc149 = new(Values.Carc149);
 
-    [EnumMember(Value = "150")]
-    Carc150,
+    public static readonly Carc Carc150 = new(Values.Carc150);
 
-    [EnumMember(Value = "151")]
-    Carc151,
+    public static readonly Carc Carc151 = new(Values.Carc151);
 
-    [EnumMember(Value = "152")]
-    Carc152,
+    public static readonly Carc Carc152 = new(Values.Carc152);
 
-    [EnumMember(Value = "153")]
-    Carc153,
+    public static readonly Carc Carc153 = new(Values.Carc153);
 
-    [EnumMember(Value = "154")]
-    Carc154,
+    public static readonly Carc Carc154 = new(Values.Carc154);
 
-    [EnumMember(Value = "155")]
-    Carc155,
+    public static readonly Carc Carc155 = new(Values.Carc155);
 
-    [EnumMember(Value = "157")]
-    Carc157,
+    public static readonly Carc Carc157 = new(Values.Carc157);
 
-    [EnumMember(Value = "158")]
-    Carc158,
+    public static readonly Carc Carc158 = new(Values.Carc158);
 
-    [EnumMember(Value = "159")]
-    Carc159,
+    public static readonly Carc Carc159 = new(Values.Carc159);
 
-    [EnumMember(Value = "160")]
-    Carc160,
+    public static readonly Carc Carc160 = new(Values.Carc160);
 
-    [EnumMember(Value = "161")]
-    Carc161,
+    public static readonly Carc Carc161 = new(Values.Carc161);
 
-    [EnumMember(Value = "163")]
-    Carc163,
+    public static readonly Carc Carc163 = new(Values.Carc163);
 
-    [EnumMember(Value = "164")]
-    Carc164,
+    public static readonly Carc Carc164 = new(Values.Carc164);
 
-    [EnumMember(Value = "166")]
-    Carc166,
+    public static readonly Carc Carc166 = new(Values.Carc166);
 
-    [EnumMember(Value = "167")]
-    Carc167,
+    public static readonly Carc Carc167 = new(Values.Carc167);
 
-    [EnumMember(Value = "169")]
-    Carc169,
+    public static readonly Carc Carc169 = new(Values.Carc169);
 
-    [EnumMember(Value = "170")]
-    Carc170,
+    public static readonly Carc Carc170 = new(Values.Carc170);
 
-    [EnumMember(Value = "171")]
-    Carc171,
+    public static readonly Carc Carc171 = new(Values.Carc171);
 
-    [EnumMember(Value = "172")]
-    Carc172,
+    public static readonly Carc Carc172 = new(Values.Carc172);
 
-    [EnumMember(Value = "173")]
-    Carc173,
+    public static readonly Carc Carc173 = new(Values.Carc173);
 
-    [EnumMember(Value = "174")]
-    Carc174,
+    public static readonly Carc Carc174 = new(Values.Carc174);
 
-    [EnumMember(Value = "175")]
-    Carc175,
+    public static readonly Carc Carc175 = new(Values.Carc175);
 
-    [EnumMember(Value = "176")]
-    Carc176,
+    public static readonly Carc Carc176 = new(Values.Carc176);
 
-    [EnumMember(Value = "177")]
-    Carc177,
+    public static readonly Carc Carc177 = new(Values.Carc177);
 
-    [EnumMember(Value = "178")]
-    Carc178,
+    public static readonly Carc Carc178 = new(Values.Carc178);
 
-    [EnumMember(Value = "179")]
-    Carc179,
+    public static readonly Carc Carc179 = new(Values.Carc179);
 
-    [EnumMember(Value = "180")]
-    Carc180,
+    public static readonly Carc Carc180 = new(Values.Carc180);
 
-    [EnumMember(Value = "181")]
-    Carc181,
+    public static readonly Carc Carc181 = new(Values.Carc181);
 
-    [EnumMember(Value = "182")]
-    Carc182,
+    public static readonly Carc Carc182 = new(Values.Carc182);
 
-    [EnumMember(Value = "183")]
-    Carc183,
+    public static readonly Carc Carc183 = new(Values.Carc183);
 
-    [EnumMember(Value = "184")]
-    Carc184,
+    public static readonly Carc Carc184 = new(Values.Carc184);
 
-    [EnumMember(Value = "185")]
-    Carc185,
+    public static readonly Carc Carc185 = new(Values.Carc185);
 
-    [EnumMember(Value = "186")]
-    Carc186,
+    public static readonly Carc Carc186 = new(Values.Carc186);
 
-    [EnumMember(Value = "187")]
-    Carc187,
+    public static readonly Carc Carc187 = new(Values.Carc187);
 
-    [EnumMember(Value = "188")]
-    Carc188,
+    public static readonly Carc Carc188 = new(Values.Carc188);
 
-    [EnumMember(Value = "189")]
-    Carc189,
+    public static readonly Carc Carc189 = new(Values.Carc189);
 
-    [EnumMember(Value = "190")]
-    Carc190,
+    public static readonly Carc Carc190 = new(Values.Carc190);
 
-    [EnumMember(Value = "192")]
-    Carc192,
+    public static readonly Carc Carc192 = new(Values.Carc192);
 
-    [EnumMember(Value = "193")]
-    Carc193,
+    public static readonly Carc Carc193 = new(Values.Carc193);
 
-    [EnumMember(Value = "194")]
-    Carc194,
+    public static readonly Carc Carc194 = new(Values.Carc194);
 
-    [EnumMember(Value = "195")]
-    Carc195,
+    public static readonly Carc Carc195 = new(Values.Carc195);
 
-    [EnumMember(Value = "197")]
-    Carc197,
+    public static readonly Carc Carc197 = new(Values.Carc197);
 
-    [EnumMember(Value = "198")]
-    Carc198,
+    public static readonly Carc Carc198 = new(Values.Carc198);
 
-    [EnumMember(Value = "199")]
-    Carc199,
+    public static readonly Carc Carc199 = new(Values.Carc199);
 
-    [EnumMember(Value = "200")]
-    Carc200,
+    public static readonly Carc Carc200 = new(Values.Carc200);
 
-    [EnumMember(Value = "201")]
-    Carc201,
+    public static readonly Carc Carc201 = new(Values.Carc201);
 
-    [EnumMember(Value = "202")]
-    Carc202,
+    public static readonly Carc Carc202 = new(Values.Carc202);
 
-    [EnumMember(Value = "203")]
-    Carc203,
+    public static readonly Carc Carc203 = new(Values.Carc203);
 
-    [EnumMember(Value = "204")]
-    Carc204,
+    public static readonly Carc Carc204 = new(Values.Carc204);
 
-    [EnumMember(Value = "205")]
-    Carc205,
+    public static readonly Carc Carc205 = new(Values.Carc205);
 
-    [EnumMember(Value = "206")]
-    Carc206,
+    public static readonly Carc Carc206 = new(Values.Carc206);
 
-    [EnumMember(Value = "207")]
-    Carc207,
+    public static readonly Carc Carc207 = new(Values.Carc207);
 
-    [EnumMember(Value = "208")]
-    Carc208,
+    public static readonly Carc Carc208 = new(Values.Carc208);
 
-    [EnumMember(Value = "209")]
-    Carc209,
+    public static readonly Carc Carc209 = new(Values.Carc209);
 
-    [EnumMember(Value = "210")]
-    Carc210,
+    public static readonly Carc Carc210 = new(Values.Carc210);
 
-    [EnumMember(Value = "211")]
-    Carc211,
+    public static readonly Carc Carc211 = new(Values.Carc211);
 
-    [EnumMember(Value = "212")]
-    Carc212,
+    public static readonly Carc Carc212 = new(Values.Carc212);
 
-    [EnumMember(Value = "213")]
-    Carc213,
+    public static readonly Carc Carc213 = new(Values.Carc213);
 
-    [EnumMember(Value = "215")]
-    Carc215,
+    public static readonly Carc Carc215 = new(Values.Carc215);
 
-    [EnumMember(Value = "216")]
-    Carc216,
+    public static readonly Carc Carc216 = new(Values.Carc216);
 
-    [EnumMember(Value = "219")]
-    Carc219,
+    public static readonly Carc Carc219 = new(Values.Carc219);
 
-    [EnumMember(Value = "222")]
-    Carc222,
+    public static readonly Carc Carc222 = new(Values.Carc222);
 
-    [EnumMember(Value = "223")]
-    Carc223,
+    public static readonly Carc Carc223 = new(Values.Carc223);
 
-    [EnumMember(Value = "224")]
-    Carc224,
+    public static readonly Carc Carc224 = new(Values.Carc224);
 
-    [EnumMember(Value = "225")]
-    Carc225,
+    public static readonly Carc Carc225 = new(Values.Carc225);
 
-    [EnumMember(Value = "226")]
-    Carc226,
+    public static readonly Carc Carc226 = new(Values.Carc226);
 
-    [EnumMember(Value = "227")]
-    Carc227,
+    public static readonly Carc Carc227 = new(Values.Carc227);
 
-    [EnumMember(Value = "228")]
-    Carc228,
+    public static readonly Carc Carc228 = new(Values.Carc228);
 
-    [EnumMember(Value = "229")]
-    Carc229,
+    public static readonly Carc Carc229 = new(Values.Carc229);
 
-    [EnumMember(Value = "231")]
-    Carc231,
+    public static readonly Carc Carc231 = new(Values.Carc231);
 
-    [EnumMember(Value = "232")]
-    Carc232,
+    public static readonly Carc Carc232 = new(Values.Carc232);
 
-    [EnumMember(Value = "233")]
-    Carc233,
+    public static readonly Carc Carc233 = new(Values.Carc233);
 
-    [EnumMember(Value = "234")]
-    Carc234,
+    public static readonly Carc Carc234 = new(Values.Carc234);
 
-    [EnumMember(Value = "235")]
-    Carc235,
+    public static readonly Carc Carc235 = new(Values.Carc235);
 
-    [EnumMember(Value = "236")]
-    Carc236,
+    public static readonly Carc Carc236 = new(Values.Carc236);
 
-    [EnumMember(Value = "237")]
-    Carc237,
+    public static readonly Carc Carc237 = new(Values.Carc237);
 
-    [EnumMember(Value = "238")]
-    Carc238,
+    public static readonly Carc Carc238 = new(Values.Carc238);
 
-    [EnumMember(Value = "239")]
-    Carc239,
+    public static readonly Carc Carc239 = new(Values.Carc239);
 
-    [EnumMember(Value = "240")]
-    Carc240,
+    public static readonly Carc Carc240 = new(Values.Carc240);
 
-    [EnumMember(Value = "241")]
-    Carc241,
+    public static readonly Carc Carc241 = new(Values.Carc241);
 
-    [EnumMember(Value = "242")]
-    Carc242,
+    public static readonly Carc Carc242 = new(Values.Carc242);
 
-    [EnumMember(Value = "243")]
-    Carc243,
+    public static readonly Carc Carc243 = new(Values.Carc243);
 
-    [EnumMember(Value = "245")]
-    Carc245,
+    public static readonly Carc Carc245 = new(Values.Carc245);
 
-    [EnumMember(Value = "246")]
-    Carc246,
+    public static readonly Carc Carc246 = new(Values.Carc246);
 
-    [EnumMember(Value = "247")]
-    Carc247,
+    public static readonly Carc Carc247 = new(Values.Carc247);
 
-    [EnumMember(Value = "248")]
-    Carc248,
+    public static readonly Carc Carc248 = new(Values.Carc248);
 
-    [EnumMember(Value = "249")]
-    Carc249,
+    public static readonly Carc Carc249 = new(Values.Carc249);
 
-    [EnumMember(Value = "250")]
-    Carc250,
+    public static readonly Carc Carc250 = new(Values.Carc250);
 
-    [EnumMember(Value = "251")]
-    Carc251,
+    public static readonly Carc Carc251 = new(Values.Carc251);
 
-    [EnumMember(Value = "252")]
-    Carc252,
+    public static readonly Carc Carc252 = new(Values.Carc252);
 
-    [EnumMember(Value = "253")]
-    Carc253,
+    public static readonly Carc Carc253 = new(Values.Carc253);
 
-    [EnumMember(Value = "254")]
-    Carc254,
+    public static readonly Carc Carc254 = new(Values.Carc254);
 
-    [EnumMember(Value = "256")]
-    Carc256,
+    public static readonly Carc Carc256 = new(Values.Carc256);
 
-    [EnumMember(Value = "257")]
-    Carc257,
+    public static readonly Carc Carc257 = new(Values.Carc257);
 
-    [EnumMember(Value = "258")]
-    Carc258,
+    public static readonly Carc Carc258 = new(Values.Carc258);
 
-    [EnumMember(Value = "259")]
-    Carc259,
+    public static readonly Carc Carc259 = new(Values.Carc259);
 
-    [EnumMember(Value = "260")]
-    Carc260,
+    public static readonly Carc Carc260 = new(Values.Carc260);
 
-    [EnumMember(Value = "261")]
-    Carc261,
+    public static readonly Carc Carc261 = new(Values.Carc261);
 
-    [EnumMember(Value = "262")]
-    Carc262,
+    public static readonly Carc Carc262 = new(Values.Carc262);
 
-    [EnumMember(Value = "263")]
-    Carc263,
+    public static readonly Carc Carc263 = new(Values.Carc263);
 
-    [EnumMember(Value = "264")]
-    Carc264,
+    public static readonly Carc Carc264 = new(Values.Carc264);
 
-    [EnumMember(Value = "265")]
-    Carc265,
+    public static readonly Carc Carc265 = new(Values.Carc265);
 
-    [EnumMember(Value = "266")]
-    Carc266,
+    public static readonly Carc Carc266 = new(Values.Carc266);
 
-    [EnumMember(Value = "267")]
-    Carc267,
+    public static readonly Carc Carc267 = new(Values.Carc267);
 
-    [EnumMember(Value = "268")]
-    Carc268,
+    public static readonly Carc Carc268 = new(Values.Carc268);
 
-    [EnumMember(Value = "269")]
-    Carc269,
+    public static readonly Carc Carc269 = new(Values.Carc269);
 
-    [EnumMember(Value = "270")]
-    Carc270,
+    public static readonly Carc Carc270 = new(Values.Carc270);
 
-    [EnumMember(Value = "271")]
-    Carc271,
+    public static readonly Carc Carc271 = new(Values.Carc271);
 
-    [EnumMember(Value = "272")]
-    Carc272,
+    public static readonly Carc Carc272 = new(Values.Carc272);
 
-    [EnumMember(Value = "273")]
-    Carc273,
+    public static readonly Carc Carc273 = new(Values.Carc273);
 
-    [EnumMember(Value = "274")]
-    Carc274,
+    public static readonly Carc Carc274 = new(Values.Carc274);
 
-    [EnumMember(Value = "275")]
-    Carc275,
+    public static readonly Carc Carc275 = new(Values.Carc275);
 
-    [EnumMember(Value = "276")]
-    Carc276,
+    public static readonly Carc Carc276 = new(Values.Carc276);
 
-    [EnumMember(Value = "277")]
-    Carc277,
+    public static readonly Carc Carc277 = new(Values.Carc277);
 
-    [EnumMember(Value = "278")]
-    Carc278,
+    public static readonly Carc Carc278 = new(Values.Carc278);
 
-    [EnumMember(Value = "279")]
-    Carc279,
+    public static readonly Carc Carc279 = new(Values.Carc279);
 
-    [EnumMember(Value = "280")]
-    Carc280,
+    public static readonly Carc Carc280 = new(Values.Carc280);
 
-    [EnumMember(Value = "281")]
-    Carc281,
+    public static readonly Carc Carc281 = new(Values.Carc281);
 
-    [EnumMember(Value = "282")]
-    Carc282,
+    public static readonly Carc Carc282 = new(Values.Carc282);
 
-    [EnumMember(Value = "283")]
-    Carc283,
+    public static readonly Carc Carc283 = new(Values.Carc283);
 
-    [EnumMember(Value = "284")]
-    Carc284,
+    public static readonly Carc Carc284 = new(Values.Carc284);
 
-    [EnumMember(Value = "285")]
-    Carc285,
+    public static readonly Carc Carc285 = new(Values.Carc285);
 
-    [EnumMember(Value = "286")]
-    Carc286,
+    public static readonly Carc Carc286 = new(Values.Carc286);
 
-    [EnumMember(Value = "287")]
-    Carc287,
+    public static readonly Carc Carc287 = new(Values.Carc287);
 
-    [EnumMember(Value = "288")]
-    Carc288,
+    public static readonly Carc Carc288 = new(Values.Carc288);
 
-    [EnumMember(Value = "289")]
-    Carc289,
+    public static readonly Carc Carc289 = new(Values.Carc289);
 
-    [EnumMember(Value = "290")]
-    Carc290,
+    public static readonly Carc Carc290 = new(Values.Carc290);
 
-    [EnumMember(Value = "291")]
-    Carc291,
+    public static readonly Carc Carc291 = new(Values.Carc291);
 
-    [EnumMember(Value = "292")]
-    Carc292,
+    public static readonly Carc Carc292 = new(Values.Carc292);
 
-    [EnumMember(Value = "293")]
-    Carc293,
+    public static readonly Carc Carc293 = new(Values.Carc293);
 
-    [EnumMember(Value = "294")]
-    Carc294,
+    public static readonly Carc Carc294 = new(Values.Carc294);
 
-    [EnumMember(Value = "295")]
-    Carc295,
+    public static readonly Carc Carc295 = new(Values.Carc295);
 
-    [EnumMember(Value = "296")]
-    Carc296,
+    public static readonly Carc Carc296 = new(Values.Carc296);
 
-    [EnumMember(Value = "297")]
-    Carc297,
+    public static readonly Carc Carc297 = new(Values.Carc297);
 
-    [EnumMember(Value = "298")]
-    Carc298,
+    public static readonly Carc Carc298 = new(Values.Carc298);
 
-    [EnumMember(Value = "299")]
-    Carc299,
+    public static readonly Carc Carc299 = new(Values.Carc299);
 
-    [EnumMember(Value = "300")]
-    Carc300,
+    public static readonly Carc Carc300 = new(Values.Carc300);
 
-    [EnumMember(Value = "301")]
-    Carc301,
+    public static readonly Carc Carc301 = new(Values.Carc301);
 
-    [EnumMember(Value = "302")]
-    Carc302,
+    public static readonly Carc Carc302 = new(Values.Carc302);
 
-    [EnumMember(Value = "303")]
-    Carc303,
+    public static readonly Carc Carc303 = new(Values.Carc303);
 
-    [EnumMember(Value = "304")]
-    Carc304,
+    public static readonly Carc Carc304 = new(Values.Carc304);
 
-    [EnumMember(Value = "305")]
-    Carc305,
+    public static readonly Carc Carc305 = new(Values.Carc305);
 
-    [EnumMember(Value = "A0")]
-    CarcA0,
+    public static readonly Carc CarcA0 = new(Values.CarcA0);
 
-    [EnumMember(Value = "A1")]
-    CarcA1,
+    public static readonly Carc CarcA1 = new(Values.CarcA1);
 
-    [EnumMember(Value = "A5")]
-    CarcA5,
+    public static readonly Carc CarcA5 = new(Values.CarcA5);
 
-    [EnumMember(Value = "A6")]
-    CarcA6,
+    public static readonly Carc CarcA6 = new(Values.CarcA6);
 
-    [EnumMember(Value = "A8")]
-    CarcA8,
+    public static readonly Carc CarcA8 = new(Values.CarcA8);
 
-    [EnumMember(Value = "B1")]
-    CarcB1,
+    public static readonly Carc CarcB1 = new(Values.CarcB1);
 
-    [EnumMember(Value = "B4")]
-    CarcB4,
+    public static readonly Carc CarcB4 = new(Values.CarcB4);
 
-    [EnumMember(Value = "B7")]
-    CarcB7,
+    public static readonly Carc CarcB7 = new(Values.CarcB7);
 
-    [EnumMember(Value = "B8")]
-    CarcB8,
+    public static readonly Carc CarcB8 = new(Values.CarcB8);
 
-    [EnumMember(Value = "B9")]
-    CarcB9,
+    public static readonly Carc CarcB9 = new(Values.CarcB9);
 
-    [EnumMember(Value = "B10")]
-    CarcB10,
+    public static readonly Carc CarcB10 = new(Values.CarcB10);
 
-    [EnumMember(Value = "B11")]
-    CarcB11,
+    public static readonly Carc CarcB11 = new(Values.CarcB11);
 
-    [EnumMember(Value = "B12")]
-    CarcB12,
+    public static readonly Carc CarcB12 = new(Values.CarcB12);
 
-    [EnumMember(Value = "B13")]
-    CarcB13,
+    public static readonly Carc CarcB13 = new(Values.CarcB13);
 
-    [EnumMember(Value = "B14")]
-    CarcB14,
+    public static readonly Carc CarcB14 = new(Values.CarcB14);
 
-    [EnumMember(Value = "B15")]
-    CarcB15,
+    public static readonly Carc CarcB15 = new(Values.CarcB15);
 
-    [EnumMember(Value = "B16")]
-    CarcB16,
+    public static readonly Carc CarcB16 = new(Values.CarcB16);
 
-    [EnumMember(Value = "B20")]
-    CarcB20,
+    public static readonly Carc CarcB20 = new(Values.CarcB20);
 
-    [EnumMember(Value = "B22")]
-    CarcB22,
+    public static readonly Carc CarcB22 = new(Values.CarcB22);
 
-    [EnumMember(Value = "B23")]
-    CarcB23,
+    public static readonly Carc CarcB23 = new(Values.CarcB23);
 
-    [EnumMember(Value = "P1")]
-    CarcP1,
+    public static readonly Carc CarcP1 = new(Values.CarcP1);
 
-    [EnumMember(Value = "P2")]
-    CarcP2,
+    public static readonly Carc CarcP2 = new(Values.CarcP2);
 
-    [EnumMember(Value = "P3")]
-    CarcP3,
+    public static readonly Carc CarcP3 = new(Values.CarcP3);
 
-    [EnumMember(Value = "P4")]
-    CarcP4,
+    public static readonly Carc CarcP4 = new(Values.CarcP4);
 
-    [EnumMember(Value = "P5")]
-    CarcP5,
+    public static readonly Carc CarcP5 = new(Values.CarcP5);
 
-    [EnumMember(Value = "P6")]
-    CarcP6,
+    public static readonly Carc CarcP6 = new(Values.CarcP6);
 
-    [EnumMember(Value = "P7")]
-    CarcP7,
+    public static readonly Carc CarcP7 = new(Values.CarcP7);
 
-    [EnumMember(Value = "P8")]
-    CarcP8,
+    public static readonly Carc CarcP8 = new(Values.CarcP8);
 
-    [EnumMember(Value = "P9")]
-    CarcP9,
+    public static readonly Carc CarcP9 = new(Values.CarcP9);
 
-    [EnumMember(Value = "P10")]
-    CarcP10,
+    public static readonly Carc CarcP10 = new(Values.CarcP10);
 
-    [EnumMember(Value = "P11")]
-    CarcP11,
+    public static readonly Carc CarcP11 = new(Values.CarcP11);
 
-    [EnumMember(Value = "P12")]
-    CarcP12,
+    public static readonly Carc CarcP12 = new(Values.CarcP12);
 
-    [EnumMember(Value = "P13")]
-    CarcP13,
+    public static readonly Carc CarcP13 = new(Values.CarcP13);
 
-    [EnumMember(Value = "P14")]
-    CarcP14,
+    public static readonly Carc CarcP14 = new(Values.CarcP14);
 
-    [EnumMember(Value = "P15")]
-    CarcP15,
+    public static readonly Carc CarcP15 = new(Values.CarcP15);
 
-    [EnumMember(Value = "P16")]
-    CarcP16,
+    public static readonly Carc CarcP16 = new(Values.CarcP16);
 
-    [EnumMember(Value = "P17")]
-    CarcP17,
+    public static readonly Carc CarcP17 = new(Values.CarcP17);
 
-    [EnumMember(Value = "P18")]
-    CarcP18,
+    public static readonly Carc CarcP18 = new(Values.CarcP18);
 
-    [EnumMember(Value = "P19")]
-    CarcP19,
+    public static readonly Carc CarcP19 = new(Values.CarcP19);
 
-    [EnumMember(Value = "P20")]
-    CarcP20,
+    public static readonly Carc CarcP20 = new(Values.CarcP20);
 
-    [EnumMember(Value = "P21")]
-    CarcP21,
+    public static readonly Carc CarcP21 = new(Values.CarcP21);
 
-    [EnumMember(Value = "P22")]
-    CarcP22,
+    public static readonly Carc CarcP22 = new(Values.CarcP22);
 
-    [EnumMember(Value = "P23")]
-    CarcP23,
+    public static readonly Carc CarcP23 = new(Values.CarcP23);
 
-    [EnumMember(Value = "P24")]
-    CarcP24,
+    public static readonly Carc CarcP24 = new(Values.CarcP24);
 
-    [EnumMember(Value = "P25")]
-    CarcP25,
+    public static readonly Carc CarcP25 = new(Values.CarcP25);
 
-    [EnumMember(Value = "P26")]
-    CarcP26,
+    public static readonly Carc CarcP26 = new(Values.CarcP26);
 
-    [EnumMember(Value = "P27")]
-    CarcP27,
+    public static readonly Carc CarcP27 = new(Values.CarcP27);
 
-    [EnumMember(Value = "P28")]
-    CarcP28,
+    public static readonly Carc CarcP28 = new(Values.CarcP28);
 
-    [EnumMember(Value = "P29")]
-    CarcP29,
+    public static readonly Carc CarcP29 = new(Values.CarcP29);
 
-    [EnumMember(Value = "P30")]
-    CarcP30,
+    public static readonly Carc CarcP30 = new(Values.CarcP30);
 
-    [EnumMember(Value = "P31")]
-    CarcP31,
+    public static readonly Carc CarcP31 = new(Values.CarcP31);
 
-    [EnumMember(Value = "P32")]
-    CarcP32,
+    public static readonly Carc CarcP32 = new(Values.CarcP32);
 
-    [EnumMember(Value = "17")]
-    Carc17,
+    public static readonly Carc Carc17 = new(Values.Carc17);
 
-    [EnumMember(Value = "25")]
-    Carc25,
+    public static readonly Carc Carc25 = new(Values.Carc25);
 
-    [EnumMember(Value = "28")]
-    Carc28,
+    public static readonly Carc Carc28 = new(Values.Carc28);
 
-    [EnumMember(Value = "30")]
-    Carc30,
+    public static readonly Carc Carc30 = new(Values.Carc30);
 
-    [EnumMember(Value = "36")]
-    Carc36,
+    public static readonly Carc Carc36 = new(Values.Carc36);
 
-    [EnumMember(Value = "37")]
-    Carc37,
+    public static readonly Carc Carc37 = new(Values.Carc37);
 
-    [EnumMember(Value = "38")]
-    Carc38,
+    public static readonly Carc Carc38 = new(Values.Carc38);
 
-    [EnumMember(Value = "41")]
-    Carc41,
+    public static readonly Carc Carc41 = new(Values.Carc41);
 
-    [EnumMember(Value = "42")]
-    Carc42,
+    public static readonly Carc Carc42 = new(Values.Carc42);
 
-    [EnumMember(Value = "43")]
-    Carc43,
+    public static readonly Carc Carc43 = new(Values.Carc43);
 
-    [EnumMember(Value = "46")]
-    Carc46,
+    public static readonly Carc Carc46 = new(Values.Carc46);
 
-    [EnumMember(Value = "47")]
-    Carc47,
+    public static readonly Carc Carc47 = new(Values.Carc47);
 
-    [EnumMember(Value = "48")]
-    Carc48,
+    public static readonly Carc Carc48 = new(Values.Carc48);
 
-    [EnumMember(Value = "52")]
-    Carc52,
+    public static readonly Carc Carc52 = new(Values.Carc52);
 
-    [EnumMember(Value = "57")]
-    Carc57,
+    public static readonly Carc Carc57 = new(Values.Carc57);
 
-    [EnumMember(Value = "62")]
-    Carc62,
+    public static readonly Carc Carc62 = new(Values.Carc62);
 
-    [EnumMember(Value = "63")]
-    Carc63,
+    public static readonly Carc Carc63 = new(Values.Carc63);
 
-    [EnumMember(Value = "64")]
-    Carc64,
+    public static readonly Carc Carc64 = new(Values.Carc64);
 
-    [EnumMember(Value = "65")]
-    Carc65,
+    public static readonly Carc Carc65 = new(Values.Carc65);
 
-    [EnumMember(Value = "67")]
-    Carc67,
+    public static readonly Carc Carc67 = new(Values.Carc67);
 
-    [EnumMember(Value = "68")]
-    Carc68,
+    public static readonly Carc Carc68 = new(Values.Carc68);
 
-    [EnumMember(Value = "71")]
-    Carc71,
+    public static readonly Carc Carc71 = new(Values.Carc71);
 
-    [EnumMember(Value = "72")]
-    Carc72,
+    public static readonly Carc Carc72 = new(Values.Carc72);
 
-    [EnumMember(Value = "73")]
-    Carc73,
+    public static readonly Carc Carc73 = new(Values.Carc73);
 
-    [EnumMember(Value = "77")]
-    Carc77,
+    public static readonly Carc Carc77 = new(Values.Carc77);
 
-    [EnumMember(Value = "79")]
-    Carc79,
+    public static readonly Carc Carc79 = new(Values.Carc79);
 
-    [EnumMember(Value = "80")]
-    Carc80,
+    public static readonly Carc Carc80 = new(Values.Carc80);
 
-    [EnumMember(Value = "81")]
-    Carc81,
+    public static readonly Carc Carc81 = new(Values.Carc81);
 
-    [EnumMember(Value = "82")]
-    Carc82,
+    public static readonly Carc Carc82 = new(Values.Carc82);
 
-    [EnumMember(Value = "83")]
-    Carc83,
+    public static readonly Carc Carc83 = new(Values.Carc83);
 
-    [EnumMember(Value = "84")]
-    Carc84,
+    public static readonly Carc Carc84 = new(Values.Carc84);
 
-    [EnumMember(Value = "86")]
-    Carc86,
+    public static readonly Carc Carc86 = new(Values.Carc86);
 
-    [EnumMember(Value = "87")]
-    Carc87,
+    public static readonly Carc Carc87 = new(Values.Carc87);
 
-    [EnumMember(Value = "88")]
-    Carc88,
+    public static readonly Carc Carc88 = new(Values.Carc88);
 
-    [EnumMember(Value = "92")]
-    Carc92,
+    public static readonly Carc Carc92 = new(Values.Carc92);
 
-    [EnumMember(Value = "93")]
-    Carc93,
+    public static readonly Carc Carc93 = new(Values.Carc93);
 
-    [EnumMember(Value = "98")]
-    Carc98,
+    public static readonly Carc Carc98 = new(Values.Carc98);
 
-    [EnumMember(Value = "99")]
-    Carc99,
+    public static readonly Carc Carc99 = new(Values.Carc99);
 
-    [EnumMember(Value = "113")]
-    Carc113,
+    public static readonly Carc Carc113 = new(Values.Carc113);
 
-    [EnumMember(Value = "120")]
-    Carc120,
+    public static readonly Carc Carc120 = new(Values.Carc120);
 
-    [EnumMember(Value = "123")]
-    Carc123,
+    public static readonly Carc Carc123 = new(Values.Carc123);
 
-    [EnumMember(Value = "124")]
-    Carc124,
+    public static readonly Carc Carc124 = new(Values.Carc124);
 
-    [EnumMember(Value = "126")]
-    Carc126,
+    public static readonly Carc Carc126 = new(Values.Carc126);
 
-    [EnumMember(Value = "127")]
-    Carc127,
+    public static readonly Carc Carc127 = new(Values.Carc127);
 
-    [EnumMember(Value = "138")]
-    Carc138,
+    public static readonly Carc Carc138 = new(Values.Carc138);
 
-    [EnumMember(Value = "141")]
-    Carc141,
+    public static readonly Carc Carc141 = new(Values.Carc141);
 
-    [EnumMember(Value = "145")]
-    Carc145,
+    public static readonly Carc Carc145 = new(Values.Carc145);
 
-    [EnumMember(Value = "156")]
-    Carc156,
+    public static readonly Carc Carc156 = new(Values.Carc156);
 
-    [EnumMember(Value = "162")]
-    Carc162,
+    public static readonly Carc Carc162 = new(Values.Carc162);
 
-    [EnumMember(Value = "165")]
-    Carc165,
+    public static readonly Carc Carc165 = new(Values.Carc165);
 
-    [EnumMember(Value = "168")]
-    Carc168,
+    public static readonly Carc Carc168 = new(Values.Carc168);
 
-    [EnumMember(Value = "191")]
-    Carc191,
+    public static readonly Carc Carc191 = new(Values.Carc191);
 
-    [EnumMember(Value = "196")]
-    Carc196,
+    public static readonly Carc Carc196 = new(Values.Carc196);
 
-    [EnumMember(Value = "214")]
-    Carc214,
+    public static readonly Carc Carc214 = new(Values.Carc214);
 
-    [EnumMember(Value = "217")]
-    Carc217,
+    public static readonly Carc Carc217 = new(Values.Carc217);
 
-    [EnumMember(Value = "218")]
-    Carc218,
+    public static readonly Carc Carc218 = new(Values.Carc218);
 
-    [EnumMember(Value = "220")]
-    Carc220,
+    public static readonly Carc Carc220 = new(Values.Carc220);
 
-    [EnumMember(Value = "221")]
-    Carc221,
+    public static readonly Carc Carc221 = new(Values.Carc221);
 
-    [EnumMember(Value = "230")]
-    Carc230,
+    public static readonly Carc Carc230 = new(Values.Carc230);
 
-    [EnumMember(Value = "244")]
-    Carc244,
+    public static readonly Carc Carc244 = new(Values.Carc244);
 
-    [EnumMember(Value = "255")]
-    Carc255,
+    public static readonly Carc Carc255 = new(Values.Carc255);
 
-    [EnumMember(Value = "A2")]
-    CarcA2,
+    public static readonly Carc CarcA2 = new(Values.CarcA2);
 
-    [EnumMember(Value = "A3")]
-    CarcA3,
+    public static readonly Carc CarcA3 = new(Values.CarcA3);
 
-    [EnumMember(Value = "A4")]
-    CarcA4,
+    public static readonly Carc CarcA4 = new(Values.CarcA4);
 
-    [EnumMember(Value = "A7")]
-    CarcA7,
+    public static readonly Carc CarcA7 = new(Values.CarcA7);
 
-    [EnumMember(Value = "B2")]
-    CarcB2,
+    public static readonly Carc CarcB2 = new(Values.CarcB2);
 
-    [EnumMember(Value = "B3")]
-    CarcB3,
+    public static readonly Carc CarcB3 = new(Values.CarcB3);
 
-    [EnumMember(Value = "B5")]
-    CarcB5,
+    public static readonly Carc CarcB5 = new(Values.CarcB5);
 
-    [EnumMember(Value = "B6")]
-    CarcB6,
+    public static readonly Carc CarcB6 = new(Values.CarcB6);
 
-    [EnumMember(Value = "B17")]
-    CarcB17,
+    public static readonly Carc CarcB17 = new(Values.CarcB17);
 
-    [EnumMember(Value = "B18")]
-    CarcB18,
+    public static readonly Carc CarcB18 = new(Values.CarcB18);
 
-    [EnumMember(Value = "B19")]
-    CarcB19,
+    public static readonly Carc CarcB19 = new(Values.CarcB19);
 
-    [EnumMember(Value = "B21")]
-    CarcB21,
+    public static readonly Carc CarcB21 = new(Values.CarcB21);
 
-    [EnumMember(Value = "D1")]
-    CarcD1,
+    public static readonly Carc CarcD1 = new(Values.CarcD1);
 
-    [EnumMember(Value = "D2")]
-    CarcD2,
+    public static readonly Carc CarcD2 = new(Values.CarcD2);
 
-    [EnumMember(Value = "D3")]
-    CarcD3,
+    public static readonly Carc CarcD3 = new(Values.CarcD3);
 
-    [EnumMember(Value = "D4")]
-    CarcD4,
+    public static readonly Carc CarcD4 = new(Values.CarcD4);
 
-    [EnumMember(Value = "D5")]
-    CarcD5,
+    public static readonly Carc CarcD5 = new(Values.CarcD5);
 
-    [EnumMember(Value = "D6")]
-    CarcD6,
+    public static readonly Carc CarcD6 = new(Values.CarcD6);
 
-    [EnumMember(Value = "D7")]
-    CarcD7,
+    public static readonly Carc CarcD7 = new(Values.CarcD7);
 
-    [EnumMember(Value = "D8")]
-    CarcD8,
+    public static readonly Carc CarcD8 = new(Values.CarcD8);
 
-    [EnumMember(Value = "D9")]
-    CarcD9,
+    public static readonly Carc CarcD9 = new(Values.CarcD9);
 
-    [EnumMember(Value = "D10")]
-    CarcD10,
+    public static readonly Carc CarcD10 = new(Values.CarcD10);
 
-    [EnumMember(Value = "D11")]
-    CarcD11,
+    public static readonly Carc CarcD11 = new(Values.CarcD11);
 
-    [EnumMember(Value = "D12")]
-    CarcD12,
+    public static readonly Carc CarcD12 = new(Values.CarcD12);
 
-    [EnumMember(Value = "D14")]
-    CarcD14,
+    public static readonly Carc CarcD14 = new(Values.CarcD14);
 
-    [EnumMember(Value = "D15")]
-    CarcD15,
+    public static readonly Carc CarcD15 = new(Values.CarcD15);
 
-    [EnumMember(Value = "D16")]
-    CarcD16,
+    public static readonly Carc CarcD16 = new(Values.CarcD16);
 
-    [EnumMember(Value = "D17")]
-    CarcD17,
+    public static readonly Carc CarcD17 = new(Values.CarcD17);
 
-    [EnumMember(Value = "D18")]
-    CarcD18,
+    public static readonly Carc CarcD18 = new(Values.CarcD18);
 
-    [EnumMember(Value = "D19")]
-    CarcD19,
+    public static readonly Carc CarcD19 = new(Values.CarcD19);
 
-    [EnumMember(Value = "D20")]
-    CarcD20,
+    public static readonly Carc CarcD20 = new(Values.CarcD20);
 
-    [EnumMember(Value = "D21")]
-    CarcD21,
+    public static readonly Carc CarcD21 = new(Values.CarcD21);
 
-    [EnumMember(Value = "D22")]
-    CarcD22,
+    public static readonly Carc CarcD22 = new(Values.CarcD22);
 
-    [EnumMember(Value = "D23")]
-    CarcD23,
+    public static readonly Carc CarcD23 = new(Values.CarcD23);
 
-    [EnumMember(Value = "W1")]
-    CarcW1,
+    public static readonly Carc CarcW1 = new(Values.CarcW1);
 
-    [EnumMember(Value = "W2")]
-    CarcW2,
+    public static readonly Carc CarcW2 = new(Values.CarcW2);
 
-    [EnumMember(Value = "W3")]
-    CarcW3,
+    public static readonly Carc CarcW3 = new(Values.CarcW3);
 
-    [EnumMember(Value = "W4")]
-    CarcW4,
+    public static readonly Carc CarcW4 = new(Values.CarcW4);
 
-    [EnumMember(Value = "W5")]
-    CarcW5,
+    public static readonly Carc CarcW5 = new(Values.CarcW5);
 
-    [EnumMember(Value = "W6")]
-    CarcW6,
+    public static readonly Carc CarcW6 = new(Values.CarcW6);
 
-    [EnumMember(Value = "W7")]
-    CarcW7,
+    public static readonly Carc CarcW7 = new(Values.CarcW7);
 
-    [EnumMember(Value = "W8")]
-    CarcW8,
+    public static readonly Carc CarcW8 = new(Values.CarcW8);
 
-    [EnumMember(Value = "W9")]
-    CarcW9,
+    public static readonly Carc CarcW9 = new(Values.CarcW9);
 
-    [EnumMember(Value = "Y1")]
-    CarcY1,
+    public static readonly Carc CarcY1 = new(Values.CarcY1);
 
-    [EnumMember(Value = "Y2")]
-    CarcY2,
+    public static readonly Carc CarcY2 = new(Values.CarcY2);
 
-    [EnumMember(Value = "Y3")]
-    CarcY3,
+    public static readonly Carc CarcY3 = new(Values.CarcY3);
 
-    [EnumMember(Value = "UNKNOWN")]
-    Unknown,
+    public static readonly Carc Unknown = new(Values.Unknown);
+
+    public Carc(string value)
+    {
+        Value = value;
+    }
+
+    /// <summary>
+    /// The string value of the enum.
+    /// </summary>
+    public string Value { get; }
+
+    /// <summary>
+    /// Create a string enum with the given value.
+    /// </summary>
+    public static Carc FromCustom(string value)
+    {
+        return new Carc(value);
+    }
+
+    public bool Equals(string? other)
+    {
+        return Value.Equals(other);
+    }
+
+    /// <summary>
+    /// Returns the string value of the enum.
+    /// </summary>
+    public override string ToString()
+    {
+        return Value;
+    }
+
+    public static bool operator ==(Carc value1, string value2) => value1.Value.Equals(value2);
+
+    public static bool operator !=(Carc value1, string value2) => !value1.Value.Equals(value2);
+
+    public static explicit operator string(Carc value) => value.Value;
+
+    public static explicit operator Carc(string value) => new(value);
+
+    /// <summary>
+    /// Constant strings for enum values
+    /// </summary>
+    [Serializable]
+    public static class Values
+    {
+        public const string Carc1 = "1";
+
+        public const string Carc2 = "2";
+
+        public const string Carc3 = "3";
+
+        public const string Carc4 = "4";
+
+        public const string Carc5 = "5";
+
+        public const string Carc6 = "6";
+
+        public const string Carc7 = "7";
+
+        public const string Carc8 = "8";
+
+        public const string Carc9 = "9";
+
+        public const string Carc10 = "10";
+
+        public const string Carc11 = "11";
+
+        public const string Carc12 = "12";
+
+        public const string Carc13 = "13";
+
+        public const string Carc14 = "14";
+
+        public const string Carc16 = "16";
+
+        public const string Carc18 = "18";
+
+        public const string Carc19 = "19";
+
+        public const string Carc20 = "20";
+
+        public const string Carc21 = "21";
+
+        public const string Carc22 = "22";
+
+        public const string Carc23 = "23";
+
+        public const string Carc24 = "24";
+
+        public const string Carc26 = "26";
+
+        public const string Carc27 = "27";
+
+        public const string Carc29 = "29";
+
+        public const string Carc31 = "31";
+
+        public const string Carc32 = "32";
+
+        public const string Carc33 = "33";
+
+        public const string Carc34 = "34";
+
+        public const string Carc35 = "35";
+
+        public const string Carc39 = "39";
+
+        public const string Carc40 = "40";
+
+        public const string Carc44 = "44";
+
+        public const string Carc45 = "45";
+
+        public const string Carc49 = "49";
+
+        public const string Carc50 = "50";
+
+        public const string Carc51 = "51";
+
+        public const string Carc53 = "53";
+
+        public const string Carc54 = "54";
+
+        public const string Carc55 = "55";
+
+        public const string Carc56 = "56";
+
+        public const string Carc58 = "58";
+
+        public const string Carc59 = "59";
+
+        public const string Carc60 = "60";
+
+        public const string Carc61 = "61";
+
+        public const string Carc66 = "66";
+
+        public const string Carc69 = "69";
+
+        public const string Carc70 = "70";
+
+        public const string Carc74 = "74";
+
+        public const string Carc75 = "75";
+
+        public const string Carc76 = "76";
+
+        public const string Carc78 = "78";
+
+        public const string Carc85 = "85";
+
+        public const string Carc89 = "89";
+
+        public const string Carc90 = "90";
+
+        public const string Carc91 = "91";
+
+        public const string Carc94 = "94";
+
+        public const string Carc95 = "95";
+
+        public const string Carc96 = "96";
+
+        public const string Carc97 = "97";
+
+        public const string Carc100 = "100";
+
+        public const string Carc101 = "101";
+
+        public const string Carc102 = "102";
+
+        public const string Carc103 = "103";
+
+        public const string Carc104 = "104";
+
+        public const string Carc105 = "105";
+
+        public const string Carc106 = "106";
+
+        public const string Carc107 = "107";
+
+        public const string Carc108 = "108";
+
+        public const string Carc109 = "109";
+
+        public const string Carc110 = "110";
+
+        public const string Carc111 = "111";
+
+        public const string Carc112 = "112";
+
+        public const string Carc114 = "114";
+
+        public const string Carc115 = "115";
+
+        public const string Carc116 = "116";
+
+        public const string Carc117 = "117";
+
+        public const string Carc118 = "118";
+
+        public const string Carc119 = "119";
+
+        public const string Carc121 = "121";
+
+        public const string Carc122 = "122";
+
+        public const string Carc125 = "125";
+
+        public const string Carc128 = "128";
+
+        public const string Carc129 = "129";
+
+        public const string Carc130 = "130";
+
+        public const string Carc131 = "131";
+
+        public const string Carc132 = "132";
+
+        public const string Carc133 = "133";
+
+        public const string Carc134 = "134";
+
+        public const string Carc135 = "135";
+
+        public const string Carc136 = "136";
+
+        public const string Carc137 = "137";
+
+        public const string Carc139 = "139";
+
+        public const string Carc140 = "140";
+
+        public const string Carc142 = "142";
+
+        public const string Carc143 = "143";
+
+        public const string Carc144 = "144";
+
+        public const string Carc146 = "146";
+
+        public const string Carc147 = "147";
+
+        public const string Carc148 = "148";
+
+        public const string Carc149 = "149";
+
+        public const string Carc150 = "150";
+
+        public const string Carc151 = "151";
+
+        public const string Carc152 = "152";
+
+        public const string Carc153 = "153";
+
+        public const string Carc154 = "154";
+
+        public const string Carc155 = "155";
+
+        public const string Carc157 = "157";
+
+        public const string Carc158 = "158";
+
+        public const string Carc159 = "159";
+
+        public const string Carc160 = "160";
+
+        public const string Carc161 = "161";
+
+        public const string Carc163 = "163";
+
+        public const string Carc164 = "164";
+
+        public const string Carc166 = "166";
+
+        public const string Carc167 = "167";
+
+        public const string Carc169 = "169";
+
+        public const string Carc170 = "170";
+
+        public const string Carc171 = "171";
+
+        public const string Carc172 = "172";
+
+        public const string Carc173 = "173";
+
+        public const string Carc174 = "174";
+
+        public const string Carc175 = "175";
+
+        public const string Carc176 = "176";
+
+        public const string Carc177 = "177";
+
+        public const string Carc178 = "178";
+
+        public const string Carc179 = "179";
+
+        public const string Carc180 = "180";
+
+        public const string Carc181 = "181";
+
+        public const string Carc182 = "182";
+
+        public const string Carc183 = "183";
+
+        public const string Carc184 = "184";
+
+        public const string Carc185 = "185";
+
+        public const string Carc186 = "186";
+
+        public const string Carc187 = "187";
+
+        public const string Carc188 = "188";
+
+        public const string Carc189 = "189";
+
+        public const string Carc190 = "190";
+
+        public const string Carc192 = "192";
+
+        public const string Carc193 = "193";
+
+        public const string Carc194 = "194";
+
+        public const string Carc195 = "195";
+
+        public const string Carc197 = "197";
+
+        public const string Carc198 = "198";
+
+        public const string Carc199 = "199";
+
+        public const string Carc200 = "200";
+
+        public const string Carc201 = "201";
+
+        public const string Carc202 = "202";
+
+        public const string Carc203 = "203";
+
+        public const string Carc204 = "204";
+
+        public const string Carc205 = "205";
+
+        public const string Carc206 = "206";
+
+        public const string Carc207 = "207";
+
+        public const string Carc208 = "208";
+
+        public const string Carc209 = "209";
+
+        public const string Carc210 = "210";
+
+        public const string Carc211 = "211";
+
+        public const string Carc212 = "212";
+
+        public const string Carc213 = "213";
+
+        public const string Carc215 = "215";
+
+        public const string Carc216 = "216";
+
+        public const string Carc219 = "219";
+
+        public const string Carc222 = "222";
+
+        public const string Carc223 = "223";
+
+        public const string Carc224 = "224";
+
+        public const string Carc225 = "225";
+
+        public const string Carc226 = "226";
+
+        public const string Carc227 = "227";
+
+        public const string Carc228 = "228";
+
+        public const string Carc229 = "229";
+
+        public const string Carc231 = "231";
+
+        public const string Carc232 = "232";
+
+        public const string Carc233 = "233";
+
+        public const string Carc234 = "234";
+
+        public const string Carc235 = "235";
+
+        public const string Carc236 = "236";
+
+        public const string Carc237 = "237";
+
+        public const string Carc238 = "238";
+
+        public const string Carc239 = "239";
+
+        public const string Carc240 = "240";
+
+        public const string Carc241 = "241";
+
+        public const string Carc242 = "242";
+
+        public const string Carc243 = "243";
+
+        public const string Carc245 = "245";
+
+        public const string Carc246 = "246";
+
+        public const string Carc247 = "247";
+
+        public const string Carc248 = "248";
+
+        public const string Carc249 = "249";
+
+        public const string Carc250 = "250";
+
+        public const string Carc251 = "251";
+
+        public const string Carc252 = "252";
+
+        public const string Carc253 = "253";
+
+        public const string Carc254 = "254";
+
+        public const string Carc256 = "256";
+
+        public const string Carc257 = "257";
+
+        public const string Carc258 = "258";
+
+        public const string Carc259 = "259";
+
+        public const string Carc260 = "260";
+
+        public const string Carc261 = "261";
+
+        public const string Carc262 = "262";
+
+        public const string Carc263 = "263";
+
+        public const string Carc264 = "264";
+
+        public const string Carc265 = "265";
+
+        public const string Carc266 = "266";
+
+        public const string Carc267 = "267";
+
+        public const string Carc268 = "268";
+
+        public const string Carc269 = "269";
+
+        public const string Carc270 = "270";
+
+        public const string Carc271 = "271";
+
+        public const string Carc272 = "272";
+
+        public const string Carc273 = "273";
+
+        public const string Carc274 = "274";
+
+        public const string Carc275 = "275";
+
+        public const string Carc276 = "276";
+
+        public const string Carc277 = "277";
+
+        public const string Carc278 = "278";
+
+        public const string Carc279 = "279";
+
+        public const string Carc280 = "280";
+
+        public const string Carc281 = "281";
+
+        public const string Carc282 = "282";
+
+        public const string Carc283 = "283";
+
+        public const string Carc284 = "284";
+
+        public const string Carc285 = "285";
+
+        public const string Carc286 = "286";
+
+        public const string Carc287 = "287";
+
+        public const string Carc288 = "288";
+
+        public const string Carc289 = "289";
+
+        public const string Carc290 = "290";
+
+        public const string Carc291 = "291";
+
+        public const string Carc292 = "292";
+
+        public const string Carc293 = "293";
+
+        public const string Carc294 = "294";
+
+        public const string Carc295 = "295";
+
+        public const string Carc296 = "296";
+
+        public const string Carc297 = "297";
+
+        public const string Carc298 = "298";
+
+        public const string Carc299 = "299";
+
+        public const string Carc300 = "300";
+
+        public const string Carc301 = "301";
+
+        public const string Carc302 = "302";
+
+        public const string Carc303 = "303";
+
+        public const string Carc304 = "304";
+
+        public const string Carc305 = "305";
+
+        public const string CarcA0 = "A0";
+
+        public const string CarcA1 = "A1";
+
+        public const string CarcA5 = "A5";
+
+        public const string CarcA6 = "A6";
+
+        public const string CarcA8 = "A8";
+
+        public const string CarcB1 = "B1";
+
+        public const string CarcB4 = "B4";
+
+        public const string CarcB7 = "B7";
+
+        public const string CarcB8 = "B8";
+
+        public const string CarcB9 = "B9";
+
+        public const string CarcB10 = "B10";
+
+        public const string CarcB11 = "B11";
+
+        public const string CarcB12 = "B12";
+
+        public const string CarcB13 = "B13";
+
+        public const string CarcB14 = "B14";
+
+        public const string CarcB15 = "B15";
+
+        public const string CarcB16 = "B16";
+
+        public const string CarcB20 = "B20";
+
+        public const string CarcB22 = "B22";
+
+        public const string CarcB23 = "B23";
+
+        public const string CarcP1 = "P1";
+
+        public const string CarcP2 = "P2";
+
+        public const string CarcP3 = "P3";
+
+        public const string CarcP4 = "P4";
+
+        public const string CarcP5 = "P5";
+
+        public const string CarcP6 = "P6";
+
+        public const string CarcP7 = "P7";
+
+        public const string CarcP8 = "P8";
+
+        public const string CarcP9 = "P9";
+
+        public const string CarcP10 = "P10";
+
+        public const string CarcP11 = "P11";
+
+        public const string CarcP12 = "P12";
+
+        public const string CarcP13 = "P13";
+
+        public const string CarcP14 = "P14";
+
+        public const string CarcP15 = "P15";
+
+        public const string CarcP16 = "P16";
+
+        public const string CarcP17 = "P17";
+
+        public const string CarcP18 = "P18";
+
+        public const string CarcP19 = "P19";
+
+        public const string CarcP20 = "P20";
+
+        public const string CarcP21 = "P21";
+
+        public const string CarcP22 = "P22";
+
+        public const string CarcP23 = "P23";
+
+        public const string CarcP24 = "P24";
+
+        public const string CarcP25 = "P25";
+
+        public const string CarcP26 = "P26";
+
+        public const string CarcP27 = "P27";
+
+        public const string CarcP28 = "P28";
+
+        public const string CarcP29 = "P29";
+
+        public const string CarcP30 = "P30";
+
+        public const string CarcP31 = "P31";
+
+        public const string CarcP32 = "P32";
+
+        public const string Carc17 = "17";
+
+        public const string Carc25 = "25";
+
+        public const string Carc28 = "28";
+
+        public const string Carc30 = "30";
+
+        public const string Carc36 = "36";
+
+        public const string Carc37 = "37";
+
+        public const string Carc38 = "38";
+
+        public const string Carc41 = "41";
+
+        public const string Carc42 = "42";
+
+        public const string Carc43 = "43";
+
+        public const string Carc46 = "46";
+
+        public const string Carc47 = "47";
+
+        public const string Carc48 = "48";
+
+        public const string Carc52 = "52";
+
+        public const string Carc57 = "57";
+
+        public const string Carc62 = "62";
+
+        public const string Carc63 = "63";
+
+        public const string Carc64 = "64";
+
+        public const string Carc65 = "65";
+
+        public const string Carc67 = "67";
+
+        public const string Carc68 = "68";
+
+        public const string Carc71 = "71";
+
+        public const string Carc72 = "72";
+
+        public const string Carc73 = "73";
+
+        public const string Carc77 = "77";
+
+        public const string Carc79 = "79";
+
+        public const string Carc80 = "80";
+
+        public const string Carc81 = "81";
+
+        public const string Carc82 = "82";
+
+        public const string Carc83 = "83";
+
+        public const string Carc84 = "84";
+
+        public const string Carc86 = "86";
+
+        public const string Carc87 = "87";
+
+        public const string Carc88 = "88";
+
+        public const string Carc92 = "92";
+
+        public const string Carc93 = "93";
+
+        public const string Carc98 = "98";
+
+        public const string Carc99 = "99";
+
+        public const string Carc113 = "113";
+
+        public const string Carc120 = "120";
+
+        public const string Carc123 = "123";
+
+        public const string Carc124 = "124";
+
+        public const string Carc126 = "126";
+
+        public const string Carc127 = "127";
+
+        public const string Carc138 = "138";
+
+        public const string Carc141 = "141";
+
+        public const string Carc145 = "145";
+
+        public const string Carc156 = "156";
+
+        public const string Carc162 = "162";
+
+        public const string Carc165 = "165";
+
+        public const string Carc168 = "168";
+
+        public const string Carc191 = "191";
+
+        public const string Carc196 = "196";
+
+        public const string Carc214 = "214";
+
+        public const string Carc217 = "217";
+
+        public const string Carc218 = "218";
+
+        public const string Carc220 = "220";
+
+        public const string Carc221 = "221";
+
+        public const string Carc230 = "230";
+
+        public const string Carc244 = "244";
+
+        public const string Carc255 = "255";
+
+        public const string CarcA2 = "A2";
+
+        public const string CarcA3 = "A3";
+
+        public const string CarcA4 = "A4";
+
+        public const string CarcA7 = "A7";
+
+        public const string CarcB2 = "B2";
+
+        public const string CarcB3 = "B3";
+
+        public const string CarcB5 = "B5";
+
+        public const string CarcB6 = "B6";
+
+        public const string CarcB17 = "B17";
+
+        public const string CarcB18 = "B18";
+
+        public const string CarcB19 = "B19";
+
+        public const string CarcB21 = "B21";
+
+        public const string CarcD1 = "D1";
+
+        public const string CarcD2 = "D2";
+
+        public const string CarcD3 = "D3";
+
+        public const string CarcD4 = "D4";
+
+        public const string CarcD5 = "D5";
+
+        public const string CarcD6 = "D6";
+
+        public const string CarcD7 = "D7";
+
+        public const string CarcD8 = "D8";
+
+        public const string CarcD9 = "D9";
+
+        public const string CarcD10 = "D10";
+
+        public const string CarcD11 = "D11";
+
+        public const string CarcD12 = "D12";
+
+        public const string CarcD14 = "D14";
+
+        public const string CarcD15 = "D15";
+
+        public const string CarcD16 = "D16";
+
+        public const string CarcD17 = "D17";
+
+        public const string CarcD18 = "D18";
+
+        public const string CarcD19 = "D19";
+
+        public const string CarcD20 = "D20";
+
+        public const string CarcD21 = "D21";
+
+        public const string CarcD22 = "D22";
+
+        public const string CarcD23 = "D23";
+
+        public const string CarcW1 = "W1";
+
+        public const string CarcW2 = "W2";
+
+        public const string CarcW3 = "W3";
+
+        public const string CarcW4 = "W4";
+
+        public const string CarcW5 = "W5";
+
+        public const string CarcW6 = "W6";
+
+        public const string CarcW7 = "W7";
+
+        public const string CarcW8 = "W8";
+
+        public const string CarcW9 = "W9";
+
+        public const string CarcY1 = "Y1";
+
+        public const string CarcY2 = "Y2";
+
+        public const string CarcY3 = "Y3";
+
+        public const string Unknown = "UNKNOWN";
+    }
 }

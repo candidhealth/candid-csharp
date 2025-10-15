@@ -3,8 +3,6 @@ using System.Text.Json;
 using System.Threading;
 using Candid.Net.Core;
 
-#nullable enable
-
 namespace Candid.Net.PreEncounter.Lists.V1;
 
 public partial class V1Client
@@ -19,12 +17,10 @@ public partial class V1Client
     /// <summary>
     /// Gets patients with dependent objects for patients that match the query parameters.
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.PreEncounter.Lists.V1.GetPatientListAsync(new PatientListRequest());
-    /// </code>
-    /// </example>
-    public async Task<PatientListPage> GetPatientListAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<PatientListPage> GetPatientListAsync(
         PatientListRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -37,7 +33,7 @@ public partial class V1Client
         }
         if (request.Limit != null)
         {
-            _query["limit"] = request.Limit.ToString();
+            _query["limit"] = request.Limit.Value.ToString();
         }
         if (request.SortField != null)
         {
@@ -51,20 +47,22 @@ public partial class V1Client
         {
             _query["filters"] = request.Filters;
         }
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.PreEncounter,
-                Method = HttpMethod.Get,
-                Path = "/lists/v1/patient",
-                Query = _query,
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Get,
+                    Path = "/lists/v1/patient",
+                    Query = _query,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<PatientListPage>(responseBody)!;
@@ -75,22 +73,23 @@ public partial class V1Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
     /// Searches for appointments that match the query parameters.
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.PreEncounter.Lists.V1.GetAppointmentListAsync(new AppointmentsGetListRequest());
-    /// </code>
-    /// </example>
-    public async Task<AppointmentListPage> GetAppointmentListAsync(
+    /// </code></example>
+    public async System.Threading.Tasks.Task<AppointmentListPage> GetAppointmentListAsync(
         AppointmentsGetListRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -107,7 +106,7 @@ public partial class V1Client
         }
         if (request.Limit != null)
         {
-            _query["limit"] = request.Limit.ToString();
+            _query["limit"] = request.Limit.Value.ToString();
         }
         if (request.PageToken != null)
         {
@@ -117,20 +116,22 @@ public partial class V1Client
         {
             _query["filters"] = request.Filters;
         }
-        var response = await _client.MakeRequestAsync(
-            new RawClient.JsonApiRequest
-            {
-                BaseUrl = _client.Options.Environment.PreEncounter,
-                Method = HttpMethod.Get,
-                Path = "/lists/v1/appointment",
-                Query = _query,
-                Options = options,
-            },
-            cancellationToken
-        );
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Get,
+                    Path = "/lists/v1/appointment",
+                    Query = _query,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<AppointmentListPage>(responseBody)!;
@@ -141,10 +142,13 @@ public partial class V1Client
             }
         }
 
-        throw new CandidApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 }
