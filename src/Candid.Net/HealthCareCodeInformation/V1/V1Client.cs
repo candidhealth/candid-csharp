@@ -20,7 +20,7 @@ public partial class V1Client
     ///     new HealthCareCodeInformationUpdate()
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<HealthCareCodeInformationGetAllResponse> UpdateAsync(
+    public async global::System.Threading.Tasks.Task<HealthCareCodeInformationGetAllResponse> UpdateAsync(
         string encounterId,
         HealthCareCodeInformationUpdate request,
         RequestOptions? options = null,
@@ -73,7 +73,7 @@ public partial class V1Client
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<HealthCareCodeInformationGetAllResponse> GetAllForEncounterAsync(
+    public async global::System.Threading.Tasks.Task<HealthCareCodeInformationGetAllResponse> GetAllForEncounterAsync(
         string encounterId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

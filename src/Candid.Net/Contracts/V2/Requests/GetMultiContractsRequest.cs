@@ -47,7 +47,7 @@ public record GetMultiContractsRequest
     /// Direction of sort, defaulting to desc
     /// </summary>
     [JsonIgnore]
-    public Candid.Net.Commons.SortDirection? SortDirection { get; set; }
+    public global::Candid.Net.Commons.SortDirection? SortDirection { get; set; }
 
     /// <inheritdoc />
     public override string ToString()

@@ -48,7 +48,7 @@ public record GetMultiPatientPaymentsRequest
     /// Sort direction. Defaults to descending order if not provided.
     /// </summary>
     [JsonIgnore]
-    public Candid.Net.Commons.SortDirection? SortDirection { get; set; }
+    public global::Candid.Net.Commons.SortDirection? SortDirection { get; set; }
 
     [JsonIgnore]
     public string? PageToken { get; set; }

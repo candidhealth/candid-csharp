@@ -20,7 +20,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.WriteOffs.V1.GetMultiAsync(new GetMultiWriteOffsRequest());
     /// </code></example>
-    public async System.Threading.Tasks.Task<WriteOffsPage> GetMultiAsync(
+    public async global::System.Threading.Tasks.Task<WriteOffsPage> GetMultiAsync(
         GetMultiWriteOffsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -108,7 +108,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.WriteOffs.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async System.Threading.Tasks.Task<WriteOff> GetAsync(
+    public async global::System.Threading.Tasks.Task<WriteOff> GetAsync(
         string writeOffId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -163,7 +163,7 @@ public partial class V1Client
     ///         WriteOffs = new List&lt;WriteOffCreate&gt;()
     ///         {
     ///             new WriteOffCreate(
-    ///                 new Candid.Net.WriteOffs.V1.WriteOffCreate.Patient(
+    ///                 new global::Candid.Net.WriteOffs.V1.WriteOffCreate.Patient(
     ///                     new PatientWriteOffCreate
     ///                     {
     ///                         WriteOffTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
@@ -174,7 +174,7 @@ public partial class V1Client
     ///                 )
     ///             ),
     ///             new WriteOffCreate(
-    ///                 new Candid.Net.WriteOffs.V1.WriteOffCreate.Patient(
+    ///                 new global::Candid.Net.WriteOffs.V1.WriteOffCreate.Patient(
     ///                     new PatientWriteOffCreate
     ///                     {
     ///                         WriteOffTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
@@ -188,7 +188,7 @@ public partial class V1Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<CreateWriteOffsResponse> CreateAsync(
+    public async global::System.Threading.Tasks.Task<CreateWriteOffsResponse> CreateAsync(
         CreateWriteOffsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -236,7 +236,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.WriteOffs.V1.RevertAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async System.Threading.Tasks.Task<WriteOff> RevertAsync(
+    public async global::System.Threading.Tasks.Task<WriteOff> RevertAsync(
         string writeOffId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -288,7 +288,7 @@ public partial class V1Client
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<WriteOff> RevertInsuranceBalanceAdjustmentAsync(
+    public async global::System.Threading.Tasks.Task<WriteOff> RevertInsuranceBalanceAdjustmentAsync(
         string adjustmentId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -340,7 +340,7 @@ public partial class V1Client
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<string> RevertEraOriginatedInsuranceBalanceAdjustmentAsync(
+    public async global::System.Threading.Tasks.Task<string> RevertEraOriginatedInsuranceBalanceAdjustmentAsync(
         string adjustmentId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

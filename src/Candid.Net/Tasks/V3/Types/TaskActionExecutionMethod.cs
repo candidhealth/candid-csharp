@@ -50,7 +50,9 @@ public record TaskActionExecutionMethod
     public object AsCloseTask() =>
         IsCloseTask
             ? Value!
-            : throw new Exception("TaskActionExecutionMethod.Type is not 'close_task'");
+            : throw new global::System.Exception(
+                "TaskActionExecutionMethod.Type is not 'close_task'"
+            );
 
     public T Match<T>(Func<object, T> onCloseTask, Func<string, object?, T> onUnknown_)
     {
@@ -156,6 +158,6 @@ public record TaskActionExecutionMethod
     {
         internal object Value => new { };
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
     }
 }

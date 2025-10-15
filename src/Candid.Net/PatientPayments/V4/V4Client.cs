@@ -21,7 +21,7 @@ public partial class V4Client
     /// <example><code>
     /// await client.PatientPayments.V4.GetMultiAsync(new GetMultiPatientPaymentsRequest());
     /// </code></example>
-    public async System.Threading.Tasks.Task<PatientPaymentsPage> GetMultiAsync(
+    public async global::System.Threading.Tasks.Task<PatientPaymentsPage> GetMultiAsync(
         GetMultiPatientPaymentsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -111,7 +111,7 @@ public partial class V4Client
     /// <example><code>
     /// await client.PatientPayments.V4.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async System.Threading.Tasks.Task<PatientPayment> GetAsync(
+    public async global::System.Threading.Tasks.Task<PatientPayment> GetAsync(
         string patientPaymentId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -190,7 +190,7 @@ public partial class V4Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<PatientPayment> CreateAsync(
+    public async global::System.Threading.Tasks.Task<PatientPayment> CreateAsync(
         PatientPaymentCreate request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -241,7 +241,7 @@ public partial class V4Client
     ///     new PatientPaymentUpdate()
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<PatientPayment> UpdateAsync(
+    public async global::System.Threading.Tasks.Task<PatientPayment> UpdateAsync(
         string patientPaymentId,
         PatientPaymentUpdate request,
         RequestOptions? options = null,
@@ -293,7 +293,7 @@ public partial class V4Client
     /// <example><code>
     /// await client.PatientPayments.V4.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async System.Threading.Tasks.Task DeleteAsync(
+    public async global::System.Threading.Tasks.Task DeleteAsync(
         string patientPaymentId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

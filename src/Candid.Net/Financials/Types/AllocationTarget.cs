@@ -104,40 +104,42 @@ public record AllocationTarget
     public bool IsUnattributed => Type == "unattributed";
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.Financials.ServiceLineAllocationTarget"/> if <see cref="Type"/> is 'service_line', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.Financials.ServiceLineAllocationTarget"/> if <see cref="Type"/> is 'service_line', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'service_line'.</exception>
-    public Candid.Net.Financials.ServiceLineAllocationTarget AsServiceLine() =>
+    public global::Candid.Net.Financials.ServiceLineAllocationTarget AsServiceLine() =>
         IsServiceLine
-            ? (Candid.Net.Financials.ServiceLineAllocationTarget)Value!
-            : throw new Exception("AllocationTarget.Type is not 'service_line'");
+            ? (global::Candid.Net.Financials.ServiceLineAllocationTarget)Value!
+            : throw new global::System.Exception("AllocationTarget.Type is not 'service_line'");
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.Financials.ClaimAllocationTarget"/> if <see cref="Type"/> is 'claim', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.Financials.ClaimAllocationTarget"/> if <see cref="Type"/> is 'claim', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'claim'.</exception>
-    public Candid.Net.Financials.ClaimAllocationTarget AsClaim() =>
+    public global::Candid.Net.Financials.ClaimAllocationTarget AsClaim() =>
         IsClaim
-            ? (Candid.Net.Financials.ClaimAllocationTarget)Value!
-            : throw new Exception("AllocationTarget.Type is not 'claim'");
+            ? (global::Candid.Net.Financials.ClaimAllocationTarget)Value!
+            : throw new global::System.Exception("AllocationTarget.Type is not 'claim'");
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.Financials.BillingProviderAllocationTarget"/> if <see cref="Type"/> is 'billing_provider_id', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.Financials.BillingProviderAllocationTarget"/> if <see cref="Type"/> is 'billing_provider_id', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'billing_provider_id'.</exception>
-    public Candid.Net.Financials.BillingProviderAllocationTarget AsBillingProviderId() =>
+    public global::Candid.Net.Financials.BillingProviderAllocationTarget AsBillingProviderId() =>
         IsBillingProviderId
-            ? (Candid.Net.Financials.BillingProviderAllocationTarget)Value!
-            : throw new Exception("AllocationTarget.Type is not 'billing_provider_id'");
+            ? (global::Candid.Net.Financials.BillingProviderAllocationTarget)Value!
+            : throw new global::System.Exception(
+                "AllocationTarget.Type is not 'billing_provider_id'"
+            );
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.Financials.AppointmentAllocationTarget"/> if <see cref="Type"/> is 'appointment', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.Financials.AppointmentAllocationTarget"/> if <see cref="Type"/> is 'appointment', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'appointment'.</exception>
-    public Candid.Net.Financials.AppointmentAllocationTarget AsAppointment() =>
+    public global::Candid.Net.Financials.AppointmentAllocationTarget AsAppointment() =>
         IsAppointment
-            ? (Candid.Net.Financials.AppointmentAllocationTarget)Value!
-            : throw new Exception("AllocationTarget.Type is not 'appointment'");
+            ? (global::Candid.Net.Financials.AppointmentAllocationTarget)Value!
+            : throw new global::System.Exception("AllocationTarget.Type is not 'appointment'");
 
     /// <summary>
     /// Returns the value as a <see cref="object"/> if <see cref="Type"/> is 'unattributed', otherwise throws an exception.
@@ -146,13 +148,13 @@ public record AllocationTarget
     public object AsUnattributed() =>
         IsUnattributed
             ? Value!
-            : throw new Exception("AllocationTarget.Type is not 'unattributed'");
+            : throw new global::System.Exception("AllocationTarget.Type is not 'unattributed'");
 
     public T Match<T>(
-        Func<Candid.Net.Financials.ServiceLineAllocationTarget, T> onServiceLine,
-        Func<Candid.Net.Financials.ClaimAllocationTarget, T> onClaim,
-        Func<Candid.Net.Financials.BillingProviderAllocationTarget, T> onBillingProviderId,
-        Func<Candid.Net.Financials.AppointmentAllocationTarget, T> onAppointment,
+        Func<global::Candid.Net.Financials.ServiceLineAllocationTarget, T> onServiceLine,
+        Func<global::Candid.Net.Financials.ClaimAllocationTarget, T> onClaim,
+        Func<global::Candid.Net.Financials.BillingProviderAllocationTarget, T> onBillingProviderId,
+        Func<global::Candid.Net.Financials.AppointmentAllocationTarget, T> onAppointment,
         Func<object, T> onUnattributed,
         Func<string, object?, T> onUnknown_
     )
@@ -169,10 +171,10 @@ public record AllocationTarget
     }
 
     public void Visit(
-        Action<Candid.Net.Financials.ServiceLineAllocationTarget> onServiceLine,
-        Action<Candid.Net.Financials.ClaimAllocationTarget> onClaim,
-        Action<Candid.Net.Financials.BillingProviderAllocationTarget> onBillingProviderId,
-        Action<Candid.Net.Financials.AppointmentAllocationTarget> onAppointment,
+        Action<global::Candid.Net.Financials.ServiceLineAllocationTarget> onServiceLine,
+        Action<global::Candid.Net.Financials.ClaimAllocationTarget> onClaim,
+        Action<global::Candid.Net.Financials.BillingProviderAllocationTarget> onBillingProviderId,
+        Action<global::Candid.Net.Financials.AppointmentAllocationTarget> onAppointment,
         Action<object> onUnattributed,
         Action<string, object?> onUnknown_
     )
@@ -201,13 +203,15 @@ public record AllocationTarget
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.Financials.ServiceLineAllocationTarget"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.Financials.ServiceLineAllocationTarget"/> and returns true if successful.
     /// </summary>
-    public bool TryAsServiceLine(out Candid.Net.Financials.ServiceLineAllocationTarget? value)
+    public bool TryAsServiceLine(
+        out global::Candid.Net.Financials.ServiceLineAllocationTarget? value
+    )
     {
         if (Type == "service_line")
         {
-            value = (Candid.Net.Financials.ServiceLineAllocationTarget)Value!;
+            value = (global::Candid.Net.Financials.ServiceLineAllocationTarget)Value!;
             return true;
         }
         value = null;
@@ -215,13 +219,13 @@ public record AllocationTarget
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.Financials.ClaimAllocationTarget"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.Financials.ClaimAllocationTarget"/> and returns true if successful.
     /// </summary>
-    public bool TryAsClaim(out Candid.Net.Financials.ClaimAllocationTarget? value)
+    public bool TryAsClaim(out global::Candid.Net.Financials.ClaimAllocationTarget? value)
     {
         if (Type == "claim")
         {
-            value = (Candid.Net.Financials.ClaimAllocationTarget)Value!;
+            value = (global::Candid.Net.Financials.ClaimAllocationTarget)Value!;
             return true;
         }
         value = null;
@@ -229,15 +233,15 @@ public record AllocationTarget
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.Financials.BillingProviderAllocationTarget"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.Financials.BillingProviderAllocationTarget"/> and returns true if successful.
     /// </summary>
     public bool TryAsBillingProviderId(
-        out Candid.Net.Financials.BillingProviderAllocationTarget? value
+        out global::Candid.Net.Financials.BillingProviderAllocationTarget? value
     )
     {
         if (Type == "billing_provider_id")
         {
-            value = (Candid.Net.Financials.BillingProviderAllocationTarget)Value!;
+            value = (global::Candid.Net.Financials.BillingProviderAllocationTarget)Value!;
             return true;
         }
         value = null;
@@ -245,13 +249,15 @@ public record AllocationTarget
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.Financials.AppointmentAllocationTarget"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.Financials.AppointmentAllocationTarget"/> and returns true if successful.
     /// </summary>
-    public bool TryAsAppointment(out Candid.Net.Financials.AppointmentAllocationTarget? value)
+    public bool TryAsAppointment(
+        out global::Candid.Net.Financials.AppointmentAllocationTarget? value
+    )
     {
         if (Type == "appointment")
         {
-            value = (Candid.Net.Financials.AppointmentAllocationTarget)Value!;
+            value = (global::Candid.Net.Financials.AppointmentAllocationTarget)Value!;
             return true;
         }
         value = null;
@@ -321,23 +327,31 @@ public record AllocationTarget
             var value = discriminator switch
             {
                 "service_line" =>
-                    json.Deserialize<Candid.Net.Financials.ServiceLineAllocationTarget>(options)
+                    json.Deserialize<global::Candid.Net.Financials.ServiceLineAllocationTarget?>(
+                        options
+                    )
                         ?? throw new JsonException(
-                            "Failed to deserialize Candid.Net.Financials.ServiceLineAllocationTarget"
+                            "Failed to deserialize global::Candid.Net.Financials.ServiceLineAllocationTarget"
                         ),
-                "claim" => json.Deserialize<Candid.Net.Financials.ClaimAllocationTarget>(options)
+                "claim" => json.Deserialize<global::Candid.Net.Financials.ClaimAllocationTarget?>(
+                    options
+                )
                     ?? throw new JsonException(
-                        "Failed to deserialize Candid.Net.Financials.ClaimAllocationTarget"
+                        "Failed to deserialize global::Candid.Net.Financials.ClaimAllocationTarget"
                     ),
                 "billing_provider_id" =>
-                    json.Deserialize<Candid.Net.Financials.BillingProviderAllocationTarget>(options)
+                    json.Deserialize<global::Candid.Net.Financials.BillingProviderAllocationTarget?>(
+                        options
+                    )
                         ?? throw new JsonException(
-                            "Failed to deserialize Candid.Net.Financials.BillingProviderAllocationTarget"
+                            "Failed to deserialize global::Candid.Net.Financials.BillingProviderAllocationTarget"
                         ),
                 "appointment" =>
-                    json.Deserialize<Candid.Net.Financials.AppointmentAllocationTarget>(options)
+                    json.Deserialize<global::Candid.Net.Financials.AppointmentAllocationTarget?>(
+                        options
+                    )
                         ?? throw new JsonException(
-                            "Failed to deserialize Candid.Net.Financials.AppointmentAllocationTarget"
+                            "Failed to deserialize global::Candid.Net.Financials.AppointmentAllocationTarget"
                         ),
                 "unattributed" => new { },
                 _ => json.Deserialize<object?>(options),
@@ -372,17 +386,17 @@ public record AllocationTarget
     [Serializable]
     public struct ServiceLine
     {
-        public ServiceLine(Candid.Net.Financials.ServiceLineAllocationTarget value)
+        public ServiceLine(global::Candid.Net.Financials.ServiceLineAllocationTarget value)
         {
             Value = value;
         }
 
-        internal Candid.Net.Financials.ServiceLineAllocationTarget Value { get; set; }
+        internal global::Candid.Net.Financials.ServiceLineAllocationTarget Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator AllocationTarget.ServiceLine(
-            Candid.Net.Financials.ServiceLineAllocationTarget value
+            global::Candid.Net.Financials.ServiceLineAllocationTarget value
         ) => new(value);
     }
 
@@ -392,17 +406,17 @@ public record AllocationTarget
     [Serializable]
     public struct Claim
     {
-        public Claim(Candid.Net.Financials.ClaimAllocationTarget value)
+        public Claim(global::Candid.Net.Financials.ClaimAllocationTarget value)
         {
             Value = value;
         }
 
-        internal Candid.Net.Financials.ClaimAllocationTarget Value { get; set; }
+        internal global::Candid.Net.Financials.ClaimAllocationTarget Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator AllocationTarget.Claim(
-            Candid.Net.Financials.ClaimAllocationTarget value
+            global::Candid.Net.Financials.ClaimAllocationTarget value
         ) => new(value);
     }
 
@@ -412,17 +426,19 @@ public record AllocationTarget
     [Serializable]
     public struct BillingProviderId
     {
-        public BillingProviderId(Candid.Net.Financials.BillingProviderAllocationTarget value)
+        public BillingProviderId(
+            global::Candid.Net.Financials.BillingProviderAllocationTarget value
+        )
         {
             Value = value;
         }
 
-        internal Candid.Net.Financials.BillingProviderAllocationTarget Value { get; set; }
+        internal global::Candid.Net.Financials.BillingProviderAllocationTarget Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator AllocationTarget.BillingProviderId(
-            Candid.Net.Financials.BillingProviderAllocationTarget value
+            global::Candid.Net.Financials.BillingProviderAllocationTarget value
         ) => new(value);
     }
 
@@ -432,17 +448,17 @@ public record AllocationTarget
     [Serializable]
     public struct Appointment
     {
-        public Appointment(Candid.Net.Financials.AppointmentAllocationTarget value)
+        public Appointment(global::Candid.Net.Financials.AppointmentAllocationTarget value)
         {
             Value = value;
         }
 
-        internal Candid.Net.Financials.AppointmentAllocationTarget Value { get; set; }
+        internal global::Candid.Net.Financials.AppointmentAllocationTarget Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator AllocationTarget.Appointment(
-            Candid.Net.Financials.AppointmentAllocationTarget value
+            global::Candid.Net.Financials.AppointmentAllocationTarget value
         ) => new(value);
     }
 
@@ -454,6 +470,6 @@ public record AllocationTarget
     {
         internal object Value => new { };
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
     }
 }

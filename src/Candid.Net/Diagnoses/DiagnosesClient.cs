@@ -27,7 +27,7 @@ public partial class DiagnosesClient
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<Diagnosis> CreateAsync(
+    public async global::System.Threading.Tasks.Task<Diagnosis> CreateAsync(
         StandaloneDiagnosisCreate request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -75,7 +75,7 @@ public partial class DiagnosesClient
     /// <example><code>
     /// await client.Diagnoses.UpdateAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32", new DiagnosisUpdate());
     /// </code></example>
-    public async System.Threading.Tasks.Task<Diagnosis> UpdateAsync(
+    public async global::System.Threading.Tasks.Task<Diagnosis> UpdateAsync(
         string diagnosisId,
         DiagnosisUpdate request,
         RequestOptions? options = null,
@@ -127,7 +127,7 @@ public partial class DiagnosesClient
     /// <example><code>
     /// await client.Diagnoses.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async System.Threading.Tasks.Task DeleteAsync(
+    public async global::System.Threading.Tasks.Task DeleteAsync(
         string diagnosisId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

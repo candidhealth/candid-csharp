@@ -9,8 +9,8 @@ public partial class MedicationDispenseClient
     internal MedicationDispenseClient(RawClient client)
     {
         _client = client;
-        V1 = new Candid.Net.MedicationDispense.V1.V1Client(_client);
+        V1 = new global::Candid.Net.MedicationDispense.V1.V1Client(_client);
     }
 
-    public Candid.Net.MedicationDispense.V1.V1Client V1 { get; }
+    public global::Candid.Net.MedicationDispense.V1.V1Client V1 { get; }
 }

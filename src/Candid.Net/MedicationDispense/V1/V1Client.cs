@@ -27,7 +27,7 @@ public partial class V1Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<Candid.Net.Encounters.V4.Encounter> CreateAsync(
+    public async global::System.Threading.Tasks.Task<global::Candid.Net.Encounters.V4.Encounter> CreateAsync(
         MedicationDispenseCreate request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -51,7 +51,9 @@ public partial class V1Client
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<Candid.Net.Encounters.V4.Encounter>(responseBody)!;
+                return JsonUtils.Deserialize<global::Candid.Net.Encounters.V4.Encounter>(
+                    responseBody
+                )!;
             }
             catch (JsonException e)
             {

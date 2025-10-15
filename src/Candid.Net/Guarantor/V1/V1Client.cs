@@ -35,7 +35,7 @@ public partial class V1Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<Guarantor> CreateAsync(
+    public async global::System.Threading.Tasks.Task<Guarantor> CreateAsync(
         string encounterId,
         GuarantorCreate request,
         RequestOptions? options = null,
@@ -87,7 +87,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.Guarantor.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async System.Threading.Tasks.Task<Guarantor> GetAsync(
+    public async global::System.Threading.Tasks.Task<Guarantor> GetAsync(
         string guarantorId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -140,7 +140,7 @@ public partial class V1Client
     ///     new GuarantorUpdate()
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<Guarantor> UpdateAsync(
+    public async global::System.Threading.Tasks.Task<Guarantor> UpdateAsync(
         string guarantorId,
         GuarantorUpdate request,
         RequestOptions? options = null,

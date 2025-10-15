@@ -79,7 +79,7 @@ public record ServiceLine : IJsonOnDeserialized
     public IEnumerable<ServiceLineAdjustment>? ServiceLineManualAdjustments { get; set; }
 
     [JsonPropertyName("related_invoices")]
-    public IEnumerable<Candid.Net.Invoices.Invoice>? RelatedInvoices { get; set; }
+    public IEnumerable<global::Candid.Net.Invoices.Invoice>? RelatedInvoices { get; set; }
 
     [JsonPropertyName("related_invoice_info")]
     public IEnumerable<InvoiceInfo>? RelatedInvoiceInfo { get; set; }

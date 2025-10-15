@@ -23,8 +23,8 @@ public record Contact : IJsonOnDeserialized
     public IEnumerable<ContactPoint> Telecoms { get; set; } = new List<ContactPoint>();
 
     [JsonPropertyName("addresses")]
-    public IEnumerable<Candid.Net.PreEncounter.Common.Address> Addresses { get; set; } =
-        new List<Candid.Net.PreEncounter.Common.Address>();
+    public IEnumerable<global::Candid.Net.PreEncounter.Common.Address> Addresses { get; set; } =
+        new List<global::Candid.Net.PreEncounter.Common.Address>();
 
     [JsonPropertyName("period")]
     public Period? Period { get; set; }

@@ -38,7 +38,7 @@ public record GetMultiNonInsurancePayersRequest
     public NonInsurancePayerSortField? Sort { get; set; }
 
     [JsonIgnore]
-    public Candid.Net.Commons.SortDirection? SortDirection { get; set; }
+    public global::Candid.Net.Commons.SortDirection? SortDirection { get; set; }
 
     /// <summary>
     /// Defaults to 100

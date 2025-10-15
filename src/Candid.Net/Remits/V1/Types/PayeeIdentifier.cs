@@ -76,14 +76,18 @@ public record PayeeIdentifier
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'npi'.</exception>
     public string AsNpi() =>
-        IsNpi ? (string)Value! : throw new Exception("PayeeIdentifier.Type is not 'npi'");
+        IsNpi
+            ? (string)Value!
+            : throw new global::System.Exception("PayeeIdentifier.Type is not 'npi'");
 
     /// <summary>
     /// Returns the value as a <see cref="string"/> if <see cref="Type"/> is 'tin', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'tin'.</exception>
     public string AsTin() =>
-        IsTin ? (string)Value! : throw new Exception("PayeeIdentifier.Type is not 'tin'");
+        IsTin
+            ? (string)Value!
+            : throw new global::System.Exception("PayeeIdentifier.Type is not 'tin'");
 
     /// <summary>
     /// Returns the value as a <see cref="string"/> if <see cref="Type"/> is 'cms_plan_id', otherwise throws an exception.
@@ -92,7 +96,7 @@ public record PayeeIdentifier
     public string AsCmsPlanId() =>
         IsCmsPlanId
             ? (string)Value!
-            : throw new Exception("PayeeIdentifier.Type is not 'cms_plan_id'");
+            : throw new global::System.Exception("PayeeIdentifier.Type is not 'cms_plan_id'");
 
     public T Match<T>(
         Func<string, T> onNpi,
@@ -219,11 +223,11 @@ public record PayeeIdentifier
 
             var value = discriminator switch
             {
-                "npi" => json.GetProperty("value").Deserialize<string>(options)
+                "npi" => json.GetProperty("value").Deserialize<string?>(options)
                 ?? throw new JsonException("Failed to deserialize string"),
-                "tin" => json.GetProperty("value").Deserialize<string>(options)
+                "tin" => json.GetProperty("value").Deserialize<string?>(options)
                 ?? throw new JsonException("Failed to deserialize string"),
-                "cms_plan_id" => json.GetProperty("value").Deserialize<string>(options)
+                "cms_plan_id" => json.GetProperty("value").Deserialize<string?>(options)
                 ?? throw new JsonException("Failed to deserialize string"),
                 _ => json.Deserialize<object?>(options),
             };

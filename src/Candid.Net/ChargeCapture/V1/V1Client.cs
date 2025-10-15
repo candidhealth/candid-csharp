@@ -25,7 +25,7 @@ public partial class V1Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<ChargeCapture> CreateAsync(
+    public async global::System.Threading.Tasks.Task<ChargeCapture> CreateAsync(
         CreateChargeCaptureRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -103,7 +103,7 @@ public partial class V1Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<ChargeCapture> CreateFromPreEncounterPatientAsync(
+    public async global::System.Threading.Tasks.Task<ChargeCapture> CreateFromPreEncounterPatientAsync(
         CreateChargeCaptureFromPreEncounterRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -151,7 +151,7 @@ public partial class V1Client
     ///     new ChargeCaptureUpdate()
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<ChargeCapture> UpdateAsync(
+    public async global::System.Threading.Tasks.Task<ChargeCapture> UpdateAsync(
         string chargeCaptureId,
         ChargeCaptureUpdate request,
         RequestOptions? options = null,
@@ -200,7 +200,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.ChargeCapture.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async System.Threading.Tasks.Task<ChargeCapture> GetAsync(
+    public async global::System.Threading.Tasks.Task<ChargeCapture> GetAsync(
         string chargeCaptureId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -247,7 +247,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.ChargeCapture.V1.GetAllAsync(new GetAllChargeCapturesRequest());
     /// </code></example>
-    public async System.Threading.Tasks.Task<ChargeCapturePage> GetAllAsync(
+    public async global::System.Threading.Tasks.Task<ChargeCapturePage> GetAllAsync(
         GetAllChargeCapturesRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -420,7 +420,7 @@ public partial class V1Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<
+    public async global::System.Threading.Tasks.Task<
         IEnumerable<ChargeCapturePostBilledChange>
     > UpdatePostBilledChangesAsync(
         ChargeCapturePostBilledChangeUpdate request,

@@ -52,7 +52,7 @@ public partial class DefaultClient
     ///     new AuthGetTokenRequest { ClientId = "YOUR_CLIENT_ID", ClientSecret = "YOUR_CLIENT_SECRET" }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<AuthGetTokenResponse> GetTokenAsync(
+    public async global::System.Threading.Tasks.Task<AuthGetTokenResponse> GetTokenAsync(
         AuthGetTokenRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

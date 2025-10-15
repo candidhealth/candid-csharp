@@ -17,7 +17,7 @@ public record ExpectedNetworkStatusRequest
     public required string SubscriberPayerName { get; set; }
 
     [JsonPropertyName("subscriber_insurance_type")]
-    public Candid.Net.Commons.InsuranceTypeCode? SubscriberInsuranceType { get; set; }
+    public global::Candid.Net.Commons.InsuranceTypeCode? SubscriberInsuranceType { get; set; }
 
     /// <summary>
     /// The descriptive name of the insurance plan selected by the subscriber, often indicating coverage specifics or tier.

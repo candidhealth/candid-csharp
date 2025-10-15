@@ -9,8 +9,8 @@ public partial class OrganizationProvidersClient
     internal OrganizationProvidersClient(RawClient client)
     {
         _client = client;
-        V3 = new Candid.Net.OrganizationProviders.V3.V3Client(_client);
+        V3 = new global::Candid.Net.OrganizationProviders.V3.V3Client(_client);
     }
 
-    public Candid.Net.OrganizationProviders.V3.V3Client V3 { get; }
+    public global::Candid.Net.OrganizationProviders.V3.V3Client V3 { get; }
 }

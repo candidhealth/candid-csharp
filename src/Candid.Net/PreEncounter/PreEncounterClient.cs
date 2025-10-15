@@ -23,7 +23,7 @@ public partial class PreEncounterClient
         Lists = new ListsClient(_client);
         Notes = new NotesClient(_client);
         Patients = new PatientsClient(_client);
-        Tags = new Candid.Net.PreEncounter.Tags.TagsClient(_client);
+        Tags = new global::Candid.Net.PreEncounter.Tags.TagsClient(_client);
     }
 
     public AppointmentsClient Appointments { get; }
@@ -40,5 +40,5 @@ public partial class PreEncounterClient
 
     public PatientsClient Patients { get; }
 
-    public Candid.Net.PreEncounter.Tags.TagsClient Tags { get; }
+    public global::Candid.Net.PreEncounter.Tags.TagsClient Tags { get; }
 }

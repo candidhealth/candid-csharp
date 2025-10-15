@@ -78,7 +78,9 @@ public record InsuranceWriteOffTarget
     public string AsServiceLineId() =>
         IsServiceLineId
             ? (string)Value!
-            : throw new Exception("InsuranceWriteOffTarget.Type is not 'service_line_id'");
+            : throw new global::System.Exception(
+                "InsuranceWriteOffTarget.Type is not 'service_line_id'"
+            );
 
     /// <summary>
     /// Returns the value as a <see cref="string"/> if <see cref="Type"/> is 'claim_id', otherwise throws an exception.
@@ -87,7 +89,7 @@ public record InsuranceWriteOffTarget
     public string AsClaimId() =>
         IsClaimId
             ? (string)Value!
-            : throw new Exception("InsuranceWriteOffTarget.Type is not 'claim_id'");
+            : throw new global::System.Exception("InsuranceWriteOffTarget.Type is not 'claim_id'");
 
     /// <summary>
     /// Returns the value as a <see cref="string"/> if <see cref="Type"/> is 'billing_provider_id', otherwise throws an exception.
@@ -96,7 +98,9 @@ public record InsuranceWriteOffTarget
     public string AsBillingProviderId() =>
         IsBillingProviderId
             ? (string)Value!
-            : throw new Exception("InsuranceWriteOffTarget.Type is not 'billing_provider_id'");
+            : throw new global::System.Exception(
+                "InsuranceWriteOffTarget.Type is not 'billing_provider_id'"
+            );
 
     public T Match<T>(
         Func<string, T> onServiceLineId,
@@ -229,11 +233,11 @@ public record InsuranceWriteOffTarget
 
             var value = discriminator switch
             {
-                "service_line_id" => json.GetProperty("value").Deserialize<string>(options)
+                "service_line_id" => json.GetProperty("value").Deserialize<string?>(options)
                 ?? throw new JsonException("Failed to deserialize string"),
-                "claim_id" => json.GetProperty("value").Deserialize<string>(options)
+                "claim_id" => json.GetProperty("value").Deserialize<string?>(options)
                 ?? throw new JsonException("Failed to deserialize string"),
-                "billing_provider_id" => json.GetProperty("value").Deserialize<string>(options)
+                "billing_provider_id" => json.GetProperty("value").Deserialize<string?>(options)
                 ?? throw new JsonException("Failed to deserialize string"),
                 _ => json.Deserialize<object?>(options),
             };

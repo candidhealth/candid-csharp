@@ -58,29 +58,36 @@ public record SchemaValidationError
     public bool IsKeyNameAlreadyExists => Type == "key_name_already_exists";
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.CustomSchemas.V1.SchemaWithNameAlreadyExistsError"/> if <see cref="Type"/> is 'schema_name_already_exists', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.CustomSchemas.V1.SchemaWithNameAlreadyExistsError"/> if <see cref="Type"/> is 'schema_name_already_exists', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'schema_name_already_exists'.</exception>
-    public Candid.Net.CustomSchemas.V1.SchemaWithNameAlreadyExistsError AsSchemaNameAlreadyExists() =>
+    public global::Candid.Net.CustomSchemas.V1.SchemaWithNameAlreadyExistsError AsSchemaNameAlreadyExists() =>
         IsSchemaNameAlreadyExists
-            ? (Candid.Net.CustomSchemas.V1.SchemaWithNameAlreadyExistsError)Value!
-            : throw new Exception("SchemaValidationError.Type is not 'schema_name_already_exists'");
+            ? (global::Candid.Net.CustomSchemas.V1.SchemaWithNameAlreadyExistsError)Value!
+            : throw new global::System.Exception(
+                "SchemaValidationError.Type is not 'schema_name_already_exists'"
+            );
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.CustomSchemas.V1.KeyWithNameAlreadyExistsError"/> if <see cref="Type"/> is 'key_name_already_exists', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.CustomSchemas.V1.KeyWithNameAlreadyExistsError"/> if <see cref="Type"/> is 'key_name_already_exists', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'key_name_already_exists'.</exception>
-    public Candid.Net.CustomSchemas.V1.KeyWithNameAlreadyExistsError AsKeyNameAlreadyExists() =>
+    public global::Candid.Net.CustomSchemas.V1.KeyWithNameAlreadyExistsError AsKeyNameAlreadyExists() =>
         IsKeyNameAlreadyExists
-            ? (Candid.Net.CustomSchemas.V1.KeyWithNameAlreadyExistsError)Value!
-            : throw new Exception("SchemaValidationError.Type is not 'key_name_already_exists'");
+            ? (global::Candid.Net.CustomSchemas.V1.KeyWithNameAlreadyExistsError)Value!
+            : throw new global::System.Exception(
+                "SchemaValidationError.Type is not 'key_name_already_exists'"
+            );
 
     public T Match<T>(
         Func<
-            Candid.Net.CustomSchemas.V1.SchemaWithNameAlreadyExistsError,
+            global::Candid.Net.CustomSchemas.V1.SchemaWithNameAlreadyExistsError,
             T
         > onSchemaNameAlreadyExists,
-        Func<Candid.Net.CustomSchemas.V1.KeyWithNameAlreadyExistsError, T> onKeyNameAlreadyExists,
+        Func<
+            global::Candid.Net.CustomSchemas.V1.KeyWithNameAlreadyExistsError,
+            T
+        > onKeyNameAlreadyExists,
         Func<string, object?, T> onUnknown_
     )
     {
@@ -93,8 +100,8 @@ public record SchemaValidationError
     }
 
     public void Visit(
-        Action<Candid.Net.CustomSchemas.V1.SchemaWithNameAlreadyExistsError> onSchemaNameAlreadyExists,
-        Action<Candid.Net.CustomSchemas.V1.KeyWithNameAlreadyExistsError> onKeyNameAlreadyExists,
+        Action<global::Candid.Net.CustomSchemas.V1.SchemaWithNameAlreadyExistsError> onSchemaNameAlreadyExists,
+        Action<global::Candid.Net.CustomSchemas.V1.KeyWithNameAlreadyExistsError> onKeyNameAlreadyExists,
         Action<string, object?> onUnknown_
     )
     {
@@ -113,15 +120,15 @@ public record SchemaValidationError
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.CustomSchemas.V1.SchemaWithNameAlreadyExistsError"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.CustomSchemas.V1.SchemaWithNameAlreadyExistsError"/> and returns true if successful.
     /// </summary>
     public bool TryAsSchemaNameAlreadyExists(
-        out Candid.Net.CustomSchemas.V1.SchemaWithNameAlreadyExistsError? value
+        out global::Candid.Net.CustomSchemas.V1.SchemaWithNameAlreadyExistsError? value
     )
     {
         if (Type == "schema_name_already_exists")
         {
-            value = (Candid.Net.CustomSchemas.V1.SchemaWithNameAlreadyExistsError)Value!;
+            value = (global::Candid.Net.CustomSchemas.V1.SchemaWithNameAlreadyExistsError)Value!;
             return true;
         }
         value = null;
@@ -129,15 +136,15 @@ public record SchemaValidationError
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.CustomSchemas.V1.KeyWithNameAlreadyExistsError"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.CustomSchemas.V1.KeyWithNameAlreadyExistsError"/> and returns true if successful.
     /// </summary>
     public bool TryAsKeyNameAlreadyExists(
-        out Candid.Net.CustomSchemas.V1.KeyWithNameAlreadyExistsError? value
+        out global::Candid.Net.CustomSchemas.V1.KeyWithNameAlreadyExistsError? value
     )
     {
         if (Type == "key_name_already_exists")
         {
-            value = (Candid.Net.CustomSchemas.V1.KeyWithNameAlreadyExistsError)Value!;
+            value = (global::Candid.Net.CustomSchemas.V1.KeyWithNameAlreadyExistsError)Value!;
             return true;
         }
         value = null;
@@ -190,18 +197,18 @@ public record SchemaValidationError
             var value = discriminator switch
             {
                 "schema_name_already_exists" =>
-                    json.Deserialize<Candid.Net.CustomSchemas.V1.SchemaWithNameAlreadyExistsError>(
+                    json.Deserialize<global::Candid.Net.CustomSchemas.V1.SchemaWithNameAlreadyExistsError?>(
                         options
                     )
                         ?? throw new JsonException(
-                            "Failed to deserialize Candid.Net.CustomSchemas.V1.SchemaWithNameAlreadyExistsError"
+                            "Failed to deserialize global::Candid.Net.CustomSchemas.V1.SchemaWithNameAlreadyExistsError"
                         ),
                 "key_name_already_exists" =>
-                    json.Deserialize<Candid.Net.CustomSchemas.V1.KeyWithNameAlreadyExistsError>(
+                    json.Deserialize<global::Candid.Net.CustomSchemas.V1.KeyWithNameAlreadyExistsError?>(
                         options
                     )
                         ?? throw new JsonException(
-                            "Failed to deserialize Candid.Net.CustomSchemas.V1.KeyWithNameAlreadyExistsError"
+                            "Failed to deserialize global::Candid.Net.CustomSchemas.V1.KeyWithNameAlreadyExistsError"
                         ),
                 _ => json.Deserialize<object?>(options),
             };
@@ -239,18 +246,18 @@ public record SchemaValidationError
     public struct SchemaNameAlreadyExists
     {
         public SchemaNameAlreadyExists(
-            Candid.Net.CustomSchemas.V1.SchemaWithNameAlreadyExistsError value
+            global::Candid.Net.CustomSchemas.V1.SchemaWithNameAlreadyExistsError value
         )
         {
             Value = value;
         }
 
-        internal Candid.Net.CustomSchemas.V1.SchemaWithNameAlreadyExistsError Value { get; set; }
+        internal global::Candid.Net.CustomSchemas.V1.SchemaWithNameAlreadyExistsError Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator SchemaValidationError.SchemaNameAlreadyExists(
-            Candid.Net.CustomSchemas.V1.SchemaWithNameAlreadyExistsError value
+            global::Candid.Net.CustomSchemas.V1.SchemaWithNameAlreadyExistsError value
         ) => new(value);
     }
 
@@ -260,17 +267,19 @@ public record SchemaValidationError
     [Serializable]
     public struct KeyNameAlreadyExists
     {
-        public KeyNameAlreadyExists(Candid.Net.CustomSchemas.V1.KeyWithNameAlreadyExistsError value)
+        public KeyNameAlreadyExists(
+            global::Candid.Net.CustomSchemas.V1.KeyWithNameAlreadyExistsError value
+        )
         {
             Value = value;
         }
 
-        internal Candid.Net.CustomSchemas.V1.KeyWithNameAlreadyExistsError Value { get; set; }
+        internal global::Candid.Net.CustomSchemas.V1.KeyWithNameAlreadyExistsError Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator SchemaValidationError.KeyNameAlreadyExists(
-            Candid.Net.CustomSchemas.V1.KeyWithNameAlreadyExistsError value
+            global::Candid.Net.CustomSchemas.V1.KeyWithNameAlreadyExistsError value
         ) => new(value);
     }
 }

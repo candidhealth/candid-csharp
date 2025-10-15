@@ -9,8 +9,8 @@ public partial class ImagesClient
     internal ImagesClient(RawClient client)
     {
         _client = client;
-        V1 = new Candid.Net.PreEncounter.Images.V1.V1Client(_client);
+        V1 = new global::Candid.Net.PreEncounter.Images.V1.V1Client(_client);
     }
 
-    public Candid.Net.PreEncounter.Images.V1.V1Client V1 { get; }
+    public global::Candid.Net.PreEncounter.Images.V1.V1Client V1 { get; }
 }

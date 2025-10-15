@@ -43,8 +43,8 @@ public record GetUniqueDimensionValuesRequest
         new List<FacilityTypeCode>();
 
     [JsonIgnore]
-    public IEnumerable<Candid.Net.Commons.NetworkType> NetworkTypes { get; set; } =
-        new List<Candid.Net.Commons.NetworkType>();
+    public IEnumerable<global::Candid.Net.Commons.NetworkType> NetworkTypes { get; set; } =
+        new List<global::Candid.Net.Commons.NetworkType>();
 
     [JsonIgnore]
     public IEnumerable<string> PayerPlanGroupIds { get; set; } = new List<string>();

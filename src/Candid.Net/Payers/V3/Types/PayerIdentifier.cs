@@ -58,13 +58,13 @@ public record PayerIdentifier
     public bool IsPayerUuid => Type == "payer_uuid";
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.Payers.V3.PayerInfo"/> if <see cref="Type"/> is 'payer_info', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.Payers.V3.PayerInfo"/> if <see cref="Type"/> is 'payer_info', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'payer_info'.</exception>
-    public Candid.Net.Payers.V3.PayerInfo AsPayerInfo() =>
+    public global::Candid.Net.Payers.V3.PayerInfo AsPayerInfo() =>
         IsPayerInfo
-            ? (Candid.Net.Payers.V3.PayerInfo)Value!
-            : throw new Exception("PayerIdentifier.Type is not 'payer_info'");
+            ? (global::Candid.Net.Payers.V3.PayerInfo)Value!
+            : throw new global::System.Exception("PayerIdentifier.Type is not 'payer_info'");
 
     /// <summary>
     /// Returns the value as a <see cref="string"/> if <see cref="Type"/> is 'payer_uuid', otherwise throws an exception.
@@ -73,10 +73,10 @@ public record PayerIdentifier
     public string AsPayerUuid() =>
         IsPayerUuid
             ? (string)Value!
-            : throw new Exception("PayerIdentifier.Type is not 'payer_uuid'");
+            : throw new global::System.Exception("PayerIdentifier.Type is not 'payer_uuid'");
 
     public T Match<T>(
-        Func<Candid.Net.Payers.V3.PayerInfo, T> onPayerInfo,
+        Func<global::Candid.Net.Payers.V3.PayerInfo, T> onPayerInfo,
         Func<string, T> onPayerUuid,
         Func<string, object?, T> onUnknown_
     )
@@ -90,7 +90,7 @@ public record PayerIdentifier
     }
 
     public void Visit(
-        Action<Candid.Net.Payers.V3.PayerInfo> onPayerInfo,
+        Action<global::Candid.Net.Payers.V3.PayerInfo> onPayerInfo,
         Action<string> onPayerUuid,
         Action<string, object?> onUnknown_
     )
@@ -110,13 +110,13 @@ public record PayerIdentifier
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.Payers.V3.PayerInfo"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.Payers.V3.PayerInfo"/> and returns true if successful.
     /// </summary>
-    public bool TryAsPayerInfo(out Candid.Net.Payers.V3.PayerInfo? value)
+    public bool TryAsPayerInfo(out global::Candid.Net.Payers.V3.PayerInfo? value)
     {
         if (Type == "payer_info")
         {
-            value = (Candid.Net.Payers.V3.PayerInfo)Value!;
+            value = (global::Candid.Net.Payers.V3.PayerInfo)Value!;
             return true;
         }
         value = null;
@@ -178,11 +178,11 @@ public record PayerIdentifier
 
             var value = discriminator switch
             {
-                "payer_info" => json.Deserialize<Candid.Net.Payers.V3.PayerInfo>(options)
+                "payer_info" => json.Deserialize<global::Candid.Net.Payers.V3.PayerInfo?>(options)
                     ?? throw new JsonException(
-                        "Failed to deserialize Candid.Net.Payers.V3.PayerInfo"
+                        "Failed to deserialize global::Candid.Net.Payers.V3.PayerInfo"
                     ),
-                "payer_uuid" => json.GetProperty("value").Deserialize<string>(options)
+                "payer_uuid" => json.GetProperty("value").Deserialize<string?>(options)
                 ?? throw new JsonException("Failed to deserialize string"),
                 _ => json.Deserialize<object?>(options),
             };
@@ -216,17 +216,17 @@ public record PayerIdentifier
     [Serializable]
     public struct PayerInfo
     {
-        public PayerInfo(Candid.Net.Payers.V3.PayerInfo value)
+        public PayerInfo(global::Candid.Net.Payers.V3.PayerInfo value)
         {
             Value = value;
         }
 
-        internal Candid.Net.Payers.V3.PayerInfo Value { get; set; }
+        internal global::Candid.Net.Payers.V3.PayerInfo Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator PayerIdentifier.PayerInfo(
-            Candid.Net.Payers.V3.PayerInfo value
+            global::Candid.Net.Payers.V3.PayerInfo value
         ) => new(value);
     }
 

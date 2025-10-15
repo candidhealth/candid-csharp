@@ -17,7 +17,7 @@ public partial class V2Client
     /// <example><code>
     /// await client.Contracts.V2.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async System.Threading.Tasks.Task<ContractWithProviders> GetAsync(
+    public async global::System.Threading.Tasks.Task<ContractWithProviders> GetAsync(
         string contractId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -64,7 +64,7 @@ public partial class V2Client
     /// <example><code>
     /// await client.Contracts.V2.GetMultiAsync(new GetMultiContractsRequest());
     /// </code></example>
-    public async System.Threading.Tasks.Task<ContractsPage> GetMultiAsync(
+    public async global::System.Threading.Tasks.Task<ContractsPage> GetMultiAsync(
         GetMultiContractsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -159,7 +159,7 @@ public partial class V2Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<ContractWithProviders> CreateAsync(
+    public async global::System.Threading.Tasks.Task<ContractWithProviders> CreateAsync(
         ContractCreate request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -204,7 +204,7 @@ public partial class V2Client
     /// <example><code>
     /// await client.Contracts.V2.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async System.Threading.Tasks.Task DeleteAsync(
+    public async global::System.Threading.Tasks.Task DeleteAsync(
         string contractId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -242,7 +242,7 @@ public partial class V2Client
     /// <example><code>
     /// await client.Contracts.V2.UpdateAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32", new ContractUpdate());
     /// </code></example>
-    public async System.Threading.Tasks.Task<ContractWithProviders> UpdateAsync(
+    public async global::System.Threading.Tasks.Task<ContractWithProviders> UpdateAsync(
         string contractId,
         ContractUpdate request,
         RequestOptions? options = null,

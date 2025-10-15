@@ -47,7 +47,7 @@ public partial class V1Client
     ///             },
     ///             BirthDate = new DateOnly(2023, 1, 15),
     ///             BiologicalSex = Sex.Female,
-    ///             PrimaryAddress = new Candid.Net.PreEncounter.Common.Address
+    ///             PrimaryAddress = new global::Candid.Net.PreEncounter.Common.Address
     ///             {
     ///                 Use = AddressUse.Home,
     ///                 Line = new List&lt;string&gt;() { "line", "line" },
@@ -56,9 +56,9 @@ public partial class V1Client
     ///                 PostalCode = "postal_code",
     ///                 Country = "country",
     ///             },
-    ///             OtherAddresses = new List&lt;Candid.Net.PreEncounter.Common.Address&gt;()
+    ///             OtherAddresses = new List&lt;global::Candid.Net.PreEncounter.Common.Address&gt;()
     ///             {
-    ///                 new Candid.Net.PreEncounter.Common.Address
+    ///                 new global::Candid.Net.PreEncounter.Common.Address
     ///                 {
     ///                     Use = AddressUse.Home,
     ///                     Line = new List&lt;string&gt;() { "line", "line" },
@@ -67,7 +67,7 @@ public partial class V1Client
     ///                     PostalCode = "postal_code",
     ///                     Country = "country",
     ///                 },
-    ///                 new Candid.Net.PreEncounter.Common.Address
+    ///                 new global::Candid.Net.PreEncounter.Common.Address
     ///                 {
     ///                     Use = AddressUse.Home,
     ///                     Line = new List&lt;string&gt;() { "line", "line" },
@@ -102,9 +102,9 @@ public partial class V1Client
     ///                         new ContactPoint { Value = "value", Use = ContactPointUse.Home },
     ///                         new ContactPoint { Value = "value", Use = ContactPointUse.Home },
     ///                     },
-    ///                     Addresses = new List&lt;Candid.Net.PreEncounter.Common.Address&gt;()
+    ///                     Addresses = new List&lt;global::Candid.Net.PreEncounter.Common.Address&gt;()
     ///                     {
-    ///                         new Candid.Net.PreEncounter.Common.Address
+    ///                         new global::Candid.Net.PreEncounter.Common.Address
     ///                         {
     ///                             Use = AddressUse.Home,
     ///                             Line = new List&lt;string&gt;() { "line", "line" },
@@ -113,7 +113,7 @@ public partial class V1Client
     ///                             PostalCode = "postal_code",
     ///                             Country = "country",
     ///                         },
-    ///                         new Candid.Net.PreEncounter.Common.Address
+    ///                         new global::Candid.Net.PreEncounter.Common.Address
     ///                         {
     ///                             Use = AddressUse.Home,
     ///                             Line = new List&lt;string&gt;() { "line", "line" },
@@ -142,9 +142,9 @@ public partial class V1Client
     ///                         new ContactPoint { Value = "value", Use = ContactPointUse.Home },
     ///                         new ContactPoint { Value = "value", Use = ContactPointUse.Home },
     ///                     },
-    ///                     Addresses = new List&lt;Candid.Net.PreEncounter.Common.Address&gt;()
+    ///                     Addresses = new List&lt;global::Candid.Net.PreEncounter.Common.Address&gt;()
     ///                     {
-    ///                         new Candid.Net.PreEncounter.Common.Address
+    ///                         new global::Candid.Net.PreEncounter.Common.Address
     ///                         {
     ///                             Use = AddressUse.Home,
     ///                             Line = new List&lt;string&gt;() { "line", "line" },
@@ -153,7 +153,7 @@ public partial class V1Client
     ///                             PostalCode = "postal_code",
     ///                             Country = "country",
     ///                         },
-    ///                         new Candid.Net.PreEncounter.Common.Address
+    ///                         new global::Candid.Net.PreEncounter.Common.Address
     ///                         {
     ///                             Use = AddressUse.Home,
     ///                             Line = new List&lt;string&gt;() { "line", "line" },
@@ -208,7 +208,7 @@ public partial class V1Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<Patient> CreateAsync(
+    public async global::System.Threading.Tasks.Task<Patient> CreateAsync(
         CreatePatientRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -289,7 +289,7 @@ public partial class V1Client
     ///             },
     ///             BirthDate = new DateOnly(2023, 1, 15),
     ///             BiologicalSex = Sex.Female,
-    ///             PrimaryAddress = new Candid.Net.PreEncounter.Common.Address
+    ///             PrimaryAddress = new global::Candid.Net.PreEncounter.Common.Address
     ///             {
     ///                 Use = AddressUse.Home,
     ///                 Line = new List&lt;string&gt;() { "line", "line" },
@@ -298,9 +298,9 @@ public partial class V1Client
     ///                 PostalCode = "postal_code",
     ///                 Country = "country",
     ///             },
-    ///             OtherAddresses = new List&lt;Candid.Net.PreEncounter.Common.Address&gt;()
+    ///             OtherAddresses = new List&lt;global::Candid.Net.PreEncounter.Common.Address&gt;()
     ///             {
-    ///                 new Candid.Net.PreEncounter.Common.Address
+    ///                 new global::Candid.Net.PreEncounter.Common.Address
     ///                 {
     ///                     Use = AddressUse.Home,
     ///                     Line = new List&lt;string&gt;() { "line", "line" },
@@ -309,7 +309,7 @@ public partial class V1Client
     ///                     PostalCode = "postal_code",
     ///                     Country = "country",
     ///                 },
-    ///                 new Candid.Net.PreEncounter.Common.Address
+    ///                 new global::Candid.Net.PreEncounter.Common.Address
     ///                 {
     ///                     Use = AddressUse.Home,
     ///                     Line = new List&lt;string&gt;() { "line", "line" },
@@ -344,9 +344,9 @@ public partial class V1Client
     ///                         new ContactPoint { Value = "value", Use = ContactPointUse.Home },
     ///                         new ContactPoint { Value = "value", Use = ContactPointUse.Home },
     ///                     },
-    ///                     Addresses = new List&lt;Candid.Net.PreEncounter.Common.Address&gt;()
+    ///                     Addresses = new List&lt;global::Candid.Net.PreEncounter.Common.Address&gt;()
     ///                     {
-    ///                         new Candid.Net.PreEncounter.Common.Address
+    ///                         new global::Candid.Net.PreEncounter.Common.Address
     ///                         {
     ///                             Use = AddressUse.Home,
     ///                             Line = new List&lt;string&gt;() { "line", "line" },
@@ -355,7 +355,7 @@ public partial class V1Client
     ///                             PostalCode = "postal_code",
     ///                             Country = "country",
     ///                         },
-    ///                         new Candid.Net.PreEncounter.Common.Address
+    ///                         new global::Candid.Net.PreEncounter.Common.Address
     ///                         {
     ///                             Use = AddressUse.Home,
     ///                             Line = new List&lt;string&gt;() { "line", "line" },
@@ -384,9 +384,9 @@ public partial class V1Client
     ///                         new ContactPoint { Value = "value", Use = ContactPointUse.Home },
     ///                         new ContactPoint { Value = "value", Use = ContactPointUse.Home },
     ///                     },
-    ///                     Addresses = new List&lt;Candid.Net.PreEncounter.Common.Address&gt;()
+    ///                     Addresses = new List&lt;global::Candid.Net.PreEncounter.Common.Address&gt;()
     ///                     {
-    ///                         new Candid.Net.PreEncounter.Common.Address
+    ///                         new global::Candid.Net.PreEncounter.Common.Address
     ///                         {
     ///                             Use = AddressUse.Home,
     ///                             Line = new List&lt;string&gt;() { "line", "line" },
@@ -395,7 +395,7 @@ public partial class V1Client
     ///                             PostalCode = "postal_code",
     ///                             Country = "country",
     ///                         },
-    ///                         new Candid.Net.PreEncounter.Common.Address
+    ///                         new global::Candid.Net.PreEncounter.Common.Address
     ///                         {
     ///                             Use = AddressUse.Home,
     ///                             Line = new List&lt;string&gt;() { "line", "line" },
@@ -450,7 +450,7 @@ public partial class V1Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<Patient> CreateWithMrnAsync(
+    public async global::System.Threading.Tasks.Task<Patient> CreateWithMrnAsync(
         CreatePatientWithMrnRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -504,7 +504,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.PreEncounter.Patients.V1.GetMultiAsync(new PatientsSearchRequestPaginated());
     /// </code></example>
-    public async System.Threading.Tasks.Task<PatientPage> GetMultiAsync(
+    public async global::System.Threading.Tasks.Task<PatientPage> GetMultiAsync(
         PatientsSearchRequestPaginated request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -575,7 +575,9 @@ public partial class V1Client
     ///     new SearchProvidersRequest { SearchCriteria = "search_criteria" }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<IEnumerable<ExternalProvider>> SearchProvidersAsync(
+    public async global::System.Threading.Tasks.Task<
+        IEnumerable<ExternalProvider>
+    > SearchProvidersAsync(
         SearchProvidersRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -625,7 +627,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.PreEncounter.Patients.V1.GetAsync("id");
     /// </code></example>
-    public async System.Threading.Tasks.Task<Patient> GetAsync(
+    public async global::System.Threading.Tasks.Task<Patient> GetAsync(
         string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -675,7 +677,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.PreEncounter.Patients.V1.GetByMrnAsync("mrn");
     /// </code></example>
-    public async System.Threading.Tasks.Task<Patient> GetByMrnAsync(
+    public async global::System.Threading.Tasks.Task<Patient> GetByMrnAsync(
         string mrn,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -725,7 +727,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.PreEncounter.Patients.V1.GetHistoryAsync("id");
     /// </code></example>
-    public async System.Threading.Tasks.Task<IEnumerable<Patient>> GetHistoryAsync(
+    public async global::System.Threading.Tasks.Task<IEnumerable<Patient>> GetHistoryAsync(
         string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -801,7 +803,7 @@ public partial class V1Client
     ///         },
     ///         BirthDate = new DateOnly(2023, 1, 15),
     ///         BiologicalSex = Sex.Female,
-    ///         PrimaryAddress = new Candid.Net.PreEncounter.Common.Address
+    ///         PrimaryAddress = new global::Candid.Net.PreEncounter.Common.Address
     ///         {
     ///             Use = AddressUse.Home,
     ///             Line = new List&lt;string&gt;() { "line", "line" },
@@ -810,9 +812,9 @@ public partial class V1Client
     ///             PostalCode = "postal_code",
     ///             Country = "country",
     ///         },
-    ///         OtherAddresses = new List&lt;Candid.Net.PreEncounter.Common.Address&gt;()
+    ///         OtherAddresses = new List&lt;global::Candid.Net.PreEncounter.Common.Address&gt;()
     ///         {
-    ///             new Candid.Net.PreEncounter.Common.Address
+    ///             new global::Candid.Net.PreEncounter.Common.Address
     ///             {
     ///                 Use = AddressUse.Home,
     ///                 Line = new List&lt;string&gt;() { "line", "line" },
@@ -821,7 +823,7 @@ public partial class V1Client
     ///                 PostalCode = "postal_code",
     ///                 Country = "country",
     ///             },
-    ///             new Candid.Net.PreEncounter.Common.Address
+    ///             new global::Candid.Net.PreEncounter.Common.Address
     ///             {
     ///                 Use = AddressUse.Home,
     ///                 Line = new List&lt;string&gt;() { "line", "line" },
@@ -852,9 +854,9 @@ public partial class V1Client
     ///                     new ContactPoint { Value = "value", Use = ContactPointUse.Home },
     ///                     new ContactPoint { Value = "value", Use = ContactPointUse.Home },
     ///                 },
-    ///                 Addresses = new List&lt;Candid.Net.PreEncounter.Common.Address&gt;()
+    ///                 Addresses = new List&lt;global::Candid.Net.PreEncounter.Common.Address&gt;()
     ///                 {
-    ///                     new Candid.Net.PreEncounter.Common.Address
+    ///                     new global::Candid.Net.PreEncounter.Common.Address
     ///                     {
     ///                         Use = AddressUse.Home,
     ///                         Line = new List&lt;string&gt;() { "line", "line" },
@@ -863,7 +865,7 @@ public partial class V1Client
     ///                         PostalCode = "postal_code",
     ///                         Country = "country",
     ///                     },
-    ///                     new Candid.Net.PreEncounter.Common.Address
+    ///                     new global::Candid.Net.PreEncounter.Common.Address
     ///                     {
     ///                         Use = AddressUse.Home,
     ///                         Line = new List&lt;string&gt;() { "line", "line" },
@@ -888,9 +890,9 @@ public partial class V1Client
     ///                     new ContactPoint { Value = "value", Use = ContactPointUse.Home },
     ///                     new ContactPoint { Value = "value", Use = ContactPointUse.Home },
     ///                 },
-    ///                 Addresses = new List&lt;Candid.Net.PreEncounter.Common.Address&gt;()
+    ///                 Addresses = new List&lt;global::Candid.Net.PreEncounter.Common.Address&gt;()
     ///                 {
-    ///                     new Candid.Net.PreEncounter.Common.Address
+    ///                     new global::Candid.Net.PreEncounter.Common.Address
     ///                     {
     ///                         Use = AddressUse.Home,
     ///                         Line = new List&lt;string&gt;() { "line", "line" },
@@ -899,7 +901,7 @@ public partial class V1Client
     ///                         PostalCode = "postal_code",
     ///                         Country = "country",
     ///                     },
-    ///                     new Candid.Net.PreEncounter.Common.Address
+    ///                     new global::Candid.Net.PreEncounter.Common.Address
     ///                     {
     ///                         Use = AddressUse.Home,
     ///                         Line = new List&lt;string&gt;() { "line", "line" },
@@ -953,7 +955,7 @@ public partial class V1Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<Patient> UpdateAsync(
+    public async global::System.Threading.Tasks.Task<Patient> UpdateAsync(
         string id,
         string version,
         MutablePatient request,
@@ -1007,7 +1009,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.PreEncounter.Patients.V1.DeactivateAsync("id", "version");
     /// </code></example>
-    public async System.Threading.Tasks.Task DeactivateAsync(
+    public async global::System.Threading.Tasks.Task DeactivateAsync(
         string id,
         string version,
         RequestOptions? options = null,
@@ -1050,7 +1052,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.PreEncounter.Patients.V1.ReactivateAsync("id", "version");
     /// </code></example>
-    public async System.Threading.Tasks.Task ReactivateAsync(
+    public async global::System.Threading.Tasks.Task ReactivateAsync(
         string id,
         string version,
         RequestOptions? options = null,
@@ -1093,7 +1095,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.PreEncounter.Patients.V1.SearchAsync(new PatientGetMultiRequest());
     /// </code></example>
-    public async System.Threading.Tasks.Task<IEnumerable<Patient>> SearchAsync(
+    public async global::System.Threading.Tasks.Task<IEnumerable<Patient>> SearchAsync(
         PatientGetMultiRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -1152,7 +1154,7 @@ public partial class V1Client
     ///     new PatientScanRequest { Since = new DateTime(2024, 01, 15, 09, 30, 00, 000) }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<IEnumerable<Patient>> ScanAsync(
+    public async global::System.Threading.Tasks.Task<IEnumerable<Patient>> ScanAsync(
         PatientScanRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

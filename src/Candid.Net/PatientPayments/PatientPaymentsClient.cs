@@ -9,8 +9,8 @@ public partial class PatientPaymentsClient
     internal PatientPaymentsClient(RawClient client)
     {
         _client = client;
-        V4 = new Candid.Net.PatientPayments.V4.V4Client(_client);
+        V4 = new global::Candid.Net.PatientPayments.V4.V4Client(_client);
     }
 
-    public Candid.Net.PatientPayments.V4.V4Client V4 { get; }
+    public global::Candid.Net.PatientPayments.V4.V4Client V4 { get; }
 }

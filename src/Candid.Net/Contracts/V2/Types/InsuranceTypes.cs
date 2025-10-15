@@ -76,28 +76,32 @@ public record InsuranceTypes
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'allApply'.</exception>
     public object AsAllApply() =>
-        IsAllApply ? Value! : throw new Exception("InsuranceTypes.Type is not 'allApply'");
+        IsAllApply
+            ? Value!
+            : throw new global::System.Exception("InsuranceTypes.Type is not 'allApply'");
 
     /// <summary>
     /// Returns the value as a <see cref="object"/> if <see cref="Type"/> is 'noneApply', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'noneApply'.</exception>
     public object AsNoneApply() =>
-        IsNoneApply ? Value! : throw new Exception("InsuranceTypes.Type is not 'noneApply'");
+        IsNoneApply
+            ? Value!
+            : throw new global::System.Exception("InsuranceTypes.Type is not 'noneApply'");
 
     /// <summary>
-    /// Returns the value as a <see cref="HashSet<Candid.Net.Commons.InsuranceTypeCode>"/> if <see cref="Type"/> is 'theseApply', otherwise throws an exception.
+    /// Returns the value as a <see cref="HashSet<global::Candid.Net.Commons.InsuranceTypeCode>"/> if <see cref="Type"/> is 'theseApply', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'theseApply'.</exception>
-    public HashSet<Candid.Net.Commons.InsuranceTypeCode> AsTheseApply() =>
+    public HashSet<global::Candid.Net.Commons.InsuranceTypeCode> AsTheseApply() =>
         IsTheseApply
-            ? (HashSet<Candid.Net.Commons.InsuranceTypeCode>)Value!
-            : throw new Exception("InsuranceTypes.Type is not 'theseApply'");
+            ? (HashSet<global::Candid.Net.Commons.InsuranceTypeCode>)Value!
+            : throw new global::System.Exception("InsuranceTypes.Type is not 'theseApply'");
 
     public T Match<T>(
         Func<object, T> onAllApply,
         Func<object, T> onNoneApply,
-        Func<HashSet<Candid.Net.Commons.InsuranceTypeCode>, T> onTheseApply,
+        Func<HashSet<global::Candid.Net.Commons.InsuranceTypeCode>, T> onTheseApply,
         Func<string, object?, T> onUnknown_
     )
     {
@@ -113,7 +117,7 @@ public record InsuranceTypes
     public void Visit(
         Action<object> onAllApply,
         Action<object> onNoneApply,
-        Action<HashSet<Candid.Net.Commons.InsuranceTypeCode>> onTheseApply,
+        Action<HashSet<global::Candid.Net.Commons.InsuranceTypeCode>> onTheseApply,
         Action<string, object?> onUnknown_
     )
     {
@@ -163,13 +167,13 @@ public record InsuranceTypes
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="HashSet<Candid.Net.Commons.InsuranceTypeCode>"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="HashSet<global::Candid.Net.Commons.InsuranceTypeCode>"/> and returns true if successful.
     /// </summary>
-    public bool TryAsTheseApply(out HashSet<Candid.Net.Commons.InsuranceTypeCode>? value)
+    public bool TryAsTheseApply(out HashSet<global::Candid.Net.Commons.InsuranceTypeCode>? value)
     {
         if (Type == "theseApply")
         {
-            value = (HashSet<Candid.Net.Commons.InsuranceTypeCode>)Value!;
+            value = (HashSet<global::Candid.Net.Commons.InsuranceTypeCode>)Value!;
             return true;
         }
         value = null;
@@ -218,9 +222,9 @@ public record InsuranceTypes
                 "allApply" => new { },
                 "noneApply" => new { },
                 "theseApply" => json.GetProperty("value")
-                    .Deserialize<HashSet<Candid.Net.Commons.InsuranceTypeCode>>(options)
+                    .Deserialize<HashSet<global::Candid.Net.Commons.InsuranceTypeCode>?>(options)
                 ?? throw new JsonException(
-                        "Failed to deserialize HashSet<Candid.Net.Commons.InsuranceTypeCode>"
+                        "Failed to deserialize HashSet<global::Candid.Net.Commons.InsuranceTypeCode>"
                     ),
                 _ => json.Deserialize<object?>(options),
             };
@@ -257,7 +261,7 @@ public record InsuranceTypes
     {
         internal object Value => new { };
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
     }
 
     /// <summary>
@@ -268,7 +272,7 @@ public record InsuranceTypes
     {
         internal object Value => new { };
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
     }
 
     /// <summary>
@@ -277,18 +281,18 @@ public record InsuranceTypes
     [Serializable]
     public record TheseApply
     {
-        public TheseApply(HashSet<Candid.Net.Commons.InsuranceTypeCode> value)
+        public TheseApply(HashSet<global::Candid.Net.Commons.InsuranceTypeCode> value)
         {
             Value = value;
         }
 
-        internal HashSet<Candid.Net.Commons.InsuranceTypeCode> Value { get; set; } =
-            new HashSet<Candid.Net.Commons.InsuranceTypeCode>();
+        internal HashSet<global::Candid.Net.Commons.InsuranceTypeCode> Value { get; set; } =
+            new HashSet<global::Candid.Net.Commons.InsuranceTypeCode>();
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator InsuranceTypes.TheseApply(
-            HashSet<Candid.Net.Commons.InsuranceTypeCode> value
+            HashSet<global::Candid.Net.Commons.InsuranceTypeCode> value
         ) => new(value);
     }
 }

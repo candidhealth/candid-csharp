@@ -16,7 +16,7 @@ public record InsuranceWriteOff : IJsonOnDeserialized
     public required string WriteOffId { get; set; }
 
     [JsonPropertyName("payer")]
-    public required Candid.Net.Payers.V3.Payer Payer { get; set; }
+    public required global::Candid.Net.Payers.V3.Payer Payer { get; set; }
 
     [JsonPropertyName("write_off_target")]
     public required InsuranceWriteOffTarget WriteOffTarget { get; set; }

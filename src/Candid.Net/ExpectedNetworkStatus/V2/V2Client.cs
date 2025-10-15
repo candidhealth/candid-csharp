@@ -34,8 +34,8 @@ public partial class V2Client
     ///             {
     ///                 LineOfBusiness = LineOfBusiness.Medicare,
     ///                 InsuranceTypeCodes = new InsuranceTypeCodes(
-    ///                     new Candid.Net.ExpectedNetworkStatus.V2.InsuranceTypeCodes.InsuranceTypeCode(
-    ///                         Candid.Net.Commons.InsuranceTypeCode.C01
+    ///                     new global::Candid.Net.ExpectedNetworkStatus.V2.InsuranceTypeCodes.InsuranceTypeCode(
+    ///                         global::Candid.Net.Commons.InsuranceTypeCode.C01
     ///                     )
     ///                 ),
     ///             },
@@ -53,7 +53,7 @@ public partial class V2Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<ExpectedNetworkStatusResponseV2> ComputeForRenderingProviderAsync(
+    public async global::System.Threading.Tasks.Task<ExpectedNetworkStatusResponseV2> ComputeForRenderingProviderAsync(
         string renderingProviderId,
         ExpectedNetworkStatusRequestV2 request,
         RequestOptions? options = null,
@@ -118,8 +118,8 @@ public partial class V2Client
     ///             {
     ///                 LineOfBusiness = LineOfBusiness.Medicare,
     ///                 InsuranceTypeCodes = new InsuranceTypeCodes(
-    ///                     new Candid.Net.ExpectedNetworkStatus.V2.InsuranceTypeCodes.InsuranceTypeCode(
-    ///                         Candid.Net.Commons.InsuranceTypeCode.C01
+    ///                     new global::Candid.Net.ExpectedNetworkStatus.V2.InsuranceTypeCodes.InsuranceTypeCode(
+    ///                         global::Candid.Net.Commons.InsuranceTypeCode.C01
     ///                     )
     ///                 ),
     ///             },
@@ -137,7 +137,7 @@ public partial class V2Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<ComputeAllInNetworkProvidersResponse> ComputeAllInNetworkProvidersAsync(
+    public async global::System.Threading.Tasks.Task<ComputeAllInNetworkProvidersResponse> ComputeAllInNetworkProvidersAsync(
         ComputeAllInNetworkProvidersRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

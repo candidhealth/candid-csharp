@@ -20,7 +20,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.InsuranceAdjudications.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async System.Threading.Tasks.Task<InsuranceAdjudication> GetAsync(
+    public async global::System.Threading.Tasks.Task<InsuranceAdjudication> GetAsync(
         string insuranceAdjudicationId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -248,7 +248,7 @@ public partial class V1Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<InsuranceAdjudication> CreateAsync(
+    public async global::System.Threading.Tasks.Task<InsuranceAdjudication> CreateAsync(
         InsuranceAdjudicationCreate request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -296,7 +296,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.InsuranceAdjudications.V1.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async System.Threading.Tasks.Task DeleteAsync(
+    public async global::System.Threading.Tasks.Task DeleteAsync(
         string insuranceAdjudicationId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

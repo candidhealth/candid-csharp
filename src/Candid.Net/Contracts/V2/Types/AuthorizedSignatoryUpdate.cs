@@ -58,23 +58,25 @@ public record AuthorizedSignatoryUpdate
     public bool IsRemove => Type == "remove";
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.Contracts.V2.AuthorizedSignatory"/> if <see cref="Type"/> is 'set', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.Contracts.V2.AuthorizedSignatory"/> if <see cref="Type"/> is 'set', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'set'.</exception>
-    public Candid.Net.Contracts.V2.AuthorizedSignatory AsSet() =>
+    public global::Candid.Net.Contracts.V2.AuthorizedSignatory AsSet() =>
         IsSet
-            ? (Candid.Net.Contracts.V2.AuthorizedSignatory)Value!
-            : throw new Exception("AuthorizedSignatoryUpdate.Type is not 'set'");
+            ? (global::Candid.Net.Contracts.V2.AuthorizedSignatory)Value!
+            : throw new global::System.Exception("AuthorizedSignatoryUpdate.Type is not 'set'");
 
     /// <summary>
     /// Returns the value as a <see cref="object"/> if <see cref="Type"/> is 'remove', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'remove'.</exception>
     public object AsRemove() =>
-        IsRemove ? Value! : throw new Exception("AuthorizedSignatoryUpdate.Type is not 'remove'");
+        IsRemove
+            ? Value!
+            : throw new global::System.Exception("AuthorizedSignatoryUpdate.Type is not 'remove'");
 
     public T Match<T>(
-        Func<Candid.Net.Contracts.V2.AuthorizedSignatory, T> onSet,
+        Func<global::Candid.Net.Contracts.V2.AuthorizedSignatory, T> onSet,
         Func<object, T> onRemove,
         Func<string, object?, T> onUnknown_
     )
@@ -88,7 +90,7 @@ public record AuthorizedSignatoryUpdate
     }
 
     public void Visit(
-        Action<Candid.Net.Contracts.V2.AuthorizedSignatory> onSet,
+        Action<global::Candid.Net.Contracts.V2.AuthorizedSignatory> onSet,
         Action<object> onRemove,
         Action<string, object?> onUnknown_
     )
@@ -108,13 +110,13 @@ public record AuthorizedSignatoryUpdate
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.Contracts.V2.AuthorizedSignatory"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.Contracts.V2.AuthorizedSignatory"/> and returns true if successful.
     /// </summary>
-    public bool TryAsSet(out Candid.Net.Contracts.V2.AuthorizedSignatory? value)
+    public bool TryAsSet(out global::Candid.Net.Contracts.V2.AuthorizedSignatory? value)
     {
         if (Type == "set")
         {
-            value = (Candid.Net.Contracts.V2.AuthorizedSignatory)Value!;
+            value = (global::Candid.Net.Contracts.V2.AuthorizedSignatory)Value!;
             return true;
         }
         value = null;
@@ -176,9 +178,11 @@ public record AuthorizedSignatoryUpdate
 
             var value = discriminator switch
             {
-                "set" => json.Deserialize<Candid.Net.Contracts.V2.AuthorizedSignatory>(options)
+                "set" => json.Deserialize<global::Candid.Net.Contracts.V2.AuthorizedSignatory?>(
+                    options
+                )
                     ?? throw new JsonException(
-                        "Failed to deserialize Candid.Net.Contracts.V2.AuthorizedSignatory"
+                        "Failed to deserialize global::Candid.Net.Contracts.V2.AuthorizedSignatory"
                     ),
                 "remove" => new { },
                 _ => json.Deserialize<object?>(options),
@@ -210,17 +214,17 @@ public record AuthorizedSignatoryUpdate
     [Serializable]
     public struct Set
     {
-        public Set(Candid.Net.Contracts.V2.AuthorizedSignatory value)
+        public Set(global::Candid.Net.Contracts.V2.AuthorizedSignatory value)
         {
             Value = value;
         }
 
-        internal Candid.Net.Contracts.V2.AuthorizedSignatory Value { get; set; }
+        internal global::Candid.Net.Contracts.V2.AuthorizedSignatory Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator AuthorizedSignatoryUpdate.Set(
-            Candid.Net.Contracts.V2.AuthorizedSignatory value
+            global::Candid.Net.Contracts.V2.AuthorizedSignatory value
         ) => new(value);
     }
 
@@ -232,6 +236,6 @@ public record AuthorizedSignatoryUpdate
     {
         internal object Value => new { };
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
     }
 }

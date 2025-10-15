@@ -9,8 +9,8 @@ public partial class TasksClient
     internal TasksClient(RawClient client)
     {
         _client = client;
-        V3 = new Candid.Net.Tasks.V3.V3Client(_client);
+        V3 = new global::Candid.Net.Tasks.V3.V3Client(_client);
     }
 
-    public Candid.Net.Tasks.V3.V3Client V3 { get; }
+    public global::Candid.Net.Tasks.V3.V3Client V3 { get; }
 }

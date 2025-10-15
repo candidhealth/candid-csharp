@@ -49,13 +49,13 @@ public record Encounter : IJsonOnDeserialized
     /// Contains the identification information of the individual receiving medical services.
     /// </summary>
     [JsonPropertyName("patient")]
-    public required Candid.Net.Individual.Patient Patient { get; set; }
+    public required global::Candid.Net.Individual.Patient Patient { get; set; }
 
     /// <summary>
     /// Personal and contact info for the guarantor of the patient responsibility.
     /// </summary>
     [JsonPropertyName("guarantor")]
-    public Candid.Net.Guarantor.V1.Guarantor? Guarantor { get; set; }
+    public global::Candid.Net.Guarantor.V1.Guarantor? Guarantor { get; set; }
 
     /// <summary>
     /// The billing provider is the provider or business entity submitting the claim. Billing provider may be, but is not necessarily, the same person/NPI as the rendering provider. From a payer's perspective, this represents the person or entity being reimbursed. When a contract exists with the target payer, the billing provider should be the entity contracted with the payer. In some circumstances, this will be an individual provider. In that case, submit that provider's NPI and the tax ID (TIN) that the provider gave to the payer during contracting. In other cases, the billing entity will be a medical group. If so, submit the group NPI and the group's tax ID. Box 33 on the CMS-1500 claim form or Form Locator 1 on a UB-04 claim form.
@@ -156,19 +156,19 @@ public record Encounter : IJsonOnDeserialized
     /// Note: Cash Pay is no longer a valid payer_id in v4, please use responsible party to define self-pay claims.
     /// </summary>
     [JsonPropertyName("subscriber_primary")]
-    public Candid.Net.Individual.Subscriber? SubscriberPrimary { get; set; }
+    public global::Candid.Net.Individual.Subscriber? SubscriberPrimary { get; set; }
 
     /// <summary>
     /// Contains details of the secondary insurance subscriber.
     /// </summary>
     [JsonPropertyName("subscriber_secondary")]
-    public Candid.Net.Individual.Subscriber? SubscriberSecondary { get; set; }
+    public global::Candid.Net.Individual.Subscriber? SubscriberSecondary { get; set; }
 
     /// <summary>
     /// Contains details of the tertiary insurance subscriber.
     /// </summary>
     [JsonPropertyName("subscriber_tertiary")]
-    public Candid.Net.Individual.Subscriber? SubscriberTertiary { get; set; }
+    public global::Candid.Net.Individual.Subscriber? SubscriberTertiary { get; set; }
 
     /// <summary>
     /// Box 23 on the CMS-1500 claim form or Form Locator 63 on a UB-04 claim form.
@@ -225,11 +225,12 @@ public record Encounter : IJsonOnDeserialized
         new List<PatientHistoryCategory>();
 
     [JsonPropertyName("patient_payments")]
-    public IEnumerable<Candid.Net.PatientPayments.V3.PatientPayment> PatientPayments { get; set; } =
-        new List<Candid.Net.PatientPayments.V3.PatientPayment>();
+    public IEnumerable<global::Candid.Net.PatientPayments.V3.PatientPayment> PatientPayments { get; set; } =
+        new List<global::Candid.Net.PatientPayments.V3.PatientPayment>();
 
     [JsonPropertyName("tags")]
-    public IEnumerable<Candid.Net.Tags.Tag> Tags { get; set; } = new List<Candid.Net.Tags.Tag>();
+    public IEnumerable<global::Candid.Net.Tags.Tag> Tags { get; set; } =
+        new List<global::Candid.Net.Tags.Tag>();
 
     /// <summary>
     /// The entity that performed the coding of medical services for the claim.

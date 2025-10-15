@@ -33,7 +33,7 @@ public record FacilityCredentialingSpan : IJsonOnDeserialized
     /// The payer doing the credentialing.
     /// </summary>
     [JsonPropertyName("payer")]
-    public required Candid.Net.Payers.V3.Payer Payer { get; set; }
+    public required global::Candid.Net.Payers.V3.Payer Payer { get; set; }
 
     /// <summary>
     /// Start date of the credentialing span.

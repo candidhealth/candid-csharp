@@ -17,7 +17,7 @@ public record PayerPlanGroup : IJsonOnDeserialized
     public required string PayerPlanGroupId { get; set; }
 
     [JsonPropertyName("payer")]
-    public required Candid.Net.Payers.V3.Payer Payer { get; set; }
+    public required global::Candid.Net.Payers.V3.Payer Payer { get; set; }
 
     [JsonPropertyName("is_active")]
     public required bool IsActive { get; set; }

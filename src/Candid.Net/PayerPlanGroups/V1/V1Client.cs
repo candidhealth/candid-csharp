@@ -20,7 +20,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.PayerPlanGroups.V1.GetMultiAsync(new PayerPlanGroupGetMultiRequest());
     /// </code></example>
-    public async System.Threading.Tasks.Task<PayerPlanGroupPage> GetMultiAsync(
+    public async global::System.Threading.Tasks.Task<PayerPlanGroupPage> GetMultiAsync(
         PayerPlanGroupGetMultiRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -98,7 +98,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.PayerPlanGroups.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async System.Threading.Tasks.Task<PayerPlanGroup> GetAsync(
+    public async global::System.Threading.Tasks.Task<PayerPlanGroup> GetAsync(
         string payerPlanGroupId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -155,7 +155,7 @@ public partial class V1Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<PayerPlanGroup> CreateAsync(
+    public async global::System.Threading.Tasks.Task<PayerPlanGroup> CreateAsync(
         MutablePayerPlanGroup request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -211,7 +211,7 @@ public partial class V1Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<PayerPlanGroup> UpdateAsync(
+    public async global::System.Threading.Tasks.Task<PayerPlanGroup> UpdateAsync(
         string payerPlanGroupId,
         MutablePayerPlanGroup request,
         RequestOptions? options = null,
@@ -263,7 +263,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.PayerPlanGroups.V1.DeactivateAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async System.Threading.Tasks.Task<PayerPlanGroup> DeactivateAsync(
+    public async global::System.Threading.Tasks.Task<PayerPlanGroup> DeactivateAsync(
         string payerPlanGroupId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

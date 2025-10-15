@@ -16,8 +16,8 @@ public record MatchNetworkTypes : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     [JsonPropertyName("value")]
-    public HashSet<Candid.Net.Commons.NetworkType> Value { get; set; } =
-        new HashSet<Candid.Net.Commons.NetworkType>();
+    public HashSet<global::Candid.Net.Commons.NetworkType> Value { get; set; } =
+        new HashSet<global::Candid.Net.Commons.NetworkType>();
 
     [JsonPropertyName("match")]
     public required bool Match { get; set; }

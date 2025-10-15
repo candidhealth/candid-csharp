@@ -19,7 +19,7 @@ public partial class V1Client
     ///     new GetExternalPaymentAccountConfigsRequest()
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<ExternalPaymentAccountConfigPage> GetMultiAsync(
+    public async global::System.Threading.Tasks.Task<ExternalPaymentAccountConfigPage> GetMultiAsync(
         GetExternalPaymentAccountConfigsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

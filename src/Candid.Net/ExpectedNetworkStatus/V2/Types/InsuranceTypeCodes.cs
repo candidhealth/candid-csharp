@@ -72,36 +72,40 @@ public record InsuranceTypeCodes
     public bool IsNotApplicable => Type == "not_applicable";
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.Commons.InsuranceTypeCode"/> if <see cref="Type"/> is 'insurance_type_code', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.Commons.InsuranceTypeCode"/> if <see cref="Type"/> is 'insurance_type_code', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'insurance_type_code'.</exception>
-    public Candid.Net.Commons.InsuranceTypeCode AsInsuranceTypeCode() =>
+    public global::Candid.Net.Commons.InsuranceTypeCode AsInsuranceTypeCode() =>
         IsInsuranceTypeCode
-            ? (Candid.Net.Commons.InsuranceTypeCode)Value!
-            : throw new Exception("InsuranceTypeCodes.Type is not 'insurance_type_code'");
+            ? (global::Candid.Net.Commons.InsuranceTypeCode)Value!
+            : throw new global::System.Exception(
+                "InsuranceTypeCodes.Type is not 'insurance_type_code'"
+            );
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.ExpectedNetworkStatus.V2.EmptyObject"/> if <see cref="Type"/> is 'unknown_insurance_type_code', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.ExpectedNetworkStatus.V2.EmptyObject"/> if <see cref="Type"/> is 'unknown_insurance_type_code', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'unknown_insurance_type_code'.</exception>
-    public Candid.Net.ExpectedNetworkStatus.V2.EmptyObject AsUnknownInsuranceTypeCode() =>
+    public global::Candid.Net.ExpectedNetworkStatus.V2.EmptyObject AsUnknownInsuranceTypeCode() =>
         IsUnknownInsuranceTypeCode
-            ? (Candid.Net.ExpectedNetworkStatus.V2.EmptyObject)Value!
-            : throw new Exception("InsuranceTypeCodes.Type is not 'unknown_insurance_type_code'");
+            ? (global::Candid.Net.ExpectedNetworkStatus.V2.EmptyObject)Value!
+            : throw new global::System.Exception(
+                "InsuranceTypeCodes.Type is not 'unknown_insurance_type_code'"
+            );
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.ExpectedNetworkStatus.V2.EmptyObject"/> if <see cref="Type"/> is 'not_applicable', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.ExpectedNetworkStatus.V2.EmptyObject"/> if <see cref="Type"/> is 'not_applicable', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'not_applicable'.</exception>
-    public Candid.Net.ExpectedNetworkStatus.V2.EmptyObject AsNotApplicable() =>
+    public global::Candid.Net.ExpectedNetworkStatus.V2.EmptyObject AsNotApplicable() =>
         IsNotApplicable
-            ? (Candid.Net.ExpectedNetworkStatus.V2.EmptyObject)Value!
-            : throw new Exception("InsuranceTypeCodes.Type is not 'not_applicable'");
+            ? (global::Candid.Net.ExpectedNetworkStatus.V2.EmptyObject)Value!
+            : throw new global::System.Exception("InsuranceTypeCodes.Type is not 'not_applicable'");
 
     public T Match<T>(
-        Func<Candid.Net.Commons.InsuranceTypeCode, T> onInsuranceTypeCode,
-        Func<Candid.Net.ExpectedNetworkStatus.V2.EmptyObject, T> onUnknownInsuranceTypeCode,
-        Func<Candid.Net.ExpectedNetworkStatus.V2.EmptyObject, T> onNotApplicable,
+        Func<global::Candid.Net.Commons.InsuranceTypeCode, T> onInsuranceTypeCode,
+        Func<global::Candid.Net.ExpectedNetworkStatus.V2.EmptyObject, T> onUnknownInsuranceTypeCode,
+        Func<global::Candid.Net.ExpectedNetworkStatus.V2.EmptyObject, T> onNotApplicable,
         Func<string, object?, T> onUnknown_
     )
     {
@@ -117,9 +121,9 @@ public record InsuranceTypeCodes
     }
 
     public void Visit(
-        Action<Candid.Net.Commons.InsuranceTypeCode> onInsuranceTypeCode,
-        Action<Candid.Net.ExpectedNetworkStatus.V2.EmptyObject> onUnknownInsuranceTypeCode,
-        Action<Candid.Net.ExpectedNetworkStatus.V2.EmptyObject> onNotApplicable,
+        Action<global::Candid.Net.Commons.InsuranceTypeCode> onInsuranceTypeCode,
+        Action<global::Candid.Net.ExpectedNetworkStatus.V2.EmptyObject> onUnknownInsuranceTypeCode,
+        Action<global::Candid.Net.ExpectedNetworkStatus.V2.EmptyObject> onNotApplicable,
         Action<string, object?> onUnknown_
     )
     {
@@ -141,13 +145,13 @@ public record InsuranceTypeCodes
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.Commons.InsuranceTypeCode"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.Commons.InsuranceTypeCode"/> and returns true if successful.
     /// </summary>
-    public bool TryAsInsuranceTypeCode(out Candid.Net.Commons.InsuranceTypeCode? value)
+    public bool TryAsInsuranceTypeCode(out global::Candid.Net.Commons.InsuranceTypeCode? value)
     {
         if (Type == "insurance_type_code")
         {
-            value = (Candid.Net.Commons.InsuranceTypeCode)Value!;
+            value = (global::Candid.Net.Commons.InsuranceTypeCode)Value!;
             return true;
         }
         value = null;
@@ -155,15 +159,15 @@ public record InsuranceTypeCodes
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.ExpectedNetworkStatus.V2.EmptyObject"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.ExpectedNetworkStatus.V2.EmptyObject"/> and returns true if successful.
     /// </summary>
     public bool TryAsUnknownInsuranceTypeCode(
-        out Candid.Net.ExpectedNetworkStatus.V2.EmptyObject? value
+        out global::Candid.Net.ExpectedNetworkStatus.V2.EmptyObject? value
     )
     {
         if (Type == "unknown_insurance_type_code")
         {
-            value = (Candid.Net.ExpectedNetworkStatus.V2.EmptyObject)Value!;
+            value = (global::Candid.Net.ExpectedNetworkStatus.V2.EmptyObject)Value!;
             return true;
         }
         value = null;
@@ -171,13 +175,15 @@ public record InsuranceTypeCodes
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.ExpectedNetworkStatus.V2.EmptyObject"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.ExpectedNetworkStatus.V2.EmptyObject"/> and returns true if successful.
     /// </summary>
-    public bool TryAsNotApplicable(out Candid.Net.ExpectedNetworkStatus.V2.EmptyObject? value)
+    public bool TryAsNotApplicable(
+        out global::Candid.Net.ExpectedNetworkStatus.V2.EmptyObject? value
+    )
     {
         if (Type == "not_applicable")
         {
-            value = (Candid.Net.ExpectedNetworkStatus.V2.EmptyObject)Value!;
+            value = (global::Candid.Net.ExpectedNetworkStatus.V2.EmptyObject)Value!;
             return true;
         }
         value = null;
@@ -233,19 +239,23 @@ public record InsuranceTypeCodes
             var value = discriminator switch
             {
                 "insurance_type_code" => json.GetProperty("value")
-                    .Deserialize<Candid.Net.Commons.InsuranceTypeCode>(options)
+                    .Deserialize<global::Candid.Net.Commons.InsuranceTypeCode?>(options)
                 ?? throw new JsonException(
-                        "Failed to deserialize Candid.Net.Commons.InsuranceTypeCode"
+                        "Failed to deserialize global::Candid.Net.Commons.InsuranceTypeCode"
                     ),
                 "unknown_insurance_type_code" =>
-                    json.Deserialize<Candid.Net.ExpectedNetworkStatus.V2.EmptyObject>(options)
+                    json.Deserialize<global::Candid.Net.ExpectedNetworkStatus.V2.EmptyObject?>(
+                        options
+                    )
                         ?? throw new JsonException(
-                            "Failed to deserialize Candid.Net.ExpectedNetworkStatus.V2.EmptyObject"
+                            "Failed to deserialize global::Candid.Net.ExpectedNetworkStatus.V2.EmptyObject"
                         ),
                 "not_applicable" =>
-                    json.Deserialize<Candid.Net.ExpectedNetworkStatus.V2.EmptyObject>(options)
+                    json.Deserialize<global::Candid.Net.ExpectedNetworkStatus.V2.EmptyObject?>(
+                        options
+                    )
                         ?? throw new JsonException(
-                            "Failed to deserialize Candid.Net.ExpectedNetworkStatus.V2.EmptyObject"
+                            "Failed to deserialize global::Candid.Net.ExpectedNetworkStatus.V2.EmptyObject"
                         ),
                 _ => json.Deserialize<object?>(options),
             };
@@ -283,17 +293,17 @@ public record InsuranceTypeCodes
     [Serializable]
     public struct InsuranceTypeCode
     {
-        public InsuranceTypeCode(Candid.Net.Commons.InsuranceTypeCode value)
+        public InsuranceTypeCode(global::Candid.Net.Commons.InsuranceTypeCode value)
         {
             Value = value;
         }
 
-        internal Candid.Net.Commons.InsuranceTypeCode Value { get; set; }
+        internal global::Candid.Net.Commons.InsuranceTypeCode Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator InsuranceTypeCodes.InsuranceTypeCode(
-            Candid.Net.Commons.InsuranceTypeCode value
+            global::Candid.Net.Commons.InsuranceTypeCode value
         ) => new(value);
     }
 
@@ -303,17 +313,19 @@ public record InsuranceTypeCodes
     [Serializable]
     public struct UnknownInsuranceTypeCode
     {
-        public UnknownInsuranceTypeCode(Candid.Net.ExpectedNetworkStatus.V2.EmptyObject value)
+        public UnknownInsuranceTypeCode(
+            global::Candid.Net.ExpectedNetworkStatus.V2.EmptyObject value
+        )
         {
             Value = value;
         }
 
-        internal Candid.Net.ExpectedNetworkStatus.V2.EmptyObject Value { get; set; }
+        internal global::Candid.Net.ExpectedNetworkStatus.V2.EmptyObject Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator InsuranceTypeCodes.UnknownInsuranceTypeCode(
-            Candid.Net.ExpectedNetworkStatus.V2.EmptyObject value
+            global::Candid.Net.ExpectedNetworkStatus.V2.EmptyObject value
         ) => new(value);
     }
 
@@ -323,17 +335,17 @@ public record InsuranceTypeCodes
     [Serializable]
     public struct NotApplicable
     {
-        public NotApplicable(Candid.Net.ExpectedNetworkStatus.V2.EmptyObject value)
+        public NotApplicable(global::Candid.Net.ExpectedNetworkStatus.V2.EmptyObject value)
         {
             Value = value;
         }
 
-        internal Candid.Net.ExpectedNetworkStatus.V2.EmptyObject Value { get; set; }
+        internal global::Candid.Net.ExpectedNetworkStatus.V2.EmptyObject Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator InsuranceTypeCodes.NotApplicable(
-            Candid.Net.ExpectedNetworkStatus.V2.EmptyObject value
+            global::Candid.Net.ExpectedNetworkStatus.V2.EmptyObject value
         ) => new(value);
     }
 }

@@ -19,7 +19,7 @@ public partial class V1Client
     ///     new CreateNonInsurancePayerRequest { Name = "name" }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<NonInsurancePayer> CreateAsync(
+    public async global::System.Threading.Tasks.Task<NonInsurancePayer> CreateAsync(
         CreateNonInsurancePayerRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -67,7 +67,7 @@ public partial class V1Client
     ///     new ToggleNonInsurancePayerEnablementRequest { Enabled = true }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<NonInsurancePayer> ToggleEnablementAsync(
+    public async global::System.Threading.Tasks.Task<NonInsurancePayer> ToggleEnablementAsync(
         string nonInsurancePayerId,
         ToggleNonInsurancePayerEnablementRequest request,
         RequestOptions? options = null,
@@ -116,7 +116,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.NonInsurancePayers.V1.GetMultiAsync(new GetMultiNonInsurancePayersRequest());
     /// </code></example>
-    public async System.Threading.Tasks.Task<NonInsurancePayerPage> GetMultiAsync(
+    public async global::System.Threading.Tasks.Task<NonInsurancePayerPage> GetMultiAsync(
         GetMultiNonInsurancePayersRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -200,7 +200,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.NonInsurancePayers.V1.GetCategoriesAsync(new GetNonInsurancePayersCategoriesRequest());
     /// </code></example>
-    public async System.Threading.Tasks.Task<NonInsurancePayerCategoriesPage> GetCategoriesAsync(
+    public async global::System.Threading.Tasks.Task<NonInsurancePayerCategoriesPage> GetCategoriesAsync(
         GetNonInsurancePayersCategoriesRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -258,7 +258,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.NonInsurancePayers.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async System.Threading.Tasks.Task<NonInsurancePayer> GetAsync(
+    public async global::System.Threading.Tasks.Task<NonInsurancePayer> GetAsync(
         string nonInsurancePayerId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -308,7 +308,7 @@ public partial class V1Client
     ///     new NonInsurancePayerUpdateRequest()
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<NonInsurancePayer> UpdateAsync(
+    public async global::System.Threading.Tasks.Task<NonInsurancePayer> UpdateAsync(
         string nonInsurancePayerId,
         NonInsurancePayerUpdateRequest request,
         RequestOptions? options = null,
@@ -357,7 +357,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.NonInsurancePayers.V1.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async System.Threading.Tasks.Task DeleteAsync(
+    public async global::System.Threading.Tasks.Task DeleteAsync(
         string nonInsurancePayerId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

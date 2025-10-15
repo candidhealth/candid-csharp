@@ -26,7 +26,7 @@ public record Guarantor : IJsonOnDeserialized
     public DateOnly? BirthDate { get; set; }
 
     [JsonPropertyName("address")]
-    public required Candid.Net.PreEncounter.Common.Address Address { get; set; }
+    public required global::Candid.Net.PreEncounter.Common.Address Address { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

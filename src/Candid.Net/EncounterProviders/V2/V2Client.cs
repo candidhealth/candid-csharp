@@ -20,7 +20,7 @@ public partial class V2Client
     ///     new ReferringProviderUpdate()
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<EncounterProvider> UpdateReferringProviderAsync(
+    public async global::System.Threading.Tasks.Task<EncounterProvider> UpdateReferringProviderAsync(
         string encounterId,
         ReferringProviderUpdate request,
         RequestOptions? options = null,
@@ -72,7 +72,7 @@ public partial class V2Client
     ///     new InitialReferringProviderUpdate()
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<EncounterProvider> UpdateInitialReferringProviderAsync(
+    public async global::System.Threading.Tasks.Task<EncounterProvider> UpdateInitialReferringProviderAsync(
         string encounterId,
         InitialReferringProviderUpdate request,
         RequestOptions? options = null,
@@ -124,7 +124,7 @@ public partial class V2Client
     ///     new SupervisingProviderUpdate()
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<EncounterProvider> UpdateSupervisingProviderAsync(
+    public async global::System.Threading.Tasks.Task<EncounterProvider> UpdateSupervisingProviderAsync(
         string encounterId,
         SupervisingProviderUpdate request,
         RequestOptions? options = null,
@@ -176,7 +176,7 @@ public partial class V2Client
     ///     new OrderingProviderUpdate()
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<EncounterProvider> UpdateOrderingProviderAsync(
+    public async global::System.Threading.Tasks.Task<EncounterProvider> UpdateOrderingProviderAsync(
         string serviceLineId,
         OrderingProviderUpdate request,
         RequestOptions? options = null,
@@ -228,7 +228,7 @@ public partial class V2Client
     ///     new ReferringProvider { Npi = "npi" }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<EncounterProvider> CreateReferringProviderAsync(
+    public async global::System.Threading.Tasks.Task<EncounterProvider> CreateReferringProviderAsync(
         string encounterId,
         ReferringProvider request,
         RequestOptions? options = null,
@@ -280,7 +280,7 @@ public partial class V2Client
     ///     new InitialReferringProvider { Npi = "npi" }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<EncounterProvider> CreateInitialReferringProviderAsync(
+    public async global::System.Threading.Tasks.Task<EncounterProvider> CreateInitialReferringProviderAsync(
         string encounterId,
         InitialReferringProvider request,
         RequestOptions? options = null,
@@ -332,7 +332,7 @@ public partial class V2Client
     ///     new SupervisingProvider { Npi = "npi" }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<EncounterProvider> CreateSupervisingProviderAsync(
+    public async global::System.Threading.Tasks.Task<EncounterProvider> CreateSupervisingProviderAsync(
         string encounterId,
         SupervisingProvider request,
         RequestOptions? options = null,
@@ -384,7 +384,7 @@ public partial class V2Client
     ///     new OrderingProvider { Npi = "npi" }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<EncounterProvider> CreateOrderingProviderAsync(
+    public async global::System.Threading.Tasks.Task<EncounterProvider> CreateOrderingProviderAsync(
         string serviceLineId,
         OrderingProvider request,
         RequestOptions? options = null,
@@ -435,7 +435,7 @@ public partial class V2Client
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task DeleteReferringProviderAsync(
+    public async global::System.Threading.Tasks.Task DeleteReferringProviderAsync(
         string encounterId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -475,7 +475,7 @@ public partial class V2Client
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task DeleteInitialReferringProviderAsync(
+    public async global::System.Threading.Tasks.Task DeleteInitialReferringProviderAsync(
         string encounterId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -515,7 +515,7 @@ public partial class V2Client
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task DeleteSupervisingProviderAsync(
+    public async global::System.Threading.Tasks.Task DeleteSupervisingProviderAsync(
         string encounterId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -555,7 +555,7 @@ public partial class V2Client
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task DeleteOrderingProviderAsync(
+    public async global::System.Threading.Tasks.Task DeleteOrderingProviderAsync(
         string serviceLineId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

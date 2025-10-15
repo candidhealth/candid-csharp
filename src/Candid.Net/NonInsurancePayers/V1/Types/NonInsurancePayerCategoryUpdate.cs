@@ -64,7 +64,9 @@ public record NonInsurancePayerCategoryUpdate
     public object AsRemove() =>
         IsRemove
             ? Value!
-            : throw new Exception("NonInsurancePayerCategoryUpdate.Type is not 'remove'");
+            : throw new global::System.Exception(
+                "NonInsurancePayerCategoryUpdate.Type is not 'remove'"
+            );
 
     /// <summary>
     /// Returns the value as a <see cref="string"/> if <see cref="Type"/> is 'set', otherwise throws an exception.
@@ -73,7 +75,9 @@ public record NonInsurancePayerCategoryUpdate
     public string AsSet() =>
         IsSet
             ? (string)Value!
-            : throw new Exception("NonInsurancePayerCategoryUpdate.Type is not 'set'");
+            : throw new global::System.Exception(
+                "NonInsurancePayerCategoryUpdate.Type is not 'set'"
+            );
 
     public T Match<T>(
         Func<object, T> onRemove,
@@ -179,7 +183,7 @@ public record NonInsurancePayerCategoryUpdate
             var value = discriminator switch
             {
                 "remove" => new { },
-                "set" => json.GetProperty("value").Deserialize<string>(options)
+                "set" => json.GetProperty("value").Deserialize<string?>(options)
                 ?? throw new JsonException("Failed to deserialize string"),
                 _ => json.Deserialize<object?>(options),
             };
@@ -215,7 +219,7 @@ public record NonInsurancePayerCategoryUpdate
     {
         internal object Value => new { };
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
     }
 
     /// <summary>

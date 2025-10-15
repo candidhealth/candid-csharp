@@ -31,7 +31,7 @@ public partial class V1Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<ExpectedNetworkStatusResponse> ComputeAsync(
+    public async global::System.Threading.Tasks.Task<ExpectedNetworkStatusResponse> ComputeAsync(
         ExpectedNetworkStatusRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

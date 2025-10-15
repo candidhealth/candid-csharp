@@ -38,7 +38,7 @@ public partial class V2Client
     ///     new Dictionary&lt;object, object?&gt;() { { "key", "value" } }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<object> SubmitEligibilityCheckAsync(
+    public async global::System.Threading.Tasks.Task<object> SubmitEligibilityCheckAsync(
         object request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -104,7 +104,7 @@ public partial class V2Client
     /// <example><code>
     /// await client.Eligibility.V2.SubmitEligibilityCheckAvailityAsync();
     /// </code></example>
-    public async System.Threading.Tasks.Task<object> SubmitEligibilityCheckAvailityAsync(
+    public async global::System.Threading.Tasks.Task<object> SubmitEligibilityCheckAvailityAsync(
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -166,7 +166,7 @@ public partial class V2Client
     ///     new Dictionary&lt;object, object?&gt;() { { "key", "value" } }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<object> SubmitEligibilityCheckAvailityPostAsync(
+    public async global::System.Threading.Tasks.Task<object> SubmitEligibilityCheckAvailityPostAsync(
         object request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

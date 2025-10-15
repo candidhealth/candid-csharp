@@ -26,7 +26,7 @@ public record ContractWithProviders : IJsonOnDeserialized
     /// The provider under contract
     /// </summary>
     [JsonPropertyName("contracting_provider")]
-    public required Candid.Net.OrganizationProviders.V2.OrganizationProvider ContractingProvider { get; set; }
+    public required global::Candid.Net.OrganizationProviders.V2.OrganizationProvider ContractingProvider { get; set; }
 
     /// <summary>
     /// The number of linked providers who can render medical services under this contract
@@ -38,7 +38,7 @@ public record ContractWithProviders : IJsonOnDeserialized
     /// The insurance company under contract
     /// </summary>
     [JsonPropertyName("payer")]
-    public required Candid.Net.Payers.V3.Payer Payer { get; set; }
+    public required global::Candid.Net.Payers.V3.Payer Payer { get; set; }
 
     /// <summary>
     /// The starting day upon which the contract is effective

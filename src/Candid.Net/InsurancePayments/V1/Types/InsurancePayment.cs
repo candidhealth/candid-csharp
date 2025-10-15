@@ -17,7 +17,7 @@ public record InsurancePayment : IJsonOnDeserialized
     public required string InsurancePaymentId { get; set; }
 
     [JsonPropertyName("payer")]
-    public required Candid.Net.Payers.V3.Payer Payer { get; set; }
+    public required global::Candid.Net.Payers.V3.Payer Payer { get; set; }
 
     [JsonPropertyName("amount_cents")]
     public required int AmountCents { get; set; }

@@ -19,7 +19,7 @@ public partial class ServiceFacilityClient
     ///     new EncounterServiceFacilityUpdate()
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<EncounterServiceFacility> UpdateAsync(
+    public async global::System.Threading.Tasks.Task<EncounterServiceFacility> UpdateAsync(
         string serviceFacilityId,
         EncounterServiceFacilityUpdate request,
         RequestOptions? options = null,

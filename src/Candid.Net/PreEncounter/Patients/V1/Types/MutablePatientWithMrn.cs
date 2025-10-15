@@ -35,7 +35,7 @@ public record MutablePatientWithMrn : IJsonOnDeserialized
     public IEnumerable<ExternalIdentifier>? OtherIdentifiers { get; set; }
 
     [JsonPropertyName("gender")]
-    public Candid.Net.PreEncounter.Common.Gender? Gender { get; set; }
+    public global::Candid.Net.PreEncounter.Common.Gender? Gender { get; set; }
 
     [JsonPropertyName("birth_date")]
     public required DateOnly BirthDate { get; set; }
@@ -89,14 +89,14 @@ public record MutablePatientWithMrn : IJsonOnDeserialized
     /// The primary address for the patient.
     /// </summary>
     [JsonPropertyName("primary_address")]
-    public required Candid.Net.PreEncounter.Common.Address PrimaryAddress { get; set; }
+    public required global::Candid.Net.PreEncounter.Common.Address PrimaryAddress { get; set; }
 
     /// <summary>
     /// Other addresses for the patient.
     /// </summary>
     [JsonPropertyName("other_addresses")]
-    public IEnumerable<Candid.Net.PreEncounter.Common.Address> OtherAddresses { get; set; } =
-        new List<Candid.Net.PreEncounter.Common.Address>();
+    public IEnumerable<global::Candid.Net.PreEncounter.Common.Address> OtherAddresses { get; set; } =
+        new List<global::Candid.Net.PreEncounter.Common.Address>();
 
     /// <summary>
     /// The primary phone number for the patient.

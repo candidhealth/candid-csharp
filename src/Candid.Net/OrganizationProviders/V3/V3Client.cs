@@ -17,7 +17,7 @@ public partial class V3Client
     /// <example><code>
     /// await client.OrganizationProviders.V3.GetAsync("965A563A-0285-4910-9569-E3739C0F6EAB");
     /// </code></example>
-    public async System.Threading.Tasks.Task<OrganizationProviderV2> GetAsync(
+    public async global::System.Threading.Tasks.Task<OrganizationProviderV2> GetAsync(
         string organizationProviderId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -75,7 +75,7 @@ public partial class V3Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<OrganizationProviderPageV2> GetMultiAsync(
+    public async global::System.Threading.Tasks.Task<OrganizationProviderPageV2> GetMultiAsync(
         GetAllOrganizationProvidersRequestV2 request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -188,7 +188,7 @@ public partial class V3Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<OrganizationProviderV2> CreateAsync(
+    public async global::System.Threading.Tasks.Task<OrganizationProviderV2> CreateAsync(
         OrganizationProviderCreateV2 request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -236,7 +236,7 @@ public partial class V3Client
     ///     new OrganizationProviderUpdateV2()
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<OrganizationProviderV2> UpdateAsync(
+    public async global::System.Threading.Tasks.Task<OrganizationProviderV2> UpdateAsync(
         string organizationProviderId,
         OrganizationProviderUpdateV2 request,
         RequestOptions? options = null,

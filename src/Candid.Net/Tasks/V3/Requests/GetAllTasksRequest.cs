@@ -17,7 +17,7 @@ public record GetAllTasksRequest
     public string? PageToken { get; set; }
 
     [JsonIgnore]
-    public Candid.Net.Tasks.Commons.TaskStatus? Status { get; set; }
+    public global::Candid.Net.Tasks.Commons.TaskStatus? Status { get; set; }
 
     [JsonIgnore]
     public TaskType? TaskType { get; set; }

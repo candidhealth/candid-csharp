@@ -1,6 +1,6 @@
 # Reference
 ## Auth Default
-<details><summary><code>client.Auth.Default.<a href="/src/Candid.Net/Auth/Default/DefaultClient.cs">GetTokenAsync</a>(Candid.Net.Auth.Default.AuthGetTokenRequest { ... }) -> Candid.Net.Auth.Default.AuthGetTokenResponse</code></summary>
+<details><summary><code>client.Auth.Default.<a href="/src/Candid.Net/Auth/Default/DefaultClient.cs">GetTokenAsync</a>(global::Candid.Net.Auth.Default.AuthGetTokenRequest { ... }) -> global::Candid.Net.Auth.Default.AuthGetTokenResponse</code></summary>
 <dl>
 <dd>
 
@@ -74,7 +74,7 @@ await client.Auth.Default.GetTokenAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.Auth.Default.AuthGetTokenRequest` 
+**request:** `global::Candid.Net.Auth.Default.AuthGetTokenRequest` 
     
 </dd>
 </dl>
@@ -87,7 +87,7 @@ await client.Auth.Default.GetTokenAsync(
 </details>
 
 ## BillingNotes V2
-<details><summary><code>client.BillingNotes.V2.<a href="/src/Candid.Net/BillingNotes/V2/V2Client.cs">CreateAsync</a>(Candid.Net.BillingNotes.V2.StandaloneBillingNoteCreate { ... }) -> Candid.Net.BillingNotes.V2.BillingNote</code></summary>
+<details><summary><code>client.BillingNotes.V2.<a href="/src/Candid.Net/BillingNotes/V2/V2Client.cs">CreateAsync</a>(global::Candid.Net.BillingNotes.V2.StandaloneBillingNoteCreate { ... }) -> global::Candid.Net.BillingNotes.V2.BillingNote</code></summary>
 <dl>
 <dd>
 
@@ -121,7 +121,7 @@ await client.BillingNotes.V2.CreateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.BillingNotes.V2.StandaloneBillingNoteCreate` 
+**request:** `global::Candid.Net.BillingNotes.V2.StandaloneBillingNoteCreate` 
     
 </dd>
 </dl>
@@ -173,7 +173,7 @@ await client.BillingNotes.V2.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32")
 </dl>
 </details>
 
-<details><summary><code>client.BillingNotes.V2.<a href="/src/Candid.Net/BillingNotes/V2/V2Client.cs">UpdateAsync</a>(billingNoteId, Candid.Net.BillingNotes.V2.BillingNoteUpdate { ... }) -> Candid.Net.BillingNotes.V2.BillingNote</code></summary>
+<details><summary><code>client.BillingNotes.V2.<a href="/src/Candid.Net/BillingNotes/V2/V2Client.cs">UpdateAsync</a>(billingNoteId, global::Candid.Net.BillingNotes.V2.BillingNoteUpdate { ... }) -> global::Candid.Net.BillingNotes.V2.BillingNote</code></summary>
 <dl>
 <dd>
 
@@ -212,7 +212,7 @@ await client.BillingNotes.V2.UpdateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.BillingNotes.V2.BillingNoteUpdate` 
+**request:** `global::Candid.Net.BillingNotes.V2.BillingNoteUpdate` 
     
 </dd>
 </dl>
@@ -225,7 +225,7 @@ await client.BillingNotes.V2.UpdateAsync(
 </details>
 
 ## ChargeCaptureBundles V1
-<details><summary><code>client.ChargeCaptureBundles.V1.<a href="/src/Candid.Net/ChargeCaptureBundles/V1/V1Client.cs">GetAsync</a>(chargeCaptureClaimCreationId) -> Candid.Net.ChargeCaptureBundles.V1.ChargeCaptureClaimCreation</code></summary>
+<details><summary><code>client.ChargeCaptureBundles.V1.<a href="/src/Candid.Net/ChargeCaptureBundles/V1/V1Client.cs">GetAsync</a>(chargeCaptureClaimCreationId) -> global::Candid.Net.ChargeCaptureBundles.V1.ChargeCaptureClaimCreation</code></summary>
 <dl>
 <dd>
 
@@ -265,7 +265,7 @@ await client.ChargeCaptureBundles.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ff
 </dl>
 </details>
 
-<details><summary><code>client.ChargeCaptureBundles.V1.<a href="/src/Candid.Net/ChargeCaptureBundles/V1/V1Client.cs">GetSummaryAsync</a>() -> Candid.Net.ChargeCaptureBundles.V1.ChargeCaptureClaimCreationSummary</code></summary>
+<details><summary><code>client.ChargeCaptureBundles.V1.<a href="/src/Candid.Net/ChargeCaptureBundles/V1/V1Client.cs">GetSummaryAsync</a>() -> global::Candid.Net.ChargeCaptureBundles.V1.ChargeCaptureClaimCreationSummary</code></summary>
 <dl>
 <dd>
 
@@ -290,7 +290,7 @@ await client.ChargeCaptureBundles.V1.GetSummaryAsync();
 </dl>
 </details>
 
-<details><summary><code>client.ChargeCaptureBundles.V1.<a href="/src/Candid.Net/ChargeCaptureBundles/V1/V1Client.cs">ResolveChargeCreationErrorAsync</a>(chargeCaptureBundleErrorId, Candid.Net.ChargeCaptureBundles.V1.ChargeCaptureBundleErrorResolution { ... })</code></summary>
+<details><summary><code>client.ChargeCaptureBundles.V1.<a href="/src/Candid.Net/ChargeCaptureBundles/V1/V1Client.cs">ResolveChargeCreationErrorAsync</a>(chargeCaptureBundleErrorId, global::Candid.Net.ChargeCaptureBundles.V1.ChargeCaptureBundleErrorResolution { ... })</code></summary>
 <dl>
 <dd>
 
@@ -329,7 +329,7 @@ await client.ChargeCaptureBundles.V1.ResolveChargeCreationErrorAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.ChargeCaptureBundles.V1.ChargeCaptureBundleErrorResolution` 
+**request:** `global::Candid.Net.ChargeCaptureBundles.V1.ChargeCaptureBundleErrorResolution` 
     
 </dd>
 </dl>
@@ -341,7 +341,7 @@ await client.ChargeCaptureBundles.V1.ResolveChargeCreationErrorAsync(
 </dl>
 </details>
 
-<details><summary><code>client.ChargeCaptureBundles.V1.<a href="/src/Candid.Net/ChargeCaptureBundles/V1/V1Client.cs">GetAllAsync</a>(Candid.Net.ChargeCaptureBundles.V1.GetAllChargeCaptureClaimCreationsRequest { ... }) -> Candid.Net.ChargeCaptureBundles.V1.ChargeCaptureClaimCreationPage</code></summary>
+<details><summary><code>client.ChargeCaptureBundles.V1.<a href="/src/Candid.Net/ChargeCaptureBundles/V1/V1Client.cs">GetAllAsync</a>(global::Candid.Net.ChargeCaptureBundles.V1.GetAllChargeCaptureClaimCreationsRequest { ... }) -> global::Candid.Net.ChargeCaptureBundles.V1.ChargeCaptureClaimCreationPage</code></summary>
 <dl>
 <dd>
 
@@ -369,7 +369,7 @@ await client.ChargeCaptureBundles.V1.GetAllAsync(new GetAllChargeCaptureClaimCre
 <dl>
 <dd>
 
-**request:** `Candid.Net.ChargeCaptureBundles.V1.GetAllChargeCaptureClaimCreationsRequest` 
+**request:** `global::Candid.Net.ChargeCaptureBundles.V1.GetAllChargeCaptureClaimCreationsRequest` 
     
 </dd>
 </dl>
@@ -382,7 +382,7 @@ await client.ChargeCaptureBundles.V1.GetAllAsync(new GetAllChargeCaptureClaimCre
 </details>
 
 ## ChargeCapture V1
-<details><summary><code>client.ChargeCapture.V1.<a href="/src/Candid.Net/ChargeCapture/V1/V1Client.cs">CreateAsync</a>(Candid.Net.ChargeCapture.V1.CreateChargeCaptureRequest { ... }) -> Candid.Net.ChargeCapture.V1.ChargeCapture</code></summary>
+<details><summary><code>client.ChargeCapture.V1.<a href="/src/Candid.Net/ChargeCapture/V1/V1Client.cs">CreateAsync</a>(global::Candid.Net.ChargeCapture.V1.CreateChargeCaptureRequest { ... }) -> global::Candid.Net.ChargeCapture.V1.ChargeCapture</code></summary>
 <dl>
 <dd>
 
@@ -418,7 +418,7 @@ await client.ChargeCapture.V1.CreateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.ChargeCapture.V1.CreateChargeCaptureRequest` 
+**request:** `global::Candid.Net.ChargeCapture.V1.CreateChargeCaptureRequest` 
     
 </dd>
 </dl>
@@ -430,7 +430,7 @@ await client.ChargeCapture.V1.CreateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.ChargeCapture.V1.<a href="/src/Candid.Net/ChargeCapture/V1/V1Client.cs">CreateFromPreEncounterPatientAsync</a>(Candid.Net.ChargeCapture.V1.CreateChargeCaptureFromPreEncounterRequest { ... }) -> Candid.Net.ChargeCapture.V1.ChargeCapture</code></summary>
+<details><summary><code>client.ChargeCapture.V1.<a href="/src/Candid.Net/ChargeCapture/V1/V1Client.cs">CreateFromPreEncounterPatientAsync</a>(global::Candid.Net.ChargeCapture.V1.CreateChargeCaptureFromPreEncounterRequest { ... }) -> global::Candid.Net.ChargeCapture.V1.ChargeCapture</code></summary>
 <dl>
 <dd>
 
@@ -502,7 +502,7 @@ await client.ChargeCapture.V1.CreateFromPreEncounterPatientAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.ChargeCapture.V1.CreateChargeCaptureFromPreEncounterRequest` 
+**request:** `global::Candid.Net.ChargeCapture.V1.CreateChargeCaptureFromPreEncounterRequest` 
     
 </dd>
 </dl>
@@ -514,7 +514,7 @@ await client.ChargeCapture.V1.CreateFromPreEncounterPatientAsync(
 </dl>
 </details>
 
-<details><summary><code>client.ChargeCapture.V1.<a href="/src/Candid.Net/ChargeCapture/V1/V1Client.cs">UpdateAsync</a>(chargeCaptureId, Candid.Net.ChargeCapture.V1.ChargeCaptureUpdate { ... }) -> Candid.Net.ChargeCapture.V1.ChargeCapture</code></summary>
+<details><summary><code>client.ChargeCapture.V1.<a href="/src/Candid.Net/ChargeCapture/V1/V1Client.cs">UpdateAsync</a>(chargeCaptureId, global::Candid.Net.ChargeCapture.V1.ChargeCaptureUpdate { ... }) -> global::Candid.Net.ChargeCapture.V1.ChargeCapture</code></summary>
 <dl>
 <dd>
 
@@ -553,7 +553,7 @@ await client.ChargeCapture.V1.UpdateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.ChargeCapture.V1.ChargeCaptureUpdate` 
+**request:** `global::Candid.Net.ChargeCapture.V1.ChargeCaptureUpdate` 
     
 </dd>
 </dl>
@@ -565,7 +565,7 @@ await client.ChargeCapture.V1.UpdateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.ChargeCapture.V1.<a href="/src/Candid.Net/ChargeCapture/V1/V1Client.cs">GetAsync</a>(chargeCaptureId) -> Candid.Net.ChargeCapture.V1.ChargeCapture</code></summary>
+<details><summary><code>client.ChargeCapture.V1.<a href="/src/Candid.Net/ChargeCapture/V1/V1Client.cs">GetAsync</a>(chargeCaptureId) -> global::Candid.Net.ChargeCapture.V1.ChargeCapture</code></summary>
 <dl>
 <dd>
 
@@ -605,7 +605,7 @@ await client.ChargeCapture.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
 </dl>
 </details>
 
-<details><summary><code>client.ChargeCapture.V1.<a href="/src/Candid.Net/ChargeCapture/V1/V1Client.cs">GetAllAsync</a>(Candid.Net.ChargeCapture.V1.GetAllChargeCapturesRequest { ... }) -> Candid.Net.ChargeCapture.V1.ChargeCapturePage</code></summary>
+<details><summary><code>client.ChargeCapture.V1.<a href="/src/Candid.Net/ChargeCapture/V1/V1Client.cs">GetAllAsync</a>(global::Candid.Net.ChargeCapture.V1.GetAllChargeCapturesRequest { ... }) -> global::Candid.Net.ChargeCapture.V1.ChargeCapturePage</code></summary>
 <dl>
 <dd>
 
@@ -633,7 +633,7 @@ await client.ChargeCapture.V1.GetAllAsync(new GetAllChargeCapturesRequest());
 <dl>
 <dd>
 
-**request:** `Candid.Net.ChargeCapture.V1.GetAllChargeCapturesRequest` 
+**request:** `global::Candid.Net.ChargeCapture.V1.GetAllChargeCapturesRequest` 
     
 </dd>
 </dl>
@@ -645,7 +645,7 @@ await client.ChargeCapture.V1.GetAllAsync(new GetAllChargeCapturesRequest());
 </dl>
 </details>
 
-<details><summary><code>client.ChargeCapture.V1.<a href="/src/Candid.Net/ChargeCapture/V1/V1Client.cs">UpdatePostBilledChangesAsync</a>(Candid.Net.ChargeCapture.V1.ChargeCapturePostBilledChangeUpdate { ... }) -> IEnumerable<Candid.Net.ChargeCapture.V1.ChargeCapturePostBilledChange></code></summary>
+<details><summary><code>client.ChargeCapture.V1.<a href="/src/Candid.Net/ChargeCapture/V1/V1Client.cs">UpdatePostBilledChangesAsync</a>(global::Candid.Net.ChargeCapture.V1.ChargeCapturePostBilledChangeUpdate { ... }) -> IEnumerable<global::Candid.Net.ChargeCapture.V1.ChargeCapturePostBilledChange></code></summary>
 <dl>
 <dd>
 
@@ -683,7 +683,7 @@ await client.ChargeCapture.V1.UpdatePostBilledChangesAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.ChargeCapture.V1.ChargeCapturePostBilledChangeUpdate` 
+**request:** `global::Candid.Net.ChargeCapture.V1.ChargeCapturePostBilledChangeUpdate` 
     
 </dd>
 </dl>
@@ -696,7 +696,7 @@ await client.ChargeCapture.V1.UpdatePostBilledChangesAsync(
 </details>
 
 ## Contracts V2
-<details><summary><code>client.Contracts.V2.<a href="/src/Candid.Net/Contracts/V2/V2Client.cs">GetAsync</a>(contractId) -> Candid.Net.Contracts.V2.ContractWithProviders</code></summary>
+<details><summary><code>client.Contracts.V2.<a href="/src/Candid.Net/Contracts/V2/V2Client.cs">GetAsync</a>(contractId) -> global::Candid.Net.Contracts.V2.ContractWithProviders</code></summary>
 <dl>
 <dd>
 
@@ -736,7 +736,7 @@ await client.Contracts.V2.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
 </dl>
 </details>
 
-<details><summary><code>client.Contracts.V2.<a href="/src/Candid.Net/Contracts/V2/V2Client.cs">GetMultiAsync</a>(Candid.Net.Contracts.V2.GetMultiContractsRequest { ... }) -> Candid.Net.Contracts.V2.ContractsPage</code></summary>
+<details><summary><code>client.Contracts.V2.<a href="/src/Candid.Net/Contracts/V2/V2Client.cs">GetMultiAsync</a>(global::Candid.Net.Contracts.V2.GetMultiContractsRequest { ... }) -> global::Candid.Net.Contracts.V2.ContractsPage</code></summary>
 <dl>
 <dd>
 
@@ -764,7 +764,7 @@ await client.Contracts.V2.GetMultiAsync(new GetMultiContractsRequest());
 <dl>
 <dd>
 
-**request:** `Candid.Net.Contracts.V2.GetMultiContractsRequest` 
+**request:** `global::Candid.Net.Contracts.V2.GetMultiContractsRequest` 
     
 </dd>
 </dl>
@@ -776,7 +776,7 @@ await client.Contracts.V2.GetMultiAsync(new GetMultiContractsRequest());
 </dl>
 </details>
 
-<details><summary><code>client.Contracts.V2.<a href="/src/Candid.Net/Contracts/V2/V2Client.cs">CreateAsync</a>(Candid.Net.Contracts.V2.ContractCreate { ... }) -> Candid.Net.Contracts.V2.ContractWithProviders</code></summary>
+<details><summary><code>client.Contracts.V2.<a href="/src/Candid.Net/Contracts/V2/V2Client.cs">CreateAsync</a>(global::Candid.Net.Contracts.V2.ContractCreate { ... }) -> global::Candid.Net.Contracts.V2.ContractWithProviders</code></summary>
 <dl>
 <dd>
 
@@ -837,7 +837,7 @@ await client.Contracts.V2.CreateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.Contracts.V2.ContractCreate` 
+**request:** `global::Candid.Net.Contracts.V2.ContractCreate` 
     
 </dd>
 </dl>
@@ -889,7 +889,7 @@ await client.Contracts.V2.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
 </dl>
 </details>
 
-<details><summary><code>client.Contracts.V2.<a href="/src/Candid.Net/Contracts/V2/V2Client.cs">UpdateAsync</a>(contractId, Candid.Net.Contracts.V2.ContractUpdate { ... }) -> Candid.Net.Contracts.V2.ContractWithProviders</code></summary>
+<details><summary><code>client.Contracts.V2.<a href="/src/Candid.Net/Contracts/V2/V2Client.cs">UpdateAsync</a>(contractId, global::Candid.Net.Contracts.V2.ContractUpdate { ... }) -> global::Candid.Net.Contracts.V2.ContractWithProviders</code></summary>
 <dl>
 <dd>
 
@@ -925,7 +925,7 @@ await client.Contracts.V2.UpdateAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32", ne
 <dl>
 <dd>
 
-**request:** `Candid.Net.Contracts.V2.ContractUpdate` 
+**request:** `global::Candid.Net.Contracts.V2.ContractUpdate` 
     
 </dd>
 </dl>
@@ -938,7 +938,7 @@ await client.Contracts.V2.UpdateAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32", ne
 </details>
 
 ## Credentialing V2
-<details><summary><code>client.Credentialing.V2.<a href="/src/Candid.Net/Credentialing/V2/V2Client.cs">CreateFacilityAsync</a>(Candid.Net.Credentialing.V2.FacilityCredentialingSpanCreate { ... }) -> Candid.Net.Credentialing.V2.FacilityCredentialingSpan</code></summary>
+<details><summary><code>client.Credentialing.V2.<a href="/src/Candid.Net/Credentialing/V2/V2Client.cs">CreateFacilityAsync</a>(global::Candid.Net.Credentialing.V2.FacilityCredentialingSpanCreate { ... }) -> global::Candid.Net.Credentialing.V2.FacilityCredentialingSpan</code></summary>
 <dl>
 <dd>
 
@@ -973,7 +973,7 @@ await client.Credentialing.V2.CreateFacilityAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.Credentialing.V2.FacilityCredentialingSpanCreate` 
+**request:** `global::Candid.Net.Credentialing.V2.FacilityCredentialingSpanCreate` 
     
 </dd>
 </dl>
@@ -985,7 +985,7 @@ await client.Credentialing.V2.CreateFacilityAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Credentialing.V2.<a href="/src/Candid.Net/Credentialing/V2/V2Client.cs">GetFacilityAsync</a>(facilityCredentialingId) -> Candid.Net.Credentialing.V2.FacilityCredentialingSpan</code></summary>
+<details><summary><code>client.Credentialing.V2.<a href="/src/Candid.Net/Credentialing/V2/V2Client.cs">GetFacilityAsync</a>(facilityCredentialingId) -> global::Candid.Net.Credentialing.V2.FacilityCredentialingSpan</code></summary>
 <dl>
 <dd>
 
@@ -1025,7 +1025,7 @@ await client.Credentialing.V2.GetFacilityAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9f
 </dl>
 </details>
 
-<details><summary><code>client.Credentialing.V2.<a href="/src/Candid.Net/Credentialing/V2/V2Client.cs">GetAllFacilitiesAsync</a>(Candid.Net.Credentialing.V2.GetAllFacilityCredentialingSpansRequest { ... }) -> Candid.Net.Credentialing.V2.FacilityCredentialingSpanPage</code></summary>
+<details><summary><code>client.Credentialing.V2.<a href="/src/Candid.Net/Credentialing/V2/V2Client.cs">GetAllFacilitiesAsync</a>(global::Candid.Net.Credentialing.V2.GetAllFacilityCredentialingSpansRequest { ... }) -> global::Candid.Net.Credentialing.V2.FacilityCredentialingSpanPage</code></summary>
 <dl>
 <dd>
 
@@ -1053,7 +1053,7 @@ await client.Credentialing.V2.GetAllFacilitiesAsync(new GetAllFacilityCredential
 <dl>
 <dd>
 
-**request:** `Candid.Net.Credentialing.V2.GetAllFacilityCredentialingSpansRequest` 
+**request:** `global::Candid.Net.Credentialing.V2.GetAllFacilityCredentialingSpansRequest` 
     
 </dd>
 </dl>
@@ -1119,7 +1119,7 @@ await client.Credentialing.V2.DeleteFacilityAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7
 </dl>
 </details>
 
-<details><summary><code>client.Credentialing.V2.<a href="/src/Candid.Net/Credentialing/V2/V2Client.cs">UpdateFacilityAsync</a>(facilityCredentialingId, Candid.Net.Credentialing.V2.FacilityCredentialingSpanUpdate { ... }) -> Candid.Net.Credentialing.V2.FacilityCredentialingSpan</code></summary>
+<details><summary><code>client.Credentialing.V2.<a href="/src/Candid.Net/Credentialing/V2/V2Client.cs">UpdateFacilityAsync</a>(facilityCredentialingId, global::Candid.Net.Credentialing.V2.FacilityCredentialingSpanUpdate { ... }) -> global::Candid.Net.Credentialing.V2.FacilityCredentialingSpan</code></summary>
 <dl>
 <dd>
 
@@ -1161,7 +1161,7 @@ await client.Credentialing.V2.UpdateFacilityAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.Credentialing.V2.FacilityCredentialingSpanUpdate` 
+**request:** `global::Candid.Net.Credentialing.V2.FacilityCredentialingSpanUpdate` 
     
 </dd>
 </dl>
@@ -1173,7 +1173,7 @@ await client.Credentialing.V2.UpdateFacilityAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Credentialing.V2.<a href="/src/Candid.Net/Credentialing/V2/V2Client.cs">CreateAsync</a>(Candid.Net.Credentialing.V2.ProviderCredentialingSpanCreate { ... }) -> Candid.Net.Credentialing.V2.ProviderCredentialingSpan</code></summary>
+<details><summary><code>client.Credentialing.V2.<a href="/src/Candid.Net/Credentialing/V2/V2Client.cs">CreateAsync</a>(global::Candid.Net.Credentialing.V2.ProviderCredentialingSpanCreate { ... }) -> global::Candid.Net.Credentialing.V2.ProviderCredentialingSpan</code></summary>
 <dl>
 <dd>
 
@@ -1216,7 +1216,7 @@ await client.Credentialing.V2.CreateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.Credentialing.V2.ProviderCredentialingSpanCreate` 
+**request:** `global::Candid.Net.Credentialing.V2.ProviderCredentialingSpanCreate` 
     
 </dd>
 </dl>
@@ -1228,7 +1228,7 @@ await client.Credentialing.V2.CreateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Credentialing.V2.<a href="/src/Candid.Net/Credentialing/V2/V2Client.cs">GetAsync</a>(providerCredentialingId) -> Candid.Net.Credentialing.V2.ProviderCredentialingSpan</code></summary>
+<details><summary><code>client.Credentialing.V2.<a href="/src/Candid.Net/Credentialing/V2/V2Client.cs">GetAsync</a>(providerCredentialingId) -> global::Candid.Net.Credentialing.V2.ProviderCredentialingSpan</code></summary>
 <dl>
 <dd>
 
@@ -1268,7 +1268,7 @@ await client.Credentialing.V2.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
 </dl>
 </details>
 
-<details><summary><code>client.Credentialing.V2.<a href="/src/Candid.Net/Credentialing/V2/V2Client.cs">GetAllAsync</a>(Candid.Net.Credentialing.V2.GetAllProviderCredentialingSpansRequest { ... }) -> Candid.Net.Credentialing.V2.ProviderCredentialingSpanPage</code></summary>
+<details><summary><code>client.Credentialing.V2.<a href="/src/Candid.Net/Credentialing/V2/V2Client.cs">GetAllAsync</a>(global::Candid.Net.Credentialing.V2.GetAllProviderCredentialingSpansRequest { ... }) -> global::Candid.Net.Credentialing.V2.ProviderCredentialingSpanPage</code></summary>
 <dl>
 <dd>
 
@@ -1296,7 +1296,7 @@ await client.Credentialing.V2.GetAllAsync(new GetAllProviderCredentialingSpansRe
 <dl>
 <dd>
 
-**request:** `Candid.Net.Credentialing.V2.GetAllProviderCredentialingSpansRequest` 
+**request:** `global::Candid.Net.Credentialing.V2.GetAllProviderCredentialingSpansRequest` 
     
 </dd>
 </dl>
@@ -1362,7 +1362,7 @@ await client.Credentialing.V2.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
 </dl>
 </details>
 
-<details><summary><code>client.Credentialing.V2.<a href="/src/Candid.Net/Credentialing/V2/V2Client.cs">UpdateAsync</a>(providerCredentialingId, Candid.Net.Credentialing.V2.ProviderCredentialingSpanUpdate { ... }) -> Candid.Net.Credentialing.V2.ProviderCredentialingSpan</code></summary>
+<details><summary><code>client.Credentialing.V2.<a href="/src/Candid.Net/Credentialing/V2/V2Client.cs">UpdateAsync</a>(providerCredentialingId, global::Candid.Net.Credentialing.V2.ProviderCredentialingSpanUpdate { ... }) -> global::Candid.Net.Credentialing.V2.ProviderCredentialingSpan</code></summary>
 <dl>
 <dd>
 
@@ -1401,7 +1401,7 @@ await client.Credentialing.V2.UpdateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.Credentialing.V2.ProviderCredentialingSpanUpdate` 
+**request:** `global::Candid.Net.Credentialing.V2.ProviderCredentialingSpanUpdate` 
     
 </dd>
 </dl>
@@ -1414,7 +1414,7 @@ await client.Credentialing.V2.UpdateAsync(
 </details>
 
 ## CustomSchemas V1
-<details><summary><code>client.CustomSchemas.V1.<a href="/src/Candid.Net/CustomSchemas/V1/V1Client.cs">GetMultiAsync</a>() -> Candid.Net.CustomSchemas.V1.SchemaGetMultiResponse</code></summary>
+<details><summary><code>client.CustomSchemas.V1.<a href="/src/Candid.Net/CustomSchemas/V1/V1Client.cs">GetMultiAsync</a>() -> global::Candid.Net.CustomSchemas.V1.SchemaGetMultiResponse</code></summary>
 <dl>
 <dd>
 
@@ -1453,7 +1453,7 @@ await client.CustomSchemas.V1.GetMultiAsync();
 </dl>
 </details>
 
-<details><summary><code>client.CustomSchemas.V1.<a href="/src/Candid.Net/CustomSchemas/V1/V1Client.cs">GetAsync</a>(schemaId) -> Candid.Net.CustomSchemas.V1.Schema</code></summary>
+<details><summary><code>client.CustomSchemas.V1.<a href="/src/Candid.Net/CustomSchemas/V1/V1Client.cs">GetAsync</a>(schemaId) -> global::Candid.Net.CustomSchemas.V1.Schema</code></summary>
 <dl>
 <dd>
 
@@ -1507,7 +1507,7 @@ await client.CustomSchemas.V1.GetAsync("ec096b13-f80a-471d-aaeb-54b021c9d582");
 </dl>
 </details>
 
-<details><summary><code>client.CustomSchemas.V1.<a href="/src/Candid.Net/CustomSchemas/V1/V1Client.cs">CreateAsync</a>(Candid.Net.CustomSchemas.V1.SchemaCreate { ... }) -> Candid.Net.CustomSchemas.V1.Schema</code></summary>
+<details><summary><code>client.CustomSchemas.V1.<a href="/src/Candid.Net/CustomSchemas/V1/V1Client.cs">CreateAsync</a>(global::Candid.Net.CustomSchemas.V1.SchemaCreate { ... }) -> global::Candid.Net.CustomSchemas.V1.Schema</code></summary>
 <dl>
 <dd>
 
@@ -1563,7 +1563,7 @@ await client.CustomSchemas.V1.CreateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.CustomSchemas.V1.SchemaCreate` 
+**request:** `global::Candid.Net.CustomSchemas.V1.SchemaCreate` 
     
 </dd>
 </dl>
@@ -1575,7 +1575,7 @@ await client.CustomSchemas.V1.CreateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.CustomSchemas.V1.<a href="/src/Candid.Net/CustomSchemas/V1/V1Client.cs">UpdateAsync</a>(schemaId, Candid.Net.CustomSchemas.V1.SchemaUpdate { ... }) -> Candid.Net.CustomSchemas.V1.Schema</code></summary>
+<details><summary><code>client.CustomSchemas.V1.<a href="/src/Candid.Net/CustomSchemas/V1/V1Client.cs">UpdateAsync</a>(schemaId, global::Candid.Net.CustomSchemas.V1.SchemaUpdate { ... }) -> global::Candid.Net.CustomSchemas.V1.Schema</code></summary>
 <dl>
 <dd>
 
@@ -1636,7 +1636,7 @@ await client.CustomSchemas.V1.UpdateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.CustomSchemas.V1.SchemaUpdate` 
+**request:** `global::Candid.Net.CustomSchemas.V1.SchemaUpdate` 
     
 </dd>
 </dl>
@@ -1849,7 +1849,7 @@ await client.Eligibility.V2.SubmitEligibilityCheckAvailityPostAsync(
 </details>
 
 ## EncounterAttachments V1
-<details><summary><code>client.EncounterAttachments.V1.<a href="/src/Candid.Net/EncounterAttachments/V1/V1Client.cs">GetAsync</a>(encounterId) -> IEnumerable<Candid.Net.EncounterAttachments.V1.EncounterAttachment></code></summary>
+<details><summary><code>client.EncounterAttachments.V1.<a href="/src/Candid.Net/EncounterAttachments/V1/V1Client.cs">GetAsync</a>(encounterId) -> IEnumerable<global::Candid.Net.EncounterAttachments.V1.EncounterAttachment></code></summary>
 <dl>
 <dd>
 
@@ -1889,7 +1889,7 @@ await client.EncounterAttachments.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ff
 </dl>
 </details>
 
-<details><summary><code>client.EncounterAttachments.V1.<a href="/src/Candid.Net/EncounterAttachments/V1/V1Client.cs">DeleteAsync</a>(encounterId, Candid.Net.EncounterAttachments.V1.DeleteAttachmentRequest { ... })</code></summary>
+<details><summary><code>client.EncounterAttachments.V1.<a href="/src/Candid.Net/EncounterAttachments/V1/V1Client.cs">DeleteAsync</a>(encounterId, global::Candid.Net.EncounterAttachments.V1.DeleteAttachmentRequest { ... })</code></summary>
 <dl>
 <dd>
 
@@ -1928,7 +1928,7 @@ await client.EncounterAttachments.V1.DeleteAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.EncounterAttachments.V1.DeleteAttachmentRequest` 
+**request:** `global::Candid.Net.EncounterAttachments.V1.DeleteAttachmentRequest` 
     
 </dd>
 </dl>
@@ -1941,7 +1941,7 @@ await client.EncounterAttachments.V1.DeleteAsync(
 </details>
 
 ## EncounterProviders V2
-<details><summary><code>client.EncounterProviders.V2.<a href="/src/Candid.Net/EncounterProviders/V2/V2Client.cs">UpdateReferringProviderAsync</a>(encounterId, Candid.Net.EncounterProviders.V2.ReferringProviderUpdate { ... }) -> Candid.Net.EncounterProviders.V2.EncounterProvider</code></summary>
+<details><summary><code>client.EncounterProviders.V2.<a href="/src/Candid.Net/EncounterProviders/V2/V2Client.cs">UpdateReferringProviderAsync</a>(encounterId, global::Candid.Net.EncounterProviders.V2.ReferringProviderUpdate { ... }) -> global::Candid.Net.EncounterProviders.V2.EncounterProvider</code></summary>
 <dl>
 <dd>
 
@@ -1980,7 +1980,7 @@ await client.EncounterProviders.V2.UpdateReferringProviderAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.EncounterProviders.V2.ReferringProviderUpdate` 
+**request:** `global::Candid.Net.EncounterProviders.V2.ReferringProviderUpdate` 
     
 </dd>
 </dl>
@@ -1992,7 +1992,7 @@ await client.EncounterProviders.V2.UpdateReferringProviderAsync(
 </dl>
 </details>
 
-<details><summary><code>client.EncounterProviders.V2.<a href="/src/Candid.Net/EncounterProviders/V2/V2Client.cs">UpdateInitialReferringProviderAsync</a>(encounterId, Candid.Net.EncounterProviders.V2.InitialReferringProviderUpdate { ... }) -> Candid.Net.EncounterProviders.V2.EncounterProvider</code></summary>
+<details><summary><code>client.EncounterProviders.V2.<a href="/src/Candid.Net/EncounterProviders/V2/V2Client.cs">UpdateInitialReferringProviderAsync</a>(encounterId, global::Candid.Net.EncounterProviders.V2.InitialReferringProviderUpdate { ... }) -> global::Candid.Net.EncounterProviders.V2.EncounterProvider</code></summary>
 <dl>
 <dd>
 
@@ -2031,7 +2031,7 @@ await client.EncounterProviders.V2.UpdateInitialReferringProviderAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.EncounterProviders.V2.InitialReferringProviderUpdate` 
+**request:** `global::Candid.Net.EncounterProviders.V2.InitialReferringProviderUpdate` 
     
 </dd>
 </dl>
@@ -2043,7 +2043,7 @@ await client.EncounterProviders.V2.UpdateInitialReferringProviderAsync(
 </dl>
 </details>
 
-<details><summary><code>client.EncounterProviders.V2.<a href="/src/Candid.Net/EncounterProviders/V2/V2Client.cs">UpdateSupervisingProviderAsync</a>(encounterId, Candid.Net.EncounterProviders.V2.SupervisingProviderUpdate { ... }) -> Candid.Net.EncounterProviders.V2.EncounterProvider</code></summary>
+<details><summary><code>client.EncounterProviders.V2.<a href="/src/Candid.Net/EncounterProviders/V2/V2Client.cs">UpdateSupervisingProviderAsync</a>(encounterId, global::Candid.Net.EncounterProviders.V2.SupervisingProviderUpdate { ... }) -> global::Candid.Net.EncounterProviders.V2.EncounterProvider</code></summary>
 <dl>
 <dd>
 
@@ -2082,7 +2082,7 @@ await client.EncounterProviders.V2.UpdateSupervisingProviderAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.EncounterProviders.V2.SupervisingProviderUpdate` 
+**request:** `global::Candid.Net.EncounterProviders.V2.SupervisingProviderUpdate` 
     
 </dd>
 </dl>
@@ -2094,7 +2094,7 @@ await client.EncounterProviders.V2.UpdateSupervisingProviderAsync(
 </dl>
 </details>
 
-<details><summary><code>client.EncounterProviders.V2.<a href="/src/Candid.Net/EncounterProviders/V2/V2Client.cs">UpdateOrderingProviderAsync</a>(serviceLineId, Candid.Net.EncounterProviders.V2.OrderingProviderUpdate { ... }) -> Candid.Net.EncounterProviders.V2.EncounterProvider</code></summary>
+<details><summary><code>client.EncounterProviders.V2.<a href="/src/Candid.Net/EncounterProviders/V2/V2Client.cs">UpdateOrderingProviderAsync</a>(serviceLineId, global::Candid.Net.EncounterProviders.V2.OrderingProviderUpdate { ... }) -> global::Candid.Net.EncounterProviders.V2.EncounterProvider</code></summary>
 <dl>
 <dd>
 
@@ -2133,7 +2133,7 @@ await client.EncounterProviders.V2.UpdateOrderingProviderAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.EncounterProviders.V2.OrderingProviderUpdate` 
+**request:** `global::Candid.Net.EncounterProviders.V2.OrderingProviderUpdate` 
     
 </dd>
 </dl>
@@ -2145,7 +2145,7 @@ await client.EncounterProviders.V2.UpdateOrderingProviderAsync(
 </dl>
 </details>
 
-<details><summary><code>client.EncounterProviders.V2.<a href="/src/Candid.Net/EncounterProviders/V2/V2Client.cs">CreateReferringProviderAsync</a>(encounterId, Candid.Net.EncounterProviders.V2.ReferringProvider { ... }) -> Candid.Net.EncounterProviders.V2.EncounterProvider</code></summary>
+<details><summary><code>client.EncounterProviders.V2.<a href="/src/Candid.Net/EncounterProviders/V2/V2Client.cs">CreateReferringProviderAsync</a>(encounterId, global::Candid.Net.EncounterProviders.V2.ReferringProvider { ... }) -> global::Candid.Net.EncounterProviders.V2.EncounterProvider</code></summary>
 <dl>
 <dd>
 
@@ -2184,7 +2184,7 @@ await client.EncounterProviders.V2.CreateReferringProviderAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.EncounterProviders.V2.ReferringProvider` 
+**request:** `global::Candid.Net.EncounterProviders.V2.ReferringProvider` 
     
 </dd>
 </dl>
@@ -2196,7 +2196,7 @@ await client.EncounterProviders.V2.CreateReferringProviderAsync(
 </dl>
 </details>
 
-<details><summary><code>client.EncounterProviders.V2.<a href="/src/Candid.Net/EncounterProviders/V2/V2Client.cs">CreateInitialReferringProviderAsync</a>(encounterId, Candid.Net.EncounterProviders.V2.InitialReferringProvider { ... }) -> Candid.Net.EncounterProviders.V2.EncounterProvider</code></summary>
+<details><summary><code>client.EncounterProviders.V2.<a href="/src/Candid.Net/EncounterProviders/V2/V2Client.cs">CreateInitialReferringProviderAsync</a>(encounterId, global::Candid.Net.EncounterProviders.V2.InitialReferringProvider { ... }) -> global::Candid.Net.EncounterProviders.V2.EncounterProvider</code></summary>
 <dl>
 <dd>
 
@@ -2235,7 +2235,7 @@ await client.EncounterProviders.V2.CreateInitialReferringProviderAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.EncounterProviders.V2.InitialReferringProvider` 
+**request:** `global::Candid.Net.EncounterProviders.V2.InitialReferringProvider` 
     
 </dd>
 </dl>
@@ -2247,7 +2247,7 @@ await client.EncounterProviders.V2.CreateInitialReferringProviderAsync(
 </dl>
 </details>
 
-<details><summary><code>client.EncounterProviders.V2.<a href="/src/Candid.Net/EncounterProviders/V2/V2Client.cs">CreateSupervisingProviderAsync</a>(encounterId, Candid.Net.EncounterProviders.V2.SupervisingProvider { ... }) -> Candid.Net.EncounterProviders.V2.EncounterProvider</code></summary>
+<details><summary><code>client.EncounterProviders.V2.<a href="/src/Candid.Net/EncounterProviders/V2/V2Client.cs">CreateSupervisingProviderAsync</a>(encounterId, global::Candid.Net.EncounterProviders.V2.SupervisingProvider { ... }) -> global::Candid.Net.EncounterProviders.V2.EncounterProvider</code></summary>
 <dl>
 <dd>
 
@@ -2286,7 +2286,7 @@ await client.EncounterProviders.V2.CreateSupervisingProviderAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.EncounterProviders.V2.SupervisingProvider` 
+**request:** `global::Candid.Net.EncounterProviders.V2.SupervisingProvider` 
     
 </dd>
 </dl>
@@ -2298,7 +2298,7 @@ await client.EncounterProviders.V2.CreateSupervisingProviderAsync(
 </dl>
 </details>
 
-<details><summary><code>client.EncounterProviders.V2.<a href="/src/Candid.Net/EncounterProviders/V2/V2Client.cs">CreateOrderingProviderAsync</a>(serviceLineId, Candid.Net.EncounterProviders.V2.OrderingProvider { ... }) -> Candid.Net.EncounterProviders.V2.EncounterProvider</code></summary>
+<details><summary><code>client.EncounterProviders.V2.<a href="/src/Candid.Net/EncounterProviders/V2/V2Client.cs">CreateOrderingProviderAsync</a>(serviceLineId, global::Candid.Net.EncounterProviders.V2.OrderingProvider { ... }) -> global::Candid.Net.EncounterProviders.V2.EncounterProvider</code></summary>
 <dl>
 <dd>
 
@@ -2337,7 +2337,7 @@ await client.EncounterProviders.V2.CreateOrderingProviderAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.EncounterProviders.V2.OrderingProvider` 
+**request:** `global::Candid.Net.EncounterProviders.V2.OrderingProvider` 
     
 </dd>
 </dl>
@@ -2518,7 +2518,7 @@ await client.EncounterProviders.V2.DeleteOrderingProviderAsync(
 </details>
 
 ## Encounters V4
-<details><summary><code>client.Encounters.V4.<a href="/src/Candid.Net/Encounters/V4/V4Client.cs">GetAllAsync</a>(Candid.Net.Encounters.V4.GetAllEncountersRequest { ... }) -> Candid.Net.Encounters.V4.EncounterPage</code></summary>
+<details><summary><code>client.Encounters.V4.<a href="/src/Candid.Net/Encounters/V4/V4Client.cs">GetAllAsync</a>(global::Candid.Net.Encounters.V4.GetAllEncountersRequest { ... }) -> global::Candid.Net.Encounters.V4.EncounterPage</code></summary>
 <dl>
 <dd>
 
@@ -2560,7 +2560,7 @@ await client.Encounters.V4.GetAllAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.Encounters.V4.GetAllEncountersRequest` 
+**request:** `global::Candid.Net.Encounters.V4.GetAllEncountersRequest` 
     
 </dd>
 </dl>
@@ -2572,7 +2572,7 @@ await client.Encounters.V4.GetAllAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Encounters.V4.<a href="/src/Candid.Net/Encounters/V4/V4Client.cs">GetAsync</a>(encounterId) -> Candid.Net.Encounters.V4.Encounter</code></summary>
+<details><summary><code>client.Encounters.V4.<a href="/src/Candid.Net/Encounters/V4/V4Client.cs">GetAsync</a>(encounterId) -> global::Candid.Net.Encounters.V4.Encounter</code></summary>
 <dl>
 <dd>
 
@@ -2612,7 +2612,7 @@ await client.Encounters.V4.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
 </dl>
 </details>
 
-<details><summary><code>client.Encounters.V4.<a href="/src/Candid.Net/Encounters/V4/V4Client.cs">CreateAsync</a>(Candid.Net.Encounters.V4.EncounterCreate { ... }) -> Candid.Net.Encounters.V4.Encounter</code></summary>
+<details><summary><code>client.Encounters.V4.<a href="/src/Candid.Net/Encounters/V4/V4Client.cs">CreateAsync</a>(global::Candid.Net.Encounters.V4.EncounterCreate { ... }) -> global::Candid.Net.Encounters.V4.Encounter</code></summary>
 <dl>
 <dd>
 
@@ -2661,7 +2661,7 @@ await client.Encounters.V4.CreateAsync(
             },
             FirstName = "first_name",
             LastName = "last_name",
-            Gender = Candid.Net.Individual.Gender.Male,
+            Gender = global::Candid.Net.Individual.Gender.Male,
         },
         ResponsibleParty = ResponsiblePartyType.InsurancePay,
         ExternalId = "external_id",
@@ -2685,7 +2685,7 @@ await client.Encounters.V4.CreateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.Encounters.V4.EncounterCreate` 
+**request:** `global::Candid.Net.Encounters.V4.EncounterCreate` 
     
 </dd>
 </dl>
@@ -2697,7 +2697,7 @@ await client.Encounters.V4.CreateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Encounters.V4.<a href="/src/Candid.Net/Encounters/V4/V4Client.cs">CreateFromPreEncounterPatientAsync</a>(Candid.Net.Encounters.V4.EncounterCreateFromPreEncounter { ... }) -> Candid.Net.Encounters.V4.Encounter</code></summary>
+<details><summary><code>client.Encounters.V4.<a href="/src/Candid.Net/Encounters/V4/V4Client.cs">CreateFromPreEncounterPatientAsync</a>(global::Candid.Net.Encounters.V4.EncounterCreateFromPreEncounter { ... }) -> global::Candid.Net.Encounters.V4.Encounter</code></summary>
 <dl>
 <dd>
 
@@ -2789,7 +2789,7 @@ await client.Encounters.V4.CreateFromPreEncounterPatientAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.Encounters.V4.EncounterCreateFromPreEncounter` 
+**request:** `global::Candid.Net.Encounters.V4.EncounterCreateFromPreEncounter` 
     
 </dd>
 </dl>
@@ -2801,7 +2801,7 @@ await client.Encounters.V4.CreateFromPreEncounterPatientAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Encounters.V4.<a href="/src/Candid.Net/Encounters/V4/V4Client.cs">UpdateAsync</a>(encounterId, Candid.Net.Encounters.V4.EncounterUpdate { ... }) -> Candid.Net.Encounters.V4.Encounter</code></summary>
+<details><summary><code>client.Encounters.V4.<a href="/src/Candid.Net/Encounters/V4/V4Client.cs">UpdateAsync</a>(encounterId, global::Candid.Net.Encounters.V4.EncounterUpdate { ... }) -> global::Candid.Net.Encounters.V4.Encounter</code></summary>
 <dl>
 <dd>
 
@@ -2840,7 +2840,7 @@ await client.Encounters.V4.UpdateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.Encounters.V4.EncounterUpdate` 
+**request:** `global::Candid.Net.Encounters.V4.EncounterUpdate` 
     
 </dd>
 </dl>
@@ -2853,7 +2853,7 @@ await client.Encounters.V4.UpdateAsync(
 </details>
 
 ## ExpectedNetworkStatus V1
-<details><summary><code>client.ExpectedNetworkStatus.V1.<a href="/src/Candid.Net/ExpectedNetworkStatus/V1/V1Client.cs">ComputeAsync</a>(Candid.Net.ExpectedNetworkStatus.V1.ExpectedNetworkStatusRequest { ... }) -> Candid.Net.ExpectedNetworkStatus.V1.ExpectedNetworkStatusResponse</code></summary>
+<details><summary><code>client.ExpectedNetworkStatus.V1.<a href="/src/Candid.Net/ExpectedNetworkStatus/V1/V1Client.cs">ComputeAsync</a>(global::Candid.Net.ExpectedNetworkStatus.V1.ExpectedNetworkStatusRequest { ... }) -> global::Candid.Net.ExpectedNetworkStatus.V1.ExpectedNetworkStatusResponse</code></summary>
 <dl>
 <dd>
 
@@ -2906,7 +2906,7 @@ await client.ExpectedNetworkStatus.V1.ComputeAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.ExpectedNetworkStatus.V1.ExpectedNetworkStatusRequest` 
+**request:** `global::Candid.Net.ExpectedNetworkStatus.V1.ExpectedNetworkStatusRequest` 
     
 </dd>
 </dl>
@@ -2919,7 +2919,7 @@ await client.ExpectedNetworkStatus.V1.ComputeAsync(
 </details>
 
 ## ExpectedNetworkStatus V2
-<details><summary><code>client.ExpectedNetworkStatus.V2.<a href="/src/Candid.Net/ExpectedNetworkStatus/V2/V2Client.cs">ComputeForRenderingProviderAsync</a>(renderingProviderId, Candid.Net.ExpectedNetworkStatus.V2.ExpectedNetworkStatusRequestV2 { ... }) -> Candid.Net.ExpectedNetworkStatus.V2.ExpectedNetworkStatusResponseV2</code></summary>
+<details><summary><code>client.ExpectedNetworkStatus.V2.<a href="/src/Candid.Net/ExpectedNetworkStatus/V2/V2Client.cs">ComputeForRenderingProviderAsync</a>(renderingProviderId, global::Candid.Net.ExpectedNetworkStatus.V2.ExpectedNetworkStatusRequestV2 { ... }) -> global::Candid.Net.ExpectedNetworkStatus.V2.ExpectedNetworkStatusResponseV2</code></summary>
 <dl>
 <dd>
 
@@ -2962,8 +2962,8 @@ await client.ExpectedNetworkStatus.V2.ComputeForRenderingProviderAsync(
             {
                 LineOfBusiness = LineOfBusiness.Medicare,
                 InsuranceTypeCodes = new InsuranceTypeCodes(
-                    new Candid.Net.ExpectedNetworkStatus.V2.InsuranceTypeCodes.InsuranceTypeCode(
-                        Candid.Net.Commons.InsuranceTypeCode.C01
+                    new global::Candid.Net.ExpectedNetworkStatus.V2.InsuranceTypeCodes.InsuranceTypeCode(
+                        global::Candid.Net.Commons.InsuranceTypeCode.C01
                     )
                 ),
             },
@@ -3002,7 +3002,7 @@ await client.ExpectedNetworkStatus.V2.ComputeForRenderingProviderAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.ExpectedNetworkStatus.V2.ExpectedNetworkStatusRequestV2` 
+**request:** `global::Candid.Net.ExpectedNetworkStatus.V2.ExpectedNetworkStatusRequestV2` 
     
 </dd>
 </dl>
@@ -3014,7 +3014,7 @@ await client.ExpectedNetworkStatus.V2.ComputeForRenderingProviderAsync(
 </dl>
 </details>
 
-<details><summary><code>client.ExpectedNetworkStatus.V2.<a href="/src/Candid.Net/ExpectedNetworkStatus/V2/V2Client.cs">ComputeAllInNetworkProvidersAsync</a>(Candid.Net.ExpectedNetworkStatus.V2.ComputeAllInNetworkProvidersRequest { ... }) -> Candid.Net.ExpectedNetworkStatus.V2.ComputeAllInNetworkProvidersResponse</code></summary>
+<details><summary><code>client.ExpectedNetworkStatus.V2.<a href="/src/Candid.Net/ExpectedNetworkStatus/V2/V2Client.cs">ComputeAllInNetworkProvidersAsync</a>(global::Candid.Net.ExpectedNetworkStatus.V2.ComputeAllInNetworkProvidersRequest { ... }) -> global::Candid.Net.ExpectedNetworkStatus.V2.ComputeAllInNetworkProvidersResponse</code></summary>
 <dl>
 <dd>
 
@@ -3056,8 +3056,8 @@ await client.ExpectedNetworkStatus.V2.ComputeAllInNetworkProvidersAsync(
             {
                 LineOfBusiness = LineOfBusiness.Medicare,
                 InsuranceTypeCodes = new InsuranceTypeCodes(
-                    new Candid.Net.ExpectedNetworkStatus.V2.InsuranceTypeCodes.InsuranceTypeCode(
-                        Candid.Net.Commons.InsuranceTypeCode.C01
+                    new global::Candid.Net.ExpectedNetworkStatus.V2.InsuranceTypeCodes.InsuranceTypeCode(
+                        global::Candid.Net.Commons.InsuranceTypeCode.C01
                     )
                 ),
             },
@@ -3088,7 +3088,7 @@ await client.ExpectedNetworkStatus.V2.ComputeAllInNetworkProvidersAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.ExpectedNetworkStatus.V2.ComputeAllInNetworkProvidersRequest` 
+**request:** `global::Candid.Net.ExpectedNetworkStatus.V2.ComputeAllInNetworkProvidersRequest` 
     
 </dd>
 </dl>
@@ -3101,7 +3101,7 @@ await client.ExpectedNetworkStatus.V2.ComputeAllInNetworkProvidersAsync(
 </details>
 
 ## Exports V3
-<details><summary><code>client.Exports.V3.<a href="/src/Candid.Net/Exports/V3/V3Client.cs">GetExportsAsync</a>(Candid.Net.Exports.V3.GetExportsRequest { ... }) -> Candid.Net.Exports.V3.GetExportsResponse</code></summary>
+<details><summary><code>client.Exports.V3.<a href="/src/Candid.Net/Exports/V3/V3Client.cs">GetExportsAsync</a>(global::Candid.Net.Exports.V3.GetExportsRequest { ... }) -> global::Candid.Net.Exports.V3.GetExportsResponse</code></summary>
 <dl>
 <dd>
 
@@ -3166,7 +3166,7 @@ await client.Exports.V3.GetExportsAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.Exports.V3.GetExportsRequest` 
+**request:** `global::Candid.Net.Exports.V3.GetExportsRequest` 
     
 </dd>
 </dl>
@@ -3179,7 +3179,7 @@ await client.Exports.V3.GetExportsAsync(
 </details>
 
 ## ExternalPaymentAccountConfig V1
-<details><summary><code>client.ExternalPaymentAccountConfig.V1.<a href="/src/Candid.Net/ExternalPaymentAccountConfig/V1/V1Client.cs">GetMultiAsync</a>(Candid.Net.ExternalPaymentAccountConfig.V1.GetExternalPaymentAccountConfigsRequest { ... }) -> Candid.Net.ExternalPaymentAccountConfig.V1.ExternalPaymentAccountConfigPage</code></summary>
+<details><summary><code>client.ExternalPaymentAccountConfig.V1.<a href="/src/Candid.Net/ExternalPaymentAccountConfig/V1/V1Client.cs">GetMultiAsync</a>(global::Candid.Net.ExternalPaymentAccountConfig.V1.GetExternalPaymentAccountConfigsRequest { ... }) -> global::Candid.Net.ExternalPaymentAccountConfig.V1.ExternalPaymentAccountConfigPage</code></summary>
 <dl>
 <dd>
 
@@ -3209,7 +3209,7 @@ await client.ExternalPaymentAccountConfig.V1.GetMultiAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.ExternalPaymentAccountConfig.V1.GetExternalPaymentAccountConfigsRequest` 
+**request:** `global::Candid.Net.ExternalPaymentAccountConfig.V1.GetExternalPaymentAccountConfigsRequest` 
     
 </dd>
 </dl>
@@ -3222,7 +3222,7 @@ await client.ExternalPaymentAccountConfig.V1.GetMultiAsync(
 </details>
 
 ## FeeSchedules V3
-<details><summary><code>client.FeeSchedules.V3.<a href="/src/Candid.Net/FeeSchedules/V3/V3Client.cs">GetMatchAsync</a>(serviceLineId) -> Candid.Net.FeeSchedules.V3.MatchResult?</code></summary>
+<details><summary><code>client.FeeSchedules.V3.<a href="/src/Candid.Net/FeeSchedules/V3/V3Client.cs">GetMatchAsync</a>(serviceLineId) -> global::Candid.Net.FeeSchedules.V3.MatchResult?</code></summary>
 <dl>
 <dd>
 
@@ -3276,7 +3276,7 @@ await client.FeeSchedules.V3.GetMatchAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32
 </dl>
 </details>
 
-<details><summary><code>client.FeeSchedules.V3.<a href="/src/Candid.Net/FeeSchedules/V3/V3Client.cs">TestMatchAsync</a>(serviceLineId, rateId) -> Candid.Net.FeeSchedules.V3.MatchTestResult</code></summary>
+<details><summary><code>client.FeeSchedules.V3.<a href="/src/Candid.Net/FeeSchedules/V3/V3Client.cs">TestMatchAsync</a>(serviceLineId, rateId) -> global::Candid.Net.FeeSchedules.V3.MatchTestResult</code></summary>
 <dl>
 <dd>
 
@@ -3341,7 +3341,7 @@ await client.FeeSchedules.V3.TestMatchAsync(
 </dl>
 </details>
 
-<details><summary><code>client.FeeSchedules.V3.<a href="/src/Candid.Net/FeeSchedules/V3/V3Client.cs">GetMultiAsync</a>(Candid.Net.FeeSchedules.V3.GetMultiRequest { ... }) -> Candid.Net.FeeSchedules.V3.RatesPage</code></summary>
+<details><summary><code>client.FeeSchedules.V3.<a href="/src/Candid.Net/FeeSchedules/V3/V3Client.cs">GetMultiAsync</a>(global::Candid.Net.FeeSchedules.V3.GetMultiRequest { ... }) -> global::Candid.Net.FeeSchedules.V3.RatesPage</code></summary>
 <dl>
 <dd>
 
@@ -3383,7 +3383,7 @@ await client.FeeSchedules.V3.GetMultiAsync(new GetMultiRequest());
 <dl>
 <dd>
 
-**request:** `Candid.Net.FeeSchedules.V3.GetMultiRequest` 
+**request:** `global::Candid.Net.FeeSchedules.V3.GetMultiRequest` 
     
 </dd>
 </dl>
@@ -3395,7 +3395,7 @@ await client.FeeSchedules.V3.GetMultiAsync(new GetMultiRequest());
 </dl>
 </details>
 
-<details><summary><code>client.FeeSchedules.V3.<a href="/src/Candid.Net/FeeSchedules/V3/V3Client.cs">GetUniqueValuesForDimensionAsync</a>(Candid.Net.FeeSchedules.V3.GetUniqueDimensionValuesRequest { ... }) -> Candid.Net.FeeSchedules.V3.DimensionsPage</code></summary>
+<details><summary><code>client.FeeSchedules.V3.<a href="/src/Candid.Net/FeeSchedules/V3/V3Client.cs">GetUniqueValuesForDimensionAsync</a>(global::Candid.Net.FeeSchedules.V3.GetUniqueDimensionValuesRequest { ... }) -> global::Candid.Net.FeeSchedules.V3.DimensionsPage</code></summary>
 <dl>
 <dd>
 
@@ -3439,7 +3439,7 @@ await client.FeeSchedules.V3.GetUniqueValuesForDimensionAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.FeeSchedules.V3.GetUniqueDimensionValuesRequest` 
+**request:** `global::Candid.Net.FeeSchedules.V3.GetUniqueDimensionValuesRequest` 
     
 </dd>
 </dl>
@@ -3451,7 +3451,7 @@ await client.FeeSchedules.V3.GetUniqueValuesForDimensionAsync(
 </dl>
 </details>
 
-<details><summary><code>client.FeeSchedules.V3.<a href="/src/Candid.Net/FeeSchedules/V3/V3Client.cs">GetRateHistoryAsync</a>(rateId) -> IEnumerable<Candid.Net.FeeSchedules.V3.Rate></code></summary>
+<details><summary><code>client.FeeSchedules.V3.<a href="/src/Candid.Net/FeeSchedules/V3/V3Client.cs">GetRateHistoryAsync</a>(rateId) -> IEnumerable<global::Candid.Net.FeeSchedules.V3.Rate></code></summary>
 <dl>
 <dd>
 
@@ -3505,7 +3505,7 @@ await client.FeeSchedules.V3.GetRateHistoryAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a
 </dl>
 </details>
 
-<details><summary><code>client.FeeSchedules.V3.<a href="/src/Candid.Net/FeeSchedules/V3/V3Client.cs">UploadFeeScheduleAsync</a>(Candid.Net.FeeSchedules.V3.FeeScheduleUploadRequest { ... }) -> IEnumerable<Candid.Net.FeeSchedules.V3.Rate></code></summary>
+<details><summary><code>client.FeeSchedules.V3.<a href="/src/Candid.Net/FeeSchedules/V3/V3Client.cs">UploadFeeScheduleAsync</a>(global::Candid.Net.FeeSchedules.V3.FeeScheduleUploadRequest { ... }) -> IEnumerable<global::Candid.Net.FeeSchedules.V3.Rate></code></summary>
 <dl>
 <dd>
 
@@ -3553,9 +3553,9 @@ await client.FeeSchedules.V3.UploadFeeScheduleAsync(
                             {
                                 FacilityTypeCode.Pharmacy,
                             },
-                            NetworkTypes = new HashSet<Candid.Net.Commons.NetworkType>()
+                            NetworkTypes = new HashSet<global::Candid.Net.Commons.NetworkType>()
                             {
-                                Candid.Net.Commons.NetworkType.Ppo,
+                                global::Candid.Net.Commons.NetworkType.Ppo,
                             },
                             PayerPlanGroupIds = new HashSet<string>()
                             {
@@ -3597,9 +3597,9 @@ await client.FeeSchedules.V3.UploadFeeScheduleAsync(
                             {
                                 FacilityTypeCode.Pharmacy,
                             },
-                            NetworkTypes = new HashSet<Candid.Net.Commons.NetworkType>()
+                            NetworkTypes = new HashSet<global::Candid.Net.Commons.NetworkType>()
                             {
-                                Candid.Net.Commons.NetworkType.Ppo,
+                                global::Candid.Net.Commons.NetworkType.Ppo,
                             },
                             PayerPlanGroupIds = new HashSet<string>()
                             {
@@ -3643,7 +3643,7 @@ await client.FeeSchedules.V3.UploadFeeScheduleAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.FeeSchedules.V3.FeeScheduleUploadRequest` 
+**request:** `global::Candid.Net.FeeSchedules.V3.FeeScheduleUploadRequest` 
     
 </dd>
 </dl>
@@ -3717,7 +3717,7 @@ await client.FeeSchedules.V3.DeleteRateAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc
 </dl>
 </details>
 
-<details><summary><code>client.FeeSchedules.V3.<a href="/src/Candid.Net/FeeSchedules/V3/V3Client.cs">GetPayerThresholdsDefaultAsync</a>() -> Candid.Net.FeeSchedules.V3.PayerThreshold</code></summary>
+<details><summary><code>client.FeeSchedules.V3.<a href="/src/Candid.Net/FeeSchedules/V3/V3Client.cs">GetPayerThresholdsDefaultAsync</a>() -> global::Candid.Net.FeeSchedules.V3.PayerThreshold</code></summary>
 <dl>
 <dd>
 
@@ -3756,7 +3756,7 @@ await client.FeeSchedules.V3.GetPayerThresholdsDefaultAsync();
 </dl>
 </details>
 
-<details><summary><code>client.FeeSchedules.V3.<a href="/src/Candid.Net/FeeSchedules/V3/V3Client.cs">GetPayerThresholdsAsync</a>(Candid.Net.FeeSchedules.V3.PayerThresholdGetRequest { ... }) -> Candid.Net.FeeSchedules.V3.PayerThresholdsPage</code></summary>
+<details><summary><code>client.FeeSchedules.V3.<a href="/src/Candid.Net/FeeSchedules/V3/V3Client.cs">GetPayerThresholdsAsync</a>(global::Candid.Net.FeeSchedules.V3.PayerThresholdGetRequest { ... }) -> global::Candid.Net.FeeSchedules.V3.PayerThresholdsPage</code></summary>
 <dl>
 <dd>
 
@@ -3800,7 +3800,7 @@ await client.FeeSchedules.V3.GetPayerThresholdsAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.FeeSchedules.V3.PayerThresholdGetRequest` 
+**request:** `global::Candid.Net.FeeSchedules.V3.PayerThresholdGetRequest` 
     
 </dd>
 </dl>
@@ -3812,7 +3812,7 @@ await client.FeeSchedules.V3.GetPayerThresholdsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.FeeSchedules.V3.<a href="/src/Candid.Net/FeeSchedules/V3/V3Client.cs">SetPayerThresholdAsync</a>(payerUuid, Candid.Net.FeeSchedules.V3.PayerThreshold { ... }) -> Candid.Net.FeeSchedules.V3.PayerThreshold</code></summary>
+<details><summary><code>client.FeeSchedules.V3.<a href="/src/Candid.Net/FeeSchedules/V3/V3Client.cs">SetPayerThresholdAsync</a>(payerUuid, global::Candid.Net.FeeSchedules.V3.PayerThreshold { ... }) -> global::Candid.Net.FeeSchedules.V3.PayerThreshold</code></summary>
 <dl>
 <dd>
 
@@ -3865,7 +3865,7 @@ await client.FeeSchedules.V3.SetPayerThresholdAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.FeeSchedules.V3.PayerThreshold` 
+**request:** `global::Candid.Net.FeeSchedules.V3.PayerThreshold` 
     
 </dd>
 </dl>
@@ -3877,7 +3877,7 @@ await client.FeeSchedules.V3.SetPayerThresholdAsync(
 </dl>
 </details>
 
-<details><summary><code>client.FeeSchedules.V3.<a href="/src/Candid.Net/FeeSchedules/V3/V3Client.cs">HardDeleteRatesAsync</a>(Candid.Net.FeeSchedules.V3.OptionalDimensions { ... }) -> int</code></summary>
+<details><summary><code>client.FeeSchedules.V3.<a href="/src/Candid.Net/FeeSchedules/V3/V3Client.cs">HardDeleteRatesAsync</a>(global::Candid.Net.FeeSchedules.V3.OptionalDimensions { ... }) -> int</code></summary>
 <dl>
 <dd>
 
@@ -3911,9 +3911,9 @@ await client.FeeSchedules.V3.HardDeleteRatesAsync(
         ZipCodes = new HashSet<string>() { "zip_codes" },
         LicenseTypes = new HashSet<LicenseType>() { LicenseType.Md },
         FacilityTypeCodes = new HashSet<FacilityTypeCode>() { FacilityTypeCode.Pharmacy },
-        NetworkTypes = new HashSet<Candid.Net.Commons.NetworkType>()
+        NetworkTypes = new HashSet<global::Candid.Net.Commons.NetworkType>()
         {
-            Candid.Net.Commons.NetworkType.Ppo,
+            global::Candid.Net.Commons.NetworkType.Ppo,
         },
         PayerPlanGroupIds = new HashSet<string>() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
         Modifiers = new HashSet<ProcedureModifier>() { ProcedureModifier.Av },
@@ -3933,7 +3933,7 @@ await client.FeeSchedules.V3.HardDeleteRatesAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.FeeSchedules.V3.OptionalDimensions` 
+**request:** `global::Candid.Net.FeeSchedules.V3.OptionalDimensions` 
     
 </dd>
 </dl>
@@ -3945,7 +3945,7 @@ await client.FeeSchedules.V3.HardDeleteRatesAsync(
 </dl>
 </details>
 
-<details><summary><code>client.FeeSchedules.V3.<a href="/src/Candid.Net/FeeSchedules/V3/V3Client.cs">HardDeleteRatesByIdsAsync</a>(Candid.Net.FeeSchedules.V3.HardDeleteRatesByIdsRequest { ... }) -> int</code></summary>
+<details><summary><code>client.FeeSchedules.V3.<a href="/src/Candid.Net/FeeSchedules/V3/V3Client.cs">HardDeleteRatesByIdsAsync</a>(global::Candid.Net.FeeSchedules.V3.HardDeleteRatesByIdsRequest { ... }) -> int</code></summary>
 <dl>
 <dd>
 
@@ -3996,7 +3996,7 @@ await client.FeeSchedules.V3.HardDeleteRatesByIdsAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.FeeSchedules.V3.HardDeleteRatesByIdsRequest` 
+**request:** `global::Candid.Net.FeeSchedules.V3.HardDeleteRatesByIdsRequest` 
     
 </dd>
 </dl>
@@ -4009,7 +4009,7 @@ await client.FeeSchedules.V3.HardDeleteRatesByIdsAsync(
 </details>
 
 ## Guarantor V1
-<details><summary><code>client.Guarantor.V1.<a href="/src/Candid.Net/Guarantor/V1/V1Client.cs">CreateAsync</a>(encounterId, Candid.Net.Guarantor.V1.GuarantorCreate { ... }) -> Candid.Net.Guarantor.V1.Guarantor</code></summary>
+<details><summary><code>client.Guarantor.V1.<a href="/src/Candid.Net/Guarantor/V1/V1Client.cs">CreateAsync</a>(encounterId, global::Candid.Net.Guarantor.V1.GuarantorCreate { ... }) -> global::Candid.Net.Guarantor.V1.Guarantor</code></summary>
 <dl>
 <dd>
 
@@ -4074,7 +4074,7 @@ await client.Guarantor.V1.CreateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.Guarantor.V1.GuarantorCreate` 
+**request:** `global::Candid.Net.Guarantor.V1.GuarantorCreate` 
     
 </dd>
 </dl>
@@ -4086,7 +4086,7 @@ await client.Guarantor.V1.CreateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Guarantor.V1.<a href="/src/Candid.Net/Guarantor/V1/V1Client.cs">GetAsync</a>(guarantorId) -> Candid.Net.Guarantor.V1.Guarantor</code></summary>
+<details><summary><code>client.Guarantor.V1.<a href="/src/Candid.Net/Guarantor/V1/V1Client.cs">GetAsync</a>(guarantorId) -> global::Candid.Net.Guarantor.V1.Guarantor</code></summary>
 <dl>
 <dd>
 
@@ -4140,7 +4140,7 @@ await client.Guarantor.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
 </dl>
 </details>
 
-<details><summary><code>client.Guarantor.V1.<a href="/src/Candid.Net/Guarantor/V1/V1Client.cs">UpdateAsync</a>(guarantorId, Candid.Net.Guarantor.V1.GuarantorUpdate { ... }) -> Candid.Net.Guarantor.V1.Guarantor</code></summary>
+<details><summary><code>client.Guarantor.V1.<a href="/src/Candid.Net/Guarantor/V1/V1Client.cs">UpdateAsync</a>(guarantorId, global::Candid.Net.Guarantor.V1.GuarantorUpdate { ... }) -> global::Candid.Net.Guarantor.V1.Guarantor</code></summary>
 <dl>
 <dd>
 
@@ -4193,7 +4193,7 @@ await client.Guarantor.V1.UpdateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.Guarantor.V1.GuarantorUpdate` 
+**request:** `global::Candid.Net.Guarantor.V1.GuarantorUpdate` 
     
 </dd>
 </dl>
@@ -4206,7 +4206,7 @@ await client.Guarantor.V1.UpdateAsync(
 </details>
 
 ## HealthCareCodeInformation V1
-<details><summary><code>client.HealthCareCodeInformation.V1.<a href="/src/Candid.Net/HealthCareCodeInformation/V1/V1Client.cs">UpdateAsync</a>(encounterId, Candid.Net.HealthCareCodeInformation.V1.HealthCareCodeInformationUpdate { ... }) -> Candid.Net.HealthCareCodeInformation.V1.HealthCareCodeInformationGetAllResponse</code></summary>
+<details><summary><code>client.HealthCareCodeInformation.V1.<a href="/src/Candid.Net/HealthCareCodeInformation/V1/V1Client.cs">UpdateAsync</a>(encounterId, global::Candid.Net.HealthCareCodeInformation.V1.HealthCareCodeInformationUpdate { ... }) -> global::Candid.Net.HealthCareCodeInformation.V1.HealthCareCodeInformationGetAllResponse</code></summary>
 <dl>
 <dd>
 
@@ -4245,7 +4245,7 @@ await client.HealthCareCodeInformation.V1.UpdateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.HealthCareCodeInformation.V1.HealthCareCodeInformationUpdate` 
+**request:** `global::Candid.Net.HealthCareCodeInformation.V1.HealthCareCodeInformationUpdate` 
     
 </dd>
 </dl>
@@ -4257,7 +4257,7 @@ await client.HealthCareCodeInformation.V1.UpdateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.HealthCareCodeInformation.V1.<a href="/src/Candid.Net/HealthCareCodeInformation/V1/V1Client.cs">GetAllForEncounterAsync</a>(encounterId) -> Candid.Net.HealthCareCodeInformation.V1.HealthCareCodeInformationGetAllResponse</code></summary>
+<details><summary><code>client.HealthCareCodeInformation.V1.<a href="/src/Candid.Net/HealthCareCodeInformation/V1/V1Client.cs">GetAllForEncounterAsync</a>(encounterId) -> global::Candid.Net.HealthCareCodeInformation.V1.HealthCareCodeInformationGetAllResponse</code></summary>
 <dl>
 <dd>
 
@@ -4300,7 +4300,7 @@ await client.HealthCareCodeInformation.V1.GetAllForEncounterAsync(
 </details>
 
 ## ImportInvoice V1
-<details><summary><code>client.ImportInvoice.V1.<a href="/src/Candid.Net/ImportInvoice/V1/V1Client.cs">ImportInvoiceAsync</a>(Candid.Net.ImportInvoice.V1.CreateImportInvoiceRequest { ... }) -> Candid.Net.ImportInvoice.V1.ImportInvoice</code></summary>
+<details><summary><code>client.ImportInvoice.V1.<a href="/src/Candid.Net/ImportInvoice/V1/V1Client.cs">ImportInvoiceAsync</a>(global::Candid.Net.ImportInvoice.V1.CreateImportInvoiceRequest { ... }) -> global::Candid.Net.ImportInvoice.V1.ImportInvoice</code></summary>
 <dl>
 <dd>
 
@@ -4354,7 +4354,7 @@ await client.ImportInvoice.V1.ImportInvoiceAsync(
                 AmountCents = 1,
             },
         },
-        Status = Candid.Net.Invoices.V2.InvoiceStatus.Draft,
+        Status = global::Candid.Net.Invoices.V2.InvoiceStatus.Draft,
         ExternalIdentifier = "external_identifier",
     }
 );
@@ -4372,7 +4372,7 @@ await client.ImportInvoice.V1.ImportInvoiceAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.ImportInvoice.V1.CreateImportInvoiceRequest` 
+**request:** `global::Candid.Net.ImportInvoice.V1.CreateImportInvoiceRequest` 
     
 </dd>
 </dl>
@@ -4384,7 +4384,7 @@ await client.ImportInvoice.V1.ImportInvoiceAsync(
 </dl>
 </details>
 
-<details><summary><code>client.ImportInvoice.V1.<a href="/src/Candid.Net/ImportInvoice/V1/V1Client.cs">GetMultiAsync</a>(Candid.Net.ImportInvoice.V1.SearchImportedInvoicesRequest { ... }) -> Candid.Net.ImportInvoice.V1.ImportInvoicesPage</code></summary>
+<details><summary><code>client.ImportInvoice.V1.<a href="/src/Candid.Net/ImportInvoice/V1/V1Client.cs">GetMultiAsync</a>(global::Candid.Net.ImportInvoice.V1.SearchImportedInvoicesRequest { ... }) -> global::Candid.Net.ImportInvoice.V1.ImportInvoicesPage</code></summary>
 <dl>
 <dd>
 
@@ -4426,7 +4426,7 @@ await client.ImportInvoice.V1.GetMultiAsync(new SearchImportedInvoicesRequest())
 <dl>
 <dd>
 
-**request:** `Candid.Net.ImportInvoice.V1.SearchImportedInvoicesRequest` 
+**request:** `global::Candid.Net.ImportInvoice.V1.SearchImportedInvoicesRequest` 
     
 </dd>
 </dl>
@@ -4438,7 +4438,7 @@ await client.ImportInvoice.V1.GetMultiAsync(new SearchImportedInvoicesRequest())
 </dl>
 </details>
 
-<details><summary><code>client.ImportInvoice.V1.<a href="/src/Candid.Net/ImportInvoice/V1/V1Client.cs">GetAsync</a>(invoiceId) -> Candid.Net.ImportInvoice.V1.ImportInvoice</code></summary>
+<details><summary><code>client.ImportInvoice.V1.<a href="/src/Candid.Net/ImportInvoice/V1/V1Client.cs">GetAsync</a>(invoiceId) -> global::Candid.Net.ImportInvoice.V1.ImportInvoice</code></summary>
 <dl>
 <dd>
 
@@ -4492,7 +4492,7 @@ await client.ImportInvoice.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
 </dl>
 </details>
 
-<details><summary><code>client.ImportInvoice.V1.<a href="/src/Candid.Net/ImportInvoice/V1/V1Client.cs">UpdateAsync</a>(invoiceId, Candid.Net.ImportInvoice.V1.ImportInvoiceUpdateRequest { ... }) -> Candid.Net.ImportInvoice.V1.ImportInvoice</code></summary>
+<details><summary><code>client.ImportInvoice.V1.<a href="/src/Candid.Net/ImportInvoice/V1/V1Client.cs">UpdateAsync</a>(invoiceId, global::Candid.Net.ImportInvoice.V1.ImportInvoiceUpdateRequest { ... }) -> global::Candid.Net.ImportInvoice.V1.ImportInvoice</code></summary>
 <dl>
 <dd>
 
@@ -4545,7 +4545,7 @@ await client.ImportInvoice.V1.UpdateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.ImportInvoice.V1.ImportInvoiceUpdateRequest` 
+**request:** `global::Candid.Net.ImportInvoice.V1.ImportInvoiceUpdateRequest` 
     
 </dd>
 </dl>
@@ -4558,7 +4558,7 @@ await client.ImportInvoice.V1.UpdateAsync(
 </details>
 
 ## InsuranceAdjudications V1
-<details><summary><code>client.InsuranceAdjudications.V1.<a href="/src/Candid.Net/InsuranceAdjudications/V1/V1Client.cs">GetAsync</a>(insuranceAdjudicationId) -> Candid.Net.InsuranceAdjudications.V1.InsuranceAdjudication</code></summary>
+<details><summary><code>client.InsuranceAdjudications.V1.<a href="/src/Candid.Net/InsuranceAdjudications/V1/V1Client.cs">GetAsync</a>(insuranceAdjudicationId) -> global::Candid.Net.InsuranceAdjudications.V1.InsuranceAdjudication</code></summary>
 <dl>
 <dd>
 
@@ -4612,7 +4612,7 @@ await client.InsuranceAdjudications.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9
 </dl>
 </details>
 
-<details><summary><code>client.InsuranceAdjudications.V1.<a href="/src/Candid.Net/InsuranceAdjudications/V1/V1Client.cs">CreateAsync</a>(Candid.Net.InsuranceAdjudications.V1.InsuranceAdjudicationCreate { ... }) -> Candid.Net.InsuranceAdjudications.V1.InsuranceAdjudication</code></summary>
+<details><summary><code>client.InsuranceAdjudications.V1.<a href="/src/Candid.Net/InsuranceAdjudications/V1/V1Client.cs">CreateAsync</a>(global::Candid.Net.InsuranceAdjudications.V1.InsuranceAdjudicationCreate { ... }) -> global::Candid.Net.InsuranceAdjudications.V1.InsuranceAdjudication</code></summary>
 <dl>
 <dd>
 
@@ -4832,7 +4832,7 @@ await client.InsuranceAdjudications.V1.CreateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.InsuranceAdjudications.V1.InsuranceAdjudicationCreate` 
+**request:** `global::Candid.Net.InsuranceAdjudications.V1.InsuranceAdjudicationCreate` 
     
 </dd>
 </dl>
@@ -4899,7 +4899,7 @@ await client.InsuranceAdjudications.V1.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd
 </details>
 
 ## InsurancePayments V1
-<details><summary><code>client.InsurancePayments.V1.<a href="/src/Candid.Net/InsurancePayments/V1/V1Client.cs">GetMultiAsync</a>(Candid.Net.InsurancePayments.V1.GetMultiInsurancePaymentRequest { ... }) -> Candid.Net.InsurancePayments.V1.InsurancePaymentsPage</code></summary>
+<details><summary><code>client.InsurancePayments.V1.<a href="/src/Candid.Net/InsurancePayments/V1/V1Client.cs">GetMultiAsync</a>(global::Candid.Net.InsurancePayments.V1.GetMultiInsurancePaymentRequest { ... }) -> global::Candid.Net.InsurancePayments.V1.InsurancePaymentsPage</code></summary>
 <dl>
 <dd>
 
@@ -4941,7 +4941,7 @@ await client.InsurancePayments.V1.GetMultiAsync(new GetMultiInsurancePaymentRequ
 <dl>
 <dd>
 
-**request:** `Candid.Net.InsurancePayments.V1.GetMultiInsurancePaymentRequest` 
+**request:** `global::Candid.Net.InsurancePayments.V1.GetMultiInsurancePaymentRequest` 
     
 </dd>
 </dl>
@@ -4953,7 +4953,7 @@ await client.InsurancePayments.V1.GetMultiAsync(new GetMultiInsurancePaymentRequ
 </dl>
 </details>
 
-<details><summary><code>client.InsurancePayments.V1.<a href="/src/Candid.Net/InsurancePayments/V1/V1Client.cs">GetAsync</a>(insurancePaymentId) -> Candid.Net.InsurancePayments.V1.InsurancePayment</code></summary>
+<details><summary><code>client.InsurancePayments.V1.<a href="/src/Candid.Net/InsurancePayments/V1/V1Client.cs">GetAsync</a>(insurancePaymentId) -> global::Candid.Net.InsurancePayments.V1.InsurancePayment</code></summary>
 <dl>
 <dd>
 
@@ -5009,7 +5009,7 @@ await client.InsurancePayments.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32
 </details>
 
 ## InsuranceRefunds V1
-<details><summary><code>client.InsuranceRefunds.V1.<a href="/src/Candid.Net/InsuranceRefunds/V1/V1Client.cs">GetMultiAsync</a>(Candid.Net.InsuranceRefunds.V1.GetMultiInsuranceRefundsRequest { ... }) -> Candid.Net.InsuranceRefunds.V1.InsuranceRefundsPage</code></summary>
+<details><summary><code>client.InsuranceRefunds.V1.<a href="/src/Candid.Net/InsuranceRefunds/V1/V1Client.cs">GetMultiAsync</a>(global::Candid.Net.InsuranceRefunds.V1.GetMultiInsuranceRefundsRequest { ... }) -> global::Candid.Net.InsuranceRefunds.V1.InsuranceRefundsPage</code></summary>
 <dl>
 <dd>
 
@@ -5052,7 +5052,7 @@ await client.InsuranceRefunds.V1.GetMultiAsync(new GetMultiInsuranceRefundsReque
 <dl>
 <dd>
 
-**request:** `Candid.Net.InsuranceRefunds.V1.GetMultiInsuranceRefundsRequest` 
+**request:** `global::Candid.Net.InsuranceRefunds.V1.GetMultiInsuranceRefundsRequest` 
     
 </dd>
 </dl>
@@ -5064,7 +5064,7 @@ await client.InsuranceRefunds.V1.GetMultiAsync(new GetMultiInsuranceRefundsReque
 </dl>
 </details>
 
-<details><summary><code>client.InsuranceRefunds.V1.<a href="/src/Candid.Net/InsuranceRefunds/V1/V1Client.cs">GetAsync</a>(insuranceRefundId) -> Candid.Net.InsuranceRefunds.V1.InsuranceRefund</code></summary>
+<details><summary><code>client.InsuranceRefunds.V1.<a href="/src/Candid.Net/InsuranceRefunds/V1/V1Client.cs">GetAsync</a>(insuranceRefundId) -> global::Candid.Net.InsuranceRefunds.V1.InsuranceRefund</code></summary>
 <dl>
 <dd>
 
@@ -5119,7 +5119,7 @@ await client.InsuranceRefunds.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
 </dl>
 </details>
 
-<details><summary><code>client.InsuranceRefunds.V1.<a href="/src/Candid.Net/InsuranceRefunds/V1/V1Client.cs">CreateAsync</a>(Candid.Net.InsuranceRefunds.V1.InsuranceRefundCreate { ... }) -> Candid.Net.InsuranceRefunds.V1.InsuranceRefund</code></summary>
+<details><summary><code>client.InsuranceRefunds.V1.<a href="/src/Candid.Net/InsuranceRefunds/V1/V1Client.cs">CreateAsync</a>(global::Candid.Net.InsuranceRefunds.V1.InsuranceRefundCreate { ... }) -> global::Candid.Net.InsuranceRefunds.V1.InsuranceRefund</code></summary>
 <dl>
 <dd>
 
@@ -5194,7 +5194,7 @@ await client.InsuranceRefunds.V1.CreateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.InsuranceRefunds.V1.InsuranceRefundCreate` 
+**request:** `global::Candid.Net.InsuranceRefunds.V1.InsuranceRefundCreate` 
     
 </dd>
 </dl>
@@ -5206,7 +5206,7 @@ await client.InsuranceRefunds.V1.CreateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.InsuranceRefunds.V1.<a href="/src/Candid.Net/InsuranceRefunds/V1/V1Client.cs">UpdateAsync</a>(insuranceRefundId, Candid.Net.InsuranceRefunds.V1.InsuranceRefundUpdate { ... }) -> Candid.Net.InsuranceRefunds.V1.InsuranceRefund</code></summary>
+<details><summary><code>client.InsuranceRefunds.V1.<a href="/src/Candid.Net/InsuranceRefunds/V1/V1Client.cs">UpdateAsync</a>(insuranceRefundId, global::Candid.Net.InsuranceRefunds.V1.InsuranceRefundUpdate { ... }) -> global::Candid.Net.InsuranceRefunds.V1.InsuranceRefund</code></summary>
 <dl>
 <dd>
 
@@ -5260,7 +5260,7 @@ await client.InsuranceRefunds.V1.UpdateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.InsuranceRefunds.V1.InsuranceRefundUpdate` 
+**request:** `global::Candid.Net.InsuranceRefunds.V1.InsuranceRefundUpdate` 
     
 </dd>
 </dl>
@@ -5329,7 +5329,7 @@ await client.InsuranceRefunds.V1.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc
 </details>
 
 ## MedicationDispense V1
-<details><summary><code>client.MedicationDispense.V1.<a href="/src/Candid.Net/MedicationDispense/V1/V1Client.cs">CreateAsync</a>(Candid.Net.MedicationDispense.V1.MedicationDispenseCreate { ... }) -> Candid.Net.Encounters.V4.Encounter</code></summary>
+<details><summary><code>client.MedicationDispense.V1.<a href="/src/Candid.Net/MedicationDispense/V1/V1Client.cs">CreateAsync</a>(global::Candid.Net.MedicationDispense.V1.MedicationDispenseCreate { ... }) -> global::Candid.Net.Encounters.V4.Encounter</code></summary>
 <dl>
 <dd>
 
@@ -5367,7 +5367,7 @@ await client.MedicationDispense.V1.CreateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.MedicationDispense.V1.MedicationDispenseCreate` 
+**request:** `global::Candid.Net.MedicationDispense.V1.MedicationDispenseCreate` 
     
 </dd>
 </dl>
@@ -5380,7 +5380,7 @@ await client.MedicationDispense.V1.CreateAsync(
 </details>
 
 ## NonInsurancePayerPayments V1
-<details><summary><code>client.NonInsurancePayerPayments.V1.<a href="/src/Candid.Net/NonInsurancePayerPayments/V1/V1Client.cs">GetMultiAsync</a>(Candid.Net.NonInsurancePayerPayments.V1.GetMultiNonInsurancePayerPaymentRequest { ... }) -> Candid.Net.NonInsurancePayerPayments.V1.NonInsurancePayerPaymentsPage</code></summary>
+<details><summary><code>client.NonInsurancePayerPayments.V1.<a href="/src/Candid.Net/NonInsurancePayerPayments/V1/V1Client.cs">GetMultiAsync</a>(global::Candid.Net.NonInsurancePayerPayments.V1.GetMultiNonInsurancePayerPaymentRequest { ... }) -> global::Candid.Net.NonInsurancePayerPayments.V1.NonInsurancePayerPaymentsPage</code></summary>
 <dl>
 <dd>
 
@@ -5424,7 +5424,7 @@ await client.NonInsurancePayerPayments.V1.GetMultiAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.NonInsurancePayerPayments.V1.GetMultiNonInsurancePayerPaymentRequest` 
+**request:** `global::Candid.Net.NonInsurancePayerPayments.V1.GetMultiNonInsurancePayerPaymentRequest` 
     
 </dd>
 </dl>
@@ -5436,7 +5436,7 @@ await client.NonInsurancePayerPayments.V1.GetMultiAsync(
 </dl>
 </details>
 
-<details><summary><code>client.NonInsurancePayerPayments.V1.<a href="/src/Candid.Net/NonInsurancePayerPayments/V1/V1Client.cs">GetAsync</a>(nonInsurancePayerPaymentId) -> Candid.Net.NonInsurancePayerPayments.V1.NonInsurancePayerPayment</code></summary>
+<details><summary><code>client.NonInsurancePayerPayments.V1.<a href="/src/Candid.Net/NonInsurancePayerPayments/V1/V1Client.cs">GetAsync</a>(nonInsurancePayerPaymentId) -> global::Candid.Net.NonInsurancePayerPayments.V1.NonInsurancePayerPayment</code></summary>
 <dl>
 <dd>
 
@@ -5490,7 +5490,7 @@ await client.NonInsurancePayerPayments.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd
 </dl>
 </details>
 
-<details><summary><code>client.NonInsurancePayerPayments.V1.<a href="/src/Candid.Net/NonInsurancePayerPayments/V1/V1Client.cs">CreateAsync</a>(Candid.Net.NonInsurancePayerPayments.V1.NonInsurancePayerPaymentCreate { ... }) -> Candid.Net.NonInsurancePayerPayments.V1.NonInsurancePayerPayment</code></summary>
+<details><summary><code>client.NonInsurancePayerPayments.V1.<a href="/src/Candid.Net/NonInsurancePayerPayments/V1/V1Client.cs">CreateAsync</a>(global::Candid.Net.NonInsurancePayerPayments.V1.NonInsurancePayerPaymentCreate { ... }) -> global::Candid.Net.NonInsurancePayerPayments.V1.NonInsurancePayerPayment</code></summary>
 <dl>
 <dd>
 
@@ -5545,7 +5545,7 @@ await client.NonInsurancePayerPayments.V1.CreateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.NonInsurancePayerPayments.V1.NonInsurancePayerPaymentCreate` 
+**request:** `global::Candid.Net.NonInsurancePayerPayments.V1.NonInsurancePayerPaymentCreate` 
     
 </dd>
 </dl>
@@ -5557,7 +5557,7 @@ await client.NonInsurancePayerPayments.V1.CreateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.NonInsurancePayerPayments.V1.<a href="/src/Candid.Net/NonInsurancePayerPayments/V1/V1Client.cs">UpdateAsync</a>(nonInsurancePayerPaymentId, Candid.Net.NonInsurancePayerPayments.V1.UpdateNonInsurancePayerPaymentRequest { ... }) -> Candid.Net.NonInsurancePayerPayments.V1.NonInsurancePayerPayment</code></summary>
+<details><summary><code>client.NonInsurancePayerPayments.V1.<a href="/src/Candid.Net/NonInsurancePayerPayments/V1/V1Client.cs">UpdateAsync</a>(nonInsurancePayerPaymentId, global::Candid.Net.NonInsurancePayerPayments.V1.UpdateNonInsurancePayerPaymentRequest { ... }) -> global::Candid.Net.NonInsurancePayerPayments.V1.NonInsurancePayerPayment</code></summary>
 <dl>
 <dd>
 
@@ -5596,7 +5596,7 @@ await client.NonInsurancePayerPayments.V1.UpdateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.NonInsurancePayerPayments.V1.UpdateNonInsurancePayerPaymentRequest` 
+**request:** `global::Candid.Net.NonInsurancePayerPayments.V1.UpdateNonInsurancePayerPaymentRequest` 
     
 </dd>
 </dl>
@@ -5663,7 +5663,7 @@ await client.NonInsurancePayerPayments.V1.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7
 </details>
 
 ## NonInsurancePayerRefunds V1
-<details><summary><code>client.NonInsurancePayerRefunds.V1.<a href="/src/Candid.Net/NonInsurancePayerRefunds/V1/V1Client.cs">GetMultiAsync</a>(Candid.Net.NonInsurancePayerRefunds.V1.GetMultiNonInsurancePayerRefundsRequest { ... }) -> Candid.Net.NonInsurancePayerRefunds.V1.NonInsurancePayerRefundsPage</code></summary>
+<details><summary><code>client.NonInsurancePayerRefunds.V1.<a href="/src/Candid.Net/NonInsurancePayerRefunds/V1/V1Client.cs">GetMultiAsync</a>(global::Candid.Net.NonInsurancePayerRefunds.V1.GetMultiNonInsurancePayerRefundsRequest { ... }) -> global::Candid.Net.NonInsurancePayerRefunds.V1.NonInsurancePayerRefundsPage</code></summary>
 <dl>
 <dd>
 
@@ -5707,7 +5707,7 @@ await client.NonInsurancePayerRefunds.V1.GetMultiAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.NonInsurancePayerRefunds.V1.GetMultiNonInsurancePayerRefundsRequest` 
+**request:** `global::Candid.Net.NonInsurancePayerRefunds.V1.GetMultiNonInsurancePayerRefundsRequest` 
     
 </dd>
 </dl>
@@ -5719,7 +5719,7 @@ await client.NonInsurancePayerRefunds.V1.GetMultiAsync(
 </dl>
 </details>
 
-<details><summary><code>client.NonInsurancePayerRefunds.V1.<a href="/src/Candid.Net/NonInsurancePayerRefunds/V1/V1Client.cs">GetAsync</a>(nonInsurancePayerRefundId) -> Candid.Net.NonInsurancePayerRefunds.V1.NonInsurancePayerRefund</code></summary>
+<details><summary><code>client.NonInsurancePayerRefunds.V1.<a href="/src/Candid.Net/NonInsurancePayerRefunds/V1/V1Client.cs">GetAsync</a>(nonInsurancePayerRefundId) -> global::Candid.Net.NonInsurancePayerRefunds.V1.NonInsurancePayerRefund</code></summary>
 <dl>
 <dd>
 
@@ -5773,7 +5773,7 @@ await client.NonInsurancePayerRefunds.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7
 </dl>
 </details>
 
-<details><summary><code>client.NonInsurancePayerRefunds.V1.<a href="/src/Candid.Net/NonInsurancePayerRefunds/V1/V1Client.cs">CreateAsync</a>(Candid.Net.NonInsurancePayerRefunds.V1.NonInsurancePayerRefundCreate { ... }) -> Candid.Net.NonInsurancePayerRefunds.V1.NonInsurancePayerRefund</code></summary>
+<details><summary><code>client.NonInsurancePayerRefunds.V1.<a href="/src/Candid.Net/NonInsurancePayerRefunds/V1/V1Client.cs">CreateAsync</a>(global::Candid.Net.NonInsurancePayerRefunds.V1.NonInsurancePayerRefundCreate { ... }) -> global::Candid.Net.NonInsurancePayerRefunds.V1.NonInsurancePayerRefund</code></summary>
 <dl>
 <dd>
 
@@ -5844,7 +5844,7 @@ await client.NonInsurancePayerRefunds.V1.CreateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.NonInsurancePayerRefunds.V1.NonInsurancePayerRefundCreate` 
+**request:** `global::Candid.Net.NonInsurancePayerRefunds.V1.NonInsurancePayerRefundCreate` 
     
 </dd>
 </dl>
@@ -5856,7 +5856,7 @@ await client.NonInsurancePayerRefunds.V1.CreateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.NonInsurancePayerRefunds.V1.<a href="/src/Candid.Net/NonInsurancePayerRefunds/V1/V1Client.cs">UpdateAsync</a>(nonInsurancePayerRefundId, Candid.Net.NonInsurancePayerRefunds.V1.NonInsurancePayerRefundUpdate { ... }) -> Candid.Net.NonInsurancePayerRefunds.V1.NonInsurancePayerRefund</code></summary>
+<details><summary><code>client.NonInsurancePayerRefunds.V1.<a href="/src/Candid.Net/NonInsurancePayerRefunds/V1/V1Client.cs">UpdateAsync</a>(nonInsurancePayerRefundId, global::Candid.Net.NonInsurancePayerRefunds.V1.NonInsurancePayerRefundUpdate { ... }) -> global::Candid.Net.NonInsurancePayerRefunds.V1.NonInsurancePayerRefund</code></summary>
 <dl>
 <dd>
 
@@ -5910,7 +5910,7 @@ await client.NonInsurancePayerRefunds.V1.UpdateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.NonInsurancePayerRefunds.V1.NonInsurancePayerRefundUpdate` 
+**request:** `global::Candid.Net.NonInsurancePayerRefunds.V1.NonInsurancePayerRefundUpdate` 
     
 </dd>
 </dl>
@@ -5977,7 +5977,7 @@ await client.NonInsurancePayerRefunds.V1.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7f
 </details>
 
 ## NonInsurancePayers V1
-<details><summary><code>client.NonInsurancePayers.V1.<a href="/src/Candid.Net/NonInsurancePayers/V1/V1Client.cs">CreateAsync</a>(Candid.Net.NonInsurancePayers.V1.CreateNonInsurancePayerRequest { ... }) -> Candid.Net.NonInsurancePayers.V1.NonInsurancePayer</code></summary>
+<details><summary><code>client.NonInsurancePayers.V1.<a href="/src/Candid.Net/NonInsurancePayers/V1/V1Client.cs">CreateAsync</a>(global::Candid.Net.NonInsurancePayers.V1.CreateNonInsurancePayerRequest { ... }) -> global::Candid.Net.NonInsurancePayers.V1.NonInsurancePayer</code></summary>
 <dl>
 <dd>
 
@@ -6007,7 +6007,7 @@ await client.NonInsurancePayers.V1.CreateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.NonInsurancePayers.V1.CreateNonInsurancePayerRequest` 
+**request:** `global::Candid.Net.NonInsurancePayers.V1.CreateNonInsurancePayerRequest` 
     
 </dd>
 </dl>
@@ -6019,7 +6019,7 @@ await client.NonInsurancePayers.V1.CreateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.NonInsurancePayers.V1.<a href="/src/Candid.Net/NonInsurancePayers/V1/V1Client.cs">ToggleEnablementAsync</a>(nonInsurancePayerId, Candid.Net.NonInsurancePayers.V1.ToggleNonInsurancePayerEnablementRequest { ... }) -> Candid.Net.NonInsurancePayers.V1.NonInsurancePayer</code></summary>
+<details><summary><code>client.NonInsurancePayers.V1.<a href="/src/Candid.Net/NonInsurancePayers/V1/V1Client.cs">ToggleEnablementAsync</a>(nonInsurancePayerId, global::Candid.Net.NonInsurancePayers.V1.ToggleNonInsurancePayerEnablementRequest { ... }) -> global::Candid.Net.NonInsurancePayers.V1.NonInsurancePayer</code></summary>
 <dl>
 <dd>
 
@@ -6058,7 +6058,7 @@ await client.NonInsurancePayers.V1.ToggleEnablementAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.NonInsurancePayers.V1.ToggleNonInsurancePayerEnablementRequest` 
+**request:** `global::Candid.Net.NonInsurancePayers.V1.ToggleNonInsurancePayerEnablementRequest` 
     
 </dd>
 </dl>
@@ -6070,7 +6070,7 @@ await client.NonInsurancePayers.V1.ToggleEnablementAsync(
 </dl>
 </details>
 
-<details><summary><code>client.NonInsurancePayers.V1.<a href="/src/Candid.Net/NonInsurancePayers/V1/V1Client.cs">GetMultiAsync</a>(Candid.Net.NonInsurancePayers.V1.GetMultiNonInsurancePayersRequest { ... }) -> Candid.Net.NonInsurancePayers.V1.NonInsurancePayerPage</code></summary>
+<details><summary><code>client.NonInsurancePayers.V1.<a href="/src/Candid.Net/NonInsurancePayers/V1/V1Client.cs">GetMultiAsync</a>(global::Candid.Net.NonInsurancePayers.V1.GetMultiNonInsurancePayersRequest { ... }) -> global::Candid.Net.NonInsurancePayers.V1.NonInsurancePayerPage</code></summary>
 <dl>
 <dd>
 
@@ -6098,7 +6098,7 @@ await client.NonInsurancePayers.V1.GetMultiAsync(new GetMultiNonInsurancePayersR
 <dl>
 <dd>
 
-**request:** `Candid.Net.NonInsurancePayers.V1.GetMultiNonInsurancePayersRequest` 
+**request:** `global::Candid.Net.NonInsurancePayers.V1.GetMultiNonInsurancePayersRequest` 
     
 </dd>
 </dl>
@@ -6110,7 +6110,7 @@ await client.NonInsurancePayers.V1.GetMultiAsync(new GetMultiNonInsurancePayersR
 </dl>
 </details>
 
-<details><summary><code>client.NonInsurancePayers.V1.<a href="/src/Candid.Net/NonInsurancePayers/V1/V1Client.cs">GetCategoriesAsync</a>(Candid.Net.NonInsurancePayers.V1.GetNonInsurancePayersCategoriesRequest { ... }) -> Candid.Net.NonInsurancePayers.V1.NonInsurancePayerCategoriesPage</code></summary>
+<details><summary><code>client.NonInsurancePayers.V1.<a href="/src/Candid.Net/NonInsurancePayers/V1/V1Client.cs">GetCategoriesAsync</a>(global::Candid.Net.NonInsurancePayers.V1.GetNonInsurancePayersCategoriesRequest { ... }) -> global::Candid.Net.NonInsurancePayers.V1.NonInsurancePayerCategoriesPage</code></summary>
 <dl>
 <dd>
 
@@ -6157,7 +6157,7 @@ await client.NonInsurancePayers.V1.GetCategoriesAsync(new GetNonInsurancePayersC
 <dl>
 <dd>
 
-**request:** `Candid.Net.NonInsurancePayers.V1.GetNonInsurancePayersCategoriesRequest` 
+**request:** `global::Candid.Net.NonInsurancePayers.V1.GetNonInsurancePayersCategoriesRequest` 
     
 </dd>
 </dl>
@@ -6169,7 +6169,7 @@ await client.NonInsurancePayers.V1.GetCategoriesAsync(new GetNonInsurancePayersC
 </dl>
 </details>
 
-<details><summary><code>client.NonInsurancePayers.V1.<a href="/src/Candid.Net/NonInsurancePayers/V1/V1Client.cs">GetAsync</a>(nonInsurancePayerId) -> Candid.Net.NonInsurancePayers.V1.NonInsurancePayer</code></summary>
+<details><summary><code>client.NonInsurancePayers.V1.<a href="/src/Candid.Net/NonInsurancePayers/V1/V1Client.cs">GetAsync</a>(nonInsurancePayerId) -> global::Candid.Net.NonInsurancePayers.V1.NonInsurancePayer</code></summary>
 <dl>
 <dd>
 
@@ -6209,7 +6209,7 @@ await client.NonInsurancePayers.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc3
 </dl>
 </details>
 
-<details><summary><code>client.NonInsurancePayers.V1.<a href="/src/Candid.Net/NonInsurancePayers/V1/V1Client.cs">UpdateAsync</a>(nonInsurancePayerId, Candid.Net.NonInsurancePayers.V1.NonInsurancePayerUpdateRequest { ... }) -> Candid.Net.NonInsurancePayers.V1.NonInsurancePayer</code></summary>
+<details><summary><code>client.NonInsurancePayers.V1.<a href="/src/Candid.Net/NonInsurancePayers/V1/V1Client.cs">UpdateAsync</a>(nonInsurancePayerId, global::Candid.Net.NonInsurancePayers.V1.NonInsurancePayerUpdateRequest { ... }) -> global::Candid.Net.NonInsurancePayers.V1.NonInsurancePayer</code></summary>
 <dl>
 <dd>
 
@@ -6248,7 +6248,7 @@ await client.NonInsurancePayers.V1.UpdateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.NonInsurancePayers.V1.NonInsurancePayerUpdateRequest` 
+**request:** `global::Candid.Net.NonInsurancePayers.V1.NonInsurancePayerUpdateRequest` 
     
 </dd>
 </dl>
@@ -6301,7 +6301,7 @@ await client.NonInsurancePayers.V1.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9f
 </details>
 
 ## OrganizationProviders V3
-<details><summary><code>client.OrganizationProviders.V3.<a href="/src/Candid.Net/OrganizationProviders/V3/V3Client.cs">GetAsync</a>(organizationProviderId) -> Candid.Net.OrganizationProviders.V3.OrganizationProviderV2</code></summary>
+<details><summary><code>client.OrganizationProviders.V3.<a href="/src/Candid.Net/OrganizationProviders/V3/V3Client.cs">GetAsync</a>(organizationProviderId) -> global::Candid.Net.OrganizationProviders.V3.OrganizationProviderV2</code></summary>
 <dl>
 <dd>
 
@@ -6341,7 +6341,7 @@ await client.OrganizationProviders.V3.GetAsync("965A563A-0285-4910-9569-E3739C0F
 </dl>
 </details>
 
-<details><summary><code>client.OrganizationProviders.V3.<a href="/src/Candid.Net/OrganizationProviders/V3/V3Client.cs">GetMultiAsync</a>(Candid.Net.OrganizationProviders.V3.GetAllOrganizationProvidersRequestV2 { ... }) -> Candid.Net.OrganizationProviders.V3.OrganizationProviderPageV2</code></summary>
+<details><summary><code>client.OrganizationProviders.V3.<a href="/src/Candid.Net/OrganizationProviders/V3/V3Client.cs">GetMultiAsync</a>(global::Candid.Net.OrganizationProviders.V3.GetAllOrganizationProvidersRequestV2 { ... }) -> global::Candid.Net.OrganizationProviders.V3.OrganizationProviderPageV2</code></summary>
 <dl>
 <dd>
 
@@ -6380,7 +6380,7 @@ await client.OrganizationProviders.V3.GetMultiAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.OrganizationProviders.V3.GetAllOrganizationProvidersRequestV2` 
+**request:** `global::Candid.Net.OrganizationProviders.V3.GetAllOrganizationProvidersRequestV2` 
     
 </dd>
 </dl>
@@ -6392,7 +6392,7 @@ await client.OrganizationProviders.V3.GetMultiAsync(
 </dl>
 </details>
 
-<details><summary><code>client.OrganizationProviders.V3.<a href="/src/Candid.Net/OrganizationProviders/V3/V3Client.cs">CreateAsync</a>(Candid.Net.OrganizationProviders.V3.OrganizationProviderCreateV2 { ... }) -> Candid.Net.OrganizationProviders.V3.OrganizationProviderV2</code></summary>
+<details><summary><code>client.OrganizationProviders.V3.<a href="/src/Candid.Net/OrganizationProviders/V3/V3Client.cs">CreateAsync</a>(global::Candid.Net.OrganizationProviders.V3.OrganizationProviderCreateV2 { ... }) -> global::Candid.Net.OrganizationProviders.V3.OrganizationProviderV2</code></summary>
 <dl>
 <dd>
 
@@ -6458,7 +6458,7 @@ await client.OrganizationProviders.V3.CreateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.OrganizationProviders.V3.OrganizationProviderCreateV2` 
+**request:** `global::Candid.Net.OrganizationProviders.V3.OrganizationProviderCreateV2` 
     
 </dd>
 </dl>
@@ -6470,7 +6470,7 @@ await client.OrganizationProviders.V3.CreateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.OrganizationProviders.V3.<a href="/src/Candid.Net/OrganizationProviders/V3/V3Client.cs">UpdateAsync</a>(organizationProviderId, Candid.Net.OrganizationProviders.V3.OrganizationProviderUpdateV2 { ... }) -> Candid.Net.OrganizationProviders.V3.OrganizationProviderV2</code></summary>
+<details><summary><code>client.OrganizationProviders.V3.<a href="/src/Candid.Net/OrganizationProviders/V3/V3Client.cs">UpdateAsync</a>(organizationProviderId, global::Candid.Net.OrganizationProviders.V3.OrganizationProviderUpdateV2 { ... }) -> global::Candid.Net.OrganizationProviders.V3.OrganizationProviderV2</code></summary>
 <dl>
 <dd>
 
@@ -6509,7 +6509,7 @@ await client.OrganizationProviders.V3.UpdateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.OrganizationProviders.V3.OrganizationProviderUpdateV2` 
+**request:** `global::Candid.Net.OrganizationProviders.V3.OrganizationProviderUpdateV2` 
     
 </dd>
 </dl>
@@ -6522,7 +6522,7 @@ await client.OrganizationProviders.V3.UpdateAsync(
 </details>
 
 ## OrganizationServiceFacilities V2
-<details><summary><code>client.OrganizationServiceFacilities.V2.<a href="/src/Candid.Net/OrganizationServiceFacilities/V2/V2Client.cs">GetAsync</a>(organizationServiceFacilityId) -> Candid.Net.OrganizationServiceFacilities.V2.OrganizationServiceFacility</code></summary>
+<details><summary><code>client.OrganizationServiceFacilities.V2.<a href="/src/Candid.Net/OrganizationServiceFacilities/V2/V2Client.cs">GetAsync</a>(organizationServiceFacilityId) -> global::Candid.Net.OrganizationServiceFacilities.V2.OrganizationServiceFacility</code></summary>
 <dl>
 <dd>
 
@@ -6562,7 +6562,7 @@ await client.OrganizationServiceFacilities.V2.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-
 </dl>
 </details>
 
-<details><summary><code>client.OrganizationServiceFacilities.V2.<a href="/src/Candid.Net/OrganizationServiceFacilities/V2/V2Client.cs">GetMultiAsync</a>(Candid.Net.OrganizationServiceFacilities.V2.GetAllOrganizationServiceFacilitiesRequest { ... }) -> Candid.Net.OrganizationServiceFacilities.V2.OrganizationServiceFacilityPage</code></summary>
+<details><summary><code>client.OrganizationServiceFacilities.V2.<a href="/src/Candid.Net/OrganizationServiceFacilities/V2/V2Client.cs">GetMultiAsync</a>(global::Candid.Net.OrganizationServiceFacilities.V2.GetAllOrganizationServiceFacilitiesRequest { ... }) -> global::Candid.Net.OrganizationServiceFacilities.V2.OrganizationServiceFacilityPage</code></summary>
 <dl>
 <dd>
 
@@ -6597,7 +6597,7 @@ await client.OrganizationServiceFacilities.V2.GetMultiAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.OrganizationServiceFacilities.V2.GetAllOrganizationServiceFacilitiesRequest` 
+**request:** `global::Candid.Net.OrganizationServiceFacilities.V2.GetAllOrganizationServiceFacilitiesRequest` 
     
 </dd>
 </dl>
@@ -6609,7 +6609,7 @@ await client.OrganizationServiceFacilities.V2.GetMultiAsync(
 </dl>
 </details>
 
-<details><summary><code>client.OrganizationServiceFacilities.V2.<a href="/src/Candid.Net/OrganizationServiceFacilities/V2/V2Client.cs">GetByExternalIdAsync</a>(externalId) -> Candid.Net.OrganizationServiceFacilities.V2.OrganizationServiceFacility</code></summary>
+<details><summary><code>client.OrganizationServiceFacilities.V2.<a href="/src/Candid.Net/OrganizationServiceFacilities/V2/V2Client.cs">GetByExternalIdAsync</a>(externalId) -> global::Candid.Net.OrganizationServiceFacilities.V2.OrganizationServiceFacility</code></summary>
 <dl>
 <dd>
 
@@ -6665,7 +6665,7 @@ await client.OrganizationServiceFacilities.V2.GetByExternalIdAsync("external_id"
 </dl>
 </details>
 
-<details><summary><code>client.OrganizationServiceFacilities.V2.<a href="/src/Candid.Net/OrganizationServiceFacilities/V2/V2Client.cs">CreateAsync</a>(Candid.Net.OrganizationServiceFacilities.V2.OrganizationServiceFacilityCreate { ... }) -> Candid.Net.OrganizationServiceFacilities.V2.OrganizationServiceFacility</code></summary>
+<details><summary><code>client.OrganizationServiceFacilities.V2.<a href="/src/Candid.Net/OrganizationServiceFacilities/V2/V2Client.cs">CreateAsync</a>(global::Candid.Net.OrganizationServiceFacilities.V2.OrganizationServiceFacilityCreate { ... }) -> global::Candid.Net.OrganizationServiceFacilities.V2.OrganizationServiceFacility</code></summary>
 <dl>
 <dd>
 
@@ -6715,7 +6715,7 @@ await client.OrganizationServiceFacilities.V2.CreateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.OrganizationServiceFacilities.V2.OrganizationServiceFacilityCreate` 
+**request:** `global::Candid.Net.OrganizationServiceFacilities.V2.OrganizationServiceFacilityCreate` 
     
 </dd>
 </dl>
@@ -6727,7 +6727,7 @@ await client.OrganizationServiceFacilities.V2.CreateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.OrganizationServiceFacilities.V2.<a href="/src/Candid.Net/OrganizationServiceFacilities/V2/V2Client.cs">UpdateAsync</a>(organizationServiceFacilityId, Candid.Net.OrganizationServiceFacilities.V2.OrganizationServiceFacilityUpdate { ... }) -> Candid.Net.OrganizationServiceFacilities.V2.OrganizationServiceFacility</code></summary>
+<details><summary><code>client.OrganizationServiceFacilities.V2.<a href="/src/Candid.Net/OrganizationServiceFacilities/V2/V2Client.cs">UpdateAsync</a>(organizationServiceFacilityId, global::Candid.Net.OrganizationServiceFacilities.V2.OrganizationServiceFacilityUpdate { ... }) -> global::Candid.Net.OrganizationServiceFacilities.V2.OrganizationServiceFacility</code></summary>
 <dl>
 <dd>
 
@@ -6786,7 +6786,7 @@ await client.OrganizationServiceFacilities.V2.UpdateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.OrganizationServiceFacilities.V2.OrganizationServiceFacilityUpdate` 
+**request:** `global::Candid.Net.OrganizationServiceFacilities.V2.OrganizationServiceFacilityUpdate` 
     
 </dd>
 </dl>
@@ -6839,7 +6839,7 @@ await client.OrganizationServiceFacilities.V2.DeleteAsync("30F55EE6-8C0E-43FC-A7
 </details>
 
 ## PatientAr V1
-<details><summary><code>client.PatientAr.V1.<a href="/src/Candid.Net/PatientAr/V1/V1Client.cs">ListInventoryAsync</a>(Candid.Net.PatientAr.V1.GetInventoryRecordsRequest { ... }) -> Candid.Net.PatientAr.V1.ListInventoryPagedResponse</code></summary>
+<details><summary><code>client.PatientAr.V1.<a href="/src/Candid.Net/PatientAr/V1/V1Client.cs">ListInventoryAsync</a>(global::Candid.Net.PatientAr.V1.GetInventoryRecordsRequest { ... }) -> global::Candid.Net.PatientAr.V1.ListInventoryPagedResponse</code></summary>
 <dl>
 <dd>
 
@@ -6884,7 +6884,7 @@ await client.PatientAr.V1.ListInventoryAsync(new GetInventoryRecordsRequest());
 <dl>
 <dd>
 
-**request:** `Candid.Net.PatientAr.V1.GetInventoryRecordsRequest` 
+**request:** `global::Candid.Net.PatientAr.V1.GetInventoryRecordsRequest` 
     
 </dd>
 </dl>
@@ -6896,7 +6896,7 @@ await client.PatientAr.V1.ListInventoryAsync(new GetInventoryRecordsRequest());
 </dl>
 </details>
 
-<details><summary><code>client.PatientAr.V1.<a href="/src/Candid.Net/PatientAr/V1/V1Client.cs">ItemizeAsync</a>(claimId) -> Candid.Net.PatientAr.V1.InvoiceItemizationResponse</code></summary>
+<details><summary><code>client.PatientAr.V1.<a href="/src/Candid.Net/PatientAr/V1/V1Client.cs">ItemizeAsync</a>(claimId) -> global::Candid.Net.PatientAr.V1.InvoiceItemizationResponse</code></summary>
 <dl>
 <dd>
 
@@ -6953,7 +6953,7 @@ await client.PatientAr.V1.ItemizeAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
 </details>
 
 ## PatientPayments V4
-<details><summary><code>client.PatientPayments.V4.<a href="/src/Candid.Net/PatientPayments/V4/V4Client.cs">GetMultiAsync</a>(Candid.Net.PatientPayments.V4.GetMultiPatientPaymentsRequest { ... }) -> Candid.Net.PatientPayments.V4.PatientPaymentsPage</code></summary>
+<details><summary><code>client.PatientPayments.V4.<a href="/src/Candid.Net/PatientPayments/V4/V4Client.cs">GetMultiAsync</a>(global::Candid.Net.PatientPayments.V4.GetMultiPatientPaymentsRequest { ... }) -> global::Candid.Net.PatientPayments.V4.PatientPaymentsPage</code></summary>
 <dl>
 <dd>
 
@@ -6996,7 +6996,7 @@ await client.PatientPayments.V4.GetMultiAsync(new GetMultiPatientPaymentsRequest
 <dl>
 <dd>
 
-**request:** `Candid.Net.PatientPayments.V4.GetMultiPatientPaymentsRequest` 
+**request:** `global::Candid.Net.PatientPayments.V4.GetMultiPatientPaymentsRequest` 
     
 </dd>
 </dl>
@@ -7008,7 +7008,7 @@ await client.PatientPayments.V4.GetMultiAsync(new GetMultiPatientPaymentsRequest
 </dl>
 </details>
 
-<details><summary><code>client.PatientPayments.V4.<a href="/src/Candid.Net/PatientPayments/V4/V4Client.cs">GetAsync</a>(patientPaymentId) -> Candid.Net.PatientPayments.V4.PatientPayment</code></summary>
+<details><summary><code>client.PatientPayments.V4.<a href="/src/Candid.Net/PatientPayments/V4/V4Client.cs">GetAsync</a>(patientPaymentId) -> global::Candid.Net.PatientPayments.V4.PatientPayment</code></summary>
 <dl>
 <dd>
 
@@ -7062,7 +7062,7 @@ await client.PatientPayments.V4.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32")
 </dl>
 </details>
 
-<details><summary><code>client.PatientPayments.V4.<a href="/src/Candid.Net/PatientPayments/V4/V4Client.cs">CreateAsync</a>(Candid.Net.PatientPayments.V4.PatientPaymentCreate { ... }) -> Candid.Net.PatientPayments.V4.PatientPayment</code></summary>
+<details><summary><code>client.PatientPayments.V4.<a href="/src/Candid.Net/PatientPayments/V4/V4Client.cs">CreateAsync</a>(global::Candid.Net.PatientPayments.V4.PatientPaymentCreate { ... }) -> global::Candid.Net.PatientPayments.V4.PatientPayment</code></summary>
 <dl>
 <dd>
 
@@ -7133,7 +7133,7 @@ await client.PatientPayments.V4.CreateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.PatientPayments.V4.PatientPaymentCreate` 
+**request:** `global::Candid.Net.PatientPayments.V4.PatientPaymentCreate` 
     
 </dd>
 </dl>
@@ -7145,7 +7145,7 @@ await client.PatientPayments.V4.CreateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.PatientPayments.V4.<a href="/src/Candid.Net/PatientPayments/V4/V4Client.cs">UpdateAsync</a>(patientPaymentId, Candid.Net.PatientPayments.V4.PatientPaymentUpdate { ... }) -> Candid.Net.PatientPayments.V4.PatientPayment</code></summary>
+<details><summary><code>client.PatientPayments.V4.<a href="/src/Candid.Net/PatientPayments/V4/V4Client.cs">UpdateAsync</a>(patientPaymentId, global::Candid.Net.PatientPayments.V4.PatientPaymentUpdate { ... }) -> global::Candid.Net.PatientPayments.V4.PatientPayment</code></summary>
 <dl>
 <dd>
 
@@ -7198,7 +7198,7 @@ await client.PatientPayments.V4.UpdateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.PatientPayments.V4.PatientPaymentUpdate` 
+**request:** `global::Candid.Net.PatientPayments.V4.PatientPaymentUpdate` 
     
 </dd>
 </dl>
@@ -7265,7 +7265,7 @@ await client.PatientPayments.V4.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc3
 </details>
 
 ## PatientRefunds V1
-<details><summary><code>client.PatientRefunds.V1.<a href="/src/Candid.Net/PatientRefunds/V1/V1Client.cs">GetMultiAsync</a>(Candid.Net.PatientRefunds.V1.GetMultiPatientRefundsRequest { ... }) -> Candid.Net.PatientRefunds.V1.PatientRefundsPage</code></summary>
+<details><summary><code>client.PatientRefunds.V1.<a href="/src/Candid.Net/PatientRefunds/V1/V1Client.cs">GetMultiAsync</a>(global::Candid.Net.PatientRefunds.V1.GetMultiPatientRefundsRequest { ... }) -> global::Candid.Net.PatientRefunds.V1.PatientRefundsPage</code></summary>
 <dl>
 <dd>
 
@@ -7308,7 +7308,7 @@ await client.PatientRefunds.V1.GetMultiAsync(new GetMultiPatientRefundsRequest()
 <dl>
 <dd>
 
-**request:** `Candid.Net.PatientRefunds.V1.GetMultiPatientRefundsRequest` 
+**request:** `global::Candid.Net.PatientRefunds.V1.GetMultiPatientRefundsRequest` 
     
 </dd>
 </dl>
@@ -7320,7 +7320,7 @@ await client.PatientRefunds.V1.GetMultiAsync(new GetMultiPatientRefundsRequest()
 </dl>
 </details>
 
-<details><summary><code>client.PatientRefunds.V1.<a href="/src/Candid.Net/PatientRefunds/V1/V1Client.cs">GetAsync</a>(patientRefundId) -> Candid.Net.PatientRefunds.V1.PatientRefund</code></summary>
+<details><summary><code>client.PatientRefunds.V1.<a href="/src/Candid.Net/PatientRefunds/V1/V1Client.cs">GetAsync</a>(patientRefundId) -> global::Candid.Net.PatientRefunds.V1.PatientRefund</code></summary>
 <dl>
 <dd>
 
@@ -7374,7 +7374,7 @@ await client.PatientRefunds.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
 </dl>
 </details>
 
-<details><summary><code>client.PatientRefunds.V1.<a href="/src/Candid.Net/PatientRefunds/V1/V1Client.cs">CreateAsync</a>(Candid.Net.PatientRefunds.V1.PatientRefundCreate { ... }) -> Candid.Net.PatientRefunds.V1.PatientRefund</code></summary>
+<details><summary><code>client.PatientRefunds.V1.<a href="/src/Candid.Net/PatientRefunds/V1/V1Client.cs">CreateAsync</a>(global::Candid.Net.PatientRefunds.V1.PatientRefundCreate { ... }) -> global::Candid.Net.PatientRefunds.V1.PatientRefund</code></summary>
 <dl>
 <dd>
 
@@ -7445,7 +7445,7 @@ await client.PatientRefunds.V1.CreateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.PatientRefunds.V1.PatientRefundCreate` 
+**request:** `global::Candid.Net.PatientRefunds.V1.PatientRefundCreate` 
     
 </dd>
 </dl>
@@ -7457,7 +7457,7 @@ await client.PatientRefunds.V1.CreateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.PatientRefunds.V1.<a href="/src/Candid.Net/PatientRefunds/V1/V1Client.cs">UpdateAsync</a>(patientRefundId, Candid.Net.PatientRefunds.V1.PatientRefundUpdate { ... }) -> Candid.Net.PatientRefunds.V1.PatientRefund</code></summary>
+<details><summary><code>client.PatientRefunds.V1.<a href="/src/Candid.Net/PatientRefunds/V1/V1Client.cs">UpdateAsync</a>(patientRefundId, global::Candid.Net.PatientRefunds.V1.PatientRefundUpdate { ... }) -> global::Candid.Net.PatientRefunds.V1.PatientRefund</code></summary>
 <dl>
 <dd>
 
@@ -7510,7 +7510,7 @@ await client.PatientRefunds.V1.UpdateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.PatientRefunds.V1.PatientRefundUpdate` 
+**request:** `global::Candid.Net.PatientRefunds.V1.PatientRefundUpdate` 
     
 </dd>
 </dl>
@@ -7577,7 +7577,7 @@ await client.PatientRefunds.V1.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32
 </details>
 
 ## PayerPlanGroups V1
-<details><summary><code>client.PayerPlanGroups.V1.<a href="/src/Candid.Net/PayerPlanGroups/V1/V1Client.cs">GetMultiAsync</a>(Candid.Net.PayerPlanGroups.V1.PayerPlanGroupGetMultiRequest { ... }) -> Candid.Net.PayerPlanGroups.V1.PayerPlanGroupPage</code></summary>
+<details><summary><code>client.PayerPlanGroups.V1.<a href="/src/Candid.Net/PayerPlanGroups/V1/V1Client.cs">GetMultiAsync</a>(global::Candid.Net.PayerPlanGroups.V1.PayerPlanGroupGetMultiRequest { ... }) -> global::Candid.Net.PayerPlanGroups.V1.PayerPlanGroupPage</code></summary>
 <dl>
 <dd>
 
@@ -7619,7 +7619,7 @@ await client.PayerPlanGroups.V1.GetMultiAsync(new PayerPlanGroupGetMultiRequest(
 <dl>
 <dd>
 
-**request:** `Candid.Net.PayerPlanGroups.V1.PayerPlanGroupGetMultiRequest` 
+**request:** `global::Candid.Net.PayerPlanGroups.V1.PayerPlanGroupGetMultiRequest` 
     
 </dd>
 </dl>
@@ -7631,7 +7631,7 @@ await client.PayerPlanGroups.V1.GetMultiAsync(new PayerPlanGroupGetMultiRequest(
 </dl>
 </details>
 
-<details><summary><code>client.PayerPlanGroups.V1.<a href="/src/Candid.Net/PayerPlanGroups/V1/V1Client.cs">GetAsync</a>(payerPlanGroupId) -> Candid.Net.PayerPlanGroups.V1.PayerPlanGroup</code></summary>
+<details><summary><code>client.PayerPlanGroups.V1.<a href="/src/Candid.Net/PayerPlanGroups/V1/V1Client.cs">GetAsync</a>(payerPlanGroupId) -> global::Candid.Net.PayerPlanGroups.V1.PayerPlanGroup</code></summary>
 <dl>
 <dd>
 
@@ -7685,7 +7685,7 @@ await client.PayerPlanGroups.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32")
 </dl>
 </details>
 
-<details><summary><code>client.PayerPlanGroups.V1.<a href="/src/Candid.Net/PayerPlanGroups/V1/V1Client.cs">CreateAsync</a>(Candid.Net.PayerPlanGroups.V1.MutablePayerPlanGroup { ... }) -> Candid.Net.PayerPlanGroups.V1.PayerPlanGroup</code></summary>
+<details><summary><code>client.PayerPlanGroups.V1.<a href="/src/Candid.Net/PayerPlanGroups/V1/V1Client.cs">CreateAsync</a>(global::Candid.Net.PayerPlanGroups.V1.MutablePayerPlanGroup { ... }) -> global::Candid.Net.PayerPlanGroups.V1.PayerPlanGroup</code></summary>
 <dl>
 <dd>
 
@@ -7734,7 +7734,7 @@ await client.PayerPlanGroups.V1.CreateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.PayerPlanGroups.V1.MutablePayerPlanGroup` 
+**request:** `global::Candid.Net.PayerPlanGroups.V1.MutablePayerPlanGroup` 
     
 </dd>
 </dl>
@@ -7746,7 +7746,7 @@ await client.PayerPlanGroups.V1.CreateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.PayerPlanGroups.V1.<a href="/src/Candid.Net/PayerPlanGroups/V1/V1Client.cs">UpdateAsync</a>(payerPlanGroupId, Candid.Net.PayerPlanGroups.V1.MutablePayerPlanGroup { ... }) -> Candid.Net.PayerPlanGroups.V1.PayerPlanGroup</code></summary>
+<details><summary><code>client.PayerPlanGroups.V1.<a href="/src/Candid.Net/PayerPlanGroups/V1/V1Client.cs">UpdateAsync</a>(payerPlanGroupId, global::Candid.Net.PayerPlanGroups.V1.MutablePayerPlanGroup { ... }) -> global::Candid.Net.PayerPlanGroups.V1.PayerPlanGroup</code></summary>
 <dl>
 <dd>
 
@@ -7804,7 +7804,7 @@ await client.PayerPlanGroups.V1.UpdateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.PayerPlanGroups.V1.MutablePayerPlanGroup` 
+**request:** `global::Candid.Net.PayerPlanGroups.V1.MutablePayerPlanGroup` 
     
 </dd>
 </dl>
@@ -7816,7 +7816,7 @@ await client.PayerPlanGroups.V1.UpdateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.PayerPlanGroups.V1.<a href="/src/Candid.Net/PayerPlanGroups/V1/V1Client.cs">DeactivateAsync</a>(payerPlanGroupId) -> Candid.Net.PayerPlanGroups.V1.PayerPlanGroup</code></summary>
+<details><summary><code>client.PayerPlanGroups.V1.<a href="/src/Candid.Net/PayerPlanGroups/V1/V1Client.cs">DeactivateAsync</a>(payerPlanGroupId) -> global::Candid.Net.PayerPlanGroups.V1.PayerPlanGroup</code></summary>
 <dl>
 <dd>
 
@@ -7871,7 +7871,7 @@ await client.PayerPlanGroups.V1.DeactivateAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9
 </details>
 
 ## Payers V3
-<details><summary><code>client.Payers.V3.<a href="/src/Candid.Net/Payers/V3/V3Client.cs">GetAsync</a>(payerUuid) -> Candid.Net.Payers.V3.Payer</code></summary>
+<details><summary><code>client.Payers.V3.<a href="/src/Candid.Net/Payers/V3/V3Client.cs">GetAsync</a>(payerUuid) -> global::Candid.Net.Payers.V3.Payer</code></summary>
 <dl>
 <dd>
 
@@ -7911,7 +7911,7 @@ await client.Payers.V3.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
 </dl>
 </details>
 
-<details><summary><code>client.Payers.V3.<a href="/src/Candid.Net/Payers/V3/V3Client.cs">GetAllAsync</a>(Candid.Net.Payers.V3.GetAllPayersRequest { ... }) -> Candid.Net.Payers.V3.PayerPage</code></summary>
+<details><summary><code>client.Payers.V3.<a href="/src/Candid.Net/Payers/V3/V3Client.cs">GetAllAsync</a>(global::Candid.Net.Payers.V3.GetAllPayersRequest { ... }) -> global::Candid.Net.Payers.V3.PayerPage</code></summary>
 <dl>
 <dd>
 
@@ -7925,7 +7925,7 @@ await client.Payers.V3.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
 
 ```csharp
 await client.Payers.V3.GetAllAsync(
-    new Candid.Net.Payers.V3.GetAllPayersRequest
+    new global::Candid.Net.Payers.V3.GetAllPayersRequest
     {
         Limit = 100,
         SearchTerm = "john",
@@ -7946,7 +7946,7 @@ await client.Payers.V3.GetAllAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.Payers.V3.GetAllPayersRequest` 
+**request:** `global::Candid.Net.Payers.V3.GetAllPayersRequest` 
     
 </dd>
 </dl>
@@ -7959,7 +7959,7 @@ await client.Payers.V3.GetAllAsync(
 </details>
 
 ## Payers V4
-<details><summary><code>client.Payers.V4.<a href="/src/Candid.Net/Payers/V4/V4Client.cs">GetAsync</a>(payerUuid) -> Candid.Net.Payers.V4.Payer</code></summary>
+<details><summary><code>client.Payers.V4.<a href="/src/Candid.Net/Payers/V4/V4Client.cs">GetAsync</a>(payerUuid) -> global::Candid.Net.Payers.V4.Payer</code></summary>
 <dl>
 <dd>
 
@@ -7999,7 +7999,7 @@ await client.Payers.V4.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
 </dl>
 </details>
 
-<details><summary><code>client.Payers.V4.<a href="/src/Candid.Net/Payers/V4/V4Client.cs">GetAllAsync</a>(Candid.Net.Payers.V4.GetAllPayersRequest { ... }) -> Candid.Net.Payers.V4.PayerPage</code></summary>
+<details><summary><code>client.Payers.V4.<a href="/src/Candid.Net/Payers/V4/V4Client.cs">GetAllAsync</a>(global::Candid.Net.Payers.V4.GetAllPayersRequest { ... }) -> global::Candid.Net.Payers.V4.PayerPage</code></summary>
 <dl>
 <dd>
 
@@ -8012,7 +8012,7 @@ await client.Payers.V4.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
 <dd>
 
 ```csharp
-await client.Payers.V4.GetAllAsync(new Candid.Net.Payers.V4.GetAllPayersRequest());
+await client.Payers.V4.GetAllAsync(new global::Candid.Net.Payers.V4.GetAllPayersRequest());
 ```
 </dd>
 </dl>
@@ -8027,7 +8027,7 @@ await client.Payers.V4.GetAllAsync(new Candid.Net.Payers.V4.GetAllPayersRequest(
 <dl>
 <dd>
 
-**request:** `Candid.Net.Payers.V4.GetAllPayersRequest` 
+**request:** `global::Candid.Net.Payers.V4.GetAllPayersRequest` 
     
 </dd>
 </dl>
@@ -8040,7 +8040,7 @@ await client.Payers.V4.GetAllAsync(new Candid.Net.Payers.V4.GetAllPayersRequest(
 </details>
 
 ## ServiceLines V2
-<details><summary><code>client.ServiceLines.V2.<a href="/src/Candid.Net/ServiceLines/V2/V2Client.cs">CreateAsync</a>(Candid.Net.ServiceLines.V2.ServiceLineCreateStandalone { ... }) -> Candid.Net.ServiceLines.V2.ServiceLine</code></summary>
+<details><summary><code>client.ServiceLines.V2.<a href="/src/Candid.Net/ServiceLines/V2/V2Client.cs">CreateAsync</a>(global::Candid.Net.ServiceLines.V2.ServiceLineCreateStandalone { ... }) -> global::Candid.Net.ServiceLines.V2.ServiceLine</code></summary>
 <dl>
 <dd>
 
@@ -8076,7 +8076,7 @@ await client.ServiceLines.V2.CreateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.ServiceLines.V2.ServiceLineCreateStandalone` 
+**request:** `global::Candid.Net.ServiceLines.V2.ServiceLineCreateStandalone` 
     
 </dd>
 </dl>
@@ -8088,7 +8088,7 @@ await client.ServiceLines.V2.CreateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.ServiceLines.V2.<a href="/src/Candid.Net/ServiceLines/V2/V2Client.cs">CreateUniversalAsync</a>(Candid.Net.ServiceLines.V2.UniversalServiceLineCreateStandalone { ... }) -> Candid.Net.ServiceLines.V2.ServiceLine</code></summary>
+<details><summary><code>client.ServiceLines.V2.<a href="/src/Candid.Net/ServiceLines/V2/V2Client.cs">CreateUniversalAsync</a>(global::Candid.Net.ServiceLines.V2.UniversalServiceLineCreateStandalone { ... }) -> global::Candid.Net.ServiceLines.V2.ServiceLine</code></summary>
 <dl>
 <dd>
 
@@ -8123,7 +8123,7 @@ await client.ServiceLines.V2.CreateUniversalAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.ServiceLines.V2.UniversalServiceLineCreateStandalone` 
+**request:** `global::Candid.Net.ServiceLines.V2.UniversalServiceLineCreateStandalone` 
     
 </dd>
 </dl>
@@ -8135,7 +8135,7 @@ await client.ServiceLines.V2.CreateUniversalAsync(
 </dl>
 </details>
 
-<details><summary><code>client.ServiceLines.V2.<a href="/src/Candid.Net/ServiceLines/V2/V2Client.cs">UpdateUniversalAsync</a>(serviceLineId, Candid.Net.ServiceLines.V2.UniversalServiceLineUpdate { ... }) -> Candid.Net.ServiceLines.V2.ServiceLine</code></summary>
+<details><summary><code>client.ServiceLines.V2.<a href="/src/Candid.Net/ServiceLines/V2/V2Client.cs">UpdateUniversalAsync</a>(serviceLineId, global::Candid.Net.ServiceLines.V2.UniversalServiceLineUpdate { ... }) -> global::Candid.Net.ServiceLines.V2.ServiceLine</code></summary>
 <dl>
 <dd>
 
@@ -8174,7 +8174,7 @@ await client.ServiceLines.V2.UpdateUniversalAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.ServiceLines.V2.UniversalServiceLineUpdate` 
+**request:** `global::Candid.Net.ServiceLines.V2.UniversalServiceLineUpdate` 
     
 </dd>
 </dl>
@@ -8186,7 +8186,7 @@ await client.ServiceLines.V2.UpdateUniversalAsync(
 </dl>
 </details>
 
-<details><summary><code>client.ServiceLines.V2.<a href="/src/Candid.Net/ServiceLines/V2/V2Client.cs">UpdateAsync</a>(serviceLineId, Candid.Net.ServiceLines.V2.ServiceLineUpdate { ... }) -> Candid.Net.ServiceLines.V2.ServiceLine</code></summary>
+<details><summary><code>client.ServiceLines.V2.<a href="/src/Candid.Net/ServiceLines/V2/V2Client.cs">UpdateAsync</a>(serviceLineId, global::Candid.Net.ServiceLines.V2.ServiceLineUpdate { ... }) -> global::Candid.Net.ServiceLines.V2.ServiceLine</code></summary>
 <dl>
 <dd>
 
@@ -8225,7 +8225,7 @@ await client.ServiceLines.V2.UpdateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.ServiceLines.V2.ServiceLineUpdate` 
+**request:** `global::Candid.Net.ServiceLines.V2.ServiceLineUpdate` 
     
 </dd>
 </dl>
@@ -8278,7 +8278,7 @@ await client.ServiceLines.V2.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32")
 </details>
 
 ## Superbills V1
-<details><summary><code>client.Superbills.V1.<a href="/src/Candid.Net/Superbills/V1/V1Client.cs">CreateSuperbillAsync</a>(Candid.Net.Superbills.V1.CreateSuperbillRequest { ... }) -> Candid.Net.Superbills.V1.SuperbillResponse</code></summary>
+<details><summary><code>client.Superbills.V1.<a href="/src/Candid.Net/Superbills/V1/V1Client.cs">CreateSuperbillAsync</a>(global::Candid.Net.Superbills.V1.CreateSuperbillRequest { ... }) -> global::Candid.Net.Superbills.V1.SuperbillResponse</code></summary>
 <dl>
 <dd>
 
@@ -8313,7 +8313,7 @@ await client.Superbills.V1.CreateSuperbillAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.Superbills.V1.CreateSuperbillRequest` 
+**request:** `global::Candid.Net.Superbills.V1.CreateSuperbillRequest` 
     
 </dd>
 </dl>
@@ -8326,7 +8326,7 @@ await client.Superbills.V1.CreateSuperbillAsync(
 </details>
 
 ## Tasks V3
-<details><summary><code>client.Tasks.V3.<a href="/src/Candid.Net/Tasks/V3/V3Client.cs">GetActionsAsync</a>(taskId) -> Candid.Net.Tasks.V3.TaskActions</code></summary>
+<details><summary><code>client.Tasks.V3.<a href="/src/Candid.Net/Tasks/V3/V3Client.cs">GetActionsAsync</a>(taskId) -> global::Candid.Net.Tasks.V3.TaskActions</code></summary>
 <dl>
 <dd>
 
@@ -8366,7 +8366,7 @@ await client.Tasks.V3.GetActionsAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
 </dl>
 </details>
 
-<details><summary><code>client.Tasks.V3.<a href="/src/Candid.Net/Tasks/V3/V3Client.cs">GetMultiAsync</a>(Candid.Net.Tasks.V3.GetAllTasksRequest { ... }) -> Candid.Net.Tasks.V3.TaskPage</code></summary>
+<details><summary><code>client.Tasks.V3.<a href="/src/Candid.Net/Tasks/V3/V3Client.cs">GetMultiAsync</a>(global::Candid.Net.Tasks.V3.GetAllTasksRequest { ... }) -> global::Candid.Net.Tasks.V3.TaskPage</code></summary>
 <dl>
 <dd>
 
@@ -8394,7 +8394,7 @@ await client.Tasks.V3.GetMultiAsync(new GetAllTasksRequest());
 <dl>
 <dd>
 
-**request:** `Candid.Net.Tasks.V3.GetAllTasksRequest` 
+**request:** `global::Candid.Net.Tasks.V3.GetAllTasksRequest` 
     
 </dd>
 </dl>
@@ -8406,7 +8406,7 @@ await client.Tasks.V3.GetMultiAsync(new GetAllTasksRequest());
 </dl>
 </details>
 
-<details><summary><code>client.Tasks.V3.<a href="/src/Candid.Net/Tasks/V3/V3Client.cs">GetAsync</a>(taskId) -> Candid.Net.Tasks.V3.Task</code></summary>
+<details><summary><code>client.Tasks.V3.<a href="/src/Candid.Net/Tasks/V3/V3Client.cs">GetAsync</a>(taskId) -> global::Candid.Net.Tasks.V3.Task</code></summary>
 <dl>
 <dd>
 
@@ -8446,7 +8446,7 @@ await client.Tasks.V3.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
 </dl>
 </details>
 
-<details><summary><code>client.Tasks.V3.<a href="/src/Candid.Net/Tasks/V3/V3Client.cs">CreateAsync</a>(Candid.Net.Tasks.V3.TaskCreateV3 { ... }) -> Candid.Net.Tasks.V3.Task</code></summary>
+<details><summary><code>client.Tasks.V3.<a href="/src/Candid.Net/Tasks/V3/V3Client.cs">CreateAsync</a>(global::Candid.Net.Tasks.V3.TaskCreateV3 { ... }) -> global::Candid.Net.Tasks.V3.Task</code></summary>
 <dl>
 <dd>
 
@@ -8482,7 +8482,7 @@ await client.Tasks.V3.CreateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.Tasks.V3.TaskCreateV3` 
+**request:** `global::Candid.Net.Tasks.V3.TaskCreateV3` 
     
 </dd>
 </dl>
@@ -8494,7 +8494,7 @@ await client.Tasks.V3.CreateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Tasks.V3.<a href="/src/Candid.Net/Tasks/V3/V3Client.cs">UpdateAsync</a>(taskId, Candid.Net.Tasks.V3.TaskUpdateV3 { ... }) -> Candid.Net.Tasks.V3.Task</code></summary>
+<details><summary><code>client.Tasks.V3.<a href="/src/Candid.Net/Tasks/V3/V3Client.cs">UpdateAsync</a>(taskId, global::Candid.Net.Tasks.V3.TaskUpdateV3 { ... }) -> global::Candid.Net.Tasks.V3.Task</code></summary>
 <dl>
 <dd>
 
@@ -8530,7 +8530,7 @@ await client.Tasks.V3.UpdateAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32", new Ta
 <dl>
 <dd>
 
-**request:** `Candid.Net.Tasks.V3.TaskUpdateV3` 
+**request:** `global::Candid.Net.Tasks.V3.TaskUpdateV3` 
     
 </dd>
 </dl>
@@ -8543,7 +8543,7 @@ await client.Tasks.V3.UpdateAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32", new Ta
 </details>
 
 ## WriteOffs V1
-<details><summary><code>client.WriteOffs.V1.<a href="/src/Candid.Net/WriteOffs/V1/V1Client.cs">GetMultiAsync</a>(Candid.Net.WriteOffs.V1.GetMultiWriteOffsRequest { ... }) -> Candid.Net.WriteOffs.V1.WriteOffsPage</code></summary>
+<details><summary><code>client.WriteOffs.V1.<a href="/src/Candid.Net/WriteOffs/V1/V1Client.cs">GetMultiAsync</a>(global::Candid.Net.WriteOffs.V1.GetMultiWriteOffsRequest { ... }) -> global::Candid.Net.WriteOffs.V1.WriteOffsPage</code></summary>
 <dl>
 <dd>
 
@@ -8585,7 +8585,7 @@ await client.WriteOffs.V1.GetMultiAsync(new GetMultiWriteOffsRequest());
 <dl>
 <dd>
 
-**request:** `Candid.Net.WriteOffs.V1.GetMultiWriteOffsRequest` 
+**request:** `global::Candid.Net.WriteOffs.V1.GetMultiWriteOffsRequest` 
     
 </dd>
 </dl>
@@ -8597,7 +8597,7 @@ await client.WriteOffs.V1.GetMultiAsync(new GetMultiWriteOffsRequest());
 </dl>
 </details>
 
-<details><summary><code>client.WriteOffs.V1.<a href="/src/Candid.Net/WriteOffs/V1/V1Client.cs">GetAsync</a>(writeOffId) -> Candid.Net.WriteOffs.V1.WriteOff</code></summary>
+<details><summary><code>client.WriteOffs.V1.<a href="/src/Candid.Net/WriteOffs/V1/V1Client.cs">GetAsync</a>(writeOffId) -> global::Candid.Net.WriteOffs.V1.WriteOff</code></summary>
 <dl>
 <dd>
 
@@ -8651,7 +8651,7 @@ await client.WriteOffs.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
 </dl>
 </details>
 
-<details><summary><code>client.WriteOffs.V1.<a href="/src/Candid.Net/WriteOffs/V1/V1Client.cs">CreateAsync</a>(Candid.Net.WriteOffs.V1.CreateWriteOffsRequest { ... }) -> Candid.Net.WriteOffs.V1.CreateWriteOffsResponse</code></summary>
+<details><summary><code>client.WriteOffs.V1.<a href="/src/Candid.Net/WriteOffs/V1/V1Client.cs">CreateAsync</a>(global::Candid.Net.WriteOffs.V1.CreateWriteOffsRequest { ... }) -> global::Candid.Net.WriteOffs.V1.CreateWriteOffsResponse</code></summary>
 <dl>
 <dd>
 
@@ -8685,7 +8685,7 @@ await client.WriteOffs.V1.CreateAsync(
         WriteOffs = new List<WriteOffCreate>()
         {
             new WriteOffCreate(
-                new Candid.Net.WriteOffs.V1.WriteOffCreate.Patient(
+                new global::Candid.Net.WriteOffs.V1.WriteOffCreate.Patient(
                     new PatientWriteOffCreate
                     {
                         WriteOffTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
@@ -8696,7 +8696,7 @@ await client.WriteOffs.V1.CreateAsync(
                 )
             ),
             new WriteOffCreate(
-                new Candid.Net.WriteOffs.V1.WriteOffCreate.Patient(
+                new global::Candid.Net.WriteOffs.V1.WriteOffCreate.Patient(
                     new PatientWriteOffCreate
                     {
                         WriteOffTimestamp = new DateTime(2024, 01, 15, 09, 30, 00, 000),
@@ -8723,7 +8723,7 @@ await client.WriteOffs.V1.CreateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.WriteOffs.V1.CreateWriteOffsRequest` 
+**request:** `global::Candid.Net.WriteOffs.V1.CreateWriteOffsRequest` 
     
 </dd>
 </dl>
@@ -8735,7 +8735,7 @@ await client.WriteOffs.V1.CreateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.WriteOffs.V1.<a href="/src/Candid.Net/WriteOffs/V1/V1Client.cs">RevertAsync</a>(writeOffId) -> Candid.Net.WriteOffs.V1.WriteOff</code></summary>
+<details><summary><code>client.WriteOffs.V1.<a href="/src/Candid.Net/WriteOffs/V1/V1Client.cs">RevertAsync</a>(writeOffId) -> global::Candid.Net.WriteOffs.V1.WriteOff</code></summary>
 <dl>
 <dd>
 
@@ -8789,7 +8789,7 @@ await client.WriteOffs.V1.RevertAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
 </dl>
 </details>
 
-<details><summary><code>client.WriteOffs.V1.<a href="/src/Candid.Net/WriteOffs/V1/V1Client.cs">RevertInsuranceBalanceAdjustmentAsync</a>(adjustmentId) -> Candid.Net.WriteOffs.V1.WriteOff</code></summary>
+<details><summary><code>client.WriteOffs.V1.<a href="/src/Candid.Net/WriteOffs/V1/V1Client.cs">RevertInsuranceBalanceAdjustmentAsync</a>(adjustmentId) -> global::Candid.Net.WriteOffs.V1.WriteOff</code></summary>
 <dl>
 <dd>
 
@@ -8902,7 +8902,7 @@ await client.WriteOffs.V1.RevertEraOriginatedInsuranceBalanceAdjustmentAsync(
 </details>
 
 ## PreEncounter Appointments V1
-<details><summary><code>client.PreEncounter.Appointments.V1.<a href="/src/Candid.Net/PreEncounter/Appointments/V1/V1Client.cs">CreateAsync</a>(Candid.Net.PreEncounter.Appointments.V1.MutableAppointment { ... }) -> Candid.Net.PreEncounter.Appointments.V1.Appointment</code></summary>
+<details><summary><code>client.PreEncounter.Appointments.V1.<a href="/src/Candid.Net/PreEncounter/Appointments/V1/V1Client.cs">CreateAsync</a>(global::Candid.Net.PreEncounter.Appointments.V1.MutableAppointment { ... }) -> global::Candid.Net.PreEncounter.Appointments.V1.Appointment</code></summary>
 <dl>
 <dd>
 
@@ -8952,7 +8952,7 @@ await client.PreEncounter.Appointments.V1.CreateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.PreEncounter.Appointments.V1.MutableAppointment` 
+**request:** `global::Candid.Net.PreEncounter.Appointments.V1.MutableAppointment` 
     
 </dd>
 </dl>
@@ -8964,7 +8964,7 @@ await client.PreEncounter.Appointments.V1.CreateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.PreEncounter.Appointments.V1.<a href="/src/Candid.Net/PreEncounter/Appointments/V1/V1Client.cs">GetVisitsAsync</a>(Candid.Net.PreEncounter.Appointments.V1.VisitsRequest { ... }) -> Candid.Net.PreEncounter.Appointments.V1.VisitsPage</code></summary>
+<details><summary><code>client.PreEncounter.Appointments.V1.<a href="/src/Candid.Net/PreEncounter/Appointments/V1/V1Client.cs">GetVisitsAsync</a>(global::Candid.Net.PreEncounter.Appointments.V1.VisitsRequest { ... }) -> global::Candid.Net.PreEncounter.Appointments.V1.VisitsPage</code></summary>
 <dl>
 <dd>
 
@@ -9006,7 +9006,7 @@ await client.PreEncounter.Appointments.V1.GetVisitsAsync(new VisitsRequest());
 <dl>
 <dd>
 
-**request:** `Candid.Net.PreEncounter.Appointments.V1.VisitsRequest` 
+**request:** `global::Candid.Net.PreEncounter.Appointments.V1.VisitsRequest` 
     
 </dd>
 </dl>
@@ -9018,7 +9018,7 @@ await client.PreEncounter.Appointments.V1.GetVisitsAsync(new VisitsRequest());
 </dl>
 </details>
 
-<details><summary><code>client.PreEncounter.Appointments.V1.<a href="/src/Candid.Net/PreEncounter/Appointments/V1/V1Client.cs">GetAsync</a>(id) -> Candid.Net.PreEncounter.Appointments.V1.Appointment</code></summary>
+<details><summary><code>client.PreEncounter.Appointments.V1.<a href="/src/Candid.Net/PreEncounter/Appointments/V1/V1Client.cs">GetAsync</a>(id) -> global::Candid.Net.PreEncounter.Appointments.V1.Appointment</code></summary>
 <dl>
 <dd>
 
@@ -9072,7 +9072,7 @@ await client.PreEncounter.Appointments.V1.GetAsync("id");
 </dl>
 </details>
 
-<details><summary><code>client.PreEncounter.Appointments.V1.<a href="/src/Candid.Net/PreEncounter/Appointments/V1/V1Client.cs">GetHistoryAsync</a>(id) -> IEnumerable<Candid.Net.PreEncounter.Appointments.V1.Appointment></code></summary>
+<details><summary><code>client.PreEncounter.Appointments.V1.<a href="/src/Candid.Net/PreEncounter/Appointments/V1/V1Client.cs">GetHistoryAsync</a>(id) -> IEnumerable<global::Candid.Net.PreEncounter.Appointments.V1.Appointment></code></summary>
 <dl>
 <dd>
 
@@ -9126,7 +9126,7 @@ await client.PreEncounter.Appointments.V1.GetHistoryAsync("id");
 </dl>
 </details>
 
-<details><summary><code>client.PreEncounter.Appointments.V1.<a href="/src/Candid.Net/PreEncounter/Appointments/V1/V1Client.cs">UpdateAsync</a>(id, version, Candid.Net.PreEncounter.Appointments.V1.MutableAppointment { ... }) -> Candid.Net.PreEncounter.Appointments.V1.Appointment</code></summary>
+<details><summary><code>client.PreEncounter.Appointments.V1.<a href="/src/Candid.Net/PreEncounter/Appointments/V1/V1Client.cs">UpdateAsync</a>(id, version, global::Candid.Net.PreEncounter.Appointments.V1.MutableAppointment { ... }) -> global::Candid.Net.PreEncounter.Appointments.V1.Appointment</code></summary>
 <dl>
 <dd>
 
@@ -9194,7 +9194,7 @@ await client.PreEncounter.Appointments.V1.UpdateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.PreEncounter.Appointments.V1.MutableAppointment` 
+**request:** `global::Candid.Net.PreEncounter.Appointments.V1.MutableAppointment` 
     
 </dd>
 </dl>
@@ -9206,7 +9206,7 @@ await client.PreEncounter.Appointments.V1.UpdateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.PreEncounter.Appointments.V1.<a href="/src/Candid.Net/PreEncounter/Appointments/V1/V1Client.cs">ScanAsync</a>(Candid.Net.PreEncounter.Appointments.V1.AppointmentScanRequest { ... }) -> IEnumerable<Candid.Net.PreEncounter.Appointments.V1.Appointment></code></summary>
+<details><summary><code>client.PreEncounter.Appointments.V1.<a href="/src/Candid.Net/PreEncounter/Appointments/V1/V1Client.cs">ScanAsync</a>(global::Candid.Net.PreEncounter.Appointments.V1.AppointmentScanRequest { ... }) -> IEnumerable<global::Candid.Net.PreEncounter.Appointments.V1.Appointment></code></summary>
 <dl>
 <dd>
 
@@ -9250,7 +9250,7 @@ await client.PreEncounter.Appointments.V1.ScanAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.PreEncounter.Appointments.V1.AppointmentScanRequest` 
+**request:** `global::Candid.Net.PreEncounter.Appointments.V1.AppointmentScanRequest` 
     
 </dd>
 </dl>
@@ -9325,7 +9325,7 @@ await client.PreEncounter.Appointments.V1.DeactivateAsync("id", "version");
 </details>
 
 ## PreEncounter Coverages V1
-<details><summary><code>client.PreEncounter.Coverages.V1.<a href="/src/Candid.Net/PreEncounter/Coverages/V1/V1Client.cs">CreateAsync</a>(Candid.Net.PreEncounter.Coverages.V1.MutableCoverage { ... }) -> Candid.Net.PreEncounter.Coverages.V1.Coverage</code></summary>
+<details><summary><code>client.PreEncounter.Coverages.V1.<a href="/src/Candid.Net/PreEncounter/Coverages/V1/V1Client.cs">CreateAsync</a>(global::Candid.Net.PreEncounter.Coverages.V1.MutableCoverage { ... }) -> global::Candid.Net.PreEncounter.Coverages.V1.Coverage</code></summary>
 <dl>
 <dd>
 
@@ -9356,7 +9356,7 @@ await client.PreEncounter.Coverages.V1.CreateAsync(
     new MutableCoverage
     {
         Status = CoverageStatus.Active,
-        Subscriber = new Candid.Net.PreEncounter.Coverages.V1.Subscriber
+        Subscriber = new global::Candid.Net.PreEncounter.Coverages.V1.Subscriber
         {
             Name = new HumanName
             {
@@ -9391,7 +9391,7 @@ await client.PreEncounter.Coverages.V1.CreateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.PreEncounter.Coverages.V1.MutableCoverage` 
+**request:** `global::Candid.Net.PreEncounter.Coverages.V1.MutableCoverage` 
     
 </dd>
 </dl>
@@ -9403,7 +9403,7 @@ await client.PreEncounter.Coverages.V1.CreateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.PreEncounter.Coverages.V1.<a href="/src/Candid.Net/PreEncounter/Coverages/V1/V1Client.cs">UpdateAsync</a>(id, version, Candid.Net.PreEncounter.Coverages.V1.MutableCoverage { ... }) -> Candid.Net.PreEncounter.Coverages.V1.Coverage</code></summary>
+<details><summary><code>client.PreEncounter.Coverages.V1.<a href="/src/Candid.Net/PreEncounter/Coverages/V1/V1Client.cs">UpdateAsync</a>(id, version, global::Candid.Net.PreEncounter.Coverages.V1.MutableCoverage { ... }) -> global::Candid.Net.PreEncounter.Coverages.V1.Coverage</code></summary>
 <dl>
 <dd>
 
@@ -9436,7 +9436,7 @@ await client.PreEncounter.Coverages.V1.UpdateAsync(
     new MutableCoverage
     {
         Status = CoverageStatus.Active,
-        Subscriber = new Candid.Net.PreEncounter.Coverages.V1.Subscriber
+        Subscriber = new global::Candid.Net.PreEncounter.Coverages.V1.Subscriber
         {
             Name = new HumanName
             {
@@ -9487,7 +9487,7 @@ await client.PreEncounter.Coverages.V1.UpdateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.PreEncounter.Coverages.V1.MutableCoverage` 
+**request:** `global::Candid.Net.PreEncounter.Coverages.V1.MutableCoverage` 
     
 </dd>
 </dl>
@@ -9499,7 +9499,7 @@ await client.PreEncounter.Coverages.V1.UpdateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.PreEncounter.Coverages.V1.<a href="/src/Candid.Net/PreEncounter/Coverages/V1/V1Client.cs">GetMultiPaginatedAsync</a>(Candid.Net.PreEncounter.Coverages.V1.CoverageGetMultiPaginatedRequest { ... }) -> Candid.Net.PreEncounter.Coverages.V1.CoveragesPage</code></summary>
+<details><summary><code>client.PreEncounter.Coverages.V1.<a href="/src/Candid.Net/PreEncounter/Coverages/V1/V1Client.cs">GetMultiPaginatedAsync</a>(global::Candid.Net.PreEncounter.Coverages.V1.CoverageGetMultiPaginatedRequest { ... }) -> global::Candid.Net.PreEncounter.Coverages.V1.CoveragesPage</code></summary>
 <dl>
 <dd>
 
@@ -9543,7 +9543,7 @@ await client.PreEncounter.Coverages.V1.GetMultiPaginatedAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.PreEncounter.Coverages.V1.CoverageGetMultiPaginatedRequest` 
+**request:** `global::Candid.Net.PreEncounter.Coverages.V1.CoverageGetMultiPaginatedRequest` 
     
 </dd>
 </dl>
@@ -9555,7 +9555,7 @@ await client.PreEncounter.Coverages.V1.GetMultiPaginatedAsync(
 </dl>
 </details>
 
-<details><summary><code>client.PreEncounter.Coverages.V1.<a href="/src/Candid.Net/PreEncounter/Coverages/V1/V1Client.cs">GetAsync</a>(id) -> Candid.Net.PreEncounter.Coverages.V1.Coverage</code></summary>
+<details><summary><code>client.PreEncounter.Coverages.V1.<a href="/src/Candid.Net/PreEncounter/Coverages/V1/V1Client.cs">GetAsync</a>(id) -> global::Candid.Net.PreEncounter.Coverages.V1.Coverage</code></summary>
 <dl>
 <dd>
 
@@ -9609,7 +9609,7 @@ await client.PreEncounter.Coverages.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9
 </dl>
 </details>
 
-<details><summary><code>client.PreEncounter.Coverages.V1.<a href="/src/Candid.Net/PreEncounter/Coverages/V1/V1Client.cs">GetHistoryAsync</a>(id) -> IEnumerable<Candid.Net.PreEncounter.Coverages.V1.Coverage></code></summary>
+<details><summary><code>client.PreEncounter.Coverages.V1.<a href="/src/Candid.Net/PreEncounter/Coverages/V1/V1Client.cs">GetHistoryAsync</a>(id) -> IEnumerable<global::Candid.Net.PreEncounter.Coverages.V1.Coverage></code></summary>
 <dl>
 <dd>
 
@@ -9663,7 +9663,7 @@ await client.PreEncounter.Coverages.V1.GetHistoryAsync("d5e9c84f-c2b2-4bf4-b4b0-
 </dl>
 </details>
 
-<details><summary><code>client.PreEncounter.Coverages.V1.<a href="/src/Candid.Net/PreEncounter/Coverages/V1/V1Client.cs">GetMultiAsync</a>(Candid.Net.PreEncounter.Coverages.V1.CoverageGetMultiRequest { ... }) -> IEnumerable<Candid.Net.PreEncounter.Coverages.V1.Coverage></code></summary>
+<details><summary><code>client.PreEncounter.Coverages.V1.<a href="/src/Candid.Net/PreEncounter/Coverages/V1/V1Client.cs">GetMultiAsync</a>(global::Candid.Net.PreEncounter.Coverages.V1.CoverageGetMultiRequest { ... }) -> IEnumerable<global::Candid.Net.PreEncounter.Coverages.V1.Coverage></code></summary>
 <dl>
 <dd>
 
@@ -9705,7 +9705,7 @@ await client.PreEncounter.Coverages.V1.GetMultiAsync(new CoverageGetMultiRequest
 <dl>
 <dd>
 
-**request:** `Candid.Net.PreEncounter.Coverages.V1.CoverageGetMultiRequest` 
+**request:** `global::Candid.Net.PreEncounter.Coverages.V1.CoverageGetMultiRequest` 
     
 </dd>
 </dl>
@@ -9717,7 +9717,7 @@ await client.PreEncounter.Coverages.V1.GetMultiAsync(new CoverageGetMultiRequest
 </dl>
 </details>
 
-<details><summary><code>client.PreEncounter.Coverages.V1.<a href="/src/Candid.Net/PreEncounter/Coverages/V1/V1Client.cs">ScanAsync</a>(Candid.Net.PreEncounter.Coverages.V1.CoverageScanRequest { ... }) -> IEnumerable<Candid.Net.PreEncounter.Coverages.V1.Coverage></code></summary>
+<details><summary><code>client.PreEncounter.Coverages.V1.<a href="/src/Candid.Net/PreEncounter/Coverages/V1/V1Client.cs">ScanAsync</a>(global::Candid.Net.PreEncounter.Coverages.V1.CoverageScanRequest { ... }) -> IEnumerable<global::Candid.Net.PreEncounter.Coverages.V1.Coverage></code></summary>
 <dl>
 <dd>
 
@@ -9761,7 +9761,7 @@ await client.PreEncounter.Coverages.V1.ScanAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.PreEncounter.Coverages.V1.CoverageScanRequest` 
+**request:** `global::Candid.Net.PreEncounter.Coverages.V1.CoverageScanRequest` 
     
 </dd>
 </dl>
@@ -9773,7 +9773,7 @@ await client.PreEncounter.Coverages.V1.ScanAsync(
 </dl>
 </details>
 
-<details><summary><code>client.PreEncounter.Coverages.V1.<a href="/src/Candid.Net/PreEncounter/Coverages/V1/V1Client.cs">BatchUpdatePpgAsync</a>(ppgId, Candid.Net.PreEncounter.Coverages.V1.PayerPlanGroupFields { ... })</code></summary>
+<details><summary><code>client.PreEncounter.Coverages.V1.<a href="/src/Candid.Net/PreEncounter/Coverages/V1/V1Client.cs">BatchUpdatePpgAsync</a>(ppgId, global::Candid.Net.PreEncounter.Coverages.V1.PayerPlanGroupFields { ... })</code></summary>
 <dl>
 <dd>
 
@@ -9807,7 +9807,7 @@ await client.PreEncounter.Coverages.V1.BatchUpdatePpgAsync(
         PayerPlanGroupId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
         PayerId = "payer_id",
         PayerName = "payer_name",
-        PlanType = Candid.Net.PreEncounter.Coverages.V1.NetworkType.SelfPay,
+        PlanType = global::Candid.Net.PreEncounter.Coverages.V1.NetworkType.SelfPay,
     }
 );
 ```
@@ -9832,7 +9832,7 @@ await client.PreEncounter.Coverages.V1.BatchUpdatePpgAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.PreEncounter.Coverages.V1.PayerPlanGroupFields` 
+**request:** `global::Candid.Net.PreEncounter.Coverages.V1.PayerPlanGroupFields` 
     
 </dd>
 </dl>
@@ -9844,7 +9844,7 @@ await client.PreEncounter.Coverages.V1.BatchUpdatePpgAsync(
 </dl>
 </details>
 
-<details><summary><code>client.PreEncounter.Coverages.V1.<a href="/src/Candid.Net/PreEncounter/Coverages/V1/V1Client.cs">CheckEligibilityAsync</a>(id, Candid.Net.PreEncounter.Coverages.V1.CheckEligibilityRequest { ... }) -> Candid.Net.PreEncounter.EligibilityChecks.V1.EligibilityCheckMetadata</code></summary>
+<details><summary><code>client.PreEncounter.Coverages.V1.<a href="/src/Candid.Net/PreEncounter/Coverages/V1/V1Client.cs">CheckEligibilityAsync</a>(id, global::Candid.Net.PreEncounter.Coverages.V1.CheckEligibilityRequest { ... }) -> global::Candid.Net.PreEncounter.EligibilityChecks.V1.EligibilityCheckMetadata</code></summary>
 <dl>
 <dd>
 
@@ -9902,7 +9902,7 @@ await client.PreEncounter.Coverages.V1.CheckEligibilityAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.PreEncounter.Coverages.V1.CheckEligibilityRequest` 
+**request:** `global::Candid.Net.PreEncounter.Coverages.V1.CheckEligibilityRequest` 
     
 </dd>
 </dl>
@@ -9914,7 +9914,7 @@ await client.PreEncounter.Coverages.V1.CheckEligibilityAsync(
 </dl>
 </details>
 
-<details><summary><code>client.PreEncounter.Coverages.V1.<a href="/src/Candid.Net/PreEncounter/Coverages/V1/V1Client.cs">GetEligibilityAsync</a>(id, checkId) -> Candid.Net.PreEncounter.Coverages.V1.CoverageEligibilityCheckResponse</code></summary>
+<details><summary><code>client.PreEncounter.Coverages.V1.<a href="/src/Candid.Net/PreEncounter/Coverages/V1/V1Client.cs">GetEligibilityAsync</a>(id, checkId) -> global::Candid.Net.PreEncounter.Coverages.V1.CoverageEligibilityCheckResponse</code></summary>
 <dl>
 <dd>
 
@@ -9980,7 +9980,7 @@ await client.PreEncounter.Coverages.V1.GetEligibilityAsync(
 </details>
 
 ## PreEncounter EligibilityChecks V1
-<details><summary><code>client.PreEncounter.EligibilityChecks.V1.<a href="/src/Candid.Net/PreEncounter/EligibilityChecks/V1/V1Client.cs">PostAsync</a>(Candid.Net.PreEncounter.EligibilityChecks.V1.EligibilityRequest { ... }) -> Candid.Net.PreEncounter.EligibilityChecks.V1.EligibilityCheck</code></summary>
+<details><summary><code>client.PreEncounter.EligibilityChecks.V1.<a href="/src/Candid.Net/PreEncounter/EligibilityChecks/V1/V1Client.cs">PostAsync</a>(global::Candid.Net.PreEncounter.EligibilityChecks.V1.EligibilityRequest { ... }) -> global::Candid.Net.PreEncounter.EligibilityChecks.V1.EligibilityCheck</code></summary>
 <dl>
 <dd>
 
@@ -10029,7 +10029,7 @@ await client.PreEncounter.EligibilityChecks.V1.PostAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.PreEncounter.EligibilityChecks.V1.EligibilityRequest` 
+**request:** `global::Candid.Net.PreEncounter.EligibilityChecks.V1.EligibilityRequest` 
     
 </dd>
 </dl>
@@ -10041,7 +10041,7 @@ await client.PreEncounter.EligibilityChecks.V1.PostAsync(
 </dl>
 </details>
 
-<details><summary><code>client.PreEncounter.EligibilityChecks.V1.<a href="/src/Candid.Net/PreEncounter/EligibilityChecks/V1/V1Client.cs">BatchAsync</a>(IEnumerable<Candid.Net.PreEncounter.EligibilityChecks.V1.EligibilityRequest> { ... }) -> Candid.Net.PreEncounter.EligibilityChecks.V1.BatchEligibilityResponse</code></summary>
+<details><summary><code>client.PreEncounter.EligibilityChecks.V1.<a href="/src/Candid.Net/PreEncounter/EligibilityChecks/V1/V1Client.cs">BatchAsync</a>(IEnumerable<global::Candid.Net.PreEncounter.EligibilityChecks.V1.EligibilityRequest> { ... }) -> global::Candid.Net.PreEncounter.EligibilityChecks.V1.BatchEligibilityResponse</code></summary>
 <dl>
 <dd>
 
@@ -10099,7 +10099,7 @@ await client.PreEncounter.EligibilityChecks.V1.BatchAsync(
 <dl>
 <dd>
 
-**request:** `IEnumerable<Candid.Net.PreEncounter.EligibilityChecks.V1.EligibilityRequest>` 
+**request:** `IEnumerable<global::Candid.Net.PreEncounter.EligibilityChecks.V1.EligibilityRequest>` 
     
 </dd>
 </dl>
@@ -10111,7 +10111,7 @@ await client.PreEncounter.EligibilityChecks.V1.BatchAsync(
 </dl>
 </details>
 
-<details><summary><code>client.PreEncounter.EligibilityChecks.V1.<a href="/src/Candid.Net/PreEncounter/EligibilityChecks/V1/V1Client.cs">PollBatchAsync</a>(batchId, Candid.Net.PreEncounter.EligibilityChecks.V1.BatchEligibilityPollRequest { ... }) -> Candid.Net.PreEncounter.EligibilityChecks.V1.EligibilityCheckPage</code></summary>
+<details><summary><code>client.PreEncounter.EligibilityChecks.V1.<a href="/src/Candid.Net/PreEncounter/EligibilityChecks/V1/V1Client.cs">PollBatchAsync</a>(batchId, global::Candid.Net.PreEncounter.EligibilityChecks.V1.BatchEligibilityPollRequest { ... }) -> global::Candid.Net.PreEncounter.EligibilityChecks.V1.EligibilityCheckPage</code></summary>
 <dl>
 <dd>
 
@@ -10164,7 +10164,7 @@ await client.PreEncounter.EligibilityChecks.V1.PollBatchAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.PreEncounter.EligibilityChecks.V1.BatchEligibilityPollRequest` 
+**request:** `global::Candid.Net.PreEncounter.EligibilityChecks.V1.BatchEligibilityPollRequest` 
     
 </dd>
 </dl>
@@ -10176,7 +10176,7 @@ await client.PreEncounter.EligibilityChecks.V1.PollBatchAsync(
 </dl>
 </details>
 
-<details><summary><code>client.PreEncounter.EligibilityChecks.V1.<a href="/src/Candid.Net/PreEncounter/EligibilityChecks/V1/V1Client.cs">PayerSearchAsync</a>(Candid.Net.PreEncounter.EligibilityChecks.V1.PayerSearchRequest { ... }) -> Candid.Net.PreEncounter.EligibilityChecks.V1.PayerSearchResponse</code></summary>
+<details><summary><code>client.PreEncounter.EligibilityChecks.V1.<a href="/src/Candid.Net/PreEncounter/EligibilityChecks/V1/V1Client.cs">PayerSearchAsync</a>(global::Candid.Net.PreEncounter.EligibilityChecks.V1.PayerSearchRequest { ... }) -> global::Candid.Net.PreEncounter.EligibilityChecks.V1.PayerSearchResponse</code></summary>
 <dl>
 <dd>
 
@@ -10218,7 +10218,7 @@ await client.PreEncounter.EligibilityChecks.V1.PayerSearchAsync(new PayerSearchR
 <dl>
 <dd>
 
-**request:** `Candid.Net.PreEncounter.EligibilityChecks.V1.PayerSearchRequest` 
+**request:** `global::Candid.Net.PreEncounter.EligibilityChecks.V1.PayerSearchRequest` 
     
 </dd>
 </dl>
@@ -10230,7 +10230,7 @@ await client.PreEncounter.EligibilityChecks.V1.PayerSearchAsync(new PayerSearchR
 </dl>
 </details>
 
-<details><summary><code>client.PreEncounter.EligibilityChecks.V1.<a href="/src/Candid.Net/PreEncounter/EligibilityChecks/V1/V1Client.cs">RecommendationAsync</a>(Candid.Net.PreEncounter.EligibilityChecks.V1.EligibilityRecommendationRequest { ... }) -> IEnumerable<Candid.Net.PreEncounter.EligibilityChecks.V1.EligibilityRecommendation></code></summary>
+<details><summary><code>client.PreEncounter.EligibilityChecks.V1.<a href="/src/Candid.Net/PreEncounter/EligibilityChecks/V1/V1Client.cs">RecommendationAsync</a>(global::Candid.Net.PreEncounter.EligibilityChecks.V1.EligibilityRecommendationRequest { ... }) -> IEnumerable<global::Candid.Net.PreEncounter.EligibilityChecks.V1.EligibilityRecommendation></code></summary>
 <dl>
 <dd>
 
@@ -10274,7 +10274,7 @@ await client.PreEncounter.EligibilityChecks.V1.RecommendationAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.PreEncounter.EligibilityChecks.V1.EligibilityRecommendationRequest` 
+**request:** `global::Candid.Net.PreEncounter.EligibilityChecks.V1.EligibilityRecommendationRequest` 
     
 </dd>
 </dl>
@@ -10286,7 +10286,7 @@ await client.PreEncounter.EligibilityChecks.V1.RecommendationAsync(
 </dl>
 </details>
 
-<details><summary><code>client.PreEncounter.EligibilityChecks.V1.<a href="/src/Candid.Net/PreEncounter/EligibilityChecks/V1/V1Client.cs">CreateRecommendationAsync</a>(Candid.Net.PreEncounter.EligibilityChecks.V1.PostEligibilityRecommendationRequest { ... }) -> Candid.Net.PreEncounter.EligibilityChecks.V1.EligibilityRecommendation</code></summary>
+<details><summary><code>client.PreEncounter.EligibilityChecks.V1.<a href="/src/Candid.Net/PreEncounter/EligibilityChecks/V1/V1Client.cs">CreateRecommendationAsync</a>(global::Candid.Net.PreEncounter.EligibilityChecks.V1.PostEligibilityRecommendationRequest { ... }) -> global::Candid.Net.PreEncounter.EligibilityChecks.V1.EligibilityRecommendation</code></summary>
 <dl>
 <dd>
 
@@ -10342,7 +10342,7 @@ await client.PreEncounter.EligibilityChecks.V1.CreateRecommendationAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.PreEncounter.EligibilityChecks.V1.PostEligibilityRecommendationRequest` 
+**request:** `global::Candid.Net.PreEncounter.EligibilityChecks.V1.PostEligibilityRecommendationRequest` 
     
 </dd>
 </dl>
@@ -10355,7 +10355,7 @@ await client.PreEncounter.EligibilityChecks.V1.CreateRecommendationAsync(
 </details>
 
 ## PreEncounter Images V1
-<details><summary><code>client.PreEncounter.Images.V1.<a href="/src/Candid.Net/PreEncounter/Images/V1/V1Client.cs">CreateAsync</a>(Candid.Net.PreEncounter.Images.V1.MutableImage { ... }) -> Candid.Net.PreEncounter.Images.V1.Image</code></summary>
+<details><summary><code>client.PreEncounter.Images.V1.<a href="/src/Candid.Net/PreEncounter/Images/V1/V1Client.cs">CreateAsync</a>(global::Candid.Net.PreEncounter.Images.V1.MutableImage { ... }) -> global::Candid.Net.PreEncounter.Images.V1.Image</code></summary>
 <dl>
 <dd>
 
@@ -10405,7 +10405,7 @@ await client.PreEncounter.Images.V1.CreateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.PreEncounter.Images.V1.MutableImage` 
+**request:** `global::Candid.Net.PreEncounter.Images.V1.MutableImage` 
     
 </dd>
 </dl>
@@ -10417,7 +10417,7 @@ await client.PreEncounter.Images.V1.CreateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.PreEncounter.Images.V1.<a href="/src/Candid.Net/PreEncounter/Images/V1/V1Client.cs">GetAsync</a>(id) -> Candid.Net.PreEncounter.Images.V1.Image</code></summary>
+<details><summary><code>client.PreEncounter.Images.V1.<a href="/src/Candid.Net/PreEncounter/Images/V1/V1Client.cs">GetAsync</a>(id) -> global::Candid.Net.PreEncounter.Images.V1.Image</code></summary>
 <dl>
 <dd>
 
@@ -10471,7 +10471,7 @@ await client.PreEncounter.Images.V1.GetAsync("id");
 </dl>
 </details>
 
-<details><summary><code>client.PreEncounter.Images.V1.<a href="/src/Candid.Net/PreEncounter/Images/V1/V1Client.cs">UpdateAsync</a>(id, version, Candid.Net.PreEncounter.Images.V1.MutableImage { ... }) -> Candid.Net.PreEncounter.Images.V1.Image</code></summary>
+<details><summary><code>client.PreEncounter.Images.V1.<a href="/src/Candid.Net/PreEncounter/Images/V1/V1Client.cs">UpdateAsync</a>(id, version, global::Candid.Net.PreEncounter.Images.V1.MutableImage { ... }) -> global::Candid.Net.PreEncounter.Images.V1.Image</code></summary>
 <dl>
 <dd>
 
@@ -10539,7 +10539,7 @@ await client.PreEncounter.Images.V1.UpdateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.PreEncounter.Images.V1.MutableImage` 
+**request:** `global::Candid.Net.PreEncounter.Images.V1.MutableImage` 
     
 </dd>
 </dl>
@@ -10613,7 +10613,7 @@ await client.PreEncounter.Images.V1.DeactivateAsync("id", "version");
 </dl>
 </details>
 
-<details><summary><code>client.PreEncounter.Images.V1.<a href="/src/Candid.Net/PreEncounter/Images/V1/V1Client.cs">GetMultiAsync</a>(Candid.Net.PreEncounter.Images.V1.ImageGetMultiRequest { ... }) -> IEnumerable<Candid.Net.PreEncounter.Images.V1.Image></code></summary>
+<details><summary><code>client.PreEncounter.Images.V1.<a href="/src/Candid.Net/PreEncounter/Images/V1/V1Client.cs">GetMultiAsync</a>(global::Candid.Net.PreEncounter.Images.V1.ImageGetMultiRequest { ... }) -> IEnumerable<global::Candid.Net.PreEncounter.Images.V1.Image></code></summary>
 <dl>
 <dd>
 
@@ -10655,7 +10655,7 @@ await client.PreEncounter.Images.V1.GetMultiAsync(new ImageGetMultiRequest());
 <dl>
 <dd>
 
-**request:** `Candid.Net.PreEncounter.Images.V1.ImageGetMultiRequest` 
+**request:** `global::Candid.Net.PreEncounter.Images.V1.ImageGetMultiRequest` 
     
 </dd>
 </dl>
@@ -10668,7 +10668,7 @@ await client.PreEncounter.Images.V1.GetMultiAsync(new ImageGetMultiRequest());
 </details>
 
 ## PreEncounter Lists V1
-<details><summary><code>client.PreEncounter.Lists.V1.<a href="/src/Candid.Net/PreEncounter/Lists/V1/V1Client.cs">GetPatientListAsync</a>(Candid.Net.PreEncounter.Lists.V1.PatientListRequest { ... }) -> Candid.Net.PreEncounter.Lists.V1.PatientListPage</code></summary>
+<details><summary><code>client.PreEncounter.Lists.V1.<a href="/src/Candid.Net/PreEncounter/Lists/V1/V1Client.cs">GetPatientListAsync</a>(global::Candid.Net.PreEncounter.Lists.V1.PatientListRequest { ... }) -> global::Candid.Net.PreEncounter.Lists.V1.PatientListPage</code></summary>
 <dl>
 <dd>
 
@@ -10710,7 +10710,7 @@ await client.PreEncounter.Lists.V1.GetPatientListAsync(new PatientListRequest())
 <dl>
 <dd>
 
-**request:** `Candid.Net.PreEncounter.Lists.V1.PatientListRequest` 
+**request:** `global::Candid.Net.PreEncounter.Lists.V1.PatientListRequest` 
     
 </dd>
 </dl>
@@ -10722,7 +10722,7 @@ await client.PreEncounter.Lists.V1.GetPatientListAsync(new PatientListRequest())
 </dl>
 </details>
 
-<details><summary><code>client.PreEncounter.Lists.V1.<a href="/src/Candid.Net/PreEncounter/Lists/V1/V1Client.cs">GetAppointmentListAsync</a>(Candid.Net.PreEncounter.Lists.V1.AppointmentsGetListRequest { ... }) -> Candid.Net.PreEncounter.Lists.V1.AppointmentListPage</code></summary>
+<details><summary><code>client.PreEncounter.Lists.V1.<a href="/src/Candid.Net/PreEncounter/Lists/V1/V1Client.cs">GetAppointmentListAsync</a>(global::Candid.Net.PreEncounter.Lists.V1.AppointmentsGetListRequest { ... }) -> global::Candid.Net.PreEncounter.Lists.V1.AppointmentListPage</code></summary>
 <dl>
 <dd>
 
@@ -10764,7 +10764,7 @@ await client.PreEncounter.Lists.V1.GetAppointmentListAsync(new AppointmentsGetLi
 <dl>
 <dd>
 
-**request:** `Candid.Net.PreEncounter.Lists.V1.AppointmentsGetListRequest` 
+**request:** `global::Candid.Net.PreEncounter.Lists.V1.AppointmentsGetListRequest` 
     
 </dd>
 </dl>
@@ -10777,7 +10777,7 @@ await client.PreEncounter.Lists.V1.GetAppointmentListAsync(new AppointmentsGetLi
 </details>
 
 ## PreEncounter Notes V1
-<details><summary><code>client.PreEncounter.Notes.V1.<a href="/src/Candid.Net/PreEncounter/Notes/V1/V1Client.cs">GetAsync</a>(id) -> Candid.Net.PreEncounter.Notes.V1.Note</code></summary>
+<details><summary><code>client.PreEncounter.Notes.V1.<a href="/src/Candid.Net/PreEncounter/Notes/V1/V1Client.cs">GetAsync</a>(id) -> global::Candid.Net.PreEncounter.Notes.V1.Note</code></summary>
 <dl>
 <dd>
 
@@ -10831,7 +10831,7 @@ await client.PreEncounter.Notes.V1.GetAsync("id");
 </dl>
 </details>
 
-<details><summary><code>client.PreEncounter.Notes.V1.<a href="/src/Candid.Net/PreEncounter/Notes/V1/V1Client.cs">CreateAsync</a>(Candid.Net.PreEncounter.Notes.V1.MutableNote { ... }) -> Candid.Net.PreEncounter.Notes.V1.Note</code></summary>
+<details><summary><code>client.PreEncounter.Notes.V1.<a href="/src/Candid.Net/PreEncounter/Notes/V1/V1Client.cs">CreateAsync</a>(global::Candid.Net.PreEncounter.Notes.V1.MutableNote { ... }) -> global::Candid.Net.PreEncounter.Notes.V1.Note</code></summary>
 <dl>
 <dd>
 
@@ -10873,7 +10873,7 @@ await client.PreEncounter.Notes.V1.CreateAsync(new MutableNote { Value = "value"
 <dl>
 <dd>
 
-**request:** `Candid.Net.PreEncounter.Notes.V1.MutableNote` 
+**request:** `global::Candid.Net.PreEncounter.Notes.V1.MutableNote` 
     
 </dd>
 </dl>
@@ -10885,7 +10885,7 @@ await client.PreEncounter.Notes.V1.CreateAsync(new MutableNote { Value = "value"
 </dl>
 </details>
 
-<details><summary><code>client.PreEncounter.Notes.V1.<a href="/src/Candid.Net/PreEncounter/Notes/V1/V1Client.cs">UpdateAsync</a>(id, version, Candid.Net.PreEncounter.Notes.V1.MutableNote { ... }) -> Candid.Net.PreEncounter.Notes.V1.Note</code></summary>
+<details><summary><code>client.PreEncounter.Notes.V1.<a href="/src/Candid.Net/PreEncounter/Notes/V1/V1Client.cs">UpdateAsync</a>(id, version, global::Candid.Net.PreEncounter.Notes.V1.MutableNote { ... }) -> global::Candid.Net.PreEncounter.Notes.V1.Note</code></summary>
 <dl>
 <dd>
 
@@ -10947,7 +10947,7 @@ await client.PreEncounter.Notes.V1.UpdateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.PreEncounter.Notes.V1.MutableNote` 
+**request:** `global::Candid.Net.PreEncounter.Notes.V1.MutableNote` 
     
 </dd>
 </dl>
@@ -11022,7 +11022,7 @@ await client.PreEncounter.Notes.V1.DeactivateAsync("id", "version");
 </details>
 
 ## PreEncounter Patients V1
-<details><summary><code>client.PreEncounter.Patients.V1.<a href="/src/Candid.Net/PreEncounter/Patients/V1/V1Client.cs">CreateAsync</a>(Candid.Net.PreEncounter.Patients.V1.CreatePatientRequest { ... }) -> Candid.Net.PreEncounter.Patients.V1.Patient</code></summary>
+<details><summary><code>client.PreEncounter.Patients.V1.<a href="/src/Candid.Net/PreEncounter/Patients/V1/V1Client.cs">CreateAsync</a>(global::Candid.Net.PreEncounter.Patients.V1.CreatePatientRequest { ... }) -> global::Candid.Net.PreEncounter.Patients.V1.Patient</code></summary>
 <dl>
 <dd>
 
@@ -11077,7 +11077,7 @@ await client.PreEncounter.Patients.V1.CreateAsync(
             },
             BirthDate = new DateOnly(2023, 1, 15),
             BiologicalSex = Sex.Female,
-            PrimaryAddress = new Candid.Net.PreEncounter.Common.Address
+            PrimaryAddress = new global::Candid.Net.PreEncounter.Common.Address
             {
                 Use = AddressUse.Home,
                 Line = new List<string>() { "line", "line" },
@@ -11086,9 +11086,9 @@ await client.PreEncounter.Patients.V1.CreateAsync(
                 PostalCode = "postal_code",
                 Country = "country",
             },
-            OtherAddresses = new List<Candid.Net.PreEncounter.Common.Address>()
+            OtherAddresses = new List<global::Candid.Net.PreEncounter.Common.Address>()
             {
-                new Candid.Net.PreEncounter.Common.Address
+                new global::Candid.Net.PreEncounter.Common.Address
                 {
                     Use = AddressUse.Home,
                     Line = new List<string>() { "line", "line" },
@@ -11097,7 +11097,7 @@ await client.PreEncounter.Patients.V1.CreateAsync(
                     PostalCode = "postal_code",
                     Country = "country",
                 },
-                new Candid.Net.PreEncounter.Common.Address
+                new global::Candid.Net.PreEncounter.Common.Address
                 {
                     Use = AddressUse.Home,
                     Line = new List<string>() { "line", "line" },
@@ -11132,9 +11132,9 @@ await client.PreEncounter.Patients.V1.CreateAsync(
                         new ContactPoint { Value = "value", Use = ContactPointUse.Home },
                         new ContactPoint { Value = "value", Use = ContactPointUse.Home },
                     },
-                    Addresses = new List<Candid.Net.PreEncounter.Common.Address>()
+                    Addresses = new List<global::Candid.Net.PreEncounter.Common.Address>()
                     {
-                        new Candid.Net.PreEncounter.Common.Address
+                        new global::Candid.Net.PreEncounter.Common.Address
                         {
                             Use = AddressUse.Home,
                             Line = new List<string>() { "line", "line" },
@@ -11143,7 +11143,7 @@ await client.PreEncounter.Patients.V1.CreateAsync(
                             PostalCode = "postal_code",
                             Country = "country",
                         },
-                        new Candid.Net.PreEncounter.Common.Address
+                        new global::Candid.Net.PreEncounter.Common.Address
                         {
                             Use = AddressUse.Home,
                             Line = new List<string>() { "line", "line" },
@@ -11172,9 +11172,9 @@ await client.PreEncounter.Patients.V1.CreateAsync(
                         new ContactPoint { Value = "value", Use = ContactPointUse.Home },
                         new ContactPoint { Value = "value", Use = ContactPointUse.Home },
                     },
-                    Addresses = new List<Candid.Net.PreEncounter.Common.Address>()
+                    Addresses = new List<global::Candid.Net.PreEncounter.Common.Address>()
                     {
-                        new Candid.Net.PreEncounter.Common.Address
+                        new global::Candid.Net.PreEncounter.Common.Address
                         {
                             Use = AddressUse.Home,
                             Line = new List<string>() { "line", "line" },
@@ -11183,7 +11183,7 @@ await client.PreEncounter.Patients.V1.CreateAsync(
                             PostalCode = "postal_code",
                             Country = "country",
                         },
-                        new Candid.Net.PreEncounter.Common.Address
+                        new global::Candid.Net.PreEncounter.Common.Address
                         {
                             Use = AddressUse.Home,
                             Line = new List<string>() { "line", "line" },
@@ -11251,7 +11251,7 @@ await client.PreEncounter.Patients.V1.CreateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.PreEncounter.Patients.V1.CreatePatientRequest` 
+**request:** `global::Candid.Net.PreEncounter.Patients.V1.CreatePatientRequest` 
     
 </dd>
 </dl>
@@ -11263,7 +11263,7 @@ await client.PreEncounter.Patients.V1.CreateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.PreEncounter.Patients.V1.<a href="/src/Candid.Net/PreEncounter/Patients/V1/V1Client.cs">CreateWithMrnAsync</a>(Candid.Net.PreEncounter.Patients.V1.CreatePatientWithMrnRequest { ... }) -> Candid.Net.PreEncounter.Patients.V1.Patient</code></summary>
+<details><summary><code>client.PreEncounter.Patients.V1.<a href="/src/Candid.Net/PreEncounter/Patients/V1/V1Client.cs">CreateWithMrnAsync</a>(global::Candid.Net.PreEncounter.Patients.V1.CreatePatientWithMrnRequest { ... }) -> global::Candid.Net.PreEncounter.Patients.V1.Patient</code></summary>
 <dl>
 <dd>
 
@@ -11319,7 +11319,7 @@ await client.PreEncounter.Patients.V1.CreateWithMrnAsync(
             },
             BirthDate = new DateOnly(2023, 1, 15),
             BiologicalSex = Sex.Female,
-            PrimaryAddress = new Candid.Net.PreEncounter.Common.Address
+            PrimaryAddress = new global::Candid.Net.PreEncounter.Common.Address
             {
                 Use = AddressUse.Home,
                 Line = new List<string>() { "line", "line" },
@@ -11328,9 +11328,9 @@ await client.PreEncounter.Patients.V1.CreateWithMrnAsync(
                 PostalCode = "postal_code",
                 Country = "country",
             },
-            OtherAddresses = new List<Candid.Net.PreEncounter.Common.Address>()
+            OtherAddresses = new List<global::Candid.Net.PreEncounter.Common.Address>()
             {
-                new Candid.Net.PreEncounter.Common.Address
+                new global::Candid.Net.PreEncounter.Common.Address
                 {
                     Use = AddressUse.Home,
                     Line = new List<string>() { "line", "line" },
@@ -11339,7 +11339,7 @@ await client.PreEncounter.Patients.V1.CreateWithMrnAsync(
                     PostalCode = "postal_code",
                     Country = "country",
                 },
-                new Candid.Net.PreEncounter.Common.Address
+                new global::Candid.Net.PreEncounter.Common.Address
                 {
                     Use = AddressUse.Home,
                     Line = new List<string>() { "line", "line" },
@@ -11374,9 +11374,9 @@ await client.PreEncounter.Patients.V1.CreateWithMrnAsync(
                         new ContactPoint { Value = "value", Use = ContactPointUse.Home },
                         new ContactPoint { Value = "value", Use = ContactPointUse.Home },
                     },
-                    Addresses = new List<Candid.Net.PreEncounter.Common.Address>()
+                    Addresses = new List<global::Candid.Net.PreEncounter.Common.Address>()
                     {
-                        new Candid.Net.PreEncounter.Common.Address
+                        new global::Candid.Net.PreEncounter.Common.Address
                         {
                             Use = AddressUse.Home,
                             Line = new List<string>() { "line", "line" },
@@ -11385,7 +11385,7 @@ await client.PreEncounter.Patients.V1.CreateWithMrnAsync(
                             PostalCode = "postal_code",
                             Country = "country",
                         },
-                        new Candid.Net.PreEncounter.Common.Address
+                        new global::Candid.Net.PreEncounter.Common.Address
                         {
                             Use = AddressUse.Home,
                             Line = new List<string>() { "line", "line" },
@@ -11414,9 +11414,9 @@ await client.PreEncounter.Patients.V1.CreateWithMrnAsync(
                         new ContactPoint { Value = "value", Use = ContactPointUse.Home },
                         new ContactPoint { Value = "value", Use = ContactPointUse.Home },
                     },
-                    Addresses = new List<Candid.Net.PreEncounter.Common.Address>()
+                    Addresses = new List<global::Candid.Net.PreEncounter.Common.Address>()
                     {
-                        new Candid.Net.PreEncounter.Common.Address
+                        new global::Candid.Net.PreEncounter.Common.Address
                         {
                             Use = AddressUse.Home,
                             Line = new List<string>() { "line", "line" },
@@ -11425,7 +11425,7 @@ await client.PreEncounter.Patients.V1.CreateWithMrnAsync(
                             PostalCode = "postal_code",
                             Country = "country",
                         },
-                        new Candid.Net.PreEncounter.Common.Address
+                        new global::Candid.Net.PreEncounter.Common.Address
                         {
                             Use = AddressUse.Home,
                             Line = new List<string>() { "line", "line" },
@@ -11493,7 +11493,7 @@ await client.PreEncounter.Patients.V1.CreateWithMrnAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.PreEncounter.Patients.V1.CreatePatientWithMrnRequest` 
+**request:** `global::Candid.Net.PreEncounter.Patients.V1.CreatePatientWithMrnRequest` 
     
 </dd>
 </dl>
@@ -11505,7 +11505,7 @@ await client.PreEncounter.Patients.V1.CreateWithMrnAsync(
 </dl>
 </details>
 
-<details><summary><code>client.PreEncounter.Patients.V1.<a href="/src/Candid.Net/PreEncounter/Patients/V1/V1Client.cs">GetMultiAsync</a>(Candid.Net.PreEncounter.Patients.V1.PatientsSearchRequestPaginated { ... }) -> Candid.Net.PreEncounter.Patients.V1.PatientPage</code></summary>
+<details><summary><code>client.PreEncounter.Patients.V1.<a href="/src/Candid.Net/PreEncounter/Patients/V1/V1Client.cs">GetMultiAsync</a>(global::Candid.Net.PreEncounter.Patients.V1.PatientsSearchRequestPaginated { ... }) -> global::Candid.Net.PreEncounter.Patients.V1.PatientPage</code></summary>
 <dl>
 <dd>
 
@@ -11547,7 +11547,7 @@ await client.PreEncounter.Patients.V1.GetMultiAsync(new PatientsSearchRequestPag
 <dl>
 <dd>
 
-**request:** `Candid.Net.PreEncounter.Patients.V1.PatientsSearchRequestPaginated` 
+**request:** `global::Candid.Net.PreEncounter.Patients.V1.PatientsSearchRequestPaginated` 
     
 </dd>
 </dl>
@@ -11559,7 +11559,7 @@ await client.PreEncounter.Patients.V1.GetMultiAsync(new PatientsSearchRequestPag
 </dl>
 </details>
 
-<details><summary><code>client.PreEncounter.Patients.V1.<a href="/src/Candid.Net/PreEncounter/Patients/V1/V1Client.cs">SearchProvidersAsync</a>(Candid.Net.PreEncounter.Patients.V1.SearchProvidersRequest { ... }) -> IEnumerable<Candid.Net.PreEncounter.Common.ExternalProvider></code></summary>
+<details><summary><code>client.PreEncounter.Patients.V1.<a href="/src/Candid.Net/PreEncounter/Patients/V1/V1Client.cs">SearchProvidersAsync</a>(global::Candid.Net.PreEncounter.Patients.V1.SearchProvidersRequest { ... }) -> IEnumerable<global::Candid.Net.PreEncounter.Common.ExternalProvider></code></summary>
 <dl>
 <dd>
 
@@ -11603,7 +11603,7 @@ await client.PreEncounter.Patients.V1.SearchProvidersAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.PreEncounter.Patients.V1.SearchProvidersRequest` 
+**request:** `global::Candid.Net.PreEncounter.Patients.V1.SearchProvidersRequest` 
     
 </dd>
 </dl>
@@ -11615,7 +11615,7 @@ await client.PreEncounter.Patients.V1.SearchProvidersAsync(
 </dl>
 </details>
 
-<details><summary><code>client.PreEncounter.Patients.V1.<a href="/src/Candid.Net/PreEncounter/Patients/V1/V1Client.cs">GetAsync</a>(id) -> Candid.Net.PreEncounter.Patients.V1.Patient</code></summary>
+<details><summary><code>client.PreEncounter.Patients.V1.<a href="/src/Candid.Net/PreEncounter/Patients/V1/V1Client.cs">GetAsync</a>(id) -> global::Candid.Net.PreEncounter.Patients.V1.Patient</code></summary>
 <dl>
 <dd>
 
@@ -11669,7 +11669,7 @@ await client.PreEncounter.Patients.V1.GetAsync("id");
 </dl>
 </details>
 
-<details><summary><code>client.PreEncounter.Patients.V1.<a href="/src/Candid.Net/PreEncounter/Patients/V1/V1Client.cs">GetByMrnAsync</a>(mrn) -> Candid.Net.PreEncounter.Patients.V1.Patient</code></summary>
+<details><summary><code>client.PreEncounter.Patients.V1.<a href="/src/Candid.Net/PreEncounter/Patients/V1/V1Client.cs">GetByMrnAsync</a>(mrn) -> global::Candid.Net.PreEncounter.Patients.V1.Patient</code></summary>
 <dl>
 <dd>
 
@@ -11723,7 +11723,7 @@ await client.PreEncounter.Patients.V1.GetByMrnAsync("mrn");
 </dl>
 </details>
 
-<details><summary><code>client.PreEncounter.Patients.V1.<a href="/src/Candid.Net/PreEncounter/Patients/V1/V1Client.cs">GetHistoryAsync</a>(id) -> IEnumerable<Candid.Net.PreEncounter.Patients.V1.Patient></code></summary>
+<details><summary><code>client.PreEncounter.Patients.V1.<a href="/src/Candid.Net/PreEncounter/Patients/V1/V1Client.cs">GetHistoryAsync</a>(id) -> IEnumerable<global::Candid.Net.PreEncounter.Patients.V1.Patient></code></summary>
 <dl>
 <dd>
 
@@ -11777,7 +11777,7 @@ await client.PreEncounter.Patients.V1.GetHistoryAsync("id");
 </dl>
 </details>
 
-<details><summary><code>client.PreEncounter.Patients.V1.<a href="/src/Candid.Net/PreEncounter/Patients/V1/V1Client.cs">UpdateAsync</a>(id, version, Candid.Net.PreEncounter.Patients.V1.MutablePatient { ... }) -> Candid.Net.PreEncounter.Patients.V1.Patient</code></summary>
+<details><summary><code>client.PreEncounter.Patients.V1.<a href="/src/Candid.Net/PreEncounter/Patients/V1/V1Client.cs">UpdateAsync</a>(id, version, global::Candid.Net.PreEncounter.Patients.V1.MutablePatient { ... }) -> global::Candid.Net.PreEncounter.Patients.V1.Patient</code></summary>
 <dl>
 <dd>
 
@@ -11832,7 +11832,7 @@ await client.PreEncounter.Patients.V1.UpdateAsync(
         },
         BirthDate = new DateOnly(2023, 1, 15),
         BiologicalSex = Sex.Female,
-        PrimaryAddress = new Candid.Net.PreEncounter.Common.Address
+        PrimaryAddress = new global::Candid.Net.PreEncounter.Common.Address
         {
             Use = AddressUse.Home,
             Line = new List<string>() { "line", "line" },
@@ -11841,9 +11841,9 @@ await client.PreEncounter.Patients.V1.UpdateAsync(
             PostalCode = "postal_code",
             Country = "country",
         },
-        OtherAddresses = new List<Candid.Net.PreEncounter.Common.Address>()
+        OtherAddresses = new List<global::Candid.Net.PreEncounter.Common.Address>()
         {
-            new Candid.Net.PreEncounter.Common.Address
+            new global::Candid.Net.PreEncounter.Common.Address
             {
                 Use = AddressUse.Home,
                 Line = new List<string>() { "line", "line" },
@@ -11852,7 +11852,7 @@ await client.PreEncounter.Patients.V1.UpdateAsync(
                 PostalCode = "postal_code",
                 Country = "country",
             },
-            new Candid.Net.PreEncounter.Common.Address
+            new global::Candid.Net.PreEncounter.Common.Address
             {
                 Use = AddressUse.Home,
                 Line = new List<string>() { "line", "line" },
@@ -11883,9 +11883,9 @@ await client.PreEncounter.Patients.V1.UpdateAsync(
                     new ContactPoint { Value = "value", Use = ContactPointUse.Home },
                     new ContactPoint { Value = "value", Use = ContactPointUse.Home },
                 },
-                Addresses = new List<Candid.Net.PreEncounter.Common.Address>()
+                Addresses = new List<global::Candid.Net.PreEncounter.Common.Address>()
                 {
-                    new Candid.Net.PreEncounter.Common.Address
+                    new global::Candid.Net.PreEncounter.Common.Address
                     {
                         Use = AddressUse.Home,
                         Line = new List<string>() { "line", "line" },
@@ -11894,7 +11894,7 @@ await client.PreEncounter.Patients.V1.UpdateAsync(
                         PostalCode = "postal_code",
                         Country = "country",
                     },
-                    new Candid.Net.PreEncounter.Common.Address
+                    new global::Candid.Net.PreEncounter.Common.Address
                     {
                         Use = AddressUse.Home,
                         Line = new List<string>() { "line", "line" },
@@ -11919,9 +11919,9 @@ await client.PreEncounter.Patients.V1.UpdateAsync(
                     new ContactPoint { Value = "value", Use = ContactPointUse.Home },
                     new ContactPoint { Value = "value", Use = ContactPointUse.Home },
                 },
-                Addresses = new List<Candid.Net.PreEncounter.Common.Address>()
+                Addresses = new List<global::Candid.Net.PreEncounter.Common.Address>()
                 {
-                    new Candid.Net.PreEncounter.Common.Address
+                    new global::Candid.Net.PreEncounter.Common.Address
                     {
                         Use = AddressUse.Home,
                         Line = new List<string>() { "line", "line" },
@@ -11930,7 +11930,7 @@ await client.PreEncounter.Patients.V1.UpdateAsync(
                         PostalCode = "postal_code",
                         Country = "country",
                     },
-                    new Candid.Net.PreEncounter.Common.Address
+                    new global::Candid.Net.PreEncounter.Common.Address
                     {
                         Use = AddressUse.Home,
                         Line = new List<string>() { "line", "line" },
@@ -12013,7 +12013,7 @@ await client.PreEncounter.Patients.V1.UpdateAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.PreEncounter.Patients.V1.MutablePatient` 
+**request:** `global::Candid.Net.PreEncounter.Patients.V1.MutablePatient` 
     
 </dd>
 </dl>
@@ -12149,7 +12149,7 @@ await client.PreEncounter.Patients.V1.ReactivateAsync("id", "version");
 </dl>
 </details>
 
-<details><summary><code>client.PreEncounter.Patients.V1.<a href="/src/Candid.Net/PreEncounter/Patients/V1/V1Client.cs">SearchAsync</a>(Candid.Net.PreEncounter.Patients.V1.PatientGetMultiRequest { ... }) -> IEnumerable<Candid.Net.PreEncounter.Patients.V1.Patient></code></summary>
+<details><summary><code>client.PreEncounter.Patients.V1.<a href="/src/Candid.Net/PreEncounter/Patients/V1/V1Client.cs">SearchAsync</a>(global::Candid.Net.PreEncounter.Patients.V1.PatientGetMultiRequest { ... }) -> IEnumerable<global::Candid.Net.PreEncounter.Patients.V1.Patient></code></summary>
 <dl>
 <dd>
 
@@ -12191,7 +12191,7 @@ await client.PreEncounter.Patients.V1.SearchAsync(new PatientGetMultiRequest());
 <dl>
 <dd>
 
-**request:** `Candid.Net.PreEncounter.Patients.V1.PatientGetMultiRequest` 
+**request:** `global::Candid.Net.PreEncounter.Patients.V1.PatientGetMultiRequest` 
     
 </dd>
 </dl>
@@ -12203,7 +12203,7 @@ await client.PreEncounter.Patients.V1.SearchAsync(new PatientGetMultiRequest());
 </dl>
 </details>
 
-<details><summary><code>client.PreEncounter.Patients.V1.<a href="/src/Candid.Net/PreEncounter/Patients/V1/V1Client.cs">ScanAsync</a>(Candid.Net.PreEncounter.Patients.V1.PatientScanRequest { ... }) -> IEnumerable<Candid.Net.PreEncounter.Patients.V1.Patient></code></summary>
+<details><summary><code>client.PreEncounter.Patients.V1.<a href="/src/Candid.Net/PreEncounter/Patients/V1/V1Client.cs">ScanAsync</a>(global::Candid.Net.PreEncounter.Patients.V1.PatientScanRequest { ... }) -> IEnumerable<global::Candid.Net.PreEncounter.Patients.V1.Patient></code></summary>
 <dl>
 <dd>
 
@@ -12247,7 +12247,7 @@ await client.PreEncounter.Patients.V1.ScanAsync(
 <dl>
 <dd>
 
-**request:** `Candid.Net.PreEncounter.Patients.V1.PatientScanRequest` 
+**request:** `global::Candid.Net.PreEncounter.Patients.V1.PatientScanRequest` 
     
 </dd>
 </dl>
@@ -12260,7 +12260,7 @@ await client.PreEncounter.Patients.V1.ScanAsync(
 </details>
 
 ## PreEncounter Tags V1
-<details><summary><code>client.PreEncounter.Tags.V1.<a href="/src/Candid.Net/PreEncounter/Tags/V1/V1Client.cs">GetAsync</a>(id) -> Candid.Net.PreEncounter.Tags.V1.Tag</code></summary>
+<details><summary><code>client.PreEncounter.Tags.V1.<a href="/src/Candid.Net/PreEncounter/Tags/V1/V1Client.cs">GetAsync</a>(id) -> global::Candid.Net.PreEncounter.Tags.V1.Tag</code></summary>
 <dl>
 <dd>
 
@@ -12314,7 +12314,7 @@ await client.PreEncounter.Tags.V1.GetAsync("id");
 </dl>
 </details>
 
-<details><summary><code>client.PreEncounter.Tags.V1.<a href="/src/Candid.Net/PreEncounter/Tags/V1/V1Client.cs">GetAllAsync</a>(Candid.Net.PreEncounter.Tags.V1.GetAllTagsRequest { ... }) -> Candid.Net.PreEncounter.Tags.V1.TagPage</code></summary>
+<details><summary><code>client.PreEncounter.Tags.V1.<a href="/src/Candid.Net/PreEncounter/Tags/V1/V1Client.cs">GetAllAsync</a>(global::Candid.Net.PreEncounter.Tags.V1.GetAllTagsRequest { ... }) -> global::Candid.Net.PreEncounter.Tags.V1.TagPage</code></summary>
 <dl>
 <dd>
 
@@ -12356,7 +12356,7 @@ await client.PreEncounter.Tags.V1.GetAllAsync(new GetAllTagsRequest());
 <dl>
 <dd>
 
-**request:** `Candid.Net.PreEncounter.Tags.V1.GetAllTagsRequest` 
+**request:** `global::Candid.Net.PreEncounter.Tags.V1.GetAllTagsRequest` 
     
 </dd>
 </dl>
@@ -12368,7 +12368,7 @@ await client.PreEncounter.Tags.V1.GetAllAsync(new GetAllTagsRequest());
 </dl>
 </details>
 
-<details><summary><code>client.PreEncounter.Tags.V1.<a href="/src/Candid.Net/PreEncounter/Tags/V1/V1Client.cs">CreateAsync</a>(Candid.Net.PreEncounter.Tags.V1.MutableTag { ... }) -> Candid.Net.PreEncounter.Tags.V1.Tag</code></summary>
+<details><summary><code>client.PreEncounter.Tags.V1.<a href="/src/Candid.Net/PreEncounter/Tags/V1/V1Client.cs">CreateAsync</a>(global::Candid.Net.PreEncounter.Tags.V1.MutableTag { ... }) -> global::Candid.Net.PreEncounter.Tags.V1.Tag</code></summary>
 <dl>
 <dd>
 
@@ -12410,7 +12410,7 @@ await client.PreEncounter.Tags.V1.CreateAsync(new MutableTag { Value = "value" }
 <dl>
 <dd>
 
-**request:** `Candid.Net.PreEncounter.Tags.V1.MutableTag` 
+**request:** `global::Candid.Net.PreEncounter.Tags.V1.MutableTag` 
     
 </dd>
 </dl>
@@ -12422,7 +12422,7 @@ await client.PreEncounter.Tags.V1.CreateAsync(new MutableTag { Value = "value" }
 </dl>
 </details>
 
-<details><summary><code>client.PreEncounter.Tags.V1.<a href="/src/Candid.Net/PreEncounter/Tags/V1/V1Client.cs">UpdateAsync</a>(id, version, Candid.Net.PreEncounter.Tags.V1.MutableTag { ... }) -> Candid.Net.PreEncounter.Tags.V1.Tag</code></summary>
+<details><summary><code>client.PreEncounter.Tags.V1.<a href="/src/Candid.Net/PreEncounter/Tags/V1/V1Client.cs">UpdateAsync</a>(id, version, global::Candid.Net.PreEncounter.Tags.V1.MutableTag { ... }) -> global::Candid.Net.PreEncounter.Tags.V1.Tag</code></summary>
 <dl>
 <dd>
 
@@ -12480,7 +12480,7 @@ await client.PreEncounter.Tags.V1.UpdateAsync("id", "version", new MutableTag { 
 <dl>
 <dd>
 
-**request:** `Candid.Net.PreEncounter.Tags.V1.MutableTag` 
+**request:** `global::Candid.Net.PreEncounter.Tags.V1.MutableTag` 
     
 </dd>
 </dl>

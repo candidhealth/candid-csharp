@@ -17,7 +17,7 @@ public partial class V2Client
     /// <example><code>
     /// await client.OrganizationServiceFacilities.V2.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async System.Threading.Tasks.Task<OrganizationServiceFacility> GetAsync(
+    public async global::System.Threading.Tasks.Task<OrganizationServiceFacility> GetAsync(
         string organizationServiceFacilityId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -71,7 +71,7 @@ public partial class V2Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<OrganizationServiceFacilityPage> GetMultiAsync(
+    public async global::System.Threading.Tasks.Task<OrganizationServiceFacilityPage> GetMultiAsync(
         GetAllOrganizationServiceFacilitiesRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -140,7 +140,7 @@ public partial class V2Client
     /// <example><code>
     /// await client.OrganizationServiceFacilities.V2.GetByExternalIdAsync("external_id");
     /// </code></example>
-    public async System.Threading.Tasks.Task<OrganizationServiceFacility> GetByExternalIdAsync(
+    public async global::System.Threading.Tasks.Task<OrganizationServiceFacility> GetByExternalIdAsync(
         string externalId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -209,7 +209,7 @@ public partial class V2Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<OrganizationServiceFacility> CreateAsync(
+    public async global::System.Threading.Tasks.Task<OrganizationServiceFacility> CreateAsync(
         OrganizationServiceFacilityCreate request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -277,7 +277,7 @@ public partial class V2Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<OrganizationServiceFacility> UpdateAsync(
+    public async global::System.Threading.Tasks.Task<OrganizationServiceFacility> UpdateAsync(
         string organizationServiceFacilityId,
         OrganizationServiceFacilityUpdate request,
         RequestOptions? options = null,
@@ -326,7 +326,7 @@ public partial class V2Client
     /// <example><code>
     /// await client.OrganizationServiceFacilities.V2.DeleteAsync("30F55EE6-8C0E-43FC-A7FC-DAC00D5BF569");
     /// </code></example>
-    public async System.Threading.Tasks.Task DeleteAsync(
+    public async global::System.Threading.Tasks.Task DeleteAsync(
         string organizationServiceFacilityId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

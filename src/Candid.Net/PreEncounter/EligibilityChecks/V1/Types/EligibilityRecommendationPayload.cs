@@ -62,35 +62,36 @@ public record EligibilityRecommendationPayload
     public bool IsCoordinationOfBenefits => Type == "COORDINATION_OF_BENEFITS";
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation"/> if <see cref="Type"/> is 'MEDICARE_ADVANTAGE', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation"/> if <see cref="Type"/> is 'MEDICARE_ADVANTAGE', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'MEDICARE_ADVANTAGE'.</exception>
-    public Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation AsMedicareAdvantage() =>
+    public global::Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation AsMedicareAdvantage() =>
         IsMedicareAdvantage
-            ? (Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation)Value!
-            : throw new Exception(
+            ? (global::Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation)
+                Value!
+            : throw new global::System.Exception(
                 "EligibilityRecommendationPayload.Type is not 'MEDICARE_ADVANTAGE'"
             );
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsRecommendation"/> if <see cref="Type"/> is 'COORDINATION_OF_BENEFITS', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsRecommendation"/> if <see cref="Type"/> is 'COORDINATION_OF_BENEFITS', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'COORDINATION_OF_BENEFITS'.</exception>
-    public Candid.Net.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsRecommendation AsCoordinationOfBenefits() =>
+    public global::Candid.Net.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsRecommendation AsCoordinationOfBenefits() =>
         IsCoordinationOfBenefits
-            ? (Candid.Net.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsRecommendation)
+            ? (global::Candid.Net.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsRecommendation)
                 Value!
-            : throw new Exception(
+            : throw new global::System.Exception(
                 "EligibilityRecommendationPayload.Type is not 'COORDINATION_OF_BENEFITS'"
             );
 
     public T Match<T>(
         Func<
-            Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation,
+            global::Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation,
             T
         > onMedicareAdvantage,
         Func<
-            Candid.Net.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsRecommendation,
+            global::Candid.Net.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsRecommendation,
             T
         > onCoordinationOfBenefits,
         Func<string, object?, T> onUnknown_
@@ -105,8 +106,8 @@ public record EligibilityRecommendationPayload
     }
 
     public void Visit(
-        Action<Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation> onMedicareAdvantage,
-        Action<Candid.Net.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsRecommendation> onCoordinationOfBenefits,
+        Action<global::Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation> onMedicareAdvantage,
+        Action<global::Candid.Net.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsRecommendation> onCoordinationOfBenefits,
         Action<string, object?> onUnknown_
     )
     {
@@ -125,16 +126,17 @@ public record EligibilityRecommendationPayload
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation"/> and returns true if successful.
     /// </summary>
     public bool TryAsMedicareAdvantage(
-        out Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation? value
+        out global::Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation? value
     )
     {
         if (Type == "MEDICARE_ADVANTAGE")
         {
-            value = (Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation)
-                Value!;
+            value =
+                (global::Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation)
+                    Value!;
             return true;
         }
         value = null;
@@ -142,16 +144,16 @@ public record EligibilityRecommendationPayload
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsRecommendation"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsRecommendation"/> and returns true if successful.
     /// </summary>
     public bool TryAsCoordinationOfBenefits(
-        out Candid.Net.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsRecommendation? value
+        out global::Candid.Net.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsRecommendation? value
     )
     {
         if (Type == "COORDINATION_OF_BENEFITS")
         {
             value =
-                (Candid.Net.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsRecommendation)
+                (global::Candid.Net.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsRecommendation)
                     Value!;
             return true;
         }
@@ -205,18 +207,18 @@ public record EligibilityRecommendationPayload
             var value = discriminator switch
             {
                 "MEDICARE_ADVANTAGE" =>
-                    json.Deserialize<Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation>(
+                    json.Deserialize<global::Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation?>(
                         options
                     )
                         ?? throw new JsonException(
-                            "Failed to deserialize Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation"
+                            "Failed to deserialize global::Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation"
                         ),
                 "COORDINATION_OF_BENEFITS" =>
-                    json.Deserialize<Candid.Net.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsRecommendation>(
+                    json.Deserialize<global::Candid.Net.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsRecommendation?>(
                         options
                     )
                         ?? throw new JsonException(
-                            "Failed to deserialize Candid.Net.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsRecommendation"
+                            "Failed to deserialize global::Candid.Net.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsRecommendation"
                         ),
                 _ => json.Deserialize<object?>(options),
             };
@@ -251,18 +253,18 @@ public record EligibilityRecommendationPayload
     public struct MedicareAdvantage
     {
         public MedicareAdvantage(
-            Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation value
+            global::Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation value
         )
         {
             Value = value;
         }
 
-        internal Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation Value { get; set; }
+        internal global::Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator EligibilityRecommendationPayload.MedicareAdvantage(
-            Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation value
+            global::Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation value
         ) => new(value);
     }
 
@@ -273,18 +275,18 @@ public record EligibilityRecommendationPayload
     public struct CoordinationOfBenefits
     {
         public CoordinationOfBenefits(
-            Candid.Net.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsRecommendation value
+            global::Candid.Net.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsRecommendation value
         )
         {
             Value = value;
         }
 
-        internal Candid.Net.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsRecommendation Value { get; set; }
+        internal global::Candid.Net.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsRecommendation Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator EligibilityRecommendationPayload.CoordinationOfBenefits(
-            Candid.Net.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsRecommendation value
+            global::Candid.Net.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsRecommendation value
         ) => new(value);
     }
 }

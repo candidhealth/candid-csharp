@@ -9,8 +9,8 @@ public partial class OrganizationServiceFacilitiesClient
     internal OrganizationServiceFacilitiesClient(RawClient client)
     {
         _client = client;
-        V2 = new Candid.Net.OrganizationServiceFacilities.V2.V2Client(_client);
+        V2 = new global::Candid.Net.OrganizationServiceFacilities.V2.V2Client(_client);
     }
 
-    public Candid.Net.OrganizationServiceFacilities.V2.V2Client V2 { get; }
+    public global::Candid.Net.OrganizationServiceFacilities.V2.V2Client V2 { get; }
 }

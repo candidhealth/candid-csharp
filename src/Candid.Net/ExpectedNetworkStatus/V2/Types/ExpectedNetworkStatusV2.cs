@@ -72,36 +72,45 @@ public record ExpectedNetworkStatusV2
     public bool IsIndeterminate => Type == "indeterminate";
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.ExpectedNetworkStatus.V2.InNetworkStatus"/> if <see cref="Type"/> is 'in_network', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.ExpectedNetworkStatus.V2.InNetworkStatus"/> if <see cref="Type"/> is 'in_network', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'in_network'.</exception>
-    public Candid.Net.ExpectedNetworkStatus.V2.InNetworkStatus AsInNetwork() =>
+    public global::Candid.Net.ExpectedNetworkStatus.V2.InNetworkStatus AsInNetwork() =>
         IsInNetwork
-            ? (Candid.Net.ExpectedNetworkStatus.V2.InNetworkStatus)Value!
-            : throw new Exception("ExpectedNetworkStatusV2.Type is not 'in_network'");
+            ? (global::Candid.Net.ExpectedNetworkStatus.V2.InNetworkStatus)Value!
+            : throw new global::System.Exception(
+                "ExpectedNetworkStatusV2.Type is not 'in_network'"
+            );
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus"/> if <see cref="Type"/> is 'out_of_network', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus"/> if <see cref="Type"/> is 'out_of_network', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'out_of_network'.</exception>
-    public Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus AsOutOfNetwork() =>
+    public global::Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus AsOutOfNetwork() =>
         IsOutOfNetwork
-            ? (Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus)Value!
-            : throw new Exception("ExpectedNetworkStatusV2.Type is not 'out_of_network'");
+            ? (global::Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus)Value!
+            : throw new global::System.Exception(
+                "ExpectedNetworkStatusV2.Type is not 'out_of_network'"
+            );
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus"/> if <see cref="Type"/> is 'indeterminate', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus"/> if <see cref="Type"/> is 'indeterminate', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'indeterminate'.</exception>
-    public Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus AsIndeterminate() =>
+    public global::Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus AsIndeterminate() =>
         IsIndeterminate
-            ? (Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus)Value!
-            : throw new Exception("ExpectedNetworkStatusV2.Type is not 'indeterminate'");
+            ? (global::Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus)Value!
+            : throw new global::System.Exception(
+                "ExpectedNetworkStatusV2.Type is not 'indeterminate'"
+            );
 
     public T Match<T>(
-        Func<Candid.Net.ExpectedNetworkStatus.V2.InNetworkStatus, T> onInNetwork,
-        Func<Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus, T> onOutOfNetwork,
-        Func<Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus, T> onIndeterminate,
+        Func<global::Candid.Net.ExpectedNetworkStatus.V2.InNetworkStatus, T> onInNetwork,
+        Func<global::Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus, T> onOutOfNetwork,
+        Func<
+            global::Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus,
+            T
+        > onIndeterminate,
         Func<string, object?, T> onUnknown_
     )
     {
@@ -115,9 +124,9 @@ public record ExpectedNetworkStatusV2
     }
 
     public void Visit(
-        Action<Candid.Net.ExpectedNetworkStatus.V2.InNetworkStatus> onInNetwork,
-        Action<Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus> onOutOfNetwork,
-        Action<Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus> onIndeterminate,
+        Action<global::Candid.Net.ExpectedNetworkStatus.V2.InNetworkStatus> onInNetwork,
+        Action<global::Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus> onOutOfNetwork,
+        Action<global::Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus> onIndeterminate,
         Action<string, object?> onUnknown_
     )
     {
@@ -139,13 +148,15 @@ public record ExpectedNetworkStatusV2
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.ExpectedNetworkStatus.V2.InNetworkStatus"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.ExpectedNetworkStatus.V2.InNetworkStatus"/> and returns true if successful.
     /// </summary>
-    public bool TryAsInNetwork(out Candid.Net.ExpectedNetworkStatus.V2.InNetworkStatus? value)
+    public bool TryAsInNetwork(
+        out global::Candid.Net.ExpectedNetworkStatus.V2.InNetworkStatus? value
+    )
     {
         if (Type == "in_network")
         {
-            value = (Candid.Net.ExpectedNetworkStatus.V2.InNetworkStatus)Value!;
+            value = (global::Candid.Net.ExpectedNetworkStatus.V2.InNetworkStatus)Value!;
             return true;
         }
         value = null;
@@ -153,13 +164,15 @@ public record ExpectedNetworkStatusV2
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus"/> and returns true if successful.
     /// </summary>
-    public bool TryAsOutOfNetwork(out Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus? value)
+    public bool TryAsOutOfNetwork(
+        out global::Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus? value
+    )
     {
         if (Type == "out_of_network")
         {
-            value = (Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus)Value!;
+            value = (global::Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus)Value!;
             return true;
         }
         value = null;
@@ -167,15 +180,15 @@ public record ExpectedNetworkStatusV2
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus"/> and returns true if successful.
     /// </summary>
     public bool TryAsIndeterminate(
-        out Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus? value
+        out global::Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus? value
     )
     {
         if (Type == "indeterminate")
         {
-            value = (Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus)Value!;
+            value = (global::Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus)Value!;
             return true;
         }
         value = null;
@@ -232,23 +245,25 @@ public record ExpectedNetworkStatusV2
             var value = discriminator switch
             {
                 "in_network" =>
-                    json.Deserialize<Candid.Net.ExpectedNetworkStatus.V2.InNetworkStatus>(options)
+                    json.Deserialize<global::Candid.Net.ExpectedNetworkStatus.V2.InNetworkStatus?>(
+                        options
+                    )
                         ?? throw new JsonException(
-                            "Failed to deserialize Candid.Net.ExpectedNetworkStatus.V2.InNetworkStatus"
+                            "Failed to deserialize global::Candid.Net.ExpectedNetworkStatus.V2.InNetworkStatus"
                         ),
                 "out_of_network" =>
-                    json.Deserialize<Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus>(
+                    json.Deserialize<global::Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus?>(
                         options
                     )
                         ?? throw new JsonException(
-                            "Failed to deserialize Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus"
+                            "Failed to deserialize global::Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus"
                         ),
                 "indeterminate" =>
-                    json.Deserialize<Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus>(
+                    json.Deserialize<global::Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus?>(
                         options
                     )
                         ?? throw new JsonException(
-                            "Failed to deserialize Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus"
+                            "Failed to deserialize global::Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus"
                         ),
                 _ => json.Deserialize<object?>(options),
             };
@@ -280,17 +295,17 @@ public record ExpectedNetworkStatusV2
     [Serializable]
     public struct InNetwork
     {
-        public InNetwork(Candid.Net.ExpectedNetworkStatus.V2.InNetworkStatus value)
+        public InNetwork(global::Candid.Net.ExpectedNetworkStatus.V2.InNetworkStatus value)
         {
             Value = value;
         }
 
-        internal Candid.Net.ExpectedNetworkStatus.V2.InNetworkStatus Value { get; set; }
+        internal global::Candid.Net.ExpectedNetworkStatus.V2.InNetworkStatus Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator ExpectedNetworkStatusV2.InNetwork(
-            Candid.Net.ExpectedNetworkStatus.V2.InNetworkStatus value
+            global::Candid.Net.ExpectedNetworkStatus.V2.InNetworkStatus value
         ) => new(value);
     }
 
@@ -300,17 +315,17 @@ public record ExpectedNetworkStatusV2
     [Serializable]
     public struct OutOfNetwork
     {
-        public OutOfNetwork(Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus value)
+        public OutOfNetwork(global::Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus value)
         {
             Value = value;
         }
 
-        internal Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus Value { get; set; }
+        internal global::Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator ExpectedNetworkStatusV2.OutOfNetwork(
-            Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus value
+            global::Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus value
         ) => new(value);
     }
 
@@ -320,17 +335,19 @@ public record ExpectedNetworkStatusV2
     [Serializable]
     public struct Indeterminate
     {
-        public Indeterminate(Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus value)
+        public Indeterminate(
+            global::Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus value
+        )
         {
             Value = value;
         }
 
-        internal Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus Value { get; set; }
+        internal global::Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator ExpectedNetworkStatusV2.Indeterminate(
-            Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus value
+            global::Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus value
         ) => new(value);
     }
 }

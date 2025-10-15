@@ -44,7 +44,7 @@ public record Task : IJsonOnDeserialized
     public string? PayerId { get; set; }
 
     [JsonPropertyName("status")]
-    public required Candid.Net.Tasks.Commons.TaskStatus Status { get; set; }
+    public required global::Candid.Net.Tasks.Commons.TaskStatus Status { get; set; }
 
     [JsonPropertyName("notes")]
     public IEnumerable<TaskNote> Notes { get; set; } = new List<TaskNote>();

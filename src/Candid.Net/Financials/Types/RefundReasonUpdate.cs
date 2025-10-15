@@ -58,23 +58,25 @@ public record RefundReasonUpdate
     public bool IsRemove => Type == "remove";
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.Financials.RefundReason"/> if <see cref="Type"/> is 'set', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.Financials.RefundReason"/> if <see cref="Type"/> is 'set', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'set'.</exception>
-    public Candid.Net.Financials.RefundReason AsSet() =>
+    public global::Candid.Net.Financials.RefundReason AsSet() =>
         IsSet
-            ? (Candid.Net.Financials.RefundReason)Value!
-            : throw new Exception("RefundReasonUpdate.Type is not 'set'");
+            ? (global::Candid.Net.Financials.RefundReason)Value!
+            : throw new global::System.Exception("RefundReasonUpdate.Type is not 'set'");
 
     /// <summary>
     /// Returns the value as a <see cref="object"/> if <see cref="Type"/> is 'remove', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'remove'.</exception>
     public object AsRemove() =>
-        IsRemove ? Value! : throw new Exception("RefundReasonUpdate.Type is not 'remove'");
+        IsRemove
+            ? Value!
+            : throw new global::System.Exception("RefundReasonUpdate.Type is not 'remove'");
 
     public T Match<T>(
-        Func<Candid.Net.Financials.RefundReason, T> onSet,
+        Func<global::Candid.Net.Financials.RefundReason, T> onSet,
         Func<object, T> onRemove,
         Func<string, object?, T> onUnknown_
     )
@@ -88,7 +90,7 @@ public record RefundReasonUpdate
     }
 
     public void Visit(
-        Action<Candid.Net.Financials.RefundReason> onSet,
+        Action<global::Candid.Net.Financials.RefundReason> onSet,
         Action<object> onRemove,
         Action<string, object?> onUnknown_
     )
@@ -108,13 +110,13 @@ public record RefundReasonUpdate
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.Financials.RefundReason"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.Financials.RefundReason"/> and returns true if successful.
     /// </summary>
-    public bool TryAsSet(out Candid.Net.Financials.RefundReason? value)
+    public bool TryAsSet(out global::Candid.Net.Financials.RefundReason? value)
     {
         if (Type == "set")
         {
-            value = (Candid.Net.Financials.RefundReason)Value!;
+            value = (global::Candid.Net.Financials.RefundReason)Value!;
             return true;
         }
         value = null;
@@ -175,9 +177,9 @@ public record RefundReasonUpdate
             var value = discriminator switch
             {
                 "set" => json.GetProperty("value")
-                    .Deserialize<Candid.Net.Financials.RefundReason>(options)
+                    .Deserialize<global::Candid.Net.Financials.RefundReason?>(options)
                 ?? throw new JsonException(
-                        "Failed to deserialize Candid.Net.Financials.RefundReason"
+                        "Failed to deserialize global::Candid.Net.Financials.RefundReason"
                     ),
                 "remove" => new { },
                 _ => json.Deserialize<object?>(options),
@@ -212,17 +214,17 @@ public record RefundReasonUpdate
     [Serializable]
     public struct Set
     {
-        public Set(Candid.Net.Financials.RefundReason value)
+        public Set(global::Candid.Net.Financials.RefundReason value)
         {
             Value = value;
         }
 
-        internal Candid.Net.Financials.RefundReason Value { get; set; }
+        internal global::Candid.Net.Financials.RefundReason Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator RefundReasonUpdate.Set(
-            Candid.Net.Financials.RefundReason value
+            global::Candid.Net.Financials.RefundReason value
         ) => new(value);
     }
 
@@ -234,6 +236,6 @@ public record RefundReasonUpdate
     {
         internal object Value => new { };
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
     }
 }

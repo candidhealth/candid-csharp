@@ -28,7 +28,7 @@ public partial class V1Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<Image> CreateAsync(
+    public async global::System.Threading.Tasks.Task<Image> CreateAsync(
         MutableImage request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -76,7 +76,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.PreEncounter.Images.V1.GetAsync("id");
     /// </code></example>
-    public async System.Threading.Tasks.Task<Image> GetAsync(
+    public async global::System.Threading.Tasks.Task<Image> GetAsync(
         string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -133,7 +133,7 @@ public partial class V1Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<Image> UpdateAsync(
+    public async global::System.Threading.Tasks.Task<Image> UpdateAsync(
         string id,
         string version,
         MutableImage request,
@@ -187,7 +187,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.PreEncounter.Images.V1.DeactivateAsync("id", "version");
     /// </code></example>
-    public async System.Threading.Tasks.Task DeactivateAsync(
+    public async global::System.Threading.Tasks.Task DeactivateAsync(
         string id,
         string version,
         RequestOptions? options = null,
@@ -230,7 +230,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.PreEncounter.Images.V1.GetMultiAsync(new ImageGetMultiRequest());
     /// </code></example>
-    public async System.Threading.Tasks.Task<IEnumerable<Image>> GetMultiAsync(
+    public async global::System.Threading.Tasks.Task<IEnumerable<Image>> GetMultiAsync(
         ImageGetMultiRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

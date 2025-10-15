@@ -72,33 +72,35 @@ public record UpdatableIdentifier
     public bool IsRemove => Type == "remove";
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.Identifiers.IdentifierCreate"/> if <see cref="Type"/> is 'add', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.Identifiers.IdentifierCreate"/> if <see cref="Type"/> is 'add', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'add'.</exception>
-    public Candid.Net.Identifiers.IdentifierCreate AsAdd() =>
+    public global::Candid.Net.Identifiers.IdentifierCreate AsAdd() =>
         IsAdd
-            ? (Candid.Net.Identifiers.IdentifierCreate)Value!
-            : throw new Exception("UpdatableIdentifier.Type is not 'add'");
+            ? (global::Candid.Net.Identifiers.IdentifierCreate)Value!
+            : throw new global::System.Exception("UpdatableIdentifier.Type is not 'add'");
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.Identifiers.IdentifierUpdate"/> if <see cref="Type"/> is 'update', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.Identifiers.IdentifierUpdate"/> if <see cref="Type"/> is 'update', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'update'.</exception>
-    public Candid.Net.Identifiers.IdentifierUpdate AsUpdate() =>
+    public global::Candid.Net.Identifiers.IdentifierUpdate AsUpdate() =>
         IsUpdate
-            ? (Candid.Net.Identifiers.IdentifierUpdate)Value!
-            : throw new Exception("UpdatableIdentifier.Type is not 'update'");
+            ? (global::Candid.Net.Identifiers.IdentifierUpdate)Value!
+            : throw new global::System.Exception("UpdatableIdentifier.Type is not 'update'");
 
     /// <summary>
     /// Returns the value as a <see cref="string"/> if <see cref="Type"/> is 'remove', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'remove'.</exception>
     public string AsRemove() =>
-        IsRemove ? (string)Value! : throw new Exception("UpdatableIdentifier.Type is not 'remove'");
+        IsRemove
+            ? (string)Value!
+            : throw new global::System.Exception("UpdatableIdentifier.Type is not 'remove'");
 
     public T Match<T>(
-        Func<Candid.Net.Identifiers.IdentifierCreate, T> onAdd,
-        Func<Candid.Net.Identifiers.IdentifierUpdate, T> onUpdate,
+        Func<global::Candid.Net.Identifiers.IdentifierCreate, T> onAdd,
+        Func<global::Candid.Net.Identifiers.IdentifierUpdate, T> onUpdate,
         Func<string, T> onRemove,
         Func<string, object?, T> onUnknown_
     )
@@ -113,8 +115,8 @@ public record UpdatableIdentifier
     }
 
     public void Visit(
-        Action<Candid.Net.Identifiers.IdentifierCreate> onAdd,
-        Action<Candid.Net.Identifiers.IdentifierUpdate> onUpdate,
+        Action<global::Candid.Net.Identifiers.IdentifierCreate> onAdd,
+        Action<global::Candid.Net.Identifiers.IdentifierUpdate> onUpdate,
         Action<string> onRemove,
         Action<string, object?> onUnknown_
     )
@@ -137,13 +139,13 @@ public record UpdatableIdentifier
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.Identifiers.IdentifierCreate"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.Identifiers.IdentifierCreate"/> and returns true if successful.
     /// </summary>
-    public bool TryAsAdd(out Candid.Net.Identifiers.IdentifierCreate? value)
+    public bool TryAsAdd(out global::Candid.Net.Identifiers.IdentifierCreate? value)
     {
         if (Type == "add")
         {
-            value = (Candid.Net.Identifiers.IdentifierCreate)Value!;
+            value = (global::Candid.Net.Identifiers.IdentifierCreate)Value!;
             return true;
         }
         value = null;
@@ -151,13 +153,13 @@ public record UpdatableIdentifier
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.Identifiers.IdentifierUpdate"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.Identifiers.IdentifierUpdate"/> and returns true if successful.
     /// </summary>
-    public bool TryAsUpdate(out Candid.Net.Identifiers.IdentifierUpdate? value)
+    public bool TryAsUpdate(out global::Candid.Net.Identifiers.IdentifierUpdate? value)
     {
         if (Type == "update")
         {
-            value = (Candid.Net.Identifiers.IdentifierUpdate)Value!;
+            value = (global::Candid.Net.Identifiers.IdentifierUpdate)Value!;
             return true;
         }
         value = null;
@@ -224,15 +226,17 @@ public record UpdatableIdentifier
 
             var value = discriminator switch
             {
-                "add" => json.Deserialize<Candid.Net.Identifiers.IdentifierCreate>(options)
+                "add" => json.Deserialize<global::Candid.Net.Identifiers.IdentifierCreate?>(options)
                     ?? throw new JsonException(
-                        "Failed to deserialize Candid.Net.Identifiers.IdentifierCreate"
+                        "Failed to deserialize global::Candid.Net.Identifiers.IdentifierCreate"
                     ),
-                "update" => json.Deserialize<Candid.Net.Identifiers.IdentifierUpdate>(options)
+                "update" => json.Deserialize<global::Candid.Net.Identifiers.IdentifierUpdate?>(
+                    options
+                )
                     ?? throw new JsonException(
-                        "Failed to deserialize Candid.Net.Identifiers.IdentifierUpdate"
+                        "Failed to deserialize global::Candid.Net.Identifiers.IdentifierUpdate"
                     ),
-                "remove" => json.GetProperty("value").Deserialize<string>(options)
+                "remove" => json.GetProperty("value").Deserialize<string?>(options)
                 ?? throw new JsonException("Failed to deserialize string"),
                 _ => json.Deserialize<object?>(options),
             };
@@ -267,17 +271,17 @@ public record UpdatableIdentifier
     [Serializable]
     public struct Add
     {
-        public Add(Candid.Net.Identifiers.IdentifierCreate value)
+        public Add(global::Candid.Net.Identifiers.IdentifierCreate value)
         {
             Value = value;
         }
 
-        internal Candid.Net.Identifiers.IdentifierCreate Value { get; set; }
+        internal global::Candid.Net.Identifiers.IdentifierCreate Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator UpdatableIdentifier.Add(
-            Candid.Net.Identifiers.IdentifierCreate value
+            global::Candid.Net.Identifiers.IdentifierCreate value
         ) => new(value);
     }
 
@@ -287,17 +291,17 @@ public record UpdatableIdentifier
     [Serializable]
     public struct Update
     {
-        public Update(Candid.Net.Identifiers.IdentifierUpdate value)
+        public Update(global::Candid.Net.Identifiers.IdentifierUpdate value)
         {
             Value = value;
         }
 
-        internal Candid.Net.Identifiers.IdentifierUpdate Value { get; set; }
+        internal global::Candid.Net.Identifiers.IdentifierUpdate Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator UpdatableIdentifier.Update(
-            Candid.Net.Identifiers.IdentifierUpdate value
+            global::Candid.Net.Identifiers.IdentifierUpdate value
         ) => new(value);
     }
 

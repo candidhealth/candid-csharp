@@ -9,8 +9,8 @@ public partial class PayerPlanGroupsClient
     internal PayerPlanGroupsClient(RawClient client)
     {
         _client = client;
-        V1 = new Candid.Net.PayerPlanGroups.V1.V1Client(_client);
+        V1 = new global::Candid.Net.PayerPlanGroups.V1.V1Client(_client);
     }
 
-    public Candid.Net.PayerPlanGroups.V1.V1Client V1 { get; }
+    public global::Candid.Net.PayerPlanGroups.V1.V1Client V1 { get; }
 }

@@ -9,8 +9,8 @@ public partial class NonInsurancePayersClient
     internal NonInsurancePayersClient(RawClient client)
     {
         _client = client;
-        V1 = new Candid.Net.NonInsurancePayers.V1.V1Client(_client);
+        V1 = new global::Candid.Net.NonInsurancePayers.V1.V1Client(_client);
     }
 
-    public Candid.Net.NonInsurancePayers.V1.V1Client V1 { get; }
+    public global::Candid.Net.NonInsurancePayers.V1.V1Client V1 { get; }
 }

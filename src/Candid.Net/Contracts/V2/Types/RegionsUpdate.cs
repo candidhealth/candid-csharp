@@ -58,23 +58,25 @@ public record RegionsUpdate
     public bool IsRemove => Type == "remove";
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.Commons.Regions"/> if <see cref="Type"/> is 'set', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.Commons.Regions"/> if <see cref="Type"/> is 'set', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'set'.</exception>
-    public Candid.Net.Commons.Regions AsSet() =>
+    public global::Candid.Net.Commons.Regions AsSet() =>
         IsSet
-            ? (Candid.Net.Commons.Regions)Value!
-            : throw new Exception("RegionsUpdate.Type is not 'set'");
+            ? (global::Candid.Net.Commons.Regions)Value!
+            : throw new global::System.Exception("RegionsUpdate.Type is not 'set'");
 
     /// <summary>
     /// Returns the value as a <see cref="object"/> if <see cref="Type"/> is 'remove', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'remove'.</exception>
     public object AsRemove() =>
-        IsRemove ? Value! : throw new Exception("RegionsUpdate.Type is not 'remove'");
+        IsRemove
+            ? Value!
+            : throw new global::System.Exception("RegionsUpdate.Type is not 'remove'");
 
     public T Match<T>(
-        Func<Candid.Net.Commons.Regions, T> onSet,
+        Func<global::Candid.Net.Commons.Regions, T> onSet,
         Func<object, T> onRemove,
         Func<string, object?, T> onUnknown_
     )
@@ -88,7 +90,7 @@ public record RegionsUpdate
     }
 
     public void Visit(
-        Action<Candid.Net.Commons.Regions> onSet,
+        Action<global::Candid.Net.Commons.Regions> onSet,
         Action<object> onRemove,
         Action<string, object?> onUnknown_
     )
@@ -108,13 +110,13 @@ public record RegionsUpdate
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.Commons.Regions"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.Commons.Regions"/> and returns true if successful.
     /// </summary>
-    public bool TryAsSet(out Candid.Net.Commons.Regions? value)
+    public bool TryAsSet(out global::Candid.Net.Commons.Regions? value)
     {
         if (Type == "set")
         {
-            value = (Candid.Net.Commons.Regions)Value!;
+            value = (global::Candid.Net.Commons.Regions)Value!;
             return true;
         }
         value = null;
@@ -174,8 +176,11 @@ public record RegionsUpdate
 
             var value = discriminator switch
             {
-                "set" => json.GetProperty("value").Deserialize<Candid.Net.Commons.Regions>(options)
-                ?? throw new JsonException("Failed to deserialize Candid.Net.Commons.Regions"),
+                "set" => json.GetProperty("value")
+                    .Deserialize<global::Candid.Net.Commons.Regions?>(options)
+                ?? throw new JsonException(
+                        "Failed to deserialize global::Candid.Net.Commons.Regions"
+                    ),
                 "remove" => new { },
                 _ => json.Deserialize<object?>(options),
             };
@@ -209,17 +214,18 @@ public record RegionsUpdate
     [Serializable]
     public struct Set
     {
-        public Set(Candid.Net.Commons.Regions value)
+        public Set(global::Candid.Net.Commons.Regions value)
         {
             Value = value;
         }
 
-        internal Candid.Net.Commons.Regions Value { get; set; }
+        internal global::Candid.Net.Commons.Regions Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
-        public static implicit operator RegionsUpdate.Set(Candid.Net.Commons.Regions value) =>
-            new(value);
+        public static implicit operator RegionsUpdate.Set(
+            global::Candid.Net.Commons.Regions value
+        ) => new(value);
     }
 
     /// <summary>
@@ -230,6 +236,6 @@ public record RegionsUpdate
     {
         internal object Value => new { };
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
     }
 }

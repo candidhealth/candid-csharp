@@ -16,7 +16,7 @@ public record AppointmentsGetListRequest
     /// Defaults to asc.
     /// </summary>
     [JsonIgnore]
-    public Candid.Net.PreEncounter.Common.SortDirection? SortDirection { get; set; }
+    public global::Candid.Net.PreEncounter.Common.SortDirection? SortDirection { get; set; }
 
     /// <summary>
     /// Defaults to 100.

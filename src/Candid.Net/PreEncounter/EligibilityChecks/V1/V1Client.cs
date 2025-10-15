@@ -27,7 +27,7 @@ public partial class V1Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<EligibilityCheck> PostAsync(
+    public async global::System.Threading.Tasks.Task<EligibilityCheck> PostAsync(
         EligibilityRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -91,7 +91,7 @@ public partial class V1Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<BatchEligibilityResponse> BatchAsync(
+    public async global::System.Threading.Tasks.Task<BatchEligibilityResponse> BatchAsync(
         IEnumerable<EligibilityRequest> request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -142,7 +142,7 @@ public partial class V1Client
     ///     new BatchEligibilityPollRequest()
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<EligibilityCheckPage> PollBatchAsync(
+    public async global::System.Threading.Tasks.Task<EligibilityCheckPage> PollBatchAsync(
         string batchId,
         BatchEligibilityPollRequest request,
         RequestOptions? options = null,
@@ -199,7 +199,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.PreEncounter.EligibilityChecks.V1.PayerSearchAsync(new PayerSearchRequest());
     /// </code></example>
-    public async System.Threading.Tasks.Task<PayerSearchResponse> PayerSearchAsync(
+    public async global::System.Threading.Tasks.Task<PayerSearchResponse> PayerSearchAsync(
         PayerSearchRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -262,7 +262,7 @@ public partial class V1Client
     ///     new EligibilityRecommendationRequest()
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<
+    public async global::System.Threading.Tasks.Task<
         IEnumerable<EligibilityRecommendation>
     > RecommendationAsync(
         EligibilityRecommendationRequest request,
@@ -331,7 +331,7 @@ public partial class V1Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<EligibilityRecommendation> CreateRecommendationAsync(
+    public async global::System.Threading.Tasks.Task<EligibilityRecommendation> CreateRecommendationAsync(
         PostEligibilityRecommendationRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

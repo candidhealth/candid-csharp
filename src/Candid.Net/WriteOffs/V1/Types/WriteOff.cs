@@ -72,36 +72,36 @@ public record WriteOff
     public bool IsNonInsurancePayer => Type == "non_insurance_payer";
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.WriteOffs.V1.PatientWriteOff"/> if <see cref="Type"/> is 'patient', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.WriteOffs.V1.PatientWriteOff"/> if <see cref="Type"/> is 'patient', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'patient'.</exception>
-    public Candid.Net.WriteOffs.V1.PatientWriteOff AsPatient() =>
+    public global::Candid.Net.WriteOffs.V1.PatientWriteOff AsPatient() =>
         IsPatient
-            ? (Candid.Net.WriteOffs.V1.PatientWriteOff)Value!
-            : throw new Exception("WriteOff.Type is not 'patient'");
+            ? (global::Candid.Net.WriteOffs.V1.PatientWriteOff)Value!
+            : throw new global::System.Exception("WriteOff.Type is not 'patient'");
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.WriteOffs.V1.InsuranceWriteOff"/> if <see cref="Type"/> is 'insurance', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.WriteOffs.V1.InsuranceWriteOff"/> if <see cref="Type"/> is 'insurance', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'insurance'.</exception>
-    public Candid.Net.WriteOffs.V1.InsuranceWriteOff AsInsurance() =>
+    public global::Candid.Net.WriteOffs.V1.InsuranceWriteOff AsInsurance() =>
         IsInsurance
-            ? (Candid.Net.WriteOffs.V1.InsuranceWriteOff)Value!
-            : throw new Exception("WriteOff.Type is not 'insurance'");
+            ? (global::Candid.Net.WriteOffs.V1.InsuranceWriteOff)Value!
+            : throw new global::System.Exception("WriteOff.Type is not 'insurance'");
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.WriteOffs.V1.NonInsurancePayerWriteOff"/> if <see cref="Type"/> is 'non_insurance_payer', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.WriteOffs.V1.NonInsurancePayerWriteOff"/> if <see cref="Type"/> is 'non_insurance_payer', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'non_insurance_payer'.</exception>
-    public Candid.Net.WriteOffs.V1.NonInsurancePayerWriteOff AsNonInsurancePayer() =>
+    public global::Candid.Net.WriteOffs.V1.NonInsurancePayerWriteOff AsNonInsurancePayer() =>
         IsNonInsurancePayer
-            ? (Candid.Net.WriteOffs.V1.NonInsurancePayerWriteOff)Value!
-            : throw new Exception("WriteOff.Type is not 'non_insurance_payer'");
+            ? (global::Candid.Net.WriteOffs.V1.NonInsurancePayerWriteOff)Value!
+            : throw new global::System.Exception("WriteOff.Type is not 'non_insurance_payer'");
 
     public T Match<T>(
-        Func<Candid.Net.WriteOffs.V1.PatientWriteOff, T> onPatient,
-        Func<Candid.Net.WriteOffs.V1.InsuranceWriteOff, T> onInsurance,
-        Func<Candid.Net.WriteOffs.V1.NonInsurancePayerWriteOff, T> onNonInsurancePayer,
+        Func<global::Candid.Net.WriteOffs.V1.PatientWriteOff, T> onPatient,
+        Func<global::Candid.Net.WriteOffs.V1.InsuranceWriteOff, T> onInsurance,
+        Func<global::Candid.Net.WriteOffs.V1.NonInsurancePayerWriteOff, T> onNonInsurancePayer,
         Func<string, object?, T> onUnknown_
     )
     {
@@ -115,9 +115,9 @@ public record WriteOff
     }
 
     public void Visit(
-        Action<Candid.Net.WriteOffs.V1.PatientWriteOff> onPatient,
-        Action<Candid.Net.WriteOffs.V1.InsuranceWriteOff> onInsurance,
-        Action<Candid.Net.WriteOffs.V1.NonInsurancePayerWriteOff> onNonInsurancePayer,
+        Action<global::Candid.Net.WriteOffs.V1.PatientWriteOff> onPatient,
+        Action<global::Candid.Net.WriteOffs.V1.InsuranceWriteOff> onInsurance,
+        Action<global::Candid.Net.WriteOffs.V1.NonInsurancePayerWriteOff> onNonInsurancePayer,
         Action<string, object?> onUnknown_
     )
     {
@@ -139,13 +139,13 @@ public record WriteOff
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.WriteOffs.V1.PatientWriteOff"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.WriteOffs.V1.PatientWriteOff"/> and returns true if successful.
     /// </summary>
-    public bool TryAsPatient(out Candid.Net.WriteOffs.V1.PatientWriteOff? value)
+    public bool TryAsPatient(out global::Candid.Net.WriteOffs.V1.PatientWriteOff? value)
     {
         if (Type == "patient")
         {
-            value = (Candid.Net.WriteOffs.V1.PatientWriteOff)Value!;
+            value = (global::Candid.Net.WriteOffs.V1.PatientWriteOff)Value!;
             return true;
         }
         value = null;
@@ -153,13 +153,13 @@ public record WriteOff
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.WriteOffs.V1.InsuranceWriteOff"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.WriteOffs.V1.InsuranceWriteOff"/> and returns true if successful.
     /// </summary>
-    public bool TryAsInsurance(out Candid.Net.WriteOffs.V1.InsuranceWriteOff? value)
+    public bool TryAsInsurance(out global::Candid.Net.WriteOffs.V1.InsuranceWriteOff? value)
     {
         if (Type == "insurance")
         {
-            value = (Candid.Net.WriteOffs.V1.InsuranceWriteOff)Value!;
+            value = (global::Candid.Net.WriteOffs.V1.InsuranceWriteOff)Value!;
             return true;
         }
         value = null;
@@ -167,13 +167,15 @@ public record WriteOff
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.WriteOffs.V1.NonInsurancePayerWriteOff"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.WriteOffs.V1.NonInsurancePayerWriteOff"/> and returns true if successful.
     /// </summary>
-    public bool TryAsNonInsurancePayer(out Candid.Net.WriteOffs.V1.NonInsurancePayerWriteOff? value)
+    public bool TryAsNonInsurancePayer(
+        out global::Candid.Net.WriteOffs.V1.NonInsurancePayerWriteOff? value
+    )
     {
         if (Type == "non_insurance_payer")
         {
-            value = (Candid.Net.WriteOffs.V1.NonInsurancePayerWriteOff)Value!;
+            value = (global::Candid.Net.WriteOffs.V1.NonInsurancePayerWriteOff)Value!;
             return true;
         }
         value = null;
@@ -223,18 +225,24 @@ public record WriteOff
 
             var value = discriminator switch
             {
-                "patient" => json.Deserialize<Candid.Net.WriteOffs.V1.PatientWriteOff>(options)
+                "patient" => json.Deserialize<global::Candid.Net.WriteOffs.V1.PatientWriteOff?>(
+                    options
+                )
                     ?? throw new JsonException(
-                        "Failed to deserialize Candid.Net.WriteOffs.V1.PatientWriteOff"
+                        "Failed to deserialize global::Candid.Net.WriteOffs.V1.PatientWriteOff"
                     ),
-                "insurance" => json.Deserialize<Candid.Net.WriteOffs.V1.InsuranceWriteOff>(options)
+                "insurance" => json.Deserialize<global::Candid.Net.WriteOffs.V1.InsuranceWriteOff?>(
+                    options
+                )
                     ?? throw new JsonException(
-                        "Failed to deserialize Candid.Net.WriteOffs.V1.InsuranceWriteOff"
+                        "Failed to deserialize global::Candid.Net.WriteOffs.V1.InsuranceWriteOff"
                     ),
                 "non_insurance_payer" =>
-                    json.Deserialize<Candid.Net.WriteOffs.V1.NonInsurancePayerWriteOff>(options)
+                    json.Deserialize<global::Candid.Net.WriteOffs.V1.NonInsurancePayerWriteOff?>(
+                        options
+                    )
                         ?? throw new JsonException(
-                            "Failed to deserialize Candid.Net.WriteOffs.V1.NonInsurancePayerWriteOff"
+                            "Failed to deserialize global::Candid.Net.WriteOffs.V1.NonInsurancePayerWriteOff"
                         ),
                 _ => json.Deserialize<object?>(options),
             };
@@ -266,17 +274,17 @@ public record WriteOff
     [Serializable]
     public struct Patient
     {
-        public Patient(Candid.Net.WriteOffs.V1.PatientWriteOff value)
+        public Patient(global::Candid.Net.WriteOffs.V1.PatientWriteOff value)
         {
             Value = value;
         }
 
-        internal Candid.Net.WriteOffs.V1.PatientWriteOff Value { get; set; }
+        internal global::Candid.Net.WriteOffs.V1.PatientWriteOff Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator WriteOff.Patient(
-            Candid.Net.WriteOffs.V1.PatientWriteOff value
+            global::Candid.Net.WriteOffs.V1.PatientWriteOff value
         ) => new(value);
     }
 
@@ -286,17 +294,17 @@ public record WriteOff
     [Serializable]
     public struct Insurance
     {
-        public Insurance(Candid.Net.WriteOffs.V1.InsuranceWriteOff value)
+        public Insurance(global::Candid.Net.WriteOffs.V1.InsuranceWriteOff value)
         {
             Value = value;
         }
 
-        internal Candid.Net.WriteOffs.V1.InsuranceWriteOff Value { get; set; }
+        internal global::Candid.Net.WriteOffs.V1.InsuranceWriteOff Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator WriteOff.Insurance(
-            Candid.Net.WriteOffs.V1.InsuranceWriteOff value
+            global::Candid.Net.WriteOffs.V1.InsuranceWriteOff value
         ) => new(value);
     }
 
@@ -306,17 +314,17 @@ public record WriteOff
     [Serializable]
     public struct NonInsurancePayer
     {
-        public NonInsurancePayer(Candid.Net.WriteOffs.V1.NonInsurancePayerWriteOff value)
+        public NonInsurancePayer(global::Candid.Net.WriteOffs.V1.NonInsurancePayerWriteOff value)
         {
             Value = value;
         }
 
-        internal Candid.Net.WriteOffs.V1.NonInsurancePayerWriteOff Value { get; set; }
+        internal global::Candid.Net.WriteOffs.V1.NonInsurancePayerWriteOff Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator WriteOff.NonInsurancePayer(
-            Candid.Net.WriteOffs.V1.NonInsurancePayerWriteOff value
+            global::Candid.Net.WriteOffs.V1.NonInsurancePayerWriteOff value
         ) => new(value);
     }
 }

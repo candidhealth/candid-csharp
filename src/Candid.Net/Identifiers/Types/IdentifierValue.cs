@@ -58,26 +58,36 @@ public record IdentifierValue
     public bool IsMedicaidProviderIdentifier => Type == "medicaid_provider_identifier";
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.Identifiers.MedicareProviderIdentifier"/> if <see cref="Type"/> is 'medicare_provider_identifier', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.Identifiers.MedicareProviderIdentifier"/> if <see cref="Type"/> is 'medicare_provider_identifier', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'medicare_provider_identifier'.</exception>
-    public Candid.Net.Identifiers.MedicareProviderIdentifier AsMedicareProviderIdentifier() =>
+    public global::Candid.Net.Identifiers.MedicareProviderIdentifier AsMedicareProviderIdentifier() =>
         IsMedicareProviderIdentifier
-            ? (Candid.Net.Identifiers.MedicareProviderIdentifier)Value!
-            : throw new Exception("IdentifierValue.Type is not 'medicare_provider_identifier'");
+            ? (global::Candid.Net.Identifiers.MedicareProviderIdentifier)Value!
+            : throw new global::System.Exception(
+                "IdentifierValue.Type is not 'medicare_provider_identifier'"
+            );
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.Identifiers.MedicaidProviderIdentifier"/> if <see cref="Type"/> is 'medicaid_provider_identifier', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.Identifiers.MedicaidProviderIdentifier"/> if <see cref="Type"/> is 'medicaid_provider_identifier', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'medicaid_provider_identifier'.</exception>
-    public Candid.Net.Identifiers.MedicaidProviderIdentifier AsMedicaidProviderIdentifier() =>
+    public global::Candid.Net.Identifiers.MedicaidProviderIdentifier AsMedicaidProviderIdentifier() =>
         IsMedicaidProviderIdentifier
-            ? (Candid.Net.Identifiers.MedicaidProviderIdentifier)Value!
-            : throw new Exception("IdentifierValue.Type is not 'medicaid_provider_identifier'");
+            ? (global::Candid.Net.Identifiers.MedicaidProviderIdentifier)Value!
+            : throw new global::System.Exception(
+                "IdentifierValue.Type is not 'medicaid_provider_identifier'"
+            );
 
     public T Match<T>(
-        Func<Candid.Net.Identifiers.MedicareProviderIdentifier, T> onMedicareProviderIdentifier,
-        Func<Candid.Net.Identifiers.MedicaidProviderIdentifier, T> onMedicaidProviderIdentifier,
+        Func<
+            global::Candid.Net.Identifiers.MedicareProviderIdentifier,
+            T
+        > onMedicareProviderIdentifier,
+        Func<
+            global::Candid.Net.Identifiers.MedicaidProviderIdentifier,
+            T
+        > onMedicaidProviderIdentifier,
         Func<string, object?, T> onUnknown_
     )
     {
@@ -94,8 +104,8 @@ public record IdentifierValue
     }
 
     public void Visit(
-        Action<Candid.Net.Identifiers.MedicareProviderIdentifier> onMedicareProviderIdentifier,
-        Action<Candid.Net.Identifiers.MedicaidProviderIdentifier> onMedicaidProviderIdentifier,
+        Action<global::Candid.Net.Identifiers.MedicareProviderIdentifier> onMedicareProviderIdentifier,
+        Action<global::Candid.Net.Identifiers.MedicaidProviderIdentifier> onMedicaidProviderIdentifier,
         Action<string, object?> onUnknown_
     )
     {
@@ -114,15 +124,15 @@ public record IdentifierValue
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.Identifiers.MedicareProviderIdentifier"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.Identifiers.MedicareProviderIdentifier"/> and returns true if successful.
     /// </summary>
     public bool TryAsMedicareProviderIdentifier(
-        out Candid.Net.Identifiers.MedicareProviderIdentifier? value
+        out global::Candid.Net.Identifiers.MedicareProviderIdentifier? value
     )
     {
         if (Type == "medicare_provider_identifier")
         {
-            value = (Candid.Net.Identifiers.MedicareProviderIdentifier)Value!;
+            value = (global::Candid.Net.Identifiers.MedicareProviderIdentifier)Value!;
             return true;
         }
         value = null;
@@ -130,15 +140,15 @@ public record IdentifierValue
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.Identifiers.MedicaidProviderIdentifier"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.Identifiers.MedicaidProviderIdentifier"/> and returns true if successful.
     /// </summary>
     public bool TryAsMedicaidProviderIdentifier(
-        out Candid.Net.Identifiers.MedicaidProviderIdentifier? value
+        out global::Candid.Net.Identifiers.MedicaidProviderIdentifier? value
     )
     {
         if (Type == "medicaid_provider_identifier")
         {
-            value = (Candid.Net.Identifiers.MedicaidProviderIdentifier)Value!;
+            value = (global::Candid.Net.Identifiers.MedicaidProviderIdentifier)Value!;
             return true;
         }
         value = null;
@@ -191,14 +201,18 @@ public record IdentifierValue
             var value = discriminator switch
             {
                 "medicare_provider_identifier" =>
-                    json.Deserialize<Candid.Net.Identifiers.MedicareProviderIdentifier>(options)
+                    json.Deserialize<global::Candid.Net.Identifiers.MedicareProviderIdentifier?>(
+                        options
+                    )
                         ?? throw new JsonException(
-                            "Failed to deserialize Candid.Net.Identifiers.MedicareProviderIdentifier"
+                            "Failed to deserialize global::Candid.Net.Identifiers.MedicareProviderIdentifier"
                         ),
                 "medicaid_provider_identifier" =>
-                    json.Deserialize<Candid.Net.Identifiers.MedicaidProviderIdentifier>(options)
+                    json.Deserialize<global::Candid.Net.Identifiers.MedicaidProviderIdentifier?>(
+                        options
+                    )
                         ?? throw new JsonException(
-                            "Failed to deserialize Candid.Net.Identifiers.MedicaidProviderIdentifier"
+                            "Failed to deserialize global::Candid.Net.Identifiers.MedicaidProviderIdentifier"
                         ),
                 _ => json.Deserialize<object?>(options),
             };
@@ -235,17 +249,19 @@ public record IdentifierValue
     [Serializable]
     public struct MedicareProviderIdentifier
     {
-        public MedicareProviderIdentifier(Candid.Net.Identifiers.MedicareProviderIdentifier value)
+        public MedicareProviderIdentifier(
+            global::Candid.Net.Identifiers.MedicareProviderIdentifier value
+        )
         {
             Value = value;
         }
 
-        internal Candid.Net.Identifiers.MedicareProviderIdentifier Value { get; set; }
+        internal global::Candid.Net.Identifiers.MedicareProviderIdentifier Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator IdentifierValue.MedicareProviderIdentifier(
-            Candid.Net.Identifiers.MedicareProviderIdentifier value
+            global::Candid.Net.Identifiers.MedicareProviderIdentifier value
         ) => new(value);
     }
 
@@ -255,17 +271,19 @@ public record IdentifierValue
     [Serializable]
     public struct MedicaidProviderIdentifier
     {
-        public MedicaidProviderIdentifier(Candid.Net.Identifiers.MedicaidProviderIdentifier value)
+        public MedicaidProviderIdentifier(
+            global::Candid.Net.Identifiers.MedicaidProviderIdentifier value
+        )
         {
             Value = value;
         }
 
-        internal Candid.Net.Identifiers.MedicaidProviderIdentifier Value { get; set; }
+        internal global::Candid.Net.Identifiers.MedicaidProviderIdentifier Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator IdentifierValue.MedicaidProviderIdentifier(
-            Candid.Net.Identifiers.MedicaidProviderIdentifier value
+            global::Candid.Net.Identifiers.MedicaidProviderIdentifier value
         ) => new(value);
     }
 }

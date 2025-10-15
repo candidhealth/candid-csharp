@@ -45,12 +45,12 @@ public partial class V1Client
     ///                 AmountCents = 1,
     ///             },
     ///         },
-    ///         Status = Candid.Net.Invoices.V2.InvoiceStatus.Draft,
+    ///         Status = global::Candid.Net.Invoices.V2.InvoiceStatus.Draft,
     ///         ExternalIdentifier = "external_identifier",
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<ImportInvoice> ImportInvoiceAsync(
+    public async global::System.Threading.Tasks.Task<ImportInvoice> ImportInvoiceAsync(
         CreateImportInvoiceRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -98,7 +98,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.ImportInvoice.V1.GetMultiAsync(new SearchImportedInvoicesRequest());
     /// </code></example>
-    public async System.Threading.Tasks.Task<ImportInvoicesPage> GetMultiAsync(
+    public async global::System.Threading.Tasks.Task<ImportInvoicesPage> GetMultiAsync(
         SearchImportedInvoicesRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -184,7 +184,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.ImportInvoice.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async System.Threading.Tasks.Task<ImportInvoice> GetAsync(
+    public async global::System.Threading.Tasks.Task<ImportInvoice> GetAsync(
         string invoiceId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -237,7 +237,7 @@ public partial class V1Client
     ///     new ImportInvoiceUpdateRequest()
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<ImportInvoice> UpdateAsync(
+    public async global::System.Threading.Tasks.Task<ImportInvoice> UpdateAsync(
         string invoiceId,
         ImportInvoiceUpdateRequest request,
         RequestOptions? options = null,

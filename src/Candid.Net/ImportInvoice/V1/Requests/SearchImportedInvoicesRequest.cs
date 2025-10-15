@@ -35,8 +35,8 @@ public record SearchImportedInvoicesRequest
     /// all invoices that match any of the provided statuses
     /// </summary>
     [JsonIgnore]
-    public IEnumerable<Candid.Net.Invoices.V2.InvoiceStatus> Status { get; set; } =
-        new List<Candid.Net.Invoices.V2.InvoiceStatus>();
+    public IEnumerable<global::Candid.Net.Invoices.V2.InvoiceStatus> Status { get; set; } =
+        new List<global::Candid.Net.Invoices.V2.InvoiceStatus>();
 
     /// <summary>
     /// Defaults to 100
@@ -54,7 +54,7 @@ public record SearchImportedInvoicesRequest
     /// Sort direction. Defaults to descending order
     /// </summary>
     [JsonIgnore]
-    public Candid.Net.Commons.SortDirection? SortDirection { get; set; }
+    public global::Candid.Net.Commons.SortDirection? SortDirection { get; set; }
 
     [JsonIgnore]
     public string? PageToken { get; set; }

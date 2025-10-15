@@ -13,7 +13,7 @@ public record TaskUpdateV3 : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     [JsonPropertyName("status")]
-    public Candid.Net.Tasks.Commons.TaskStatus? Status { get; set; }
+    public global::Candid.Net.Tasks.Commons.TaskStatus? Status { get; set; }
 
     [JsonPropertyName("assignee_user_id")]
     public string? AssigneeUserId { get; set; }

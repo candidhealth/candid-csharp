@@ -23,7 +23,7 @@ public partial class V2Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<BillingNote> CreateAsync(
+    public async global::System.Threading.Tasks.Task<BillingNote> CreateAsync(
         StandaloneBillingNoteCreate request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -68,7 +68,7 @@ public partial class V2Client
     /// <example><code>
     /// await client.BillingNotes.V2.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async System.Threading.Tasks.Task DeleteAsync(
+    public async global::System.Threading.Tasks.Task DeleteAsync(
         string billingNoteId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -109,7 +109,7 @@ public partial class V2Client
     ///     new BillingNoteUpdate { Text = "text" }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<BillingNote> UpdateAsync(
+    public async global::System.Threading.Tasks.Task<BillingNote> UpdateAsync(
         string billingNoteId,
         BillingNoteUpdate request,
         RequestOptions? options = null,

@@ -53,7 +53,7 @@ public record InsuranceCardCreate : IJsonOnDeserialized
     public SourceOfPaymentCode? PlanType { get; set; }
 
     [JsonPropertyName("insurance_type")]
-    public Candid.Net.Commons.InsuranceTypeCode? InsuranceType { get; set; }
+    public global::Candid.Net.Commons.InsuranceTypeCode? InsuranceType { get; set; }
 
     [JsonPropertyName("payer_plan_group_id")]
     public string? PayerPlanGroupId { get; set; }

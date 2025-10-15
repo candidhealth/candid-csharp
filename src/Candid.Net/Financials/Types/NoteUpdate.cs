@@ -62,14 +62,14 @@ public record NoteUpdate
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'set'.</exception>
     public string AsSet() =>
-        IsSet ? (string)Value! : throw new Exception("NoteUpdate.Type is not 'set'");
+        IsSet ? (string)Value! : throw new global::System.Exception("NoteUpdate.Type is not 'set'");
 
     /// <summary>
     /// Returns the value as a <see cref="object"/> if <see cref="Type"/> is 'remove', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'remove'.</exception>
     public object AsRemove() =>
-        IsRemove ? Value! : throw new Exception("NoteUpdate.Type is not 'remove'");
+        IsRemove ? Value! : throw new global::System.Exception("NoteUpdate.Type is not 'remove'");
 
     public T Match<T>(
         Func<string, T> onSet,
@@ -172,7 +172,7 @@ public record NoteUpdate
 
             var value = discriminator switch
             {
-                "set" => json.GetProperty("value").Deserialize<string>(options)
+                "set" => json.GetProperty("value").Deserialize<string?>(options)
                 ?? throw new JsonException("Failed to deserialize string"),
                 "remove" => new { },
                 _ => json.Deserialize<object?>(options),
@@ -227,6 +227,6 @@ public record NoteUpdate
     {
         internal object Value => new { };
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
     }
 }

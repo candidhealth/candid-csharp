@@ -20,7 +20,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.CustomSchemas.V1.GetMultiAsync();
     /// </code></example>
-    public async System.Threading.Tasks.Task<SchemaGetMultiResponse> GetMultiAsync(
+    public async global::System.Threading.Tasks.Task<SchemaGetMultiResponse> GetMultiAsync(
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -66,7 +66,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.CustomSchemas.V1.GetAsync("ec096b13-f80a-471d-aaeb-54b021c9d582");
     /// </code></example>
-    public async System.Threading.Tasks.Task<Schema> GetAsync(
+    public async global::System.Threading.Tasks.Task<Schema> GetAsync(
         string schemaId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -130,7 +130,7 @@ public partial class V1Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<Schema> CreateAsync(
+    public async global::System.Threading.Tasks.Task<Schema> CreateAsync(
         SchemaCreate request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -189,7 +189,7 @@ public partial class V1Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<Schema> UpdateAsync(
+    public async global::System.Threading.Tasks.Task<Schema> UpdateAsync(
         string schemaId,
         SchemaUpdate request,
         RequestOptions? options = null,

@@ -9,8 +9,8 @@ public partial class ContractsClient
     internal ContractsClient(RawClient client)
     {
         _client = client;
-        V2 = new Candid.Net.Contracts.V2.V2Client(_client);
+        V2 = new global::Candid.Net.Contracts.V2.V2Client(_client);
     }
 
-    public Candid.Net.Contracts.V2.V2Client V2 { get; }
+    public global::Candid.Net.Contracts.V2.V2Client V2 { get; }
 }

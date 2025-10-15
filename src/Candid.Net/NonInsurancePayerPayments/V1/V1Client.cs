@@ -22,7 +22,7 @@ public partial class V1Client
     ///     new GetMultiNonInsurancePayerPaymentRequest()
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<NonInsurancePayerPaymentsPage> GetMultiAsync(
+    public async global::System.Threading.Tasks.Task<NonInsurancePayerPaymentsPage> GetMultiAsync(
         GetMultiNonInsurancePayerPaymentRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -96,7 +96,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.NonInsurancePayerPayments.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async System.Threading.Tasks.Task<NonInsurancePayerPayment> GetAsync(
+    public async global::System.Threading.Tasks.Task<NonInsurancePayerPayment> GetAsync(
         string nonInsurancePayerPaymentId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -170,7 +170,7 @@ public partial class V1Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<NonInsurancePayerPayment> CreateAsync(
+    public async global::System.Threading.Tasks.Task<NonInsurancePayerPayment> CreateAsync(
         NonInsurancePayerPaymentCreate request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -218,7 +218,7 @@ public partial class V1Client
     ///     new UpdateNonInsurancePayerPaymentRequest()
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<NonInsurancePayerPayment> UpdateAsync(
+    public async global::System.Threading.Tasks.Task<NonInsurancePayerPayment> UpdateAsync(
         string nonInsurancePayerPaymentId,
         UpdateNonInsurancePayerPaymentRequest request,
         RequestOptions? options = null,
@@ -270,7 +270,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.NonInsurancePayerPayments.V1.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async System.Threading.Tasks.Task DeleteAsync(
+    public async global::System.Threading.Tasks.Task DeleteAsync(
         string nonInsurancePayerPaymentId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

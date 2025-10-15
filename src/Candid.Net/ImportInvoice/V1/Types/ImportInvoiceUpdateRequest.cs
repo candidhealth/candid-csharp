@@ -19,7 +19,7 @@ public record ImportInvoiceUpdateRequest : IJsonOnDeserialized
     public string? CustomerInvoiceUrl { get; set; }
 
     [JsonPropertyName("status")]
-    public Candid.Net.Invoices.V2.InvoiceStatus? Status { get; set; }
+    public global::Candid.Net.Invoices.V2.InvoiceStatus? Status { get; set; }
 
     [JsonPropertyName("note")]
     public string? Note { get; set; }

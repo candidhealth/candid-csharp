@@ -81,7 +81,9 @@ public record InvoiceItemAttributionCreate
     public string AsServiceLineId() =>
         IsServiceLineId
             ? (string)Value!
-            : throw new Exception("InvoiceItemAttributionCreate.Type is not 'service_line_id'");
+            : throw new global::System.Exception(
+                "InvoiceItemAttributionCreate.Type is not 'service_line_id'"
+            );
 
     /// <summary>
     /// Returns the value as a <see cref="string"/> if <see cref="Type"/> is 'claim_id', otherwise throws an exception.
@@ -90,7 +92,9 @@ public record InvoiceItemAttributionCreate
     public string AsClaimId() =>
         IsClaimId
             ? (string)Value!
-            : throw new Exception("InvoiceItemAttributionCreate.Type is not 'claim_id'");
+            : throw new global::System.Exception(
+                "InvoiceItemAttributionCreate.Type is not 'claim_id'"
+            );
 
     /// <summary>
     /// Returns the value as a <see cref="object"/> if <see cref="Type"/> is 'unattributed', otherwise throws an exception.
@@ -99,7 +103,9 @@ public record InvoiceItemAttributionCreate
     public object AsUnattributed() =>
         IsUnattributed
             ? Value!
-            : throw new Exception("InvoiceItemAttributionCreate.Type is not 'unattributed'");
+            : throw new global::System.Exception(
+                "InvoiceItemAttributionCreate.Type is not 'unattributed'"
+            );
 
     public T Match<T>(
         Func<string, T> onServiceLineId,
@@ -228,9 +234,9 @@ public record InvoiceItemAttributionCreate
 
             var value = discriminator switch
             {
-                "service_line_id" => json.GetProperty("value").Deserialize<string>(options)
+                "service_line_id" => json.GetProperty("value").Deserialize<string?>(options)
                 ?? throw new JsonException("Failed to deserialize string"),
-                "claim_id" => json.GetProperty("value").Deserialize<string>(options)
+                "claim_id" => json.GetProperty("value").Deserialize<string?>(options)
                 ?? throw new JsonException("Failed to deserialize string"),
                 "unattributed" => new { },
                 _ => json.Deserialize<object?>(options),
@@ -309,6 +315,6 @@ public record InvoiceItemAttributionCreate
     {
         internal object Value => new { };
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
     }
 }

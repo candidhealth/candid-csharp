@@ -24,7 +24,7 @@ public partial class V2Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<FacilityCredentialingSpan> CreateFacilityAsync(
+    public async global::System.Threading.Tasks.Task<FacilityCredentialingSpan> CreateFacilityAsync(
         FacilityCredentialingSpanCreate request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -69,7 +69,7 @@ public partial class V2Client
     /// <example><code>
     /// await client.Credentialing.V2.GetFacilityAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async System.Threading.Tasks.Task<FacilityCredentialingSpan> GetFacilityAsync(
+    public async global::System.Threading.Tasks.Task<FacilityCredentialingSpan> GetFacilityAsync(
         string facilityCredentialingId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -116,7 +116,7 @@ public partial class V2Client
     /// <example><code>
     /// await client.Credentialing.V2.GetAllFacilitiesAsync(new GetAllFacilityCredentialingSpansRequest());
     /// </code></example>
-    public async System.Threading.Tasks.Task<FacilityCredentialingSpanPage> GetAllFacilitiesAsync(
+    public async global::System.Threading.Tasks.Task<FacilityCredentialingSpanPage> GetAllFacilitiesAsync(
         GetAllFacilityCredentialingSpansRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -185,7 +185,7 @@ public partial class V2Client
     /// <example><code>
     /// await client.Credentialing.V2.DeleteFacilityAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async System.Threading.Tasks.Task DeleteFacilityAsync(
+    public async global::System.Threading.Tasks.Task DeleteFacilityAsync(
         string facilityCredentialingId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -229,7 +229,7 @@ public partial class V2Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<FacilityCredentialingSpan> UpdateFacilityAsync(
+    public async global::System.Threading.Tasks.Task<FacilityCredentialingSpan> UpdateFacilityAsync(
         string facilityCredentialingId,
         FacilityCredentialingSpanUpdate request,
         RequestOptions? options = null,
@@ -293,7 +293,7 @@ public partial class V2Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<ProviderCredentialingSpan> CreateAsync(
+    public async global::System.Threading.Tasks.Task<ProviderCredentialingSpan> CreateAsync(
         ProviderCredentialingSpanCreate request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -338,7 +338,7 @@ public partial class V2Client
     /// <example><code>
     /// await client.Credentialing.V2.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async System.Threading.Tasks.Task<ProviderCredentialingSpan> GetAsync(
+    public async global::System.Threading.Tasks.Task<ProviderCredentialingSpan> GetAsync(
         string providerCredentialingId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -385,7 +385,7 @@ public partial class V2Client
     /// <example><code>
     /// await client.Credentialing.V2.GetAllAsync(new GetAllProviderCredentialingSpansRequest());
     /// </code></example>
-    public async System.Threading.Tasks.Task<ProviderCredentialingSpanPage> GetAllAsync(
+    public async global::System.Threading.Tasks.Task<ProviderCredentialingSpanPage> GetAllAsync(
         GetAllProviderCredentialingSpansRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -462,7 +462,7 @@ public partial class V2Client
     /// <example><code>
     /// await client.Credentialing.V2.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async System.Threading.Tasks.Task DeleteAsync(
+    public async global::System.Threading.Tasks.Task DeleteAsync(
         string providerCredentialingId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -503,7 +503,7 @@ public partial class V2Client
     ///     new ProviderCredentialingSpanUpdate()
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<ProviderCredentialingSpan> UpdateAsync(
+    public async global::System.Threading.Tasks.Task<ProviderCredentialingSpan> UpdateAsync(
         string providerCredentialingId,
         ProviderCredentialingSpanUpdate request,
         RequestOptions? options = null,

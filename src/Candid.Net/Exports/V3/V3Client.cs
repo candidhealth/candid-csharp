@@ -43,7 +43,7 @@ public partial class V3Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<GetExportsResponse> GetExportsAsync(
+    public async global::System.Threading.Tasks.Task<GetExportsResponse> GetExportsAsync(
         GetExportsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

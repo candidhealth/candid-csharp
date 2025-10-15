@@ -20,7 +20,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.InsurancePayments.V1.GetMultiAsync(new GetMultiInsurancePaymentRequest());
     /// </code></example>
-    public async System.Threading.Tasks.Task<InsurancePaymentsPage> GetMultiAsync(
+    public async global::System.Threading.Tasks.Task<InsurancePaymentsPage> GetMultiAsync(
         GetMultiInsurancePaymentRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -102,7 +102,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.InsurancePayments.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async System.Threading.Tasks.Task<InsurancePayment> GetAsync(
+    public async global::System.Threading.Tasks.Task<InsurancePayment> GetAsync(
         string insurancePaymentId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

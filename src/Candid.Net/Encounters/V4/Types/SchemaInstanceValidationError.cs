@@ -106,67 +106,75 @@ public record SchemaInstanceValidationError
     public bool IsSchemaUnauthorizedAccess => Type == "schema_unauthorized_access";
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.Encounters.V4.MultipleInstancesForSchemaError"/> if <see cref="Type"/> is 'multiple_instances_for_schema', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.Encounters.V4.MultipleInstancesForSchemaError"/> if <see cref="Type"/> is 'multiple_instances_for_schema', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'multiple_instances_for_schema'.</exception>
-    public Candid.Net.Encounters.V4.MultipleInstancesForSchemaError AsMultipleInstancesForSchema() =>
+    public global::Candid.Net.Encounters.V4.MultipleInstancesForSchemaError AsMultipleInstancesForSchema() =>
         IsMultipleInstancesForSchema
-            ? (Candid.Net.Encounters.V4.MultipleInstancesForSchemaError)Value!
-            : throw new Exception(
+            ? (global::Candid.Net.Encounters.V4.MultipleInstancesForSchemaError)Value!
+            : throw new global::System.Exception(
                 "SchemaInstanceValidationError.Type is not 'multiple_instances_for_schema'"
             );
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.Encounters.V4.ValueDoesNotMatchKeyTypeError"/> if <see cref="Type"/> is 'value_does_not_match_key_type', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.Encounters.V4.ValueDoesNotMatchKeyTypeError"/> if <see cref="Type"/> is 'value_does_not_match_key_type', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'value_does_not_match_key_type'.</exception>
-    public Candid.Net.Encounters.V4.ValueDoesNotMatchKeyTypeError AsValueDoesNotMatchKeyType() =>
+    public global::Candid.Net.Encounters.V4.ValueDoesNotMatchKeyTypeError AsValueDoesNotMatchKeyType() =>
         IsValueDoesNotMatchKeyType
-            ? (Candid.Net.Encounters.V4.ValueDoesNotMatchKeyTypeError)Value!
-            : throw new Exception(
+            ? (global::Candid.Net.Encounters.V4.ValueDoesNotMatchKeyTypeError)Value!
+            : throw new global::System.Exception(
                 "SchemaInstanceValidationError.Type is not 'value_does_not_match_key_type'"
             );
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.Encounters.V4.KeyDoesNotExistError"/> if <see cref="Type"/> is 'key_does_not_exist', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.Encounters.V4.KeyDoesNotExistError"/> if <see cref="Type"/> is 'key_does_not_exist', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'key_does_not_exist'.</exception>
-    public Candid.Net.Encounters.V4.KeyDoesNotExistError AsKeyDoesNotExist() =>
+    public global::Candid.Net.Encounters.V4.KeyDoesNotExistError AsKeyDoesNotExist() =>
         IsKeyDoesNotExist
-            ? (Candid.Net.Encounters.V4.KeyDoesNotExistError)Value!
-            : throw new Exception("SchemaInstanceValidationError.Type is not 'key_does_not_exist'");
+            ? (global::Candid.Net.Encounters.V4.KeyDoesNotExistError)Value!
+            : throw new global::System.Exception(
+                "SchemaInstanceValidationError.Type is not 'key_does_not_exist'"
+            );
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.Encounters.V4.SchemaDoesNotExistError"/> if <see cref="Type"/> is 'schema_does_not_exist', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.Encounters.V4.SchemaDoesNotExistError"/> if <see cref="Type"/> is 'schema_does_not_exist', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'schema_does_not_exist'.</exception>
-    public Candid.Net.Encounters.V4.SchemaDoesNotExistError AsSchemaDoesNotExist() =>
+    public global::Candid.Net.Encounters.V4.SchemaDoesNotExistError AsSchemaDoesNotExist() =>
         IsSchemaDoesNotExist
-            ? (Candid.Net.Encounters.V4.SchemaDoesNotExistError)Value!
-            : throw new Exception(
+            ? (global::Candid.Net.Encounters.V4.SchemaDoesNotExistError)Value!
+            : throw new global::System.Exception(
                 "SchemaInstanceValidationError.Type is not 'schema_does_not_exist'"
             );
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.Encounters.V4.SchemaUnauthorizedAccessError"/> if <see cref="Type"/> is 'schema_unauthorized_access', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.Encounters.V4.SchemaUnauthorizedAccessError"/> if <see cref="Type"/> is 'schema_unauthorized_access', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'schema_unauthorized_access'.</exception>
-    public Candid.Net.Encounters.V4.SchemaUnauthorizedAccessError AsSchemaUnauthorizedAccess() =>
+    public global::Candid.Net.Encounters.V4.SchemaUnauthorizedAccessError AsSchemaUnauthorizedAccess() =>
         IsSchemaUnauthorizedAccess
-            ? (Candid.Net.Encounters.V4.SchemaUnauthorizedAccessError)Value!
-            : throw new Exception(
+            ? (global::Candid.Net.Encounters.V4.SchemaUnauthorizedAccessError)Value!
+            : throw new global::System.Exception(
                 "SchemaInstanceValidationError.Type is not 'schema_unauthorized_access'"
             );
 
     public T Match<T>(
         Func<
-            Candid.Net.Encounters.V4.MultipleInstancesForSchemaError,
+            global::Candid.Net.Encounters.V4.MultipleInstancesForSchemaError,
             T
         > onMultipleInstancesForSchema,
-        Func<Candid.Net.Encounters.V4.ValueDoesNotMatchKeyTypeError, T> onValueDoesNotMatchKeyType,
-        Func<Candid.Net.Encounters.V4.KeyDoesNotExistError, T> onKeyDoesNotExist,
-        Func<Candid.Net.Encounters.V4.SchemaDoesNotExistError, T> onSchemaDoesNotExist,
-        Func<Candid.Net.Encounters.V4.SchemaUnauthorizedAccessError, T> onSchemaUnauthorizedAccess,
+        Func<
+            global::Candid.Net.Encounters.V4.ValueDoesNotMatchKeyTypeError,
+            T
+        > onValueDoesNotMatchKeyType,
+        Func<global::Candid.Net.Encounters.V4.KeyDoesNotExistError, T> onKeyDoesNotExist,
+        Func<global::Candid.Net.Encounters.V4.SchemaDoesNotExistError, T> onSchemaDoesNotExist,
+        Func<
+            global::Candid.Net.Encounters.V4.SchemaUnauthorizedAccessError,
+            T
+        > onSchemaUnauthorizedAccess,
         Func<string, object?, T> onUnknown_
     )
     {
@@ -188,11 +196,11 @@ public record SchemaInstanceValidationError
     }
 
     public void Visit(
-        Action<Candid.Net.Encounters.V4.MultipleInstancesForSchemaError> onMultipleInstancesForSchema,
-        Action<Candid.Net.Encounters.V4.ValueDoesNotMatchKeyTypeError> onValueDoesNotMatchKeyType,
-        Action<Candid.Net.Encounters.V4.KeyDoesNotExistError> onKeyDoesNotExist,
-        Action<Candid.Net.Encounters.V4.SchemaDoesNotExistError> onSchemaDoesNotExist,
-        Action<Candid.Net.Encounters.V4.SchemaUnauthorizedAccessError> onSchemaUnauthorizedAccess,
+        Action<global::Candid.Net.Encounters.V4.MultipleInstancesForSchemaError> onMultipleInstancesForSchema,
+        Action<global::Candid.Net.Encounters.V4.ValueDoesNotMatchKeyTypeError> onValueDoesNotMatchKeyType,
+        Action<global::Candid.Net.Encounters.V4.KeyDoesNotExistError> onKeyDoesNotExist,
+        Action<global::Candid.Net.Encounters.V4.SchemaDoesNotExistError> onSchemaDoesNotExist,
+        Action<global::Candid.Net.Encounters.V4.SchemaUnauthorizedAccessError> onSchemaUnauthorizedAccess,
         Action<string, object?> onUnknown_
     )
     {
@@ -220,15 +228,15 @@ public record SchemaInstanceValidationError
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.Encounters.V4.MultipleInstancesForSchemaError"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.Encounters.V4.MultipleInstancesForSchemaError"/> and returns true if successful.
     /// </summary>
     public bool TryAsMultipleInstancesForSchema(
-        out Candid.Net.Encounters.V4.MultipleInstancesForSchemaError? value
+        out global::Candid.Net.Encounters.V4.MultipleInstancesForSchemaError? value
     )
     {
         if (Type == "multiple_instances_for_schema")
         {
-            value = (Candid.Net.Encounters.V4.MultipleInstancesForSchemaError)Value!;
+            value = (global::Candid.Net.Encounters.V4.MultipleInstancesForSchemaError)Value!;
             return true;
         }
         value = null;
@@ -236,15 +244,15 @@ public record SchemaInstanceValidationError
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.Encounters.V4.ValueDoesNotMatchKeyTypeError"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.Encounters.V4.ValueDoesNotMatchKeyTypeError"/> and returns true if successful.
     /// </summary>
     public bool TryAsValueDoesNotMatchKeyType(
-        out Candid.Net.Encounters.V4.ValueDoesNotMatchKeyTypeError? value
+        out global::Candid.Net.Encounters.V4.ValueDoesNotMatchKeyTypeError? value
     )
     {
         if (Type == "value_does_not_match_key_type")
         {
-            value = (Candid.Net.Encounters.V4.ValueDoesNotMatchKeyTypeError)Value!;
+            value = (global::Candid.Net.Encounters.V4.ValueDoesNotMatchKeyTypeError)Value!;
             return true;
         }
         value = null;
@@ -252,13 +260,15 @@ public record SchemaInstanceValidationError
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.Encounters.V4.KeyDoesNotExistError"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.Encounters.V4.KeyDoesNotExistError"/> and returns true if successful.
     /// </summary>
-    public bool TryAsKeyDoesNotExist(out Candid.Net.Encounters.V4.KeyDoesNotExistError? value)
+    public bool TryAsKeyDoesNotExist(
+        out global::Candid.Net.Encounters.V4.KeyDoesNotExistError? value
+    )
     {
         if (Type == "key_does_not_exist")
         {
-            value = (Candid.Net.Encounters.V4.KeyDoesNotExistError)Value!;
+            value = (global::Candid.Net.Encounters.V4.KeyDoesNotExistError)Value!;
             return true;
         }
         value = null;
@@ -266,13 +276,15 @@ public record SchemaInstanceValidationError
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.Encounters.V4.SchemaDoesNotExistError"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.Encounters.V4.SchemaDoesNotExistError"/> and returns true if successful.
     /// </summary>
-    public bool TryAsSchemaDoesNotExist(out Candid.Net.Encounters.V4.SchemaDoesNotExistError? value)
+    public bool TryAsSchemaDoesNotExist(
+        out global::Candid.Net.Encounters.V4.SchemaDoesNotExistError? value
+    )
     {
         if (Type == "schema_does_not_exist")
         {
-            value = (Candid.Net.Encounters.V4.SchemaDoesNotExistError)Value!;
+            value = (global::Candid.Net.Encounters.V4.SchemaDoesNotExistError)Value!;
             return true;
         }
         value = null;
@@ -280,15 +292,15 @@ public record SchemaInstanceValidationError
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.Encounters.V4.SchemaUnauthorizedAccessError"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.Encounters.V4.SchemaUnauthorizedAccessError"/> and returns true if successful.
     /// </summary>
     public bool TryAsSchemaUnauthorizedAccess(
-        out Candid.Net.Encounters.V4.SchemaUnauthorizedAccessError? value
+        out global::Candid.Net.Encounters.V4.SchemaUnauthorizedAccessError? value
     )
     {
         if (Type == "schema_unauthorized_access")
         {
-            value = (Candid.Net.Encounters.V4.SchemaUnauthorizedAccessError)Value!;
+            value = (global::Candid.Net.Encounters.V4.SchemaUnauthorizedAccessError)Value!;
             return true;
         }
         value = null;
@@ -353,35 +365,39 @@ public record SchemaInstanceValidationError
             var value = discriminator switch
             {
                 "multiple_instances_for_schema" =>
-                    json.Deserialize<Candid.Net.Encounters.V4.MultipleInstancesForSchemaError>(
+                    json.Deserialize<global::Candid.Net.Encounters.V4.MultipleInstancesForSchemaError?>(
                         options
                     )
                         ?? throw new JsonException(
-                            "Failed to deserialize Candid.Net.Encounters.V4.MultipleInstancesForSchemaError"
+                            "Failed to deserialize global::Candid.Net.Encounters.V4.MultipleInstancesForSchemaError"
                         ),
                 "value_does_not_match_key_type" =>
-                    json.Deserialize<Candid.Net.Encounters.V4.ValueDoesNotMatchKeyTypeError>(
+                    json.Deserialize<global::Candid.Net.Encounters.V4.ValueDoesNotMatchKeyTypeError?>(
                         options
                     )
                         ?? throw new JsonException(
-                            "Failed to deserialize Candid.Net.Encounters.V4.ValueDoesNotMatchKeyTypeError"
+                            "Failed to deserialize global::Candid.Net.Encounters.V4.ValueDoesNotMatchKeyTypeError"
                         ),
                 "key_does_not_exist" =>
-                    json.Deserialize<Candid.Net.Encounters.V4.KeyDoesNotExistError>(options)
-                        ?? throw new JsonException(
-                            "Failed to deserialize Candid.Net.Encounters.V4.KeyDoesNotExistError"
-                        ),
-                "schema_does_not_exist" =>
-                    json.Deserialize<Candid.Net.Encounters.V4.SchemaDoesNotExistError>(options)
-                        ?? throw new JsonException(
-                            "Failed to deserialize Candid.Net.Encounters.V4.SchemaDoesNotExistError"
-                        ),
-                "schema_unauthorized_access" =>
-                    json.Deserialize<Candid.Net.Encounters.V4.SchemaUnauthorizedAccessError>(
+                    json.Deserialize<global::Candid.Net.Encounters.V4.KeyDoesNotExistError?>(
                         options
                     )
                         ?? throw new JsonException(
-                            "Failed to deserialize Candid.Net.Encounters.V4.SchemaUnauthorizedAccessError"
+                            "Failed to deserialize global::Candid.Net.Encounters.V4.KeyDoesNotExistError"
+                        ),
+                "schema_does_not_exist" =>
+                    json.Deserialize<global::Candid.Net.Encounters.V4.SchemaDoesNotExistError?>(
+                        options
+                    )
+                        ?? throw new JsonException(
+                            "Failed to deserialize global::Candid.Net.Encounters.V4.SchemaDoesNotExistError"
+                        ),
+                "schema_unauthorized_access" =>
+                    json.Deserialize<global::Candid.Net.Encounters.V4.SchemaUnauthorizedAccessError?>(
+                        options
+                    )
+                        ?? throw new JsonException(
+                            "Failed to deserialize global::Candid.Net.Encounters.V4.SchemaUnauthorizedAccessError"
                         ),
                 _ => json.Deserialize<object?>(options),
             };
@@ -425,18 +441,18 @@ public record SchemaInstanceValidationError
     public struct MultipleInstancesForSchema
     {
         public MultipleInstancesForSchema(
-            Candid.Net.Encounters.V4.MultipleInstancesForSchemaError value
+            global::Candid.Net.Encounters.V4.MultipleInstancesForSchemaError value
         )
         {
             Value = value;
         }
 
-        internal Candid.Net.Encounters.V4.MultipleInstancesForSchemaError Value { get; set; }
+        internal global::Candid.Net.Encounters.V4.MultipleInstancesForSchemaError Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator SchemaInstanceValidationError.MultipleInstancesForSchema(
-            Candid.Net.Encounters.V4.MultipleInstancesForSchemaError value
+            global::Candid.Net.Encounters.V4.MultipleInstancesForSchemaError value
         ) => new(value);
     }
 
@@ -447,18 +463,18 @@ public record SchemaInstanceValidationError
     public struct ValueDoesNotMatchKeyType
     {
         public ValueDoesNotMatchKeyType(
-            Candid.Net.Encounters.V4.ValueDoesNotMatchKeyTypeError value
+            global::Candid.Net.Encounters.V4.ValueDoesNotMatchKeyTypeError value
         )
         {
             Value = value;
         }
 
-        internal Candid.Net.Encounters.V4.ValueDoesNotMatchKeyTypeError Value { get; set; }
+        internal global::Candid.Net.Encounters.V4.ValueDoesNotMatchKeyTypeError Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator SchemaInstanceValidationError.ValueDoesNotMatchKeyType(
-            Candid.Net.Encounters.V4.ValueDoesNotMatchKeyTypeError value
+            global::Candid.Net.Encounters.V4.ValueDoesNotMatchKeyTypeError value
         ) => new(value);
     }
 
@@ -468,17 +484,17 @@ public record SchemaInstanceValidationError
     [Serializable]
     public struct KeyDoesNotExist
     {
-        public KeyDoesNotExist(Candid.Net.Encounters.V4.KeyDoesNotExistError value)
+        public KeyDoesNotExist(global::Candid.Net.Encounters.V4.KeyDoesNotExistError value)
         {
             Value = value;
         }
 
-        internal Candid.Net.Encounters.V4.KeyDoesNotExistError Value { get; set; }
+        internal global::Candid.Net.Encounters.V4.KeyDoesNotExistError Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator SchemaInstanceValidationError.KeyDoesNotExist(
-            Candid.Net.Encounters.V4.KeyDoesNotExistError value
+            global::Candid.Net.Encounters.V4.KeyDoesNotExistError value
         ) => new(value);
     }
 
@@ -488,17 +504,17 @@ public record SchemaInstanceValidationError
     [Serializable]
     public struct SchemaDoesNotExist
     {
-        public SchemaDoesNotExist(Candid.Net.Encounters.V4.SchemaDoesNotExistError value)
+        public SchemaDoesNotExist(global::Candid.Net.Encounters.V4.SchemaDoesNotExistError value)
         {
             Value = value;
         }
 
-        internal Candid.Net.Encounters.V4.SchemaDoesNotExistError Value { get; set; }
+        internal global::Candid.Net.Encounters.V4.SchemaDoesNotExistError Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator SchemaInstanceValidationError.SchemaDoesNotExist(
-            Candid.Net.Encounters.V4.SchemaDoesNotExistError value
+            global::Candid.Net.Encounters.V4.SchemaDoesNotExistError value
         ) => new(value);
     }
 
@@ -509,18 +525,18 @@ public record SchemaInstanceValidationError
     public struct SchemaUnauthorizedAccess
     {
         public SchemaUnauthorizedAccess(
-            Candid.Net.Encounters.V4.SchemaUnauthorizedAccessError value
+            global::Candid.Net.Encounters.V4.SchemaUnauthorizedAccessError value
         )
         {
             Value = value;
         }
 
-        internal Candid.Net.Encounters.V4.SchemaUnauthorizedAccessError Value { get; set; }
+        internal global::Candid.Net.Encounters.V4.SchemaUnauthorizedAccessError Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator SchemaInstanceValidationError.SchemaUnauthorizedAccess(
-            Candid.Net.Encounters.V4.SchemaUnauthorizedAccessError value
+            global::Candid.Net.Encounters.V4.SchemaUnauthorizedAccessError value
         ) => new(value);
     }
 }

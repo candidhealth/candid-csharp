@@ -21,7 +21,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.InsuranceRefunds.V1.GetMultiAsync(new GetMultiInsuranceRefundsRequest());
     /// </code></example>
-    public async System.Threading.Tasks.Task<InsuranceRefundsPage> GetMultiAsync(
+    public async global::System.Threading.Tasks.Task<InsuranceRefundsPage> GetMultiAsync(
         GetMultiInsuranceRefundsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -103,7 +103,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.InsuranceRefunds.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async System.Threading.Tasks.Task<InsuranceRefund> GetAsync(
+    public async global::System.Threading.Tasks.Task<InsuranceRefund> GetAsync(
         string insuranceRefundId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -186,7 +186,7 @@ public partial class V1Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<InsuranceRefund> CreateAsync(
+    public async global::System.Threading.Tasks.Task<InsuranceRefund> CreateAsync(
         InsuranceRefundCreate request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -238,7 +238,7 @@ public partial class V1Client
     ///     new InsuranceRefundUpdate()
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<InsuranceRefund> UpdateAsync(
+    public async global::System.Threading.Tasks.Task<InsuranceRefund> UpdateAsync(
         string insuranceRefundId,
         InsuranceRefundUpdate request,
         RequestOptions? options = null,
@@ -292,7 +292,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.InsuranceRefunds.V1.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async System.Threading.Tasks.Task DeleteAsync(
+    public async global::System.Threading.Tasks.Task DeleteAsync(
         string insuranceRefundId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

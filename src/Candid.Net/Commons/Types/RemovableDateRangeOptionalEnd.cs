@@ -58,13 +58,15 @@ public record RemovableDateRangeOptionalEnd
     public bool IsRemove => Type == "remove";
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.Commons.DateRangeOptionalEnd"/> if <see cref="Type"/> is 'date_range', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.Commons.DateRangeOptionalEnd"/> if <see cref="Type"/> is 'date_range', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'date_range'.</exception>
-    public Candid.Net.Commons.DateRangeOptionalEnd AsDateRange() =>
+    public global::Candid.Net.Commons.DateRangeOptionalEnd AsDateRange() =>
         IsDateRange
-            ? (Candid.Net.Commons.DateRangeOptionalEnd)Value!
-            : throw new Exception("RemovableDateRangeOptionalEnd.Type is not 'date_range'");
+            ? (global::Candid.Net.Commons.DateRangeOptionalEnd)Value!
+            : throw new global::System.Exception(
+                "RemovableDateRangeOptionalEnd.Type is not 'date_range'"
+            );
 
     /// <summary>
     /// Returns the value as a <see cref="object"/> if <see cref="Type"/> is 'remove', otherwise throws an exception.
@@ -73,10 +75,12 @@ public record RemovableDateRangeOptionalEnd
     public object AsRemove() =>
         IsRemove
             ? Value!
-            : throw new Exception("RemovableDateRangeOptionalEnd.Type is not 'remove'");
+            : throw new global::System.Exception(
+                "RemovableDateRangeOptionalEnd.Type is not 'remove'"
+            );
 
     public T Match<T>(
-        Func<Candid.Net.Commons.DateRangeOptionalEnd, T> onDateRange,
+        Func<global::Candid.Net.Commons.DateRangeOptionalEnd, T> onDateRange,
         Func<object, T> onRemove,
         Func<string, object?, T> onUnknown_
     )
@@ -90,7 +94,7 @@ public record RemovableDateRangeOptionalEnd
     }
 
     public void Visit(
-        Action<Candid.Net.Commons.DateRangeOptionalEnd> onDateRange,
+        Action<global::Candid.Net.Commons.DateRangeOptionalEnd> onDateRange,
         Action<object> onRemove,
         Action<string, object?> onUnknown_
     )
@@ -110,13 +114,13 @@ public record RemovableDateRangeOptionalEnd
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.Commons.DateRangeOptionalEnd"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.Commons.DateRangeOptionalEnd"/> and returns true if successful.
     /// </summary>
-    public bool TryAsDateRange(out Candid.Net.Commons.DateRangeOptionalEnd? value)
+    public bool TryAsDateRange(out global::Candid.Net.Commons.DateRangeOptionalEnd? value)
     {
         if (Type == "date_range")
         {
-            value = (Candid.Net.Commons.DateRangeOptionalEnd)Value!;
+            value = (global::Candid.Net.Commons.DateRangeOptionalEnd)Value!;
             return true;
         }
         value = null;
@@ -178,9 +182,11 @@ public record RemovableDateRangeOptionalEnd
 
             var value = discriminator switch
             {
-                "date_range" => json.Deserialize<Candid.Net.Commons.DateRangeOptionalEnd>(options)
+                "date_range" => json.Deserialize<global::Candid.Net.Commons.DateRangeOptionalEnd?>(
+                    options
+                )
                     ?? throw new JsonException(
-                        "Failed to deserialize Candid.Net.Commons.DateRangeOptionalEnd"
+                        "Failed to deserialize global::Candid.Net.Commons.DateRangeOptionalEnd"
                     ),
                 "remove" => new { },
                 _ => json.Deserialize<object?>(options),
@@ -212,17 +218,17 @@ public record RemovableDateRangeOptionalEnd
     [Serializable]
     public struct DateRange
     {
-        public DateRange(Candid.Net.Commons.DateRangeOptionalEnd value)
+        public DateRange(global::Candid.Net.Commons.DateRangeOptionalEnd value)
         {
             Value = value;
         }
 
-        internal Candid.Net.Commons.DateRangeOptionalEnd Value { get; set; }
+        internal global::Candid.Net.Commons.DateRangeOptionalEnd Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator RemovableDateRangeOptionalEnd.DateRange(
-            Candid.Net.Commons.DateRangeOptionalEnd value
+            global::Candid.Net.Commons.DateRangeOptionalEnd value
         ) => new(value);
     }
 
@@ -234,6 +240,6 @@ public record RemovableDateRangeOptionalEnd
     {
         internal object Value => new { };
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
     }
 }

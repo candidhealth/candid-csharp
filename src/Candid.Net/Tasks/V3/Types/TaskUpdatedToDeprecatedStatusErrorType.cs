@@ -13,7 +13,7 @@ public record TaskUpdatedToDeprecatedStatusErrorType : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     [JsonPropertyName("deprecated_status")]
-    public Candid.Net.Tasks.Commons.TaskStatus? DeprecatedStatus { get; set; }
+    public global::Candid.Net.Tasks.Commons.TaskStatus? DeprecatedStatus { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

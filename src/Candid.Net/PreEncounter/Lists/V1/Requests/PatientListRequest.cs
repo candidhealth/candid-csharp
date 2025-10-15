@@ -22,7 +22,7 @@ public record PatientListRequest
     /// Defaults to ascending.
     /// </summary>
     [JsonIgnore]
-    public Candid.Net.PreEncounter.Common.SortDirection? SortDirection { get; set; }
+    public global::Candid.Net.PreEncounter.Common.SortDirection? SortDirection { get; set; }
 
     [JsonIgnore]
     public string? Filters { get; set; }

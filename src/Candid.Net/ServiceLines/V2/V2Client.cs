@@ -25,7 +25,7 @@ public partial class V2Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<ServiceLine> CreateAsync(
+    public async global::System.Threading.Tasks.Task<ServiceLine> CreateAsync(
         ServiceLineCreateStandalone request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -77,7 +77,7 @@ public partial class V2Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<ServiceLine> CreateUniversalAsync(
+    public async global::System.Threading.Tasks.Task<ServiceLine> CreateUniversalAsync(
         UniversalServiceLineCreateStandalone request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -125,7 +125,7 @@ public partial class V2Client
     ///     new UniversalServiceLineUpdate()
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<ServiceLine> UpdateUniversalAsync(
+    public async global::System.Threading.Tasks.Task<ServiceLine> UpdateUniversalAsync(
         string serviceLineId,
         UniversalServiceLineUpdate request,
         RequestOptions? options = null,
@@ -177,7 +177,7 @@ public partial class V2Client
     ///     new ServiceLineUpdate()
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<ServiceLine> UpdateAsync(
+    public async global::System.Threading.Tasks.Task<ServiceLine> UpdateAsync(
         string serviceLineId,
         ServiceLineUpdate request,
         RequestOptions? options = null,
@@ -226,7 +226,7 @@ public partial class V2Client
     /// <example><code>
     /// await client.ServiceLines.V2.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async System.Threading.Tasks.Task DeleteAsync(
+    public async global::System.Threading.Tasks.Task DeleteAsync(
         string serviceLineId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

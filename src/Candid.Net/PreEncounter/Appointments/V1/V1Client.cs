@@ -28,7 +28,7 @@ public partial class V1Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<Appointment> CreateAsync(
+    public async global::System.Threading.Tasks.Task<Appointment> CreateAsync(
         MutableAppointment request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -76,7 +76,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.PreEncounter.Appointments.V1.GetVisitsAsync(new VisitsRequest());
     /// </code></example>
-    public async System.Threading.Tasks.Task<VisitsPage> GetVisitsAsync(
+    public async global::System.Threading.Tasks.Task<VisitsPage> GetVisitsAsync(
         VisitsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -145,7 +145,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.PreEncounter.Appointments.V1.GetAsync("id");
     /// </code></example>
-    public async System.Threading.Tasks.Task<Appointment> GetAsync(
+    public async global::System.Threading.Tasks.Task<Appointment> GetAsync(
         string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -195,7 +195,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.PreEncounter.Appointments.V1.GetHistoryAsync("id");
     /// </code></example>
-    public async System.Threading.Tasks.Task<IEnumerable<Appointment>> GetHistoryAsync(
+    public async global::System.Threading.Tasks.Task<IEnumerable<Appointment>> GetHistoryAsync(
         string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -255,7 +255,7 @@ public partial class V1Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<Appointment> UpdateAsync(
+    public async global::System.Threading.Tasks.Task<Appointment> UpdateAsync(
         string id,
         string version,
         MutableAppointment request,
@@ -311,7 +311,7 @@ public partial class V1Client
     ///     new AppointmentScanRequest { Since = new DateTime(2024, 01, 15, 09, 30, 00, 000) }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<IEnumerable<Appointment>> ScanAsync(
+    public async global::System.Threading.Tasks.Task<IEnumerable<Appointment>> ScanAsync(
         AppointmentScanRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -361,7 +361,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.PreEncounter.Appointments.V1.DeactivateAsync("id", "version");
     /// </code></example>
-    public async System.Threading.Tasks.Task DeactivateAsync(
+    public async global::System.Threading.Tasks.Task DeactivateAsync(
         string id,
         string version,
         RequestOptions? options = null,

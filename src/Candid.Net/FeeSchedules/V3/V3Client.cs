@@ -20,7 +20,7 @@ public partial class V3Client
     /// <example><code>
     /// await client.FeeSchedules.V3.GetMatchAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async System.Threading.Tasks.Task<MatchResult?> GetMatchAsync(
+    public async global::System.Threading.Tasks.Task<MatchResult?> GetMatchAsync(
         string serviceLineId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -73,7 +73,7 @@ public partial class V3Client
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<MatchTestResult> TestMatchAsync(
+    public async global::System.Threading.Tasks.Task<MatchTestResult> TestMatchAsync(
         string serviceLineId,
         string rateId,
         RequestOptions? options = null,
@@ -125,7 +125,7 @@ public partial class V3Client
     /// <example><code>
     /// await client.FeeSchedules.V3.GetMultiAsync(new GetMultiRequest());
     /// </code></example>
-    public async System.Threading.Tasks.Task<RatesPage> GetMultiAsync(
+    public async global::System.Threading.Tasks.Task<RatesPage> GetMultiAsync(
         GetMultiRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -213,7 +213,7 @@ public partial class V3Client
     ///     new GetUniqueDimensionValuesRequest { PivotDimension = DimensionName.PayerUuid }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<DimensionsPage> GetUniqueValuesForDimensionAsync(
+    public async global::System.Threading.Tasks.Task<DimensionsPage> GetUniqueValuesForDimensionAsync(
         GetUniqueDimensionValuesRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -296,7 +296,7 @@ public partial class V3Client
     /// <example><code>
     /// await client.FeeSchedules.V3.GetRateHistoryAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async System.Threading.Tasks.Task<IEnumerable<Rate>> GetRateHistoryAsync(
+    public async global::System.Threading.Tasks.Task<IEnumerable<Rate>> GetRateHistoryAsync(
         string rateId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -365,9 +365,9 @@ public partial class V3Client
     ///                             {
     ///                                 FacilityTypeCode.Pharmacy,
     ///                             },
-    ///                             NetworkTypes = new HashSet&lt;Candid.Net.Commons.NetworkType&gt;()
+    ///                             NetworkTypes = new HashSet&lt;global::Candid.Net.Commons.NetworkType&gt;()
     ///                             {
-    ///                                 Candid.Net.Commons.NetworkType.Ppo,
+    ///                                 global::Candid.Net.Commons.NetworkType.Ppo,
     ///                             },
     ///                             PayerPlanGroupIds = new HashSet&lt;string&gt;()
     ///                             {
@@ -409,9 +409,9 @@ public partial class V3Client
     ///                             {
     ///                                 FacilityTypeCode.Pharmacy,
     ///                             },
-    ///                             NetworkTypes = new HashSet&lt;Candid.Net.Commons.NetworkType&gt;()
+    ///                             NetworkTypes = new HashSet&lt;global::Candid.Net.Commons.NetworkType&gt;()
     ///                             {
-    ///                                 Candid.Net.Commons.NetworkType.Ppo,
+    ///                                 global::Candid.Net.Commons.NetworkType.Ppo,
     ///                             },
     ///                             PayerPlanGroupIds = new HashSet&lt;string&gt;()
     ///                             {
@@ -442,7 +442,7 @@ public partial class V3Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<IEnumerable<Rate>> UploadFeeScheduleAsync(
+    public async global::System.Threading.Tasks.Task<IEnumerable<Rate>> UploadFeeScheduleAsync(
         FeeScheduleUploadRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -490,7 +490,7 @@ public partial class V3Client
     /// <example><code>
     /// await client.FeeSchedules.V3.DeleteRateAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32", 1);
     /// </code></example>
-    public async System.Threading.Tasks.Task DeleteRateAsync(
+    public async global::System.Threading.Tasks.Task DeleteRateAsync(
         string rateId,
         int version,
         RequestOptions? options = null,
@@ -533,7 +533,7 @@ public partial class V3Client
     /// <example><code>
     /// await client.FeeSchedules.V3.GetPayerThresholdsDefaultAsync();
     /// </code></example>
-    public async System.Threading.Tasks.Task<PayerThreshold> GetPayerThresholdsDefaultAsync(
+    public async global::System.Threading.Tasks.Task<PayerThreshold> GetPayerThresholdsDefaultAsync(
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -581,7 +581,7 @@ public partial class V3Client
     ///     new PayerThresholdGetRequest { PayerUuids = ["d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"] }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<PayerThresholdsPage> GetPayerThresholdsAsync(
+    public async global::System.Threading.Tasks.Task<PayerThresholdsPage> GetPayerThresholdsAsync(
         PayerThresholdGetRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -634,7 +634,7 @@ public partial class V3Client
     ///     new PayerThreshold { DisablePaidIncorrectly = true }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<PayerThreshold> SetPayerThresholdAsync(
+    public async global::System.Threading.Tasks.Task<PayerThreshold> SetPayerThresholdAsync(
         string payerUuid,
         PayerThreshold request,
         RequestOptions? options = null,
@@ -691,16 +691,16 @@ public partial class V3Client
     ///         ZipCodes = new HashSet&lt;string&gt;() { "zip_codes" },
     ///         LicenseTypes = new HashSet&lt;LicenseType&gt;() { LicenseType.Md },
     ///         FacilityTypeCodes = new HashSet&lt;FacilityTypeCode&gt;() { FacilityTypeCode.Pharmacy },
-    ///         NetworkTypes = new HashSet&lt;Candid.Net.Commons.NetworkType&gt;()
+    ///         NetworkTypes = new HashSet&lt;global::Candid.Net.Commons.NetworkType&gt;()
     ///         {
-    ///             Candid.Net.Commons.NetworkType.Ppo,
+    ///             global::Candid.Net.Commons.NetworkType.Ppo,
     ///         },
     ///         PayerPlanGroupIds = new HashSet&lt;string&gt;() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
     ///         Modifiers = new HashSet&lt;ProcedureModifier&gt;() { ProcedureModifier.Av },
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<int> HardDeleteRatesAsync(
+    public async global::System.Threading.Tasks.Task<int> HardDeleteRatesAsync(
         OptionalDimensions request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -757,7 +757,7 @@ public partial class V3Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<int> HardDeleteRatesByIdsAsync(
+    public async global::System.Threading.Tasks.Task<int> HardDeleteRatesByIdsAsync(
         HardDeleteRatesByIdsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

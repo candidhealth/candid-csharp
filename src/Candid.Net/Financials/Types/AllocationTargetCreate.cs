@@ -125,7 +125,9 @@ public record AllocationTargetCreate
     public string AsServiceLineById() =>
         IsServiceLineById
             ? (string)Value!
-            : throw new Exception("AllocationTargetCreate.Type is not 'service_line_by_id'");
+            : throw new global::System.Exception(
+                "AllocationTargetCreate.Type is not 'service_line_by_id'"
+            );
 
     /// <summary>
     /// Returns the value as a <see cref="string"/> if <see cref="Type"/> is 'claim_by_id', otherwise throws an exception.
@@ -134,7 +136,9 @@ public record AllocationTargetCreate
     public string AsClaimById() =>
         IsClaimById
             ? (string)Value!
-            : throw new Exception("AllocationTargetCreate.Type is not 'claim_by_id'");
+            : throw new global::System.Exception(
+                "AllocationTargetCreate.Type is not 'claim_by_id'"
+            );
 
     /// <summary>
     /// Returns the value as a <see cref="string"/> if <see cref="Type"/> is 'claim_by_encounter_external_id', otherwise throws an exception.
@@ -143,7 +147,7 @@ public record AllocationTargetCreate
     public string AsClaimByEncounterExternalId() =>
         IsClaimByEncounterExternalId
             ? (string)Value!
-            : throw new Exception(
+            : throw new global::System.Exception(
                 "AllocationTargetCreate.Type is not 'claim_by_encounter_external_id'"
             );
 
@@ -154,16 +158,18 @@ public record AllocationTargetCreate
     public string AsBillingProviderById() =>
         IsBillingProviderById
             ? (string)Value!
-            : throw new Exception("AllocationTargetCreate.Type is not 'billing_provider_by_id'");
+            : throw new global::System.Exception(
+                "AllocationTargetCreate.Type is not 'billing_provider_by_id'"
+            );
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.Financials.AppointmentByIdAndPatientExternalId"/> if <see cref="Type"/> is 'appointment_by_id_and_patient_external_id', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.Financials.AppointmentByIdAndPatientExternalId"/> if <see cref="Type"/> is 'appointment_by_id_and_patient_external_id', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'appointment_by_id_and_patient_external_id'.</exception>
-    public Candid.Net.Financials.AppointmentByIdAndPatientExternalId AsAppointmentByIdAndPatientExternalId() =>
+    public global::Candid.Net.Financials.AppointmentByIdAndPatientExternalId AsAppointmentByIdAndPatientExternalId() =>
         IsAppointmentByIdAndPatientExternalId
-            ? (Candid.Net.Financials.AppointmentByIdAndPatientExternalId)Value!
-            : throw new Exception(
+            ? (global::Candid.Net.Financials.AppointmentByIdAndPatientExternalId)Value!
+            : throw new global::System.Exception(
                 "AllocationTargetCreate.Type is not 'appointment_by_id_and_patient_external_id'"
             );
 
@@ -174,7 +180,9 @@ public record AllocationTargetCreate
     public object AsUnattributed() =>
         IsUnattributed
             ? Value!
-            : throw new Exception("AllocationTargetCreate.Type is not 'unattributed'");
+            : throw new global::System.Exception(
+                "AllocationTargetCreate.Type is not 'unattributed'"
+            );
 
     public T Match<T>(
         Func<string, T> onServiceLineById,
@@ -182,7 +190,7 @@ public record AllocationTargetCreate
         Func<string, T> onClaimByEncounterExternalId,
         Func<string, T> onBillingProviderById,
         Func<
-            Candid.Net.Financials.AppointmentByIdAndPatientExternalId,
+            global::Candid.Net.Financials.AppointmentByIdAndPatientExternalId,
             T
         > onAppointmentByIdAndPatientExternalId,
         Func<object, T> onUnattributed,
@@ -210,7 +218,7 @@ public record AllocationTargetCreate
         Action<string> onClaimById,
         Action<string> onClaimByEncounterExternalId,
         Action<string> onBillingProviderById,
-        Action<Candid.Net.Financials.AppointmentByIdAndPatientExternalId> onAppointmentByIdAndPatientExternalId,
+        Action<global::Candid.Net.Financials.AppointmentByIdAndPatientExternalId> onAppointmentByIdAndPatientExternalId,
         Action<object> onUnattributed,
         Action<string, object?> onUnknown_
     )
@@ -298,15 +306,15 @@ public record AllocationTargetCreate
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.Financials.AppointmentByIdAndPatientExternalId"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.Financials.AppointmentByIdAndPatientExternalId"/> and returns true if successful.
     /// </summary>
     public bool TryAsAppointmentByIdAndPatientExternalId(
-        out Candid.Net.Financials.AppointmentByIdAndPatientExternalId? value
+        out global::Candid.Net.Financials.AppointmentByIdAndPatientExternalId? value
     )
     {
         if (Type == "appointment_by_id_and_patient_external_id")
         {
-            value = (Candid.Net.Financials.AppointmentByIdAndPatientExternalId)Value!;
+            value = (global::Candid.Net.Financials.AppointmentByIdAndPatientExternalId)Value!;
             return true;
         }
         value = null;
@@ -384,21 +392,21 @@ public record AllocationTargetCreate
 
             var value = discriminator switch
             {
-                "service_line_by_id" => json.GetProperty("value").Deserialize<string>(options)
+                "service_line_by_id" => json.GetProperty("value").Deserialize<string?>(options)
                 ?? throw new JsonException("Failed to deserialize string"),
-                "claim_by_id" => json.GetProperty("value").Deserialize<string>(options)
+                "claim_by_id" => json.GetProperty("value").Deserialize<string?>(options)
                 ?? throw new JsonException("Failed to deserialize string"),
                 "claim_by_encounter_external_id" => json.GetProperty("value")
-                    .Deserialize<string>(options)
+                    .Deserialize<string?>(options)
                 ?? throw new JsonException("Failed to deserialize string"),
-                "billing_provider_by_id" => json.GetProperty("value").Deserialize<string>(options)
+                "billing_provider_by_id" => json.GetProperty("value").Deserialize<string?>(options)
                 ?? throw new JsonException("Failed to deserialize string"),
                 "appointment_by_id_and_patient_external_id" =>
-                    json.Deserialize<Candid.Net.Financials.AppointmentByIdAndPatientExternalId>(
+                    json.Deserialize<global::Candid.Net.Financials.AppointmentByIdAndPatientExternalId?>(
                         options
                     )
                         ?? throw new JsonException(
-                            "Failed to deserialize Candid.Net.Financials.AppointmentByIdAndPatientExternalId"
+                            "Failed to deserialize global::Candid.Net.Financials.AppointmentByIdAndPatientExternalId"
                         ),
                 "unattributed" => new { },
                 _ => json.Deserialize<object?>(options),
@@ -527,18 +535,18 @@ public record AllocationTargetCreate
     public struct AppointmentByIdAndPatientExternalId
     {
         public AppointmentByIdAndPatientExternalId(
-            Candid.Net.Financials.AppointmentByIdAndPatientExternalId value
+            global::Candid.Net.Financials.AppointmentByIdAndPatientExternalId value
         )
         {
             Value = value;
         }
 
-        internal Candid.Net.Financials.AppointmentByIdAndPatientExternalId Value { get; set; }
+        internal global::Candid.Net.Financials.AppointmentByIdAndPatientExternalId Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator AllocationTargetCreate.AppointmentByIdAndPatientExternalId(
-            Candid.Net.Financials.AppointmentByIdAndPatientExternalId value
+            global::Candid.Net.Financials.AppointmentByIdAndPatientExternalId value
         ) => new(value);
     }
 
@@ -550,6 +558,6 @@ public record AllocationTargetCreate
     {
         internal object Value => new { };
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
     }
 }

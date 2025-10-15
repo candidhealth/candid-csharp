@@ -65,7 +65,9 @@ public record NonInsurancePayerAddressUpdate
     public object AsRemove() =>
         IsRemove
             ? Value!
-            : throw new Exception("NonInsurancePayerAddressUpdate.Type is not 'remove'");
+            : throw new global::System.Exception(
+                "NonInsurancePayerAddressUpdate.Type is not 'remove'"
+            );
 
     /// <summary>
     /// Returns the value as a <see cref="StreetAddressShortZip?"/> if <see cref="Type"/> is 'set', otherwise throws an exception.
@@ -74,7 +76,9 @@ public record NonInsurancePayerAddressUpdate
     public StreetAddressShortZip? AsSet() =>
         IsSet
             ? (StreetAddressShortZip?)Value!
-            : throw new Exception("NonInsurancePayerAddressUpdate.Type is not 'set'");
+            : throw new global::System.Exception(
+                "NonInsurancePayerAddressUpdate.Type is not 'set'"
+            );
 
     public T Match<T>(
         Func<object, T> onRemove,
@@ -215,7 +219,7 @@ public record NonInsurancePayerAddressUpdate
     {
         internal object Value => new { };
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
     }
 
     /// <summary>
@@ -231,7 +235,7 @@ public record NonInsurancePayerAddressUpdate
 
         internal StreetAddressShortZip? Value { get; set; }
 
-        public override string ToString() => Value?.ToString();
+        public override string ToString() => Value?.ToString() ?? "null";
 
         public static implicit operator NonInsurancePayerAddressUpdate.Set(
             StreetAddressShortZip? value

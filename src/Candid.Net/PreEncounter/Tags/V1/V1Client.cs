@@ -20,7 +20,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.PreEncounter.Tags.V1.GetAsync("id");
     /// </code></example>
-    public async System.Threading.Tasks.Task<Tag> GetAsync(
+    public async global::System.Threading.Tasks.Task<Tag> GetAsync(
         string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -67,7 +67,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.PreEncounter.Tags.V1.GetAllAsync(new GetAllTagsRequest());
     /// </code></example>
-    public async System.Threading.Tasks.Task<TagPage> GetAllAsync(
+    public async global::System.Threading.Tasks.Task<TagPage> GetAllAsync(
         GetAllTagsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -124,7 +124,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.PreEncounter.Tags.V1.CreateAsync(new MutableTag { Value = "value" });
     /// </code></example>
-    public async System.Threading.Tasks.Task<Tag> CreateAsync(
+    public async global::System.Threading.Tasks.Task<Tag> CreateAsync(
         MutableTag request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -172,7 +172,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.PreEncounter.Tags.V1.UpdateAsync("id", "version", new MutableTag { Value = "value" });
     /// </code></example>
-    public async System.Threading.Tasks.Task<Tag> UpdateAsync(
+    public async global::System.Threading.Tasks.Task<Tag> UpdateAsync(
         string id,
         string version,
         MutableTag request,
@@ -226,7 +226,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.PreEncounter.Tags.V1.DeactivateAsync("id", "version");
     /// </code></example>
-    public async System.Threading.Tasks.Task DeactivateAsync(
+    public async global::System.Threading.Tasks.Task DeactivateAsync(
         string id,
         string version,
         RequestOptions? options = null,

@@ -31,7 +31,7 @@ public partial class V4Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<EncounterPage> GetAllAsync(
+    public async global::System.Threading.Tasks.Task<EncounterPage> GetAllAsync(
         GetAllEncountersRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -144,7 +144,7 @@ public partial class V4Client
     /// <example><code>
     /// await client.Encounters.V4.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async System.Threading.Tasks.Task<Encounter> GetAsync(
+    public async global::System.Threading.Tasks.Task<Encounter> GetAsync(
         string encounterId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -225,7 +225,7 @@ public partial class V4Client
     ///             },
     ///             FirstName = "first_name",
     ///             LastName = "last_name",
-    ///             Gender = Candid.Net.Individual.Gender.Male,
+    ///             Gender = global::Candid.Net.Individual.Gender.Male,
     ///         },
     ///         ResponsibleParty = ResponsiblePartyType.InsurancePay,
     ///         ExternalId = "external_id",
@@ -236,7 +236,7 @@ public partial class V4Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<Encounter> CreateAsync(
+    public async global::System.Threading.Tasks.Task<Encounter> CreateAsync(
         EncounterCreate request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -334,7 +334,7 @@ public partial class V4Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<Encounter> CreateFromPreEncounterPatientAsync(
+    public async global::System.Threading.Tasks.Task<Encounter> CreateFromPreEncounterPatientAsync(
         EncounterCreateFromPreEncounter request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -382,7 +382,7 @@ public partial class V4Client
     ///     new EncounterUpdate()
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<Encounter> UpdateAsync(
+    public async global::System.Threading.Tasks.Task<Encounter> UpdateAsync(
         string encounterId,
         EncounterUpdate request,
         RequestOptions? options = null,

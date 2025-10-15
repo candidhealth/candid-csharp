@@ -78,45 +78,48 @@ public record ComputeAllInNetworkRenderingProvidersResult
     public bool IsOutOfNetwork => Type == "out_of_network";
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.ExpectedNetworkStatus.V2.InNetworkRenderingProvidersDetail"/> if <see cref="Type"/> is 'rendering_providers', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.ExpectedNetworkStatus.V2.InNetworkRenderingProvidersDetail"/> if <see cref="Type"/> is 'rendering_providers', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'rendering_providers'.</exception>
-    public Candid.Net.ExpectedNetworkStatus.V2.InNetworkRenderingProvidersDetail AsRenderingProviders() =>
+    public global::Candid.Net.ExpectedNetworkStatus.V2.InNetworkRenderingProvidersDetail AsRenderingProviders() =>
         IsRenderingProviders
-            ? (Candid.Net.ExpectedNetworkStatus.V2.InNetworkRenderingProvidersDetail)Value!
-            : throw new Exception(
+            ? (global::Candid.Net.ExpectedNetworkStatus.V2.InNetworkRenderingProvidersDetail)Value!
+            : throw new global::System.Exception(
                 "ComputeAllInNetworkRenderingProvidersResult.Type is not 'rendering_providers'"
             );
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus"/> if <see cref="Type"/> is 'indeterminate', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus"/> if <see cref="Type"/> is 'indeterminate', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'indeterminate'.</exception>
-    public Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus AsIndeterminate() =>
+    public global::Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus AsIndeterminate() =>
         IsIndeterminate
-            ? (Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus)Value!
-            : throw new Exception(
+            ? (global::Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus)Value!
+            : throw new global::System.Exception(
                 "ComputeAllInNetworkRenderingProvidersResult.Type is not 'indeterminate'"
             );
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus"/> if <see cref="Type"/> is 'out_of_network', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus"/> if <see cref="Type"/> is 'out_of_network', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'out_of_network'.</exception>
-    public Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus AsOutOfNetwork() =>
+    public global::Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus AsOutOfNetwork() =>
         IsOutOfNetwork
-            ? (Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus)Value!
-            : throw new Exception(
+            ? (global::Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus)Value!
+            : throw new global::System.Exception(
                 "ComputeAllInNetworkRenderingProvidersResult.Type is not 'out_of_network'"
             );
 
     public T Match<T>(
         Func<
-            Candid.Net.ExpectedNetworkStatus.V2.InNetworkRenderingProvidersDetail,
+            global::Candid.Net.ExpectedNetworkStatus.V2.InNetworkRenderingProvidersDetail,
             T
         > onRenderingProviders,
-        Func<Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus, T> onIndeterminate,
-        Func<Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus, T> onOutOfNetwork,
+        Func<
+            global::Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus,
+            T
+        > onIndeterminate,
+        Func<global::Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus, T> onOutOfNetwork,
         Func<string, object?, T> onUnknown_
     )
     {
@@ -130,9 +133,9 @@ public record ComputeAllInNetworkRenderingProvidersResult
     }
 
     public void Visit(
-        Action<Candid.Net.ExpectedNetworkStatus.V2.InNetworkRenderingProvidersDetail> onRenderingProviders,
-        Action<Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus> onIndeterminate,
-        Action<Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus> onOutOfNetwork,
+        Action<global::Candid.Net.ExpectedNetworkStatus.V2.InNetworkRenderingProvidersDetail> onRenderingProviders,
+        Action<global::Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus> onIndeterminate,
+        Action<global::Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus> onOutOfNetwork,
         Action<string, object?> onUnknown_
     )
     {
@@ -154,15 +157,16 @@ public record ComputeAllInNetworkRenderingProvidersResult
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.ExpectedNetworkStatus.V2.InNetworkRenderingProvidersDetail"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.ExpectedNetworkStatus.V2.InNetworkRenderingProvidersDetail"/> and returns true if successful.
     /// </summary>
     public bool TryAsRenderingProviders(
-        out Candid.Net.ExpectedNetworkStatus.V2.InNetworkRenderingProvidersDetail? value
+        out global::Candid.Net.ExpectedNetworkStatus.V2.InNetworkRenderingProvidersDetail? value
     )
     {
         if (Type == "rendering_providers")
         {
-            value = (Candid.Net.ExpectedNetworkStatus.V2.InNetworkRenderingProvidersDetail)Value!;
+            value = (global::Candid.Net.ExpectedNetworkStatus.V2.InNetworkRenderingProvidersDetail)
+                Value!;
             return true;
         }
         value = null;
@@ -170,15 +174,15 @@ public record ComputeAllInNetworkRenderingProvidersResult
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus"/> and returns true if successful.
     /// </summary>
     public bool TryAsIndeterminate(
-        out Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus? value
+        out global::Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus? value
     )
     {
         if (Type == "indeterminate")
         {
-            value = (Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus)Value!;
+            value = (global::Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus)Value!;
             return true;
         }
         value = null;
@@ -186,13 +190,15 @@ public record ComputeAllInNetworkRenderingProvidersResult
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus"/> and returns true if successful.
     /// </summary>
-    public bool TryAsOutOfNetwork(out Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus? value)
+    public bool TryAsOutOfNetwork(
+        out global::Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus? value
+    )
     {
         if (Type == "out_of_network")
         {
-            value = (Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus)Value!;
+            value = (global::Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus)Value!;
             return true;
         }
         value = null;
@@ -249,25 +255,25 @@ public record ComputeAllInNetworkRenderingProvidersResult
             var value = discriminator switch
             {
                 "rendering_providers" =>
-                    json.Deserialize<Candid.Net.ExpectedNetworkStatus.V2.InNetworkRenderingProvidersDetail>(
+                    json.Deserialize<global::Candid.Net.ExpectedNetworkStatus.V2.InNetworkRenderingProvidersDetail?>(
                         options
                     )
                         ?? throw new JsonException(
-                            "Failed to deserialize Candid.Net.ExpectedNetworkStatus.V2.InNetworkRenderingProvidersDetail"
+                            "Failed to deserialize global::Candid.Net.ExpectedNetworkStatus.V2.InNetworkRenderingProvidersDetail"
                         ),
                 "indeterminate" =>
-                    json.Deserialize<Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus>(
+                    json.Deserialize<global::Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus?>(
                         options
                     )
                         ?? throw new JsonException(
-                            "Failed to deserialize Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus"
+                            "Failed to deserialize global::Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus"
                         ),
                 "out_of_network" =>
-                    json.Deserialize<Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus>(
+                    json.Deserialize<global::Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus?>(
                         options
                     )
                         ?? throw new JsonException(
-                            "Failed to deserialize Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus"
+                            "Failed to deserialize global::Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus"
                         ),
                 _ => json.Deserialize<object?>(options),
             };
@@ -300,18 +306,18 @@ public record ComputeAllInNetworkRenderingProvidersResult
     public struct RenderingProviders
     {
         public RenderingProviders(
-            Candid.Net.ExpectedNetworkStatus.V2.InNetworkRenderingProvidersDetail value
+            global::Candid.Net.ExpectedNetworkStatus.V2.InNetworkRenderingProvidersDetail value
         )
         {
             Value = value;
         }
 
-        internal Candid.Net.ExpectedNetworkStatus.V2.InNetworkRenderingProvidersDetail Value { get; set; }
+        internal global::Candid.Net.ExpectedNetworkStatus.V2.InNetworkRenderingProvidersDetail Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator ComputeAllInNetworkRenderingProvidersResult.RenderingProviders(
-            Candid.Net.ExpectedNetworkStatus.V2.InNetworkRenderingProvidersDetail value
+            global::Candid.Net.ExpectedNetworkStatus.V2.InNetworkRenderingProvidersDetail value
         ) => new(value);
     }
 
@@ -321,17 +327,19 @@ public record ComputeAllInNetworkRenderingProvidersResult
     [Serializable]
     public struct Indeterminate
     {
-        public Indeterminate(Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus value)
+        public Indeterminate(
+            global::Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus value
+        )
         {
             Value = value;
         }
 
-        internal Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus Value { get; set; }
+        internal global::Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator ComputeAllInNetworkRenderingProvidersResult.Indeterminate(
-            Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus value
+            global::Candid.Net.ExpectedNetworkStatus.V2.IndeterminateNetworkStatus value
         ) => new(value);
     }
 
@@ -341,17 +349,17 @@ public record ComputeAllInNetworkRenderingProvidersResult
     [Serializable]
     public struct OutOfNetwork
     {
-        public OutOfNetwork(Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus value)
+        public OutOfNetwork(global::Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus value)
         {
             Value = value;
         }
 
-        internal Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus Value { get; set; }
+        internal global::Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator ComputeAllInNetworkRenderingProvidersResult.OutOfNetwork(
-            Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus value
+            global::Candid.Net.ExpectedNetworkStatus.V2.OutOfNetworkStatus value
         ) => new(value);
     }
 }

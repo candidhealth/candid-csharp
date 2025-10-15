@@ -23,7 +23,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.PatientAr.V1.ListInventoryAsync(new GetInventoryRecordsRequest());
     /// </code></example>
-    public async System.Threading.Tasks.Task<ListInventoryPagedResponse> ListInventoryAsync(
+    public async global::System.Threading.Tasks.Task<ListInventoryPagedResponse> ListInventoryAsync(
         GetInventoryRecordsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -86,7 +86,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.PatientAr.V1.ItemizeAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async System.Threading.Tasks.Task<InvoiceItemizationResponse> ItemizeAsync(
+    public async global::System.Threading.Tasks.Task<InvoiceItemizationResponse> ItemizeAsync(
         string claimId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

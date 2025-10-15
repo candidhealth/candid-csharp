@@ -144,31 +144,35 @@ public record ValidationError
         Type == "payer_plan_group_network_type_mutual_exclusion";
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.FeeSchedules.V3.OverlappingRateEntriesError"/> if <see cref="Type"/> is 'overlapping_rate_entries', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.FeeSchedules.V3.OverlappingRateEntriesError"/> if <see cref="Type"/> is 'overlapping_rate_entries', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'overlapping_rate_entries'.</exception>
-    public Candid.Net.FeeSchedules.V3.OverlappingRateEntriesError AsOverlappingRateEntries() =>
+    public global::Candid.Net.FeeSchedules.V3.OverlappingRateEntriesError AsOverlappingRateEntries() =>
         IsOverlappingRateEntries
-            ? (Candid.Net.FeeSchedules.V3.OverlappingRateEntriesError)Value!
-            : throw new Exception("ValidationError.Type is not 'overlapping_rate_entries'");
+            ? (global::Candid.Net.FeeSchedules.V3.OverlappingRateEntriesError)Value!
+            : throw new global::System.Exception(
+                "ValidationError.Type is not 'overlapping_rate_entries'"
+            );
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.Commons.EntityConflictErrorMessage"/> if <see cref="Type"/> is 'version_conflict', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.Commons.EntityConflictErrorMessage"/> if <see cref="Type"/> is 'version_conflict', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'version_conflict'.</exception>
-    public Candid.Net.Commons.EntityConflictErrorMessage AsVersionConflict() =>
+    public global::Candid.Net.Commons.EntityConflictErrorMessage AsVersionConflict() =>
         IsVersionConflict
-            ? (Candid.Net.Commons.EntityConflictErrorMessage)Value!
-            : throw new Exception("ValidationError.Type is not 'version_conflict'");
+            ? (global::Candid.Net.Commons.EntityConflictErrorMessage)Value!
+            : throw new global::System.Exception("ValidationError.Type is not 'version_conflict'");
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.Commons.EntityNotFoundErrorMessage"/> if <see cref="Type"/> is 'organization_provider_not_found', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.Commons.EntityNotFoundErrorMessage"/> if <see cref="Type"/> is 'organization_provider_not_found', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'organization_provider_not_found'.</exception>
-    public Candid.Net.Commons.EntityNotFoundErrorMessage AsOrganizationProviderNotFound() =>
+    public global::Candid.Net.Commons.EntityNotFoundErrorMessage AsOrganizationProviderNotFound() =>
         IsOrganizationProviderNotFound
-            ? (Candid.Net.Commons.EntityNotFoundErrorMessage)Value!
-            : throw new Exception("ValidationError.Type is not 'organization_provider_not_found'");
+            ? (global::Candid.Net.Commons.EntityNotFoundErrorMessage)Value!
+            : throw new global::System.Exception(
+                "ValidationError.Type is not 'organization_provider_not_found'"
+            );
 
     /// <summary>
     /// Returns the value as a <see cref="object"/> if <see cref="Type"/> is 'duplicate_rate', otherwise throws an exception.
@@ -177,7 +181,7 @@ public record ValidationError
     public object AsDuplicateRate() =>
         IsDuplicateRate
             ? Value!
-            : throw new Exception("ValidationError.Type is not 'duplicate_rate'");
+            : throw new global::System.Exception("ValidationError.Type is not 'duplicate_rate'");
 
     /// <summary>
     /// Returns the value as a <see cref="object"/> if <see cref="Type"/> is 'empty_entries', otherwise throws an exception.
@@ -186,52 +190,60 @@ public record ValidationError
     public object AsEmptyEntries() =>
         IsEmptyEntries
             ? Value!
-            : throw new Exception("ValidationError.Type is not 'empty_entries'");
+            : throw new global::System.Exception("ValidationError.Type is not 'empty_entries'");
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.Commons.EntityNotFoundErrorMessage"/> if <see cref="Type"/> is 'payer_plan_group_not_found', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.Commons.EntityNotFoundErrorMessage"/> if <see cref="Type"/> is 'payer_plan_group_not_found', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'payer_plan_group_not_found'.</exception>
-    public Candid.Net.Commons.EntityNotFoundErrorMessage AsPayerPlanGroupNotFound() =>
+    public global::Candid.Net.Commons.EntityNotFoundErrorMessage AsPayerPlanGroupNotFound() =>
         IsPayerPlanGroupNotFound
-            ? (Candid.Net.Commons.EntityNotFoundErrorMessage)Value!
-            : throw new Exception("ValidationError.Type is not 'payer_plan_group_not_found'");
+            ? (global::Candid.Net.Commons.EntityNotFoundErrorMessage)Value!
+            : throw new global::System.Exception(
+                "ValidationError.Type is not 'payer_plan_group_not_found'"
+            );
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.FeeSchedules.V3.PayerPlanGroupDoesNotMatchRatePayerError"/> if <see cref="Type"/> is 'payer_plan_group_does_not_match_rate_payer', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.FeeSchedules.V3.PayerPlanGroupDoesNotMatchRatePayerError"/> if <see cref="Type"/> is 'payer_plan_group_does_not_match_rate_payer', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'payer_plan_group_does_not_match_rate_payer'.</exception>
-    public Candid.Net.FeeSchedules.V3.PayerPlanGroupDoesNotMatchRatePayerError AsPayerPlanGroupDoesNotMatchRatePayer() =>
+    public global::Candid.Net.FeeSchedules.V3.PayerPlanGroupDoesNotMatchRatePayerError AsPayerPlanGroupDoesNotMatchRatePayer() =>
         IsPayerPlanGroupDoesNotMatchRatePayer
-            ? (Candid.Net.FeeSchedules.V3.PayerPlanGroupDoesNotMatchRatePayerError)Value!
-            : throw new Exception(
+            ? (global::Candid.Net.FeeSchedules.V3.PayerPlanGroupDoesNotMatchRatePayerError)Value!
+            : throw new global::System.Exception(
                 "ValidationError.Type is not 'payer_plan_group_does_not_match_rate_payer'"
             );
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.Commons.EntityConflictErrorMessage"/> if <see cref="Type"/> is 'payer_plan_group_network_type_mutual_exclusion', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.Commons.EntityConflictErrorMessage"/> if <see cref="Type"/> is 'payer_plan_group_network_type_mutual_exclusion', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'payer_plan_group_network_type_mutual_exclusion'.</exception>
-    public Candid.Net.Commons.EntityConflictErrorMessage AsPayerPlanGroupNetworkTypeMutualExclusion() =>
+    public global::Candid.Net.Commons.EntityConflictErrorMessage AsPayerPlanGroupNetworkTypeMutualExclusion() =>
         IsPayerPlanGroupNetworkTypeMutualExclusion
-            ? (Candid.Net.Commons.EntityConflictErrorMessage)Value!
-            : throw new Exception(
+            ? (global::Candid.Net.Commons.EntityConflictErrorMessage)Value!
+            : throw new global::System.Exception(
                 "ValidationError.Type is not 'payer_plan_group_network_type_mutual_exclusion'"
             );
 
     public T Match<T>(
-        Func<Candid.Net.FeeSchedules.V3.OverlappingRateEntriesError, T> onOverlappingRateEntries,
-        Func<Candid.Net.Commons.EntityConflictErrorMessage, T> onVersionConflict,
-        Func<Candid.Net.Commons.EntityNotFoundErrorMessage, T> onOrganizationProviderNotFound,
+        Func<
+            global::Candid.Net.FeeSchedules.V3.OverlappingRateEntriesError,
+            T
+        > onOverlappingRateEntries,
+        Func<global::Candid.Net.Commons.EntityConflictErrorMessage, T> onVersionConflict,
+        Func<
+            global::Candid.Net.Commons.EntityNotFoundErrorMessage,
+            T
+        > onOrganizationProviderNotFound,
         Func<object, T> onDuplicateRate,
         Func<object, T> onEmptyEntries,
-        Func<Candid.Net.Commons.EntityNotFoundErrorMessage, T> onPayerPlanGroupNotFound,
+        Func<global::Candid.Net.Commons.EntityNotFoundErrorMessage, T> onPayerPlanGroupNotFound,
         Func<
-            Candid.Net.FeeSchedules.V3.PayerPlanGroupDoesNotMatchRatePayerError,
+            global::Candid.Net.FeeSchedules.V3.PayerPlanGroupDoesNotMatchRatePayerError,
             T
         > onPayerPlanGroupDoesNotMatchRatePayer,
         Func<
-            Candid.Net.Commons.EntityConflictErrorMessage,
+            global::Candid.Net.Commons.EntityConflictErrorMessage,
             T
         > onPayerPlanGroupNetworkTypeMutualExclusion,
         Func<string, object?, T> onUnknown_
@@ -259,14 +271,14 @@ public record ValidationError
     }
 
     public void Visit(
-        Action<Candid.Net.FeeSchedules.V3.OverlappingRateEntriesError> onOverlappingRateEntries,
-        Action<Candid.Net.Commons.EntityConflictErrorMessage> onVersionConflict,
-        Action<Candid.Net.Commons.EntityNotFoundErrorMessage> onOrganizationProviderNotFound,
+        Action<global::Candid.Net.FeeSchedules.V3.OverlappingRateEntriesError> onOverlappingRateEntries,
+        Action<global::Candid.Net.Commons.EntityConflictErrorMessage> onVersionConflict,
+        Action<global::Candid.Net.Commons.EntityNotFoundErrorMessage> onOrganizationProviderNotFound,
         Action<object> onDuplicateRate,
         Action<object> onEmptyEntries,
-        Action<Candid.Net.Commons.EntityNotFoundErrorMessage> onPayerPlanGroupNotFound,
-        Action<Candid.Net.FeeSchedules.V3.PayerPlanGroupDoesNotMatchRatePayerError> onPayerPlanGroupDoesNotMatchRatePayer,
-        Action<Candid.Net.Commons.EntityConflictErrorMessage> onPayerPlanGroupNetworkTypeMutualExclusion,
+        Action<global::Candid.Net.Commons.EntityNotFoundErrorMessage> onPayerPlanGroupNotFound,
+        Action<global::Candid.Net.FeeSchedules.V3.PayerPlanGroupDoesNotMatchRatePayerError> onPayerPlanGroupDoesNotMatchRatePayer,
+        Action<global::Candid.Net.Commons.EntityConflictErrorMessage> onPayerPlanGroupNetworkTypeMutualExclusion,
         Action<string, object?> onUnknown_
     )
     {
@@ -305,15 +317,15 @@ public record ValidationError
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.FeeSchedules.V3.OverlappingRateEntriesError"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.FeeSchedules.V3.OverlappingRateEntriesError"/> and returns true if successful.
     /// </summary>
     public bool TryAsOverlappingRateEntries(
-        out Candid.Net.FeeSchedules.V3.OverlappingRateEntriesError? value
+        out global::Candid.Net.FeeSchedules.V3.OverlappingRateEntriesError? value
     )
     {
         if (Type == "overlapping_rate_entries")
         {
-            value = (Candid.Net.FeeSchedules.V3.OverlappingRateEntriesError)Value!;
+            value = (global::Candid.Net.FeeSchedules.V3.OverlappingRateEntriesError)Value!;
             return true;
         }
         value = null;
@@ -321,13 +333,15 @@ public record ValidationError
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.Commons.EntityConflictErrorMessage"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.Commons.EntityConflictErrorMessage"/> and returns true if successful.
     /// </summary>
-    public bool TryAsVersionConflict(out Candid.Net.Commons.EntityConflictErrorMessage? value)
+    public bool TryAsVersionConflict(
+        out global::Candid.Net.Commons.EntityConflictErrorMessage? value
+    )
     {
         if (Type == "version_conflict")
         {
-            value = (Candid.Net.Commons.EntityConflictErrorMessage)Value!;
+            value = (global::Candid.Net.Commons.EntityConflictErrorMessage)Value!;
             return true;
         }
         value = null;
@@ -335,15 +349,15 @@ public record ValidationError
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.Commons.EntityNotFoundErrorMessage"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.Commons.EntityNotFoundErrorMessage"/> and returns true if successful.
     /// </summary>
     public bool TryAsOrganizationProviderNotFound(
-        out Candid.Net.Commons.EntityNotFoundErrorMessage? value
+        out global::Candid.Net.Commons.EntityNotFoundErrorMessage? value
     )
     {
         if (Type == "organization_provider_not_found")
         {
-            value = (Candid.Net.Commons.EntityNotFoundErrorMessage)Value!;
+            value = (global::Candid.Net.Commons.EntityNotFoundErrorMessage)Value!;
             return true;
         }
         value = null;
@@ -379,15 +393,15 @@ public record ValidationError
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.Commons.EntityNotFoundErrorMessage"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.Commons.EntityNotFoundErrorMessage"/> and returns true if successful.
     /// </summary>
     public bool TryAsPayerPlanGroupNotFound(
-        out Candid.Net.Commons.EntityNotFoundErrorMessage? value
+        out global::Candid.Net.Commons.EntityNotFoundErrorMessage? value
     )
     {
         if (Type == "payer_plan_group_not_found")
         {
-            value = (Candid.Net.Commons.EntityNotFoundErrorMessage)Value!;
+            value = (global::Candid.Net.Commons.EntityNotFoundErrorMessage)Value!;
             return true;
         }
         value = null;
@@ -395,15 +409,16 @@ public record ValidationError
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.FeeSchedules.V3.PayerPlanGroupDoesNotMatchRatePayerError"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.FeeSchedules.V3.PayerPlanGroupDoesNotMatchRatePayerError"/> and returns true if successful.
     /// </summary>
     public bool TryAsPayerPlanGroupDoesNotMatchRatePayer(
-        out Candid.Net.FeeSchedules.V3.PayerPlanGroupDoesNotMatchRatePayerError? value
+        out global::Candid.Net.FeeSchedules.V3.PayerPlanGroupDoesNotMatchRatePayerError? value
     )
     {
         if (Type == "payer_plan_group_does_not_match_rate_payer")
         {
-            value = (Candid.Net.FeeSchedules.V3.PayerPlanGroupDoesNotMatchRatePayerError)Value!;
+            value = (global::Candid.Net.FeeSchedules.V3.PayerPlanGroupDoesNotMatchRatePayerError)
+                Value!;
             return true;
         }
         value = null;
@@ -411,15 +426,15 @@ public record ValidationError
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.Commons.EntityConflictErrorMessage"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.Commons.EntityConflictErrorMessage"/> and returns true if successful.
     /// </summary>
     public bool TryAsPayerPlanGroupNetworkTypeMutualExclusion(
-        out Candid.Net.Commons.EntityConflictErrorMessage? value
+        out global::Candid.Net.Commons.EntityConflictErrorMessage? value
     )
     {
         if (Type == "payer_plan_group_network_type_mutual_exclusion")
         {
-            value = (Candid.Net.Commons.EntityConflictErrorMessage)Value!;
+            value = (global::Candid.Net.Commons.EntityConflictErrorMessage)Value!;
             return true;
         }
         value = null;
@@ -485,40 +500,48 @@ public record ValidationError
             var value = discriminator switch
             {
                 "overlapping_rate_entries" =>
-                    json.Deserialize<Candid.Net.FeeSchedules.V3.OverlappingRateEntriesError>(
+                    json.Deserialize<global::Candid.Net.FeeSchedules.V3.OverlappingRateEntriesError?>(
                         options
                     )
                         ?? throw new JsonException(
-                            "Failed to deserialize Candid.Net.FeeSchedules.V3.OverlappingRateEntriesError"
+                            "Failed to deserialize global::Candid.Net.FeeSchedules.V3.OverlappingRateEntriesError"
                         ),
                 "version_conflict" =>
-                    json.Deserialize<Candid.Net.Commons.EntityConflictErrorMessage>(options)
+                    json.Deserialize<global::Candid.Net.Commons.EntityConflictErrorMessage?>(
+                        options
+                    )
                         ?? throw new JsonException(
-                            "Failed to deserialize Candid.Net.Commons.EntityConflictErrorMessage"
+                            "Failed to deserialize global::Candid.Net.Commons.EntityConflictErrorMessage"
                         ),
                 "organization_provider_not_found" =>
-                    json.Deserialize<Candid.Net.Commons.EntityNotFoundErrorMessage>(options)
+                    json.Deserialize<global::Candid.Net.Commons.EntityNotFoundErrorMessage?>(
+                        options
+                    )
                         ?? throw new JsonException(
-                            "Failed to deserialize Candid.Net.Commons.EntityNotFoundErrorMessage"
+                            "Failed to deserialize global::Candid.Net.Commons.EntityNotFoundErrorMessage"
                         ),
                 "duplicate_rate" => new { },
                 "empty_entries" => new { },
                 "payer_plan_group_not_found" =>
-                    json.Deserialize<Candid.Net.Commons.EntityNotFoundErrorMessage>(options)
-                        ?? throw new JsonException(
-                            "Failed to deserialize Candid.Net.Commons.EntityNotFoundErrorMessage"
-                        ),
-                "payer_plan_group_does_not_match_rate_payer" =>
-                    json.Deserialize<Candid.Net.FeeSchedules.V3.PayerPlanGroupDoesNotMatchRatePayerError>(
+                    json.Deserialize<global::Candid.Net.Commons.EntityNotFoundErrorMessage?>(
                         options
                     )
                         ?? throw new JsonException(
-                            "Failed to deserialize Candid.Net.FeeSchedules.V3.PayerPlanGroupDoesNotMatchRatePayerError"
+                            "Failed to deserialize global::Candid.Net.Commons.EntityNotFoundErrorMessage"
+                        ),
+                "payer_plan_group_does_not_match_rate_payer" =>
+                    json.Deserialize<global::Candid.Net.FeeSchedules.V3.PayerPlanGroupDoesNotMatchRatePayerError?>(
+                        options
+                    )
+                        ?? throw new JsonException(
+                            "Failed to deserialize global::Candid.Net.FeeSchedules.V3.PayerPlanGroupDoesNotMatchRatePayerError"
                         ),
                 "payer_plan_group_network_type_mutual_exclusion" =>
-                    json.Deserialize<Candid.Net.Commons.EntityConflictErrorMessage>(options)
+                    json.Deserialize<global::Candid.Net.Commons.EntityConflictErrorMessage?>(
+                        options
+                    )
                         ?? throw new JsonException(
-                            "Failed to deserialize Candid.Net.Commons.EntityConflictErrorMessage"
+                            "Failed to deserialize global::Candid.Net.Commons.EntityConflictErrorMessage"
                         ),
                 _ => json.Deserialize<object?>(options),
             };
@@ -568,17 +591,19 @@ public record ValidationError
     [Serializable]
     public struct OverlappingRateEntries
     {
-        public OverlappingRateEntries(Candid.Net.FeeSchedules.V3.OverlappingRateEntriesError value)
+        public OverlappingRateEntries(
+            global::Candid.Net.FeeSchedules.V3.OverlappingRateEntriesError value
+        )
         {
             Value = value;
         }
 
-        internal Candid.Net.FeeSchedules.V3.OverlappingRateEntriesError Value { get; set; }
+        internal global::Candid.Net.FeeSchedules.V3.OverlappingRateEntriesError Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator ValidationError.OverlappingRateEntries(
-            Candid.Net.FeeSchedules.V3.OverlappingRateEntriesError value
+            global::Candid.Net.FeeSchedules.V3.OverlappingRateEntriesError value
         ) => new(value);
     }
 
@@ -588,17 +613,17 @@ public record ValidationError
     [Serializable]
     public struct VersionConflict
     {
-        public VersionConflict(Candid.Net.Commons.EntityConflictErrorMessage value)
+        public VersionConflict(global::Candid.Net.Commons.EntityConflictErrorMessage value)
         {
             Value = value;
         }
 
-        internal Candid.Net.Commons.EntityConflictErrorMessage Value { get; set; }
+        internal global::Candid.Net.Commons.EntityConflictErrorMessage Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator ValidationError.VersionConflict(
-            Candid.Net.Commons.EntityConflictErrorMessage value
+            global::Candid.Net.Commons.EntityConflictErrorMessage value
         ) => new(value);
     }
 
@@ -608,17 +633,19 @@ public record ValidationError
     [Serializable]
     public struct OrganizationProviderNotFound
     {
-        public OrganizationProviderNotFound(Candid.Net.Commons.EntityNotFoundErrorMessage value)
+        public OrganizationProviderNotFound(
+            global::Candid.Net.Commons.EntityNotFoundErrorMessage value
+        )
         {
             Value = value;
         }
 
-        internal Candid.Net.Commons.EntityNotFoundErrorMessage Value { get; set; }
+        internal global::Candid.Net.Commons.EntityNotFoundErrorMessage Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator ValidationError.OrganizationProviderNotFound(
-            Candid.Net.Commons.EntityNotFoundErrorMessage value
+            global::Candid.Net.Commons.EntityNotFoundErrorMessage value
         ) => new(value);
     }
 
@@ -630,7 +657,7 @@ public record ValidationError
     {
         internal object Value => new { };
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
     }
 
     /// <summary>
@@ -641,7 +668,7 @@ public record ValidationError
     {
         internal object Value => new { };
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
     }
 
     /// <summary>
@@ -650,17 +677,17 @@ public record ValidationError
     [Serializable]
     public struct PayerPlanGroupNotFound
     {
-        public PayerPlanGroupNotFound(Candid.Net.Commons.EntityNotFoundErrorMessage value)
+        public PayerPlanGroupNotFound(global::Candid.Net.Commons.EntityNotFoundErrorMessage value)
         {
             Value = value;
         }
 
-        internal Candid.Net.Commons.EntityNotFoundErrorMessage Value { get; set; }
+        internal global::Candid.Net.Commons.EntityNotFoundErrorMessage Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator ValidationError.PayerPlanGroupNotFound(
-            Candid.Net.Commons.EntityNotFoundErrorMessage value
+            global::Candid.Net.Commons.EntityNotFoundErrorMessage value
         ) => new(value);
     }
 
@@ -671,18 +698,18 @@ public record ValidationError
     public struct PayerPlanGroupDoesNotMatchRatePayer
     {
         public PayerPlanGroupDoesNotMatchRatePayer(
-            Candid.Net.FeeSchedules.V3.PayerPlanGroupDoesNotMatchRatePayerError value
+            global::Candid.Net.FeeSchedules.V3.PayerPlanGroupDoesNotMatchRatePayerError value
         )
         {
             Value = value;
         }
 
-        internal Candid.Net.FeeSchedules.V3.PayerPlanGroupDoesNotMatchRatePayerError Value { get; set; }
+        internal global::Candid.Net.FeeSchedules.V3.PayerPlanGroupDoesNotMatchRatePayerError Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator ValidationError.PayerPlanGroupDoesNotMatchRatePayer(
-            Candid.Net.FeeSchedules.V3.PayerPlanGroupDoesNotMatchRatePayerError value
+            global::Candid.Net.FeeSchedules.V3.PayerPlanGroupDoesNotMatchRatePayerError value
         ) => new(value);
     }
 
@@ -693,18 +720,18 @@ public record ValidationError
     public struct PayerPlanGroupNetworkTypeMutualExclusion
     {
         public PayerPlanGroupNetworkTypeMutualExclusion(
-            Candid.Net.Commons.EntityConflictErrorMessage value
+            global::Candid.Net.Commons.EntityConflictErrorMessage value
         )
         {
             Value = value;
         }
 
-        internal Candid.Net.Commons.EntityConflictErrorMessage Value { get; set; }
+        internal global::Candid.Net.Commons.EntityConflictErrorMessage Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator ValidationError.PayerPlanGroupNetworkTypeMutualExclusion(
-            Candid.Net.Commons.EntityConflictErrorMessage value
+            global::Candid.Net.Commons.EntityConflictErrorMessage value
         ) => new(value);
     }
 }

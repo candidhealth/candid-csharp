@@ -21,7 +21,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.PatientRefunds.V1.GetMultiAsync(new GetMultiPatientRefundsRequest());
     /// </code></example>
-    public async System.Threading.Tasks.Task<PatientRefundsPage> GetMultiAsync(
+    public async global::System.Threading.Tasks.Task<PatientRefundsPage> GetMultiAsync(
         GetMultiPatientRefundsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -111,7 +111,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.PatientRefunds.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async System.Threading.Tasks.Task<PatientRefund> GetAsync(
+    public async global::System.Threading.Tasks.Task<PatientRefund> GetAsync(
         string patientRefundId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -190,7 +190,7 @@ public partial class V1Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<PatientRefund> CreateAsync(
+    public async global::System.Threading.Tasks.Task<PatientRefund> CreateAsync(
         PatientRefundCreate request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -241,7 +241,7 @@ public partial class V1Client
     ///     new PatientRefundUpdate()
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<PatientRefund> UpdateAsync(
+    public async global::System.Threading.Tasks.Task<PatientRefund> UpdateAsync(
         string patientRefundId,
         PatientRefundUpdate request,
         RequestOptions? options = null,
@@ -293,7 +293,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.PatientRefunds.V1.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async System.Threading.Tasks.Task DeleteAsync(
+    public async global::System.Threading.Tasks.Task DeleteAsync(
         string patientRefundId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

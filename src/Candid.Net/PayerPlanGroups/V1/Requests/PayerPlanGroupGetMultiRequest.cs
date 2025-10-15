@@ -50,7 +50,7 @@ public record PayerPlanGroupGetMultiRequest
     /// Sort direction. Defaults to ascending order if not provided.
     /// </summary>
     [JsonIgnore]
-    public Candid.Net.Commons.SortDirection? SortDirection { get; set; }
+    public global::Candid.Net.Commons.SortDirection? SortDirection { get; set; }
 
     [JsonIgnore]
     public string? PageToken { get; set; }

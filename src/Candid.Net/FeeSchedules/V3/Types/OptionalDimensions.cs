@@ -37,8 +37,8 @@ public record OptionalDimensions : IJsonOnDeserialized
         new HashSet<FacilityTypeCode>();
 
     [JsonPropertyName("network_types")]
-    public HashSet<Candid.Net.Commons.NetworkType> NetworkTypes { get; set; } =
-        new HashSet<Candid.Net.Commons.NetworkType>();
+    public HashSet<global::Candid.Net.Commons.NetworkType> NetworkTypes { get; set; } =
+        new HashSet<global::Candid.Net.Commons.NetworkType>();
 
     [JsonPropertyName("payer_plan_group_ids")]
     public HashSet<string> PayerPlanGroupIds { get; set; } = new HashSet<string>();

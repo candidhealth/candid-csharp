@@ -9,8 +9,8 @@ public partial class PatientArClient
     internal PatientArClient(RawClient client)
     {
         _client = client;
-        V1 = new Candid.Net.PatientAr.V1.V1Client(_client);
+        V1 = new global::Candid.Net.PatientAr.V1.V1Client(_client);
     }
 
-    public Candid.Net.PatientAr.V1.V1Client V1 { get; }
+    public global::Candid.Net.PatientAr.V1.V1Client V1 { get; }
 }

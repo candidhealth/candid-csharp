@@ -58,26 +58,26 @@ public record Regions
     public bool IsNational => Type == "national";
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.Commons.RegionStates"/> if <see cref="Type"/> is 'states', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.Commons.RegionStates"/> if <see cref="Type"/> is 'states', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'states'.</exception>
-    public Candid.Net.Commons.RegionStates AsStates() =>
+    public global::Candid.Net.Commons.RegionStates AsStates() =>
         IsStates
-            ? (Candid.Net.Commons.RegionStates)Value!
-            : throw new Exception("Regions.Type is not 'states'");
+            ? (global::Candid.Net.Commons.RegionStates)Value!
+            : throw new global::System.Exception("Regions.Type is not 'states'");
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.Commons.RegionNational"/> if <see cref="Type"/> is 'national', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.Commons.RegionNational"/> if <see cref="Type"/> is 'national', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'national'.</exception>
-    public Candid.Net.Commons.RegionNational AsNational() =>
+    public global::Candid.Net.Commons.RegionNational AsNational() =>
         IsNational
-            ? (Candid.Net.Commons.RegionNational)Value!
-            : throw new Exception("Regions.Type is not 'national'");
+            ? (global::Candid.Net.Commons.RegionNational)Value!
+            : throw new global::System.Exception("Regions.Type is not 'national'");
 
     public T Match<T>(
-        Func<Candid.Net.Commons.RegionStates, T> onStates,
-        Func<Candid.Net.Commons.RegionNational, T> onNational,
+        Func<global::Candid.Net.Commons.RegionStates, T> onStates,
+        Func<global::Candid.Net.Commons.RegionNational, T> onNational,
         Func<string, object?, T> onUnknown_
     )
     {
@@ -90,8 +90,8 @@ public record Regions
     }
 
     public void Visit(
-        Action<Candid.Net.Commons.RegionStates> onStates,
-        Action<Candid.Net.Commons.RegionNational> onNational,
+        Action<global::Candid.Net.Commons.RegionStates> onStates,
+        Action<global::Candid.Net.Commons.RegionNational> onNational,
         Action<string, object?> onUnknown_
     )
     {
@@ -110,13 +110,13 @@ public record Regions
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.Commons.RegionStates"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.Commons.RegionStates"/> and returns true if successful.
     /// </summary>
-    public bool TryAsStates(out Candid.Net.Commons.RegionStates? value)
+    public bool TryAsStates(out global::Candid.Net.Commons.RegionStates? value)
     {
         if (Type == "states")
         {
-            value = (Candid.Net.Commons.RegionStates)Value!;
+            value = (global::Candid.Net.Commons.RegionStates)Value!;
             return true;
         }
         value = null;
@@ -124,13 +124,13 @@ public record Regions
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.Commons.RegionNational"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.Commons.RegionNational"/> and returns true if successful.
     /// </summary>
-    public bool TryAsNational(out Candid.Net.Commons.RegionNational? value)
+    public bool TryAsNational(out global::Candid.Net.Commons.RegionNational? value)
     {
         if (Type == "national")
         {
-            value = (Candid.Net.Commons.RegionNational)Value!;
+            value = (global::Candid.Net.Commons.RegionNational)Value!;
             return true;
         }
         value = null;
@@ -178,13 +178,13 @@ public record Regions
 
             var value = discriminator switch
             {
-                "states" => json.Deserialize<Candid.Net.Commons.RegionStates>(options)
+                "states" => json.Deserialize<global::Candid.Net.Commons.RegionStates?>(options)
                     ?? throw new JsonException(
-                        "Failed to deserialize Candid.Net.Commons.RegionStates"
+                        "Failed to deserialize global::Candid.Net.Commons.RegionStates"
                     ),
-                "national" => json.Deserialize<Candid.Net.Commons.RegionNational>(options)
+                "national" => json.Deserialize<global::Candid.Net.Commons.RegionNational?>(options)
                     ?? throw new JsonException(
-                        "Failed to deserialize Candid.Net.Commons.RegionNational"
+                        "Failed to deserialize global::Candid.Net.Commons.RegionNational"
                     ),
                 _ => json.Deserialize<object?>(options),
             };
@@ -215,17 +215,18 @@ public record Regions
     [Serializable]
     public struct States
     {
-        public States(Candid.Net.Commons.RegionStates value)
+        public States(global::Candid.Net.Commons.RegionStates value)
         {
             Value = value;
         }
 
-        internal Candid.Net.Commons.RegionStates Value { get; set; }
+        internal global::Candid.Net.Commons.RegionStates Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
-        public static implicit operator Regions.States(Candid.Net.Commons.RegionStates value) =>
-            new(value);
+        public static implicit operator Regions.States(
+            global::Candid.Net.Commons.RegionStates value
+        ) => new(value);
     }
 
     /// <summary>
@@ -234,16 +235,17 @@ public record Regions
     [Serializable]
     public struct National
     {
-        public National(Candid.Net.Commons.RegionNational value)
+        public National(global::Candid.Net.Commons.RegionNational value)
         {
             Value = value;
         }
 
-        internal Candid.Net.Commons.RegionNational Value { get; set; }
+        internal global::Candid.Net.Commons.RegionNational Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
-        public static implicit operator Regions.National(Candid.Net.Commons.RegionNational value) =>
-            new(value);
+        public static implicit operator Regions.National(
+            global::Candid.Net.Commons.RegionNational value
+        ) => new(value);
     }
 }

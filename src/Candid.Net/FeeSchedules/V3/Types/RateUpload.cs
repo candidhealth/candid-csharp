@@ -58,26 +58,26 @@ public record RateUpload
     public bool IsNewVersion => Type == "new_version";
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.FeeSchedules.V3.NewRate"/> if <see cref="Type"/> is 'new_rate', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.FeeSchedules.V3.NewRate"/> if <see cref="Type"/> is 'new_rate', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'new_rate'.</exception>
-    public Candid.Net.FeeSchedules.V3.NewRate AsNewRate() =>
+    public global::Candid.Net.FeeSchedules.V3.NewRate AsNewRate() =>
         IsNewRate
-            ? (Candid.Net.FeeSchedules.V3.NewRate)Value!
-            : throw new Exception("RateUpload.Type is not 'new_rate'");
+            ? (global::Candid.Net.FeeSchedules.V3.NewRate)Value!
+            : throw new global::System.Exception("RateUpload.Type is not 'new_rate'");
 
     /// <summary>
-    /// Returns the value as a <see cref="Candid.Net.FeeSchedules.V3.NewRateVersion"/> if <see cref="Type"/> is 'new_version', otherwise throws an exception.
+    /// Returns the value as a <see cref="global::Candid.Net.FeeSchedules.V3.NewRateVersion"/> if <see cref="Type"/> is 'new_version', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'new_version'.</exception>
-    public Candid.Net.FeeSchedules.V3.NewRateVersion AsNewVersion() =>
+    public global::Candid.Net.FeeSchedules.V3.NewRateVersion AsNewVersion() =>
         IsNewVersion
-            ? (Candid.Net.FeeSchedules.V3.NewRateVersion)Value!
-            : throw new Exception("RateUpload.Type is not 'new_version'");
+            ? (global::Candid.Net.FeeSchedules.V3.NewRateVersion)Value!
+            : throw new global::System.Exception("RateUpload.Type is not 'new_version'");
 
     public T Match<T>(
-        Func<Candid.Net.FeeSchedules.V3.NewRate, T> onNewRate,
-        Func<Candid.Net.FeeSchedules.V3.NewRateVersion, T> onNewVersion,
+        Func<global::Candid.Net.FeeSchedules.V3.NewRate, T> onNewRate,
+        Func<global::Candid.Net.FeeSchedules.V3.NewRateVersion, T> onNewVersion,
         Func<string, object?, T> onUnknown_
     )
     {
@@ -90,8 +90,8 @@ public record RateUpload
     }
 
     public void Visit(
-        Action<Candid.Net.FeeSchedules.V3.NewRate> onNewRate,
-        Action<Candid.Net.FeeSchedules.V3.NewRateVersion> onNewVersion,
+        Action<global::Candid.Net.FeeSchedules.V3.NewRate> onNewRate,
+        Action<global::Candid.Net.FeeSchedules.V3.NewRateVersion> onNewVersion,
         Action<string, object?> onUnknown_
     )
     {
@@ -110,13 +110,13 @@ public record RateUpload
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.FeeSchedules.V3.NewRate"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.FeeSchedules.V3.NewRate"/> and returns true if successful.
     /// </summary>
-    public bool TryAsNewRate(out Candid.Net.FeeSchedules.V3.NewRate? value)
+    public bool TryAsNewRate(out global::Candid.Net.FeeSchedules.V3.NewRate? value)
     {
         if (Type == "new_rate")
         {
-            value = (Candid.Net.FeeSchedules.V3.NewRate)Value!;
+            value = (global::Candid.Net.FeeSchedules.V3.NewRate)Value!;
             return true;
         }
         value = null;
@@ -124,13 +124,13 @@ public record RateUpload
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="Candid.Net.FeeSchedules.V3.NewRateVersion"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.FeeSchedules.V3.NewRateVersion"/> and returns true if successful.
     /// </summary>
-    public bool TryAsNewVersion(out Candid.Net.FeeSchedules.V3.NewRateVersion? value)
+    public bool TryAsNewVersion(out global::Candid.Net.FeeSchedules.V3.NewRateVersion? value)
     {
         if (Type == "new_version")
         {
-            value = (Candid.Net.FeeSchedules.V3.NewRateVersion)Value!;
+            value = (global::Candid.Net.FeeSchedules.V3.NewRateVersion)Value!;
             return true;
         }
         value = null;
@@ -178,16 +178,15 @@ public record RateUpload
 
             var value = discriminator switch
             {
-                "new_rate" => json.Deserialize<Candid.Net.FeeSchedules.V3.NewRate>(options)
+                "new_rate" => json.Deserialize<global::Candid.Net.FeeSchedules.V3.NewRate?>(options)
                     ?? throw new JsonException(
-                        "Failed to deserialize Candid.Net.FeeSchedules.V3.NewRate"
+                        "Failed to deserialize global::Candid.Net.FeeSchedules.V3.NewRate"
                     ),
-                "new_version" => json.Deserialize<Candid.Net.FeeSchedules.V3.NewRateVersion>(
-                    options
-                )
-                    ?? throw new JsonException(
-                        "Failed to deserialize Candid.Net.FeeSchedules.V3.NewRateVersion"
-                    ),
+                "new_version" =>
+                    json.Deserialize<global::Candid.Net.FeeSchedules.V3.NewRateVersion?>(options)
+                        ?? throw new JsonException(
+                            "Failed to deserialize global::Candid.Net.FeeSchedules.V3.NewRateVersion"
+                        ),
                 _ => json.Deserialize<object?>(options),
             };
             return new RateUpload(discriminator, value);
@@ -217,17 +216,17 @@ public record RateUpload
     [Serializable]
     public struct NewRate
     {
-        public NewRate(Candid.Net.FeeSchedules.V3.NewRate value)
+        public NewRate(global::Candid.Net.FeeSchedules.V3.NewRate value)
         {
             Value = value;
         }
 
-        internal Candid.Net.FeeSchedules.V3.NewRate Value { get; set; }
+        internal global::Candid.Net.FeeSchedules.V3.NewRate Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator RateUpload.NewRate(
-            Candid.Net.FeeSchedules.V3.NewRate value
+            global::Candid.Net.FeeSchedules.V3.NewRate value
         ) => new(value);
     }
 
@@ -237,17 +236,17 @@ public record RateUpload
     [Serializable]
     public struct NewVersion
     {
-        public NewVersion(Candid.Net.FeeSchedules.V3.NewRateVersion value)
+        public NewVersion(global::Candid.Net.FeeSchedules.V3.NewRateVersion value)
         {
             Value = value;
         }
 
-        internal Candid.Net.FeeSchedules.V3.NewRateVersion Value { get; set; }
+        internal global::Candid.Net.FeeSchedules.V3.NewRateVersion Value { get; set; }
 
-        public override string ToString() => Value.ToString();
+        public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator RateUpload.NewVersion(
-            Candid.Net.FeeSchedules.V3.NewRateVersion value
+            global::Candid.Net.FeeSchedules.V3.NewRateVersion value
         ) => new(value);
     }
 }

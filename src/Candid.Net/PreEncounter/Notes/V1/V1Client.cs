@@ -20,7 +20,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.PreEncounter.Notes.V1.GetAsync("id");
     /// </code></example>
-    public async System.Threading.Tasks.Task<Note> GetAsync(
+    public async global::System.Threading.Tasks.Task<Note> GetAsync(
         string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -67,7 +67,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.PreEncounter.Notes.V1.CreateAsync(new MutableNote { Value = "value" });
     /// </code></example>
-    public async System.Threading.Tasks.Task<Note> CreateAsync(
+    public async global::System.Threading.Tasks.Task<Note> CreateAsync(
         MutableNote request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -119,7 +119,7 @@ public partial class V1Client
     ///     new MutableNote { Value = "value" }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<Note> UpdateAsync(
+    public async global::System.Threading.Tasks.Task<Note> UpdateAsync(
         string id,
         string version,
         MutableNote request,
@@ -173,7 +173,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.PreEncounter.Notes.V1.DeactivateAsync("id", "version");
     /// </code></example>
-    public async System.Threading.Tasks.Task DeactivateAsync(
+    public async global::System.Threading.Tasks.Task DeactivateAsync(
         string id,
         string version,
         RequestOptions? options = null,

@@ -20,7 +20,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.PreEncounter.Lists.V1.GetPatientListAsync(new PatientListRequest());
     /// </code></example>
-    public async System.Threading.Tasks.Task<PatientListPage> GetPatientListAsync(
+    public async global::System.Threading.Tasks.Task<PatientListPage> GetPatientListAsync(
         PatientListRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -89,7 +89,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.PreEncounter.Lists.V1.GetAppointmentListAsync(new AppointmentsGetListRequest());
     /// </code></example>
-    public async System.Threading.Tasks.Task<AppointmentListPage> GetAppointmentListAsync(
+    public async global::System.Threading.Tasks.Task<AppointmentListPage> GetAppointmentListAsync(
         AppointmentsGetListRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

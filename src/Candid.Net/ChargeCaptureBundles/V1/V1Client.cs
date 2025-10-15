@@ -17,7 +17,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.ChargeCaptureBundles.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async System.Threading.Tasks.Task<ChargeCaptureClaimCreation> GetAsync(
+    public async global::System.Threading.Tasks.Task<ChargeCaptureClaimCreation> GetAsync(
         string chargeCaptureClaimCreationId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -64,7 +64,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.ChargeCaptureBundles.V1.GetSummaryAsync();
     /// </code></example>
-    public async System.Threading.Tasks.Task<ChargeCaptureClaimCreationSummary> GetSummaryAsync(
+    public async global::System.Threading.Tasks.Task<ChargeCaptureClaimCreationSummary> GetSummaryAsync(
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -110,7 +110,7 @@ public partial class V1Client
     ///     new ChargeCaptureBundleErrorResolution()
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task ResolveChargeCreationErrorAsync(
+    public async global::System.Threading.Tasks.Task ResolveChargeCreationErrorAsync(
         string chargeCaptureBundleErrorId,
         ChargeCaptureBundleErrorResolution request,
         RequestOptions? options = null,
@@ -150,7 +150,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.ChargeCaptureBundles.V1.GetAllAsync(new GetAllChargeCaptureClaimCreationsRequest());
     /// </code></example>
-    public async System.Threading.Tasks.Task<ChargeCaptureClaimCreationPage> GetAllAsync(
+    public async global::System.Threading.Tasks.Task<ChargeCaptureClaimCreationPage> GetAllAsync(
         GetAllChargeCaptureClaimCreationsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

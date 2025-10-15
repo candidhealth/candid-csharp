@@ -23,7 +23,7 @@ public partial class OAuthTokenProvider
         _client = client;
     }
 
-    public async System.Threading.Tasks.Task<string> GetAccessTokenAsync()
+    public async global::System.Threading.Tasks.Task<string> GetAccessTokenAsync()
     {
         if (_accessToken == null || DateTime.UtcNow >= _expiresAt)
         {

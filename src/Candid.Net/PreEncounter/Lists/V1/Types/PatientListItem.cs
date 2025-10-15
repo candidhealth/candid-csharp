@@ -15,7 +15,7 @@ public record PatientListItem : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     [JsonPropertyName("patient")]
-    public required Candid.Net.PreEncounter.Patients.V1.Patient Patient { get; set; }
+    public required global::Candid.Net.PreEncounter.Patients.V1.Patient Patient { get; set; }
 
     [JsonPropertyName("primary_coverage")]
     public MutableCoverage? PrimaryCoverage { get; set; }

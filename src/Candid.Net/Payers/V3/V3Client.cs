@@ -17,7 +17,7 @@ public partial class V3Client
     /// <example><code>
     /// await client.Payers.V3.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async System.Threading.Tasks.Task<Payer> GetAsync(
+    public async global::System.Threading.Tasks.Task<Payer> GetAsync(
         string payerUuid,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -63,7 +63,7 @@ public partial class V3Client
 
     /// <example><code>
     /// await client.Payers.V3.GetAllAsync(
-    ///     new Candid.Net.Payers.V3.GetAllPayersRequest
+    ///     new global::Candid.Net.Payers.V3.GetAllPayersRequest
     ///     {
     ///         Limit = 100,
     ///         SearchTerm = "john",
@@ -71,7 +71,7 @@ public partial class V3Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<PayerPage> GetAllAsync(
+    public async global::System.Threading.Tasks.Task<PayerPage> GetAllAsync(
         GetAllPayersRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

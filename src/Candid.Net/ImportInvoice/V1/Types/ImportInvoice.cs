@@ -38,7 +38,7 @@ public record ImportInvoice : IJsonOnDeserialized
     public required string ExternalCustomerIdentifier { get; set; }
 
     [JsonPropertyName("status")]
-    public required Candid.Net.Invoices.V2.InvoiceStatus Status { get; set; }
+    public required global::Candid.Net.Invoices.V2.InvoiceStatus Status { get; set; }
 
     /// <summary>
     /// Id of the invoice being imported in the source system

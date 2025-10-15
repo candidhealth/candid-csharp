@@ -23,7 +23,7 @@ public partial class V1Client
     ///     new MutableCoverage
     ///     {
     ///         Status = CoverageStatus.Active,
-    ///         Subscriber = new Candid.Net.PreEncounter.Coverages.V1.Subscriber
+    ///         Subscriber = new global::Candid.Net.PreEncounter.Coverages.V1.Subscriber
     ///         {
     ///             Name = new HumanName
     ///             {
@@ -45,7 +45,7 @@ public partial class V1Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<Coverage> CreateAsync(
+    public async global::System.Threading.Tasks.Task<Coverage> CreateAsync(
         MutableCoverage request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -97,7 +97,7 @@ public partial class V1Client
     ///     new MutableCoverage
     ///     {
     ///         Status = CoverageStatus.Active,
-    ///         Subscriber = new Candid.Net.PreEncounter.Coverages.V1.Subscriber
+    ///         Subscriber = new global::Candid.Net.PreEncounter.Coverages.V1.Subscriber
     ///         {
     ///             Name = new HumanName
     ///             {
@@ -119,7 +119,7 @@ public partial class V1Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<Coverage> UpdateAsync(
+    public async global::System.Threading.Tasks.Task<Coverage> UpdateAsync(
         string id,
         string version,
         MutableCoverage request,
@@ -175,7 +175,7 @@ public partial class V1Client
     ///     new CoverageGetMultiPaginatedRequest()
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<CoveragesPage> GetMultiPaginatedAsync(
+    public async global::System.Threading.Tasks.Task<CoveragesPage> GetMultiPaginatedAsync(
         CoverageGetMultiPaginatedRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -240,7 +240,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.PreEncounter.Coverages.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async System.Threading.Tasks.Task<Coverage> GetAsync(
+    public async global::System.Threading.Tasks.Task<Coverage> GetAsync(
         string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -290,7 +290,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.PreEncounter.Coverages.V1.GetHistoryAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async System.Threading.Tasks.Task<IEnumerable<Coverage>> GetHistoryAsync(
+    public async global::System.Threading.Tasks.Task<IEnumerable<Coverage>> GetHistoryAsync(
         string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -340,7 +340,7 @@ public partial class V1Client
     /// <example><code>
     /// await client.PreEncounter.Coverages.V1.GetMultiAsync(new CoverageGetMultiRequest());
     /// </code></example>
-    public async System.Threading.Tasks.Task<IEnumerable<Coverage>> GetMultiAsync(
+    public async global::System.Threading.Tasks.Task<IEnumerable<Coverage>> GetMultiAsync(
         CoverageGetMultiRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -395,7 +395,7 @@ public partial class V1Client
     ///     new CoverageScanRequest { Since = new DateTime(2024, 01, 15, 09, 30, 00, 000) }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<IEnumerable<Coverage>> ScanAsync(
+    public async global::System.Threading.Tasks.Task<IEnumerable<Coverage>> ScanAsync(
         CoverageScanRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -450,11 +450,11 @@ public partial class V1Client
     ///         PayerPlanGroupId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///         PayerId = "payer_id",
     ///         PayerName = "payer_name",
-    ///         PlanType = Candid.Net.PreEncounter.Coverages.V1.NetworkType.SelfPay,
+    ///         PlanType = global::Candid.Net.PreEncounter.Coverages.V1.NetworkType.SelfPay,
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task BatchUpdatePpgAsync(
+    public async global::System.Threading.Tasks.Task BatchUpdatePpgAsync(
         string ppgId,
         PayerPlanGroupFields request,
         RequestOptions? options = null,
@@ -505,7 +505,7 @@ public partial class V1Client
     ///     }
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<EligibilityCheckMetadata> CheckEligibilityAsync(
+    public async global::System.Threading.Tasks.Task<EligibilityCheckMetadata> CheckEligibilityAsync(
         string id,
         CheckEligibilityRequest request,
         RequestOptions? options = null,
@@ -560,7 +560,7 @@ public partial class V1Client
     ///     "check_id"
     /// );
     /// </code></example>
-    public async System.Threading.Tasks.Task<CoverageEligibilityCheckResponse> GetEligibilityAsync(
+    public async global::System.Threading.Tasks.Task<CoverageEligibilityCheckResponse> GetEligibilityAsync(
         string id,
         string checkId,
         RequestOptions? options = null,
