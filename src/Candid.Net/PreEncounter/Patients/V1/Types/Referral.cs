@@ -25,6 +25,21 @@ public record Referral : IJsonOnDeserialized
     [JsonPropertyName("notes")]
     public string? Notes { get; set; }
 
+    [JsonPropertyName("serviceFacility")]
+    public PatientServiceFacility? ServiceFacility { get; set; }
+
+    [JsonPropertyName("units")]
+    public ReferralUnit? Units { get; set; }
+
+    [JsonPropertyName("quantity")]
+    public int? Quantity { get; set; }
+
+    [JsonPropertyName("cptCodes")]
+    public IEnumerable<string>? CptCodes { get; set; }
+
+    [JsonPropertyName("applyForAllCptCodes")]
+    public bool? ApplyForAllCptCodes { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

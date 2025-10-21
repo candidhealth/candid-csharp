@@ -3,10 +3,10 @@ using System.Text.Json.Serialization;
 using Candid.Net;
 using Candid.Net.Core;
 
-namespace Candid.Net.PreEncounter.Patients.V1;
+namespace Candid.Net.PreEncounter.Common;
 
 /// <summary>
-/// Represents a canonical service facility which is associated with a patient.
+/// Represents a canonical service facility attached to a patient or patient dependent object
 /// </summary>
 [Serializable]
 public record PatientServiceFacility : IJsonOnDeserialized

@@ -15,6 +15,14 @@ public readonly record struct DoNotInvoiceReason : IStringEnum
 
     public static readonly DoNotInvoiceReason Other = new(Values.Other);
 
+    public static readonly DoNotInvoiceReason Collections = new(Values.Collections);
+
+    public static readonly DoNotInvoiceReason BadAddress = new(Values.BadAddress);
+
+    public static readonly DoNotInvoiceReason ProfessionalCourtesy = new(
+        Values.ProfessionalCourtesy
+    );
+
     public DoNotInvoiceReason(string value)
     {
         Value = value;
@@ -69,5 +77,11 @@ public readonly record struct DoNotInvoiceReason : IStringEnum
         public const string Hardship = "HARDSHIP";
 
         public const string Other = "OTHER";
+
+        public const string Collections = "COLLECTIONS";
+
+        public const string BadAddress = "BAD_ADDRESS";
+
+        public const string ProfessionalCourtesy = "PROFESSIONAL_COURTESY";
     }
 }

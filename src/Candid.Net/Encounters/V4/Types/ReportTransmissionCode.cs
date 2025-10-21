@@ -13,6 +13,11 @@ public readonly record struct ReportTransmissionCode : IStringEnum
     public static readonly ReportTransmissionCode Cbm = new(Values.Cbm);
 
     /// <summary>
+    /// Electronically Only
+    /// </summary>
+    public static readonly ReportTransmissionCode Cel = new(Values.Cel);
+
+    /// <summary>
     /// By Fax
     /// </summary>
     public static readonly ReportTransmissionCode Cfx = new(Values.Cfx);
@@ -68,6 +73,11 @@ public readonly record struct ReportTransmissionCode : IStringEnum
         /// By Mail
         /// </summary>
         public const string Cbm = "BM";
+
+        /// <summary>
+        /// Electronically Only
+        /// </summary>
+        public const string Cel = "EL";
 
         /// <summary>
         /// By Fax
