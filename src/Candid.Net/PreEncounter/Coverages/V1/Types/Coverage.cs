@@ -98,6 +98,12 @@ public record Coverage : IJsonOnDeserialized
     [JsonPropertyName("benefits")]
     public CoverageBenefits? Benefits { get; set; }
 
+    /// <summary>
+    /// ORCON (Originator Controlled) - When set to true, the Candid system will hide this coverage from downstream integrations. Defaults to false.
+    /// </summary>
+    [JsonPropertyName("orcon")]
+    public bool? Orcon { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

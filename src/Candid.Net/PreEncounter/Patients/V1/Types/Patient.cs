@@ -228,6 +228,12 @@ public record Patient : IJsonOnDeserialized
     [JsonPropertyName("inferred_patient_metadata")]
     public InferredPatientMetadata? InferredPatientMetadata { get; set; }
 
+    /// <summary>
+    /// ORCON (Originator Controlled) - When set to true, the Candid system will hide this patient from downstream integrations. Defaults to false.
+    /// </summary>
+    [JsonPropertyName("orcon")]
+    public bool? Orcon { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 
