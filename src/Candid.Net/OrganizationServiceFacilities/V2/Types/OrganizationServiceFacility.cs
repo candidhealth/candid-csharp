@@ -54,6 +54,12 @@ public record OrganizationServiceFacility : IJsonOnDeserialized
     public FacilityTypeCode? PlaceOfServiceCode { get; set; }
 
     /// <summary>
+    /// The associated CLIA number with this service facility. Can be used to populate CLIA numbers on encounters.
+    /// </summary>
+    [JsonPropertyName("clia_number")]
+    public string? CliaNumber { get; set; }
+
+    /// <summary>
     /// The status of the service facility.
     /// </summary>
     [JsonPropertyName("status")]

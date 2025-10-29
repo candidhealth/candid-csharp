@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
 
-namespace Candid.Net.Encounters.V4;
+namespace Candid.Net.Commons;
 
 [JsonConverter(typeof(StringEnumSerializer<ReportTransmissionCode>))]
 [Serializable]

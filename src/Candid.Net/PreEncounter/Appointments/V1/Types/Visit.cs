@@ -29,8 +29,8 @@ public record Visit : IJsonOnDeserialized
     [JsonPropertyName("status")]
     public required AppointmentStatus Status { get; set; }
 
-    [JsonPropertyName("primary_coverage")]
-    public MutableCoverage? PrimaryCoverage { get; set; }
+    [JsonPropertyName("primary_coverage_status")]
+    public CoverageStatus? PrimaryCoverageStatus { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

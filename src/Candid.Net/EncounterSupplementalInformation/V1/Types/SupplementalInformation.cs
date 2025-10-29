@@ -4,14 +4,20 @@ using Candid.Net;
 using Candid.Net.Commons;
 using Candid.Net.Core;
 
-namespace Candid.Net.Encounters.V4;
+namespace Candid.Net.EncounterSupplementalInformation.V1;
 
 [Serializable]
-public record ClaimSupplementalInformation : IJsonOnDeserialized
+public record SupplementalInformation : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
+
+    [JsonPropertyName("supplemental_information_id")]
+    public required string SupplementalInformationId { get; set; }
+
+    [JsonPropertyName("attachment_id")]
+    public string? AttachmentId { get; set; }
 
     [JsonPropertyName("attachment_report_type_code")]
     public required ReportTypeCode AttachmentReportTypeCode { get; set; }
@@ -21,6 +27,12 @@ public record ClaimSupplementalInformation : IJsonOnDeserialized
 
     [JsonPropertyName("attachment_control_number")]
     public string? AttachmentControlNumber { get; set; }
+
+    [JsonPropertyName("attachment_inclusion")]
+    public required AttachmentInclusion AttachmentInclusion { get; set; }
+
+    [JsonPropertyName("encounter_id")]
+    public required string EncounterId { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

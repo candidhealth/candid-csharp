@@ -1,26 +1,28 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Candid.Net;
-using Candid.Net.Commons;
 using Candid.Net.Core;
 
-namespace Candid.Net.Encounters.V4;
+namespace Candid.Net.Users.V2;
 
 [Serializable]
-public record ClaimSupplementalInformation : IJsonOnDeserialized
+public record UserV2 : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
-    [JsonPropertyName("attachment_report_type_code")]
-    public required ReportTypeCode AttachmentReportTypeCode { get; set; }
+    [JsonPropertyName("user_id")]
+    public required string UserId { get; set; }
 
-    [JsonPropertyName("attachment_transmission_code")]
-    public required ReportTransmissionCode AttachmentTransmissionCode { get; set; }
+    [JsonPropertyName("idp_metadata")]
+    public IEnumerable<IdpUserMetadata> IdpMetadata { get; set; } = new List<IdpUserMetadata>();
 
-    [JsonPropertyName("attachment_control_number")]
-    public string? AttachmentControlNumber { get; set; }
+    [JsonPropertyName("primary_organization_id")]
+    public string? PrimaryOrganizationId { get; set; }
+
+    [JsonPropertyName("user_metadata")]
+    public required UserMetadata UserMetadata { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

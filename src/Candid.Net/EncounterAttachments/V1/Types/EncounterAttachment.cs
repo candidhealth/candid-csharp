@@ -2,6 +2,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Candid.Net;
 using Candid.Net.Core;
+using Candid.Net.Users.V2;
 
 namespace Candid.Net.EncounterAttachments.V1;
 
@@ -17,6 +18,12 @@ public record EncounterAttachment : IJsonOnDeserialized
 
     [JsonPropertyName("attachment_type")]
     public required EncounterAttachmentType AttachmentType { get; set; }
+
+    [JsonPropertyName("created_at")]
+    public required DateTime CreatedAt { get; set; }
+
+    [JsonPropertyName("created_by")]
+    public required UserV2 CreatedBy { get; set; }
 
     [JsonPropertyName("attachment_id")]
     public required string AttachmentId { get; set; }

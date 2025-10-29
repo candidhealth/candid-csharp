@@ -2517,6 +2517,214 @@ await client.EncounterProviders.V2.DeleteOrderingProviderAsync(
 </dl>
 </details>
 
+## EncounterSupplementalInformation V1
+<details><summary><code>client.EncounterSupplementalInformation.V1.<a href="/src/Candid.Net/EncounterSupplementalInformation/V1/V1Client.cs">GetAsync</a>(encounterId) -> IEnumerable<global::Candid.Net.EncounterSupplementalInformation.V1.SupplementalInformation></code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.EncounterSupplementalInformation.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**encounterId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.EncounterSupplementalInformation.V1.<a href="/src/Candid.Net/EncounterSupplementalInformation/V1/V1Client.cs">CreateAsync</a>(encounterId, global::Candid.Net.EncounterSupplementalInformation.V1.CreateSupplementalInformationRequest { ... }) -> global::Candid.Net.EncounterSupplementalInformation.V1.SupplementalInformation</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.EncounterSupplementalInformation.V1.CreateAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new CreateSupplementalInformationRequest
+    {
+        AttachmentReportTypeCode = ReportTypeCode.C03,
+        AttachmentTransmissionCode = ReportTransmissionCode.Cbm,
+        AttachmentInclusion = AttachmentInclusion.NotIncluded,
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**encounterId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `global::Candid.Net.EncounterSupplementalInformation.V1.CreateSupplementalInformationRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.EncounterSupplementalInformation.V1.<a href="/src/Candid.Net/EncounterSupplementalInformation/V1/V1Client.cs">UpdateAsync</a>(encounterId, supplementalInformationId, global::Candid.Net.EncounterSupplementalInformation.V1.UpdateSupplementalInformationRequest { ... }) -> global::Candid.Net.EncounterSupplementalInformation.V1.SupplementalInformation</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.EncounterSupplementalInformation.V1.UpdateAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new UpdateSupplementalInformationRequest()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**encounterId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**supplementalInformationId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `global::Candid.Net.EncounterSupplementalInformation.V1.UpdateSupplementalInformationRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.EncounterSupplementalInformation.V1.<a href="/src/Candid.Net/EncounterSupplementalInformation/V1/V1Client.cs">DeleteAsync</a>(encounterId, supplementalInformationId)</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.EncounterSupplementalInformation.V1.DeleteAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**encounterId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**supplementalInformationId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Encounters V4
 <details><summary><code>client.Encounters.V4.<a href="/src/Candid.Net/Encounters/V4/V4Client.cs">GetAllAsync</a>(global::Candid.Net.Encounters.V4.GetAllEncountersRequest { ... }) -> global::Candid.Net.Encounters.V4.EncounterPage</code></summary>
 <dl>
@@ -12228,12 +12436,12 @@ await client.PreEncounter.Patients.V1.SearchAsync(new PatientGetMultiRequest());
 <dl>
 <dd>
 
-Scans up to 100 patient updates. The since query parameter is inclusive, and the result list is ordered by updatedAt ascending.
+Scans up to 1000 patient updates. The since query parameter is inclusive, and the result list is ordered by updatedAt ascending.
 
 **Polling Pattern:**
 To continuously poll for updates without gaps:
 1. Make your initial request with a `since` timestamp (e.g., `since=2020-01-01T13:00:00.000Z`)
-2. The API returns up to 100 patient records, sorted by `updated_at` ascending
+2. The API returns 100 by default and up to 1000 patient records, sorted by `updated_at` ascending
 3. Find the `updated_at` value from the last record in the response
 4. Use that `updated_at` value as the `since` parameter in your next request
 5. Repeat steps 2-4 to ingest updates until you receive an empty list

@@ -597,6 +597,8 @@ public readonly record struct Carc : IStringEnum
 
     public static readonly Carc CarcP32 = new(Values.CarcP32);
 
+    public static readonly Carc Carc15 = new(Values.Carc15);
+
     public static readonly Carc Carc17 = new(Values.Carc17);
 
     public static readonly Carc Carc25 = new(Values.Carc25);
@@ -1447,6 +1449,8 @@ public readonly record struct Carc : IStringEnum
         public const string CarcP31 = "P31";
 
         public const string CarcP32 = "P32";
+
+        public const string Carc15 = "15";
 
         public const string Carc17 = "17";
 
