@@ -570,6 +570,11 @@ public readonly record struct ProcedureModifier : IStringEnum
     public static readonly ProcedureModifier Et = new(Values.Et);
 
     /// <summary>
+    /// Electronic visit verification
+    /// </summary>
+    public static readonly ProcedureModifier Ev = new(Values.Ev);
+
+    /// <summary>
     /// Expatriate beneficiary
     /// </summary>
     public static readonly ProcedureModifier Ex = new(Values.Ex);
@@ -2632,6 +2637,11 @@ public readonly record struct ProcedureModifier : IStringEnum
         /// Emergency services
         /// </summary>
         public const string Et = "ET";
+
+        /// <summary>
+        /// Electronic visit verification
+        /// </summary>
+        public const string Ev = "EV";
 
         /// <summary>
         /// Expatriate beneficiary

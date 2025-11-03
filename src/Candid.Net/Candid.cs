@@ -35,7 +35,6 @@ using Candid.Net.PatientRefunds;
 using Candid.Net.PayerPlanGroups;
 using Candid.Net.Payers;
 using Candid.Net.PreEncounter;
-using Candid.Net.ServiceFacility;
 using Candid.Net.ServiceLines;
 using Candid.Net.Superbills;
 using Candid.Net.Tasks;
@@ -55,7 +54,7 @@ public partial class Candid
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Candid.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Candid.Net/1.13.0" },
+                { "User-Agent", "Candid.Net/1.14.0" },
             }
         );
         clientOptions ??= new ClientOptions();
@@ -114,7 +113,6 @@ public partial class Candid
         WriteOffs = new WriteOffsClient(_client);
         PreEncounter = new PreEncounterClient(_client);
         Diagnoses = new DiagnosesClient(_client);
-        ServiceFacility = new ServiceFacilityClient(_client);
     }
 
     public AuthClient Auth { get; }
@@ -194,6 +192,4 @@ public partial class Candid
     public PreEncounterClient PreEncounter { get; }
 
     public DiagnosesClient Diagnoses { get; }
-
-    public ServiceFacilityClient ServiceFacility { get; }
 }

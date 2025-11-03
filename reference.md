@@ -2820,6 +2820,85 @@ await client.Encounters.V4.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
 </dl>
 </details>
 
+<details><summary><code>client.Encounters.V4.<a href="/src/Candid.Net/Encounters/V4/V4Client.cs">CreateUniversalAsync</a>(EncountersUniversal.UniversalEncounterCreate { ... }) -> global::Candid.Net.Encounters.V4.Encounter</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Encounters.V4.CreateUniversalAsync(
+    new UniversalEncounterCreate
+    {
+        BillingProvider = new BillingProvider
+        {
+            Address = new StreetAddressLongZip
+            {
+                ZipPlusFourCode = "zip_plus_four_code",
+                Address1 = "address1",
+                City = "city",
+                State = State.Aa,
+                ZipCode = "zip_code",
+            },
+            TaxId = "tax_id",
+            Npi = "npi",
+        },
+        SubmissionExpectation = EncounterSubmissionExpectation.TargetProfessional,
+        Patient = new PatientCreate
+        {
+            ExternalId = "external_id",
+            DateOfBirth = new DateOnly(2023, 1, 15),
+            Address = new StreetAddressShortZip
+            {
+                Address1 = "address1",
+                City = "city",
+                State = State.Aa,
+                ZipCode = "zip_code",
+            },
+            FirstName = "first_name",
+            LastName = "last_name",
+            Gender = global::Candid.Net.Individual.Gender.Male,
+        },
+        ResponsibleParty = ResponsiblePartyType.InsurancePay,
+        ExternalId = "external_id",
+        PatientAuthorizedRelease = true,
+        BenefitsAssignedToProvider = true,
+        ProviderAcceptsAssignment = true,
+        BillableStatus = BillableStatusType.Billable,
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `EncountersUniversal.UniversalEncounterCreate` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.Encounters.V4.<a href="/src/Candid.Net/Encounters/V4/V4Client.cs">CreateAsync</a>(global::Candid.Net.Encounters.V4.EncounterCreate { ... }) -> global::Candid.Net.Encounters.V4.Encounter</code></summary>
 <dl>
 <dd>
@@ -2894,6 +2973,104 @@ await client.Encounters.V4.CreateAsync(
 <dd>
 
 **request:** `global::Candid.Net.Encounters.V4.EncounterCreate` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Encounters.V4.<a href="/src/Candid.Net/Encounters/V4/V4Client.cs">CreateFromPreEncounterPatientUniversalAsync</a>(EncountersUniversal.UniversalEncounterCreateFromPreEncounter { ... }) -> global::Candid.Net.Encounters.V4.Encounter</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create an encounter from a pre-encounter patient and appointment. This endpoint is intended to be used by consumers who are managing
+patients and appointments in the pre-encounter service and is currently under development. Consumers who are not taking advantage
+of the pre-encounter service should use the standard create endpoint.
+
+The endpoint will create an encounter from the provided fields, pulling information from the provided patient and appointment objects
+where applicable. In particular, the following fields are populated from the patient and appointment objects:
+  - Patient
+  - Referring Provider
+  - Subscriber Primary
+  - Subscriber Secondary
+  - Referral Number
+  - Responsible Party
+  - Guarantor
+
+Utilizing this endpoint opts you into automatic updating of the encounter when the patient or appointment is updated, assuming the
+encounter has not already been submitted or adjudicated.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Encounters.V4.CreateFromPreEncounterPatientUniversalAsync(
+    new UniversalEncounterCreateFromPreEncounter
+    {
+        SubmissionExpectation = EncounterSubmissionExpectation.TargetProfessional,
+        PreEncounterPatientId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        PreEncounterAppointmentIds = new List<string>()
+        {
+            "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+            "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        },
+        BillingProvider = new BillingProvider
+        {
+            Address = new StreetAddressLongZip
+            {
+                ZipPlusFourCode = "zip_plus_four_code",
+                Address1 = "address1",
+                City = "city",
+                State = State.Aa,
+                ZipCode = "zip_code",
+            },
+            TaxId = "tax_id",
+            Npi = "npi",
+        },
+        ExternalId = "external_id",
+        PatientAuthorizedRelease = true,
+        BenefitsAssignedToProvider = true,
+        ProviderAcceptsAssignment = true,
+        BillableStatus = BillableStatusType.Billable,
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `EncountersUniversal.UniversalEncounterCreateFromPreEncounter` 
     
 </dd>
 </dl>
@@ -2998,6 +3175,57 @@ await client.Encounters.V4.CreateFromPreEncounterPatientAsync(
 <dd>
 
 **request:** `global::Candid.Net.Encounters.V4.EncounterCreateFromPreEncounter` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Encounters.V4.<a href="/src/Candid.Net/Encounters/V4/V4Client.cs">UpdateUniversalAsync</a>(encounterId, EncountersUniversal.UniversalEncounterUpdate { ... }) -> global::Candid.Net.Encounters.V4.Encounter</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Encounters.V4.UpdateUniversalAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new UniversalEncounterUpdate()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**encounterId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `EncountersUniversal.UniversalEncounterUpdate` 
     
 </dd>
 </dl>
@@ -12955,58 +13183,6 @@ await client.Diagnoses.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
 <dd>
 
 **diagnosisId:** `string` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## ServiceFacility
-<details><summary><code>client.ServiceFacility.<a href="/src/Candid.Net/ServiceFacility/ServiceFacilityClient.cs">UpdateAsync</a>(serviceFacilityId, ServiceFacility.EncounterServiceFacilityUpdate { ... }) -> ServiceFacility.EncounterServiceFacility</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.ServiceFacility.UpdateAsync(
-    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    new EncounterServiceFacilityUpdate()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**serviceFacilityId:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `ServiceFacility.EncounterServiceFacilityUpdate` 
     
 </dd>
 </dl>

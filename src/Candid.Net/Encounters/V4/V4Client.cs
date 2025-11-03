@@ -2,6 +2,7 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading;
 using Candid.Net.Core;
+using Candid.Net.EncountersUniversal;
 
 namespace Candid.Net.Encounters.V4;
 
@@ -189,6 +190,90 @@ public partial class V4Client
     }
 
     /// <example><code>
+    /// await client.Encounters.V4.CreateUniversalAsync(
+    ///     new UniversalEncounterCreate
+    ///     {
+    ///         BillingProvider = new BillingProvider
+    ///         {
+    ///             Address = new StreetAddressLongZip
+    ///             {
+    ///                 ZipPlusFourCode = "zip_plus_four_code",
+    ///                 Address1 = "address1",
+    ///                 City = "city",
+    ///                 State = State.Aa,
+    ///                 ZipCode = "zip_code",
+    ///             },
+    ///             TaxId = "tax_id",
+    ///             Npi = "npi",
+    ///         },
+    ///         SubmissionExpectation = EncounterSubmissionExpectation.TargetProfessional,
+    ///         Patient = new PatientCreate
+    ///         {
+    ///             ExternalId = "external_id",
+    ///             DateOfBirth = new DateOnly(2023, 1, 15),
+    ///             Address = new StreetAddressShortZip
+    ///             {
+    ///                 Address1 = "address1",
+    ///                 City = "city",
+    ///                 State = State.Aa,
+    ///                 ZipCode = "zip_code",
+    ///             },
+    ///             FirstName = "first_name",
+    ///             LastName = "last_name",
+    ///             Gender = global::Candid.Net.Individual.Gender.Male,
+    ///         },
+    ///         ResponsibleParty = ResponsiblePartyType.InsurancePay,
+    ///         ExternalId = "external_id",
+    ///         PatientAuthorizedRelease = true,
+    ///         BenefitsAssignedToProvider = true,
+    ///         ProviderAcceptsAssignment = true,
+    ///         BillableStatus = BillableStatusType.Billable,
+    ///     }
+    /// );
+    /// </code></example>
+    public async global::System.Threading.Tasks.Task<Encounter> CreateUniversalAsync(
+        UniversalEncounterCreate request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Post,
+                    Path = "/api/encounters/v4/universal",
+                    Body = request,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<Encounter>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    /// <example><code>
     /// await client.Encounters.V4.CreateAsync(
     ///     new EncounterCreate
     ///     {
@@ -297,6 +382,98 @@ public partial class V4Client
     /// encounter has not already been submitted or adjudicated.
     /// </summary>
     /// <example><code>
+    /// await client.Encounters.V4.CreateFromPreEncounterPatientUniversalAsync(
+    ///     new UniversalEncounterCreateFromPreEncounter
+    ///     {
+    ///         SubmissionExpectation = EncounterSubmissionExpectation.TargetProfessional,
+    ///         PreEncounterPatientId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         PreEncounterAppointmentIds = new List&lt;string&gt;()
+    ///         {
+    ///             "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///             "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///         },
+    ///         BillingProvider = new BillingProvider
+    ///         {
+    ///             Address = new StreetAddressLongZip
+    ///             {
+    ///                 ZipPlusFourCode = "zip_plus_four_code",
+    ///                 Address1 = "address1",
+    ///                 City = "city",
+    ///                 State = State.Aa,
+    ///                 ZipCode = "zip_code",
+    ///             },
+    ///             TaxId = "tax_id",
+    ///             Npi = "npi",
+    ///         },
+    ///         ExternalId = "external_id",
+    ///         PatientAuthorizedRelease = true,
+    ///         BenefitsAssignedToProvider = true,
+    ///         ProviderAcceptsAssignment = true,
+    ///         BillableStatus = BillableStatusType.Billable,
+    ///     }
+    /// );
+    /// </code></example>
+    public async global::System.Threading.Tasks.Task<Encounter> CreateFromPreEncounterPatientUniversalAsync(
+        UniversalEncounterCreateFromPreEncounter request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Post,
+                    Path = "/api/encounters/v4/create-from-pre-encounter/universal",
+                    Body = request,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<Encounter>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    /// <summary>
+    /// Create an encounter from a pre-encounter patient and appointment. This endpoint is intended to be used by consumers who are managing
+    /// patients and appointments in the pre-encounter service and is currently under development. Consumers who are not taking advantage
+    /// of the pre-encounter service should use the standard create endpoint.
+    ///
+    /// The endpoint will create an encounter from the provided fields, pulling information from the provided patient and appointment objects
+    /// where applicable. In particular, the following fields are populated from the patient and appointment objects:
+    ///   - Patient
+    ///   - Referring Provider
+    ///   - Subscriber Primary
+    ///   - Subscriber Secondary
+    ///   - Referral Number
+    ///   - Responsible Party
+    ///   - Guarantor
+    ///
+    /// Utilizing this endpoint opts you into automatic updating of the encounter when the patient or appointment is updated, assuming the
+    /// encounter has not already been submitted or adjudicated.
+    /// </summary>
+    /// <example><code>
     /// await client.Encounters.V4.CreateFromPreEncounterPatientAsync(
     ///     new EncounterCreateFromPreEncounter
     ///     {
@@ -347,6 +524,58 @@ public partial class V4Client
                     BaseUrl = _client.Options.Environment.CandidApi,
                     Method = HttpMethod.Post,
                     Path = "/api/encounters/v4/create-from-pre-encounter",
+                    Body = request,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<Encounter>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    /// <example><code>
+    /// await client.Encounters.V4.UpdateUniversalAsync(
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///     new UniversalEncounterUpdate()
+    /// );
+    /// </code></example>
+    public async global::System.Threading.Tasks.Task<Encounter> UpdateUniversalAsync(
+        string encounterId,
+        UniversalEncounterUpdate request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethodExtensions.Patch,
+                    Path = string.Format(
+                        "/api/encounters/v4/{0}/universal",
+                        ValueConvert.ToPathParameterString(encounterId)
+                    ),
                     Body = request,
                     Options = options,
                 },
