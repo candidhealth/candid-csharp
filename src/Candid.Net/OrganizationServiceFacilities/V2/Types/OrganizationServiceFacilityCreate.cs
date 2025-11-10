@@ -57,6 +57,12 @@ public record OrganizationServiceFacilityCreate : IJsonOnDeserialized
     public string? CliaNumber { get; set; }
 
     /// <summary>
+    /// The associated mammography certification number for this service facility. This is a 6 digit code assigned by the FDA.
+    /// </summary>
+    [JsonPropertyName("mammography_certification_number")]
+    public string? MammographyCertificationNumber { get; set; }
+
+    /// <summary>
     /// The status of the service facility.
     /// </summary>
     [JsonPropertyName("status")]
