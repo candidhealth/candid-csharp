@@ -40,6 +40,12 @@ public record EncounterServiceFacility : IJsonOnDeserialized
     [JsonPropertyName("secondary_identification")]
     public string? SecondaryIdentification { get; set; }
 
+    /// <summary>
+    /// The associated mammography certification number for this service facility. This is a 6 digit code assigned by the FDA.
+    /// </summary>
+    [JsonPropertyName("mammography_certification_number")]
+    public string? MammographyCertificationNumber { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 
