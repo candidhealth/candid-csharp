@@ -2,8 +2,8 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Candid.Net;
 using Candid.Net.Core;
-using Candid.Net.Era;
 using Candid.Net.ServiceLines.V2;
+using EraType = Candid.Net.Era.Era;
 
 namespace Candid.Net.Claims;
 
@@ -36,7 +36,7 @@ public record Claim : IJsonOnDeserialized
     public IEnumerable<ServiceLine> ServiceLines { get; set; } = new List<ServiceLine>();
 
     [JsonPropertyName("eras")]
-    public IEnumerable<Era> Eras { get; set; } = new List<Era>();
+    public IEnumerable<EraType> Eras { get; set; } = new List<EraType>();
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
