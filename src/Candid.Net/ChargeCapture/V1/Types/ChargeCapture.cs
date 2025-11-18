@@ -42,6 +42,9 @@ public record ChargeCapture : IJsonOnDeserialized
     [JsonPropertyName("error")]
     public ChargeCaptureError? Error { get; set; }
 
+    /// <summary>
+    /// This list of updates will always return at most 1 update that is not resolved. The singular update will contain the difference between the updated charge and the created encounter.
+    /// </summary>
     [JsonPropertyName("updates")]
     public IEnumerable<ChargeCapturePostBilledChange> Updates { get; set; } =
         new List<ChargeCapturePostBilledChange>();
