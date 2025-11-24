@@ -4993,6 +4993,61 @@ await client.ImportInvoice.V1.UpdateAsync(
 </dl>
 </details>
 
+## InsuranceAdjudications V1
+<details><summary><code>client.InsuranceAdjudications.V1.<a href="/src/Candid.Net/InsuranceAdjudications/V1/V1Client.cs">GetAsync</a>(insuranceAdjudicationId) -> global::Candid.Net.InsuranceAdjudications.V1.InsuranceAdjudication</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves a previously created insurance adjudication by its `insurance_adjudication_id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.InsuranceAdjudications.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**insuranceAdjudicationId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## InsurancePayments V1
 <details><summary><code>client.InsurancePayments.V1.<a href="/src/Candid.Net/InsurancePayments/V1/V1Client.cs">GetMultiAsync</a>(global::Candid.Net.InsurancePayments.V1.GetMultiInsurancePaymentRequest { ... }) -> global::Candid.Net.InsurancePayments.V1.InsurancePaymentsPage</code></summary>
 <dl>

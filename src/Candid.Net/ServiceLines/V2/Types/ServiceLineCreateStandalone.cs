@@ -26,6 +26,12 @@ public record ServiceLineCreateStandalone : IJsonOnDeserialized
     [JsonPropertyName("diagnosis_id_three")]
     public string? DiagnosisIdThree { get; set; }
 
+    /// <summary>
+    /// Prior authorization number for this service line. Maps to the appropriate REF segment on Loop 2400 of the EDI 837p. This is not used for institutional claims (EDI 837i).
+    /// </summary>
+    [JsonPropertyName("prior_authorization_number")]
+    public string? PriorAuthorizationNumber { get; set; }
+
     [JsonPropertyName("procedure_code")]
     public required string ProcedureCode { get; set; }
 

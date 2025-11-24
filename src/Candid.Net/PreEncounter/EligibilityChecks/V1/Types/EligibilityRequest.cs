@@ -48,6 +48,15 @@ public record EligibilityRequest : IJsonOnDeserialized
     [JsonPropertyName("encounter")]
     public Encounter? Encounter { get; set; }
 
+    /// <summary>
+    /// If not provided, this endpoint will run a fresh eligibility check. If provided, it will return an existing successful eligibility check if one exists that was initiated after provided date with the same parameters (Date of Service, Payer ID, Provider, Subscriber, Dependent, and Encounter).
+    /// </summary>
+    [JsonPropertyName("get_existing_check_initiated_after")]
+    public DateTime? GetExistingCheckInitiatedAfter { get; set; }
+
+    [JsonPropertyName("source")]
+    public string? Source { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

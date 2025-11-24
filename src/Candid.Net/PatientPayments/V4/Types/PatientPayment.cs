@@ -43,6 +43,9 @@ public record PatientPayment : IJsonOnDeserialized
     [JsonPropertyName("invoice")]
     public string? Invoice { get; set; }
 
+    [JsonPropertyName("payment_method_detail")]
+    public PaymentMethodDetail? PaymentMethodDetail { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 
