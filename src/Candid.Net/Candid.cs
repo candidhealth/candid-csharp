@@ -13,6 +13,7 @@ using Candid.Net.EncounterAttachments;
 using Candid.Net.EncounterProviders;
 using Candid.Net.Encounters;
 using Candid.Net.EncounterSupplementalInformation;
+using Candid.Net.Events;
 using Candid.Net.ExpectedNetworkStatus;
 using Candid.Net.Exports;
 using Candid.Net.ExternalPaymentAccountConfig;
@@ -54,7 +55,7 @@ public partial class Candid
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Candid.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Candid.Net/1.15.0" },
+                { "User-Agent", "Candid.Net/1.16.0" },
             }
         );
         clientOptions ??= new ClientOptions();
@@ -86,6 +87,7 @@ public partial class Candid
         EncounterProviders = new EncounterProvidersClient(_client);
         EncounterSupplementalInformation = new EncounterSupplementalInformationClient(_client);
         Encounters = new EncountersClient(_client);
+        Events = new EventsClient(_client);
         ExpectedNetworkStatus = new ExpectedNetworkStatusClient(_client);
         Exports = new ExportsClient(_client);
         ExternalPaymentAccountConfig = new ExternalPaymentAccountConfigClient(_client);
@@ -138,6 +140,8 @@ public partial class Candid
     public EncounterSupplementalInformationClient EncounterSupplementalInformation { get; }
 
     public EncountersClient Encounters { get; }
+
+    public EventsClient Events { get; }
 
     public ExpectedNetworkStatusClient ExpectedNetworkStatus { get; }
 

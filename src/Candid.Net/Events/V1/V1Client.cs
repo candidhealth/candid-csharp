@@ -3,7 +3,7 @@ using System.Text.Json;
 using System.Threading;
 using Candid.Net.Core;
 
-namespace Candid.Net.PatientAr.V1;
+namespace Candid.Net.Events.V1;
 
 public partial class V1Client
 {
@@ -15,30 +15,36 @@ public partial class V1Client
     }
 
     /// <summary>
-    /// Retrieve a list of inventory records based on the provided filters. Each inventory record provides the latest invoiceable status of the associated claim.
-    /// The response is paginated, and the `page_token` can be used to retrieve subsequent pages. Initial requests should not include `page_token`.
+    /// Scans the last 30 days of events. All results are sorted by created date, descending.
     /// </summary>
     /// <example><code>
-    /// await client.PatientAr.V1.ListInventoryAsync(new GetInventoryRecordsRequest());
+    /// await client.Events.V1.ScanAsync(new GetEventScanRequest());
     /// </code></example>
-    public async global::System.Threading.Tasks.Task<ListInventoryPagedResponse> ListInventoryAsync(
-        GetInventoryRecordsRequest request,
+    public async global::System.Threading.Tasks.Task<EventScanPage> ScanAsync(
+        GetEventScanRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         var _query = new Dictionary<string, object>();
-        if (request.Since != null)
+        _query["event_types"] = request.EventTypes;
+        if (request.PageToken != null)
         {
-            _query["since"] = request.Since.Value.ToString(Constants.DateTimeFormat);
+            _query["page_token"] = request.PageToken;
         }
         if (request.Limit != null)
         {
             _query["limit"] = request.Limit.Value.ToString();
         }
-        if (request.PageToken != null)
+        if (request.CreatedBefore != null)
         {
-            _query["page_token"] = request.PageToken;
+            _query["created_before"] = request.CreatedBefore.Value.ToString(
+                Constants.DateTimeFormat
+            );
+        }
+        if (request.CreatedAfter != null)
+        {
+            _query["created_after"] = request.CreatedAfter.Value.ToString(Constants.DateTimeFormat);
         }
         var response = await _client
             .SendRequestAsync(
@@ -46,7 +52,7 @@ public partial class V1Client
                 {
                     BaseUrl = _client.Options.Environment.CandidApi,
                     Method = HttpMethod.Get,
-                    Path = "/api/patient-ar/v1/inventory",
+                    Path = "/api/events/v1/",
                     Query = _query,
                     Options = options,
                 },
@@ -58,7 +64,7 @@ public partial class V1Client
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<ListInventoryPagedResponse>(responseBody)!;
+                return JsonUtils.Deserialize<EventScanPage>(responseBody)!;
             }
             catch (JsonException e)
             {
@@ -76,14 +82,11 @@ public partial class V1Client
         }
     }
 
-    /// <summary>
-    /// Provides detailed itemization of invoice data for a specific claim.
-    /// </summary>
     /// <example><code>
-    /// await client.PatientAr.V1.ItemizeAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+    /// await client.Events.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async global::System.Threading.Tasks.Task<InvoiceItemizationResponse> ItemizeAsync(
-        string claimId,
+    public async global::System.Threading.Tasks.Task<Event> GetAsync(
+        string eventId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -95,8 +98,8 @@ public partial class V1Client
                     BaseUrl = _client.Options.Environment.CandidApi,
                     Method = HttpMethod.Get,
                     Path = string.Format(
-                        "/api/patient-ar/v1/invoice-itemization/{0}",
-                        ValueConvert.ToPathParameterString(claimId)
+                        "/api/events/v1/{0}",
+                        ValueConvert.ToPathParameterString(eventId)
                     ),
                     Options = options,
                 },
@@ -108,7 +111,7 @@ public partial class V1Client
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<InvoiceItemizationResponse>(responseBody)!;
+                return JsonUtils.Deserialize<Event>(responseBody)!;
             }
             catch (JsonException e)
             {

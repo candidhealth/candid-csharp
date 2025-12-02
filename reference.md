@@ -3288,6 +3288,101 @@ await client.Encounters.V4.UpdateAsync(
 </dl>
 </details>
 
+## Events V1
+<details><summary><code>client.Events.V1.<a href="/src/Candid.Net/Events/V1/V1Client.cs">ScanAsync</a>(global::Candid.Net.Events.V1.GetEventScanRequest { ... }) -> global::Candid.Net.Events.V1.EventScanPage</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Scans the last 30 days of events. All results are sorted by created date, descending.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Events.V1.ScanAsync(new GetEventScanRequest());
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `global::Candid.Net.Events.V1.GetEventScanRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Events.V1.<a href="/src/Candid.Net/Events/V1/V1Client.cs">GetAsync</a>(eventId) -> global::Candid.Net.Events.V1.Event</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Events.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**eventId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## ExpectedNetworkStatus V1
 <details><summary><code>client.ExpectedNetworkStatus.V1.<a href="/src/Candid.Net/ExpectedNetworkStatus/V1/V1Client.cs">ComputeAsync</a>(global::Candid.Net.ExpectedNetworkStatus.V1.ExpectedNetworkStatusRequest { ... }) -> global::Candid.Net.ExpectedNetworkStatus.V1.ExpectedNetworkStatusResponse</code></summary>
 <dl>
@@ -7001,8 +7096,6 @@ await client.OrganizationServiceFacilities.V2.DeleteAsync("30F55EE6-8C0E-43FC-A7
 <dl>
 <dd>
 
-NOTE: This service is in-development and can only be used by select partners. Please contact Candid Health to request access.
-
 Retrieve a list of inventory records based on the provided filters. Each inventory record provides the latest invoiceable status of the associated claim.
 The response is paginated, and the `page_token` can be used to retrieve subsequent pages. Initial requests should not include `page_token`.
 </dd>
@@ -7057,8 +7150,6 @@ await client.PatientAr.V1.ListInventoryAsync(new GetInventoryRecordsRequest());
 
 <dl>
 <dd>
-
-NOTE: This service is in-development and can only be used by select partners. Please contact Candid Health to request access.
 
 Provides detailed itemization of invoice data for a specific claim.
 </dd>
