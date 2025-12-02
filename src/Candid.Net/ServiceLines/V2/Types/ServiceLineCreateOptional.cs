@@ -106,6 +106,12 @@ public record ServiceLineCreateOptional : IJsonOnDeserialized
     [JsonPropertyName("revenue_code")]
     public string? RevenueCode { get; set; }
 
+    /// <summary>
+    /// Prior authorization number for this service line. Maps to the appropriate REF segment on Loop 2400 of the EDI 837p. This is not used for institutional claims (EDI 837i).
+    /// </summary>
+    [JsonPropertyName("prior_authorization_number")]
+    public string? PriorAuthorizationNumber { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

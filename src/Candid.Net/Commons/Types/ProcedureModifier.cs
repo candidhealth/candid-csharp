@@ -2029,6 +2029,11 @@ public readonly record struct ProcedureModifier : IStringEnum
     /// </summary>
     public static readonly ProcedureModifier Xy = new(Values.Xy);
 
+    /// <summary>
+    /// Custom modifier representing an invalid modifier
+    /// </summary>
+    public static readonly ProcedureModifier Zz = new(Values.Zz);
+
     public ProcedureModifier(string value)
     {
         Value = value;
@@ -4097,5 +4102,10 @@ public readonly record struct ProcedureModifier : IStringEnum
         /// Custom modifier
         /// </summary>
         public const string Xy = "XY";
+
+        /// <summary>
+        /// Custom modifier representing an invalid modifier
+        /// </summary>
+        public const string Zz = "ZZ";
     }
 }
