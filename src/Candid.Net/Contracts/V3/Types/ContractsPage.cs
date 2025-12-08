@@ -3,20 +3,23 @@ using System.Text.Json.Serialization;
 using Candid.Net;
 using Candid.Net.Core;
 
-namespace Candid.Net.HealthCareCodeInformation.V1;
+namespace Candid.Net.Contracts.V3;
 
 [Serializable]
-public record Rd8Date : IJsonOnDeserialized
+public record ContractsPage : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
-    [JsonPropertyName("start")]
-    public required DateOnly Start { get; set; }
+    [JsonPropertyName("items")]
+    public IEnumerable<ContractUnion> Items { get; set; } = new List<ContractUnion>();
 
-    [JsonPropertyName("end")]
-    public required DateOnly End { get; set; }
+    [JsonPropertyName("prev_page_token")]
+    public string? PrevPageToken { get; set; }
+
+    [JsonPropertyName("next_page_token")]
+    public string? NextPageToken { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

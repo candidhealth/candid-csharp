@@ -28,7 +28,7 @@ public record OccurrenceInformation : IJsonOnDeserialized
     /// midnight time is fine.
     /// </summary>
     [JsonPropertyName("occurrence_date")]
-    public required DateTime OccurrenceDate { get; set; }
+    public required DateOnly OccurrenceDate { get; set; }
 
     /// <summary>
     /// The id of this health care code information if it is already stored.

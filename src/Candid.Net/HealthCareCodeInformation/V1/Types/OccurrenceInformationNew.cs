@@ -28,7 +28,7 @@ public record OccurrenceInformationNew : IJsonOnDeserialized
     /// midnight time is fine.
     /// </summary>
     [JsonPropertyName("occurrence_date")]
-    public required DateTime OccurrenceDate { get; set; }
+    public required DateOnly OccurrenceDate { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

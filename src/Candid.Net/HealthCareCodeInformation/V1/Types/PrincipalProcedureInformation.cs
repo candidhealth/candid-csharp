@@ -28,7 +28,7 @@ public record PrincipalProcedureInformation : IJsonOnDeserialized
     /// midnight time is fine.
     /// </summary>
     [JsonPropertyName("procedure_date")]
-    public required DateTime ProcedureDate { get; set; }
+    public required DateOnly ProcedureDate { get; set; }
 
     /// <summary>
     /// The id of this health care code information if it is already stored.

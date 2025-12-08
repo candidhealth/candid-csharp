@@ -3,20 +3,26 @@ using System.Text.Json.Serialization;
 using Candid.Net;
 using Candid.Net.Core;
 
-namespace Candid.Net.HealthCareCodeInformation.V1;
+namespace Candid.Net.Contracts.V3;
 
 [Serializable]
-public record Rd8Date : IJsonOnDeserialized
+public record ContractServiceFacilityBase : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
-    [JsonPropertyName("start")]
-    public required DateOnly Start { get; set; }
+    /// <summary>
+    /// The UUID of the service facility
+    /// </summary>
+    [JsonPropertyName("service_facility_id")]
+    public required string ServiceFacilityId { get; set; }
 
-    [JsonPropertyName("end")]
-    public required DateOnly End { get; set; }
+    /// <summary>
+    /// The providers who are authorized under the contract
+    /// </summary>
+    [JsonPropertyName("provider_ids")]
+    public HashSet<string> ProviderIds { get; set; } = new HashSet<string>();
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

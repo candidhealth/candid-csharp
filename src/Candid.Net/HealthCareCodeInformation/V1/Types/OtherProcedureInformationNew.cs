@@ -28,7 +28,7 @@ public record OtherProcedureInformationNew : IJsonOnDeserialized
     /// midnight time is fine.
     /// </summary>
     [JsonPropertyName("other_procedure_date")]
-    public required DateTime OtherProcedureDate { get; set; }
+    public required DateOnly OtherProcedureDate { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

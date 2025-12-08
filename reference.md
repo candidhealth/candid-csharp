@@ -700,6 +700,20 @@ await client.ChargeCapture.V1.UpdatePostBilledChangesAsync(
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+This API provides access to Professional Contracts. For Professional and Institutional Contracts use Contracts V3.
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -740,6 +754,20 @@ await client.Contracts.V2.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+This API provides access to Professional Contracts. For Professional and Institutional Contracts use Contracts V3.
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -749,7 +777,9 @@ await client.Contracts.V2.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
 <dd>
 
 ```csharp
-await client.Contracts.V2.GetMultiAsync(new GetMultiContractsRequest());
+await client.Contracts.V2.GetMultiAsync(
+    new global::Candid.Net.Contracts.V2.GetMultiContractsRequest()
+);
 ```
 </dd>
 </dl>
@@ -804,7 +834,7 @@ Creates a new contract within the user's current organization
 
 ```csharp
 await client.Contracts.V2.CreateAsync(
-    new ContractCreate
+    new global::Candid.Net.Contracts.V2.ContractCreate
     {
         ContractingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
         RenderingProviderIds = new HashSet<string>() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
@@ -902,7 +932,10 @@ await client.Contracts.V2.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
 <dd>
 
 ```csharp
-await client.Contracts.V2.UpdateAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32", new ContractUpdate());
+await client.Contracts.V2.UpdateAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new global::Candid.Net.Contracts.V2.ContractUpdate()
+);
 ```
 </dd>
 </dl>
@@ -926,6 +959,376 @@ await client.Contracts.V2.UpdateAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32", ne
 <dd>
 
 **request:** `global::Candid.Net.Contracts.V2.ContractUpdate` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Contracts V3
+<details><summary><code>client.Contracts.V3.<a href="/src/Candid.Net/Contracts/V3/V3Client.cs">GetAsync</a>(contractId) -> global::Candid.Net.Contracts.V3.ContractWithProvidersUnion</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Contracts.V3.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**contractId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Contracts.V3.<a href="/src/Candid.Net/Contracts/V3/V3Client.cs">GetMultiAsync</a>(global::Candid.Net.Contracts.V3.GetMultiContractsRequest { ... }) -> global::Candid.Net.Contracts.V3.ContractsPage</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Contracts.V3.GetMultiAsync(
+    new global::Candid.Net.Contracts.V3.GetMultiContractsRequest()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `global::Candid.Net.Contracts.V3.GetMultiContractsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Contracts.V3.<a href="/src/Candid.Net/Contracts/V3/V3Client.cs">CreateAsync</a>(global::Candid.Net.Contracts.V3.ContractCreateUnion { ... }) -> global::Candid.Net.Contracts.V3.ContractWithProvidersUnion</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a new contract within the user's current organization
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Contracts.V3.CreateAsync(
+    new ContractCreateUnion(
+        new ContractCreateUnion.Professional(
+            new ProfessionalContractCreate
+            {
+                RenderingProviderIds = new HashSet<string>()
+                {
+                    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+                },
+                ContractType = ContractType.Professional,
+                ContractingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+                PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+                EffectiveDate = "effective_date",
+                Regions = new Regions(
+                    new Regions.States(
+                        new RegionStates
+                        {
+                            States = new List<State>() { State.Aa, State.Aa },
+                        }
+                    )
+                ),
+                CommercialInsuranceTypes = new InsuranceTypes(new InsuranceTypes.AllApply()),
+                MedicareInsuranceTypes = new InsuranceTypes(new InsuranceTypes.AllApply()),
+                MedicaidInsuranceTypes = new InsuranceTypes(new InsuranceTypes.AllApply()),
+            }
+        )
+    )
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `global::Candid.Net.Contracts.V3.ContractCreateUnion` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Contracts.V3.<a href="/src/Candid.Net/Contracts/V3/V3Client.cs">DeleteAsync</a>(contractId)</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Contracts.V3.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**contractId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Contracts.V3.<a href="/src/Candid.Net/Contracts/V3/V3Client.cs">UpdateAsync</a>(contractId, global::Candid.Net.Contracts.V3.ContractUpdateUnion { ... }) -> global::Candid.Net.Contracts.V3.ContractWithProvidersUnion</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Contracts.V3.UpdateAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new ContractUpdateUnion(new ContractUpdateUnion.Professional(new ProfessionalContractUpdate()))
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**contractId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `global::Candid.Net.Contracts.V3.ContractUpdateUnion` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Contracts.V3.<a href="/src/Candid.Net/Contracts/V3/V3Client.cs">CreateContractServiceFacilityAsync</a>(contractId, global::Candid.Net.Contracts.V3.ContractServiceFacilityCreate { ... }) -> global::Candid.Net.Contracts.V3.ContractServiceFacility</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Contracts.V3.CreateContractServiceFacilityAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new ContractServiceFacilityCreate
+    {
+        ServiceFacilityId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        ProviderIds = new HashSet<string>() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**contractId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `global::Candid.Net.Contracts.V3.ContractServiceFacilityCreate` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Contracts.V3.<a href="/src/Candid.Net/Contracts/V3/V3Client.cs">UpdateContractServiceFacilityAsync</a>(contractId, contractServiceFacilityId, global::Candid.Net.Contracts.V3.ContractServiceFacilityUpdate { ... }) -> global::Candid.Net.Contracts.V3.ContractServiceFacility</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Contracts.V3.UpdateContractServiceFacilityAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new ContractServiceFacilityUpdate()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**contractId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**contractServiceFacilityId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `global::Candid.Net.Contracts.V3.ContractServiceFacilityUpdate` 
     
 </dd>
 </dl>
