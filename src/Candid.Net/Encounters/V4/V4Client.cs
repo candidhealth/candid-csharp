@@ -189,6 +189,12 @@ public partial class V4Client
         }
     }
 
+    /// <summary>
+    /// Notice: The UB-04 Data File, 2025, is copyrighted by American Hospital Association (AHA), Chicago, Illinois.
+    /// No portion of the THE UB-04 Data File, may be reproduced, stored in a retrieval system, or transmitted,
+    /// in any form or by any means, electronic, mechanical, photocopying, recording, or otherwise, without prior
+    /// express, written consent of AHA.
+    /// </summary>
     /// <example><code>
     /// await client.Encounters.V4.CreateUniversalAsync(
     ///     new UniversalEncounterCreate
@@ -380,6 +386,11 @@ public partial class V4Client
     ///
     /// Utilizing this endpoint opts you into automatic updating of the encounter when the patient or appointment is updated, assuming the
     /// encounter has not already been submitted or adjudicated.
+    ///
+    /// Notice: The UB-04 Data File, 2025, is copyrighted by American Hospital Association (AHA), Chicago, Illinois.
+    /// No portion of the THE UB-04 Data File, may be reproduced, stored in a retrieval system, or transmitted,
+    /// in any form or by any means, electronic, mechanical, photocopying, recording, or otherwise, without prior
+    /// express, written consent of AHA.
     /// </summary>
     /// <example><code>
     /// await client.Encounters.V4.CreateFromPreEncounterPatientUniversalAsync(
@@ -553,6 +564,12 @@ public partial class V4Client
         }
     }
 
+    /// <summary>
+    /// Notice: The UB-04 Data File, 2025, is copyrighted by American Hospital Association (AHA), Chicago, Illinois.
+    /// No portion of the THE UB-04 Data File, may be reproduced, stored in a retrieval system, or transmitted,
+    /// in any form or by any means, electronic, mechanical, photocopying, recording, or otherwise, without prior
+    /// express, written consent of AHA.
+    /// </summary>
     /// <example><code>
     /// await client.Encounters.V4.UpdateUniversalAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",

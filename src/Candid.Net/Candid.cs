@@ -22,7 +22,6 @@ using Candid.Net.Guarantor;
 using Candid.Net.HealthCareCodeInformation;
 using Candid.Net.ImportInvoice;
 using Candid.Net.InsuranceAdjudications;
-using Candid.Net.InsurancePayments;
 using Candid.Net.InsuranceRefunds;
 using Candid.Net.MedicationDispense;
 using Candid.Net.NonInsurancePayerPayments;
@@ -55,7 +54,7 @@ public partial class Candid
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Candid.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Candid.Net/1.17.0" },
+                { "User-Agent", "Candid.Net/1.17.1" },
             }
         );
         clientOptions ??= new ClientOptions();
@@ -96,7 +95,6 @@ public partial class Candid
         HealthCareCodeInformation = new HealthCareCodeInformationClient(_client);
         ImportInvoice = new ImportInvoiceClient(_client);
         InsuranceAdjudications = new InsuranceAdjudicationsClient(_client);
-        InsurancePayments = new InsurancePaymentsClient(_client);
         InsuranceRefunds = new InsuranceRefundsClient(_client);
         MedicationDispense = new MedicationDispenseClient(_client);
         NonInsurancePayerPayments = new NonInsurancePayerPaymentsClient(_client);
@@ -158,8 +156,6 @@ public partial class Candid
     public ImportInvoiceClient ImportInvoice { get; }
 
     public InsuranceAdjudicationsClient InsuranceAdjudications { get; }
-
-    public InsurancePaymentsClient InsurancePayments { get; }
 
     public InsuranceRefundsClient InsuranceRefunds { get; }
 

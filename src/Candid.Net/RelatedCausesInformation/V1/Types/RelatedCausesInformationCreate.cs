@@ -3,23 +3,23 @@ using System.Text.Json.Serialization;
 using Candid.Net;
 using Candid.Net.Core;
 
-namespace Candid.Net.InsurancePayments.V1;
+namespace Candid.Net.RelatedCausesInformation.V1;
 
 [Serializable]
-public record InsurancePaymentsPage : IJsonOnDeserialized
+public record RelatedCausesInformationCreate : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
-    [JsonPropertyName("items")]
-    public IEnumerable<InsurancePayment> Items { get; set; } = new List<InsurancePayment>();
+    [JsonPropertyName("related_causes_code_1")]
+    public required RelatedCausesCode RelatedCausesCode1 { get; set; }
 
-    [JsonPropertyName("prev_page_token")]
-    public string? PrevPageToken { get; set; }
+    [JsonPropertyName("related_causes_code_2")]
+    public RelatedCausesCode? RelatedCausesCode2 { get; set; }
 
-    [JsonPropertyName("next_page_token")]
-    public string? NextPageToken { get; set; }
+    [JsonPropertyName("state_or_province_code")]
+    public string? StateOrProvinceCode { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

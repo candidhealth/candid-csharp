@@ -122,6 +122,9 @@ public record Encounter : IJsonOnDeserialized
     [JsonPropertyName("other_operating_provider")]
     public EncounterProvider? OtherOperatingProvider { get; set; }
 
+    [JsonPropertyName("related_causes_information")]
+    public global::Candid.Net.RelatedCausesInformation.V1.RelatedCausesInformation? RelatedCausesInformation { get; set; }
+
     /// <summary>
     /// Describes the currently expected target form for this encounter.  This effects what validations and queues the form is processed under.  When this value is not set, it should be assumed to be TARGET_PROFESSIONAL.
     /// </summary>

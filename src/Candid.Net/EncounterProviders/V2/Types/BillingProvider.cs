@@ -46,6 +46,14 @@ public record BillingProvider : IJsonOnDeserialized
     public BillingProviderCommercialLicenseType? ProviderCommercialLicenseType { get; set; }
 
     /// <summary>
+    /// Only one of provider_commercial_license_type or secondary_identification may be provided
+    /// 837i Loop2010BB G2
+    /// Secondary Identification
+    /// </summary>
+    [JsonPropertyName("secondary_identification")]
+    public ProviderSecondaryIdentification? SecondaryIdentification { get; set; }
+
+    /// <summary>
     /// If the provider is an individual, this should be set instead of organization name
     /// </summary>
     [JsonPropertyName("first_name")]

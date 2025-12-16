@@ -3227,6 +3227,23 @@ await client.Encounters.V4.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
 <dl>
 <dd>
 
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Notice: The UB-04 Data File, 2025, is copyrighted by American Hospital Association (AHA), Chicago, Illinois.
+No portion of the THE UB-04 Data File, may be reproduced, stored in a retrieval system, or transmitted,
+in any form or by any means, electronic, mechanical, photocopying, recording, or otherwise, without prior
+express, written consent of AHA.
+</dd>
+</dl>
+</dd>
+</dl>
+
 #### 🔌 Usage
 
 <dl>
@@ -3415,6 +3432,11 @@ where applicable. In particular, the following fields are populated from the pat
 
 Utilizing this endpoint opts you into automatic updating of the encounter when the patient or appointment is updated, assuming the
 encounter has not already been submitted or adjudicated.
+
+Notice: The UB-04 Data File, 2025, is copyrighted by American Hospital Association (AHA), Chicago, Illinois.
+No portion of the THE UB-04 Data File, may be reproduced, stored in a retrieval system, or transmitted,
+in any form or by any means, electronic, mechanical, photocopying, recording, or otherwise, without prior
+express, written consent of AHA.
 </dd>
 </dl>
 </dd>
@@ -3592,6 +3614,23 @@ await client.Encounters.V4.CreateFromPreEncounterPatientAsync(
 <details><summary><code>client.Encounters.V4.<a href="/src/Candid.Net/Encounters/V4/V4Client.cs">UpdateUniversalAsync</a>(encounterId, EncountersUniversal.UniversalEncounterUpdate { ... }) -> global::Candid.Net.Encounters.V4.Encounter</code></summary>
 <dl>
 <dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Notice: The UB-04 Data File, 2025, is copyrighted by American Hospital Association (AHA), Chicago, Illinois.
+No portion of the THE UB-04 Data File, may be reproduced, stored in a retrieval system, or transmitted,
+in any form or by any means, electronic, mechanical, photocopying, recording, or otherwise, without prior
+express, written consent of AHA.
+</dd>
+</dl>
+</dd>
+</dl>
 
 #### 🔌 Usage
 
@@ -4451,7 +4490,15 @@ await client.FeeSchedules.V3.GetRateHistoryAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a
 <dl>
 <dd>
 
-Uploads a new fee schedule.\n Each rate may either be totally new as qualified by it's dimensions or a new version for an existing rate.\n If adding a new version to an existing rate, the rate must be posted with the next version number (previous version + 1) or a EntityConflictError will be returned.\n Use the dry run flag to discover already existing rates and to run validations.  If validations for any rate fail, no rates will be saved to the system.
+Uploads a new fee schedule.
+
+Each rate may either be totally new as qualified by it's dimensions or a new version for an existing rate.
+
+If adding a new version to an existing rate, the rate must be posted with the next version number (previous version + 1) or a EntityConflictError will
+be returned.
+
+Use the dry run flag to discover already existing rates and to run validations.  If validations for any rate fail, no rates will
+be saved to the system.
 </dd>
 </dl>
 </dd>
@@ -5535,116 +5582,6 @@ await client.InsuranceAdjudications.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9
 <dd>
 
 **insuranceAdjudicationId:** `string` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## InsurancePayments V1
-<details><summary><code>client.InsurancePayments.V1.<a href="/src/Candid.Net/InsurancePayments/V1/V1Client.cs">GetMultiAsync</a>(global::Candid.Net.InsurancePayments.V1.GetMultiInsurancePaymentRequest { ... }) -> global::Candid.Net.InsurancePayments.V1.InsurancePaymentsPage</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns all non-ERA originated insurance payments satisfying the search criteria
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.InsurancePayments.V1.GetMultiAsync(new GetMultiInsurancePaymentRequest());
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `global::Candid.Net.InsurancePayments.V1.GetMultiInsurancePaymentRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.InsurancePayments.V1.<a href="/src/Candid.Net/InsurancePayments/V1/V1Client.cs">GetAsync</a>(insurancePaymentId) -> global::Candid.Net.InsurancePayments.V1.InsurancePayment</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieves a previously created insurance payment by its `insurance_payment_id`.
-If the payment does not exist, a `403` will be thrown.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.InsurancePayments.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**insurancePaymentId:** `string` 
     
 </dd>
 </dl>

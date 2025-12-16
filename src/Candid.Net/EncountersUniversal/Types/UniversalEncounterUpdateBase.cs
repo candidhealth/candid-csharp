@@ -8,6 +8,7 @@ using Candid.Net.EncounterProviders.V2;
 using Candid.Net.Encounters.V4;
 using Candid.Net.Guarantor.V1;
 using Candid.Net.Individual;
+using Candid.Net.RelatedCausesInformation.V1;
 using Candid.Net.ServiceFacility;
 
 namespace Candid.Net.EncountersUniversal;
@@ -135,6 +136,12 @@ public record UniversalEncounterUpdateBase : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("place_of_service_code_as_submitted")]
     public FacilityTypeCode? PlaceOfServiceCodeAsSubmitted { get; set; }
+
+    /// <summary>
+    /// Corresponds to box 10a on the CMS-1500 (Loop 2300 on 837)
+    /// </summary>
+    [JsonPropertyName("related_causes_information")]
+    public RelatedCausesInformationUpdate? RelatedCausesInformation { get; set; }
 
     /// <summary>
     /// Whether this patient has authorized insurance payments to be made to you, not them. If false, patient may receive reimbursement. Box 13 on the CMS-1500 claim form or Form Locator 53 on a UB-04 claim form.

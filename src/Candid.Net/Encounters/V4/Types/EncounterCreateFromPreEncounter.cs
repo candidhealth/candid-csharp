@@ -8,6 +8,7 @@ using Candid.Net.Core;
 using Candid.Net.CustomSchemas.V1;
 using Candid.Net.Diagnoses;
 using Candid.Net.EncounterProviders.V2;
+using Candid.Net.RelatedCausesInformation.V1;
 using Candid.Net.ServiceFacility;
 using Candid.Net.ServiceLines.V2;
 
@@ -116,6 +117,12 @@ public record EncounterCreateFromPreEncounter : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("schema_instances")]
     public IEnumerable<SchemaInstance>? SchemaInstances { get; set; }
+
+    /// <summary>
+    /// Corresponds to box 10a on the CMS-1500 (Loop 2300 on 837)
+    /// </summary>
+    [JsonPropertyName("related_causes_information")]
+    public RelatedCausesInformationCreate? RelatedCausesInformation { get; set; }
 
     /// <summary>
     /// A client-specified unique ID to associate with this encounter;
