@@ -13,6 +13,8 @@ public readonly record struct TestResultType : IStringEnum
 
     public static readonly TestResultType Ldl = new(Values.Ldl);
 
+    public static readonly TestResultType VitaminD = new(Values.VitaminD);
+
     public TestResultType(string value)
     {
         Value = value;
@@ -65,5 +67,7 @@ public readonly record struct TestResultType : IStringEnum
         public const string Hemoglobin = "HEMOGLOBIN";
 
         public const string Ldl = "LDL";
+
+        public const string VitaminD = "VITAMIN_D";
     }
 }

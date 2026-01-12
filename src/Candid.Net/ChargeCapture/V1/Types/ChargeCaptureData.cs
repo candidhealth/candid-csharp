@@ -11,6 +11,7 @@ using Candid.Net.EncounterProviders.V2;
 using Candid.Net.Encounters.V4;
 using Candid.Net.Guarantor.V1;
 using Candid.Net.Individual;
+using Candid.Net.RelatedCausesInformation.V1;
 using Candid.Net.ServiceFacility;
 using Candid.Net.ServiceLines.V2;
 
@@ -175,6 +176,12 @@ public record ChargeCaptureData : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("pay_to_address")]
     public StreetAddressShortZipOptional? PayToAddress { get; set; }
+
+    /// <summary>
+    /// Corresponds to box 10a on the CMS-1500 (Loop 2300 on 837)
+    /// </summary>
+    [JsonPropertyName("related_causes_information")]
+    public RelatedCausesInformationCreate? RelatedCausesInformation { get; set; }
 
     /// <summary>
     /// Whether this patient has authorized insurance payments to be made to you, not them. If false, patient may receive reimbursement. Box 13 on the CMS-1500 claim form or Form Locator 53 on a UB-04 claim form.

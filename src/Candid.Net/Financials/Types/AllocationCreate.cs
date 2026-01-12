@@ -22,6 +22,13 @@ public record AllocationCreate : IJsonOnDeserialized
     [JsonPropertyName("target")]
     public required AllocationTargetCreate Target { get; set; }
 
+    /// <summary>
+    /// CURRENTLY UNIMPLEMENTED - Optional earmarking configuration for patient prepayments.
+    /// When provided on unattributed allocations, holds the payment for future auto-allocation to matching encounters.
+    /// </summary>
+    [JsonPropertyName("earmark")]
+    public AllocationEarmarkType? Earmark { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

@@ -2052,78 +2052,6 @@ await client.CustomSchemas.V1.UpdateAsync(
 </details>
 
 ## Eligibility V2
-<details><summary><code>client.Eligibility.V2.<a href="/src/Candid.Net/Eligibility/V2/V2Client.cs">SubmitEligibilityCheckAsync</a>(object { ... }) -> object</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-<Tip>Candid is deprecating support for this endpoint. It is instead recommended to use [Candid's Stedi passthrough endpoint](https://docs.joincandidhealth.com/api-reference/pre-encounter/eligibility-checks/v-1/post).
-For assistance with the transition, please reference the [Transitioning to Candid's New Eligibility Endpoint](https://support.joincandidhealth.com/hc/en-us/articles/34918552872980) document in the Candid Support Center.</Tip>
-
-This API is a wrapper around Change Healthcare's eligibility API. Below are some helpful documentation links:
-
-- [Change Healthcare - Guides: Contents of the Eligibility Request Body](https://developers.changehealthcare.com/eligibilityandclaims/docs/contents-of-the-eligibility-request-body)
-- [Change Healthcare - Guides: Use "Bare Minimum" Eligibility Requests](https://developers.changehealthcare.com/eligibilityandclaims/docs/use-bare-minimum-eligibility-requests)
-- [Change Healthcare - Guides: Contents of the Eligibility Response](https://developers.changehealthcare.com/eligibilityandclaims/docs/contents-of-the-eligibility-response)
-- [Change Healthcare - Guides: Eligibility JSON-to-EDI API Contents](https://developers.changehealthcare.com/eligibilityandclaims/docs/eligibility-json-to-edi-api-contents)
-- [Change Healthcare - Guides: Eligibility Error Messages](https://developers.changehealthcare.com/eligibilityandclaims/docs/eligibility-error-messages)
-- [Change Healthcare - Guides: FAQ](https://developers.changehealthcare.com/eligibilityandclaims/docs/frequently-asked-questions)
-- [Change Healthcare - Guides: Eligibility FAQs](https://developers.changehealthcare.com/eligibilityandclaims/docs/eligibility-api-requests)
-- [Change Healthcare - Guides: Sandbox API Values and Test Responses](https://developers.changehealthcare.com/eligibilityandclaims/docs/eligibility-sandbox-api-values-and-test-responses)
-- [Change Healthcare - Guides: Sandbox Predefined Fields and Values](https://developers.changehealthcare.com/eligibilityandclaims/docs/sandbox-predefined-fields-and-values)
-- [Change Healthcare - Guides: Using Test Payers in the Sandbox](https://developers.changehealthcare.com/eligibilityandclaims/docs/use-the-test-payers-in-the-sandbox-api)
-
-A schema of the response object can be found here: [Change Healthcare Docs](https://developers.changehealthcare.com/eligibilityandclaims/reference/medicaleligibility)
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.Eligibility.V2.SubmitEligibilityCheckAsync(
-    new Dictionary<object, object?>() { { "key", "value" } }
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `object` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.Eligibility.V2.<a href="/src/Candid.Net/Eligibility/V2/V2Client.cs">SubmitEligibilityCheckAvailityAsync</a>() -> object</code></summary>
 <dl>
 <dd>
@@ -3814,254 +3742,6 @@ await client.Events.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
 <dd>
 
 **eventId:** `string` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## ExpectedNetworkStatus V1
-<details><summary><code>client.ExpectedNetworkStatus.V1.<a href="/src/Candid.Net/ExpectedNetworkStatus/V1/V1Client.cs">ComputeAsync</a>(global::Candid.Net.ExpectedNetworkStatus.V1.ExpectedNetworkStatusRequest { ... }) -> global::Candid.Net.ExpectedNetworkStatus.V1.ExpectedNetworkStatusResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Computes the expected network status given the provided information.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.ExpectedNetworkStatus.V1.ComputeAsync(
-    new ExpectedNetworkStatusRequest
-    {
-        SubscriberPayerId = "subscriber_payer_id",
-        SubscriberPayerName = "subscriber_payer_name",
-        BillingProviderNpi = "billing_provider_npi",
-        BillingProviderTin = "billing_provider_tin",
-        RenderingProviderNpi = "rendering_provider_npi",
-        ContractedState = State.Aa,
-        DateOfService = "date_of_service",
-    }
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `global::Candid.Net.ExpectedNetworkStatus.V1.ExpectedNetworkStatusRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## ExpectedNetworkStatus V2
-<details><summary><code>client.ExpectedNetworkStatus.V2.<a href="/src/Candid.Net/ExpectedNetworkStatus/V2/V2Client.cs">ComputeForRenderingProviderAsync</a>(renderingProviderId, global::Candid.Net.ExpectedNetworkStatus.V2.ExpectedNetworkStatusRequestV2 { ... }) -> global::Candid.Net.ExpectedNetworkStatus.V2.ExpectedNetworkStatusResponseV2</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Computes the expected network status for a given rendering provider.
-This endpoint is not available to all customers. Reach out to the Candid sales team
-to discuss enabling this endpoint if it is not available for your organization.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.ExpectedNetworkStatus.V2.ComputeForRenderingProviderAsync(
-    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    new ExpectedNetworkStatusRequestV2
-    {
-        ServiceType = ServiceType.NewPatientVideoAppt,
-        PlaceOfServiceCode = FacilityTypeCode.Pharmacy,
-        SubscriberInformation = new ExpectedNetworkStatusSubscriberInformation
-        {
-            PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-            MemberId = "member_id",
-            InsuranceType = new InsuranceType
-            {
-                LineOfBusiness = LineOfBusiness.Medicare,
-                InsuranceTypeCodes = new InsuranceTypeCodes(
-                    new global::Candid.Net.ExpectedNetworkStatus.V2.InsuranceTypeCodes.InsuranceTypeCode(
-                        global::Candid.Net.Commons.InsuranceTypeCode.C01
-                    )
-                ),
-            },
-        },
-        PatientAddress = new StreetAddressShortZip
-        {
-            Address1 = "address1",
-            City = "city",
-            State = State.Aa,
-            ZipCode = "zip_code",
-        },
-        BillingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-        OrganizationServiceFacilityId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-        DateOfService = new DateOnly(2023, 1, 15),
-    }
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**renderingProviderId:** `string` 
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `global::Candid.Net.ExpectedNetworkStatus.V2.ExpectedNetworkStatusRequestV2` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.ExpectedNetworkStatus.V2.<a href="/src/Candid.Net/ExpectedNetworkStatus/V2/V2Client.cs">ComputeAllInNetworkProvidersAsync</a>(global::Candid.Net.ExpectedNetworkStatus.V2.ComputeAllInNetworkProvidersRequest { ... }) -> global::Candid.Net.ExpectedNetworkStatus.V2.ComputeAllInNetworkProvidersResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Computes all the in network providers for a given set of inputs.
-This endpoint is not available to all customers. Reach out to the Candid sales team
-to discuss enabling this endpoint if it is not available for your organization.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.ExpectedNetworkStatus.V2.ComputeAllInNetworkProvidersAsync(
-    new ComputeAllInNetworkProvidersRequest
-    {
-        ServiceType = ServiceType.NewPatientVideoAppt,
-        PlaceOfServiceCode = FacilityTypeCode.Pharmacy,
-        SubscriberInformation = new ExpectedNetworkStatusSubscriberInformation
-        {
-            PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-            MemberId = "member_id",
-            InsuranceType = new InsuranceType
-            {
-                LineOfBusiness = LineOfBusiness.Medicare,
-                InsuranceTypeCodes = new InsuranceTypeCodes(
-                    new global::Candid.Net.ExpectedNetworkStatus.V2.InsuranceTypeCodes.InsuranceTypeCode(
-                        global::Candid.Net.Commons.InsuranceTypeCode.C01
-                    )
-                ),
-            },
-        },
-        PatientAddress = new StreetAddressShortZip
-        {
-            Address1 = "address1",
-            City = "city",
-            State = State.Aa,
-            ZipCode = "zip_code",
-        },
-        BillingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-        OrganizationServiceFacilityId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-        DateOfService = new DateOnly(2023, 1, 15),
-    }
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `global::Candid.Net.ExpectedNetworkStatus.V2.ComputeAllInNetworkProvidersRequest` 
     
 </dd>
 </dl>
@@ -8847,6 +8527,80 @@ await client.ServiceLines.V2.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32")
 <dd>
 
 **serviceLineId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ServiceLines.V2.<a href="/src/Candid.Net/ServiceLines/V2/V2Client.cs">UpsertByExternalIdAsync</a>(externalId, global::Candid.Net.ServiceLines.V2.ServiceLineCreateStandalone { ... }) -> global::Candid.Net.ServiceLines.V2.ServiceLine</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates or updates a service line based on the combination of external_id and claim_id.
+
+- If a service line with the given external_id and claim_id already exists for the organization, it will be updated.
+- If no service line exists with that combination, a new service line will be created with the provided external_id.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.ServiceLines.V2.UpsertByExternalIdAsync(
+    "external_id",
+    new ServiceLineCreateStandalone
+    {
+        ProcedureCode = "procedure_code",
+        Quantity = "quantity",
+        Units = ServiceLineUnits.Mj,
+        ClaimId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**externalId:** `string` — The external_id of the service line to create or update.
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `global::Candid.Net.ServiceLines.V2.ServiceLineCreateStandalone` 
     
 </dd>
 </dl>

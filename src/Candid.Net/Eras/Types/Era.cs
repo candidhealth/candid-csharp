@@ -3,14 +3,17 @@ using System.Text.Json.Serialization;
 using Candid.Net;
 using Candid.Net.Core;
 
-namespace Candid.Net.Era;
+namespace Candid.Net.Eras;
 
 [Serializable]
-public record EraBase : IJsonOnDeserialized
+public record Era : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
+
+    [JsonPropertyName("era_id")]
+    public required string EraId { get; set; }
 
     [JsonPropertyName("check_number")]
     public required string CheckNumber { get; set; }

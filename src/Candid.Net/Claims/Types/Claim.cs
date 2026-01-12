@@ -2,7 +2,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Candid.Net;
 using Candid.Net.Core;
-using Candid.Net.Era;
+using Candid.Net.Eras;
 using Candid.Net.ServiceLines.V2;
 
 namespace Candid.Net.Claims;

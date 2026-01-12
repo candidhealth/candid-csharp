@@ -3,17 +3,20 @@ using System.Text.Json.Serialization;
 using Candid.Net;
 using Candid.Net.Core;
 
-namespace Candid.Net.Commons;
+namespace Candid.Net.Eras;
 
 [Serializable]
-public record HttpServiceUnavailableErrorMessage : IJsonOnDeserialized
+public record EraBase : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
-    [JsonPropertyName("message")]
-    public string? Message { get; set; }
+    [JsonPropertyName("check_number")]
+    public required string CheckNumber { get; set; }
+
+    [JsonPropertyName("check_date")]
+    public required string CheckDate { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

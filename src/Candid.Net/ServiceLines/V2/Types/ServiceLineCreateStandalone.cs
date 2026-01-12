@@ -32,6 +32,13 @@ public record ServiceLineCreateStandalone : IJsonOnDeserialized
     [JsonPropertyName("prior_authorization_number")]
     public string? PriorAuthorizationNumber { get; set; }
 
+    /// <summary>
+    /// An external identifier for this service line. This is not used in the EDI 837, but can be used to identify the service line in external systems.
+    /// This field should not contain PHI. Must be unique on a given claim.
+    /// </summary>
+    [JsonPropertyName("external_id")]
+    public string? ExternalId { get; set; }
+
     [JsonPropertyName("procedure_code")]
     public required string ProcedureCode { get; set; }
 

@@ -260,4 +260,68 @@ public partial class V2Client
             );
         }
     }
+
+    /// <summary>
+    /// Creates or updates a service line based on the combination of external_id and claim_id.
+    ///
+    /// - If a service line with the given external_id and claim_id already exists for the organization, it will be updated.
+    /// - If no service line exists with that combination, a new service line will be created with the provided external_id.
+    /// </summary>
+    /// <example><code>
+    /// await client.ServiceLines.V2.UpsertByExternalIdAsync(
+    ///     "external_id",
+    ///     new ServiceLineCreateStandalone
+    ///     {
+    ///         ProcedureCode = "procedure_code",
+    ///         Quantity = "quantity",
+    ///         Units = ServiceLineUnits.Mj,
+    ///         ClaimId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///     }
+    /// );
+    /// </code></example>
+    public async global::System.Threading.Tasks.Task<ServiceLine> UpsertByExternalIdAsync(
+        string externalId,
+        ServiceLineCreateStandalone request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Put,
+                    Path = string.Format(
+                        "/api/service-lines/v2/external-id/{0}",
+                        ValueConvert.ToPathParameterString(externalId)
+                    ),
+                    Body = request,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<ServiceLine>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
 }
