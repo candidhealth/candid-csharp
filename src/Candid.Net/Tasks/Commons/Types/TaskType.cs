@@ -37,6 +37,8 @@ public readonly record struct TaskType : IStringEnum
 
     public static readonly TaskType MissingEnrollment = new(Values.MissingEnrollment);
 
+    public static readonly TaskType ChargeCaptureUpdate = new(Values.ChargeCaptureUpdate);
+
     public TaskType(string value)
     {
         Value = value;
@@ -107,5 +109,7 @@ public readonly record struct TaskType : IStringEnum
         public const string DenialResolution = "DENIAL_RESOLUTION";
 
         public const string MissingEnrollment = "MISSING_ENROLLMENT";
+
+        public const string ChargeCaptureUpdate = "CHARGE_CAPTURE_UPDATE";
     }
 }

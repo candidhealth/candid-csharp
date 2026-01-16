@@ -58,6 +58,9 @@ public record InsuranceCard : IJsonOnDeserialized
     [JsonPropertyName("payer_plan_group_id")]
     public string? PayerPlanGroupId { get; set; }
 
+    [JsonPropertyName("payer_address")]
+    public StreetAddressLongZip? PayerAddress { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 
