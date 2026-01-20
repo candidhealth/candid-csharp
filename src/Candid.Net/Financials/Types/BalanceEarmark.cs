@@ -5,24 +5,26 @@ using Candid.Net.Core;
 
 namespace Candid.Net.Financials;
 
+/// <summary>
+/// Represents an active balance earmarking record that holds allocated funds for future auto-allocation.
+/// Earmarks are created when funds are allocated but should be held for a specific encounter or date of service.
+/// Only active (non-deleted) earmarks are returned.
+/// </summary>
 [Serializable]
-public record Allocation : IJsonOnDeserialized
+public record BalanceEarmark : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
-    [JsonPropertyName("amount_cents")]
-    public required int AmountCents { get; set; }
-
-    [JsonPropertyName("target")]
-    public required AllocationTarget Target { get; set; }
+    [JsonPropertyName("id")]
+    public required string Id { get; set; }
 
     /// <summary>
-    /// The active earmark created by this allocation, if any. Only present when this allocation created an earmark for future auto-allocation and the earmark has not been deleted.
+    /// The target for this earmark (date of service or external encounter ID)
     /// </summary>
-    [JsonPropertyName("earmark")]
-    public BalanceEarmark? Earmark { get; set; }
+    [JsonPropertyName("target")]
+    public required AllocationEarmarkType Target { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

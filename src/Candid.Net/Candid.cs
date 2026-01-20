@@ -53,7 +53,7 @@ public partial class Candid
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Candid.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Candid.Net/1.17.3" },
+                { "User-Agent", "Candid.Net/1.17.4" },
             }
         );
         clientOptions ??= new ClientOptions();

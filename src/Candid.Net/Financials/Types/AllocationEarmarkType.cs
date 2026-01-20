@@ -9,8 +9,8 @@ using Candid.Net.Core;
 namespace Candid.Net.Financials;
 
 /// <summary>
-/// CURRENTLY UNIMPLEMENTED - Defines how a patient prepayment allocation should be earmarked for future auto-allocation.
-/// When implemented, earmarks will hold the allocation until a matching encounter is created, then attempt to allocate to that encounter.
+/// If enabled for your organization, defines how a patient prepayment allocation should be earmarked for future auto-allocation.
+/// Earmarks hold the allocation until a matching encounter is created, then attempt to allocate to that encounter.
 /// Only applicable for unattributed allocations.
 /// </summary>
 [JsonConverter(typeof(AllocationEarmarkType.JsonConverter))]
