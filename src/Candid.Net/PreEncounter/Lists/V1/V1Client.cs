@@ -47,6 +47,10 @@ public partial class V1Client
         {
             _query["filters"] = request.Filters;
         }
+        if (request.IncludeDeactivated != null)
+        {
+            _query["include_deactivated"] = JsonUtils.Serialize(request.IncludeDeactivated.Value);
+        }
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -115,6 +119,10 @@ public partial class V1Client
         if (request.Filters != null)
         {
             _query["filters"] = request.Filters;
+        }
+        if (request.IncludeDeactivated != null)
+        {
+            _query["include_deactivated"] = JsonUtils.Serialize(request.IncludeDeactivated.Value);
         }
         var response = await _client
             .SendRequestAsync(

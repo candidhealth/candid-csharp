@@ -1,35 +1,34 @@
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
 
-namespace Candid.Net.PreEncounter.Appointments.V1;
+namespace Candid.Net.PreEncounter.Coverages.V1;
 
 [Serializable]
-public record VisitsRequest
+public record CoveragesGetHistoryRequest
 {
     [JsonIgnore]
-    public string? PageToken { get; set; }
+    public DateOnly? Start { get; set; }
 
     [JsonIgnore]
-    public int? Limit { get; set; }
+    public DateOnly? End { get; set; }
 
     /// <summary>
-    /// Defaults to appointment.start_time.
+    /// If true, only returns coverages that have NOT been auto-updated by the system.
     /// </summary>
     [JsonIgnore]
-    public string? SortField { get; set; }
+    public bool? NonAutoUpdatedCoveragesOnly { get; set; }
 
     /// <summary>
-    /// Defaults to ascending.
+    /// Defaults to ascending. Sorts by version.
     /// </summary>
     [JsonIgnore]
     public global::Candid.Net.PreEncounter.Common.SortDirection? SortDirection { get; set; }
 
     /// <summary>
-    /// **Required:** Must include a date filter on appointment.startTimestamp (using gt, lt, or eq operators).
-    /// Example: appointment.startTimestamp|gt|2024-01-01
+    /// Must be between 0 and 1000. No default.
     /// </summary>
     [JsonIgnore]
-    public string? Filters { get; set; }
+    public int? Limit { get; set; }
 
     /// <inheritdoc />
     public override string ToString()

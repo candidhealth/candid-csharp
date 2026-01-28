@@ -30,6 +30,12 @@ public record AppointmentsGetListRequest
     [JsonIgnore]
     public string? Filters { get; set; }
 
+    /// <summary>
+    /// If true, includes deactivated appointments in the results. Defaults to false.
+    /// </summary>
+    [JsonIgnore]
+    public bool? IncludeDeactivated { get; set; }
+
     /// <inheritdoc />
     public override string ToString()
     {

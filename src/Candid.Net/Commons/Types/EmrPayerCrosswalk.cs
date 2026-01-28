@@ -11,6 +11,8 @@ public readonly record struct EmrPayerCrosswalk : IStringEnum
 
     public static readonly EmrPayerCrosswalk Canvas = new(Values.Canvas);
 
+    public static readonly EmrPayerCrosswalk Hl7WebptE34Epic = new(Values.Hl7WebptE34Epic);
+
     public EmrPayerCrosswalk(string value)
     {
         Value = value;
@@ -61,5 +63,7 @@ public readonly record struct EmrPayerCrosswalk : IStringEnum
         public const string Healthie = "HEALTHIE";
 
         public const string Canvas = "CANVAS";
+
+        public const string Hl7WebptE34Epic = "HL7_WEBPT_E34_EPIC";
     }
 }

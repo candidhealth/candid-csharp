@@ -285,17 +285,45 @@ public partial class V1Client
     }
 
     /// <summary>
-    /// Gets a coverage along with it's full history.  The return list is ordered by version ascending.
+    /// Gets a coverage's history. Full history is returned if no filters are
+    /// defined. The return list is ordered by version, defaulting to ascending.
     /// </summary>
     /// <example><code>
-    /// await client.PreEncounter.Coverages.V1.GetHistoryAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+    /// await client.PreEncounter.Coverages.V1.GetHistoryAsync(
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///     new CoveragesGetHistoryRequest()
+    /// );
     /// </code></example>
     public async global::System.Threading.Tasks.Task<IEnumerable<Coverage>> GetHistoryAsync(
         string id,
+        CoveragesGetHistoryRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _query = new Dictionary<string, object>();
+        if (request.Start != null)
+        {
+            _query["start"] = request.Start.Value.ToString(Constants.DateFormat);
+        }
+        if (request.End != null)
+        {
+            _query["end"] = request.End.Value.ToString(Constants.DateFormat);
+        }
+        if (request.NonAutoUpdatedCoveragesOnly != null)
+        {
+            _query["non_auto_updated_coverages_only"] = JsonUtils.Serialize(
+                request.NonAutoUpdatedCoveragesOnly.Value
+            );
+        }
+        if (request.SortDirection != null)
+        {
+            _query["sort_direction"] = request.SortDirection.Value.Stringify();
+        }
+        if (request.Limit != null)
+        {
+            _query["limit"] = request.Limit.Value.ToString();
+        }
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -306,6 +334,7 @@ public partial class V1Client
                         "/coverages/v1/{0}/history",
                         ValueConvert.ToPathParameterString(id)
                     ),
+                    Query = _query,
                     Options = options,
                 },
                 cancellationToken

@@ -772,6 +772,66 @@ public partial class V1Client
     }
 
     /// <summary>
+    /// Gets a patient along with their coverages at a specific point in time. Note that the date passed in is only used to determine what the filing order was for that patient during that time. The actual data returned will always be the latest version of the patient and coverages.
+    /// </summary>
+    /// <example><code>
+    /// await client.PreEncounter.Patients.V1.GetCoverageSnapshotAsync(
+    ///     "id",
+    ///     new GetCoverageSnapshotRequest()
+    /// );
+    /// </code></example>
+    public async global::System.Threading.Tasks.Task<PatientCoverageSnapshot> GetCoverageSnapshotAsync(
+        string id,
+        GetCoverageSnapshotRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _query = new Dictionary<string, object>();
+        if (request.Date != null)
+        {
+            _query["date"] = request.Date.Value.ToString(Constants.DateTimeFormat);
+        }
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Get,
+                    Path = string.Format(
+                        "/patients/v1/{0}/snapshot",
+                        ValueConvert.ToPathParameterString(id)
+                    ),
+                    Query = _query,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<PatientCoverageSnapshot>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    /// <summary>
     /// Updates a patient. The path must contain the next version number to prevent race conditions. For example, if the current version of the patient is n, you will need to send a request to this endpoint with `/{id}/n+1` to update the patient. Updating historic versions is not supported.
     /// </summary>
     /// <example><code>

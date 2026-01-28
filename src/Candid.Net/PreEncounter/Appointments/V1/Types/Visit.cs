@@ -32,6 +32,9 @@ public record Visit : IJsonOnDeserialized
     [JsonPropertyName("primary_coverage_status")]
     public CoverageStatus? PrimaryCoverageStatus { get; set; }
 
+    [JsonPropertyName("secondary_coverage_status")]
+    public CoverageStatus? SecondaryCoverageStatus { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

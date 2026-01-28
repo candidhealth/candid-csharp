@@ -27,6 +27,12 @@ public record PatientListRequest
     [JsonIgnore]
     public string? Filters { get; set; }
 
+    /// <summary>
+    /// If true, includes deactivated patients in the results. Defaults to false.
+    /// </summary>
+    [JsonIgnore]
+    public bool? IncludeDeactivated { get; set; }
+
     /// <inheritdoc />
     public override string ToString()
     {

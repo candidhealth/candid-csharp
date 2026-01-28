@@ -99,6 +99,12 @@ public record GetAllEncountersRequest
     [JsonIgnore]
     public string? PatientExternalId { get; set; }
 
+    /// <summary>
+    /// If true and patient_external_id is set, then also include the encounters of all alternative patients.
+    /// </summary>
+    [JsonIgnore]
+    public bool? IncludeMergedPatientData { get; set; }
+
     /// <inheritdoc />
     public override string ToString()
     {

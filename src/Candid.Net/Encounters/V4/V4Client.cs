@@ -106,6 +106,12 @@ public partial class V4Client
         {
             _query["patient_external_id"] = request.PatientExternalId;
         }
+        if (request.IncludeMergedPatientData != null)
+        {
+            _query["include_merged_patient_data"] = JsonUtils.Serialize(
+                request.IncludeMergedPatientData.Value
+            );
+        }
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest

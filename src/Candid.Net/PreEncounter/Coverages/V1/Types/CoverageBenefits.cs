@@ -24,6 +24,9 @@ public record CoverageBenefits : IJsonOnDeserialized
     [JsonPropertyName("notes")]
     public string? Notes { get; set; }
 
+    [JsonPropertyName("autoUpdatedEligibilityCheckId")]
+    public string? AutoUpdatedEligibilityCheckId { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

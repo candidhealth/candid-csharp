@@ -12,6 +12,12 @@ public record ServiceLineEraData : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    /// <summary>
+    /// Deprecated. This field aggregates all CARCs across a service line's history
+    /// without granular context
+    /// (e.g., which CARCs relate to denials vs. payments vs. reversals), making it
+    /// unsuitable for denial analysis or operational workflows.
+    /// </summary>
     [JsonPropertyName("service_line_adjustments")]
     public IEnumerable<ServiceLineAdjustment> ServiceLineAdjustments { get; set; } =
         new List<ServiceLineAdjustment>();

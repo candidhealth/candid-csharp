@@ -2,33 +2,28 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Candid.Net;
 using Candid.Net.Core;
-using Candid.Net.PreEncounter.Appointments.V1;
 using Candid.Net.PreEncounter.Coverages.V1;
-using Candid.Net.PreEncounter.Patients.V1;
 
-namespace Candid.Net.PreEncounter.Lists.V1;
+namespace Candid.Net.PreEncounter.Patients.V1;
 
 [Serializable]
-public record AppointmentListItem : IJsonOnDeserialized
+public record PatientCoverageSnapshot : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
-    [JsonPropertyName("appointment")]
-    public required Appointment Appointment { get; set; }
-
     [JsonPropertyName("patient")]
-    public required MutablePatientWithMrn Patient { get; set; }
+    public required Patient Patient { get; set; }
 
     [JsonPropertyName("primary_coverage")]
-    public MutableCoverage? PrimaryCoverage { get; set; }
+    public Coverage? PrimaryCoverage { get; set; }
 
     [JsonPropertyName("secondary_coverage")]
-    public MutableCoverage? SecondaryCoverage { get; set; }
+    public Coverage? SecondaryCoverage { get; set; }
 
-    [JsonPropertyName("primary_service_type")]
-    public UniversalServiceIdentifier? PrimaryServiceType { get; set; }
+    [JsonPropertyName("tertiary_coverage")]
+    public Coverage? TertiaryCoverage { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

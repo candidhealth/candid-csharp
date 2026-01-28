@@ -9312,6 +9312,17 @@ await client.PreEncounter.Appointments.V1.CreateAsync(
 <dd>
 
 Gets all Visits within a given time range. The return list is ordered by start_time ascending.
+
+**IMPORTANT:** This endpoint requires a date filter on `appointment.startTimestamp` to ensure acceptable query performance.
+Without date filtering, the query can take 50+ seconds on large datasets due to grouping and aggregation operations.
+
+Example filters:
+- `appointment.startTimestamp|gt|2024-01-01` - appointments after January 1, 2024
+- `appointment.startTimestamp|eq|2024-12-08` - appointments on December 8, 2024
+- `appointment.startTimestamp|lt|2024-12-31` - appointments before December 31, 2024
+
+You can combine the date filter with other filters using commas:
+- `appointment.startTimestamp|gt|2024-01-01,appointment.status|eq|PENDING`
 </dd>
 </dl>
 </dd>
@@ -9944,7 +9955,7 @@ await client.PreEncounter.Coverages.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9
 </dl>
 </details>
 
-<details><summary><code>client.PreEncounter.Coverages.V1.<a href="/src/Candid.Net/PreEncounter/Coverages/V1/V1Client.cs">GetHistoryAsync</a>(id) -> IEnumerable&lt;global::Candid.Net.PreEncounter.Coverages.V1.Coverage&gt;</code></summary>
+<details><summary><code>client.PreEncounter.Coverages.V1.<a href="/src/Candid.Net/PreEncounter/Coverages/V1/V1Client.cs">GetHistoryAsync</a>(id, global::Candid.Net.PreEncounter.Coverages.V1.CoveragesGetHistoryRequest { ... }) -> IEnumerable&lt;global::Candid.Net.PreEncounter.Coverages.V1.Coverage&gt;</code></summary>
 <dl>
 <dd>
 
@@ -9956,7 +9967,8 @@ await client.PreEncounter.Coverages.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9
 <dl>
 <dd>
 
-Gets a coverage along with it's full history.  The return list is ordered by version ascending.
+Gets a coverage's history. Full history is returned if no filters are 
+defined. The return list is ordered by version, defaulting to ascending.
 </dd>
 </dl>
 </dd>
@@ -9971,7 +9983,10 @@ Gets a coverage along with it's full history.  The return list is ordered by ver
 <dd>
 
 ```csharp
-await client.PreEncounter.Coverages.V1.GetHistoryAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+await client.PreEncounter.Coverages.V1.GetHistoryAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new CoveragesGetHistoryRequest()
+);
 ```
 </dd>
 </dl>
@@ -9987,6 +10002,14 @@ await client.PreEncounter.Coverages.V1.GetHistoryAsync("d5e9c84f-c2b2-4bf4-b4b0-
 <dd>
 
 **id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `global::Candid.Net.PreEncounter.Coverages.V1.CoveragesGetHistoryRequest` 
     
 </dd>
 </dl>
@@ -12114,6 +12137,71 @@ await client.PreEncounter.Patients.V1.GetHistoryAsync("id");
 <dd>
 
 **id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PreEncounter.Patients.V1.<a href="/src/Candid.Net/PreEncounter/Patients/V1/V1Client.cs">GetCoverageSnapshotAsync</a>(id, global::Candid.Net.PreEncounter.Patients.V1.GetCoverageSnapshotRequest { ... }) -> global::Candid.Net.PreEncounter.Patients.V1.PatientCoverageSnapshot</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets a patient along with their coverages at a specific point in time. Note that the date passed in is only used to determine what the filing order was for that patient during that time. The actual data returned will always be the latest version of the patient and coverages.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreEncounter.Patients.V1.GetCoverageSnapshotAsync(
+    "id",
+    new GetCoverageSnapshotRequest()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `global::Candid.Net.PreEncounter.Patients.V1.GetCoverageSnapshotRequest` 
     
 </dd>
 </dl>

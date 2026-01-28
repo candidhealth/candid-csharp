@@ -29,6 +29,12 @@ public record PatientListItem : IJsonOnDeserialized
     [JsonPropertyName("next_appointment")]
     public MutableAppointment? NextAppointment { get; set; }
 
+    [JsonPropertyName("primary_mrn")]
+    public string? PrimaryMrn { get; set; }
+
+    [JsonPropertyName("alternative_mrns")]
+    public IEnumerable<string> AlternativeMrns { get; set; } = new List<string>();
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 
