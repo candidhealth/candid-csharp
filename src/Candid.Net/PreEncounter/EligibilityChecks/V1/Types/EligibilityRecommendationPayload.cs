@@ -41,6 +41,26 @@ public record EligibilityRecommendationPayload
     }
 
     /// <summary>
+    /// Create an instance of EligibilityRecommendationPayload with <see cref="EligibilityRecommendationPayload.CopayEstimation"/>.
+    /// </summary>
+    public EligibilityRecommendationPayload(EligibilityRecommendationPayload.CopayEstimation value)
+    {
+        Type = "COPAY_ESTIMATION";
+        Value = value.Value;
+    }
+
+    /// <summary>
+    /// Create an instance of EligibilityRecommendationPayload with <see cref="EligibilityRecommendationPayload.UserConfiguredPrompts"/>.
+    /// </summary>
+    public EligibilityRecommendationPayload(
+        EligibilityRecommendationPayload.UserConfiguredPrompts value
+    )
+    {
+        Type = "USER_CONFIGURED_PROMPTS";
+        Value = value.Value;
+    }
+
+    /// <summary>
     /// Discriminant value
     /// </summary>
     [JsonPropertyName("type")]
@@ -60,6 +80,16 @@ public record EligibilityRecommendationPayload
     /// Returns true if <see cref="Type"/> is "COORDINATION_OF_BENEFITS"
     /// </summary>
     public bool IsCoordinationOfBenefits => Type == "COORDINATION_OF_BENEFITS";
+
+    /// <summary>
+    /// Returns true if <see cref="Type"/> is "COPAY_ESTIMATION"
+    /// </summary>
+    public bool IsCopayEstimation => Type == "COPAY_ESTIMATION";
+
+    /// <summary>
+    /// Returns true if <see cref="Type"/> is "USER_CONFIGURED_PROMPTS"
+    /// </summary>
+    public bool IsUserConfiguredPrompts => Type == "USER_CONFIGURED_PROMPTS";
 
     /// <summary>
     /// Returns the value as a <see cref="global::Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation"/> if <see cref="Type"/> is 'MEDICARE_ADVANTAGE', otherwise throws an exception.
@@ -85,6 +115,30 @@ public record EligibilityRecommendationPayload
                 "EligibilityRecommendationPayload.Type is not 'COORDINATION_OF_BENEFITS'"
             );
 
+    /// <summary>
+    /// Returns the value as a <see cref="global::Candid.Net.PreEncounter.EligibilityChecks.V1.CopayEstimationRecommendation"/> if <see cref="Type"/> is 'COPAY_ESTIMATION', otherwise throws an exception.
+    /// </summary>
+    /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'COPAY_ESTIMATION'.</exception>
+    public global::Candid.Net.PreEncounter.EligibilityChecks.V1.CopayEstimationRecommendation AsCopayEstimation() =>
+        IsCopayEstimation
+            ? (global::Candid.Net.PreEncounter.EligibilityChecks.V1.CopayEstimationRecommendation)
+                Value!
+            : throw new global::System.Exception(
+                "EligibilityRecommendationPayload.Type is not 'COPAY_ESTIMATION'"
+            );
+
+    /// <summary>
+    /// Returns the value as a <see cref="global::Candid.Net.PreEncounter.EligibilityChecks.V1.UserConfiguredPromptsRecommendation"/> if <see cref="Type"/> is 'USER_CONFIGURED_PROMPTS', otherwise throws an exception.
+    /// </summary>
+    /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'USER_CONFIGURED_PROMPTS'.</exception>
+    public global::Candid.Net.PreEncounter.EligibilityChecks.V1.UserConfiguredPromptsRecommendation AsUserConfiguredPrompts() =>
+        IsUserConfiguredPrompts
+            ? (global::Candid.Net.PreEncounter.EligibilityChecks.V1.UserConfiguredPromptsRecommendation)
+                Value!
+            : throw new global::System.Exception(
+                "EligibilityRecommendationPayload.Type is not 'USER_CONFIGURED_PROMPTS'"
+            );
+
     public T Match<T>(
         Func<
             global::Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation,
@@ -94,6 +148,14 @@ public record EligibilityRecommendationPayload
             global::Candid.Net.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsRecommendation,
             T
         > onCoordinationOfBenefits,
+        Func<
+            global::Candid.Net.PreEncounter.EligibilityChecks.V1.CopayEstimationRecommendation,
+            T
+        > onCopayEstimation,
+        Func<
+            global::Candid.Net.PreEncounter.EligibilityChecks.V1.UserConfiguredPromptsRecommendation,
+            T
+        > onUserConfiguredPrompts,
         Func<string, object?, T> onUnknown_
     )
     {
@@ -101,6 +163,8 @@ public record EligibilityRecommendationPayload
         {
             "MEDICARE_ADVANTAGE" => onMedicareAdvantage(AsMedicareAdvantage()),
             "COORDINATION_OF_BENEFITS" => onCoordinationOfBenefits(AsCoordinationOfBenefits()),
+            "COPAY_ESTIMATION" => onCopayEstimation(AsCopayEstimation()),
+            "USER_CONFIGURED_PROMPTS" => onUserConfiguredPrompts(AsUserConfiguredPrompts()),
             _ => onUnknown_(Type, Value),
         };
     }
@@ -108,6 +172,8 @@ public record EligibilityRecommendationPayload
     public void Visit(
         Action<global::Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation> onMedicareAdvantage,
         Action<global::Candid.Net.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsRecommendation> onCoordinationOfBenefits,
+        Action<global::Candid.Net.PreEncounter.EligibilityChecks.V1.CopayEstimationRecommendation> onCopayEstimation,
+        Action<global::Candid.Net.PreEncounter.EligibilityChecks.V1.UserConfiguredPromptsRecommendation> onUserConfiguredPrompts,
         Action<string, object?> onUnknown_
     )
     {
@@ -118,6 +184,12 @@ public record EligibilityRecommendationPayload
                 break;
             case "COORDINATION_OF_BENEFITS":
                 onCoordinationOfBenefits(AsCoordinationOfBenefits());
+                break;
+            case "COPAY_ESTIMATION":
+                onCopayEstimation(AsCopayEstimation());
+                break;
+            case "USER_CONFIGURED_PROMPTS":
+                onUserConfiguredPrompts(AsUserConfiguredPrompts());
                 break;
             default:
                 onUnknown_(Type, Value);
@@ -161,6 +233,42 @@ public record EligibilityRecommendationPayload
         return false;
     }
 
+    /// <summary>
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.PreEncounter.EligibilityChecks.V1.CopayEstimationRecommendation"/> and returns true if successful.
+    /// </summary>
+    public bool TryAsCopayEstimation(
+        out global::Candid.Net.PreEncounter.EligibilityChecks.V1.CopayEstimationRecommendation? value
+    )
+    {
+        if (Type == "COPAY_ESTIMATION")
+        {
+            value =
+                (global::Candid.Net.PreEncounter.EligibilityChecks.V1.CopayEstimationRecommendation)
+                    Value!;
+            return true;
+        }
+        value = null;
+        return false;
+    }
+
+    /// <summary>
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.PreEncounter.EligibilityChecks.V1.UserConfiguredPromptsRecommendation"/> and returns true if successful.
+    /// </summary>
+    public bool TryAsUserConfiguredPrompts(
+        out global::Candid.Net.PreEncounter.EligibilityChecks.V1.UserConfiguredPromptsRecommendation? value
+    )
+    {
+        if (Type == "USER_CONFIGURED_PROMPTS")
+        {
+            value =
+                (global::Candid.Net.PreEncounter.EligibilityChecks.V1.UserConfiguredPromptsRecommendation)
+                    Value!;
+            return true;
+        }
+        value = null;
+        return false;
+    }
+
     public override string ToString() => JsonUtils.Serialize(this);
 
     public static implicit operator EligibilityRecommendationPayload(
@@ -169,6 +277,14 @@ public record EligibilityRecommendationPayload
 
     public static implicit operator EligibilityRecommendationPayload(
         EligibilityRecommendationPayload.CoordinationOfBenefits value
+    ) => new(value);
+
+    public static implicit operator EligibilityRecommendationPayload(
+        EligibilityRecommendationPayload.CopayEstimation value
+    ) => new(value);
+
+    public static implicit operator EligibilityRecommendationPayload(
+        EligibilityRecommendationPayload.UserConfiguredPrompts value
     ) => new(value);
 
     [Serializable]
@@ -220,6 +336,20 @@ public record EligibilityRecommendationPayload
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsRecommendation"
                         ),
+                "COPAY_ESTIMATION" =>
+                    json.Deserialize<global::Candid.Net.PreEncounter.EligibilityChecks.V1.CopayEstimationRecommendation?>(
+                        options
+                    )
+                        ?? throw new JsonException(
+                            "Failed to deserialize global::Candid.Net.PreEncounter.EligibilityChecks.V1.CopayEstimationRecommendation"
+                        ),
+                "USER_CONFIGURED_PROMPTS" =>
+                    json.Deserialize<global::Candid.Net.PreEncounter.EligibilityChecks.V1.UserConfiguredPromptsRecommendation?>(
+                        options
+                    )
+                        ?? throw new JsonException(
+                            "Failed to deserialize global::Candid.Net.PreEncounter.EligibilityChecks.V1.UserConfiguredPromptsRecommendation"
+                        ),
                 _ => json.Deserialize<object?>(options),
             };
             return new EligibilityRecommendationPayload(discriminator, value);
@@ -236,6 +366,11 @@ public record EligibilityRecommendationPayload
                 {
                     "MEDICARE_ADVANTAGE" => JsonSerializer.SerializeToNode(value.Value, options),
                     "COORDINATION_OF_BENEFITS" => JsonSerializer.SerializeToNode(
+                        value.Value,
+                        options
+                    ),
+                    "COPAY_ESTIMATION" => JsonSerializer.SerializeToNode(value.Value, options),
+                    "USER_CONFIGURED_PROMPTS" => JsonSerializer.SerializeToNode(
                         value.Value,
                         options
                     ),
@@ -287,6 +422,50 @@ public record EligibilityRecommendationPayload
 
         public static implicit operator EligibilityRecommendationPayload.CoordinationOfBenefits(
             global::Candid.Net.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsRecommendation value
+        ) => new(value);
+    }
+
+    /// <summary>
+    /// Discriminated union type for COPAY_ESTIMATION
+    /// </summary>
+    [Serializable]
+    public struct CopayEstimation
+    {
+        public CopayEstimation(
+            global::Candid.Net.PreEncounter.EligibilityChecks.V1.CopayEstimationRecommendation value
+        )
+        {
+            Value = value;
+        }
+
+        internal global::Candid.Net.PreEncounter.EligibilityChecks.V1.CopayEstimationRecommendation Value { get; set; }
+
+        public override string ToString() => Value.ToString() ?? "null";
+
+        public static implicit operator EligibilityRecommendationPayload.CopayEstimation(
+            global::Candid.Net.PreEncounter.EligibilityChecks.V1.CopayEstimationRecommendation value
+        ) => new(value);
+    }
+
+    /// <summary>
+    /// Discriminated union type for USER_CONFIGURED_PROMPTS
+    /// </summary>
+    [Serializable]
+    public struct UserConfiguredPrompts
+    {
+        public UserConfiguredPrompts(
+            global::Candid.Net.PreEncounter.EligibilityChecks.V1.UserConfiguredPromptsRecommendation value
+        )
+        {
+            Value = value;
+        }
+
+        internal global::Candid.Net.PreEncounter.EligibilityChecks.V1.UserConfiguredPromptsRecommendation Value { get; set; }
+
+        public override string ToString() => Value.ToString() ?? "null";
+
+        public static implicit operator EligibilityRecommendationPayload.UserConfiguredPrompts(
+            global::Candid.Net.PreEncounter.EligibilityChecks.V1.UserConfiguredPromptsRecommendation value
         ) => new(value);
     }
 }

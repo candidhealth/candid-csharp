@@ -52,6 +52,12 @@ public record Authorization : IJsonOnDeserialized
     [JsonPropertyName("notes")]
     public string? Notes { get; set; }
 
+    /// <summary>
+    /// The NPI of the billing provider for which this authorization applies.
+    /// </summary>
+    [JsonPropertyName("billing_provider_npi")]
+    public string? BillingProviderNpi { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

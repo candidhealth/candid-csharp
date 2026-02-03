@@ -21,11 +21,20 @@ public record EligibilityRecommendation : IJsonOnDeserialized
     [JsonPropertyName("id")]
     public required string Id { get; set; }
 
+    [JsonPropertyName("eligibility_check_id")]
+    public required string EligibilityCheckId { get; set; }
+
     [JsonPropertyName("recommendation")]
     public required EligibilityRecommendationPayload Recommendation { get; set; }
 
     [JsonPropertyName("patient")]
     public required EligibilityRecommendationPatientInfo Patient { get; set; }
+
+    /// <summary>
+    /// User feedback on this recommendation
+    /// </summary>
+    [JsonPropertyName("vote")]
+    public Vote? Vote { get; set; }
 
     /// <summary>
     /// The organization that owns this object.

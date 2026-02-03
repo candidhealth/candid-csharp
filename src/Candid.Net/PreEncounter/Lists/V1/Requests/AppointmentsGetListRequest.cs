@@ -36,6 +36,12 @@ public record AppointmentsGetListRequest
     [JsonIgnore]
     public bool? IncludeDeactivated { get; set; }
 
+    /// <summary>
+    /// If true and a patient id is specified, then also include appointments from any alternative patients that are merged into this patient. Defaults to false.
+    /// </summary>
+    [JsonIgnore]
+    public bool? IncludeMergedPatientData { get; set; }
+
     /// <inheritdoc />
     public override string ToString()
     {

@@ -2,31 +2,21 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Candid.Net;
 using Candid.Net.Core;
-using Candid.Net.PreEncounter.Coverages.V1;
 
 namespace Candid.Net.PreEncounter.Patients.V1;
 
+/// <summary>
+/// Additional coverages for the patient applicable to related causes such as Auto or Workers Comp
+/// </summary>
 [Serializable]
-public record PatientCoverageSnapshot : IJsonOnDeserialized
+public record CoveragesForRelatedCauses : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
-    [JsonPropertyName("patient")]
-    public required Patient Patient { get; set; }
-
-    [JsonPropertyName("primary_coverage")]
-    public Coverage? PrimaryCoverage { get; set; }
-
-    [JsonPropertyName("secondary_coverage")]
-    public Coverage? SecondaryCoverage { get; set; }
-
-    [JsonPropertyName("tertiary_coverage")]
-    public Coverage? TertiaryCoverage { get; set; }
-
-    [JsonPropertyName("coverages_for_related_causes")]
-    public IEnumerable<Coverage> CoveragesForRelatedCauses { get; set; } = new List<Coverage>();
+    [JsonPropertyName("coverages")]
+    public IEnumerable<string> Coverages { get; set; } = new List<string>();
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

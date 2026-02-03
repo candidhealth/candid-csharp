@@ -158,6 +158,18 @@ public record EncounterUpdate : IJsonOnDeserialized
     public RelatedCausesInformationUpdate? RelatedCausesInformation { get; set; }
 
     /// <summary>
+    /// 837p Loop2010 REF02, CMS1500 Box 11b
+    /// </summary>
+    [JsonPropertyName("property_casualty_claim_number")]
+    public string? PropertyCasualtyClaimNumber { get; set; }
+
+    /// <summary>
+    /// 837p Loop2300 DTP*439, CMS1500 Box 15
+    /// </summary>
+    [JsonPropertyName("accident_date")]
+    public DateOnly? AccidentDate { get; set; }
+
+    /// <summary>
     /// Whether this patient has authorized insurance payments to be made to you, not them. If false, patient may receive reimbursement. Box 13 on the CMS-1500 claim form or Form Locator 53 on a UB-04 claim form.
     /// </summary>
     [JsonPropertyName("benefits_assigned_to_provider")]

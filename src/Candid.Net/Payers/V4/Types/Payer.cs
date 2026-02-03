@@ -44,6 +44,10 @@ public record Payer : IJsonOnDeserialized
     [JsonPropertyName("street_address")]
     public StreetAddressLongZip? StreetAddress { get; set; }
 
+    [JsonPropertyName("alternate_payer_addresses")]
+    public IEnumerable<StreetAddressLongZip> AlternatePayerAddresses { get; set; } =
+        new List<StreetAddressLongZip>();
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

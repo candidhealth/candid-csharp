@@ -189,6 +189,18 @@ public record UniversalEncounterCreateFromPreEncounter : IJsonOnDeserialized
     public RelatedCausesInformationCreate? RelatedCausesInformation { get; set; }
 
     /// <summary>
+    /// 837p Loop2010 REF02, CMS1500 Box 11b
+    /// </summary>
+    [JsonPropertyName("property_casualty_claim_number")]
+    public string? PropertyCasualtyClaimNumber { get; set; }
+
+    /// <summary>
+    /// 837p Loop2300 DTP*439, CMS1500 Box 15
+    /// </summary>
+    [JsonPropertyName("accident_date")]
+    public DateOnly? AccidentDate { get; set; }
+
+    /// <summary>
     /// A client-specified unique ID to associate with this encounter;
     /// for example, your internal encounter ID or a Dr. Chrono encounter ID.
     /// This field should not contain PHI.

@@ -124,6 +124,12 @@ public partial class V1Client
         {
             _query["include_deactivated"] = JsonUtils.Serialize(request.IncludeDeactivated.Value);
         }
+        if (request.IncludeMergedPatientData != null)
+        {
+            _query["include_merged_patient_data"] = JsonUtils.Serialize(
+                request.IncludeMergedPatientData.Value
+            );
+        }
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest

@@ -372,4 +372,62 @@ public partial class V1Client
             );
         }
     }
+
+    /// <summary>
+    /// Submit user feedback on an eligibility recommendation. The path must contain the next version number to prevent race conditions. For example, if the current version of the recommendation is n, you will need to send a request to this endpoint with `/{recommendation_id}/{n+1}/vote` to update the vote.
+    /// </summary>
+    /// <example><code>
+    /// await client.PreEncounter.EligibilityChecks.V1.VoteRecommendationAsync(
+    ///     "recommendation_id",
+    ///     "version",
+    ///     new Vote { UserId = "user_id", Value = VoteValue.Good }
+    /// );
+    /// </code></example>
+    public async global::System.Threading.Tasks.Task<EligibilityRecommendation> VoteRecommendationAsync(
+        string recommendationId,
+        string version,
+        Vote request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Put,
+                    Path = string.Format(
+                        "/eligibility-checks/v1/recommendation/{0}/{1}/vote",
+                        ValueConvert.ToPathParameterString(recommendationId),
+                        ValueConvert.ToPathParameterString(version)
+                    ),
+                    Body = request,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<EligibilityRecommendation>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
 }

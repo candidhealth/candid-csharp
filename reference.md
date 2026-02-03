@@ -10725,6 +10725,80 @@ await client.PreEncounter.EligibilityChecks.V1.CreateRecommendationAsync(
 </dl>
 </details>
 
+<details><summary><code>client.PreEncounter.EligibilityChecks.V1.<a href="/src/Candid.Net/PreEncounter/EligibilityChecks/V1/V1Client.cs">VoteRecommendationAsync</a>(recommendationId, version, global::Candid.Net.PreEncounter.EligibilityChecks.V1.Vote { ... }) -> global::Candid.Net.PreEncounter.EligibilityChecks.V1.EligibilityRecommendation</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Submit user feedback on an eligibility recommendation. The path must contain the next version number to prevent race conditions. For example, if the current version of the recommendation is n, you will need to send a request to this endpoint with `/{recommendation_id}/{n+1}/vote` to update the vote.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreEncounter.EligibilityChecks.V1.VoteRecommendationAsync(
+    "recommendation_id",
+    "version",
+    new Vote { UserId = "user_id", Value = VoteValue.Good }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**recommendationId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**version:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `global::Candid.Net.PreEncounter.EligibilityChecks.V1.Vote` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## PreEncounter Images V1
 <details><summary><code>client.PreEncounter.Images.V1.<a href="/src/Candid.Net/PreEncounter/Images/V1/V1Client.cs">CreateAsync</a>(global::Candid.Net.PreEncounter.Images.V1.MutableImage { ... }) -> global::Candid.Net.PreEncounter.Images.V1.Image</code></summary>
 <dl>

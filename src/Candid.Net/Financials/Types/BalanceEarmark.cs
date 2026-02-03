@@ -26,6 +26,18 @@ public record BalanceEarmark : IJsonOnDeserialized
     [JsonPropertyName("target")]
     public required AllocationEarmarkType Target { get; set; }
 
+    /// <summary>
+    /// The amount earmarked in cents for future allocation
+    /// </summary>
+    [JsonPropertyName("amount_earmarked_cents")]
+    public int? AmountEarmarkedCents { get; set; }
+
+    /// <summary>
+    /// The ID of the allocation that created this earmark
+    /// </summary>
+    [JsonPropertyName("created_by_allocation_id")]
+    public string? CreatedByAllocationId { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

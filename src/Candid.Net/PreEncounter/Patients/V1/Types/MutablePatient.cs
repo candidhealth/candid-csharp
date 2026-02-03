@@ -138,6 +138,9 @@ public record MutablePatient : IJsonOnDeserialized
     [JsonPropertyName("filing_order")]
     public required FilingOrder FilingOrder { get; set; }
 
+    [JsonPropertyName("coverages_for_related_causes")]
+    public CoveragesForRelatedCauses? CoveragesForRelatedCauses { get; set; }
+
     [JsonPropertyName("non_insurance_payers")]
     public IEnumerable<string>? NonInsurancePayers { get; set; }
 

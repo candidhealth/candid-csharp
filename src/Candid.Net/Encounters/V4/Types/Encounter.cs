@@ -127,6 +127,18 @@ public record Encounter : IJsonOnDeserialized
     public RelatedCausesInformation? RelatedCausesInformation { get; set; }
 
     /// <summary>
+    /// 837p Loop2010 REF02, CMS1500 Box 11b
+    /// </summary>
+    [JsonPropertyName("property_casualty_claim_number")]
+    public string? PropertyCasualtyClaimNumber { get; set; }
+
+    /// <summary>
+    /// 837p Loop2300 DTP*439, CMS1500 Box 15
+    /// </summary>
+    [JsonPropertyName("accident_date")]
+    public DateOnly? AccidentDate { get; set; }
+
+    /// <summary>
     /// Describes the currently expected target form for this encounter.  This effects what validations and queues the form is processed under.  When this value is not set, it should be assumed to be TARGET_PROFESSIONAL.
     /// </summary>
     [JsonPropertyName("submission_expectation")]
