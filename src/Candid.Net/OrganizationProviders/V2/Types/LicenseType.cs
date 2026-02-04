@@ -213,6 +213,10 @@ public readonly record struct LicenseType : IStringEnum
 
     public static readonly LicenseType Aud = new(Values.Aud);
 
+    public static readonly LicenseType Atc = new(Values.Atc);
+
+    public static readonly LicenseType Lat = new(Values.Lat);
+
     public LicenseType(string value)
     {
         Value = value;
@@ -465,5 +469,9 @@ public readonly record struct LicenseType : IStringEnum
         public const string Mdphd = "MDPHD";
 
         public const string Aud = "AuD";
+
+        public const string Atc = "ATC";
+
+        public const string Lat = "LAT";
     }
 }
