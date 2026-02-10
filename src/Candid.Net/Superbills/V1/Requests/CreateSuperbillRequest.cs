@@ -31,6 +31,12 @@ public record CreateSuperbillRequest
     [JsonPropertyName("pay_to_address")]
     public StreetAddressShortZip? PayToAddress { get; set; }
 
+    /// <summary>
+    /// Output format for the superbill. Defaults to DOCX if not specified.
+    /// </summary>
+    [JsonPropertyName("output_format")]
+    public SuperbillOutputFormat? OutputFormat { get; set; }
+
     /// <inheritdoc />
     public override string ToString()
     {

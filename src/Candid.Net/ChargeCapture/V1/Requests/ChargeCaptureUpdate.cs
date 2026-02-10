@@ -48,6 +48,12 @@ public record ChargeCaptureUpdate
     [JsonPropertyName("status")]
     public ChargeCaptureStatus? Status { get; set; }
 
+    /// <summary>
+    /// Provide external attachment IDs which have been uploaded to Candid. They will be associated with the Encounter at Encounter creation time.
+    /// </summary>
+    [JsonPropertyName("attachment_external_document_ids")]
+    public IEnumerable<string>? AttachmentExternalDocumentIds { get; set; }
+
     /// <inheritdoc />
     public override string ToString()
     {

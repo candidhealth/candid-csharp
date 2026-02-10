@@ -9,6 +9,8 @@ public readonly record struct RefundReason : IStringEnum
 {
     public static readonly RefundReason Overcharged = new(Values.Overcharged);
 
+    public static readonly RefundReason EnteredInError = new(Values.EnteredInError);
+
     public RefundReason(string value)
     {
         Value = value;
@@ -57,5 +59,7 @@ public readonly record struct RefundReason : IStringEnum
     public static class Values
     {
         public const string Overcharged = "OVERCHARGED";
+
+        public const string EnteredInError = "ENTERED_IN_ERROR";
     }
 }

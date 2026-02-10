@@ -160,6 +160,57 @@ public partial class V1Client
         }
     }
 
+    /// <summary>
+    /// Uploads a file using an external identifier. For Charge Capture, the file will be associated with the Encounter at Encounter creation time.
+    ///
+    /// Note: Attachments created via this endpoint are not searchable via the get endpoint until they are associated with an encounter.
+    /// </summary>
+    public async global::System.Threading.Tasks.Task<string> CreateWithChargeCaptureExternalIdAsync(
+        CreateExternalAttachmentRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var multipartFormRequest_ = new MultipartFormRequest
+        {
+            BaseUrl = _client.Options.Environment.CandidApi,
+            Method = HttpMethod.Post,
+            Path = "/api/encounter-attachments/v1/create-from-charge-capture-external-id",
+            Options = options,
+        };
+        multipartFormRequest_.AddStringPart(
+            "charge_capture_external_id",
+            request.ChargeCaptureExternalId
+        );
+        multipartFormRequest_.AddFileParameterPart("attachment_file", request.AttachmentFile);
+        multipartFormRequest_.AddJsonPart("attachment_type", request.AttachmentType);
+        multipartFormRequest_.AddStringPart("description", request.Description);
+        var response = await _client
+            .SendRequestAsync(multipartFormRequest_, cancellationToken)
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<string>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
     /// <example><code>
     /// await client.EncounterAttachments.V1.DeleteAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
