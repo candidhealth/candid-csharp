@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 using Candid.Net;
 using Candid.Net.Core;
 
-namespace Candid.Net.RelatedCausesInformation.V1;
+namespace Candid.Net.RelatedCauses.V1;
 
 [Serializable]
 public record RelatedCausesInformation : IJsonOnDeserialized

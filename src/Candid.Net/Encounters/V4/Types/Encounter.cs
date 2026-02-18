@@ -8,7 +8,8 @@ using Candid.Net.Core;
 using Candid.Net.CustomSchemas.V1;
 using Candid.Net.Diagnoses;
 using Candid.Net.EncounterProviders.V2;
-using Candid.Net.RelatedCausesInformation.V1;
+using Candid.Net.PropertyAndCasualty.V1;
+using Candid.Net.RelatedCauses.V1;
 using Candid.Net.ServiceFacility;
 using Candid.Net.X12.V1;
 
@@ -137,6 +138,13 @@ public record Encounter : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("accident_date")]
     public DateOnly? AccidentDate { get; set; }
+
+    /// <summary>
+    /// Patient identifier for Property and Casualty claims.
+    /// 837p Loop2010CA
+    /// </summary>
+    [JsonPropertyName("property_casualty_patient_identifier")]
+    public PropertyCasualtyPatientIdentifier? PropertyCasualtyPatientIdentifier { get; set; }
 
     /// <summary>
     /// Describes the currently expected target form for this encounter.  This effects what validations and queues the form is processed under.  When this value is not set, it should be assumed to be TARGET_PROFESSIONAL.

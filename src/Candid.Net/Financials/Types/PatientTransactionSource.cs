@@ -23,6 +23,8 @@ public readonly record struct PatientTransactionSource : IStringEnum
 
     public static readonly PatientTransactionSource Reallocation = new(Values.Reallocation);
 
+    public static readonly PatientTransactionSource Phreesia = new(Values.Phreesia);
+
     public PatientTransactionSource(string value)
     {
         Value = value;
@@ -85,5 +87,7 @@ public readonly record struct PatientTransactionSource : IStringEnum
         public const string Healthie = "HEALTHIE";
 
         public const string Reallocation = "REALLOCATION";
+
+        public const string Phreesia = "PHREESIA";
     }
 }

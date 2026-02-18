@@ -37,6 +37,12 @@ public record CreateSuperbillRequest
     [JsonPropertyName("output_format")]
     public SuperbillOutputFormat? OutputFormat { get; set; }
 
+    /// <summary>
+    /// If true will include claims from any alternative patients the given patient_external_id has.
+    /// </summary>
+    [JsonPropertyName("include_merged_patient_data")]
+    public bool? IncludeMergedPatientData { get; set; }
+
     /// <inheritdoc />
     public override string ToString()
     {

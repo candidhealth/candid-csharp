@@ -8,7 +8,8 @@ using Candid.Net.Core;
 using Candid.Net.CustomSchemas.V1;
 using Candid.Net.EncounterProviders.V2;
 using Candid.Net.Encounters.V4;
-using Candid.Net.RelatedCausesInformation.V1;
+using Candid.Net.PropertyAndCasualty.V1;
+using Candid.Net.RelatedCauses.V1;
 using Candid.Net.ServiceFacility;
 
 namespace Candid.Net.EncountersUniversal;
@@ -105,6 +106,13 @@ public record UniversalEncounterCreateFromPreEncounterBase : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("accident_date")]
     public DateOnly? AccidentDate { get; set; }
+
+    /// <summary>
+    /// Patient identifier for Property and Casualty claims
+    /// 837p Loop 2010CA
+    /// </summary>
+    [JsonPropertyName("property_casualty_patient_identifier")]
+    public PropertyCasualtyPatientIdentifierCreate? PropertyCasualtyPatientIdentifier { get; set; }
 
     /// <summary>
     /// A client-specified unique ID to associate with this encounter;

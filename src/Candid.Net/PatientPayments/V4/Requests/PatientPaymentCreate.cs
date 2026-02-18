@@ -25,6 +25,9 @@ public record PatientPaymentCreate
     [JsonPropertyName("invoice")]
     public string? Invoice { get; set; }
 
+    [JsonPropertyName("source_internal_id")]
+    public string? SourceInternalId { get; set; }
+
     /// <inheritdoc />
     public override string ToString()
     {

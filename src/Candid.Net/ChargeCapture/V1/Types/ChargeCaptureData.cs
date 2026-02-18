@@ -11,7 +11,8 @@ using Candid.Net.EncounterProviders.V2;
 using Candid.Net.Encounters.V4;
 using Candid.Net.Guarantor.V1;
 using Candid.Net.Individual;
-using Candid.Net.RelatedCausesInformation.V1;
+using Candid.Net.PropertyAndCasualty.V1;
+using Candid.Net.RelatedCauses.V1;
 using Candid.Net.ServiceFacility;
 using Candid.Net.ServiceLines.V2;
 
@@ -194,6 +195,13 @@ public record ChargeCaptureData : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("accident_date")]
     public DateOnly? AccidentDate { get; set; }
+
+    /// <summary>
+    /// Patient identifier for Property and Casualty claims.
+    /// 837p Loop2010CA
+    /// </summary>
+    [JsonPropertyName("property_casualty_patient_identifier")]
+    public PropertyCasualtyPatientIdentifierCreate? PropertyCasualtyPatientIdentifier { get; set; }
 
     /// <summary>
     /// Whether this patient has authorized insurance payments to be made to you, not them. If false, patient may receive reimbursement. Box 13 on the CMS-1500 claim form or Form Locator 53 on a UB-04 claim form.

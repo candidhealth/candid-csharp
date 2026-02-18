@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
 
-namespace Candid.Net.RelatedCausesInformation.V1;
+namespace Candid.Net.RelatedCauses.V1;
 
 [JsonConverter(typeof(StringEnumSerializer<RelatedCausesCode>))]
 [Serializable]

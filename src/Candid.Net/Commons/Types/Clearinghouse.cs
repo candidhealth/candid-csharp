@@ -15,6 +15,8 @@ public readonly record struct Clearinghouse : IStringEnum
 
     public static readonly Clearinghouse Availity = new(Values.Availity);
 
+    public static readonly Clearinghouse Jopari = new(Values.Jopari);
+
     public static readonly Clearinghouse PayerPortal = new(Values.PayerPortal);
 
     public static readonly Clearinghouse Stedi = new(Values.Stedi);
@@ -77,6 +79,8 @@ public readonly record struct Clearinghouse : IStringEnum
         public const string UcsfCirius = "UCSF_CIRIUS";
 
         public const string Availity = "AVAILITY";
+
+        public const string Jopari = "JOPARI";
 
         public const string PayerPortal = "PAYER_PORTAL";
 
