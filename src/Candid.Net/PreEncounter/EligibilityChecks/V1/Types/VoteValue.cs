@@ -7,11 +7,9 @@ namespace Candid.Net.PreEncounter.EligibilityChecks.V1;
 [Serializable]
 public readonly record struct VoteValue : IStringEnum
 {
-    public static readonly VoteValue Good = new(Values.Good);
+    public static readonly VoteValue Upvote = new(Values.Upvote);
 
-    public static readonly VoteValue Bad = new(Values.Bad);
-
-    public static readonly VoteValue Ok = new(Values.Ok);
+    public static readonly VoteValue Downvote = new(Values.Downvote);
 
     public VoteValue(string value)
     {
@@ -58,10 +56,8 @@ public readonly record struct VoteValue : IStringEnum
     [Serializable]
     public static class Values
     {
-        public const string Good = "GOOD";
+        public const string Upvote = "UPVOTE";
 
-        public const string Bad = "BAD";
-
-        public const string Ok = "OK";
+        public const string Downvote = "DOWNVOTE";
     }
 }

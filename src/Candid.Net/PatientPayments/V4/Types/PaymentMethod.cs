@@ -46,6 +46,15 @@ public record PaymentMethod
     }
 
     /// <summary>
+    /// Create an instance of PaymentMethod with <see cref="PaymentMethod.MoneyOrder"/>.
+    /// </summary>
+    public PaymentMethod(PaymentMethod.MoneyOrder value)
+    {
+        Type = "money_order";
+        Value = value.Value;
+    }
+
+    /// <summary>
     /// Discriminant value
     /// </summary>
     [JsonPropertyName("type")]
@@ -70,6 +79,11 @@ public record PaymentMethod
     /// Returns true if <see cref="Type"/> is "card"
     /// </summary>
     public bool IsCard => Type == "card";
+
+    /// <summary>
+    /// Returns true if <see cref="Type"/> is "money_order"
+    /// </summary>
+    public bool IsMoneyOrder => Type == "money_order";
 
     /// <summary>
     /// Returns the value as a <see cref="global::Candid.Net.PatientPayments.V4.CashPaymentMethod"/> if <see cref="Type"/> is 'cash', otherwise throws an exception.
@@ -98,10 +112,20 @@ public record PaymentMethod
             ? (global::Candid.Net.PatientPayments.V4.CardPaymentMethod)Value!
             : throw new global::System.Exception("PaymentMethod.Type is not 'card'");
 
+    /// <summary>
+    /// Returns the value as a <see cref="global::Candid.Net.PatientPayments.V4.MoneyOrderPaymentMethod"/> if <see cref="Type"/> is 'money_order', otherwise throws an exception.
+    /// </summary>
+    /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'money_order'.</exception>
+    public global::Candid.Net.PatientPayments.V4.MoneyOrderPaymentMethod AsMoneyOrder() =>
+        IsMoneyOrder
+            ? (global::Candid.Net.PatientPayments.V4.MoneyOrderPaymentMethod)Value!
+            : throw new global::System.Exception("PaymentMethod.Type is not 'money_order'");
+
     public T Match<T>(
         Func<global::Candid.Net.PatientPayments.V4.CashPaymentMethod, T> onCash,
         Func<global::Candid.Net.PatientPayments.V4.CheckPaymentMethod, T> onCheck,
         Func<global::Candid.Net.PatientPayments.V4.CardPaymentMethod, T> onCard,
+        Func<global::Candid.Net.PatientPayments.V4.MoneyOrderPaymentMethod, T> onMoneyOrder,
         Func<string, object?, T> onUnknown_
     )
     {
@@ -110,6 +134,7 @@ public record PaymentMethod
             "cash" => onCash(AsCash()),
             "check" => onCheck(AsCheck()),
             "card" => onCard(AsCard()),
+            "money_order" => onMoneyOrder(AsMoneyOrder()),
             _ => onUnknown_(Type, Value),
         };
     }
@@ -118,6 +143,7 @@ public record PaymentMethod
         Action<global::Candid.Net.PatientPayments.V4.CashPaymentMethod> onCash,
         Action<global::Candid.Net.PatientPayments.V4.CheckPaymentMethod> onCheck,
         Action<global::Candid.Net.PatientPayments.V4.CardPaymentMethod> onCard,
+        Action<global::Candid.Net.PatientPayments.V4.MoneyOrderPaymentMethod> onMoneyOrder,
         Action<string, object?> onUnknown_
     )
     {
@@ -131,6 +157,9 @@ public record PaymentMethod
                 break;
             case "card":
                 onCard(AsCard());
+                break;
+            case "money_order":
+                onMoneyOrder(AsMoneyOrder());
                 break;
             default:
                 onUnknown_(Type, Value);
@@ -180,6 +209,22 @@ public record PaymentMethod
         return false;
     }
 
+    /// <summary>
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.PatientPayments.V4.MoneyOrderPaymentMethod"/> and returns true if successful.
+    /// </summary>
+    public bool TryAsMoneyOrder(
+        out global::Candid.Net.PatientPayments.V4.MoneyOrderPaymentMethod? value
+    )
+    {
+        if (Type == "money_order")
+        {
+            value = (global::Candid.Net.PatientPayments.V4.MoneyOrderPaymentMethod)Value!;
+            return true;
+        }
+        value = null;
+        return false;
+    }
+
     public override string ToString() => JsonUtils.Serialize(this);
 
     public static implicit operator PaymentMethod(PaymentMethod.Cash value) => new(value);
@@ -187,6 +232,8 @@ public record PaymentMethod
     public static implicit operator PaymentMethod(PaymentMethod.Check value) => new(value);
 
     public static implicit operator PaymentMethod(PaymentMethod.Card value) => new(value);
+
+    public static implicit operator PaymentMethod(PaymentMethod.MoneyOrder value) => new(value);
 
     [Serializable]
     internal sealed class JsonConverter : JsonConverter<PaymentMethod>
@@ -244,6 +291,13 @@ public record PaymentMethod
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.PatientPayments.V4.CardPaymentMethod"
                         ),
+                "money_order" =>
+                    json.Deserialize<global::Candid.Net.PatientPayments.V4.MoneyOrderPaymentMethod?>(
+                        options
+                    )
+                        ?? throw new JsonException(
+                            "Failed to deserialize global::Candid.Net.PatientPayments.V4.MoneyOrderPaymentMethod"
+                        ),
                 _ => json.Deserialize<object?>(options),
             };
             return new PaymentMethod(discriminator, value);
@@ -261,6 +315,7 @@ public record PaymentMethod
                     "cash" => JsonSerializer.SerializeToNode(value.Value, options),
                     "check" => JsonSerializer.SerializeToNode(value.Value, options),
                     "card" => JsonSerializer.SerializeToNode(value.Value, options),
+                    "money_order" => JsonSerializer.SerializeToNode(value.Value, options),
                     _ => JsonSerializer.SerializeToNode(value.Value, options),
                 } ?? new JsonObject();
             json["type"] = value.Type;
@@ -325,6 +380,26 @@ public record PaymentMethod
 
         public static implicit operator PaymentMethod.Card(
             global::Candid.Net.PatientPayments.V4.CardPaymentMethod value
+        ) => new(value);
+    }
+
+    /// <summary>
+    /// Discriminated union type for money_order
+    /// </summary>
+    [Serializable]
+    public struct MoneyOrder
+    {
+        public MoneyOrder(global::Candid.Net.PatientPayments.V4.MoneyOrderPaymentMethod value)
+        {
+            Value = value;
+        }
+
+        internal global::Candid.Net.PatientPayments.V4.MoneyOrderPaymentMethod Value { get; set; }
+
+        public override string ToString() => Value.ToString() ?? "null";
+
+        public static implicit operator PaymentMethod.MoneyOrder(
+            global::Candid.Net.PatientPayments.V4.MoneyOrderPaymentMethod value
         ) => new(value);
     }
 }

@@ -255,7 +255,8 @@ public partial class V1Client
     }
 
     /// <summary>
-    /// Gets recommendation for eligibility checks based on the request.
+    /// Gets recommendation for eligibility checks based on filters. This endpoint will retrieve all the latest eligibility recommendations for each
+    /// eligibility recommendation type for the given filters. If you want to get a specific recommendation type, you can use the `type` query parameter.
     /// </summary>
     /// <example><code>
     /// await client.PreEncounter.EligibilityChecks.V1.RecommendationAsync(
@@ -380,7 +381,7 @@ public partial class V1Client
     /// await client.PreEncounter.EligibilityChecks.V1.VoteRecommendationAsync(
     ///     "recommendation_id",
     ///     "version",
-    ///     new Vote { UserId = "user_id", Value = VoteValue.Good }
+    ///     new Vote { UserId = "user_id", Value = VoteValue.Upvote }
     /// );
     /// </code></example>
     public async global::System.Threading.Tasks.Task<EligibilityRecommendation> VoteRecommendationAsync(
@@ -414,6 +415,90 @@ public partial class V1Client
             try
             {
                 return JsonUtils.Deserialize<EligibilityRecommendation>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    /// <example><code>
+    /// await client.PreEncounter.EligibilityChecks.V1.GetMultiAsync(
+    ///     new EligibilityChecksGetMultiRequest()
+    /// );
+    /// </code></example>
+    public async global::System.Threading.Tasks.Task<EligibilityCheckPage> GetMultiAsync(
+        EligibilityChecksGetMultiRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _query = new Dictionary<string, object>();
+        if (request.PageToken != null)
+        {
+            _query["page_token"] = request.PageToken;
+        }
+        if (request.Limit != null)
+        {
+            _query["limit"] = request.Limit.Value.ToString();
+        }
+        if (request.SubscriberMemberId != null)
+        {
+            _query["subscriber_member_id"] = request.SubscriberMemberId;
+        }
+        if (request.PayerId != null)
+        {
+            _query["payer_id"] = request.PayerId;
+        }
+        if (request.ProviderNpi != null)
+        {
+            _query["provider_npi"] = request.ProviderNpi;
+        }
+        if (request.DateOfService != null)
+        {
+            _query["date_of_service"] = request.DateOfService;
+        }
+        if (request.InitiatedAtMin != null)
+        {
+            _query["initiated_at_min"] = request.InitiatedAtMin.Value.ToString(
+                Constants.DateTimeFormat
+            );
+        }
+        if (request.InitiatedAtMax != null)
+        {
+            _query["initiated_at_max"] = request.InitiatedAtMax.Value.ToString(
+                Constants.DateTimeFormat
+            );
+        }
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Get,
+                    Path = "/eligibility-checks/v1/get-multi/",
+                    Query = _query,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<EligibilityCheckPage>(responseBody)!;
             }
             catch (JsonException e)
             {

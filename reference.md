@@ -10613,7 +10613,8 @@ await client.PreEncounter.EligibilityChecks.V1.PayerSearchAsync(new PayerSearchR
 <dl>
 <dd>
 
-Gets recommendation for eligibility checks based on the request.
+Gets recommendation for eligibility checks based on filters. This endpoint will retrieve all the latest eligibility recommendations for each 
+eligibility recommendation type for the given filters. If you want to get a specific recommendation type, you can use the `type` query parameter.
 </dd>
 </dl>
 </dd>
@@ -10755,7 +10756,7 @@ Submit user feedback on an eligibility recommendation. The path must contain the
 await client.PreEncounter.EligibilityChecks.V1.VoteRecommendationAsync(
     "recommendation_id",
     "version",
-    new Vote { UserId = "user_id", Value = VoteValue.Good }
+    new Vote { UserId = "user_id", Value = VoteValue.Upvote }
 );
 ```
 </dd>
@@ -10788,6 +10789,48 @@ await client.PreEncounter.EligibilityChecks.V1.VoteRecommendationAsync(
 <dd>
 
 **request:** `global::Candid.Net.PreEncounter.EligibilityChecks.V1.Vote` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PreEncounter.EligibilityChecks.V1.<a href="/src/Candid.Net/PreEncounter/EligibilityChecks/V1/V1Client.cs">GetMultiAsync</a>(global::Candid.Net.PreEncounter.EligibilityChecks.V1.EligibilityChecksGetMultiRequest { ... }) -> global::Candid.Net.PreEncounter.EligibilityChecks.V1.EligibilityCheckPage</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreEncounter.EligibilityChecks.V1.GetMultiAsync(
+    new EligibilityChecksGetMultiRequest()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `global::Candid.Net.PreEncounter.EligibilityChecks.V1.EligibilityChecksGetMultiRequest` 
     
 </dd>
 </dl>

@@ -207,6 +207,8 @@ public readonly record struct LicenseType : IStringEnum
 
     public static readonly LicenseType Cdn = new(Values.Cdn);
 
+    public static readonly LicenseType Cgc = new(Values.Cgc);
+
     public static readonly LicenseType Cns = new(Values.Cns);
 
     public static readonly LicenseType Mdphd = new(Values.Mdphd);
@@ -463,6 +465,8 @@ public readonly record struct LicenseType : IStringEnum
         public const string Amft = "AMFT";
 
         public const string Cdn = "CDN";
+
+        public const string Cgc = "CGC";
 
         public const string Cns = "CNS";
 

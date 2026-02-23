@@ -51,6 +51,10 @@ public partial class V1Client
         {
             _query["include_deactivated"] = JsonUtils.Serialize(request.IncludeDeactivated.Value);
         }
+        if (request.RedirectToPrimary != null)
+        {
+            _query["redirect_to_primary"] = JsonUtils.Serialize(request.RedirectToPrimary.Value);
+        }
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest

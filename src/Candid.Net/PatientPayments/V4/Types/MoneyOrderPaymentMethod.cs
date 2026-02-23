@@ -3,29 +3,17 @@ using System.Text.Json.Serialization;
 using Candid.Net;
 using Candid.Net.Core;
 
-namespace Candid.Net.PreEncounter.EligibilityChecks.V1;
+namespace Candid.Net.PatientPayments.V4;
 
-/// <summary>
-/// User feedback on a recommendation
-/// </summary>
 [Serializable]
-public record Vote : IJsonOnDeserialized
+public record MoneyOrderPaymentMethod : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
-    /// <summary>
-    /// The user who voted
-    /// </summary>
-    [JsonPropertyName("user_id")]
-    public required string UserId { get; set; }
-
-    /// <summary>
-    /// The vote value
-    /// </summary>
-    [JsonPropertyName("value")]
-    public required VoteValue Value { get; set; }
+    [JsonPropertyName("money_order_serial_number")]
+    public required string MoneyOrderSerialNumber { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

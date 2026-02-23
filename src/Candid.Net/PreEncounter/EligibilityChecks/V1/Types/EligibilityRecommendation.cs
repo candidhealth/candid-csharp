@@ -27,14 +27,17 @@ public record EligibilityRecommendation : IJsonOnDeserialized
     [JsonPropertyName("recommendation")]
     public required EligibilityRecommendationPayload Recommendation { get; set; }
 
+    [JsonPropertyName("coverage_id")]
+    public string? CoverageId { get; set; }
+
     [JsonPropertyName("patient")]
     public required EligibilityRecommendationPatientInfo Patient { get; set; }
 
     /// <summary>
-    /// User feedback on this recommendation
+    /// Array of votes for this recommendation
     /// </summary>
-    [JsonPropertyName("vote")]
-    public Vote? Vote { get; set; }
+    [JsonPropertyName("votes")]
+    public IEnumerable<Vote>? Votes { get; set; }
 
     /// <summary>
     /// The organization that owns this object.

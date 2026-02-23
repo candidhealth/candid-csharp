@@ -33,6 +33,12 @@ public record PatientListRequest
     [JsonIgnore]
     public bool? IncludeDeactivated { get; set; }
 
+    /// <summary>
+    /// If true, and filtering by mrn equals, then only return the primary version of the patient requested
+    /// </summary>
+    [JsonIgnore]
+    public bool? RedirectToPrimary { get; set; }
+
     /// <inheritdoc />
     public override string ToString()
     {
