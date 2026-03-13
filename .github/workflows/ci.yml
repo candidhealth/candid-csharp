@@ -22,7 +22,7 @@ jobs:
           dotnet tool restore
 
       - name: Build Release
-        run: dotnet build src -c Release /p:ContinuousIntegrationBuild=true
+        run: dotnet build -c Release /p:ContinuousIntegrationBuild=true
 
   unit-tests:
     runs-on: ubuntu-latest
@@ -44,7 +44,7 @@ jobs:
 
 #      - name: Run Tests
 #        run: |
-#          dotnet test src
+#          dotnet test
 
 
   publish:
@@ -65,7 +65,7 @@ jobs:
         env:
           NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
         run: |
-          dotnet pack src -c Release
+          dotnet pack -c Release
           dotnet nuget push src/Candid.Net/bin/Release/*.nupkg --api-key $NUGET_API_KEY --source "nuget.org"
           
   alert-on-failure:
