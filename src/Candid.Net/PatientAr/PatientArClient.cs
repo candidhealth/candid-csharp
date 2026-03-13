@@ -2,9 +2,9 @@ using Candid.Net.Core;
 
 namespace Candid.Net.PatientAr;
 
-public partial class PatientArClient
+public partial class PatientArClient : IPatientArClient
 {
-    private RawClient _client;
+    private readonly RawClient _client;
 
     internal PatientArClient(RawClient client)
     {
@@ -12,5 +12,5 @@ public partial class PatientArClient
         V1 = new global::Candid.Net.PatientAr.V1.V1Client(_client);
     }
 
-    public global::Candid.Net.PatientAr.V1.V1Client V1 { get; }
+    public global::Candid.Net.PatientAr.V1.IV1Client V1 { get; }
 }

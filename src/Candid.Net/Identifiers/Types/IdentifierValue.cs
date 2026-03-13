@@ -198,17 +198,23 @@ public record IdentifierValue
                 discriminatorElement.GetString()
                 ?? throw new JsonException("Discriminator property 'type' is null");
 
+            // Strip the discriminant property to prevent it from leaking into AdditionalProperties
+            var jsonObject = System.Text.Json.Nodes.JsonObject.Create(json);
+            jsonObject?.Remove("type");
+            var jsonWithoutDiscriminator =
+                jsonObject != null ? JsonSerializer.SerializeToElement(jsonObject, options) : json;
+
             var value = discriminator switch
             {
                 "medicare_provider_identifier" =>
-                    json.Deserialize<global::Candid.Net.Identifiers.MedicareProviderIdentifier?>(
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Identifiers.MedicareProviderIdentifier?>(
                         options
                     )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.Identifiers.MedicareProviderIdentifier"
                         ),
                 "medicaid_provider_identifier" =>
-                    json.Deserialize<global::Candid.Net.Identifiers.MedicaidProviderIdentifier?>(
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Identifiers.MedicaidProviderIdentifier?>(
                         options
                     )
                         ?? throw new JsonException(

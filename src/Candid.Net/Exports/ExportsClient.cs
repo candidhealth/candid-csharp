@@ -2,9 +2,9 @@ using Candid.Net.Core;
 
 namespace Candid.Net.Exports;
 
-public partial class ExportsClient
+public partial class ExportsClient : IExportsClient
 {
-    private RawClient _client;
+    private readonly RawClient _client;
 
     internal ExportsClient(RawClient client)
     {
@@ -12,5 +12,5 @@ public partial class ExportsClient
         V3 = new global::Candid.Net.Exports.V3.V3Client(_client);
     }
 
-    public global::Candid.Net.Exports.V3.V3Client V3 { get; }
+    public global::Candid.Net.Exports.V3.IV3Client V3 { get; }
 }

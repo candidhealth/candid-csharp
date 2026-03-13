@@ -3,9 +3,9 @@ using Candid.Net.Core;
 
 namespace Candid.Net.Auth;
 
-public partial class AuthClient
+public partial class AuthClient : IAuthClient
 {
-    private RawClient _client;
+    private readonly RawClient _client;
 
     internal AuthClient(RawClient client)
     {
@@ -13,5 +13,5 @@ public partial class AuthClient
         Default = new DefaultClient(_client);
     }
 
-    public DefaultClient Default { get; }
+    public IDefaultClient Default { get; }
 }

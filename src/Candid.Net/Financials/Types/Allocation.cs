@@ -24,6 +24,9 @@ public record Allocation : IJsonOnDeserialized
     [JsonPropertyName("earmark")]
     public BalanceEarmark? Earmark { get; set; }
 
+    [JsonPropertyName("allocated_on")]
+    public DateTime? AllocatedOn { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

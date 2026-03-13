@@ -2,9 +2,9 @@ using Candid.Net.Core;
 
 namespace Candid.Net.PatientPayments;
 
-public partial class PatientPaymentsClient
+public partial class PatientPaymentsClient : IPatientPaymentsClient
 {
-    private RawClient _client;
+    private readonly RawClient _client;
 
     internal PatientPaymentsClient(RawClient client)
     {
@@ -12,5 +12,5 @@ public partial class PatientPaymentsClient
         V4 = new global::Candid.Net.PatientPayments.V4.V4Client(_client);
     }
 
-    public global::Candid.Net.PatientPayments.V4.V4Client V4 { get; }
+    public global::Candid.Net.PatientPayments.V4.IV4Client V4 { get; }
 }

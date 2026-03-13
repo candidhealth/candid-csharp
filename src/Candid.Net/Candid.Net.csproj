@@ -1,17 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net462;net8.0;net7.0;net6.0;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net462;net8.0;netstandard2.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <LangVersion>12</LangVersion>
     <Nullable>enable</Nullable>
-    <Version>1.20.1</Version>
+    <Version>1.20.3</Version>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageProjectUrl>https://github.com/candidhealth/candid-csharp</PackageProjectUrl>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/candidhealth/candid-csharp</PackageProjectUrl>
     <PolySharpIncludeRuntimeSupportedAttributes>true</PolySharpIncludeRuntimeSupportedAttributes>
   </PropertyGroup>
+
   <PropertyGroup>
     <UsePortableDateOnly>false</UsePortableDateOnly>
   </PropertyGroup>
@@ -19,6 +20,13 @@
     <DefineConstants>$(DefineConstants);USE_PORTABLE_DATE_ONLY</DefineConstants>
     <UsePortableDateOnly>true</UsePortableDateOnly>
   </PropertyGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net462' Or '$(TargetFramework)' == 'netstandard2.0'">
+    <Using Include="System.Net.Http" />
+    <Using Include="System.Collections.Generic" />
+    <Using Include="System.Linq" />
+    <Using Include="System.Threading" />
+    <Using Include="System.Threading.Tasks" />
+  </ItemGroup>
   <ItemGroup Condition="'$(UsePortableDateOnly)' == 'true'">
     <PackageReference Include="Portable.System.DateTimeOnly" Version="8.0.2" />
   </ItemGroup>
@@ -36,13 +44,16 @@
     <PackageReference Include="System.Net.Http" Version="[4.3.4,)" />
     <PackageReference Include="System.Text.RegularExpressions" Version="[4.3.1,)" />
   </ItemGroup>
+
   <ItemGroup>
     <None Include="..\..\README.md" Pack="true" PackagePath="" />
   </ItemGroup>
+
   <ItemGroup>
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
       <_Parameter1>Candid.Net.Test</_Parameter1>
     </AssemblyAttribute>
   </ItemGroup>
+
   <Import Project="Candid.Net.Custom.props" Condition="Exists('Candid.Net.Custom.props')" />
 </Project>

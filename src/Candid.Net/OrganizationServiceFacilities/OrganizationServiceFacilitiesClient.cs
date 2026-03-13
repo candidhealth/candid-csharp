@@ -2,9 +2,9 @@ using Candid.Net.Core;
 
 namespace Candid.Net.OrganizationServiceFacilities;
 
-public partial class OrganizationServiceFacilitiesClient
+public partial class OrganizationServiceFacilitiesClient : IOrganizationServiceFacilitiesClient
 {
-    private RawClient _client;
+    private readonly RawClient _client;
 
     internal OrganizationServiceFacilitiesClient(RawClient client)
     {
@@ -12,5 +12,5 @@ public partial class OrganizationServiceFacilitiesClient
         V2 = new global::Candid.Net.OrganizationServiceFacilities.V2.V2Client(_client);
     }
 
-    public global::Candid.Net.OrganizationServiceFacilities.V2.V2Client V2 { get; }
+    public global::Candid.Net.OrganizationServiceFacilities.V2.IV2Client V2 { get; }
 }

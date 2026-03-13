@@ -8,6 +8,16 @@ namespace Candid.Net.EncounterProviders.V2;
 public readonly record struct ProviderSecondaryIdentificationQualifier : IStringEnum
 {
     /// <summary>
+    /// State License Number
+    /// </summary>
+    public static readonly ProviderSecondaryIdentificationQualifier ZeroB = new(Values.ZeroB);
+
+    /// <summary>
+    /// Provider UPIN Number
+    /// </summary>
+    public static readonly ProviderSecondaryIdentificationQualifier OneG = new(Values.OneG);
+
+    /// <summary>
     /// Provider Commercial Number
     /// </summary>
     public static readonly ProviderSecondaryIdentificationQualifier G2 = new(Values.G2);
@@ -70,6 +80,16 @@ public readonly record struct ProviderSecondaryIdentificationQualifier : IString
     [Serializable]
     public static class Values
     {
+        /// <summary>
+        /// State License Number
+        /// </summary>
+        public const string ZeroB = "0B";
+
+        /// <summary>
+        /// Provider UPIN Number
+        /// </summary>
+        public const string OneG = "1G";
+
         /// <summary>
         /// Provider Commercial Number
         /// </summary>

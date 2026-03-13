@@ -21,6 +21,12 @@ public class CandidEnvironment
         PreEncounter = "https://staging-pre-api.joincandidhealth.com",
     };
 
+    public static readonly CandidEnvironment LOCAL = new CandidEnvironment
+    {
+        CandidApi = "http://localhost:5050",
+        PreEncounter = "http://localhost:4000",
+    };
+
     /// <summary>
     /// URL for the CandidApi service
     /// </summary>

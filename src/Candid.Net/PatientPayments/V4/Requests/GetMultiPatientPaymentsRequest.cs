@@ -38,6 +38,9 @@ public record GetMultiPatientPaymentsRequest
     public IEnumerable<PatientTransactionSource> Sources { get; set; } =
         new List<PatientTransactionSource>();
 
+    [JsonIgnore]
+    public string? SourceInternalId { get; set; }
+
     /// <summary>
     /// Defaults to payment_timestamp
     /// </summary>

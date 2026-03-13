@@ -1,18 +1,822 @@
-using System.Net.Http;
 using System.Text.Json;
-using System.Threading;
+using Candid.Net;
 using Candid.Net.Core;
 using Candid.Net.PreEncounter.Common;
 
 namespace Candid.Net.PreEncounter.Patients.V1;
 
-public partial class V1Client
+public partial class V1Client : IV1Client
 {
-    private RawClient _client;
+    private readonly RawClient _client;
 
     internal V1Client(RawClient client)
     {
         _client = client;
+    }
+
+    private async global::System.Threading.Tasks.Task<WithRawResponse<Patient>> CreateAsyncCore(
+        CreatePatientRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _queryString = new Candid.Net.Core.QueryStringBuilder.Builder(capacity: 1)
+            .Add("skip_duplicate_check", request.SkipDuplicateCheck)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Post,
+                    Path = "/patients/v1",
+                    Body = request.Body,
+                    QueryString = _queryString,
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<Patient>(responseBody)!;
+                return new WithRawResponse<Patient>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async global::System.Threading.Tasks.Task<
+        WithRawResponse<Patient>
+    > CreateWithMrnAsyncCore(
+        CreatePatientWithMrnRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _queryString = new Candid.Net.Core.QueryStringBuilder.Builder(capacity: 1)
+            .Add("skip_duplicate_check", request.SkipDuplicateCheck)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Post,
+                    Path = "/patients/v1/with_mrn",
+                    Body = request.Body,
+                    QueryString = _queryString,
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<Patient>(responseBody)!;
+                return new WithRawResponse<Patient>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async global::System.Threading.Tasks.Task<
+        WithRawResponse<PatientPage>
+    > GetMultiAsyncCore(
+        PatientsSearchRequestPaginated request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _queryString = new Candid.Net.Core.QueryStringBuilder.Builder(capacity: 5)
+            .Add("limit", request.Limit)
+            .Add("mrn", request.Mrn)
+            .Add("page_token", request.PageToken)
+            .Add("sort_field", request.SortField)
+            .Add("sort_direction", request.SortDirection)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Get,
+                    Path = "/patients/v1/get_multi",
+                    QueryString = _queryString,
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<PatientPage>(responseBody)!;
+                return new WithRawResponse<PatientPage>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async global::System.Threading.Tasks.Task<
+        WithRawResponse<IEnumerable<ExternalProvider>>
+    > SearchProvidersAsyncCore(
+        SearchProvidersRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _queryString = new Candid.Net.Core.QueryStringBuilder.Builder(capacity: 1)
+            .Add("search_criteria", request.SearchCriteria)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Get,
+                    Path = "/patients/v1/search_providers",
+                    QueryString = _queryString,
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<IEnumerable<ExternalProvider>>(
+                    responseBody
+                )!;
+                return new WithRawResponse<IEnumerable<ExternalProvider>>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async global::System.Threading.Tasks.Task<WithRawResponse<Patient>> GetAsyncCore(
+        string id,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _headers = await new Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Get,
+                    Path = string.Format(
+                        "/patients/v1/{0}",
+                        ValueConvert.ToPathParameterString(id)
+                    ),
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<Patient>(responseBody)!;
+                return new WithRawResponse<Patient>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async global::System.Threading.Tasks.Task<WithRawResponse<Patient>> GetByMrnAsyncCore(
+        string mrn,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _headers = await new Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Get,
+                    Path = string.Format(
+                        "/patients/v1/mrn/{0}",
+                        ValueConvert.ToPathParameterString(mrn)
+                    ),
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<Patient>(responseBody)!;
+                return new WithRawResponse<Patient>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async global::System.Threading.Tasks.Task<
+        WithRawResponse<IEnumerable<Patient>>
+    > GetHistoryAsyncCore(
+        string id,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _headers = await new Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Get,
+                    Path = string.Format(
+                        "/patients/v1/{0}/history",
+                        ValueConvert.ToPathParameterString(id)
+                    ),
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<IEnumerable<Patient>>(responseBody)!;
+                return new WithRawResponse<IEnumerable<Patient>>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async global::System.Threading.Tasks.Task<
+        WithRawResponse<PatientCoverageSnapshot>
+    > GetCoverageSnapshotAsyncCore(
+        string id,
+        GetCoverageSnapshotRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _queryString = new Candid.Net.Core.QueryStringBuilder.Builder(capacity: 1)
+            .Add("date", request.Date)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Get,
+                    Path = string.Format(
+                        "/patients/v1/{0}/snapshot",
+                        ValueConvert.ToPathParameterString(id)
+                    ),
+                    QueryString = _queryString,
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<PatientCoverageSnapshot>(responseBody)!;
+                return new WithRawResponse<PatientCoverageSnapshot>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async global::System.Threading.Tasks.Task<WithRawResponse<Patient>> UpdateAsyncCore(
+        string id,
+        string version,
+        MutablePatient request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _headers = await new Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Put,
+                    Path = string.Format(
+                        "/patients/v1/{0}/{1}",
+                        ValueConvert.ToPathParameterString(id),
+                        ValueConvert.ToPathParameterString(version)
+                    ),
+                    Body = request,
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<Patient>(responseBody)!;
+                return new WithRawResponse<Patient>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async global::System.Threading.Tasks.Task<
+        WithRawResponse<IEnumerable<Patient>>
+    > SearchAsyncCore(
+        PatientGetMultiRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _queryString = new Candid.Net.Core.QueryStringBuilder.Builder(capacity: 2)
+            .Add("mrn", request.Mrn)
+            .Add("similar_name_ordering", request.SimilarNameOrdering)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Get,
+                    Path = "/patients/v1",
+                    QueryString = _queryString,
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<IEnumerable<Patient>>(responseBody)!;
+                return new WithRawResponse<IEnumerable<Patient>>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async global::System.Threading.Tasks.Task<
+        WithRawResponse<IEnumerable<Patient>>
+    > ScanAsyncCore(
+        PatientScanRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _queryString = new Candid.Net.Core.QueryStringBuilder.Builder(capacity: 2)
+            .Add("since", request.Since)
+            .Add("maxResults", request.MaxResults)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Get,
+                    Path = "/patients/v1/updates/scan",
+                    QueryString = _queryString,
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<IEnumerable<Patient>>(responseBody)!;
+                return new WithRawResponse<IEnumerable<Patient>>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
@@ -208,52 +1012,15 @@ public partial class V1Client
     ///     }
     /// );
     /// </code></example>
-    public async global::System.Threading.Tasks.Task<Patient> CreateAsync(
+    public WithRawResponseTask<Patient> CreateAsync(
         CreatePatientRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>();
-        if (request.SkipDuplicateCheck != null)
-        {
-            _query["skip_duplicate_check"] = JsonUtils.Serialize(request.SkipDuplicateCheck.Value);
-        }
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.Environment.PreEncounter,
-                    Method = HttpMethod.Post,
-                    Path = "/patients/v1",
-                    Body = request.Body,
-                    Query = _query,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                return JsonUtils.Deserialize<Patient>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new CandidException("Failed to deserialize response", e);
-            }
-        }
-
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            throw new CandidApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
+        return new WithRawResponseTask<Patient>(
+            CreateAsyncCore(request, options, cancellationToken)
+        );
     }
 
     /// <summary>
@@ -450,52 +1217,15 @@ public partial class V1Client
     ///     }
     /// );
     /// </code></example>
-    public async global::System.Threading.Tasks.Task<Patient> CreateWithMrnAsync(
+    public WithRawResponseTask<Patient> CreateWithMrnAsync(
         CreatePatientWithMrnRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>();
-        if (request.SkipDuplicateCheck != null)
-        {
-            _query["skip_duplicate_check"] = JsonUtils.Serialize(request.SkipDuplicateCheck.Value);
-        }
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.Environment.PreEncounter,
-                    Method = HttpMethod.Post,
-                    Path = "/patients/v1/with_mrn",
-                    Body = request.Body,
-                    Query = _query,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                return JsonUtils.Deserialize<Patient>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new CandidException("Failed to deserialize response", e);
-            }
-        }
-
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            throw new CandidApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
+        return new WithRawResponseTask<Patient>(
+            CreateWithMrnAsyncCore(request, options, cancellationToken)
+        );
     }
 
     /// <summary>
@@ -504,67 +1234,15 @@ public partial class V1Client
     /// <example><code>
     /// await client.PreEncounter.Patients.V1.GetMultiAsync(new PatientsSearchRequestPaginated());
     /// </code></example>
-    public async global::System.Threading.Tasks.Task<PatientPage> GetMultiAsync(
+    public WithRawResponseTask<PatientPage> GetMultiAsync(
         PatientsSearchRequestPaginated request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>();
-        if (request.Limit != null)
-        {
-            _query["limit"] = request.Limit.Value.ToString();
-        }
-        if (request.Mrn != null)
-        {
-            _query["mrn"] = request.Mrn;
-        }
-        if (request.PageToken != null)
-        {
-            _query["page_token"] = request.PageToken;
-        }
-        if (request.SortField != null)
-        {
-            _query["sort_field"] = request.SortField;
-        }
-        if (request.SortDirection != null)
-        {
-            _query["sort_direction"] = request.SortDirection.Value.Stringify();
-        }
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.Environment.PreEncounter,
-                    Method = HttpMethod.Get,
-                    Path = "/patients/v1/get_multi",
-                    Query = _query,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                return JsonUtils.Deserialize<PatientPage>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new CandidException("Failed to deserialize response", e);
-            }
-        }
-
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            throw new CandidApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
+        return new WithRawResponseTask<PatientPage>(
+            GetMultiAsyncCore(request, options, cancellationToken)
+        );
     }
 
     /// <summary>
@@ -575,50 +1253,15 @@ public partial class V1Client
     ///     new SearchProvidersRequest { SearchCriteria = "search_criteria" }
     /// );
     /// </code></example>
-    public async global::System.Threading.Tasks.Task<
-        IEnumerable<ExternalProvider>
-    > SearchProvidersAsync(
+    public WithRawResponseTask<IEnumerable<ExternalProvider>> SearchProvidersAsync(
         SearchProvidersRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>();
-        _query["search_criteria"] = request.SearchCriteria;
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.Environment.PreEncounter,
-                    Method = HttpMethod.Get,
-                    Path = "/patients/v1/search_providers",
-                    Query = _query,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                return JsonUtils.Deserialize<IEnumerable<ExternalProvider>>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new CandidException("Failed to deserialize response", e);
-            }
-        }
-
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            throw new CandidApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
+        return new WithRawResponseTask<IEnumerable<ExternalProvider>>(
+            SearchProvidersAsyncCore(request, options, cancellationToken)
+        );
     }
 
     /// <summary>
@@ -627,48 +1270,13 @@ public partial class V1Client
     /// <example><code>
     /// await client.PreEncounter.Patients.V1.GetAsync("id");
     /// </code></example>
-    public async global::System.Threading.Tasks.Task<Patient> GetAsync(
+    public WithRawResponseTask<Patient> GetAsync(
         string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.Environment.PreEncounter,
-                    Method = HttpMethod.Get,
-                    Path = string.Format(
-                        "/patients/v1/{0}",
-                        ValueConvert.ToPathParameterString(id)
-                    ),
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                return JsonUtils.Deserialize<Patient>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new CandidException("Failed to deserialize response", e);
-            }
-        }
-
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            throw new CandidApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
+        return new WithRawResponseTask<Patient>(GetAsyncCore(id, options, cancellationToken));
     }
 
     /// <summary>
@@ -677,48 +1285,13 @@ public partial class V1Client
     /// <example><code>
     /// await client.PreEncounter.Patients.V1.GetByMrnAsync("mrn");
     /// </code></example>
-    public async global::System.Threading.Tasks.Task<Patient> GetByMrnAsync(
+    public WithRawResponseTask<Patient> GetByMrnAsync(
         string mrn,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.Environment.PreEncounter,
-                    Method = HttpMethod.Get,
-                    Path = string.Format(
-                        "/patients/v1/mrn/{0}",
-                        ValueConvert.ToPathParameterString(mrn)
-                    ),
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                return JsonUtils.Deserialize<Patient>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new CandidException("Failed to deserialize response", e);
-            }
-        }
-
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            throw new CandidApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
+        return new WithRawResponseTask<Patient>(GetByMrnAsyncCore(mrn, options, cancellationToken));
     }
 
     /// <summary>
@@ -727,48 +1300,15 @@ public partial class V1Client
     /// <example><code>
     /// await client.PreEncounter.Patients.V1.GetHistoryAsync("id");
     /// </code></example>
-    public async global::System.Threading.Tasks.Task<IEnumerable<Patient>> GetHistoryAsync(
+    public WithRawResponseTask<IEnumerable<Patient>> GetHistoryAsync(
         string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.Environment.PreEncounter,
-                    Method = HttpMethod.Get,
-                    Path = string.Format(
-                        "/patients/v1/{0}/history",
-                        ValueConvert.ToPathParameterString(id)
-                    ),
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                return JsonUtils.Deserialize<IEnumerable<Patient>>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new CandidException("Failed to deserialize response", e);
-            }
-        }
-
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            throw new CandidApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
+        return new WithRawResponseTask<IEnumerable<Patient>>(
+            GetHistoryAsyncCore(id, options, cancellationToken)
+        );
     }
 
     /// <summary>
@@ -780,55 +1320,16 @@ public partial class V1Client
     ///     new GetCoverageSnapshotRequest()
     /// );
     /// </code></example>
-    public async global::System.Threading.Tasks.Task<PatientCoverageSnapshot> GetCoverageSnapshotAsync(
+    public WithRawResponseTask<PatientCoverageSnapshot> GetCoverageSnapshotAsync(
         string id,
         GetCoverageSnapshotRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>();
-        if (request.Date != null)
-        {
-            _query["date"] = request.Date.Value.ToString(Constants.DateTimeFormat);
-        }
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.Environment.PreEncounter,
-                    Method = HttpMethod.Get,
-                    Path = string.Format(
-                        "/patients/v1/{0}/snapshot",
-                        ValueConvert.ToPathParameterString(id)
-                    ),
-                    Query = _query,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                return JsonUtils.Deserialize<PatientCoverageSnapshot>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new CandidException("Failed to deserialize response", e);
-            }
-        }
-
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            throw new CandidApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
+        return new WithRawResponseTask<PatientCoverageSnapshot>(
+            GetCoverageSnapshotAsyncCore(id, request, options, cancellationToken)
+        );
     }
 
     /// <summary>
@@ -1015,7 +1516,7 @@ public partial class V1Client
     ///     }
     /// );
     /// </code></example>
-    public async global::System.Threading.Tasks.Task<Patient> UpdateAsync(
+    public WithRawResponseTask<Patient> UpdateAsync(
         string id,
         string version,
         MutablePatient request,
@@ -1023,44 +1524,9 @@ public partial class V1Client
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.Environment.PreEncounter,
-                    Method = HttpMethod.Put,
-                    Path = string.Format(
-                        "/patients/v1/{0}/{1}",
-                        ValueConvert.ToPathParameterString(id),
-                        ValueConvert.ToPathParameterString(version)
-                    ),
-                    Body = request,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                return JsonUtils.Deserialize<Patient>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new CandidException("Failed to deserialize response", e);
-            }
-        }
-
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            throw new CandidApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
+        return new WithRawResponseTask<Patient>(
+            UpdateAsyncCore(id, version, request, options, cancellationToken)
+        );
     }
 
     /// <summary>
@@ -1076,6 +1542,12 @@ public partial class V1Client
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -1087,6 +1559,7 @@ public partial class V1Client
                         ValueConvert.ToPathParameterString(id),
                         ValueConvert.ToPathParameterString(version)
                     ),
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -1097,7 +1570,9 @@ public partial class V1Client
             return;
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             throw new CandidApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
@@ -1119,6 +1594,12 @@ public partial class V1Client
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -1130,6 +1611,7 @@ public partial class V1Client
                         ValueConvert.ToPathParameterString(id),
                         ValueConvert.ToPathParameterString(version)
                     ),
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -1140,7 +1622,9 @@ public partial class V1Client
             return;
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             throw new CandidApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
@@ -1155,55 +1639,15 @@ public partial class V1Client
     /// <example><code>
     /// await client.PreEncounter.Patients.V1.SearchAsync(new PatientGetMultiRequest());
     /// </code></example>
-    public async global::System.Threading.Tasks.Task<IEnumerable<Patient>> SearchAsync(
+    public WithRawResponseTask<IEnumerable<Patient>> SearchAsync(
         PatientGetMultiRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>();
-        if (request.Mrn != null)
-        {
-            _query["mrn"] = request.Mrn;
-        }
-        if (request.SimilarNameOrdering != null)
-        {
-            _query["similar_name_ordering"] = request.SimilarNameOrdering;
-        }
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.Environment.PreEncounter,
-                    Method = HttpMethod.Get,
-                    Path = "/patients/v1",
-                    Query = _query,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                return JsonUtils.Deserialize<IEnumerable<Patient>>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new CandidException("Failed to deserialize response", e);
-            }
-        }
-
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            throw new CandidApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
+        return new WithRawResponseTask<IEnumerable<Patient>>(
+            SearchAsyncCore(request, options, cancellationToken)
+        );
     }
 
     /// <summary>
@@ -1227,51 +1671,14 @@ public partial class V1Client
     ///     new PatientScanRequest { Since = new DateTime(2024, 01, 15, 09, 30, 00, 000) }
     /// );
     /// </code></example>
-    public async global::System.Threading.Tasks.Task<IEnumerable<Patient>> ScanAsync(
+    public WithRawResponseTask<IEnumerable<Patient>> ScanAsync(
         PatientScanRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>();
-        _query["since"] = request.Since.ToString(Constants.DateTimeFormat);
-        if (request.MaxResults != null)
-        {
-            _query["maxResults"] = request.MaxResults.Value.ToString();
-        }
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.Environment.PreEncounter,
-                    Method = HttpMethod.Get,
-                    Path = "/patients/v1/updates/scan",
-                    Query = _query,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                return JsonUtils.Deserialize<IEnumerable<Patient>>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new CandidException("Failed to deserialize response", e);
-            }
-        }
-
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            throw new CandidApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
+        return new WithRawResponseTask<IEnumerable<Patient>>(
+            ScanAsyncCore(request, options, cancellationToken)
+        );
     }
 }

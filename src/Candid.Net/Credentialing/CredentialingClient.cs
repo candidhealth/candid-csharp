@@ -2,9 +2,9 @@ using Candid.Net.Core;
 
 namespace Candid.Net.Credentialing;
 
-public partial class CredentialingClient
+public partial class CredentialingClient : ICredentialingClient
 {
-    private RawClient _client;
+    private readonly RawClient _client;
 
     internal CredentialingClient(RawClient client)
     {
@@ -12,5 +12,5 @@ public partial class CredentialingClient
         V2 = new global::Candid.Net.Credentialing.V2.V2Client(_client);
     }
 
-    public global::Candid.Net.Credentialing.V2.V2Client V2 { get; }
+    public global::Candid.Net.Credentialing.V2.IV2Client V2 { get; }
 }

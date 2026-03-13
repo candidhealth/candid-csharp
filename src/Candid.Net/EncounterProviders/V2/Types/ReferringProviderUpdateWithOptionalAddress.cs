@@ -26,6 +26,9 @@ public record ReferringProviderUpdateWithOptionalAddress : IJsonOnDeserialized
     [JsonPropertyName("address")]
     public StreetAddressShortZipOptional? Address { get; set; }
 
+    [JsonPropertyName("secondary_identification")]
+    public ReferringProviderSecondaryIdentification? SecondaryIdentification { get; set; }
+
     /// <summary>
     /// If the provider is an individual, this should be set instead of organization name
     /// </summary>

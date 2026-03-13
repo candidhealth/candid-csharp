@@ -2,9 +2,9 @@ using Candid.Net.Core;
 
 namespace Candid.Net.ImportInvoice;
 
-public partial class ImportInvoiceClient
+public partial class ImportInvoiceClient : IImportInvoiceClient
 {
-    private RawClient _client;
+    private readonly RawClient _client;
 
     internal ImportInvoiceClient(RawClient client)
     {
@@ -12,5 +12,5 @@ public partial class ImportInvoiceClient
         V1 = new global::Candid.Net.ImportInvoice.V1.V1Client(_client);
     }
 
-    public global::Candid.Net.ImportInvoice.V1.V1Client V1 { get; }
+    public global::Candid.Net.ImportInvoice.V1.IV1Client V1 { get; }
 }

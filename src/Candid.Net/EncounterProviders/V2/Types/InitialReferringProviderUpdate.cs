@@ -29,6 +29,9 @@ public record InitialReferringProviderUpdate : IJsonOnDeserialized
     [JsonPropertyName("qualifier")]
     public QualifierCode? Qualifier { get; set; }
 
+    [JsonPropertyName("secondary_identification")]
+    public ReferringProviderSecondaryIdentification? SecondaryIdentification { get; set; }
+
     /// <summary>
     /// If the provider is an individual, this should be set instead of organization name
     /// </summary>

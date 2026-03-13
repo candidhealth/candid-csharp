@@ -6,6 +6,8 @@ public partial class OAuthTokenProvider
 {
     private const double BufferInMinutes = 2;
 
+    private DefaultClient _client;
+
     private string? _accessToken;
 
     private DateTime? _expiresAt;
@@ -13,8 +15,6 @@ public partial class OAuthTokenProvider
     private string _clientId;
 
     private string _clientSecret;
-
-    private DefaultClient _client;
 
     public OAuthTokenProvider(string clientId, string clientSecret, DefaultClient client)
     {

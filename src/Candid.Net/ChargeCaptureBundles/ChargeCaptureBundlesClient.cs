@@ -2,9 +2,9 @@ using Candid.Net.Core;
 
 namespace Candid.Net.ChargeCaptureBundles;
 
-public partial class ChargeCaptureBundlesClient
+public partial class ChargeCaptureBundlesClient : IChargeCaptureBundlesClient
 {
-    private RawClient _client;
+    private readonly RawClient _client;
 
     internal ChargeCaptureBundlesClient(RawClient client)
     {
@@ -12,5 +12,5 @@ public partial class ChargeCaptureBundlesClient
         V1 = new global::Candid.Net.ChargeCaptureBundles.V1.V1Client(_client);
     }
 
-    public global::Candid.Net.ChargeCaptureBundles.V1.V1Client V1 { get; }
+    public global::Candid.Net.ChargeCaptureBundles.V1.IV1Client V1 { get; }
 }

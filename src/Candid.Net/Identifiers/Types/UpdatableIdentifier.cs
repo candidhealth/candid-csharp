@@ -224,20 +224,30 @@ public record UpdatableIdentifier
                 discriminatorElement.GetString()
                 ?? throw new JsonException("Discriminator property 'type' is null");
 
+            // Strip the discriminant property to prevent it from leaking into AdditionalProperties
+            var jsonObject = System.Text.Json.Nodes.JsonObject.Create(json);
+            jsonObject?.Remove("type");
+            var jsonWithoutDiscriminator =
+                jsonObject != null ? JsonSerializer.SerializeToElement(jsonObject, options) : json;
+
             var value = discriminator switch
             {
-                "add" => json.Deserialize<global::Candid.Net.Identifiers.IdentifierCreate?>(options)
-                    ?? throw new JsonException(
-                        "Failed to deserialize global::Candid.Net.Identifiers.IdentifierCreate"
-                    ),
-                "update" => json.Deserialize<global::Candid.Net.Identifiers.IdentifierUpdate?>(
-                    options
-                )
-                    ?? throw new JsonException(
-                        "Failed to deserialize global::Candid.Net.Identifiers.IdentifierUpdate"
-                    ),
+                "add" =>
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Identifiers.IdentifierCreate?>(
+                        options
+                    )
+                        ?? throw new JsonException(
+                            "Failed to deserialize global::Candid.Net.Identifiers.IdentifierCreate"
+                        ),
+                "update" =>
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Identifiers.IdentifierUpdate?>(
+                        options
+                    )
+                        ?? throw new JsonException(
+                            "Failed to deserialize global::Candid.Net.Identifiers.IdentifierUpdate"
+                        ),
                 "remove" => json.GetProperty("value").Deserialize<string?>(options)
-                ?? throw new JsonException("Failed to deserialize string"),
+                    ?? throw new JsonException("Failed to deserialize string"),
                 _ => json.Deserialize<object?>(options),
             };
             return new UpdatableIdentifier(discriminator, value);

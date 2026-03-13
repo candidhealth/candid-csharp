@@ -17,6 +17,8 @@ public readonly record struct InvoiceDestination : IStringEnum
 
     public static readonly InvoiceDestination ThirdPartyPayers = new(Values.ThirdPartyPayers);
 
+    public static readonly InvoiceDestination Instamed = new(Values.Instamed);
+
     public InvoiceDestination(string value)
     {
         Value = value;
@@ -73,5 +75,7 @@ public readonly record struct InvoiceDestination : IStringEnum
         public const string Collectly = "COLLECTLY";
 
         public const string ThirdPartyPayers = "THIRD_PARTY_PAYERS";
+
+        public const string Instamed = "INSTAMED";
     }
 }

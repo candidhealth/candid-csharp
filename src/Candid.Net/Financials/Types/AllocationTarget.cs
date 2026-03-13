@@ -324,30 +324,37 @@ public record AllocationTarget
                 discriminatorElement.GetString()
                 ?? throw new JsonException("Discriminator property 'type' is null");
 
+            // Strip the discriminant property to prevent it from leaking into AdditionalProperties
+            var jsonObject = System.Text.Json.Nodes.JsonObject.Create(json);
+            jsonObject?.Remove("type");
+            var jsonWithoutDiscriminator =
+                jsonObject != null ? JsonSerializer.SerializeToElement(jsonObject, options) : json;
+
             var value = discriminator switch
             {
                 "service_line" =>
-                    json.Deserialize<global::Candid.Net.Financials.ServiceLineAllocationTarget?>(
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Financials.ServiceLineAllocationTarget?>(
                         options
                     )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.Financials.ServiceLineAllocationTarget"
                         ),
-                "claim" => json.Deserialize<global::Candid.Net.Financials.ClaimAllocationTarget?>(
-                    options
-                )
-                    ?? throw new JsonException(
-                        "Failed to deserialize global::Candid.Net.Financials.ClaimAllocationTarget"
-                    ),
+                "claim" =>
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Financials.ClaimAllocationTarget?>(
+                        options
+                    )
+                        ?? throw new JsonException(
+                            "Failed to deserialize global::Candid.Net.Financials.ClaimAllocationTarget"
+                        ),
                 "billing_provider_id" =>
-                    json.Deserialize<global::Candid.Net.Financials.BillingProviderAllocationTarget?>(
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Financials.BillingProviderAllocationTarget?>(
                         options
                     )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.Financials.BillingProviderAllocationTarget"
                         ),
                 "appointment" =>
-                    json.Deserialize<global::Candid.Net.Financials.AppointmentAllocationTarget?>(
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Financials.AppointmentAllocationTarget?>(
                         options
                     )
                         ?? throw new JsonException(

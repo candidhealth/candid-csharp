@@ -2,9 +2,9 @@ using Candid.Net.Core;
 
 namespace Candid.Net.NonInsurancePayerRefunds;
 
-public partial class NonInsurancePayerRefundsClient
+public partial class NonInsurancePayerRefundsClient : INonInsurancePayerRefundsClient
 {
-    private RawClient _client;
+    private readonly RawClient _client;
 
     internal NonInsurancePayerRefundsClient(RawClient client)
     {
@@ -12,5 +12,5 @@ public partial class NonInsurancePayerRefundsClient
         V1 = new global::Candid.Net.NonInsurancePayerRefunds.V1.V1Client(_client);
     }
 
-    public global::Candid.Net.NonInsurancePayerRefunds.V1.V1Client V1 { get; }
+    public global::Candid.Net.NonInsurancePayerRefunds.V1.IV1Client V1 { get; }
 }

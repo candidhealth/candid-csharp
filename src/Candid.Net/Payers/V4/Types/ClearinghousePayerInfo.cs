@@ -54,6 +54,12 @@ public record ClearinghousePayerInfo : IJsonOnDeserialized
     [JsonPropertyName("remittance_support")]
     public required SupportState RemittanceSupport { get; set; }
 
+    /// <summary>
+    /// The support state for claim attachment submission
+    /// </summary>
+    [JsonPropertyName("claim_attachment_support")]
+    public required SupportState ClaimAttachmentSupport { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

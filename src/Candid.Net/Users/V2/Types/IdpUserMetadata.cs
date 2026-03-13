@@ -230,20 +230,32 @@ public record IdpUserMetadata
                 discriminatorElement.GetString()
                 ?? throw new JsonException("Discriminator property 'type' is null");
 
+            // Strip the discriminant property to prevent it from leaking into AdditionalProperties
+            var jsonObject = System.Text.Json.Nodes.JsonObject.Create(json);
+            jsonObject?.Remove("type");
+            var jsonWithoutDiscriminator =
+                jsonObject != null ? JsonSerializer.SerializeToElement(jsonObject, options) : json;
+
             var value = discriminator switch
             {
                 "auth_zero_metadata" =>
-                    json.Deserialize<global::Candid.Net.Users.V2.AuthZeroMetadata?>(options)
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Users.V2.AuthZeroMetadata?>(
+                        options
+                    )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.Users.V2.AuthZeroMetadata"
                         ),
                 "google_apps_metadata" =>
-                    json.Deserialize<global::Candid.Net.Users.V2.GoogleAppsMetadata?>(options)
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Users.V2.GoogleAppsMetadata?>(
+                        options
+                    )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.Users.V2.GoogleAppsMetadata"
                         ),
                 "other_idp_metadata" =>
-                    json.Deserialize<global::Candid.Net.Users.V2.OtherIdpMetadata?>(options)
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Users.V2.OtherIdpMetadata?>(
+                        options
+                    )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.Users.V2.OtherIdpMetadata"
                         ),

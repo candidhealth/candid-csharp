@@ -1,17 +1,154 @@
-using System.Net.Http;
 using System.Text.Json;
-using System.Threading;
+using Candid.Net;
 using Candid.Net.Core;
 
 namespace Candid.Net.BillingNotes.V2;
 
-public partial class V2Client
+public partial class V2Client : IV2Client
 {
-    private RawClient _client;
+    private readonly RawClient _client;
 
     internal V2Client(RawClient client)
     {
         _client = client;
+    }
+
+    private async global::System.Threading.Tasks.Task<WithRawResponse<BillingNote>> CreateAsyncCore(
+        StandaloneBillingNoteCreate request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _headers = await new Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Post,
+                    Path = "/api/billing_notes/v2",
+                    Body = request,
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<BillingNote>(responseBody)!;
+                return new WithRawResponse<BillingNote>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async global::System.Threading.Tasks.Task<WithRawResponse<BillingNote>> UpdateAsyncCore(
+        string billingNoteId,
+        BillingNoteUpdate request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _headers = await new Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethodExtensions.Patch,
+                    Path = string.Format(
+                        "/api/billing_notes/v2/{0}",
+                        ValueConvert.ToPathParameterString(billingNoteId)
+                    ),
+                    Body = request,
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<BillingNote>(responseBody)!;
+                return new WithRawResponse<BillingNote>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <example><code>
@@ -23,46 +160,15 @@ public partial class V2Client
     ///     }
     /// );
     /// </code></example>
-    public async global::System.Threading.Tasks.Task<BillingNote> CreateAsync(
+    public WithRawResponseTask<BillingNote> CreateAsync(
         StandaloneBillingNoteCreate request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.Environment.CandidApi,
-                    Method = HttpMethod.Post,
-                    Path = "/api/billing_notes/v2",
-                    Body = request,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                return JsonUtils.Deserialize<BillingNote>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new CandidException("Failed to deserialize response", e);
-            }
-        }
-
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            throw new CandidApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
+        return new WithRawResponseTask<BillingNote>(
+            CreateAsyncCore(request, options, cancellationToken)
+        );
     }
 
     /// <example><code>
@@ -74,6 +180,12 @@ public partial class V2Client
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -84,6 +196,7 @@ public partial class V2Client
                         "/api/billing_notes/v2/{0}",
                         ValueConvert.ToPathParameterString(billingNoteId)
                     ),
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -94,7 +207,9 @@ public partial class V2Client
             return;
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             throw new CandidApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
@@ -109,49 +224,15 @@ public partial class V2Client
     ///     new BillingNoteUpdate { Text = "text" }
     /// );
     /// </code></example>
-    public async global::System.Threading.Tasks.Task<BillingNote> UpdateAsync(
+    public WithRawResponseTask<BillingNote> UpdateAsync(
         string billingNoteId,
         BillingNoteUpdate request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.Environment.CandidApi,
-                    Method = HttpMethodExtensions.Patch,
-                    Path = string.Format(
-                        "/api/billing_notes/v2/{0}",
-                        ValueConvert.ToPathParameterString(billingNoteId)
-                    ),
-                    Body = request,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                return JsonUtils.Deserialize<BillingNote>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new CandidException("Failed to deserialize response", e);
-            }
-        }
-
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            throw new CandidApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
+        return new WithRawResponseTask<BillingNote>(
+            UpdateAsyncCore(billingNoteId, request, options, cancellationToken)
+        );
     }
 }

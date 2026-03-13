@@ -1,74 +1,47 @@
-using System.Net.Http;
 using System.Text.Json;
-using System.Threading;
+using Candid.Net;
 using Candid.Net.Core;
 
 namespace Candid.Net.PatientPayments.V4;
 
-public partial class V4Client
+public partial class V4Client : IV4Client
 {
-    private RawClient _client;
+    private readonly RawClient _client;
 
     internal V4Client(RawClient client)
     {
         _client = client;
     }
 
-    /// <summary>
-    /// Returns all patient payments satisfying the search criteria AND whose organization_id matches
-    /// the current organization_id of the authenticated user.
-    /// </summary>
-    /// <example><code>
-    /// await client.PatientPayments.V4.GetMultiAsync(new GetMultiPatientPaymentsRequest());
-    /// </code></example>
-    public async global::System.Threading.Tasks.Task<PatientPaymentsPage> GetMultiAsync(
+    private async global::System.Threading.Tasks.Task<
+        WithRawResponse<PatientPaymentsPage>
+    > GetMultiAsyncCore(
         GetMultiPatientPaymentsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>();
-        _query["sources"] = request.Sources.Select(_value => _value.Stringify()).ToList();
-        if (request.Limit != null)
-        {
-            _query["limit"] = request.Limit.Value.ToString();
-        }
-        if (request.PatientExternalId != null)
-        {
-            _query["patient_external_id"] = request.PatientExternalId;
-        }
-        if (request.ClaimId != null)
-        {
-            _query["claim_id"] = request.ClaimId;
-        }
-        if (request.ServiceLineId != null)
-        {
-            _query["service_line_id"] = request.ServiceLineId;
-        }
-        if (request.BillingProviderId != null)
-        {
-            _query["billing_provider_id"] = request.BillingProviderId;
-        }
-        if (request.Unattributed != null)
-        {
-            _query["unattributed"] = JsonUtils.Serialize(request.Unattributed.Value);
-        }
-        if (request.InvoiceId != null)
-        {
-            _query["invoice_id"] = request.InvoiceId;
-        }
-        if (request.Sort != null)
-        {
-            _query["sort"] = request.Sort.Value.Stringify();
-        }
-        if (request.SortDirection != null)
-        {
-            _query["sort_direction"] = request.SortDirection.Value.Stringify();
-        }
-        if (request.PageToken != null)
-        {
-            _query["page_token"] = request.PageToken;
-        }
+        var _queryString = new Candid.Net.Core.QueryStringBuilder.Builder(capacity: 12)
+            .Add("limit", request.Limit)
+            .Add("patient_external_id", request.PatientExternalId)
+            .Add("claim_id", request.ClaimId)
+            .Add("service_line_id", request.ServiceLineId)
+            .Add("billing_provider_id", request.BillingProviderId)
+            .Add("unattributed", request.Unattributed)
+            .Add("invoice_id", request.InvoiceId)
+            .Add("sources", request.Sources)
+            .Add("source_internal_id", request.SourceInternalId)
+            .Add("sort", request.Sort)
+            .Add("sort_direction", request.SortDirection)
+            .Add("page_token", request.PageToken)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -76,7 +49,8 @@ public partial class V4Client
                     BaseUrl = _client.Options.Environment.CandidApi,
                     Method = HttpMethod.Get,
                     Path = "/api/patient-payments/v4",
-                    Query = _query,
+                    QueryString = _queryString,
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -84,19 +58,37 @@ public partial class V4Client
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
-                return JsonUtils.Deserialize<PatientPaymentsPage>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<PatientPaymentsPage>(responseBody)!;
+                return new WithRawResponse<PatientPaymentsPage>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new CandidException("Failed to deserialize response", e);
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             throw new CandidApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
@@ -105,18 +97,18 @@ public partial class V4Client
         }
     }
 
-    /// <summary>
-    /// Retrieves a previously created patient payment by its `patient_payment_id`.
-    /// </summary>
-    /// <example><code>
-    /// await client.PatientPayments.V4.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
-    /// </code></example>
-    public async global::System.Threading.Tasks.Task<PatientPayment> GetAsync(
+    private async global::System.Threading.Tasks.Task<WithRawResponse<PatientPayment>> GetAsyncCore(
         string patientPaymentId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -127,6 +119,7 @@ public partial class V4Client
                         "/api/patient-payments/v4/{0}",
                         ValueConvert.ToPathParameterString(patientPaymentId)
                     ),
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -134,25 +127,220 @@ public partial class V4Client
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
-                return JsonUtils.Deserialize<PatientPayment>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<PatientPayment>(responseBody)!;
+                return new WithRawResponse<PatientPayment>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new CandidException("Failed to deserialize response", e);
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             throw new CandidApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
                 responseBody
             );
         }
+    }
+
+    private async global::System.Threading.Tasks.Task<
+        WithRawResponse<PatientPayment>
+    > CreateAsyncCore(
+        PatientPaymentCreate request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _headers = await new Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Post,
+                    Path = "/api/patient-payments/v4",
+                    Body = request,
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<PatientPayment>(responseBody)!;
+                return new WithRawResponse<PatientPayment>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async global::System.Threading.Tasks.Task<
+        WithRawResponse<PatientPayment>
+    > UpdateAsyncCore(
+        string patientPaymentId,
+        PatientPaymentUpdate request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _headers = await new Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethodExtensions.Patch,
+                    Path = string.Format(
+                        "/api/patient-payments/v4/{0}",
+                        ValueConvert.ToPathParameterString(patientPaymentId)
+                    ),
+                    Body = request,
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<PatientPayment>(responseBody)!;
+                return new WithRawResponse<PatientPayment>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    /// <summary>
+    /// Returns all patient payments satisfying the search criteria AND whose organization_id matches
+    /// the current organization_id of the authenticated user.
+    /// </summary>
+    /// <example><code>
+    /// await client.PatientPayments.V4.GetMultiAsync(new GetMultiPatientPaymentsRequest());
+    /// </code></example>
+    public WithRawResponseTask<PatientPaymentsPage> GetMultiAsync(
+        GetMultiPatientPaymentsRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<PatientPaymentsPage>(
+            GetMultiAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Retrieves a previously created patient payment by its `patient_payment_id`.
+    /// </summary>
+    /// <example><code>
+    /// await client.PatientPayments.V4.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+    /// </code></example>
+    public WithRawResponseTask<PatientPayment> GetAsync(
+        string patientPaymentId,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<PatientPayment>(
+            GetAsyncCore(patientPaymentId, options, cancellationToken)
+        );
     }
 
     /// <summary>
@@ -190,46 +378,15 @@ public partial class V4Client
     ///     }
     /// );
     /// </code></example>
-    public async global::System.Threading.Tasks.Task<PatientPayment> CreateAsync(
+    public WithRawResponseTask<PatientPayment> CreateAsync(
         PatientPaymentCreate request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.Environment.CandidApi,
-                    Method = HttpMethod.Post,
-                    Path = "/api/patient-payments/v4",
-                    Body = request,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                return JsonUtils.Deserialize<PatientPayment>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new CandidException("Failed to deserialize response", e);
-            }
-        }
-
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            throw new CandidApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
+        return new WithRawResponseTask<PatientPayment>(
+            CreateAsyncCore(request, options, cancellationToken)
+        );
     }
 
     /// <summary>
@@ -241,50 +398,16 @@ public partial class V4Client
     ///     new PatientPaymentUpdate()
     /// );
     /// </code></example>
-    public async global::System.Threading.Tasks.Task<PatientPayment> UpdateAsync(
+    public WithRawResponseTask<PatientPayment> UpdateAsync(
         string patientPaymentId,
         PatientPaymentUpdate request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.Environment.CandidApi,
-                    Method = HttpMethodExtensions.Patch,
-                    Path = string.Format(
-                        "/api/patient-payments/v4/{0}",
-                        ValueConvert.ToPathParameterString(patientPaymentId)
-                    ),
-                    Body = request,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                return JsonUtils.Deserialize<PatientPayment>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new CandidException("Failed to deserialize response", e);
-            }
-        }
-
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            throw new CandidApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
+        return new WithRawResponseTask<PatientPayment>(
+            UpdateAsyncCore(patientPaymentId, request, options, cancellationToken)
+        );
     }
 
     /// <summary>
@@ -299,6 +422,12 @@ public partial class V4Client
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -309,6 +438,7 @@ public partial class V4Client
                         "/api/patient-payments/v4/{0}",
                         ValueConvert.ToPathParameterString(patientPaymentId)
                     ),
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -319,7 +449,9 @@ public partial class V4Client
             return;
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             throw new CandidApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,

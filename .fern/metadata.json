@@ -1,0 +1,18 @@
+{
+  "cliVersion": "4.26.1",
+  "generatorName": "fernapi/fern-csharp-sdk",
+  "generatorVersion": "2.23.6",
+  "generatorConfig": {
+    "namespace": "Candid.Net",
+    "client-class-name": "Candid",
+    "base-api-exception-class-name": "CandidApiException",
+    "base-exception-class-name": "CandidException",
+    "root-namespace-for-core-classes": false,
+    "pascal-case-environments": false,
+    "simplify-object-dictionaries": false,
+    "explicit-namespaces": true,
+    "experimental-fully-qualified-namespaces": true
+  },
+  "originGitCommit": "3a997436c93b5f8f5e0f78d9b1b8116329de80e7",
+  "sdkVersion": "1.20.3"
+}

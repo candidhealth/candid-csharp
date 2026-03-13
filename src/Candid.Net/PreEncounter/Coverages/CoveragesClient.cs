@@ -2,9 +2,9 @@ using Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter.Coverages;
 
-public partial class CoveragesClient
+public partial class CoveragesClient : ICoveragesClient
 {
-    private RawClient _client;
+    private readonly RawClient _client;
 
     internal CoveragesClient(RawClient client)
     {
@@ -12,5 +12,5 @@ public partial class CoveragesClient
         V1 = new global::Candid.Net.PreEncounter.Coverages.V1.V1Client(_client);
     }
 
-    public global::Candid.Net.PreEncounter.Coverages.V1.V1Client V1 { get; }
+    public global::Candid.Net.PreEncounter.Coverages.V1.IV1Client V1 { get; }
 }

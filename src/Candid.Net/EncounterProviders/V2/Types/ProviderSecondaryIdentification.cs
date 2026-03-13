@@ -19,8 +19,7 @@ public record ProviderSecondaryIdentification : IJsonOnDeserialized
     public required string ReferenceIdentification { get; set; }
 
     /// <summary>
-    /// Represents REF01 on the EDI 837 Loop 2010BB Billing Provider Secondary Identification segment.
-    /// Valid values include G2 (Provider Commercial Number) and LU (Location Number). Defaults to G2 if not set.
+    /// Represents REF01 on the EDI 837 Loop 2010BB Provider Secondary Identification segment.
     /// </summary>
     [JsonPropertyName("reference_identification_qualifier")]
     public ProviderSecondaryIdentificationQualifier? ReferenceIdentificationQualifier { get; set; }

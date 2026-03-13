@@ -1,17 +1,85 @@
-using System.Net.Http;
 using System.Text.Json;
-using System.Threading;
+using Candid.Net;
 using Candid.Net.Core;
 
 namespace Candid.Net.Auth.Default;
 
-public partial class DefaultClient
+public partial class DefaultClient : IDefaultClient
 {
-    private RawClient _client;
+    private readonly RawClient _client;
 
     internal DefaultClient(RawClient client)
     {
         _client = client;
+    }
+
+    private async global::System.Threading.Tasks.Task<
+        WithRawResponse<AuthGetTokenResponse>
+    > GetTokenAsyncCore(
+        AuthGetTokenRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _headers = await new Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Post,
+                    Path = "/api/auth/v2/token",
+                    Body = request,
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<AuthGetTokenResponse>(responseBody)!;
+                return new WithRawResponse<AuthGetTokenResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
@@ -52,45 +120,14 @@ public partial class DefaultClient
     ///     new AuthGetTokenRequest { ClientId = "YOUR_CLIENT_ID", ClientSecret = "YOUR_CLIENT_SECRET" }
     /// );
     /// </code></example>
-    public async global::System.Threading.Tasks.Task<AuthGetTokenResponse> GetTokenAsync(
+    public WithRawResponseTask<AuthGetTokenResponse> GetTokenAsync(
         AuthGetTokenRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.Environment.CandidApi,
-                    Method = HttpMethod.Post,
-                    Path = "/api/auth/v2/token",
-                    Body = request,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                return JsonUtils.Deserialize<AuthGetTokenResponse>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new CandidException("Failed to deserialize response", e);
-            }
-        }
-
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            throw new CandidApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
+        return new WithRawResponseTask<AuthGetTokenResponse>(
+            GetTokenAsyncCore(request, options, cancellationToken)
+        );
     }
 }

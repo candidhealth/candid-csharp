@@ -26,6 +26,9 @@ public record SupervisingProvider : IJsonOnDeserialized
     [JsonPropertyName("address")]
     public StreetAddressLongZip? Address { get; set; }
 
+    [JsonPropertyName("secondary_identification")]
+    public SupervisingProviderSecondaryIdentification? SecondaryIdentification { get; set; }
+
     /// <summary>
     /// If the provider is an individual, this should be set instead of organization name
     /// </summary>

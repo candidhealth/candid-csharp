@@ -234,11 +234,11 @@ public record InsuranceWriteOffTarget
             var value = discriminator switch
             {
                 "service_line_id" => json.GetProperty("value").Deserialize<string?>(options)
-                ?? throw new JsonException("Failed to deserialize string"),
+                    ?? throw new JsonException("Failed to deserialize string"),
                 "claim_id" => json.GetProperty("value").Deserialize<string?>(options)
-                ?? throw new JsonException("Failed to deserialize string"),
+                    ?? throw new JsonException("Failed to deserialize string"),
                 "billing_provider_id" => json.GetProperty("value").Deserialize<string?>(options)
-                ?? throw new JsonException("Failed to deserialize string"),
+                    ?? throw new JsonException("Failed to deserialize string"),
                 _ => json.Deserialize<object?>(options),
             };
             return new InsuranceWriteOffTarget(discriminator, value);

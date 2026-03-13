@@ -178,7 +178,7 @@ public record RefundReasonUpdate
             {
                 "set" => json.GetProperty("value")
                     .Deserialize<global::Candid.Net.Financials.RefundReason?>(options)
-                ?? throw new JsonException(
+                    ?? throw new JsonException(
                         "Failed to deserialize global::Candid.Net.Financials.RefundReason"
                     ),
                 "remove" => new { },
