@@ -1,10 +1,7 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using Candid.Net.Encounters.V4;
-using Newtonsoft.Json.Linq;
+using global::Candid.Net.Core;
+using global::Candid.Net.Encounters.V4;
+using global::Candid.Net.Test.Utils;
 using NUnit.Framework;
-
-#nullable enable
 
 namespace Candid.Net.Test;
 
@@ -98,6 +95,7 @@ public class EncounterTest
             ""start_date"": ""2023-01-01"",
             ""end_date"": ""2023-01-03""
           },
+          ""created_at"": ""2023-01-01T00:00:00Z"",
           ""date_of_service"": ""2023-01-01"",
           ""end_date_of_service"": ""2023-01-03""
         }
@@ -119,9 +117,12 @@ public class EncounterTest
         ""type"": ""Home""
       }
     ],
+    ""non_insurance_payers"": [],
+    ""non_insurance_payers_info"": [],
     ""phone_consent"": true,
     ""email"": ""johndoe@joincandidhealth.com"",
     ""email_consent"": true,
+    ""auto_charge_consent"": true,
     ""external_id"": ""49460F77-6456-41F1-AC6D-0AED08614D39"",
     ""date_of_birth"": ""2000-01-01"",
     ""address"": {
@@ -147,6 +148,7 @@ public class EncounterTest
     ""phone_consent"": true,
     ""email"": ""johndoe@joincandidhealth.com"",
     ""email_consent"": true,
+    ""auto_charge_consent"": true,
     ""first_name"": ""John"",
     ""last_name"": ""Doe"",
     ""external_id"": ""49460F77-6456-41F1-AC6D-0AED08614D39"",
@@ -436,22 +438,12 @@ public class EncounterTest
   ""service_authorization_exception_code"": ""1"",
   ""admission_date"": ""2023-01-01"",
   ""discharge_date"": ""2023-01-05"",
-  ""onset_of_current_illness_or_symptom_date"": ""2023-01-01""
+  ""onset_of_current_illness_or_symptom_date"": ""2023-01-01"",
+  ""schema_instances"": [],
+  ""created_at"": ""2023-01-01T00:00:00Z""
 }
 ";
 
-        var serializerOptions = new JsonSerializerOptions
-        {
-            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-        };
-
-        var deserializedObject = JsonSerializer.Deserialize<Encounter>(
-            inputJson,
-            serializerOptions
-        );
-
-        var serializedJson = JsonSerializer.Serialize(deserializedObject, serializerOptions);
-
-        Assert.That(JToken.DeepEquals(JToken.Parse(inputJson), JToken.Parse(serializedJson)));
+        JsonAssert.Roundtrips<Encounter>(inputJson);
     }
 }

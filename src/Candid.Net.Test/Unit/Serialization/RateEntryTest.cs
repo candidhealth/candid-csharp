@@ -1,10 +1,6 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using Candid.Net.FeeSchedules.V3;
-using Newtonsoft.Json.Linq;
+using global::Candid.Net.FeeSchedules.V3;
+using global::Candid.Net.Test.Utils;
 using NUnit.Framework;
-
-#nullable enable
 
 namespace Candid.Net.Test;
 
@@ -23,18 +19,6 @@ public class RateEntryTest
 }
 ";
 
-        var serializerOptions = new JsonSerializerOptions
-        {
-            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-        };
-
-        var deserializedObject = JsonSerializer.Deserialize<RateEntry>(
-            inputJson,
-            serializerOptions
-        );
-
-        var serializedJson = JsonSerializer.Serialize(deserializedObject, serializerOptions);
-
-        Assert.That(JToken.DeepEquals(JToken.Parse(inputJson), JToken.Parse(serializedJson)));
+        JsonAssert.Roundtrips<RateEntry>(inputJson);
     }
 }
