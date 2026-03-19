@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.Encounters.V4;
 
-[JsonConverter(typeof(StringEnumSerializer<EncounterSubmissionExpectation>))]
+[JsonConverter(typeof(EncounterSubmissionExpectation.EncounterSubmissionExpectationSerializer))]
 [Serializable]
 public readonly record struct EncounterSubmissionExpectation : IStringEnum
 {
@@ -61,6 +62,56 @@ public readonly record struct EncounterSubmissionExpectation : IStringEnum
     public static explicit operator string(EncounterSubmissionExpectation value) => value.Value;
 
     public static explicit operator EncounterSubmissionExpectation(string value) => new(value);
+
+    internal class EncounterSubmissionExpectationSerializer
+        : JsonConverter<EncounterSubmissionExpectation>
+    {
+        public override EncounterSubmissionExpectation Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new EncounterSubmissionExpectation(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            EncounterSubmissionExpectation value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override EncounterSubmissionExpectation ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new EncounterSubmissionExpectation(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            EncounterSubmissionExpectation value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

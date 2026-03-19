@@ -4,7 +4,7 @@
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.WriteOffs.V1;
 
@@ -229,24 +229,30 @@ public record WriteOffCreate
                 discriminatorElement.GetString()
                 ?? throw new JsonException("Discriminator property 'type' is null");
 
+            // Strip the discriminant property to prevent it from leaking into AdditionalProperties
+            var jsonObject = System.Text.Json.Nodes.JsonObject.Create(json);
+            jsonObject?.Remove("type");
+            var jsonWithoutDiscriminator =
+                jsonObject != null ? JsonSerializer.SerializeToElement(jsonObject, options) : json;
+
             var value = discriminator switch
             {
                 "patient" =>
-                    json.Deserialize<global::Candid.Net.WriteOffs.V1.PatientWriteOffCreate?>(
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.WriteOffs.V1.PatientWriteOffCreate?>(
                         options
                     )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.WriteOffs.V1.PatientWriteOffCreate"
                         ),
                 "insurance" =>
-                    json.Deserialize<global::Candid.Net.WriteOffs.V1.InsuranceWriteOffCreate?>(
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.WriteOffs.V1.InsuranceWriteOffCreate?>(
                         options
                     )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.WriteOffs.V1.InsuranceWriteOffCreate"
                         ),
                 "non_insurance_payer" =>
-                    json.Deserialize<global::Candid.Net.WriteOffs.V1.NonInsurancePayerWriteOffCreate?>(
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.WriteOffs.V1.NonInsurancePayerWriteOffCreate?>(
                         options
                     )
                         ?? throw new JsonException(

@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter.Images.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<CoverageImageSide>))]
+[JsonConverter(typeof(CoverageImageSide.CoverageImageSideSerializer))]
 [Serializable]
 public readonly record struct CoverageImageSide : IStringEnum
 {
@@ -51,6 +52,55 @@ public readonly record struct CoverageImageSide : IStringEnum
     public static explicit operator string(CoverageImageSide value) => value.Value;
 
     public static explicit operator CoverageImageSide(string value) => new(value);
+
+    internal class CoverageImageSideSerializer : JsonConverter<CoverageImageSide>
+    {
+        public override CoverageImageSide Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new CoverageImageSide(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            CoverageImageSide value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override CoverageImageSide ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new CoverageImageSide(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            CoverageImageSide value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

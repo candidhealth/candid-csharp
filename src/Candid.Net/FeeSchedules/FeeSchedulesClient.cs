@@ -1,10 +1,10 @@
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.FeeSchedules;
 
-public partial class FeeSchedulesClient
+public partial class FeeSchedulesClient : IFeeSchedulesClient
 {
-    private RawClient _client;
+    private readonly RawClient _client;
 
     internal FeeSchedulesClient(RawClient client)
     {
@@ -12,5 +12,5 @@ public partial class FeeSchedulesClient
         V3 = new global::Candid.Net.FeeSchedules.V3.V3Client(_client);
     }
 
-    public global::Candid.Net.FeeSchedules.V3.V3Client V3 { get; }
+    public global::Candid.Net.FeeSchedules.V3.IV3Client V3 { get; }
 }

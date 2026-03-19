@@ -1,8 +1,8 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net;
-using Candid.Net.Core;
-using Candid.Net.PreEncounter.Common;
+using global::Candid.Net;
+using global::Candid.Net.Core;
+using global::Candid.Net.PreEncounter.Common;
 
 namespace Candid.Net.PreEncounter.Patients.V1;
 

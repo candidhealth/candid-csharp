@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter.Common;
 
-[JsonConverter(typeof(StringEnumSerializer<Race>))]
+[JsonConverter(typeof(Race.RaceSerializer))]
 [Serializable]
 public readonly record struct Race : IStringEnum
 {
@@ -69,6 +70,51 @@ public readonly record struct Race : IStringEnum
     public static explicit operator string(Race value) => value.Value;
 
     public static explicit operator Race(string value) => new(value);
+
+    internal class RaceSerializer : JsonConverter<Race>
+    {
+        public override Race Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new Race(stringValue);
+        }
+
+        public override void Write(Utf8JsonWriter writer, Race value, JsonSerializerOptions options)
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override Race ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new Race(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            Race value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

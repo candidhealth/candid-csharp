@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.WriteOffs.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<PatientWriteOffReason>))]
+[JsonConverter(typeof(PatientWriteOffReason.PatientWriteOffReasonSerializer))]
 [Serializable]
 public readonly record struct PatientWriteOffReason : IStringEnum
 {
@@ -79,6 +80,55 @@ public readonly record struct PatientWriteOffReason : IStringEnum
     public static explicit operator string(PatientWriteOffReason value) => value.Value;
 
     public static explicit operator PatientWriteOffReason(string value) => new(value);
+
+    internal class PatientWriteOffReasonSerializer : JsonConverter<PatientWriteOffReason>
+    {
+        public override PatientWriteOffReason Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new PatientWriteOffReason(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            PatientWriteOffReason value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override PatientWriteOffReason ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new PatientWriteOffReason(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            PatientWriteOffReason value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

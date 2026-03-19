@@ -4,7 +4,7 @@
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.NonInsurancePayers.V1;
 
@@ -184,7 +184,7 @@ public record NonInsurancePayerCategoryUpdate
             {
                 "remove" => new { },
                 "set" => json.GetProperty("value").Deserialize<string?>(options)
-                ?? throw new JsonException("Failed to deserialize string"),
+                    ?? throw new JsonException("Failed to deserialize string"),
                 _ => json.Deserialize<object?>(options),
             };
             return new NonInsurancePayerCategoryUpdate(discriminator, value);

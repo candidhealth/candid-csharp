@@ -1,9 +1,12 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.Commons;
 
-[JsonConverter(typeof(StringEnumSerializer<EpsdtReferralConditionIndicatorCode>))]
+[JsonConverter(
+    typeof(EpsdtReferralConditionIndicatorCode.EpsdtReferralConditionIndicatorCodeSerializer)
+)]
 [Serializable]
 public readonly record struct EpsdtReferralConditionIndicatorCode : IStringEnum
 {
@@ -56,6 +59,56 @@ public readonly record struct EpsdtReferralConditionIndicatorCode : IStringEnum
         value.Value;
 
     public static explicit operator EpsdtReferralConditionIndicatorCode(string value) => new(value);
+
+    internal class EpsdtReferralConditionIndicatorCodeSerializer
+        : JsonConverter<EpsdtReferralConditionIndicatorCode>
+    {
+        public override EpsdtReferralConditionIndicatorCode Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new EpsdtReferralConditionIndicatorCode(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            EpsdtReferralConditionIndicatorCode value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override EpsdtReferralConditionIndicatorCode ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new EpsdtReferralConditionIndicatorCode(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            EpsdtReferralConditionIndicatorCode value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

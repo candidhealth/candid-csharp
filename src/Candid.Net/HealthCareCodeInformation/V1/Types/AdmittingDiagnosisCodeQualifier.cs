@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.HealthCareCodeInformation.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<AdmittingDiagnosisCodeQualifier>))]
+[JsonConverter(typeof(AdmittingDiagnosisCodeQualifier.AdmittingDiagnosisCodeQualifierSerializer))]
 [Serializable]
 public readonly record struct AdmittingDiagnosisCodeQualifier : IStringEnum
 {
@@ -57,6 +58,56 @@ public readonly record struct AdmittingDiagnosisCodeQualifier : IStringEnum
     public static explicit operator string(AdmittingDiagnosisCodeQualifier value) => value.Value;
 
     public static explicit operator AdmittingDiagnosisCodeQualifier(string value) => new(value);
+
+    internal class AdmittingDiagnosisCodeQualifierSerializer
+        : JsonConverter<AdmittingDiagnosisCodeQualifier>
+    {
+        public override AdmittingDiagnosisCodeQualifier Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new AdmittingDiagnosisCodeQualifier(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            AdmittingDiagnosisCodeQualifier value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override AdmittingDiagnosisCodeQualifier ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new AdmittingDiagnosisCodeQualifier(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            AdmittingDiagnosisCodeQualifier value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

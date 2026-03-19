@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter.Patients.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<DoNotInvoiceReason>))]
+[JsonConverter(typeof(DoNotInvoiceReason.DoNotInvoiceReasonSerializer))]
 [Serializable]
 public readonly record struct DoNotInvoiceReason : IStringEnum
 {
@@ -63,6 +64,55 @@ public readonly record struct DoNotInvoiceReason : IStringEnum
     public static explicit operator string(DoNotInvoiceReason value) => value.Value;
 
     public static explicit operator DoNotInvoiceReason(string value) => new(value);
+
+    internal class DoNotInvoiceReasonSerializer : JsonConverter<DoNotInvoiceReason>
+    {
+        public override DoNotInvoiceReason Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new DoNotInvoiceReason(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            DoNotInvoiceReason value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override DoNotInvoiceReason ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new DoNotInvoiceReason(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            DoNotInvoiceReason value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

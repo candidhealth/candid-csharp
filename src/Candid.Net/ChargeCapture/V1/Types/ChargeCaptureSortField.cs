@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.ChargeCapture.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<ChargeCaptureSortField>))]
+[JsonConverter(typeof(ChargeCaptureSortField.ChargeCaptureSortFieldSerializer))]
 [Serializable]
 public readonly record struct ChargeCaptureSortField : IStringEnum
 {
@@ -51,6 +52,55 @@ public readonly record struct ChargeCaptureSortField : IStringEnum
     public static explicit operator string(ChargeCaptureSortField value) => value.Value;
 
     public static explicit operator ChargeCaptureSortField(string value) => new(value);
+
+    internal class ChargeCaptureSortFieldSerializer : JsonConverter<ChargeCaptureSortField>
+    {
+        public override ChargeCaptureSortField Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new ChargeCaptureSortField(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            ChargeCaptureSortField value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override ChargeCaptureSortField ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new ChargeCaptureSortField(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            ChargeCaptureSortField value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

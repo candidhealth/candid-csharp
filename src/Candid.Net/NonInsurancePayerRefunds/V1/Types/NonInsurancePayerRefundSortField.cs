@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.NonInsurancePayerRefunds.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<NonInsurancePayerRefundSortField>))]
+[JsonConverter(typeof(NonInsurancePayerRefundSortField.NonInsurancePayerRefundSortFieldSerializer))]
 [Serializable]
 public readonly record struct NonInsurancePayerRefundSortField : IStringEnum
 {
@@ -53,6 +54,56 @@ public readonly record struct NonInsurancePayerRefundSortField : IStringEnum
     public static explicit operator string(NonInsurancePayerRefundSortField value) => value.Value;
 
     public static explicit operator NonInsurancePayerRefundSortField(string value) => new(value);
+
+    internal class NonInsurancePayerRefundSortFieldSerializer
+        : JsonConverter<NonInsurancePayerRefundSortField>
+    {
+        public override NonInsurancePayerRefundSortField Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new NonInsurancePayerRefundSortField(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            NonInsurancePayerRefundSortField value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override NonInsurancePayerRefundSortField ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new NonInsurancePayerRefundSortField(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            NonInsurancePayerRefundSortField value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

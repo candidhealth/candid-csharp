@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.RelatedCauses.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<RelatedCausesCode>))]
+[JsonConverter(typeof(RelatedCausesCode.RelatedCausesCodeSerializer))]
 [Serializable]
 public readonly record struct RelatedCausesCode : IStringEnum
 {
@@ -77,6 +78,55 @@ public readonly record struct RelatedCausesCode : IStringEnum
     public static explicit operator string(RelatedCausesCode value) => value.Value;
 
     public static explicit operator RelatedCausesCode(string value) => new(value);
+
+    internal class RelatedCausesCodeSerializer : JsonConverter<RelatedCausesCode>
+    {
+        public override RelatedCausesCode Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new RelatedCausesCode(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            RelatedCausesCode value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override RelatedCausesCode ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new RelatedCausesCode(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            RelatedCausesCode value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

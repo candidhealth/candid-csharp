@@ -1,9 +1,12 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.PropertyAndCasualty.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<PropertyCasualtyPatientIdentifierQualifier>))]
+[JsonConverter(
+    typeof(PropertyCasualtyPatientIdentifierQualifier.PropertyCasualtyPatientIdentifierQualifierSerializer)
+)]
 [Serializable]
 public readonly record struct PropertyCasualtyPatientIdentifierQualifier : IStringEnum
 {
@@ -63,6 +66,56 @@ public readonly record struct PropertyCasualtyPatientIdentifierQualifier : IStri
 
     public static explicit operator PropertyCasualtyPatientIdentifierQualifier(string value) =>
         new(value);
+
+    internal class PropertyCasualtyPatientIdentifierQualifierSerializer
+        : JsonConverter<PropertyCasualtyPatientIdentifierQualifier>
+    {
+        public override PropertyCasualtyPatientIdentifierQualifier Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new PropertyCasualtyPatientIdentifierQualifier(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            PropertyCasualtyPatientIdentifierQualifier value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override PropertyCasualtyPatientIdentifierQualifier ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new PropertyCasualtyPatientIdentifierQualifier(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            PropertyCasualtyPatientIdentifierQualifier value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

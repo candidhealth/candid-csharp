@@ -1,9 +1,9 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net;
-using Candid.Net.Core;
-using Candid.Net.PreEncounter.Appointments.V1;
-using Candid.Net.PreEncounter.Coverages.V1;
+using global::Candid.Net;
+using global::Candid.Net.Core;
+using global::Candid.Net.PreEncounter.Appointments.V1;
+using global::Candid.Net.PreEncounter.Coverages.V1;
 
 namespace Candid.Net.PreEncounter.Lists.V1;
 

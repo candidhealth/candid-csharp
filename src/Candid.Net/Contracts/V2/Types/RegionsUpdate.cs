@@ -4,7 +4,7 @@
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.Contracts.V2;
 
@@ -178,7 +178,7 @@ public record RegionsUpdate
             {
                 "set" => json.GetProperty("value")
                     .Deserialize<global::Candid.Net.Commons.Regions?>(options)
-                ?? throw new JsonException(
+                    ?? throw new JsonException(
                         "Failed to deserialize global::Candid.Net.Commons.Regions"
                     ),
                 "remove" => new { },

@@ -1,17 +1,17 @@
-using Candid.Net.Core;
-using Candid.Net.PreEncounter.Appointments;
-using Candid.Net.PreEncounter.Coverages;
-using Candid.Net.PreEncounter.EligibilityChecks;
-using Candid.Net.PreEncounter.Images;
-using Candid.Net.PreEncounter.Lists;
-using Candid.Net.PreEncounter.Notes;
-using Candid.Net.PreEncounter.Patients;
+using global::Candid.Net.Core;
+using global::Candid.Net.PreEncounter.Appointments;
+using global::Candid.Net.PreEncounter.Coverages;
+using global::Candid.Net.PreEncounter.EligibilityChecks;
+using global::Candid.Net.PreEncounter.Images;
+using global::Candid.Net.PreEncounter.Lists;
+using global::Candid.Net.PreEncounter.Notes;
+using global::Candid.Net.PreEncounter.Patients;
 
 namespace Candid.Net.PreEncounter;
 
-public partial class PreEncounterClient
+public partial class PreEncounterClient : IPreEncounterClient
 {
-    private RawClient _client;
+    private readonly RawClient _client;
 
     internal PreEncounterClient(RawClient client)
     {
@@ -26,19 +26,19 @@ public partial class PreEncounterClient
         Tags = new global::Candid.Net.PreEncounter.Tags.TagsClient(_client);
     }
 
-    public AppointmentsClient Appointments { get; }
+    public IAppointmentsClient Appointments { get; }
 
-    public CoveragesClient Coverages { get; }
+    public ICoveragesClient Coverages { get; }
 
-    public EligibilityChecksClient EligibilityChecks { get; }
+    public IEligibilityChecksClient EligibilityChecks { get; }
 
-    public ImagesClient Images { get; }
+    public IImagesClient Images { get; }
 
-    public ListsClient Lists { get; }
+    public IListsClient Lists { get; }
 
-    public NotesClient Notes { get; }
+    public INotesClient Notes { get; }
 
-    public PatientsClient Patients { get; }
+    public IPatientsClient Patients { get; }
 
-    public global::Candid.Net.PreEncounter.Tags.TagsClient Tags { get; }
+    public global::Candid.Net.PreEncounter.Tags.ITagsClient Tags { get; }
 }

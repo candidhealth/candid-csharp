@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.ChargeCapture.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<ChargeCaptureStatus>))]
+[JsonConverter(typeof(ChargeCaptureStatus.ChargeCaptureStatusSerializer))]
 [Serializable]
 public readonly record struct ChargeCaptureStatus : IStringEnum
 {
@@ -57,6 +58,55 @@ public readonly record struct ChargeCaptureStatus : IStringEnum
     public static explicit operator string(ChargeCaptureStatus value) => value.Value;
 
     public static explicit operator ChargeCaptureStatus(string value) => new(value);
+
+    internal class ChargeCaptureStatusSerializer : JsonConverter<ChargeCaptureStatus>
+    {
+        public override ChargeCaptureStatus Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new ChargeCaptureStatus(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            ChargeCaptureStatus value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override ChargeCaptureStatus ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new ChargeCaptureStatus(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            ChargeCaptureStatus value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

@@ -1,8 +1,8 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net;
-using Candid.Net.Core;
-using Candid.Net.NonInsurancePayers.V1;
+using global::Candid.Net;
+using global::Candid.Net.Core;
+using global::Candid.Net.NonInsurancePayers.V1;
 
 namespace Candid.Net.WriteOffs.V1;
 

@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.Encounters.V4;
 
-[JsonConverter(typeof(StringEnumSerializer<EncounterOwnerOfNextActionType>))]
+[JsonConverter(typeof(EncounterOwnerOfNextActionType.EncounterOwnerOfNextActionTypeSerializer))]
 [Serializable]
 public readonly record struct EncounterOwnerOfNextActionType : IStringEnum
 {
@@ -55,6 +56,56 @@ public readonly record struct EncounterOwnerOfNextActionType : IStringEnum
     public static explicit operator string(EncounterOwnerOfNextActionType value) => value.Value;
 
     public static explicit operator EncounterOwnerOfNextActionType(string value) => new(value);
+
+    internal class EncounterOwnerOfNextActionTypeSerializer
+        : JsonConverter<EncounterOwnerOfNextActionType>
+    {
+        public override EncounterOwnerOfNextActionType Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new EncounterOwnerOfNextActionType(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            EncounterOwnerOfNextActionType value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override EncounterOwnerOfNextActionType ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new EncounterOwnerOfNextActionType(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            EncounterOwnerOfNextActionType value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

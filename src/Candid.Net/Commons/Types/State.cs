@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.Commons;
 
-[JsonConverter(typeof(StringEnumSerializer<State>))]
+[JsonConverter(typeof(State.StateSerializer))]
 [Serializable]
 public readonly record struct State : IStringEnum
 {
@@ -169,6 +170,55 @@ public readonly record struct State : IStringEnum
     public static explicit operator string(State value) => value.Value;
 
     public static explicit operator State(string value) => new(value);
+
+    internal class StateSerializer : JsonConverter<State>
+    {
+        public override State Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new State(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            State value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override State ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new State(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            State value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

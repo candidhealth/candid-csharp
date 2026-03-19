@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter.Patients.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<SpecializationCategory>))]
+[JsonConverter(typeof(SpecializationCategory.SpecializationCategorySerializer))]
 [Serializable]
 public readonly record struct SpecializationCategory : IStringEnum
 {
@@ -107,6 +108,55 @@ public readonly record struct SpecializationCategory : IStringEnum
     public static explicit operator string(SpecializationCategory value) => value.Value;
 
     public static explicit operator SpecializationCategory(string value) => new(value);
+
+    internal class SpecializationCategorySerializer : JsonConverter<SpecializationCategory>
+    {
+        public override SpecializationCategory Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new SpecializationCategory(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            SpecializationCategory value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override SpecializationCategory ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new SpecializationCategory(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            SpecializationCategory value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

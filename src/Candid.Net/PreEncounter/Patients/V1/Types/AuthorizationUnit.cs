@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter.Patients.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<AuthorizationUnit>))]
+[JsonConverter(typeof(AuthorizationUnit.AuthorizationUnitSerializer))]
 [Serializable]
 public readonly record struct AuthorizationUnit : IStringEnum
 {
@@ -51,6 +52,55 @@ public readonly record struct AuthorizationUnit : IStringEnum
     public static explicit operator string(AuthorizationUnit value) => value.Value;
 
     public static explicit operator AuthorizationUnit(string value) => new(value);
+
+    internal class AuthorizationUnitSerializer : JsonConverter<AuthorizationUnit>
+    {
+        public override AuthorizationUnit Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new AuthorizationUnit(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            AuthorizationUnit value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override AuthorizationUnit ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new AuthorizationUnit(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            AuthorizationUnit value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

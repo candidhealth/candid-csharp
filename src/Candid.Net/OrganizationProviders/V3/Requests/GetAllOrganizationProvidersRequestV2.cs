@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
-using Candid.Net.OrganizationProviders.V2;
+using global::Candid.Net.Core;
+using global::Candid.Net.OrganizationProviders.V2;
 
 namespace Candid.Net.OrganizationProviders.V3;
 

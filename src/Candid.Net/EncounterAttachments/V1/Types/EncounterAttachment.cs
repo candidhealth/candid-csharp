@@ -1,8 +1,8 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net;
-using Candid.Net.Core;
-using Candid.Net.Users.V2;
+using global::Candid.Net;
+using global::Candid.Net.Core;
+using global::Candid.Net.Users.V2;
 
 namespace Candid.Net.EncounterAttachments.V1;
 

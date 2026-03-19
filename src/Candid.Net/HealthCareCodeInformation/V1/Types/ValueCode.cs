@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.HealthCareCodeInformation.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<ValueCode>))]
+[JsonConverter(typeof(ValueCode.ValueCodeSerializer))]
 [Serializable]
 public readonly record struct ValueCode : IStringEnum
 {
@@ -687,6 +688,55 @@ public readonly record struct ValueCode : IStringEnum
     public static explicit operator string(ValueCode value) => value.Value;
 
     public static explicit operator ValueCode(string value) => new(value);
+
+    internal class ValueCodeSerializer : JsonConverter<ValueCode>
+    {
+        public override ValueCode Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new ValueCode(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            ValueCode value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override ValueCode ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new ValueCode(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            ValueCode value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

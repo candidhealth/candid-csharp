@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.Tasks.Commons;
 
-[JsonConverter(typeof(StringEnumSerializer<TaskCategory>))]
+[JsonConverter(typeof(TaskCategory.TaskCategorySerializer))]
 [Serializable]
 public readonly record struct TaskCategory : IStringEnum
 {
@@ -171,6 +172,55 @@ public readonly record struct TaskCategory : IStringEnum
     public static explicit operator string(TaskCategory value) => value.Value;
 
     public static explicit operator TaskCategory(string value) => new(value);
+
+    internal class TaskCategorySerializer : JsonConverter<TaskCategory>
+    {
+        public override TaskCategory Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new TaskCategory(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            TaskCategory value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override TaskCategory ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new TaskCategory(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            TaskCategory value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

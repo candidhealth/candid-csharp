@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.Claims;
 
-[JsonConverter(typeof(StringEnumSerializer<ClaimStatus>))]
+[JsonConverter(typeof(ClaimStatus.ClaimStatusSerializer))]
 [Serializable]
 public readonly record struct ClaimStatus : IStringEnum
 {
@@ -77,6 +78,55 @@ public readonly record struct ClaimStatus : IStringEnum
     public static explicit operator string(ClaimStatus value) => value.Value;
 
     public static explicit operator ClaimStatus(string value) => new(value);
+
+    internal class ClaimStatusSerializer : JsonConverter<ClaimStatus>
+    {
+        public override ClaimStatus Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new ClaimStatus(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            ClaimStatus value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override ClaimStatus ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new ClaimStatus(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            ClaimStatus value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter.EligibilityChecks.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<VoteValue>))]
+[JsonConverter(typeof(VoteValue.VoteValueSerializer))]
 [Serializable]
 public readonly record struct VoteValue : IStringEnum
 {
@@ -49,6 +50,55 @@ public readonly record struct VoteValue : IStringEnum
     public static explicit operator string(VoteValue value) => value.Value;
 
     public static explicit operator VoteValue(string value) => new(value);
+
+    internal class VoteValueSerializer : JsonConverter<VoteValue>
+    {
+        public override VoteValue Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new VoteValue(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            VoteValue value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override VoteValue ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new VoteValue(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            VoteValue value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

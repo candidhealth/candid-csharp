@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter.Common;
 
-[JsonConverter(typeof(StringEnumSerializer<SortDirection>))]
+[JsonConverter(typeof(SortDirection.SortDirectionSerializer))]
 [Serializable]
 public readonly record struct SortDirection : IStringEnum
 {
@@ -51,6 +52,55 @@ public readonly record struct SortDirection : IStringEnum
     public static explicit operator string(SortDirection value) => value.Value;
 
     public static explicit operator SortDirection(string value) => new(value);
+
+    internal class SortDirectionSerializer : JsonConverter<SortDirection>
+    {
+        public override SortDirection Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new SortDirection(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            SortDirection value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override SortDirection ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new SortDirection(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            SortDirection value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

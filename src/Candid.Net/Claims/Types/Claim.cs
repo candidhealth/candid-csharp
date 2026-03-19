@@ -1,9 +1,9 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net;
-using Candid.Net.Core;
-using Candid.Net.Eras;
-using Candid.Net.ServiceLines.V2;
+using global::Candid.Net;
+using global::Candid.Net.Core;
+using global::Candid.Net.Eras;
+using global::Candid.Net.ServiceLines.V2;
 
 namespace Candid.Net.Claims;
 

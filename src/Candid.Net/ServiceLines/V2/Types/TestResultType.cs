@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.ServiceLines.V2;
 
-[JsonConverter(typeof(StringEnumSerializer<TestResultType>))]
+[JsonConverter(typeof(TestResultType.TestResultTypeSerializer))]
 [Serializable]
 public readonly record struct TestResultType : IStringEnum
 {
@@ -55,6 +56,55 @@ public readonly record struct TestResultType : IStringEnum
     public static explicit operator string(TestResultType value) => value.Value;
 
     public static explicit operator TestResultType(string value) => new(value);
+
+    internal class TestResultTypeSerializer : JsonConverter<TestResultType>
+    {
+        public override TestResultType Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new TestResultType(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            TestResultType value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override TestResultType ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new TestResultType(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            TestResultType value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

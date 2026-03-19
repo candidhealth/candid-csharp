@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter.Common;
 
-[JsonConverter(typeof(StringEnumSerializer<SexualOrientation>))]
+[JsonConverter(typeof(SexualOrientation.SexualOrientationSerializer))]
 [Serializable]
 public readonly record struct SexualOrientation : IStringEnum
 {
@@ -61,6 +62,55 @@ public readonly record struct SexualOrientation : IStringEnum
     public static explicit operator string(SexualOrientation value) => value.Value;
 
     public static explicit operator SexualOrientation(string value) => new(value);
+
+    internal class SexualOrientationSerializer : JsonConverter<SexualOrientation>
+    {
+        public override SexualOrientation Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new SexualOrientation(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            SexualOrientation value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override SexualOrientation ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new SexualOrientation(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            SexualOrientation value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

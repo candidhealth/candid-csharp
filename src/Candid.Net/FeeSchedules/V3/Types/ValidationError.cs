@@ -4,7 +4,7 @@
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.FeeSchedules.V3;
 
@@ -497,24 +497,30 @@ public record ValidationError
                 discriminatorElement.GetString()
                 ?? throw new JsonException("Discriminator property 'type' is null");
 
+            // Strip the discriminant property to prevent it from leaking into AdditionalProperties
+            var jsonObject = System.Text.Json.Nodes.JsonObject.Create(json);
+            jsonObject?.Remove("type");
+            var jsonWithoutDiscriminator =
+                jsonObject != null ? JsonSerializer.SerializeToElement(jsonObject, options) : json;
+
             var value = discriminator switch
             {
                 "overlapping_rate_entries" =>
-                    json.Deserialize<global::Candid.Net.FeeSchedules.V3.OverlappingRateEntriesError?>(
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.FeeSchedules.V3.OverlappingRateEntriesError?>(
                         options
                     )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.FeeSchedules.V3.OverlappingRateEntriesError"
                         ),
                 "version_conflict" =>
-                    json.Deserialize<global::Candid.Net.Commons.EntityConflictErrorMessage?>(
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Commons.EntityConflictErrorMessage?>(
                         options
                     )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.Commons.EntityConflictErrorMessage"
                         ),
                 "organization_provider_not_found" =>
-                    json.Deserialize<global::Candid.Net.Commons.EntityNotFoundErrorMessage?>(
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Commons.EntityNotFoundErrorMessage?>(
                         options
                     )
                         ?? throw new JsonException(
@@ -523,21 +529,21 @@ public record ValidationError
                 "duplicate_rate" => new { },
                 "empty_entries" => new { },
                 "payer_plan_group_not_found" =>
-                    json.Deserialize<global::Candid.Net.Commons.EntityNotFoundErrorMessage?>(
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Commons.EntityNotFoundErrorMessage?>(
                         options
                     )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.Commons.EntityNotFoundErrorMessage"
                         ),
                 "payer_plan_group_does_not_match_rate_payer" =>
-                    json.Deserialize<global::Candid.Net.FeeSchedules.V3.PayerPlanGroupDoesNotMatchRatePayerError?>(
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.FeeSchedules.V3.PayerPlanGroupDoesNotMatchRatePayerError?>(
                         options
                     )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.FeeSchedules.V3.PayerPlanGroupDoesNotMatchRatePayerError"
                         ),
                 "payer_plan_group_network_type_mutual_exclusion" =>
-                    json.Deserialize<global::Candid.Net.Commons.EntityConflictErrorMessage?>(
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Commons.EntityConflictErrorMessage?>(
                         options
                     )
                         ?? throw new JsonException(

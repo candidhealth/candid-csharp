@@ -1,17 +1,17 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net;
-using Candid.Net.BillingNotes.V2;
-using Candid.Net.Claims;
-using Candid.Net.Commons;
-using Candid.Net.Core;
-using Candid.Net.CustomSchemas.V1;
-using Candid.Net.Diagnoses;
-using Candid.Net.EncounterProviders.V2;
-using Candid.Net.PropertyAndCasualty.V1;
-using Candid.Net.RelatedCauses.V1;
-using Candid.Net.ServiceFacility;
-using Candid.Net.X12.V1;
+using global::Candid.Net;
+using global::Candid.Net.BillingNotes.V2;
+using global::Candid.Net.Claims;
+using global::Candid.Net.Commons;
+using global::Candid.Net.Core;
+using global::Candid.Net.CustomSchemas.V1;
+using global::Candid.Net.Diagnoses;
+using global::Candid.Net.EncounterProviders.V2;
+using global::Candid.Net.PropertyAndCasualty.V1;
+using global::Candid.Net.RelatedCauses.V1;
+using global::Candid.Net.ServiceFacility;
+using global::Candid.Net.X12.V1;
 
 namespace Candid.Net.Encounters.V4;
 

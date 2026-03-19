@@ -1,9 +1,12 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.X12.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<PointOfOriginForAdmissionOrVisitCode>))]
+[JsonConverter(
+    typeof(PointOfOriginForAdmissionOrVisitCode.PointOfOriginForAdmissionOrVisitCodeSerializer)
+)]
 [Serializable]
 public readonly record struct PointOfOriginForAdmissionOrVisitCode : IStringEnum
 {
@@ -104,6 +107,56 @@ public readonly record struct PointOfOriginForAdmissionOrVisitCode : IStringEnum
 
     public static explicit operator PointOfOriginForAdmissionOrVisitCode(string value) =>
         new(value);
+
+    internal class PointOfOriginForAdmissionOrVisitCodeSerializer
+        : JsonConverter<PointOfOriginForAdmissionOrVisitCode>
+    {
+        public override PointOfOriginForAdmissionOrVisitCode Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new PointOfOriginForAdmissionOrVisitCode(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            PointOfOriginForAdmissionOrVisitCode value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override PointOfOriginForAdmissionOrVisitCode ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new PointOfOriginForAdmissionOrVisitCode(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            PointOfOriginForAdmissionOrVisitCode value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

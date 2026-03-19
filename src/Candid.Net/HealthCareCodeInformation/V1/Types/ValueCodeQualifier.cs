@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.HealthCareCodeInformation.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<ValueCodeQualifier>))]
+[JsonConverter(typeof(ValueCodeQualifier.ValueCodeQualifierSerializer))]
 [Serializable]
 public readonly record struct ValueCodeQualifier : IStringEnum
 {
@@ -52,6 +53,55 @@ public readonly record struct ValueCodeQualifier : IStringEnum
     public static explicit operator string(ValueCodeQualifier value) => value.Value;
 
     public static explicit operator ValueCodeQualifier(string value) => new(value);
+
+    internal class ValueCodeQualifierSerializer : JsonConverter<ValueCodeQualifier>
+    {
+        public override ValueCodeQualifier Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new ValueCodeQualifier(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            ValueCodeQualifier value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override ValueCodeQualifier ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new ValueCodeQualifier(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            ValueCodeQualifier value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

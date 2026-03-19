@@ -4,7 +4,7 @@
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.CustomSchemas.V1;
 
@@ -194,17 +194,23 @@ public record SchemaValidationError
                 discriminatorElement.GetString()
                 ?? throw new JsonException("Discriminator property 'type' is null");
 
+            // Strip the discriminant property to prevent it from leaking into AdditionalProperties
+            var jsonObject = System.Text.Json.Nodes.JsonObject.Create(json);
+            jsonObject?.Remove("type");
+            var jsonWithoutDiscriminator =
+                jsonObject != null ? JsonSerializer.SerializeToElement(jsonObject, options) : json;
+
             var value = discriminator switch
             {
                 "schema_name_already_exists" =>
-                    json.Deserialize<global::Candid.Net.CustomSchemas.V1.SchemaWithNameAlreadyExistsError?>(
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.CustomSchemas.V1.SchemaWithNameAlreadyExistsError?>(
                         options
                     )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.CustomSchemas.V1.SchemaWithNameAlreadyExistsError"
                         ),
                 "key_name_already_exists" =>
-                    json.Deserialize<global::Candid.Net.CustomSchemas.V1.KeyWithNameAlreadyExistsError?>(
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.CustomSchemas.V1.KeyWithNameAlreadyExistsError?>(
                         options
                     )
                         ?? throw new JsonException(

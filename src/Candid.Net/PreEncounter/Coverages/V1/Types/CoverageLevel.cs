@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter.Coverages.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<CoverageLevel>))]
+[JsonConverter(typeof(CoverageLevel.CoverageLevelSerializer))]
 [Serializable]
 public readonly record struct CoverageLevel : IStringEnum
 {
@@ -57,6 +58,55 @@ public readonly record struct CoverageLevel : IStringEnum
     public static explicit operator string(CoverageLevel value) => value.Value;
 
     public static explicit operator CoverageLevel(string value) => new(value);
+
+    internal class CoverageLevelSerializer : JsonConverter<CoverageLevel>
+    {
+        public override CoverageLevel Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new CoverageLevel(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            CoverageLevel value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override CoverageLevel ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new CoverageLevel(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            CoverageLevel value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

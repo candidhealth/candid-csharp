@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.ServiceLines.V2;
 
-[JsonConverter(typeof(StringEnumSerializer<DenialReasonContent>))]
+[JsonConverter(typeof(DenialReasonContent.DenialReasonContentSerializer))]
 [Serializable]
 public readonly record struct DenialReasonContent : IStringEnum
 {
@@ -147,6 +148,55 @@ public readonly record struct DenialReasonContent : IStringEnum
     public static explicit operator string(DenialReasonContent value) => value.Value;
 
     public static explicit operator DenialReasonContent(string value) => new(value);
+
+    internal class DenialReasonContentSerializer : JsonConverter<DenialReasonContent>
+    {
+        public override DenialReasonContent Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new DenialReasonContent(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            DenialReasonContent value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override DenialReasonContent ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new DenialReasonContent(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            DenialReasonContent value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

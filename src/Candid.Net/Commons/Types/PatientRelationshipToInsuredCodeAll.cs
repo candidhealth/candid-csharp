@@ -1,9 +1,12 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.Commons;
 
-[JsonConverter(typeof(StringEnumSerializer<PatientRelationshipToInsuredCodeAll>))]
+[JsonConverter(
+    typeof(PatientRelationshipToInsuredCodeAll.PatientRelationshipToInsuredCodeAllSerializer)
+)]
 [Serializable]
 public readonly record struct PatientRelationshipToInsuredCodeAll : IStringEnum
 {
@@ -196,6 +199,56 @@ public readonly record struct PatientRelationshipToInsuredCodeAll : IStringEnum
         value.Value;
 
     public static explicit operator PatientRelationshipToInsuredCodeAll(string value) => new(value);
+
+    internal class PatientRelationshipToInsuredCodeAllSerializer
+        : JsonConverter<PatientRelationshipToInsuredCodeAll>
+    {
+        public override PatientRelationshipToInsuredCodeAll Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new PatientRelationshipToInsuredCodeAll(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            PatientRelationshipToInsuredCodeAll value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override PatientRelationshipToInsuredCodeAll ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new PatientRelationshipToInsuredCodeAll(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            PatientRelationshipToInsuredCodeAll value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

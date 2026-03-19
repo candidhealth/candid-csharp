@@ -4,7 +4,7 @@
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.Contracts.V2;
 
@@ -176,14 +176,21 @@ public record AuthorizedSignatoryUpdate
                 discriminatorElement.GetString()
                 ?? throw new JsonException("Discriminator property 'type' is null");
 
+            // Strip the discriminant property to prevent it from leaking into AdditionalProperties
+            var jsonObject = System.Text.Json.Nodes.JsonObject.Create(json);
+            jsonObject?.Remove("type");
+            var jsonWithoutDiscriminator =
+                jsonObject != null ? JsonSerializer.SerializeToElement(jsonObject, options) : json;
+
             var value = discriminator switch
             {
-                "set" => json.Deserialize<global::Candid.Net.Contracts.V2.AuthorizedSignatory?>(
-                    options
-                )
-                    ?? throw new JsonException(
-                        "Failed to deserialize global::Candid.Net.Contracts.V2.AuthorizedSignatory"
-                    ),
+                "set" =>
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Contracts.V2.AuthorizedSignatory?>(
+                        options
+                    )
+                        ?? throw new JsonException(
+                            "Failed to deserialize global::Candid.Net.Contracts.V2.AuthorizedSignatory"
+                        ),
                 "remove" => new { },
                 _ => json.Deserialize<object?>(options),
             };
