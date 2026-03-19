@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.ClinicalTrials.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<ClinicalTrialPhase>))]
+[JsonConverter(typeof(ClinicalTrialPhase.ClinicalTrialPhaseSerializer))]
 [Serializable]
 public readonly record struct ClinicalTrialPhase : IStringEnum
 {
@@ -53,6 +54,55 @@ public readonly record struct ClinicalTrialPhase : IStringEnum
     public static explicit operator string(ClinicalTrialPhase value) => value.Value;
 
     public static explicit operator ClinicalTrialPhase(string value) => new(value);
+
+    internal class ClinicalTrialPhaseSerializer : JsonConverter<ClinicalTrialPhase>
+    {
+        public override ClinicalTrialPhase Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new ClinicalTrialPhase(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            ClinicalTrialPhase value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override ClinicalTrialPhase ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new ClinicalTrialPhase(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            ClinicalTrialPhase value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

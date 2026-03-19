@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter.Common;
 
-[JsonConverter(typeof(StringEnumSerializer<Ethnicity>))]
+[JsonConverter(typeof(Ethnicity.EthnicitySerializer))]
 [Serializable]
 public readonly record struct Ethnicity : IStringEnum
 {
@@ -53,6 +54,55 @@ public readonly record struct Ethnicity : IStringEnum
     public static explicit operator string(Ethnicity value) => value.Value;
 
     public static explicit operator Ethnicity(string value) => new(value);
+
+    internal class EthnicitySerializer : JsonConverter<Ethnicity>
+    {
+        public override Ethnicity Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new Ethnicity(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            Ethnicity value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override Ethnicity ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new Ethnicity(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            Ethnicity value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

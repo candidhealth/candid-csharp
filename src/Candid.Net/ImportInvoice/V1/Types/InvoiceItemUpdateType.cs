@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.ImportInvoice.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<InvoiceItemUpdateType>))]
+[JsonConverter(typeof(InvoiceItemUpdateType.InvoiceItemUpdateTypeSerializer))]
 [Serializable]
 public readonly record struct InvoiceItemUpdateType : IStringEnum
 {
@@ -51,6 +52,55 @@ public readonly record struct InvoiceItemUpdateType : IStringEnum
     public static explicit operator string(InvoiceItemUpdateType value) => value.Value;
 
     public static explicit operator InvoiceItemUpdateType(string value) => new(value);
+
+    internal class InvoiceItemUpdateTypeSerializer : JsonConverter<InvoiceItemUpdateType>
+    {
+        public override InvoiceItemUpdateType Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new InvoiceItemUpdateType(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            InvoiceItemUpdateType value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override InvoiceItemUpdateType ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new InvoiceItemUpdateType(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            InvoiceItemUpdateType value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

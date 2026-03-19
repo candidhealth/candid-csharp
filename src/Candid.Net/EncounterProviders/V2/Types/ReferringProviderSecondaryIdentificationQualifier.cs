@@ -1,9 +1,12 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.EncounterProviders.V2;
 
-[JsonConverter(typeof(StringEnumSerializer<ReferringProviderSecondaryIdentificationQualifier>))]
+[JsonConverter(
+    typeof(ReferringProviderSecondaryIdentificationQualifier.ReferringProviderSecondaryIdentificationQualifierSerializer)
+)]
 [Serializable]
 public readonly record struct ReferringProviderSecondaryIdentificationQualifier : IStringEnum
 {
@@ -74,6 +77,56 @@ public readonly record struct ReferringProviderSecondaryIdentificationQualifier 
     public static explicit operator ReferringProviderSecondaryIdentificationQualifier(
         string value
     ) => new(value);
+
+    internal class ReferringProviderSecondaryIdentificationQualifierSerializer
+        : JsonConverter<ReferringProviderSecondaryIdentificationQualifier>
+    {
+        public override ReferringProviderSecondaryIdentificationQualifier Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new ReferringProviderSecondaryIdentificationQualifier(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            ReferringProviderSecondaryIdentificationQualifier value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override ReferringProviderSecondaryIdentificationQualifier ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new ReferringProviderSecondaryIdentificationQualifier(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            ReferringProviderSecondaryIdentificationQualifier value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

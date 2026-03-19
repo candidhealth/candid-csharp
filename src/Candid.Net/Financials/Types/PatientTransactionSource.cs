@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.Financials;
 
-[JsonConverter(typeof(StringEnumSerializer<PatientTransactionSource>))]
+[JsonConverter(typeof(PatientTransactionSource.PatientTransactionSourceSerializer))]
 [Serializable]
 public readonly record struct PatientTransactionSource : IStringEnum
 {
@@ -67,6 +68,55 @@ public readonly record struct PatientTransactionSource : IStringEnum
     public static explicit operator string(PatientTransactionSource value) => value.Value;
 
     public static explicit operator PatientTransactionSource(string value) => new(value);
+
+    internal class PatientTransactionSourceSerializer : JsonConverter<PatientTransactionSource>
+    {
+        public override PatientTransactionSource Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new PatientTransactionSource(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            PatientTransactionSource value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override PatientTransactionSource ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new PatientTransactionSource(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            PatientTransactionSource value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

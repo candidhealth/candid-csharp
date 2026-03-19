@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.OrganizationProviders.V2;
 
-[JsonConverter(typeof(StringEnumSerializer<LicenseType>))]
+[JsonConverter(typeof(LicenseType.LicenseTypeSerializer))]
 [Serializable]
 public readonly record struct LicenseType : IStringEnum
 {
@@ -259,6 +260,55 @@ public readonly record struct LicenseType : IStringEnum
     public static explicit operator string(LicenseType value) => value.Value;
 
     public static explicit operator LicenseType(string value) => new(value);
+
+    internal class LicenseTypeSerializer : JsonConverter<LicenseType>
+    {
+        public override LicenseType Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new LicenseType(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            LicenseType value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override LicenseType ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new LicenseType(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            LicenseType value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

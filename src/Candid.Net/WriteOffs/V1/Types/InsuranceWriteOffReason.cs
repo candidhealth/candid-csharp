@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.WriteOffs.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<InsuranceWriteOffReason>))]
+[JsonConverter(typeof(InsuranceWriteOffReason.InsuranceWriteOffReasonSerializer))]
 [Serializable]
 public readonly record struct InsuranceWriteOffReason : IStringEnum
 {
@@ -103,6 +104,55 @@ public readonly record struct InsuranceWriteOffReason : IStringEnum
     public static explicit operator string(InsuranceWriteOffReason value) => value.Value;
 
     public static explicit operator InsuranceWriteOffReason(string value) => new(value);
+
+    internal class InsuranceWriteOffReasonSerializer : JsonConverter<InsuranceWriteOffReason>
+    {
+        public override InsuranceWriteOffReason Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new InsuranceWriteOffReason(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            InsuranceWriteOffReason value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override InsuranceWriteOffReason ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new InsuranceWriteOffReason(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            InsuranceWriteOffReason value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

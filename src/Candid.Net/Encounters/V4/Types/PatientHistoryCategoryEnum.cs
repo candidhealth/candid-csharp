@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.Encounters.V4;
 
-[JsonConverter(typeof(StringEnumSerializer<PatientHistoryCategoryEnum>))]
+[JsonConverter(typeof(PatientHistoryCategoryEnum.PatientHistoryCategoryEnumSerializer))]
 [Serializable]
 public readonly record struct PatientHistoryCategoryEnum : IStringEnum
 {
@@ -55,6 +56,55 @@ public readonly record struct PatientHistoryCategoryEnum : IStringEnum
     public static explicit operator string(PatientHistoryCategoryEnum value) => value.Value;
 
     public static explicit operator PatientHistoryCategoryEnum(string value) => new(value);
+
+    internal class PatientHistoryCategoryEnumSerializer : JsonConverter<PatientHistoryCategoryEnum>
+    {
+        public override PatientHistoryCategoryEnum Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new PatientHistoryCategoryEnum(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            PatientHistoryCategoryEnum value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override PatientHistoryCategoryEnum ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new PatientHistoryCategoryEnum(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            PatientHistoryCategoryEnum value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

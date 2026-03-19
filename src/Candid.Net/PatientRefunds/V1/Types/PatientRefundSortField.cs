@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.PatientRefunds.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<PatientRefundSortField>))]
+[JsonConverter(typeof(PatientRefundSortField.PatientRefundSortFieldSerializer))]
 [Serializable]
 public readonly record struct PatientRefundSortField : IStringEnum
 {
@@ -57,6 +58,55 @@ public readonly record struct PatientRefundSortField : IStringEnum
     public static explicit operator string(PatientRefundSortField value) => value.Value;
 
     public static explicit operator PatientRefundSortField(string value) => new(value);
+
+    internal class PatientRefundSortFieldSerializer : JsonConverter<PatientRefundSortField>
+    {
+        public override PatientRefundSortField Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new PatientRefundSortField(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            PatientRefundSortField value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override PatientRefundSortField ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new PatientRefundSortField(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            PatientRefundSortField value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

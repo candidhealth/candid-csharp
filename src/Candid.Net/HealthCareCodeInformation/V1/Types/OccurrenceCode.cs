@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.HealthCareCodeInformation.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<OccurrenceCode>))]
+[JsonConverter(typeof(OccurrenceCode.OccurrenceCodeSerializer))]
 [Serializable]
 public readonly record struct OccurrenceCode : IStringEnum
 {
@@ -342,6 +343,55 @@ public readonly record struct OccurrenceCode : IStringEnum
     public static explicit operator string(OccurrenceCode value) => value.Value;
 
     public static explicit operator OccurrenceCode(string value) => new(value);
+
+    internal class OccurrenceCodeSerializer : JsonConverter<OccurrenceCode>
+    {
+        public override OccurrenceCode Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new OccurrenceCode(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            OccurrenceCode value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override OccurrenceCode ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new OccurrenceCode(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            OccurrenceCode value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

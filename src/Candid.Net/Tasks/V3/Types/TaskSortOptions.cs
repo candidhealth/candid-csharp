@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.Tasks.V3;
 
-[JsonConverter(typeof(StringEnumSerializer<TaskSortOptions>))]
+[JsonConverter(typeof(TaskSortOptions.TaskSortOptionsSerializer))]
 [Serializable]
 public readonly record struct TaskSortOptions : IStringEnum
 {
@@ -97,6 +98,55 @@ public readonly record struct TaskSortOptions : IStringEnum
     public static explicit operator string(TaskSortOptions value) => value.Value;
 
     public static explicit operator TaskSortOptions(string value) => new(value);
+
+    internal class TaskSortOptionsSerializer : JsonConverter<TaskSortOptions>
+    {
+        public override TaskSortOptions Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new TaskSortOptions(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            TaskSortOptions value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override TaskSortOptions ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new TaskSortOptions(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            TaskSortOptions value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

@@ -1,9 +1,12 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.Commons;
 
-[JsonConverter(typeof(StringEnumSerializer<ClaimSubmissionPayerResponsibilityType>))]
+[JsonConverter(
+    typeof(ClaimSubmissionPayerResponsibilityType.ClaimSubmissionPayerResponsibilityTypeSerializer)
+)]
 [Serializable]
 public readonly record struct ClaimSubmissionPayerResponsibilityType : IStringEnum
 {
@@ -53,6 +56,56 @@ public readonly record struct ClaimSubmissionPayerResponsibilityType : IStringEn
 
     public static explicit operator ClaimSubmissionPayerResponsibilityType(string value) =>
         new(value);
+
+    internal class ClaimSubmissionPayerResponsibilityTypeSerializer
+        : JsonConverter<ClaimSubmissionPayerResponsibilityType>
+    {
+        public override ClaimSubmissionPayerResponsibilityType Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new ClaimSubmissionPayerResponsibilityType(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            ClaimSubmissionPayerResponsibilityType value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override ClaimSubmissionPayerResponsibilityType ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new ClaimSubmissionPayerResponsibilityType(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            ClaimSubmissionPayerResponsibilityType value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

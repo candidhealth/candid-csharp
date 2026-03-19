@@ -1,9 +1,12 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.HealthCareCodeInformation.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<OccurrenceInformationCodeQualifier>))]
+[JsonConverter(
+    typeof(OccurrenceInformationCodeQualifier.OccurrenceInformationCodeQualifierSerializer)
+)]
 [Serializable]
 public readonly record struct OccurrenceInformationCodeQualifier : IStringEnum
 {
@@ -52,6 +55,56 @@ public readonly record struct OccurrenceInformationCodeQualifier : IStringEnum
     public static explicit operator string(OccurrenceInformationCodeQualifier value) => value.Value;
 
     public static explicit operator OccurrenceInformationCodeQualifier(string value) => new(value);
+
+    internal class OccurrenceInformationCodeQualifierSerializer
+        : JsonConverter<OccurrenceInformationCodeQualifier>
+    {
+        public override OccurrenceInformationCodeQualifier Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new OccurrenceInformationCodeQualifier(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            OccurrenceInformationCodeQualifier value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override OccurrenceInformationCodeQualifier ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new OccurrenceInformationCodeQualifier(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            OccurrenceInformationCodeQualifier value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

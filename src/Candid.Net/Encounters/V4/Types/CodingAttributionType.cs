@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.Encounters.V4;
 
-[JsonConverter(typeof(StringEnumSerializer<CodingAttributionType>))]
+[JsonConverter(typeof(CodingAttributionType.CodingAttributionTypeSerializer))]
 [Serializable]
 public readonly record struct CodingAttributionType : IStringEnum
 {
@@ -55,6 +56,55 @@ public readonly record struct CodingAttributionType : IStringEnum
     public static explicit operator string(CodingAttributionType value) => value.Value;
 
     public static explicit operator CodingAttributionType(string value) => new(value);
+
+    internal class CodingAttributionTypeSerializer : JsonConverter<CodingAttributionType>
+    {
+        public override CodingAttributionType Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new CodingAttributionType(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            CodingAttributionType value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override CodingAttributionType ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new CodingAttributionType(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            CodingAttributionType value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

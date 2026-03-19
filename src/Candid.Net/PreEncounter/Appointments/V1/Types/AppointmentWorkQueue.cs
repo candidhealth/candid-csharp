@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter.Appointments.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<AppointmentWorkQueue>))]
+[JsonConverter(typeof(AppointmentWorkQueue.AppointmentWorkQueueSerializer))]
 [Serializable]
 public readonly record struct AppointmentWorkQueue : IStringEnum
 {
@@ -55,6 +56,55 @@ public readonly record struct AppointmentWorkQueue : IStringEnum
     public static explicit operator string(AppointmentWorkQueue value) => value.Value;
 
     public static explicit operator AppointmentWorkQueue(string value) => new(value);
+
+    internal class AppointmentWorkQueueSerializer : JsonConverter<AppointmentWorkQueue>
+    {
+        public override AppointmentWorkQueue Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new AppointmentWorkQueue(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            AppointmentWorkQueue value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override AppointmentWorkQueue ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new AppointmentWorkQueue(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            AppointmentWorkQueue value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

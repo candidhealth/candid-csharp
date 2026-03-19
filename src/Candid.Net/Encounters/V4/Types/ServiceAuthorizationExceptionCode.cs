@@ -1,9 +1,12 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.Encounters.V4;
 
-[JsonConverter(typeof(StringEnumSerializer<ServiceAuthorizationExceptionCode>))]
+[JsonConverter(
+    typeof(ServiceAuthorizationExceptionCode.ServiceAuthorizationExceptionCodeSerializer)
+)]
 [Serializable]
 public readonly record struct ServiceAuthorizationExceptionCode : IStringEnum
 {
@@ -82,6 +85,56 @@ public readonly record struct ServiceAuthorizationExceptionCode : IStringEnum
     public static explicit operator string(ServiceAuthorizationExceptionCode value) => value.Value;
 
     public static explicit operator ServiceAuthorizationExceptionCode(string value) => new(value);
+
+    internal class ServiceAuthorizationExceptionCodeSerializer
+        : JsonConverter<ServiceAuthorizationExceptionCode>
+    {
+        public override ServiceAuthorizationExceptionCode Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new ServiceAuthorizationExceptionCode(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            ServiceAuthorizationExceptionCode value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override ServiceAuthorizationExceptionCode ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new ServiceAuthorizationExceptionCode(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            ServiceAuthorizationExceptionCode value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

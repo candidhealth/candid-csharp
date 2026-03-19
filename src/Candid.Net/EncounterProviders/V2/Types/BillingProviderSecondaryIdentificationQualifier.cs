@@ -1,9 +1,12 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.EncounterProviders.V2;
 
-[JsonConverter(typeof(StringEnumSerializer<BillingProviderSecondaryIdentificationQualifier>))]
+[JsonConverter(
+    typeof(BillingProviderSecondaryIdentificationQualifier.BillingProviderSecondaryIdentificationQualifierSerializer)
+)]
 [Serializable]
 public readonly record struct BillingProviderSecondaryIdentificationQualifier : IStringEnum
 {
@@ -63,6 +66,56 @@ public readonly record struct BillingProviderSecondaryIdentificationQualifier : 
 
     public static explicit operator BillingProviderSecondaryIdentificationQualifier(string value) =>
         new(value);
+
+    internal class BillingProviderSecondaryIdentificationQualifierSerializer
+        : JsonConverter<BillingProviderSecondaryIdentificationQualifier>
+    {
+        public override BillingProviderSecondaryIdentificationQualifier Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new BillingProviderSecondaryIdentificationQualifier(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            BillingProviderSecondaryIdentificationQualifier value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override BillingProviderSecondaryIdentificationQualifier ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new BillingProviderSecondaryIdentificationQualifier(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            BillingProviderSecondaryIdentificationQualifier value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

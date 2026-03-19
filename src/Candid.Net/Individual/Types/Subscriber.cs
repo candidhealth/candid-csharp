@@ -1,9 +1,9 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net;
-using Candid.Net.Commons;
-using Candid.Net.Core;
-using Candid.Net.InsuranceCards.V2;
+using global::Candid.Net;
+using global::Candid.Net.Commons;
+using global::Candid.Net.Core;
+using global::Candid.Net.InsuranceCards.V2;
 
 namespace Candid.Net.Individual;
 

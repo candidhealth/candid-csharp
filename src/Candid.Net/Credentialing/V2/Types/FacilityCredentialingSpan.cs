@@ -1,9 +1,9 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net;
-using Candid.Net.Core;
-using Candid.Net.OrganizationProviders.V3;
-using Candid.Net.OrganizationServiceFacilities.V2;
+using global::Candid.Net;
+using global::Candid.Net.Core;
+using global::Candid.Net.OrganizationProviders.V3;
+using global::Candid.Net.OrganizationServiceFacilities.V2;
 
 namespace Candid.Net.Credentialing.V2;
 

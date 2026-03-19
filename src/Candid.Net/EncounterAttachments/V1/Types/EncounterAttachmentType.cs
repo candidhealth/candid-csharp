@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.EncounterAttachments.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<EncounterAttachmentType>))]
+[JsonConverter(typeof(EncounterAttachmentType.EncounterAttachmentTypeSerializer))]
 [Serializable]
 public readonly record struct EncounterAttachmentType : IStringEnum
 {
@@ -53,6 +54,55 @@ public readonly record struct EncounterAttachmentType : IStringEnum
     public static explicit operator string(EncounterAttachmentType value) => value.Value;
 
     public static explicit operator EncounterAttachmentType(string value) => new(value);
+
+    internal class EncounterAttachmentTypeSerializer : JsonConverter<EncounterAttachmentType>
+    {
+        public override EncounterAttachmentType Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new EncounterAttachmentType(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            EncounterAttachmentType value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override EncounterAttachmentType ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new EncounterAttachmentType(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            EncounterAttachmentType value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

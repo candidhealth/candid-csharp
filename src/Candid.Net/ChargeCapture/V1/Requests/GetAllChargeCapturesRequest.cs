@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
-using Candid.Net.Claims;
-using Candid.Net.Core;
-using Candid.Net.Encounters.V4;
+using global::Candid.Net.Claims;
+using global::Candid.Net.Core;
+using global::Candid.Net.Encounters.V4;
 
 namespace Candid.Net.ChargeCapture.V1;
 

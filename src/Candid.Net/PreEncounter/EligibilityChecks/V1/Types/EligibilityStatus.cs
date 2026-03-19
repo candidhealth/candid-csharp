@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter.EligibilityChecks.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<EligibilityStatus>))]
+[JsonConverter(typeof(EligibilityStatus.EligibilityStatusSerializer))]
 [Serializable]
 public readonly record struct EligibilityStatus : IStringEnum
 {
@@ -53,6 +54,55 @@ public readonly record struct EligibilityStatus : IStringEnum
     public static explicit operator string(EligibilityStatus value) => value.Value;
 
     public static explicit operator EligibilityStatus(string value) => new(value);
+
+    internal class EligibilityStatusSerializer : JsonConverter<EligibilityStatus>
+    {
+        public override EligibilityStatus Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new EligibilityStatus(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            EligibilityStatus value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override EligibilityStatus ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new EligibilityStatus(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            EligibilityStatus value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

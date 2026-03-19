@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.OrganizationServiceFacilities.V2;
 
-[JsonConverter(typeof(StringEnumSerializer<ServiceFacilityPhysicalType>))]
+[JsonConverter(typeof(ServiceFacilityPhysicalType.ServiceFacilityPhysicalTypeSerializer))]
 [Serializable]
 public readonly record struct ServiceFacilityPhysicalType : IStringEnum
 {
@@ -117,6 +118,56 @@ public readonly record struct ServiceFacilityPhysicalType : IStringEnum
     public static explicit operator string(ServiceFacilityPhysicalType value) => value.Value;
 
     public static explicit operator ServiceFacilityPhysicalType(string value) => new(value);
+
+    internal class ServiceFacilityPhysicalTypeSerializer
+        : JsonConverter<ServiceFacilityPhysicalType>
+    {
+        public override ServiceFacilityPhysicalType Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new ServiceFacilityPhysicalType(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            ServiceFacilityPhysicalType value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override ServiceFacilityPhysicalType ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new ServiceFacilityPhysicalType(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            ServiceFacilityPhysicalType value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

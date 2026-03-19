@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.Commons;
 
-[JsonConverter(typeof(StringEnumSerializer<DelayReasonCode>))]
+[JsonConverter(typeof(DelayReasonCode.DelayReasonCodeSerializer))]
 [Serializable]
 public readonly record struct DelayReasonCode : IStringEnum
 {
@@ -117,6 +118,55 @@ public readonly record struct DelayReasonCode : IStringEnum
     public static explicit operator string(DelayReasonCode value) => value.Value;
 
     public static explicit operator DelayReasonCode(string value) => new(value);
+
+    internal class DelayReasonCodeSerializer : JsonConverter<DelayReasonCode>
+    {
+        public override DelayReasonCode Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new DelayReasonCode(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            DelayReasonCode value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override DelayReasonCode ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new DelayReasonCode(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            DelayReasonCode value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

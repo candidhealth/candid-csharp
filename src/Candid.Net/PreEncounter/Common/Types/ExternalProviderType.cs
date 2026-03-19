@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter.Common;
 
-[JsonConverter(typeof(StringEnumSerializer<ExternalProviderType>))]
+[JsonConverter(typeof(ExternalProviderType.ExternalProviderTypeSerializer))]
 [Serializable]
 public readonly record struct ExternalProviderType : IStringEnum
 {
@@ -53,6 +54,55 @@ public readonly record struct ExternalProviderType : IStringEnum
     public static explicit operator string(ExternalProviderType value) => value.Value;
 
     public static explicit operator ExternalProviderType(string value) => new(value);
+
+    internal class ExternalProviderTypeSerializer : JsonConverter<ExternalProviderType>
+    {
+        public override ExternalProviderType Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new ExternalProviderType(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            ExternalProviderType value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override ExternalProviderType ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new ExternalProviderType(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            ExternalProviderType value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

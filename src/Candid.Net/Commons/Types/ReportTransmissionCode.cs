@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.Commons;
 
-[JsonConverter(typeof(StringEnumSerializer<ReportTransmissionCode>))]
+[JsonConverter(typeof(ReportTransmissionCode.ReportTransmissionCodeSerializer))]
 [Serializable]
 public readonly record struct ReportTransmissionCode : IStringEnum
 {
@@ -62,6 +63,55 @@ public readonly record struct ReportTransmissionCode : IStringEnum
     public static explicit operator string(ReportTransmissionCode value) => value.Value;
 
     public static explicit operator ReportTransmissionCode(string value) => new(value);
+
+    internal class ReportTransmissionCodeSerializer : JsonConverter<ReportTransmissionCode>
+    {
+        public override ReportTransmissionCode Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new ReportTransmissionCode(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            ReportTransmissionCode value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override ReportTransmissionCode ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new ReportTransmissionCode(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            ReportTransmissionCode value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

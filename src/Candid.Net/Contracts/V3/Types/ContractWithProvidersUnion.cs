@@ -4,7 +4,7 @@
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.Contracts.V3;
 
@@ -184,15 +184,23 @@ public record ContractWithProvidersUnion
                 discriminatorElement.GetString()
                 ?? throw new JsonException("Discriminator property 'type' is null");
 
+            // Strip the discriminant property to prevent it from leaking into AdditionalProperties
+            var jsonObject = System.Text.Json.Nodes.JsonObject.Create(json);
+            jsonObject?.Remove("type");
+            var jsonWithoutDiscriminator =
+                jsonObject != null ? JsonSerializer.SerializeToElement(jsonObject, options) : json;
+
             var value = discriminator switch
             {
                 "professional" =>
-                    json.Deserialize<global::Candid.Net.Contracts.V3.ProfessionalContract?>(options)
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Contracts.V3.ProfessionalContract?>(
+                        options
+                    )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.Contracts.V3.ProfessionalContract"
                         ),
                 "institutional" =>
-                    json.Deserialize<global::Candid.Net.Contracts.V3.InstitutionalContract?>(
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Contracts.V3.InstitutionalContract?>(
                         options
                     )
                         ?? throw new JsonException(

@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.ServiceLines.V2;
 
-[JsonConverter(typeof(StringEnumSerializer<MeasurementUnitCode>))]
+[JsonConverter(typeof(MeasurementUnitCode.MeasurementUnitCodeSerializer))]
 [Serializable]
 public readonly record struct MeasurementUnitCode : IStringEnum
 {
@@ -57,6 +58,55 @@ public readonly record struct MeasurementUnitCode : IStringEnum
     public static explicit operator string(MeasurementUnitCode value) => value.Value;
 
     public static explicit operator MeasurementUnitCode(string value) => new(value);
+
+    internal class MeasurementUnitCodeSerializer : JsonConverter<MeasurementUnitCode>
+    {
+        public override MeasurementUnitCode Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new MeasurementUnitCode(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            MeasurementUnitCode value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override MeasurementUnitCode ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new MeasurementUnitCode(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            MeasurementUnitCode value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

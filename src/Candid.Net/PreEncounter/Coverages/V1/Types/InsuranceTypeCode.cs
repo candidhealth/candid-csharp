@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter.Coverages.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<InsuranceTypeCode>))]
+[JsonConverter(typeof(InsuranceTypeCode.InsuranceTypeCodeSerializer))]
 [Serializable]
 public readonly record struct InsuranceTypeCode : IStringEnum
 {
@@ -397,6 +398,55 @@ public readonly record struct InsuranceTypeCode : IStringEnum
     public static explicit operator string(InsuranceTypeCode value) => value.Value;
 
     public static explicit operator InsuranceTypeCode(string value) => new(value);
+
+    internal class InsuranceTypeCodeSerializer : JsonConverter<InsuranceTypeCode>
+    {
+        public override InsuranceTypeCode Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new InsuranceTypeCode(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            InsuranceTypeCode value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override InsuranceTypeCode ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new InsuranceTypeCode(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            InsuranceTypeCode value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

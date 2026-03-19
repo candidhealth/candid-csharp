@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
-using Candid.Net.Commons;
-using Candid.Net.Core;
+using global::Candid.Net.Commons;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.PayerPlanGroups.V1;
 

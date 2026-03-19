@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.NonInsurancePayers.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<NonInsurancePayerSortField>))]
+[JsonConverter(typeof(NonInsurancePayerSortField.NonInsurancePayerSortFieldSerializer))]
 [Serializable]
 public readonly record struct NonInsurancePayerSortField : IStringEnum
 {
@@ -55,6 +56,55 @@ public readonly record struct NonInsurancePayerSortField : IStringEnum
     public static explicit operator string(NonInsurancePayerSortField value) => value.Value;
 
     public static explicit operator NonInsurancePayerSortField(string value) => new(value);
+
+    internal class NonInsurancePayerSortFieldSerializer : JsonConverter<NonInsurancePayerSortField>
+    {
+        public override NonInsurancePayerSortField Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new NonInsurancePayerSortField(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            NonInsurancePayerSortField value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override NonInsurancePayerSortField ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new NonInsurancePayerSortField(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            NonInsurancePayerSortField value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

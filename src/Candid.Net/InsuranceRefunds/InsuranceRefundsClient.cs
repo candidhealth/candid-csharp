@@ -1,10 +1,10 @@
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.InsuranceRefunds;
 
-public partial class InsuranceRefundsClient
+public partial class InsuranceRefundsClient : IInsuranceRefundsClient
 {
-    private RawClient _client;
+    private readonly RawClient _client;
 
     internal InsuranceRefundsClient(RawClient client)
     {
@@ -12,5 +12,5 @@ public partial class InsuranceRefundsClient
         V1 = new global::Candid.Net.InsuranceRefunds.V1.V1Client(_client);
     }
 
-    public global::Candid.Net.InsuranceRefunds.V1.V1Client V1 { get; }
+    public global::Candid.Net.InsuranceRefunds.V1.IV1Client V1 { get; }
 }

@@ -4,7 +4,7 @@
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.Financials;
 
@@ -177,7 +177,7 @@ public record InvoiceUpdate
             var value = discriminator switch
             {
                 "set" => json.GetProperty("value").Deserialize<string?>(options)
-                ?? throw new JsonException("Failed to deserialize string"),
+                    ?? throw new JsonException("Failed to deserialize string"),
                 "remove" => new { },
                 _ => json.Deserialize<object?>(options),
             };

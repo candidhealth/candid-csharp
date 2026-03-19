@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter.Common;
 
-[JsonConverter(typeof(StringEnumSerializer<DisabilityStatus>))]
+[JsonConverter(typeof(DisabilityStatus.DisabilityStatusSerializer))]
 [Serializable]
 public readonly record struct DisabilityStatus : IStringEnum
 {
@@ -51,6 +52,55 @@ public readonly record struct DisabilityStatus : IStringEnum
     public static explicit operator string(DisabilityStatus value) => value.Value;
 
     public static explicit operator DisabilityStatus(string value) => new(value);
+
+    internal class DisabilityStatusSerializer : JsonConverter<DisabilityStatus>
+    {
+        public override DisabilityStatus Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new DisabilityStatus(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            DisabilityStatus value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override DisabilityStatus ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new DisabilityStatus(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            DisabilityStatus value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

@@ -1,78 +1,80 @@
-using Candid.Net.Auth;
-using Candid.Net.Auth.Default;
-using Candid.Net.BillingNotes;
-using Candid.Net.ChargeCapture;
-using Candid.Net.ChargeCaptureBundles;
-using Candid.Net.Contracts;
-using Candid.Net.Core;
-using Candid.Net.Credentialing;
-using Candid.Net.CustomSchemas;
-using Candid.Net.Diagnoses;
-using Candid.Net.Eligibility;
-using Candid.Net.EncounterAttachments;
-using Candid.Net.EncounterProviders;
-using Candid.Net.Encounters;
-using Candid.Net.EncounterSupplementalInformation;
-using Candid.Net.Events;
-using Candid.Net.Exports;
-using Candid.Net.ExternalPaymentAccountConfig;
-using Candid.Net.FeeSchedules;
-using Candid.Net.Guarantor;
-using Candid.Net.HealthCareCodeInformation;
-using Candid.Net.ImportInvoice;
-using Candid.Net.InsuranceAdjudications;
-using Candid.Net.InsuranceRefunds;
-using Candid.Net.MedicationDispense;
-using Candid.Net.NonInsurancePayerPayments;
-using Candid.Net.NonInsurancePayerRefunds;
-using Candid.Net.NonInsurancePayers;
-using Candid.Net.OrganizationProviders;
-using Candid.Net.OrganizationServiceFacilities;
-using Candid.Net.PatientAr;
-using Candid.Net.PatientPayments;
-using Candid.Net.PatientRefunds;
-using Candid.Net.PayerPlanGroups;
-using Candid.Net.Payers;
-using Candid.Net.PreEncounter;
-using Candid.Net.ServiceLines;
-using Candid.Net.Superbills;
-using Candid.Net.Tasks;
-using Candid.Net.WriteOffs;
+using global::Candid.Net.Auth;
+using global::Candid.Net.Auth.Default;
+using global::Candid.Net.BillingNotes;
+using global::Candid.Net.ChargeCapture;
+using global::Candid.Net.ChargeCaptureBundles;
+using global::Candid.Net.Contracts;
+using global::Candid.Net.Core;
+using global::Candid.Net.Credentialing;
+using global::Candid.Net.CustomSchemas;
+using global::Candid.Net.Diagnoses;
+using global::Candid.Net.Eligibility;
+using global::Candid.Net.EncounterAttachments;
+using global::Candid.Net.EncounterProviders;
+using global::Candid.Net.Encounters;
+using global::Candid.Net.EncounterSupplementalInformation;
+using global::Candid.Net.Events;
+using global::Candid.Net.Exports;
+using global::Candid.Net.ExternalPaymentAccountConfig;
+using global::Candid.Net.FeeSchedules;
+using global::Candid.Net.Guarantor;
+using global::Candid.Net.HealthCareCodeInformation;
+using global::Candid.Net.ImportInvoice;
+using global::Candid.Net.InsuranceAdjudications;
+using global::Candid.Net.InsuranceRefunds;
+using global::Candid.Net.MedicationDispense;
+using global::Candid.Net.NonInsurancePayerPayments;
+using global::Candid.Net.NonInsurancePayerRefunds;
+using global::Candid.Net.NonInsurancePayers;
+using global::Candid.Net.OrganizationProviders;
+using global::Candid.Net.OrganizationServiceFacilities;
+using global::Candid.Net.PatientAr;
+using global::Candid.Net.PatientPayments;
+using global::Candid.Net.PatientRefunds;
+using global::Candid.Net.PayerPlanGroups;
+using global::Candid.Net.Payers;
+using global::Candid.Net.PreEncounter;
+using global::Candid.Net.ServiceLines;
+using global::Candid.Net.Superbills;
+using global::Candid.Net.Tasks;
+using global::Candid.Net.WriteOffs;
 
 namespace Candid.Net;
 
-public partial class Candid
+public partial class Candid : ICandid
 {
     private readonly RawClient _client;
 
     public Candid(string clientId, string clientSecret, ClientOptions? clientOptions = null)
     {
-        var defaultHeaders = new Headers(
+        clientOptions ??= new ClientOptions();
+        var platformHeaders = new Headers(
             new Dictionary<string, string>()
             {
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Candid.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Candid.Net/1.20.4" },
+                { "User-Agent", "Candid.Net/1.20.5" },
             }
         );
-        clientOptions ??= new ClientOptions();
-        foreach (var header in defaultHeaders)
+        foreach (var header in platformHeaders)
         {
             if (!clientOptions.Headers.ContainsKey(header.Key))
             {
                 clientOptions.Headers[header.Key] = header.Value;
             }
         }
+        var clientOptionsWithAuth = clientOptions.Clone();
         var tokenProvider = new OAuthTokenProvider(
             clientId,
             clientSecret,
-            new DefaultClient(new RawClient(clientOptions.Clone()))
+            new DefaultClient(new RawClient(clientOptions))
         );
-        clientOptions.Headers["Authorization"] = new Func<string>(() =>
-            tokenProvider.GetAccessTokenAsync().Result
-        );
-        _client = new RawClient(clientOptions);
+        clientOptionsWithAuth.Headers["Authorization"] =
+            new Func<global::System.Threading.Tasks.ValueTask<string>>(async () =>
+                await tokenProvider.GetAccessTokenAsync().ConfigureAwait(false)
+            );
+        _client = new RawClient(clientOptionsWithAuth);
         Auth = new AuthClient(_client);
         BillingNotes = new BillingNotesClient(_client);
         ChargeCaptureBundles = new ChargeCaptureBundlesClient(_client);
@@ -113,79 +115,79 @@ public partial class Candid
         Diagnoses = new DiagnosesClient(_client);
     }
 
-    public AuthClient Auth { get; }
+    public IAuthClient Auth { get; }
 
-    public BillingNotesClient BillingNotes { get; }
+    public IBillingNotesClient BillingNotes { get; }
 
-    public ChargeCaptureBundlesClient ChargeCaptureBundles { get; }
+    public IChargeCaptureBundlesClient ChargeCaptureBundles { get; }
 
-    public ChargeCaptureClient ChargeCapture { get; }
+    public IChargeCaptureClient ChargeCapture { get; }
 
-    public ContractsClient Contracts { get; }
+    public IContractsClient Contracts { get; }
 
-    public CredentialingClient Credentialing { get; }
+    public ICredentialingClient Credentialing { get; }
 
-    public CustomSchemasClient CustomSchemas { get; }
+    public ICustomSchemasClient CustomSchemas { get; }
 
-    public EligibilityClient Eligibility { get; }
+    public IEligibilityClient Eligibility { get; }
 
-    public EncounterAttachmentsClient EncounterAttachments { get; }
+    public IEncounterAttachmentsClient EncounterAttachments { get; }
 
-    public EncounterProvidersClient EncounterProviders { get; }
+    public IEncounterProvidersClient EncounterProviders { get; }
 
-    public EncounterSupplementalInformationClient EncounterSupplementalInformation { get; }
+    public IEncounterSupplementalInformationClient EncounterSupplementalInformation { get; }
 
-    public EncountersClient Encounters { get; }
+    public IEncountersClient Encounters { get; }
 
-    public EventsClient Events { get; }
+    public IEventsClient Events { get; }
 
-    public ExportsClient Exports { get; }
+    public IExportsClient Exports { get; }
 
-    public ExternalPaymentAccountConfigClient ExternalPaymentAccountConfig { get; }
+    public IExternalPaymentAccountConfigClient ExternalPaymentAccountConfig { get; }
 
-    public FeeSchedulesClient FeeSchedules { get; }
+    public IFeeSchedulesClient FeeSchedules { get; }
 
-    public GuarantorClient Guarantor { get; }
+    public IGuarantorClient Guarantor { get; }
 
-    public HealthCareCodeInformationClient HealthCareCodeInformation { get; }
+    public IHealthCareCodeInformationClient HealthCareCodeInformation { get; }
 
-    public ImportInvoiceClient ImportInvoice { get; }
+    public IImportInvoiceClient ImportInvoice { get; }
 
-    public InsuranceAdjudicationsClient InsuranceAdjudications { get; }
+    public IInsuranceAdjudicationsClient InsuranceAdjudications { get; }
 
-    public InsuranceRefundsClient InsuranceRefunds { get; }
+    public IInsuranceRefundsClient InsuranceRefunds { get; }
 
-    public MedicationDispenseClient MedicationDispense { get; }
+    public IMedicationDispenseClient MedicationDispense { get; }
 
-    public NonInsurancePayerPaymentsClient NonInsurancePayerPayments { get; }
+    public INonInsurancePayerPaymentsClient NonInsurancePayerPayments { get; }
 
-    public NonInsurancePayerRefundsClient NonInsurancePayerRefunds { get; }
+    public INonInsurancePayerRefundsClient NonInsurancePayerRefunds { get; }
 
-    public NonInsurancePayersClient NonInsurancePayers { get; }
+    public INonInsurancePayersClient NonInsurancePayers { get; }
 
-    public OrganizationProvidersClient OrganizationProviders { get; }
+    public IOrganizationProvidersClient OrganizationProviders { get; }
 
-    public OrganizationServiceFacilitiesClient OrganizationServiceFacilities { get; }
+    public IOrganizationServiceFacilitiesClient OrganizationServiceFacilities { get; }
 
-    public PatientArClient PatientAr { get; }
+    public IPatientArClient PatientAr { get; }
 
-    public PatientPaymentsClient PatientPayments { get; }
+    public IPatientPaymentsClient PatientPayments { get; }
 
-    public PatientRefundsClient PatientRefunds { get; }
+    public IPatientRefundsClient PatientRefunds { get; }
 
-    public PayerPlanGroupsClient PayerPlanGroups { get; }
+    public IPayerPlanGroupsClient PayerPlanGroups { get; }
 
-    public PayersClient Payers { get; }
+    public IPayersClient Payers { get; }
 
-    public ServiceLinesClient ServiceLines { get; }
+    public IServiceLinesClient ServiceLines { get; }
 
-    public SuperbillsClient Superbills { get; }
+    public ISuperbillsClient Superbills { get; }
 
-    public TasksClient Tasks { get; }
+    public ITasksClient Tasks { get; }
 
-    public WriteOffsClient WriteOffs { get; }
+    public IWriteOffsClient WriteOffs { get; }
 
-    public PreEncounterClient PreEncounter { get; }
+    public IPreEncounterClient PreEncounter { get; }
 
-    public DiagnosesClient Diagnoses { get; }
+    public IDiagnosesClient Diagnoses { get; }
 }

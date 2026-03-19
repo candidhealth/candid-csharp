@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.OrganizationServiceFacilities.V2;
 
-[JsonConverter(typeof(StringEnumSerializer<ServiceFacilityStatus>))]
+[JsonConverter(typeof(ServiceFacilityStatus.ServiceFacilityStatusSerializer))]
 [Serializable]
 public readonly record struct ServiceFacilityStatus : IStringEnum
 {
@@ -62,6 +63,55 @@ public readonly record struct ServiceFacilityStatus : IStringEnum
     public static explicit operator string(ServiceFacilityStatus value) => value.Value;
 
     public static explicit operator ServiceFacilityStatus(string value) => new(value);
+
+    internal class ServiceFacilityStatusSerializer : JsonConverter<ServiceFacilityStatus>
+    {
+        public override ServiceFacilityStatus Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new ServiceFacilityStatus(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            ServiceFacilityStatus value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override ServiceFacilityStatus ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new ServiceFacilityStatus(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            ServiceFacilityStatus value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

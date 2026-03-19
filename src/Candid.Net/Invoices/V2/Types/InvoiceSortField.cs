@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.Invoices.V2;
 
-[JsonConverter(typeof(StringEnumSerializer<InvoiceSortField>))]
+[JsonConverter(typeof(InvoiceSortField.InvoiceSortFieldSerializer))]
 [Serializable]
 public readonly record struct InvoiceSortField : IStringEnum
 {
@@ -59,6 +60,55 @@ public readonly record struct InvoiceSortField : IStringEnum
     public static explicit operator string(InvoiceSortField value) => value.Value;
 
     public static explicit operator InvoiceSortField(string value) => new(value);
+
+    internal class InvoiceSortFieldSerializer : JsonConverter<InvoiceSortField>
+    {
+        public override InvoiceSortField Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new InvoiceSortField(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            InvoiceSortField value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override InvoiceSortField ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new InvoiceSortField(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            InvoiceSortField value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

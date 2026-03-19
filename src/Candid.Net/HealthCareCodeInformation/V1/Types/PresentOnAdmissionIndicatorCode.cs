@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.HealthCareCodeInformation.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<PresentOnAdmissionIndicatorCode>))]
+[JsonConverter(typeof(PresentOnAdmissionIndicatorCode.PresentOnAdmissionIndicatorCodeSerializer))]
 [Serializable]
 public readonly record struct PresentOnAdmissionIndicatorCode : IStringEnum
 {
@@ -72,6 +73,56 @@ public readonly record struct PresentOnAdmissionIndicatorCode : IStringEnum
     public static explicit operator string(PresentOnAdmissionIndicatorCode value) => value.Value;
 
     public static explicit operator PresentOnAdmissionIndicatorCode(string value) => new(value);
+
+    internal class PresentOnAdmissionIndicatorCodeSerializer
+        : JsonConverter<PresentOnAdmissionIndicatorCode>
+    {
+        public override PresentOnAdmissionIndicatorCode Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new PresentOnAdmissionIndicatorCode(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            PresentOnAdmissionIndicatorCode value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override PresentOnAdmissionIndicatorCode ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new PresentOnAdmissionIndicatorCode(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            PresentOnAdmissionIndicatorCode value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

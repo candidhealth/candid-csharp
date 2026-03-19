@@ -1,9 +1,10 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.Encounters.V4;
 
-[JsonConverter(typeof(StringEnumSerializer<ResponsiblePartyType>))]
+[JsonConverter(typeof(ResponsiblePartyType.ResponsiblePartyTypeSerializer))]
 [Serializable]
 public readonly record struct ResponsiblePartyType : IStringEnum
 {
@@ -53,6 +54,55 @@ public readonly record struct ResponsiblePartyType : IStringEnum
     public static explicit operator string(ResponsiblePartyType value) => value.Value;
 
     public static explicit operator ResponsiblePartyType(string value) => new(value);
+
+    internal class ResponsiblePartyTypeSerializer : JsonConverter<ResponsiblePartyType>
+    {
+        public override ResponsiblePartyType Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new ResponsiblePartyType(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            ResponsiblePartyType value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override ResponsiblePartyType ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new ResponsiblePartyType(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            ResponsiblePartyType value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values
