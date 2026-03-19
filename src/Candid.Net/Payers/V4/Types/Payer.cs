@@ -32,6 +32,12 @@ public record Payer : IJsonOnDeserialized
     public required string PayerName { get; set; }
 
     /// <summary>
+    /// The category of the payer.
+    /// </summary>
+    [JsonPropertyName("payer_category")]
+    public PayerCategory? PayerCategory { get; set; }
+
+    /// <summary>
     /// The alternate display names of the payer.
     /// </summary>
     [JsonPropertyName("alternate_payer_names")]

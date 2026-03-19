@@ -182,23 +182,17 @@ public record ContractUpdateUnion
                 discriminatorElement.GetString()
                 ?? throw new JsonException("Discriminator property 'type' is null");
 
-            // Strip the discriminant property to prevent it from leaking into AdditionalProperties
-            var jsonObject = System.Text.Json.Nodes.JsonObject.Create(json);
-            jsonObject?.Remove("type");
-            var jsonWithoutDiscriminator =
-                jsonObject != null ? JsonSerializer.SerializeToElement(jsonObject, options) : json;
-
             var value = discriminator switch
             {
                 "professional" =>
-                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Contracts.V3.ProfessionalContractUpdate?>(
+                    json.Deserialize<global::Candid.Net.Contracts.V3.ProfessionalContractUpdate?>(
                         options
                     )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.Contracts.V3.ProfessionalContractUpdate"
                         ),
                 "institutional" =>
-                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Contracts.V3.InstitutionalContractUpdate?>(
+                    json.Deserialize<global::Candid.Net.Contracts.V3.InstitutionalContractUpdate?>(
                         options
                     )
                         ?? throw new JsonException(

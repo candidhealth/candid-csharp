@@ -2,9 +2,9 @@ using Candid.Net.Core;
 
 namespace Candid.Net.ServiceLines;
 
-public partial class ServiceLinesClient : IServiceLinesClient
+public partial class ServiceLinesClient
 {
-    private readonly RawClient _client;
+    private RawClient _client;
 
     internal ServiceLinesClient(RawClient client)
     {
@@ -12,5 +12,5 @@ public partial class ServiceLinesClient : IServiceLinesClient
         V2 = new global::Candid.Net.ServiceLines.V2.V2Client(_client);
     }
 
-    public global::Candid.Net.ServiceLines.V2.IV2Client V2 { get; }
+    public global::Candid.Net.ServiceLines.V2.V2Client V2 { get; }
 }

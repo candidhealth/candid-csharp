@@ -194,23 +194,17 @@ public record SchemaValidationError
                 discriminatorElement.GetString()
                 ?? throw new JsonException("Discriminator property 'type' is null");
 
-            // Strip the discriminant property to prevent it from leaking into AdditionalProperties
-            var jsonObject = System.Text.Json.Nodes.JsonObject.Create(json);
-            jsonObject?.Remove("type");
-            var jsonWithoutDiscriminator =
-                jsonObject != null ? JsonSerializer.SerializeToElement(jsonObject, options) : json;
-
             var value = discriminator switch
             {
                 "schema_name_already_exists" =>
-                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.CustomSchemas.V1.SchemaWithNameAlreadyExistsError?>(
+                    json.Deserialize<global::Candid.Net.CustomSchemas.V1.SchemaWithNameAlreadyExistsError?>(
                         options
                     )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.CustomSchemas.V1.SchemaWithNameAlreadyExistsError"
                         ),
                 "key_name_already_exists" =>
-                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.CustomSchemas.V1.KeyWithNameAlreadyExistsError?>(
+                    json.Deserialize<global::Candid.Net.CustomSchemas.V1.KeyWithNameAlreadyExistsError?>(
                         options
                     )
                         ?? throw new JsonException(

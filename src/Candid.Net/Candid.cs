@@ -41,40 +41,38 @@ using Candid.Net.WriteOffs;
 
 namespace Candid.Net;
 
-public partial class Candid : ICandid
+public partial class Candid
 {
     private readonly RawClient _client;
 
     public Candid(string clientId, string clientSecret, ClientOptions? clientOptions = null)
     {
-        clientOptions ??= new ClientOptions();
-        var platformHeaders = new Headers(
+        var defaultHeaders = new Headers(
             new Dictionary<string, string>()
             {
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Candid.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Candid.Net/1.20.3" },
+                { "User-Agent", "Candid.Net/1.20.4" },
             }
         );
-        foreach (var header in platformHeaders)
+        clientOptions ??= new ClientOptions();
+        foreach (var header in defaultHeaders)
         {
             if (!clientOptions.Headers.ContainsKey(header.Key))
             {
                 clientOptions.Headers[header.Key] = header.Value;
             }
         }
-        var clientOptionsWithAuth = clientOptions.Clone();
         var tokenProvider = new OAuthTokenProvider(
             clientId,
             clientSecret,
-            new DefaultClient(new RawClient(clientOptions))
+            new DefaultClient(new RawClient(clientOptions.Clone()))
         );
-        clientOptionsWithAuth.Headers["Authorization"] =
-            new Func<global::System.Threading.Tasks.ValueTask<string>>(async () =>
-                await tokenProvider.GetAccessTokenAsync().ConfigureAwait(false)
-            );
-        _client = new RawClient(clientOptionsWithAuth);
+        clientOptions.Headers["Authorization"] = new Func<string>(() =>
+            tokenProvider.GetAccessTokenAsync().Result
+        );
+        _client = new RawClient(clientOptions);
         Auth = new AuthClient(_client);
         BillingNotes = new BillingNotesClient(_client);
         ChargeCaptureBundles = new ChargeCaptureBundlesClient(_client);
@@ -115,79 +113,79 @@ public partial class Candid : ICandid
         Diagnoses = new DiagnosesClient(_client);
     }
 
-    public IAuthClient Auth { get; }
+    public AuthClient Auth { get; }
 
-    public IBillingNotesClient BillingNotes { get; }
+    public BillingNotesClient BillingNotes { get; }
 
-    public IChargeCaptureBundlesClient ChargeCaptureBundles { get; }
+    public ChargeCaptureBundlesClient ChargeCaptureBundles { get; }
 
-    public IChargeCaptureClient ChargeCapture { get; }
+    public ChargeCaptureClient ChargeCapture { get; }
 
-    public IContractsClient Contracts { get; }
+    public ContractsClient Contracts { get; }
 
-    public ICredentialingClient Credentialing { get; }
+    public CredentialingClient Credentialing { get; }
 
-    public ICustomSchemasClient CustomSchemas { get; }
+    public CustomSchemasClient CustomSchemas { get; }
 
-    public IEligibilityClient Eligibility { get; }
+    public EligibilityClient Eligibility { get; }
 
-    public IEncounterAttachmentsClient EncounterAttachments { get; }
+    public EncounterAttachmentsClient EncounterAttachments { get; }
 
-    public IEncounterProvidersClient EncounterProviders { get; }
+    public EncounterProvidersClient EncounterProviders { get; }
 
-    public IEncounterSupplementalInformationClient EncounterSupplementalInformation { get; }
+    public EncounterSupplementalInformationClient EncounterSupplementalInformation { get; }
 
-    public IEncountersClient Encounters { get; }
+    public EncountersClient Encounters { get; }
 
-    public IEventsClient Events { get; }
+    public EventsClient Events { get; }
 
-    public IExportsClient Exports { get; }
+    public ExportsClient Exports { get; }
 
-    public IExternalPaymentAccountConfigClient ExternalPaymentAccountConfig { get; }
+    public ExternalPaymentAccountConfigClient ExternalPaymentAccountConfig { get; }
 
-    public IFeeSchedulesClient FeeSchedules { get; }
+    public FeeSchedulesClient FeeSchedules { get; }
 
-    public IGuarantorClient Guarantor { get; }
+    public GuarantorClient Guarantor { get; }
 
-    public IHealthCareCodeInformationClient HealthCareCodeInformation { get; }
+    public HealthCareCodeInformationClient HealthCareCodeInformation { get; }
 
-    public IImportInvoiceClient ImportInvoice { get; }
+    public ImportInvoiceClient ImportInvoice { get; }
 
-    public IInsuranceAdjudicationsClient InsuranceAdjudications { get; }
+    public InsuranceAdjudicationsClient InsuranceAdjudications { get; }
 
-    public IInsuranceRefundsClient InsuranceRefunds { get; }
+    public InsuranceRefundsClient InsuranceRefunds { get; }
 
-    public IMedicationDispenseClient MedicationDispense { get; }
+    public MedicationDispenseClient MedicationDispense { get; }
 
-    public INonInsurancePayerPaymentsClient NonInsurancePayerPayments { get; }
+    public NonInsurancePayerPaymentsClient NonInsurancePayerPayments { get; }
 
-    public INonInsurancePayerRefundsClient NonInsurancePayerRefunds { get; }
+    public NonInsurancePayerRefundsClient NonInsurancePayerRefunds { get; }
 
-    public INonInsurancePayersClient NonInsurancePayers { get; }
+    public NonInsurancePayersClient NonInsurancePayers { get; }
 
-    public IOrganizationProvidersClient OrganizationProviders { get; }
+    public OrganizationProvidersClient OrganizationProviders { get; }
 
-    public IOrganizationServiceFacilitiesClient OrganizationServiceFacilities { get; }
+    public OrganizationServiceFacilitiesClient OrganizationServiceFacilities { get; }
 
-    public IPatientArClient PatientAr { get; }
+    public PatientArClient PatientAr { get; }
 
-    public IPatientPaymentsClient PatientPayments { get; }
+    public PatientPaymentsClient PatientPayments { get; }
 
-    public IPatientRefundsClient PatientRefunds { get; }
+    public PatientRefundsClient PatientRefunds { get; }
 
-    public IPayerPlanGroupsClient PayerPlanGroups { get; }
+    public PayerPlanGroupsClient PayerPlanGroups { get; }
 
-    public IPayersClient Payers { get; }
+    public PayersClient Payers { get; }
 
-    public IServiceLinesClient ServiceLines { get; }
+    public ServiceLinesClient ServiceLines { get; }
 
-    public ISuperbillsClient Superbills { get; }
+    public SuperbillsClient Superbills { get; }
 
-    public ITasksClient Tasks { get; }
+    public TasksClient Tasks { get; }
 
-    public IWriteOffsClient WriteOffs { get; }
+    public WriteOffsClient WriteOffs { get; }
 
-    public IPreEncounterClient PreEncounter { get; }
+    public PreEncounterClient PreEncounter { get; }
 
-    public IDiagnosesClient Diagnoses { get; }
+    public DiagnosesClient Diagnoses { get; }
 }

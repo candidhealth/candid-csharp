@@ -39,6 +39,12 @@ public record PatientListRequest
     [JsonIgnore]
     public bool? RedirectToPrimary { get; set; }
 
+    /// <summary>
+    /// If true, then do not show alternative patients
+    /// </summary>
+    [JsonIgnore]
+    public bool? HideAlternatives { get; set; }
+
     /// <inheritdoc />
     public override string ToString()
     {

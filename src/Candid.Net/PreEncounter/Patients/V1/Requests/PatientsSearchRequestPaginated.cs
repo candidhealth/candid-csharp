@@ -24,6 +24,12 @@ public record PatientsSearchRequestPaginated
     [JsonIgnore]
     public global::Candid.Net.PreEncounter.Common.SortDirection? SortDirection { get; set; }
 
+    /// <summary>
+    /// If true, then only return the primary version of any patients requested
+    /// </summary>
+    [JsonIgnore]
+    public bool? RedirectToPrimary { get; set; }
+
     /// <inheritdoc />
     public override string ToString()
     {

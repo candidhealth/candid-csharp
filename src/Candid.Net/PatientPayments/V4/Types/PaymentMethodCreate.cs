@@ -274,37 +274,31 @@ public record PaymentMethodCreate
                 discriminatorElement.GetString()
                 ?? throw new JsonException("Discriminator property 'type' is null");
 
-            // Strip the discriminant property to prevent it from leaking into AdditionalProperties
-            var jsonObject = System.Text.Json.Nodes.JsonObject.Create(json);
-            jsonObject?.Remove("type");
-            var jsonWithoutDiscriminator =
-                jsonObject != null ? JsonSerializer.SerializeToElement(jsonObject, options) : json;
-
             var value = discriminator switch
             {
                 "cash" =>
-                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.PatientPayments.V4.CashPaymentMethodCreate?>(
+                    json.Deserialize<global::Candid.Net.PatientPayments.V4.CashPaymentMethodCreate?>(
                         options
                     )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.PatientPayments.V4.CashPaymentMethodCreate"
                         ),
                 "check" =>
-                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.PatientPayments.V4.CheckPaymentMethodCreate?>(
+                    json.Deserialize<global::Candid.Net.PatientPayments.V4.CheckPaymentMethodCreate?>(
                         options
                     )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.PatientPayments.V4.CheckPaymentMethodCreate"
                         ),
                 "card" =>
-                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.PatientPayments.V4.CardPaymentMethodCreate?>(
+                    json.Deserialize<global::Candid.Net.PatientPayments.V4.CardPaymentMethodCreate?>(
                         options
                     )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.PatientPayments.V4.CardPaymentMethodCreate"
                         ),
                 "money_order" =>
-                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.PatientPayments.V4.MoneyOrderPaymentMethodCreate?>(
+                    json.Deserialize<global::Candid.Net.PatientPayments.V4.MoneyOrderPaymentMethodCreate?>(
                         options
                     )
                         ?? throw new JsonException(

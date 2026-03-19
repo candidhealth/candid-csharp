@@ -2,9 +2,9 @@ using Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter.EligibilityChecks;
 
-public partial class EligibilityChecksClient : IEligibilityChecksClient
+public partial class EligibilityChecksClient
 {
-    private readonly RawClient _client;
+    private RawClient _client;
 
     internal EligibilityChecksClient(RawClient client)
     {
@@ -12,5 +12,5 @@ public partial class EligibilityChecksClient : IEligibilityChecksClient
         V1 = new global::Candid.Net.PreEncounter.EligibilityChecks.V1.V1Client(_client);
     }
 
-    public global::Candid.Net.PreEncounter.EligibilityChecks.V1.IV1Client V1 { get; }
+    public global::Candid.Net.PreEncounter.EligibilityChecks.V1.V1Client V1 { get; }
 }

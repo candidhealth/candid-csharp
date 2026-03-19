@@ -362,44 +362,38 @@ public record SchemaInstanceValidationError
                 discriminatorElement.GetString()
                 ?? throw new JsonException("Discriminator property 'type' is null");
 
-            // Strip the discriminant property to prevent it from leaking into AdditionalProperties
-            var jsonObject = System.Text.Json.Nodes.JsonObject.Create(json);
-            jsonObject?.Remove("type");
-            var jsonWithoutDiscriminator =
-                jsonObject != null ? JsonSerializer.SerializeToElement(jsonObject, options) : json;
-
             var value = discriminator switch
             {
                 "multiple_instances_for_schema" =>
-                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Encounters.V4.MultipleInstancesForSchemaError?>(
+                    json.Deserialize<global::Candid.Net.Encounters.V4.MultipleInstancesForSchemaError?>(
                         options
                     )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.Encounters.V4.MultipleInstancesForSchemaError"
                         ),
                 "value_does_not_match_key_type" =>
-                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Encounters.V4.ValueDoesNotMatchKeyTypeError?>(
+                    json.Deserialize<global::Candid.Net.Encounters.V4.ValueDoesNotMatchKeyTypeError?>(
                         options
                     )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.Encounters.V4.ValueDoesNotMatchKeyTypeError"
                         ),
                 "key_does_not_exist" =>
-                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Encounters.V4.KeyDoesNotExistError?>(
+                    json.Deserialize<global::Candid.Net.Encounters.V4.KeyDoesNotExistError?>(
                         options
                     )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.Encounters.V4.KeyDoesNotExistError"
                         ),
                 "schema_does_not_exist" =>
-                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Encounters.V4.SchemaDoesNotExistError?>(
+                    json.Deserialize<global::Candid.Net.Encounters.V4.SchemaDoesNotExistError?>(
                         options
                     )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.Encounters.V4.SchemaDoesNotExistError"
                         ),
                 "schema_unauthorized_access" =>
-                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Encounters.V4.SchemaUnauthorizedAccessError?>(
+                    json.Deserialize<global::Candid.Net.Encounters.V4.SchemaUnauthorizedAccessError?>(
                         options
                     )
                         ?? throw new JsonException(

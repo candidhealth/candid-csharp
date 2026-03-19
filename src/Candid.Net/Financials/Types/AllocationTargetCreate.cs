@@ -390,25 +390,19 @@ public record AllocationTargetCreate
                 discriminatorElement.GetString()
                 ?? throw new JsonException("Discriminator property 'type' is null");
 
-            // Strip the discriminant property to prevent it from leaking into AdditionalProperties
-            var jsonObject = System.Text.Json.Nodes.JsonObject.Create(json);
-            jsonObject?.Remove("type");
-            var jsonWithoutDiscriminator =
-                jsonObject != null ? JsonSerializer.SerializeToElement(jsonObject, options) : json;
-
             var value = discriminator switch
             {
                 "service_line_by_id" => json.GetProperty("value").Deserialize<string?>(options)
-                    ?? throw new JsonException("Failed to deserialize string"),
+                ?? throw new JsonException("Failed to deserialize string"),
                 "claim_by_id" => json.GetProperty("value").Deserialize<string?>(options)
-                    ?? throw new JsonException("Failed to deserialize string"),
+                ?? throw new JsonException("Failed to deserialize string"),
                 "claim_by_encounter_external_id" => json.GetProperty("value")
                     .Deserialize<string?>(options)
-                    ?? throw new JsonException("Failed to deserialize string"),
+                ?? throw new JsonException("Failed to deserialize string"),
                 "billing_provider_by_id" => json.GetProperty("value").Deserialize<string?>(options)
-                    ?? throw new JsonException("Failed to deserialize string"),
+                ?? throw new JsonException("Failed to deserialize string"),
                 "appointment_by_id_and_patient_external_id" =>
-                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Financials.AppointmentByIdAndPatientExternalId?>(
+                    json.Deserialize<global::Candid.Net.Financials.AppointmentByIdAndPatientExternalId?>(
                         options
                     )
                         ?? throw new JsonException(

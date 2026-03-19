@@ -176,28 +176,16 @@ public record Regions
                 discriminatorElement.GetString()
                 ?? throw new JsonException("Discriminator property 'type' is null");
 
-            // Strip the discriminant property to prevent it from leaking into AdditionalProperties
-            var jsonObject = System.Text.Json.Nodes.JsonObject.Create(json);
-            jsonObject?.Remove("type");
-            var jsonWithoutDiscriminator =
-                jsonObject != null ? JsonSerializer.SerializeToElement(jsonObject, options) : json;
-
             var value = discriminator switch
             {
-                "states" =>
-                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Commons.RegionStates?>(
-                        options
-                    )
-                        ?? throw new JsonException(
-                            "Failed to deserialize global::Candid.Net.Commons.RegionStates"
-                        ),
-                "national" =>
-                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Commons.RegionNational?>(
-                        options
-                    )
-                        ?? throw new JsonException(
-                            "Failed to deserialize global::Candid.Net.Commons.RegionNational"
-                        ),
+                "states" => json.Deserialize<global::Candid.Net.Commons.RegionStates?>(options)
+                    ?? throw new JsonException(
+                        "Failed to deserialize global::Candid.Net.Commons.RegionStates"
+                    ),
+                "national" => json.Deserialize<global::Candid.Net.Commons.RegionNational?>(options)
+                    ?? throw new JsonException(
+                        "Failed to deserialize global::Candid.Net.Commons.RegionNational"
+                    ),
                 _ => json.Deserialize<object?>(options),
             };
             return new Regions(discriminator, value);

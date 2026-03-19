@@ -2,9 +2,9 @@ using Candid.Net.Core;
 
 namespace Candid.Net.Eligibility;
 
-public partial class EligibilityClient : IEligibilityClient
+public partial class EligibilityClient
 {
-    private readonly RawClient _client;
+    private RawClient _client;
 
     internal EligibilityClient(RawClient client)
     {
@@ -12,5 +12,5 @@ public partial class EligibilityClient : IEligibilityClient
         V2 = new global::Candid.Net.Eligibility.V2.V2Client(_client);
     }
 
-    public global::Candid.Net.Eligibility.V2.IV2Client V2 { get; }
+    public global::Candid.Net.Eligibility.V2.V2Client V2 { get; }
 }

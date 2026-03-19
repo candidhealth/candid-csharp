@@ -1,45 +1,71 @@
+using System.Net.Http;
 using System.Text.Json;
-using Candid.Net;
+using System.Threading;
 using Candid.Net.Core;
 
 namespace Candid.Net.WriteOffs.V1;
 
-public partial class V1Client : IV1Client
+public partial class V1Client
 {
-    private readonly RawClient _client;
+    private RawClient _client;
 
     internal V1Client(RawClient client)
     {
         _client = client;
     }
 
-    private async global::System.Threading.Tasks.Task<
-        WithRawResponse<WriteOffsPage>
-    > GetMultiAsyncCore(
+    /// <summary>
+    /// Returns all write-offs satisfying the search criteria.
+    /// </summary>
+    /// <example><code>
+    /// await client.WriteOffs.V1.GetMultiAsync(new GetMultiWriteOffsRequest());
+    /// </code></example>
+    public async global::System.Threading.Tasks.Task<WriteOffsPage> GetMultiAsync(
         GetMultiWriteOffsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var _queryString = new Candid.Net.Core.QueryStringBuilder.Builder(capacity: 10)
-            .Add("limit", request.Limit)
-            .Add("patient_external_id", request.PatientExternalId)
-            .Add("payer_uuid", request.PayerUuid)
-            .Add("service_line_id", request.ServiceLineId)
-            .Add("claim_id", request.ClaimId)
-            .Add("billing_provider_id", request.BillingProviderId)
-            .Add("sort", request.Sort)
-            .Add("sort_direction", request.SortDirection)
-            .Add("page_token", request.PageToken)
-            .Add("account_types", request.AccountTypes)
-            .MergeAdditional(options?.AdditionalQueryParameters)
-            .Build();
-        var _headers = await new Candid.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
+        var _query = new Dictionary<string, object>();
+        _query["account_types"] = request
+            .AccountTypes.Select(_value => _value.Stringify())
+            .ToList();
+        if (request.Limit != null)
+        {
+            _query["limit"] = request.Limit.Value.ToString();
+        }
+        if (request.PatientExternalId != null)
+        {
+            _query["patient_external_id"] = request.PatientExternalId;
+        }
+        if (request.PayerUuid != null)
+        {
+            _query["payer_uuid"] = request.PayerUuid;
+        }
+        if (request.ServiceLineId != null)
+        {
+            _query["service_line_id"] = request.ServiceLineId;
+        }
+        if (request.ClaimId != null)
+        {
+            _query["claim_id"] = request.ClaimId;
+        }
+        if (request.BillingProviderId != null)
+        {
+            _query["billing_provider_id"] = request.BillingProviderId;
+        }
+        if (request.Sort != null)
+        {
+            _query["sort"] = request.Sort.Value.Stringify();
+        }
+        if (request.SortDirection != null)
+        {
+            _query["sort_direction"] = request.SortDirection.Value.Stringify();
+        }
+        if (request.PageToken != null)
+        {
+            _query["page_token"] = request.PageToken;
+        }
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -47,8 +73,7 @@ public partial class V1Client : IV1Client
                     BaseUrl = _client.Options.Environment.CandidApi,
                     Method = HttpMethod.Get,
                     Path = "/api/write-offs/v1",
-                    QueryString = _queryString,
-                    Headers = _headers,
+                    Query = _query,
                     Options = options,
                 },
                 cancellationToken
@@ -56,37 +81,19 @@ public partial class V1Client : IV1Client
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                var responseData = JsonUtils.Deserialize<WriteOffsPage>(responseBody)!;
-                return new WithRawResponse<WriteOffsPage>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
+                return JsonUtils.Deserialize<WriteOffsPage>(responseBody)!;
             }
             catch (JsonException e)
             {
-                throw new CandidApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
+                throw new CandidException("Failed to deserialize response", e);
             }
         }
+
         {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             throw new CandidApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
@@ -95,18 +102,18 @@ public partial class V1Client : IV1Client
         }
     }
 
-    private async global::System.Threading.Tasks.Task<WithRawResponse<WriteOff>> GetAsyncCore(
+    /// <summary>
+    /// Retrieves a previously created write off by its `write_off_id`.
+    /// </summary>
+    /// <example><code>
+    /// await client.WriteOffs.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+    /// </code></example>
+    public async global::System.Threading.Tasks.Task<WriteOff> GetAsync(
         string writeOffId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var _headers = await new Candid.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -117,7 +124,6 @@ public partial class V1Client : IV1Client
                         "/api/write-offs/v1/{0}",
                         ValueConvert.ToPathParameterString(writeOffId)
                     ),
-                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -125,357 +131,25 @@ public partial class V1Client : IV1Client
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                var responseData = JsonUtils.Deserialize<WriteOff>(responseBody)!;
-                return new WithRawResponse<WriteOff>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
+                return JsonUtils.Deserialize<WriteOff>(responseBody)!;
             }
             catch (JsonException e)
             {
-                throw new CandidApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
+                throw new CandidException("Failed to deserialize response", e);
             }
         }
+
         {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             throw new CandidApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
                 responseBody
             );
         }
-    }
-
-    private async global::System.Threading.Tasks.Task<
-        WithRawResponse<CreateWriteOffsResponse>
-    > CreateAsyncCore(
-        CreateWriteOffsRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _headers = await new Candid.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.Environment.CandidApi,
-                    Method = HttpMethod.Post,
-                    Path = "/api/write-offs/v1",
-                    Body = request,
-                    Headers = _headers,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            try
-            {
-                var responseData = JsonUtils.Deserialize<CreateWriteOffsResponse>(responseBody)!;
-                return new WithRawResponse<CreateWriteOffsResponse>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new CandidApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            throw new CandidApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async global::System.Threading.Tasks.Task<WithRawResponse<WriteOff>> RevertAsyncCore(
-        string writeOffId,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _headers = await new Candid.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.Environment.CandidApi,
-                    Method = HttpMethod.Post,
-                    Path = string.Format(
-                        "/api/write-offs/v1/{0}/revert",
-                        ValueConvert.ToPathParameterString(writeOffId)
-                    ),
-                    Headers = _headers,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            try
-            {
-                var responseData = JsonUtils.Deserialize<WriteOff>(responseBody)!;
-                return new WithRawResponse<WriteOff>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new CandidApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            throw new CandidApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async global::System.Threading.Tasks.Task<
-        WithRawResponse<WriteOff>
-    > RevertInsuranceBalanceAdjustmentAsyncCore(
-        string adjustmentId,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _headers = await new Candid.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.Environment.CandidApi,
-                    Method = HttpMethod.Post,
-                    Path = string.Format(
-                        "/api/write-offs/v1/{0}/revert",
-                        ValueConvert.ToPathParameterString(adjustmentId)
-                    ),
-                    Headers = _headers,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            try
-            {
-                var responseData = JsonUtils.Deserialize<WriteOff>(responseBody)!;
-                return new WithRawResponse<WriteOff>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new CandidApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            throw new CandidApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async global::System.Threading.Tasks.Task<
-        WithRawResponse<string>
-    > RevertEraOriginatedInsuranceBalanceAdjustmentAsyncCore(
-        string adjustmentId,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _headers = await new Candid.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.Environment.CandidApi,
-                    Method = HttpMethod.Post,
-                    Path = string.Format(
-                        "/api/write-offs/v1/{0}/revert-era-originated",
-                        ValueConvert.ToPathParameterString(adjustmentId)
-                    ),
-                    Headers = _headers,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            try
-            {
-                var responseData = JsonUtils.Deserialize<string>(responseBody)!;
-                return new WithRawResponse<string>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new CandidApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            throw new CandidApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    /// <summary>
-    /// Returns all write-offs satisfying the search criteria.
-    /// </summary>
-    /// <example><code>
-    /// await client.WriteOffs.V1.GetMultiAsync(new GetMultiWriteOffsRequest());
-    /// </code></example>
-    public WithRawResponseTask<WriteOffsPage> GetMultiAsync(
-        GetMultiWriteOffsRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return new WithRawResponseTask<WriteOffsPage>(
-            GetMultiAsyncCore(request, options, cancellationToken)
-        );
-    }
-
-    /// <summary>
-    /// Retrieves a previously created write off by its `write_off_id`.
-    /// </summary>
-    /// <example><code>
-    /// await client.WriteOffs.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
-    /// </code></example>
-    public WithRawResponseTask<WriteOff> GetAsync(
-        string writeOffId,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return new WithRawResponseTask<WriteOff>(
-            GetAsyncCore(writeOffId, options, cancellationToken)
-        );
     }
 
     /// <summary>
@@ -514,15 +188,46 @@ public partial class V1Client : IV1Client
     ///     }
     /// );
     /// </code></example>
-    public WithRawResponseTask<CreateWriteOffsResponse> CreateAsync(
+    public async global::System.Threading.Tasks.Task<CreateWriteOffsResponse> CreateAsync(
         CreateWriteOffsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        return new WithRawResponseTask<CreateWriteOffsResponse>(
-            CreateAsyncCore(request, options, cancellationToken)
-        );
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Post,
+                    Path = "/api/write-offs/v1",
+                    Body = request,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<CreateWriteOffsResponse>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
@@ -531,15 +236,48 @@ public partial class V1Client : IV1Client
     /// <example><code>
     /// await client.WriteOffs.V1.RevertAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public WithRawResponseTask<WriteOff> RevertAsync(
+    public async global::System.Threading.Tasks.Task<WriteOff> RevertAsync(
         string writeOffId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        return new WithRawResponseTask<WriteOff>(
-            RevertAsyncCore(writeOffId, options, cancellationToken)
-        );
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Post,
+                    Path = string.Format(
+                        "/api/write-offs/v1/{0}/revert",
+                        ValueConvert.ToPathParameterString(writeOffId)
+                    ),
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<WriteOff>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
@@ -550,15 +288,48 @@ public partial class V1Client : IV1Client
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
     /// );
     /// </code></example>
-    public WithRawResponseTask<WriteOff> RevertInsuranceBalanceAdjustmentAsync(
+    public async global::System.Threading.Tasks.Task<WriteOff> RevertInsuranceBalanceAdjustmentAsync(
         string adjustmentId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        return new WithRawResponseTask<WriteOff>(
-            RevertInsuranceBalanceAdjustmentAsyncCore(adjustmentId, options, cancellationToken)
-        );
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Post,
+                    Path = string.Format(
+                        "/api/write-offs/v1/{0}/revert",
+                        ValueConvert.ToPathParameterString(adjustmentId)
+                    ),
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<WriteOff>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
@@ -569,18 +340,47 @@ public partial class V1Client : IV1Client
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
     /// );
     /// </code></example>
-    public WithRawResponseTask<string> RevertEraOriginatedInsuranceBalanceAdjustmentAsync(
+    public async global::System.Threading.Tasks.Task<string> RevertEraOriginatedInsuranceBalanceAdjustmentAsync(
         string adjustmentId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        return new WithRawResponseTask<string>(
-            RevertEraOriginatedInsuranceBalanceAdjustmentAsyncCore(
-                adjustmentId,
-                options,
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Post,
+                    Path = string.Format(
+                        "/api/write-offs/v1/{0}/revert-era-originated",
+                        ValueConvert.ToPathParameterString(adjustmentId)
+                    ),
+                    Options = options,
+                },
                 cancellationToken
             )
-        );
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<string>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 }

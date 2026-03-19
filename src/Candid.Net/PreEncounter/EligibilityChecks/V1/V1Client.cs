@@ -1,605 +1,17 @@
+using System.Net.Http;
 using System.Text.Json;
-using Candid.Net;
+using System.Threading;
 using Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter.EligibilityChecks.V1;
 
-public partial class V1Client : IV1Client
+public partial class V1Client
 {
-    private readonly RawClient _client;
+    private RawClient _client;
 
     internal V1Client(RawClient client)
     {
         _client = client;
-    }
-
-    private async global::System.Threading.Tasks.Task<
-        WithRawResponse<EligibilityCheck>
-    > PostAsyncCore(
-        EligibilityRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _headers = await new Candid.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.Environment.PreEncounter,
-                    Method = HttpMethod.Post,
-                    Path = "/eligibility-checks/v1",
-                    Body = request,
-                    Headers = _headers,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            try
-            {
-                var responseData = JsonUtils.Deserialize<EligibilityCheck>(responseBody)!;
-                return new WithRawResponse<EligibilityCheck>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new CandidApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            throw new CandidApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async global::System.Threading.Tasks.Task<
-        WithRawResponse<BatchEligibilityResponse>
-    > BatchAsyncCore(
-        IEnumerable<EligibilityRequest> request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _headers = await new Candid.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.Environment.PreEncounter,
-                    Method = HttpMethod.Post,
-                    Path = "/eligibility-checks/v1/batch",
-                    Body = request,
-                    Headers = _headers,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            try
-            {
-                var responseData = JsonUtils.Deserialize<BatchEligibilityResponse>(responseBody)!;
-                return new WithRawResponse<BatchEligibilityResponse>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new CandidApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            throw new CandidApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async global::System.Threading.Tasks.Task<
-        WithRawResponse<EligibilityCheckPage>
-    > PollBatchAsyncCore(
-        string batchId,
-        BatchEligibilityPollRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _queryString = new Candid.Net.Core.QueryStringBuilder.Builder(capacity: 1)
-            .Add("page_token", request.PageToken)
-            .MergeAdditional(options?.AdditionalQueryParameters)
-            .Build();
-        var _headers = await new Candid.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.Environment.PreEncounter,
-                    Method = HttpMethod.Get,
-                    Path = string.Format(
-                        "/eligibility-checks/v1/batch/{0}",
-                        ValueConvert.ToPathParameterString(batchId)
-                    ),
-                    QueryString = _queryString,
-                    Headers = _headers,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            try
-            {
-                var responseData = JsonUtils.Deserialize<EligibilityCheckPage>(responseBody)!;
-                return new WithRawResponse<EligibilityCheckPage>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new CandidApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            throw new CandidApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async global::System.Threading.Tasks.Task<
-        WithRawResponse<PayerSearchResponse>
-    > PayerSearchAsyncCore(
-        PayerSearchRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _queryString = new Candid.Net.Core.QueryStringBuilder.Builder(capacity: 3)
-            .Add("page_size", request.PageSize)
-            .Add("page_token", request.PageToken)
-            .Add("query", request.Query)
-            .MergeAdditional(options?.AdditionalQueryParameters)
-            .Build();
-        var _headers = await new Candid.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.Environment.PreEncounter,
-                    Method = HttpMethod.Get,
-                    Path = "/eligibility-checks/v1/payer/search",
-                    QueryString = _queryString,
-                    Headers = _headers,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            try
-            {
-                var responseData = JsonUtils.Deserialize<PayerSearchResponse>(responseBody)!;
-                return new WithRawResponse<PayerSearchResponse>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new CandidApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            throw new CandidApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async global::System.Threading.Tasks.Task<
-        WithRawResponse<IEnumerable<EligibilityRecommendation>>
-    > RecommendationAsyncCore(
-        EligibilityRecommendationRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _queryString = new Candid.Net.Core.QueryStringBuilder.Builder(capacity: 1)
-            .Add("filters", request.Filters)
-            .MergeAdditional(options?.AdditionalQueryParameters)
-            .Build();
-        var _headers = await new Candid.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.Environment.PreEncounter,
-                    Method = HttpMethod.Get,
-                    Path = "/eligibility-checks/v1/recommendation",
-                    QueryString = _queryString,
-                    Headers = _headers,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            try
-            {
-                var responseData = JsonUtils.Deserialize<IEnumerable<EligibilityRecommendation>>(
-                    responseBody
-                )!;
-                return new WithRawResponse<IEnumerable<EligibilityRecommendation>>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new CandidApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            throw new CandidApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async global::System.Threading.Tasks.Task<
-        WithRawResponse<EligibilityRecommendation>
-    > CreateRecommendationAsyncCore(
-        PostEligibilityRecommendationRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _headers = await new Candid.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.Environment.PreEncounter,
-                    Method = HttpMethod.Post,
-                    Path = "/eligibility-checks/v1/recommendation",
-                    Body = request,
-                    Headers = _headers,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            try
-            {
-                var responseData = JsonUtils.Deserialize<EligibilityRecommendation>(responseBody)!;
-                return new WithRawResponse<EligibilityRecommendation>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new CandidApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            throw new CandidApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async global::System.Threading.Tasks.Task<
-        WithRawResponse<EligibilityRecommendation>
-    > VoteRecommendationAsyncCore(
-        string recommendationId,
-        string version,
-        Vote request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _headers = await new Candid.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.Environment.PreEncounter,
-                    Method = HttpMethod.Put,
-                    Path = string.Format(
-                        "/eligibility-checks/v1/recommendation/{0}/{1}/vote",
-                        ValueConvert.ToPathParameterString(recommendationId),
-                        ValueConvert.ToPathParameterString(version)
-                    ),
-                    Body = request,
-                    Headers = _headers,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            try
-            {
-                var responseData = JsonUtils.Deserialize<EligibilityRecommendation>(responseBody)!;
-                return new WithRawResponse<EligibilityRecommendation>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new CandidApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            throw new CandidApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async global::System.Threading.Tasks.Task<
-        WithRawResponse<EligibilityCheckPage>
-    > GetMultiAsyncCore(
-        EligibilityChecksGetMultiRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _queryString = new Candid.Net.Core.QueryStringBuilder.Builder(capacity: 8)
-            .Add("page_token", request.PageToken)
-            .Add("limit", request.Limit)
-            .Add("subscriber_member_id", request.SubscriberMemberId)
-            .Add("payer_id", request.PayerId)
-            .Add("provider_npi", request.ProviderNpi)
-            .Add("date_of_service", request.DateOfService)
-            .Add("initiated_at_min", request.InitiatedAtMin)
-            .Add("initiated_at_max", request.InitiatedAtMax)
-            .MergeAdditional(options?.AdditionalQueryParameters)
-            .Build();
-        var _headers = await new Candid.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.Environment.PreEncounter,
-                    Method = HttpMethod.Get,
-                    Path = "/eligibility-checks/v1/get-multi/",
-                    QueryString = _queryString,
-                    Headers = _headers,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            try
-            {
-                var responseData = JsonUtils.Deserialize<EligibilityCheckPage>(responseBody)!;
-                return new WithRawResponse<EligibilityCheckPage>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new CandidApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response
-                .Raw.Content.ReadAsStringAsync(cancellationToken)
-                .ConfigureAwait(false);
-            throw new CandidApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
     }
 
     /// <summary>
@@ -615,15 +27,46 @@ public partial class V1Client : IV1Client
     ///     }
     /// );
     /// </code></example>
-    public WithRawResponseTask<EligibilityCheck> PostAsync(
+    public async global::System.Threading.Tasks.Task<EligibilityCheck> PostAsync(
         EligibilityRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        return new WithRawResponseTask<EligibilityCheck>(
-            PostAsyncCore(request, options, cancellationToken)
-        );
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Post,
+                    Path = "/eligibility-checks/v1",
+                    Body = request,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<EligibilityCheck>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
@@ -648,15 +91,46 @@ public partial class V1Client : IV1Client
     ///     }
     /// );
     /// </code></example>
-    public WithRawResponseTask<BatchEligibilityResponse> BatchAsync(
+    public async global::System.Threading.Tasks.Task<BatchEligibilityResponse> BatchAsync(
         IEnumerable<EligibilityRequest> request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        return new WithRawResponseTask<BatchEligibilityResponse>(
-            BatchAsyncCore(request, options, cancellationToken)
-        );
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Post,
+                    Path = "/eligibility-checks/v1/batch",
+                    Body = request,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<BatchEligibilityResponse>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
@@ -668,16 +142,55 @@ public partial class V1Client : IV1Client
     ///     new BatchEligibilityPollRequest()
     /// );
     /// </code></example>
-    public WithRawResponseTask<EligibilityCheckPage> PollBatchAsync(
+    public async global::System.Threading.Tasks.Task<EligibilityCheckPage> PollBatchAsync(
         string batchId,
         BatchEligibilityPollRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        return new WithRawResponseTask<EligibilityCheckPage>(
-            PollBatchAsyncCore(batchId, request, options, cancellationToken)
-        );
+        var _query = new Dictionary<string, object>();
+        if (request.PageToken != null)
+        {
+            _query["page_token"] = request.PageToken;
+        }
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Get,
+                    Path = string.Format(
+                        "/eligibility-checks/v1/batch/{0}",
+                        ValueConvert.ToPathParameterString(batchId)
+                    ),
+                    Query = _query,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<EligibilityCheckPage>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
@@ -686,15 +199,59 @@ public partial class V1Client : IV1Client
     /// <example><code>
     /// await client.PreEncounter.EligibilityChecks.V1.PayerSearchAsync(new PayerSearchRequest());
     /// </code></example>
-    public WithRawResponseTask<PayerSearchResponse> PayerSearchAsync(
+    public async global::System.Threading.Tasks.Task<PayerSearchResponse> PayerSearchAsync(
         PayerSearchRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        return new WithRawResponseTask<PayerSearchResponse>(
-            PayerSearchAsyncCore(request, options, cancellationToken)
-        );
+        var _query = new Dictionary<string, object>();
+        if (request.PageSize != null)
+        {
+            _query["page_size"] = request.PageSize.Value.ToString();
+        }
+        if (request.PageToken != null)
+        {
+            _query["page_token"] = request.PageToken;
+        }
+        if (request.Query != null)
+        {
+            _query["query"] = request.Query;
+        }
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Get,
+                    Path = "/eligibility-checks/v1/payer/search",
+                    Query = _query,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<PayerSearchResponse>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
@@ -706,15 +263,53 @@ public partial class V1Client : IV1Client
     ///     new EligibilityRecommendationRequest()
     /// );
     /// </code></example>
-    public WithRawResponseTask<IEnumerable<EligibilityRecommendation>> RecommendationAsync(
+    public async global::System.Threading.Tasks.Task<
+        IEnumerable<EligibilityRecommendation>
+    > RecommendationAsync(
         EligibilityRecommendationRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        return new WithRawResponseTask<IEnumerable<EligibilityRecommendation>>(
-            RecommendationAsyncCore(request, options, cancellationToken)
-        );
+        var _query = new Dictionary<string, object>();
+        if (request.Filters != null)
+        {
+            _query["filters"] = request.Filters;
+        }
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Get,
+                    Path = "/eligibility-checks/v1/recommendation",
+                    Query = _query,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<IEnumerable<EligibilityRecommendation>>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
@@ -737,15 +332,46 @@ public partial class V1Client : IV1Client
     ///     }
     /// );
     /// </code></example>
-    public WithRawResponseTask<EligibilityRecommendation> CreateRecommendationAsync(
+    public async global::System.Threading.Tasks.Task<EligibilityRecommendation> CreateRecommendationAsync(
         PostEligibilityRecommendationRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        return new WithRawResponseTask<EligibilityRecommendation>(
-            CreateRecommendationAsyncCore(request, options, cancellationToken)
-        );
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Post,
+                    Path = "/eligibility-checks/v1/recommendation",
+                    Body = request,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<EligibilityRecommendation>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
@@ -758,7 +384,7 @@ public partial class V1Client : IV1Client
     ///     new Vote { UserId = "user_id", Value = VoteValue.Upvote }
     /// );
     /// </code></example>
-    public WithRawResponseTask<EligibilityRecommendation> VoteRecommendationAsync(
+    public async global::System.Threading.Tasks.Task<EligibilityRecommendation> VoteRecommendationAsync(
         string recommendationId,
         string version,
         Vote request,
@@ -766,15 +392,44 @@ public partial class V1Client : IV1Client
         CancellationToken cancellationToken = default
     )
     {
-        return new WithRawResponseTask<EligibilityRecommendation>(
-            VoteRecommendationAsyncCore(
-                recommendationId,
-                version,
-                request,
-                options,
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Put,
+                    Path = string.Format(
+                        "/eligibility-checks/v1/recommendation/{0}/{1}/vote",
+                        ValueConvert.ToPathParameterString(recommendationId),
+                        ValueConvert.ToPathParameterString(version)
+                    ),
+                    Body = request,
+                    Options = options,
+                },
                 cancellationToken
             )
-        );
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<EligibilityRecommendation>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <example><code>
@@ -782,14 +437,82 @@ public partial class V1Client : IV1Client
     ///     new EligibilityChecksGetMultiRequest()
     /// );
     /// </code></example>
-    public WithRawResponseTask<EligibilityCheckPage> GetMultiAsync(
+    public async global::System.Threading.Tasks.Task<EligibilityCheckPage> GetMultiAsync(
         EligibilityChecksGetMultiRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        return new WithRawResponseTask<EligibilityCheckPage>(
-            GetMultiAsyncCore(request, options, cancellationToken)
-        );
+        var _query = new Dictionary<string, object>();
+        if (request.PageToken != null)
+        {
+            _query["page_token"] = request.PageToken;
+        }
+        if (request.Limit != null)
+        {
+            _query["limit"] = request.Limit.Value.ToString();
+        }
+        if (request.SubscriberMemberId != null)
+        {
+            _query["subscriber_member_id"] = request.SubscriberMemberId;
+        }
+        if (request.PayerId != null)
+        {
+            _query["payer_id"] = request.PayerId;
+        }
+        if (request.ProviderNpi != null)
+        {
+            _query["provider_npi"] = request.ProviderNpi;
+        }
+        if (request.DateOfService != null)
+        {
+            _query["date_of_service"] = request.DateOfService;
+        }
+        if (request.InitiatedAtMin != null)
+        {
+            _query["initiated_at_min"] = request.InitiatedAtMin.Value.ToString(
+                Constants.DateTimeFormat
+            );
+        }
+        if (request.InitiatedAtMax != null)
+        {
+            _query["initiated_at_max"] = request.InitiatedAtMax.Value.ToString(
+                Constants.DateTimeFormat
+            );
+        }
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Get,
+                    Path = "/eligibility-checks/v1/get-multi/",
+                    Query = _query,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<EligibilityCheckPage>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 }

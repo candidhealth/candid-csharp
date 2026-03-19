@@ -1,6 +1,6 @@
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Candid.Net.Core;
-using global::System.Text.Json;
-using global::System.Text.Json.Serialization;
 using NUnit.Framework;
 
 namespace Candid.Net.Test.Core.Json;

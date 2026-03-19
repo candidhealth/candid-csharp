@@ -2,9 +2,9 @@ using Candid.Net.Core;
 
 namespace Candid.Net.OrganizationProviders;
 
-public partial class OrganizationProvidersClient : IOrganizationProvidersClient
+public partial class OrganizationProvidersClient
 {
-    private readonly RawClient _client;
+    private RawClient _client;
 
     internal OrganizationProvidersClient(RawClient client)
     {
@@ -12,5 +12,5 @@ public partial class OrganizationProvidersClient : IOrganizationProvidersClient
         V3 = new global::Candid.Net.OrganizationProviders.V3.V3Client(_client);
     }
 
-    public global::Candid.Net.OrganizationProviders.V3.IV3Client V3 { get; }
+    public global::Candid.Net.OrganizationProviders.V3.V3Client V3 { get; }
 }

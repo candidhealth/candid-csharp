@@ -2,9 +2,9 @@ using Candid.Net.Core;
 
 namespace Candid.Net.Guarantor;
 
-public partial class GuarantorClient : IGuarantorClient
+public partial class GuarantorClient
 {
-    private readonly RawClient _client;
+    private RawClient _client;
 
     internal GuarantorClient(RawClient client)
     {
@@ -12,5 +12,5 @@ public partial class GuarantorClient : IGuarantorClient
         V1 = new global::Candid.Net.Guarantor.V1.V1Client(_client);
     }
 
-    public global::Candid.Net.Guarantor.V1.IV1Client V1 { get; }
+    public global::Candid.Net.Guarantor.V1.V1Client V1 { get; }
 }

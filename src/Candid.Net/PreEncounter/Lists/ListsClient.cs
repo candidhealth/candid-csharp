@@ -2,9 +2,9 @@ using Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter.Lists;
 
-public partial class ListsClient : IListsClient
+public partial class ListsClient
 {
-    private readonly RawClient _client;
+    private RawClient _client;
 
     internal ListsClient(RawClient client)
     {
@@ -12,5 +12,5 @@ public partial class ListsClient : IListsClient
         V1 = new global::Candid.Net.PreEncounter.Lists.V1.V1Client(_client);
     }
 
-    public global::Candid.Net.PreEncounter.Lists.V1.IV1Client V1 { get; }
+    public global::Candid.Net.PreEncounter.Lists.V1.V1Client V1 { get; }
 }

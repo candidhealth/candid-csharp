@@ -2,9 +2,9 @@ using Candid.Net.Core;
 
 namespace Candid.Net.Superbills;
 
-public partial class SuperbillsClient : ISuperbillsClient
+public partial class SuperbillsClient
 {
-    private readonly RawClient _client;
+    private RawClient _client;
 
     internal SuperbillsClient(RawClient client)
     {
@@ -12,5 +12,5 @@ public partial class SuperbillsClient : ISuperbillsClient
         V1 = new global::Candid.Net.Superbills.V1.V1Client(_client);
     }
 
-    public global::Candid.Net.Superbills.V1.IV1Client V1 { get; }
+    public global::Candid.Net.Superbills.V1.V1Client V1 { get; }
 }

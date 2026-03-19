@@ -178,7 +178,7 @@ public record RegionsUpdate
             {
                 "set" => json.GetProperty("value")
                     .Deserialize<global::Candid.Net.Commons.Regions?>(options)
-                    ?? throw new JsonException(
+                ?? throw new JsonException(
                         "Failed to deserialize global::Candid.Net.Commons.Regions"
                     ),
                 "remove" => new { },

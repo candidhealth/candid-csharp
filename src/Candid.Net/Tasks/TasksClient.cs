@@ -2,9 +2,9 @@ using Candid.Net.Core;
 
 namespace Candid.Net.Tasks;
 
-public partial class TasksClient : ITasksClient
+public partial class TasksClient
 {
-    private readonly RawClient _client;
+    private RawClient _client;
 
     internal TasksClient(RawClient client)
     {
@@ -12,5 +12,5 @@ public partial class TasksClient : ITasksClient
         V3 = new global::Candid.Net.Tasks.V3.V3Client(_client);
     }
 
-    public global::Candid.Net.Tasks.V3.IV3Client V3 { get; }
+    public global::Candid.Net.Tasks.V3.V3Client V3 { get; }
 }

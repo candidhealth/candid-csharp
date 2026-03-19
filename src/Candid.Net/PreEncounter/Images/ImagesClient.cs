@@ -2,9 +2,9 @@ using Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter.Images;
 
-public partial class ImagesClient : IImagesClient
+public partial class ImagesClient
 {
-    private readonly RawClient _client;
+    private RawClient _client;
 
     internal ImagesClient(RawClient client)
     {
@@ -12,5 +12,5 @@ public partial class ImagesClient : IImagesClient
         V1 = new global::Candid.Net.PreEncounter.Images.V1.V1Client(_client);
     }
 
-    public global::Candid.Net.PreEncounter.Images.V1.IV1Client V1 { get; }
+    public global::Candid.Net.PreEncounter.Images.V1.V1Client V1 { get; }
 }

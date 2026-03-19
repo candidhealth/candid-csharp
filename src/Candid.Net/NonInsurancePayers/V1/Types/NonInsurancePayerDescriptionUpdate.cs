@@ -184,7 +184,7 @@ public record NonInsurancePayerDescriptionUpdate
             {
                 "remove" => new { },
                 "set" => json.GetProperty("value").Deserialize<string?>(options)
-                    ?? throw new JsonException("Failed to deserialize string"),
+                ?? throw new JsonException("Failed to deserialize string"),
                 _ => json.Deserialize<object?>(options),
             };
             return new NonInsurancePayerDescriptionUpdate(discriminator, value);

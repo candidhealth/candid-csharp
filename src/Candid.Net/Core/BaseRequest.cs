@@ -1,12 +1,12 @@
-using global::System.Net.Http;
-using global::System.Net.Http.Headers;
-using global::System.Text;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
 
 namespace Candid.Net.Core;
 
 internal abstract record BaseRequest
 {
-    internal string? BaseUrl { get; init; }
+    internal required string BaseUrl { get; init; }
 
     internal required HttpMethod Method { get; init; }
 
@@ -14,13 +14,9 @@ internal abstract record BaseRequest
 
     internal string? ContentType { get; init; }
 
-    /// <summary>
-    /// The query string for this request (including the leading '?' if non-empty).
-    /// </summary>
-    internal string? QueryString { get; init; }
+    internal Dictionary<string, object> Query { get; init; } = new();
 
-    internal Dictionary<string, string> Headers { get; init; } =
-        new(StringComparer.OrdinalIgnoreCase);
+    internal Headers Headers { get; init; } = new();
 
     internal IRequestOptions? Options { get; init; }
 

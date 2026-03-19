@@ -2,9 +2,9 @@ using Candid.Net.Core;
 
 namespace Candid.Net.BillingNotes;
 
-public partial class BillingNotesClient : IBillingNotesClient
+public partial class BillingNotesClient
 {
-    private readonly RawClient _client;
+    private RawClient _client;
 
     internal BillingNotesClient(RawClient client)
     {
@@ -12,5 +12,5 @@ public partial class BillingNotesClient : IBillingNotesClient
         V2 = new global::Candid.Net.BillingNotes.V2.V2Client(_client);
     }
 
-    public global::Candid.Net.BillingNotes.V2.IV2Client V2 { get; }
+    public global::Candid.Net.BillingNotes.V2.V2Client V2 { get; }
 }

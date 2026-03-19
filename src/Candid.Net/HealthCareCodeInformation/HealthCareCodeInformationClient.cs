@@ -2,9 +2,9 @@ using Candid.Net.Core;
 
 namespace Candid.Net.HealthCareCodeInformation;
 
-public partial class HealthCareCodeInformationClient : IHealthCareCodeInformationClient
+public partial class HealthCareCodeInformationClient
 {
-    private readonly RawClient _client;
+    private RawClient _client;
 
     internal HealthCareCodeInformationClient(RawClient client)
     {
@@ -12,5 +12,5 @@ public partial class HealthCareCodeInformationClient : IHealthCareCodeInformatio
         V1 = new global::Candid.Net.HealthCareCodeInformation.V1.V1Client(_client);
     }
 
-    public global::Candid.Net.HealthCareCodeInformation.V1.IV1Client V1 { get; }
+    public global::Candid.Net.HealthCareCodeInformation.V1.V1Client V1 { get; }
 }

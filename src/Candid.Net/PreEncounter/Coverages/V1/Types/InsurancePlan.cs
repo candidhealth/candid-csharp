@@ -43,6 +43,9 @@ public record InsurancePlan : IJsonOnDeserialized
     [JsonPropertyName("insurance_card_image_locator")]
     public string? InsuranceCardImageLocator { get; set; }
 
+    [JsonPropertyName("address")]
+    public Common.Address? Address { get; set; }
+
     /// <summary>
     /// The ID of the Candid configured payer plan group associated with this coverage
     /// </summary>

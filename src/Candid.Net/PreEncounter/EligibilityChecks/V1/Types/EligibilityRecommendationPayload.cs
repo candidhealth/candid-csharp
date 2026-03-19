@@ -320,37 +320,31 @@ public record EligibilityRecommendationPayload
                 discriminatorElement.GetString()
                 ?? throw new JsonException("Discriminator property 'type' is null");
 
-            // Strip the discriminant property to prevent it from leaking into AdditionalProperties
-            var jsonObject = System.Text.Json.Nodes.JsonObject.Create(json);
-            jsonObject?.Remove("type");
-            var jsonWithoutDiscriminator =
-                jsonObject != null ? JsonSerializer.SerializeToElement(jsonObject, options) : json;
-
             var value = discriminator switch
             {
                 "MEDICARE_ADVANTAGE" =>
-                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation?>(
+                    json.Deserialize<global::Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation?>(
                         options
                     )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation"
                         ),
                 "COORDINATION_OF_BENEFITS" =>
-                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsRecommendation?>(
+                    json.Deserialize<global::Candid.Net.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsRecommendation?>(
                         options
                     )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsRecommendation"
                         ),
                 "COPAY_ESTIMATION" =>
-                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.PreEncounter.EligibilityChecks.V1.CopayEstimationRecommendation?>(
+                    json.Deserialize<global::Candid.Net.PreEncounter.EligibilityChecks.V1.CopayEstimationRecommendation?>(
                         options
                     )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.PreEncounter.EligibilityChecks.V1.CopayEstimationRecommendation"
                         ),
                 "USER_CONFIGURED_PROMPTS" =>
-                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.PreEncounter.EligibilityChecks.V1.UserConfiguredPromptsRecommendation?>(
+                    json.Deserialize<global::Candid.Net.PreEncounter.EligibilityChecks.V1.UserConfiguredPromptsRecommendation?>(
                         options
                     )
                         ?? throw new JsonException(

@@ -2,9 +2,9 @@ using Candid.Net.Core;
 
 namespace Candid.Net.Contracts;
 
-public partial class ContractsClient : IContractsClient
+public partial class ContractsClient
 {
-    private readonly RawClient _client;
+    private RawClient _client;
 
     internal ContractsClient(RawClient client)
     {
@@ -13,7 +13,7 @@ public partial class ContractsClient : IContractsClient
         V3 = new global::Candid.Net.Contracts.V3.V3Client(_client);
     }
 
-    public global::Candid.Net.Contracts.V2.IV2Client V2 { get; }
+    public global::Candid.Net.Contracts.V2.V2Client V2 { get; }
 
-    public global::Candid.Net.Contracts.V3.IV3Client V3 { get; }
+    public global::Candid.Net.Contracts.V3.V3Client V3 { get; }
 }

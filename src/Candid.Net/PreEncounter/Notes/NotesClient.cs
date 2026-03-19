@@ -2,9 +2,9 @@ using Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter.Notes;
 
-public partial class NotesClient : INotesClient
+public partial class NotesClient
 {
-    private readonly RawClient _client;
+    private RawClient _client;
 
     internal NotesClient(RawClient client)
     {
@@ -12,5 +12,5 @@ public partial class NotesClient : INotesClient
         V1 = new global::Candid.Net.PreEncounter.Notes.V1.V1Client(_client);
     }
 
-    public global::Candid.Net.PreEncounter.Notes.V1.IV1Client V1 { get; }
+    public global::Candid.Net.PreEncounter.Notes.V1.V1Client V1 { get; }
 }

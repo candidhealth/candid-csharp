@@ -2,9 +2,9 @@ using Candid.Net.Core;
 
 namespace Candid.Net.WriteOffs;
 
-public partial class WriteOffsClient : IWriteOffsClient
+public partial class WriteOffsClient
 {
-    private readonly RawClient _client;
+    private RawClient _client;
 
     internal WriteOffsClient(RawClient client)
     {
@@ -12,5 +12,5 @@ public partial class WriteOffsClient : IWriteOffsClient
         V1 = new global::Candid.Net.WriteOffs.V1.V1Client(_client);
     }
 
-    public global::Candid.Net.WriteOffs.V1.IV1Client V1 { get; }
+    public global::Candid.Net.WriteOffs.V1.V1Client V1 { get; }
 }

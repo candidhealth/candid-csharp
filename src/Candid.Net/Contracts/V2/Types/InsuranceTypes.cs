@@ -223,7 +223,7 @@ public record InsuranceTypes
                 "noneApply" => new { },
                 "theseApply" => json.GetProperty("value")
                     .Deserialize<HashSet<global::Candid.Net.Commons.InsuranceTypeCode>?>(options)
-                    ?? throw new JsonException(
+                ?? throw new JsonException(
                         "Failed to deserialize HashSet<global::Candid.Net.Commons.InsuranceTypeCode>"
                     ),
                 _ => json.Deserialize<object?>(options),

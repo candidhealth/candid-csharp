@@ -194,20 +194,12 @@ public record TypeOfBillCompositeUpdate
                 discriminatorElement.GetString()
                 ?? throw new JsonException("Discriminator property 'type' is null");
 
-            // Strip the discriminant property to prevent it from leaking into AdditionalProperties
-            var jsonObject = System.Text.Json.Nodes.JsonObject.Create(json);
-            jsonObject?.Remove("type");
-            var jsonWithoutDiscriminator =
-                jsonObject != null ? JsonSerializer.SerializeToElement(jsonObject, options) : json;
-
             var value = discriminator switch
             {
                 "raw_code" => json.GetProperty("value").Deserialize<string?>(options)
-                    ?? throw new JsonException("Failed to deserialize string"),
+                ?? throw new JsonException("Failed to deserialize string"),
                 "composite_codes" =>
-                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.X12.V1.TypeOfBillCompositeBase?>(
-                        options
-                    )
+                    json.Deserialize<global::Candid.Net.X12.V1.TypeOfBillCompositeBase?>(options)
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.X12.V1.TypeOfBillCompositeBase"
                         ),

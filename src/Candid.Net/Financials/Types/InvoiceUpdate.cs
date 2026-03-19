@@ -177,7 +177,7 @@ public record InvoiceUpdate
             var value = discriminator switch
             {
                 "set" => json.GetProperty("value").Deserialize<string?>(options)
-                    ?? throw new JsonException("Failed to deserialize string"),
+                ?? throw new JsonException("Failed to deserialize string"),
                 "remove" => new { },
                 _ => json.Deserialize<object?>(options),
             };

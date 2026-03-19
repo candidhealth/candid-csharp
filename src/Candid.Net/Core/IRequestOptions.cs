@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Net.Http;
+
 namespace Candid.Net.Core;
 
 internal interface IRequestOptions
@@ -25,6 +28,11 @@ internal interface IRequestOptions
     }
 
     /// <summary>
+    /// The http headers sent with the request.
+    /// </summary>
+    internal Headers Headers { get; init; }
+
+    /// <summary>
     /// Additional headers to be sent with the request.
     /// Headers previously set with matching keys will be overwritten.
     /// </summary>
@@ -37,7 +45,7 @@ internal interface IRequestOptions
     }
 
     /// <summary>
-    /// The max number of retries to attempt.
+    /// The http client used to make requests.
     /// </summary>
     public int? MaxRetries { get;
 #if NET5_0_OR_GREATER

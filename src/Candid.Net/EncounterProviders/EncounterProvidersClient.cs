@@ -2,9 +2,9 @@ using Candid.Net.Core;
 
 namespace Candid.Net.EncounterProviders;
 
-public partial class EncounterProvidersClient : IEncounterProvidersClient
+public partial class EncounterProvidersClient
 {
-    private readonly RawClient _client;
+    private RawClient _client;
 
     internal EncounterProvidersClient(RawClient client)
     {
@@ -12,5 +12,5 @@ public partial class EncounterProvidersClient : IEncounterProvidersClient
         V2 = new global::Candid.Net.EncounterProviders.V2.V2Client(_client);
     }
 
-    public global::Candid.Net.EncounterProviders.V2.IV2Client V2 { get; }
+    public global::Candid.Net.EncounterProviders.V2.V2Client V2 { get; }
 }

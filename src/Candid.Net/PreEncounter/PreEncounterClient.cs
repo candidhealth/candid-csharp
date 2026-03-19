@@ -9,9 +9,9 @@ using Candid.Net.PreEncounter.Patients;
 
 namespace Candid.Net.PreEncounter;
 
-public partial class PreEncounterClient : IPreEncounterClient
+public partial class PreEncounterClient
 {
-    private readonly RawClient _client;
+    private RawClient _client;
 
     internal PreEncounterClient(RawClient client)
     {
@@ -26,19 +26,19 @@ public partial class PreEncounterClient : IPreEncounterClient
         Tags = new global::Candid.Net.PreEncounter.Tags.TagsClient(_client);
     }
 
-    public IAppointmentsClient Appointments { get; }
+    public AppointmentsClient Appointments { get; }
 
-    public ICoveragesClient Coverages { get; }
+    public CoveragesClient Coverages { get; }
 
-    public IEligibilityChecksClient EligibilityChecks { get; }
+    public EligibilityChecksClient EligibilityChecks { get; }
 
-    public IImagesClient Images { get; }
+    public ImagesClient Images { get; }
 
-    public IListsClient Lists { get; }
+    public ListsClient Lists { get; }
 
-    public INotesClient Notes { get; }
+    public NotesClient Notes { get; }
 
-    public IPatientsClient Patients { get; }
+    public PatientsClient Patients { get; }
 
-    public global::Candid.Net.PreEncounter.Tags.ITagsClient Tags { get; }
+    public global::Candid.Net.PreEncounter.Tags.TagsClient Tags { get; }
 }

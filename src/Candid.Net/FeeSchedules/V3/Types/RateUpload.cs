@@ -176,25 +176,14 @@ public record RateUpload
                 discriminatorElement.GetString()
                 ?? throw new JsonException("Discriminator property 'type' is null");
 
-            // Strip the discriminant property to prevent it from leaking into AdditionalProperties
-            var jsonObject = System.Text.Json.Nodes.JsonObject.Create(json);
-            jsonObject?.Remove("type");
-            var jsonWithoutDiscriminator =
-                jsonObject != null ? JsonSerializer.SerializeToElement(jsonObject, options) : json;
-
             var value = discriminator switch
             {
-                "new_rate" =>
-                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.FeeSchedules.V3.NewRate?>(
-                        options
-                    )
-                        ?? throw new JsonException(
-                            "Failed to deserialize global::Candid.Net.FeeSchedules.V3.NewRate"
-                        ),
+                "new_rate" => json.Deserialize<global::Candid.Net.FeeSchedules.V3.NewRate?>(options)
+                    ?? throw new JsonException(
+                        "Failed to deserialize global::Candid.Net.FeeSchedules.V3.NewRate"
+                    ),
                 "new_version" =>
-                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.FeeSchedules.V3.NewRateVersion?>(
-                        options
-                    )
+                    json.Deserialize<global::Candid.Net.FeeSchedules.V3.NewRateVersion?>(options)
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.FeeSchedules.V3.NewRateVersion"
                         ),

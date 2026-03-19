@@ -1052,13 +1052,12 @@ public class MultipartFormTests
                 .Headers.ContentType?.Parameters.Single(p =>
                     p.Name.Equals("boundary", StringComparison.OrdinalIgnoreCase)
                 )
-                .Value?.Trim('"')
-            ?? throw new global::System.Exception("Boundary not found");
+                .Value?.Trim('"') ?? throw new global::System.Exception("Boundary not found");
     }
 
-    private static Candid.Net.Core.MultipartFormRequest CreateMultipartFormRequest()
+    private static MultipartFormRequest CreateMultipartFormRequest()
     {
-        return new Candid.Net.Core.MultipartFormRequest
+        return new MultipartFormRequest
         {
             BaseUrl = "https://localhost",
             Method = HttpMethod.Post,
