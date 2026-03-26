@@ -43,6 +43,12 @@ public record GetAllOrganizationServiceFacilitiesRequest
     [JsonIgnore]
     public string? PageToken { get; set; }
 
+    /// <summary>
+    /// Filter to a specific organization's service facilities. If not provided, defaults to the requesting user's organization.
+    /// </summary>
+    [JsonIgnore]
+    public string? OrganizationId { get; set; }
+
     /// <inheritdoc />
     public override string ToString()
     {

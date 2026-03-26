@@ -18,13 +18,19 @@ public partial class V1Client
     /// Returns all custom schemas.
     /// </summary>
     /// <example><code>
-    /// await client.CustomSchemas.V1.GetMultiAsync();
+    /// await client.CustomSchemas.V1.GetMultiAsync(new GetMultiCustomSchemasRequest());
     /// </code></example>
     public async global::System.Threading.Tasks.Task<SchemaGetMultiResponse> GetMultiAsync(
+        GetMultiCustomSchemasRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _query = new Dictionary<string, object>();
+        if (request.OrganizationId != null)
+        {
+            _query["organization_id"] = request.OrganizationId;
+        }
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -32,6 +38,7 @@ public partial class V1Client
                     BaseUrl = _client.Options.Environment.CandidApi,
                     Method = HttpMethod.Get,
                     Path = "/api/custom-schemas/v1",
+                    Query = _query,
                     Options = options,
                 },
                 cancellationToken

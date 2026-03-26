@@ -96,6 +96,10 @@ public partial class V2Client
         {
             _query["page_token"] = request.PageToken;
         }
+        if (request.OrganizationId != null)
+        {
+            _query["organization_id"] = request.OrganizationId;
+        }
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest

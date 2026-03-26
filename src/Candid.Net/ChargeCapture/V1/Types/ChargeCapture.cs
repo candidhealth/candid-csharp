@@ -2,6 +2,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Candid.Net;
 using Candid.Net.Core;
+using Candid.Net.CustomSchemas.V1;
 
 namespace Candid.Net.ChargeCapture.V1;
 
@@ -38,6 +39,13 @@ public record ChargeCapture : IJsonOnDeserialized
 
     [JsonPropertyName("claim_creation_category")]
     public string? ClaimCreationCategory { get; set; }
+
+    /// <summary>
+    /// Key-value pairs that adhere to metadata schemas.
+    /// Multiple metadata instances can be associated with a charge capture.
+    /// </summary>
+    [JsonPropertyName("metadata")]
+    public IEnumerable<SchemaInstance>? Metadata { get; set; }
 
     [JsonPropertyName("error")]
     public ChargeCaptureError? Error { get; set; }

@@ -695,8 +695,77 @@ await client.ChargeCapture.V1.GetAllAsync(new GetAllChargeCapturesRequest());
 </dl>
 </details>
 
+<details><summary><code>client.ChargeCapture.V1.<a href="/src/Candid.Net/ChargeCapture/V1/V1Client.cs">FindByMetadataAsync</a>(global::Candid.Net.ChargeCapture.V1.FindByMetadataRequest { ... }) -> global::Candid.Net.ChargeCapture.V1.ChargeCapturePage</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.ChargeCapture.V1.FindByMetadataAsync(
+    new FindByMetadataRequest
+    {
+        Metadata = new List<SchemaInstance>()
+        {
+            new SchemaInstance
+            {
+                SchemaId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+                Content = new Dictionary<string, object?>()
+                {
+                    {
+                        "content",
+                        new Dictionary<object, object?>() { { "key", "value" } }
+                    },
+                },
+            },
+            new SchemaInstance
+            {
+                SchemaId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+                Content = new Dictionary<string, object?>()
+                {
+                    {
+                        "content",
+                        new Dictionary<object, object?>() { { "key", "value" } }
+                    },
+                },
+            },
+        },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `global::Candid.Net.ChargeCapture.V1.FindByMetadataRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Contracts V2
-<details><summary><code>client.Contracts.V2.<a href="/src/Candid.Net/Contracts/V2/V2Client.cs">GetAsync</a>(contractId) -> global::Candid.Net.Contracts.V2.ContractWithProviders</code></summary>
+<details><summary><code>client.Contracts.V2.<a href="/src/Candid.Net/Contracts/V2/V2Client.cs">GetAsync</a>(contractId, global::Candid.Net.Contracts.V2.GetContractRequest { ... }) -> global::Candid.Net.Contracts.V2.ContractWithProviders</code></summary>
 <dl>
 <dd>
 
@@ -723,7 +792,10 @@ This API provides access to Professional Contracts. For Professional and Institu
 <dd>
 
 ```csharp
-await client.Contracts.V2.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+await client.Contracts.V2.GetAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new GetContractRequest()
+);
 ```
 </dd>
 </dl>
@@ -739,6 +811,14 @@ await client.Contracts.V2.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
 <dd>
 
 **contractId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `global::Candid.Net.Contracts.V2.GetContractRequest` 
     
 </dd>
 </dl>
@@ -1214,6 +1294,193 @@ await client.Contracts.V3.UpdateAsync(
 <dd>
 
 **request:** `global::Candid.Net.Contracts.V3.ContractUpdateUnion` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Contracts.V3.<a href="/src/Candid.Net/Contracts/V3/V3Client.cs">GetContractProvidersAsync</a>(contractId, global::Candid.Net.Contracts.V3.GetContractProvidersRequest { ... }) -> global::Candid.Net.Contracts.V3.ContractProvidersPage</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Contracts.V3.GetContractProvidersAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new GetContractProvidersRequest()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**contractId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `global::Candid.Net.Contracts.V3.GetContractProvidersRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Contracts.V3.<a href="/src/Candid.Net/Contracts/V3/V3Client.cs">AddContractProvidersAsync</a>(contractId, global::Candid.Net.Contracts.V3.AddContractProvidersRequest { ... }) -> global::Candid.Net.Contracts.V3.AddContractProvidersResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Appends a list of rendering provider IDs to the contract. Provider IDs already on the contract are silently ignored.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Contracts.V3.AddContractProvidersAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new AddContractProvidersRequest
+    {
+        RenderingProviderIds = new HashSet<string>() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**contractId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `global::Candid.Net.Contracts.V3.AddContractProvidersRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Contracts.V3.<a href="/src/Candid.Net/Contracts/V3/V3Client.cs">RemoveContractProvidersAsync</a>(contractId, global::Candid.Net.Contracts.V3.RemoveContractProvidersRequest { ... }) -> global::Candid.Net.Contracts.V3.ContractProviderCount</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Removes the specified rendering provider IDs from the contract. Returns a 404 if any of the provided IDs are not currently in the contract.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Contracts.V3.RemoveContractProvidersAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new RemoveContractProvidersRequest
+    {
+        RenderingProviderIds = new HashSet<string>() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**contractId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `global::Candid.Net.Contracts.V3.RemoveContractProvidersRequest` 
     
 </dd>
 </dl>
@@ -1817,7 +2084,7 @@ await client.Credentialing.V2.UpdateAsync(
 </details>
 
 ## CustomSchemas V1
-<details><summary><code>client.CustomSchemas.V1.<a href="/src/Candid.Net/CustomSchemas/V1/V1Client.cs">GetMultiAsync</a>() -> global::Candid.Net.CustomSchemas.V1.SchemaGetMultiResponse</code></summary>
+<details><summary><code>client.CustomSchemas.V1.<a href="/src/Candid.Net/CustomSchemas/V1/V1Client.cs">GetMultiAsync</a>(global::Candid.Net.CustomSchemas.V1.GetMultiCustomSchemasRequest { ... }) -> global::Candid.Net.CustomSchemas.V1.SchemaGetMultiResponse</code></summary>
 <dl>
 <dd>
 
@@ -1844,8 +2111,23 @@ Returns all custom schemas.
 <dd>
 
 ```csharp
-await client.CustomSchemas.V1.GetMultiAsync();
+await client.CustomSchemas.V1.GetMultiAsync(new GetMultiCustomSchemasRequest());
 ```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `global::Candid.Net.CustomSchemas.V1.GetMultiCustomSchemasRequest` 
+    
 </dd>
 </dl>
 </dd>
@@ -6555,7 +6837,7 @@ await client.NonInsurancePayers.V1.GetCategoriesAsync(new GetNonInsurancePayersC
 </dl>
 </details>
 
-<details><summary><code>client.NonInsurancePayers.V1.<a href="/src/Candid.Net/NonInsurancePayers/V1/V1Client.cs">GetAsync</a>(nonInsurancePayerId) -> global::Candid.Net.NonInsurancePayers.V1.NonInsurancePayer</code></summary>
+<details><summary><code>client.NonInsurancePayers.V1.<a href="/src/Candid.Net/NonInsurancePayers/V1/V1Client.cs">GetAsync</a>(nonInsurancePayerId, global::Candid.Net.NonInsurancePayers.V1.GetNonInsurancePayerRequest { ... }) -> global::Candid.Net.NonInsurancePayers.V1.NonInsurancePayer</code></summary>
 <dl>
 <dd>
 
@@ -6568,7 +6850,10 @@ await client.NonInsurancePayers.V1.GetCategoriesAsync(new GetNonInsurancePayersC
 <dd>
 
 ```csharp
-await client.NonInsurancePayers.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+await client.NonInsurancePayers.V1.GetAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new GetNonInsurancePayerRequest()
+);
 ```
 </dd>
 </dl>
@@ -6584,6 +6869,14 @@ await client.NonInsurancePayers.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc3
 <dd>
 
 **nonInsurancePayerId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `global::Candid.Net.NonInsurancePayers.V1.GetNonInsurancePayerRequest` 
     
 </dd>
 </dl>

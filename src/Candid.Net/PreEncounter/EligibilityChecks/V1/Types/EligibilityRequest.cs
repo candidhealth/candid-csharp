@@ -57,6 +57,18 @@ public record EligibilityRequest : IJsonOnDeserialized
     [JsonPropertyName("source")]
     public string? Source { get; set; }
 
+    /// <summary>
+    /// The password that the provider uses to log in to the payer's portal. This is not commonly used.
+    /// </summary>
+    [JsonPropertyName("portal_password")]
+    public string? PortalPassword { get; set; }
+
+    /// <summary>
+    /// The username that the provider uses to log in to the payer's portal. This is not commonly used.
+    /// </summary>
+    [JsonPropertyName("portal_username")]
+    public string? PortalUsername { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

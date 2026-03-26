@@ -55,6 +55,12 @@ public record GetAllOrganizationProvidersRequestV2
     [JsonIgnore]
     public OrganizationProviderSortOptions? Sort { get; set; }
 
+    /// <summary>
+    /// Filter to a specific organization's providers. If not provided, defaults to the requesting user's organization.
+    /// </summary>
+    [JsonIgnore]
+    public string? OrganizationId { get; set; }
+
     /// <inheritdoc />
     public override string ToString()
     {

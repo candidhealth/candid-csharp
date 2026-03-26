@@ -13,6 +13,11 @@ public record ProfessionalContractUpdate : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    /// <summary>
+    /// Deprecated. Use the dedicated providers endpoints to manage rendering providers
+    /// (GET/POST/DELETE /api/contracts/v3/{contract_id}/providers).
+    /// Attempting to set this property will raise an error if the contract already has more than 4,000 rendering providers.
+    /// </summary>
     [JsonPropertyName("rendering_provider_ids")]
     public HashSet<string>? RenderingProviderIds { get; set; }
 

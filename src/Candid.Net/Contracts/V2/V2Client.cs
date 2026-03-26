@@ -18,14 +18,23 @@ public partial class V2Client
     /// This API provides access to Professional Contracts. For Professional and Institutional Contracts use Contracts V3.
     /// </summary>
     /// <example><code>
-    /// await client.Contracts.V2.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+    /// await client.Contracts.V2.GetAsync(
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///     new GetContractRequest()
+    /// );
     /// </code></example>
     public async global::System.Threading.Tasks.Task<ContractWithProviders> GetAsync(
         string contractId,
+        GetContractRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _query = new Dictionary<string, object>();
+        if (request.OrganizationId != null)
+        {
+            _query["organization_id"] = request.OrganizationId;
+        }
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -36,6 +45,7 @@ public partial class V2Client
                         "/api/contracts/v2/{0}",
                         ValueConvert.ToPathParameterString(contractId)
                     ),
+                    Query = _query,
                     Options = options,
                 },
                 cancellationToken

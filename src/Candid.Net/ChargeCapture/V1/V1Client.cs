@@ -465,4 +465,78 @@ public partial class V1Client
             );
         }
     }
+
+    /// <example><code>
+    /// await client.ChargeCapture.V1.FindByMetadataAsync(
+    ///     new FindByMetadataRequest
+    ///     {
+    ///         Metadata = new List&lt;SchemaInstance&gt;()
+    ///         {
+    ///             new SchemaInstance
+    ///             {
+    ///                 SchemaId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///                 Content = new Dictionary&lt;string, object?&gt;()
+    ///                 {
+    ///                     {
+    ///                         "content",
+    ///                         new Dictionary&lt;object, object?&gt;() { { "key", "value" } }
+    ///                     },
+    ///                 },
+    ///             },
+    ///             new SchemaInstance
+    ///             {
+    ///                 SchemaId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///                 Content = new Dictionary&lt;string, object?&gt;()
+    ///                 {
+    ///                     {
+    ///                         "content",
+    ///                         new Dictionary&lt;object, object?&gt;() { { "key", "value" } }
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     }
+    /// );
+    /// </code></example>
+    public async global::System.Threading.Tasks.Task<ChargeCapturePage> FindByMetadataAsync(
+        FindByMetadataRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Post,
+                    Path = "/api/charge_captures/v1/find-by-metadata",
+                    Body = request,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<ChargeCapturePage>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
 }

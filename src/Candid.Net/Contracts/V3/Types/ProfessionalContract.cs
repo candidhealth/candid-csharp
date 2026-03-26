@@ -15,7 +15,9 @@ public record ProfessionalContract : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// The providers who can render medical services under the contract
+    /// Deprecated. Use the dedicated providers endpoints to manage rendering providers
+    /// (GET/POST/DELETE /api/contracts/v3/{contract_id}/providers).
+    /// This field returns a maximum of 4,000 IDs
     /// </summary>
     [JsonPropertyName("rendering_provider_ids")]
     public HashSet<string> RenderingProviderIds { get; set; } = new HashSet<string>();

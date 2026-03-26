@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using Candid.Net.Core;
+using Candid.Net.CustomSchemas.V1;
 
 namespace Candid.Net.ChargeCapture.V1;
 
@@ -53,6 +54,13 @@ public record CreateChargeCaptureRequest
     /// </summary>
     [JsonPropertyName("attachment_external_document_ids")]
     public IEnumerable<string>? AttachmentExternalDocumentIds { get; set; }
+
+    /// <summary>
+    /// Key-value pairs that adhere to metadata schemas.
+    /// Multiple metadata instances can be associated with a charge capture.
+    /// </summary>
+    [JsonPropertyName("metadata")]
+    public IEnumerable<SchemaInstance>? Metadata { get; set; }
 
     /// <inheritdoc />
     public override string ToString()

@@ -111,6 +111,10 @@ public partial class V3Client
         {
             _query["sort"] = request.Sort.Value.Stringify();
         }
+        if (request.OrganizationId != null)
+        {
+            _query["organization_id"] = request.OrganizationId;
+        }
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest

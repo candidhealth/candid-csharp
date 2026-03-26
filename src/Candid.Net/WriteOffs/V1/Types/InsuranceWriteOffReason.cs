@@ -63,6 +63,8 @@ public readonly record struct InsuranceWriteOffReason : IStringEnum
         Values.PrimaryPaidMaxBenefits
     );
 
+    public static readonly InsuranceWriteOffReason Interest = new(Values.Interest);
+
     public InsuranceWriteOffReason(string value)
     {
         Value = value;
@@ -143,5 +145,7 @@ public readonly record struct InsuranceWriteOffReason : IStringEnum
         public const string ContractualAdjustment = "CONTRACTUAL_ADJUSTMENT";
 
         public const string PrimaryPaidMaxBenefits = "PRIMARY_PAID_MAX_BENEFITS";
+
+        public const string Interest = "INTEREST";
     }
 }

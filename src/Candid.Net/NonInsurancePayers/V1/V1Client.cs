@@ -256,14 +256,23 @@ public partial class V1Client
     }
 
     /// <example><code>
-    /// await client.NonInsurancePayers.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+    /// await client.NonInsurancePayers.V1.GetAsync(
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///     new GetNonInsurancePayerRequest()
+    /// );
     /// </code></example>
     public async global::System.Threading.Tasks.Task<NonInsurancePayer> GetAsync(
         string nonInsurancePayerId,
+        GetNonInsurancePayerRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _query = new Dictionary<string, object>();
+        if (request.OrganizationId != null)
+        {
+            _query["organization_id"] = request.OrganizationId;
+        }
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -274,6 +283,7 @@ public partial class V1Client
                         "/api/non-insurance-payers/v1/{0}",
                         ValueConvert.ToPathParameterString(nonInsurancePayerId)
                     ),
+                    Query = _query,
                     Options = options,
                 },
                 cancellationToken
