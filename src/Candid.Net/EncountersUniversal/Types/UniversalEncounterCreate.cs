@@ -152,6 +152,12 @@ public record UniversalEncounterCreate : IJsonOnDeserialized
     public SupervisingProvider? SupervisingProvider { get; set; }
 
     /// <summary>
+    /// The treating provider is the provider who treats the patient. This is only supported for professional encounters.
+    /// </summary>
+    [JsonPropertyName("treating_provider")]
+    public TreatingProvider? TreatingProvider { get; set; }
+
+    /// <summary>
     /// Encounter Service facility is typically the location a medical service was rendered, such as a provider office or hospital. For telehealth, service facility can represent the provider's location when the service was delivered (e.g., home), or the location where an in-person visit would have taken place, whichever is easier to identify. If the provider is in-network, service facility may be defined in payer contracts. Box 32 on the CMS-1500 claim form. There is no equivalent on the paper UB-04 claim form, but this field is equivalent to Loop 2310E Service Facility Location details on an 837i form, and is used when this is different to the entity identified as the Billing Provider. Note that for an in-network claim to be successfully adjudicated, the service facility address listed
     /// </summary>
     [JsonPropertyName("service_facility")]
@@ -423,8 +429,8 @@ public record UniversalEncounterCreate : IJsonOnDeserialized
     public DateOnly? LastMenstrualPeriodDate { get; set; }
 
     /// <summary>
-    /// 837i Loop2300, CLM-1300 Box 20
-    /// Code indicating the reason why a request was delayed
+    /// Code indicating the reason why a claim submission was delayed.
+    /// Corresponds to CLM-20 in the 837 specification (both professional and institutional).
     /// </summary>
     [JsonPropertyName("delay_reason_code")]
     public DelayReasonCode? DelayReasonCode { get; set; }

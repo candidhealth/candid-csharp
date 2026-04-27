@@ -2,6 +2,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Candid.Net;
 using Candid.Net.Core;
+using Candid.Net.PreEncounter.Appointments.V1;
 using Candid.Net.PreEncounter.Common;
 using Candid.Net.PreEncounter.EligibilityChecks.V1;
 
@@ -109,6 +110,12 @@ public record Coverage : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("auto_update_enabled")]
     public bool? AutoUpdateEnabled { get; set; }
+
+    /// <summary>
+    /// A map of UniversalServiceIdentifier (MD_Visit, Treatment, Tests, Activity) to copay values in cents. This is used to track copay values for each service type to handle OOP max resets correctly.
+    /// </summary>
+    [JsonPropertyName("previous_appointment_copays")]
+    public Dictionary<UniversalServiceIdentifier, int>? PreviousAppointmentCopays { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

@@ -5,6 +5,7 @@ using Candid.Net.PreEncounter.EligibilityChecks;
 using Candid.Net.PreEncounter.Images;
 using Candid.Net.PreEncounter.Lists;
 using Candid.Net.PreEncounter.Notes;
+using Candid.Net.PreEncounter.OrganizationExternalProviders;
 using Candid.Net.PreEncounter.Patients;
 
 namespace Candid.Net.PreEncounter;
@@ -22,6 +23,7 @@ public partial class PreEncounterClient
         Images = new ImagesClient(_client);
         Lists = new ListsClient(_client);
         Notes = new NotesClient(_client);
+        OrganizationExternalProviders = new OrganizationExternalProvidersClient(_client);
         Patients = new PatientsClient(_client);
         Tags = new global::Candid.Net.PreEncounter.Tags.TagsClient(_client);
     }
@@ -37,6 +39,8 @@ public partial class PreEncounterClient
     public ListsClient Lists { get; }
 
     public NotesClient Notes { get; }
+
+    public OrganizationExternalProvidersClient OrganizationExternalProviders { get; }
 
     public PatientsClient Patients { get; }
 

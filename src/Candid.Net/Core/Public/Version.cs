@@ -3,5 +3,5 @@ namespace Candid.Net;
 [Serializable]
 internal class Version
 {
-    public const string Current = "1.21.0";
+    public const string Current = "1.22.2";
 }

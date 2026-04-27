@@ -367,6 +367,70 @@ public partial class V3Client
     }
 
     /// <summary>
+    /// Returns rendering providers linked to a contract with their credentialing spans, scoped to the contract's contracting provider and payer. Providers with no matching spans are included with an empty list.
+    /// </summary>
+    /// <example><code>
+    /// await client.Contracts.V3.GetContractProviderCredentialingSpansAsync(
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///     new GetContractProviderCredentialingSpansRequest()
+    /// );
+    /// </code></example>
+    public async global::System.Threading.Tasks.Task<ContractProviderCredentialingPage> GetContractProviderCredentialingSpansAsync(
+        string contractId,
+        GetContractProviderCredentialingSpansRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _query = new Dictionary<string, object>();
+        if (request.PageToken != null)
+        {
+            _query["page_token"] = request.PageToken;
+        }
+        if (request.Limit != null)
+        {
+            _query["limit"] = request.Limit.Value.ToString();
+        }
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Get,
+                    Path = string.Format(
+                        "/api/contracts/v3/{0}/providers/credentialing",
+                        ValueConvert.ToPathParameterString(contractId)
+                    ),
+                    Query = _query,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<ContractProviderCredentialingPage>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    /// <summary>
     /// Appends a list of rendering provider IDs to the contract. Provider IDs already on the contract are silently ignored.
     /// </summary>
     /// <example><code>

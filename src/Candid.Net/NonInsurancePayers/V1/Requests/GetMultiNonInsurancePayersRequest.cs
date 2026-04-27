@@ -49,6 +49,12 @@ public record GetMultiNonInsurancePayersRequest
     [JsonIgnore]
     public string? PageToken { get; set; }
 
+    /// <summary>
+    /// Filter to a specific organization's non-insurance payers. If not provided, defaults to the requesting user's organization.
+    /// </summary>
+    [JsonIgnore]
+    public string? OrganizationId { get; set; }
+
     /// <inheritdoc />
     public override string ToString()
     {

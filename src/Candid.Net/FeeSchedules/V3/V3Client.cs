@@ -368,7 +368,11 @@ public partial class V3Client
     ///                             OrganizationBillingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///                             States = new HashSet&lt;State&gt;() { State.Aa },
     ///                             ZipCodes = new HashSet&lt;string&gt;() { "zip_codes" },
-    ///                             LicenseTypes = new HashSet&lt;LicenseType&gt;() { LicenseType.Md },
+    ///                             LicenseTypes =
+    ///                                 new HashSet&lt;global::Candid.Net.OrganizationProviders.V2.LicenseType&gt;()
+    ///                                 {
+    ///                                     global::Candid.Net.OrganizationProviders.V2.LicenseType.Md,
+    ///                                 },
     ///                             FacilityTypeCodes = new HashSet&lt;FacilityTypeCode&gt;()
     ///                             {
     ///                                 FacilityTypeCode.Pharmacy,
@@ -412,7 +416,11 @@ public partial class V3Client
     ///                             OrganizationBillingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///                             States = new HashSet&lt;State&gt;() { State.Aa },
     ///                             ZipCodes = new HashSet&lt;string&gt;() { "zip_codes" },
-    ///                             LicenseTypes = new HashSet&lt;LicenseType&gt;() { LicenseType.Md },
+    ///                             LicenseTypes =
+    ///                                 new HashSet&lt;global::Candid.Net.OrganizationProviders.V2.LicenseType&gt;()
+    ///                                 {
+    ///                                     global::Candid.Net.OrganizationProviders.V2.LicenseType.Md,
+    ///                                 },
     ///                             FacilityTypeCodes = new HashSet&lt;FacilityTypeCode&gt;()
     ///                             {
     ///                                 FacilityTypeCode.Pharmacy,
@@ -697,7 +705,10 @@ public partial class V3Client
     ///     {
     ///         States = new HashSet&lt;State&gt;() { State.Aa },
     ///         ZipCodes = new HashSet&lt;string&gt;() { "zip_codes" },
-    ///         LicenseTypes = new HashSet&lt;LicenseType&gt;() { LicenseType.Md },
+    ///         LicenseTypes = new HashSet&lt;global::Candid.Net.OrganizationProviders.V2.LicenseType&gt;()
+    ///         {
+    ///             global::Candid.Net.OrganizationProviders.V2.LicenseType.Md,
+    ///         },
     ///         FacilityTypeCodes = new HashSet&lt;FacilityTypeCode&gt;() { FacilityTypeCode.Pharmacy },
     ///         NetworkTypes = new HashSet&lt;global::Candid.Net.Commons.NetworkType&gt;()
     ///         {

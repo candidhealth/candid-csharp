@@ -58,6 +58,12 @@ public record Authorization : IJsonOnDeserialized
     [JsonPropertyName("billing_provider_npi")]
     public string? BillingProviderNpi { get; set; }
 
+    /// <summary>
+    /// When set, specifies the service facility for which this authorization applies.
+    /// </summary>
+    [JsonPropertyName("service_facility")]
+    public PatientServiceFacility? ServiceFacility { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

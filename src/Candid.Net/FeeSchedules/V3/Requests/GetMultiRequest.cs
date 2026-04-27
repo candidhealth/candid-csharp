@@ -1,7 +1,6 @@
 using System.Text.Json.Serialization;
 using Candid.Net.Commons;
 using Candid.Net.Core;
-using Candid.Net.OrganizationProviders.V2;
 
 namespace Candid.Net.FeeSchedules.V3;
 
@@ -33,7 +32,8 @@ public record GetMultiRequest
     public IEnumerable<string> ZipCodes { get; set; } = new List<string>();
 
     [JsonIgnore]
-    public IEnumerable<LicenseType> LicenseTypes { get; set; } = new List<LicenseType>();
+    public IEnumerable<global::Candid.Net.OrganizationProviders.V2.LicenseType> LicenseTypes { get; set; } =
+        new List<global::Candid.Net.OrganizationProviders.V2.LicenseType>();
 
     [JsonIgnore]
     public IEnumerable<FacilityTypeCode> FacilityTypeCodes { get; set; } =

@@ -72,7 +72,7 @@ public record OrganizationProviderV2 : IJsonOnDeserialized
     /// The type of license that the provider holds.
     /// </summary>
     [JsonPropertyName("license_type")]
-    public required LicenseType LicenseType { get; set; }
+    public required global::Candid.Net.OrganizationProviders.V2.LicenseType LicenseType { get; set; }
 
     /// <summary>
     /// The addresses associated with this provider.

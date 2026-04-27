@@ -24,6 +24,9 @@ public record PlanCoverage : IJsonOnDeserialized
     [JsonPropertyName("out_of_network_flat")]
     public IEnumerable<CoverageDetails>? OutOfNetworkFlat { get; set; }
 
+    [JsonPropertyName("additional_details")]
+    public IEnumerable<AdditionalDetail>? AdditionalDetails { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

@@ -37,6 +37,9 @@ public record InsuranceCardCreateOptional : IJsonOnDeserialized
     [JsonPropertyName("emr_payer_crosswalk")]
     public EmrPayerCrosswalk? EmrPayerCrosswalk { get; set; }
 
+    [JsonPropertyName("payer_plan_group_name")]
+    public string? PayerPlanGroupName { get; set; }
+
     /// <summary>
     /// Box 11 on the CMS-1500 claim form.
     /// </summary>

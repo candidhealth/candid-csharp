@@ -1,0 +1,61 @@
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Candid.Net;
+using Candid.Net.Commons;
+using Candid.Net.Core;
+
+namespace Candid.Net.EncounterProviders.V2;
+
+/// <summary>
+/// A lighter-weight provider type with optional NPI. Used for treating providers and other additional provider roles that may not have full NPI credentials.
+/// </summary>
+[Serializable]
+public record EncounterAdditionalProvider : IJsonOnDeserialized
+{
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
+    [JsonPropertyName("provider_id")]
+    public required string ProviderId { get; set; }
+
+    [JsonPropertyName("first_name")]
+    public required string FirstName { get; set; }
+
+    [JsonPropertyName("last_name")]
+    public required string LastName { get; set; }
+
+    /// <summary>
+    /// A National Provider Identifier is a unique 10-digit identification
+    /// number issued to health care providers in the United States
+    /// </summary>
+    [JsonPropertyName("npi")]
+    public string? Npi { get; set; }
+
+    [JsonPropertyName("taxonomy_code")]
+    public string? TaxonomyCode { get; set; }
+
+    [JsonPropertyName("address")]
+    public StreetAddressLongZip? Address { get; set; }
+
+    [JsonPropertyName("tax_id")]
+    public string? TaxId { get; set; }
+
+    /// <summary>
+    /// The license type of the provider (e.g., MD, NP, PA, LCSW).
+    /// </summary>
+    [JsonPropertyName("license_type")]
+    public global::Candid.Net.OrganizationProviders.V2.LicenseType? LicenseType { get; set; }
+
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
+}

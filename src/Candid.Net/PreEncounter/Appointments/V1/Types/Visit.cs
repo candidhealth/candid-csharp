@@ -20,6 +20,9 @@ public record Visit : IJsonOnDeserialized
     [JsonPropertyName("patient_id")]
     public required string PatientId { get; set; }
 
+    [JsonPropertyName("organization_id")]
+    public required string OrganizationId { get; set; }
+
     [JsonPropertyName("patient")]
     public required MutablePatientWithMrn Patient { get; set; }
 

@@ -2,7 +2,6 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Candid.Net;
 using Candid.Net.Core;
-using Candid.Net.OrganizationProviders.V2;
 
 namespace Candid.Net.FeeSchedules.V3;
 
@@ -17,7 +16,7 @@ public record MatchLicenseType : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     [JsonPropertyName("value")]
-    public LicenseType? Value { get; set; }
+    public global::Candid.Net.OrganizationProviders.V2.LicenseType? Value { get; set; }
 
     [JsonPropertyName("match")]
     public required bool Match { get; set; }

@@ -3,7 +3,6 @@ using System.Text.Json.Serialization;
 using Candid.Net;
 using Candid.Net.Commons;
 using Candid.Net.Core;
-using Candid.Net.OrganizationProviders.V2;
 
 namespace Candid.Net.FeeSchedules.V3;
 
@@ -30,7 +29,8 @@ public record Dimensions : IJsonOnDeserialized
     public HashSet<string> ZipCodes { get; set; } = new HashSet<string>();
 
     [JsonPropertyName("license_types")]
-    public HashSet<LicenseType> LicenseTypes { get; set; } = new HashSet<LicenseType>();
+    public HashSet<global::Candid.Net.OrganizationProviders.V2.LicenseType> LicenseTypes { get; set; } =
+        new HashSet<global::Candid.Net.OrganizationProviders.V2.LicenseType>();
 
     [JsonPropertyName("facility_type_codes")]
     public HashSet<FacilityTypeCode> FacilityTypeCodes { get; set; } =

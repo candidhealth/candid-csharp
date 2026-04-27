@@ -127,6 +127,12 @@ public record UniversalEncounterUpdateBase : IJsonOnDeserialized
     public SupervisingProviderUpdate? SupervisingProvider { get; set; }
 
     /// <summary>
+    /// The treating provider is the provider who treats the patient. This is supported for professional and institutional encounters.
+    /// </summary>
+    [JsonPropertyName("treating_provider")]
+    public TreatingProviderUpdate? TreatingProvider { get; set; }
+
+    /// <summary>
     /// The billing provider is the provider or business entity submitting the claim. Billing provider may be, but is not necessarily, the same person/NPI as the rendering provider. From a payer's perspective, this represents the person or entity being reimbursed. When a contract exists with the target payer, the billing provider should be the entity contracted with the payer. In some circumstances, this will be an individual provider. In that case, submit that provider's NPI and the tax ID (TIN) that the provider gave to the payer during contracting. In other cases, the billing entity will be a medical group. If so, submit the group NPI and the group's tax ID. Box 33 on the CMS-1500 claim or Form Locator 1 on a UB-04 claim form.
     /// </summary>
     [JsonPropertyName("billing_provider")]
@@ -295,8 +301,8 @@ public record UniversalEncounterUpdateBase : IJsonOnDeserialized
     public DateOnly? LastMenstrualPeriodDate { get; set; }
 
     /// <summary>
-    /// 837i Loop2300, CLM-1300 Box 20
-    /// Code indicating the reason why a request was delayed
+    /// Code indicating the reason why a claim submission was delayed.
+    /// Corresponds to CLM-20 in the 837 specification (both professional and institutional).
     /// </summary>
     [JsonPropertyName("delay_reason_code")]
     public DelayReasonCode? DelayReasonCode { get; set; }

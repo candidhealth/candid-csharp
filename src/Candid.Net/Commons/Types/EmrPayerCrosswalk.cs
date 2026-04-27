@@ -13,6 +13,8 @@ public readonly record struct EmrPayerCrosswalk : IStringEnum
 
     public static readonly EmrPayerCrosswalk Waystar = new(Values.Waystar);
 
+    public static readonly EmrPayerCrosswalk PayerPlanGroup = new(Values.PayerPlanGroup);
+
     public EmrPayerCrosswalk(string value)
     {
         Value = value;
@@ -65,5 +67,7 @@ public readonly record struct EmrPayerCrosswalk : IStringEnum
         public const string Canvas = "CANVAS";
 
         public const string Waystar = "WAYSTAR";
+
+        public const string PayerPlanGroup = "PAYER_PLAN_GROUP";
     }
 }

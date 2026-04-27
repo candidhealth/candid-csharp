@@ -159,7 +159,7 @@ public partial class V3Client
     ///         IsRendering = true,
     ///         IsBilling = true,
     ///         ProviderType = ProviderType.Individual,
-    ///         LicenseType = LicenseType.Md,
+    ///         LicenseType = global::Candid.Net.OrganizationProviders.V2.LicenseType.Md,
     ///         Qualifications = new List&lt;IdentifierCreate&gt;()
     ///         {
     ///             new IdentifierCreate

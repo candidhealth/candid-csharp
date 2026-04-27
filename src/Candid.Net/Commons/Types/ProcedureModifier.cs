@@ -22,6 +22,11 @@ public readonly record struct ProcedureModifier : IStringEnum
     /// </summary>
     public static readonly ProcedureModifier Aw = new(Values.Aw);
 
+    /// <summary>
+    /// Item or service furnished to an ESRD patient that is not for the treatment of ESRD
+    /// </summary>
+    public static readonly ProcedureModifier Ay = new(Values.Ay);
+
     public static readonly ProcedureModifier Seven = new(Values.Seven);
 
     public static readonly ProcedureModifier Eight = new(Values.Eight);
@@ -2095,6 +2100,11 @@ public readonly record struct ProcedureModifier : IStringEnum
         /// Item furnished in conjunction with dialysis services
         /// </summary>
         public const string Aw = "AW";
+
+        /// <summary>
+        /// Item or service furnished to an ESRD patient that is not for the treatment of ESRD
+        /// </summary>
+        public const string Ay = "AY";
 
         public const string Seven = "07";
 

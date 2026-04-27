@@ -1356,6 +1356,71 @@ await client.Contracts.V3.GetContractProvidersAsync(
 </dl>
 </details>
 
+<details><summary><code>client.Contracts.V3.<a href="/src/Candid.Net/Contracts/V3/V3Client.cs">GetContractProviderCredentialingSpansAsync</a>(contractId, global::Candid.Net.Contracts.V3.GetContractProviderCredentialingSpansRequest { ... }) -> global::Candid.Net.Contracts.V3.ContractProviderCredentialingPage</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns rendering providers linked to a contract with their credentialing spans, scoped to the contract's contracting provider and payer. Providers with no matching spans are included with an empty list.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Contracts.V3.GetContractProviderCredentialingSpansAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new GetContractProviderCredentialingSpansRequest()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**contractId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `global::Candid.Net.Contracts.V3.GetContractProviderCredentialingSpansRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.Contracts.V3.<a href="/src/Candid.Net/Contracts/V3/V3Client.cs">AddContractProvidersAsync</a>(contractId, global::Candid.Net.Contracts.V3.AddContractProvidersRequest { ... }) -> global::Candid.Net.Contracts.V3.AddContractProvidersResponse</code></summary>
 <dl>
 <dd>
@@ -4612,7 +4677,11 @@ await client.FeeSchedules.V3.UploadFeeScheduleAsync(
                             OrganizationBillingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
                             States = new HashSet<State>() { State.Aa },
                             ZipCodes = new HashSet<string>() { "zip_codes" },
-                            LicenseTypes = new HashSet<LicenseType>() { LicenseType.Md },
+                            LicenseTypes =
+                                new HashSet<global::Candid.Net.OrganizationProviders.V2.LicenseType>()
+                                {
+                                    global::Candid.Net.OrganizationProviders.V2.LicenseType.Md,
+                                },
                             FacilityTypeCodes = new HashSet<FacilityTypeCode>()
                             {
                                 FacilityTypeCode.Pharmacy,
@@ -4656,7 +4725,11 @@ await client.FeeSchedules.V3.UploadFeeScheduleAsync(
                             OrganizationBillingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
                             States = new HashSet<State>() { State.Aa },
                             ZipCodes = new HashSet<string>() { "zip_codes" },
-                            LicenseTypes = new HashSet<LicenseType>() { LicenseType.Md },
+                            LicenseTypes =
+                                new HashSet<global::Candid.Net.OrganizationProviders.V2.LicenseType>()
+                                {
+                                    global::Candid.Net.OrganizationProviders.V2.LicenseType.Md,
+                                },
                             FacilityTypeCodes = new HashSet<FacilityTypeCode>()
                             {
                                 FacilityTypeCode.Pharmacy,
@@ -4973,7 +5046,10 @@ await client.FeeSchedules.V3.HardDeleteRatesAsync(
     {
         States = new HashSet<State>() { State.Aa },
         ZipCodes = new HashSet<string>() { "zip_codes" },
-        LicenseTypes = new HashSet<LicenseType>() { LicenseType.Md },
+        LicenseTypes = new HashSet<global::Candid.Net.OrganizationProviders.V2.LicenseType>()
+        {
+            global::Candid.Net.OrganizationProviders.V2.LicenseType.Md,
+        },
         FacilityTypeCodes = new HashSet<FacilityTypeCode>() { FacilityTypeCode.Pharmacy },
         NetworkTypes = new HashSet<global::Candid.Net.Commons.NetworkType>()
         {
@@ -7091,7 +7167,7 @@ await client.OrganizationProviders.V3.CreateAsync(
         IsRendering = true,
         IsBilling = true,
         ProviderType = ProviderType.Individual,
-        LicenseType = LicenseType.Md,
+        LicenseType = global::Candid.Net.OrganizationProviders.V2.LicenseType.Md,
         Qualifications = new List<IdentifierCreate>()
         {
             new IdentifierCreate
@@ -11912,6 +11988,412 @@ await client.PreEncounter.Notes.V1.DeactivateAsync("id", "version");
 <dd>
 
 **version:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## PreEncounter OrganizationExternalProviders V1
+<details><summary><code>client.PreEncounter.OrganizationExternalProviders.V1.<a href="/src/Candid.Net/PreEncounter/OrganizationExternalProviders/V1/V1Client.cs">GetAsync</a>(id) -> global::Candid.Net.PreEncounter.OrganizationExternalProviders.V1.OrganizationExternalProvider</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets an organization external provider by ID.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreEncounter.OrganizationExternalProviders.V1.GetAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PreEncounter.OrganizationExternalProviders.V1.<a href="/src/Candid.Net/PreEncounter/OrganizationExternalProviders/V1/V1Client.cs">GetMultiAsync</a>(global::Candid.Net.PreEncounter.OrganizationExternalProviders.V1.OrganizationExternalProviderGetMultiRequest { ... }) -> global::Candid.Net.PreEncounter.OrganizationExternalProviders.V1.OrganizationExternalProviderPage</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Searches for organization external providers that match the query parameters.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreEncounter.OrganizationExternalProviders.V1.GetMultiAsync(
+    new OrganizationExternalProviderGetMultiRequest()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `global::Candid.Net.PreEncounter.OrganizationExternalProviders.V1.OrganizationExternalProviderGetMultiRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PreEncounter.OrganizationExternalProviders.V1.<a href="/src/Candid.Net/PreEncounter/OrganizationExternalProviders/V1/V1Client.cs">CreateAsync</a>(global::Candid.Net.PreEncounter.OrganizationExternalProviders.V1.MutableOrganizationExternalProvider { ... }) -> global::Candid.Net.PreEncounter.OrganizationExternalProviders.V1.OrganizationExternalProvider</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a new organization external provider. BadRequestError is returned when the NPI is already in use.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreEncounter.OrganizationExternalProviders.V1.CreateAsync(
+    new MutableOrganizationExternalProvider
+    {
+        Name = new HumanName
+        {
+            Family = "family",
+            Given = new List<string>() { "given", "given" },
+            Use = NameUse.Usual,
+        },
+        Types = new List<OrganizationExternalProviderType>()
+        {
+            OrganizationExternalProviderType.Referring,
+            OrganizationExternalProviderType.Referring,
+        },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `global::Candid.Net.PreEncounter.OrganizationExternalProviders.V1.MutableOrganizationExternalProvider` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PreEncounter.OrganizationExternalProviders.V1.<a href="/src/Candid.Net/PreEncounter/OrganizationExternalProviders/V1/V1Client.cs">UpdateAsync</a>(id, version, global::Candid.Net.PreEncounter.OrganizationExternalProviders.V1.MutableOrganizationExternalProvider { ... }) -> global::Candid.Net.PreEncounter.OrganizationExternalProviders.V1.OrganizationExternalProvider</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates an organization external provider. The path must contain the next version number to prevent race conditions. For example, if the current version of the provider is n, you will need to send a request to this endpoint with `/{id}/n+1` to update the provider. Updating historic versions is not supported. BadRequestError is returned when the NPI is already in use by another provider.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreEncounter.OrganizationExternalProviders.V1.UpdateAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    "version",
+    new MutableOrganizationExternalProvider
+    {
+        Name = new HumanName
+        {
+            Family = "family",
+            Given = new List<string>() { "given", "given" },
+            Use = NameUse.Usual,
+        },
+        Types = new List<OrganizationExternalProviderType>()
+        {
+            OrganizationExternalProviderType.Referring,
+            OrganizationExternalProviderType.Referring,
+        },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**version:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `global::Candid.Net.PreEncounter.OrganizationExternalProviders.V1.MutableOrganizationExternalProvider` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PreEncounter.OrganizationExternalProviders.V1.<a href="/src/Candid.Net/PreEncounter/OrganizationExternalProviders/V1/V1Client.cs">DeactivateAsync</a>(id, version)</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Sets an organization external provider as deactivated. The path must contain the most recent version plus 1 to prevent race conditions. Deactivating historic versions is not supported.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreEncounter.OrganizationExternalProviders.V1.DeactivateAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    "version"
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**version:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PreEncounter.OrganizationExternalProviders.V1.<a href="/src/Candid.Net/PreEncounter/OrganizationExternalProviders/V1/V1Client.cs">ScanAsync</a>(global::Candid.Net.PreEncounter.OrganizationExternalProviders.V1.OrganizationExternalProviderScanRequest { ... }) -> IEnumerable&lt;global::Candid.Net.PreEncounter.OrganizationExternalProviders.V1.OrganizationExternalProvider&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Scans up to 1000 organization external provider updates. The since query parameter is inclusive, and the result list is ordered by updatedAt ascending.
+
+**Polling Pattern:**
+To continuously poll for updates without gaps:
+1. Make your initial request with a `since` timestamp (e.g., `since=2020-01-01T13:00:00.000Z`)
+2. The API returns 100 by default and up to 1000 records, sorted by `updated_at` ascending
+3. Find the `updated_at` value from the last record in the response
+4. Use that `updated_at` value as the `since` parameter in your next request
+5. Repeat steps 2-4 to ingest updates until you receive an empty list
+
+**Important Notes:**
+- The `since` parameter is inclusive, so you may receive the last record from the previous batch again (you can deduplicate by ID and version)
+- All records include `updated_at`, `id`, `version`, `deactivated`, and `updating_user` fields for tracking changes
+- Timestamps have millisecond resolution for precise ordering
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreEncounter.OrganizationExternalProviders.V1.ScanAsync(
+    new OrganizationExternalProviderScanRequest
+    {
+        Since = new DateTime(2024, 01, 15, 09, 30, 00, 000),
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `global::Candid.Net.PreEncounter.OrganizationExternalProviders.V1.OrganizationExternalProviderScanRequest` 
     
 </dd>
 </dl>

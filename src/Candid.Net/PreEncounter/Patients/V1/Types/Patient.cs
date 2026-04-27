@@ -149,8 +149,17 @@ public record Patient : IJsonOnDeserialized
     [JsonPropertyName("email")]
     public string? Email { get; set; }
 
+    /// <summary>
+    /// Use electronic_communication_consent for granular channel-level consent. This field is kept in sync automatically but should not be used for new integrations.
+    /// </summary>
     [JsonPropertyName("electronic_communication_opt_in")]
     public bool? ElectronicCommunicationOptIn { get; set; }
+
+    /// <summary>
+    /// Granular consent for electronic communication channels.
+    /// </summary>
+    [JsonPropertyName("electronic_communication_consent")]
+    public ElectronicCommunicationConsent? ElectronicCommunicationConsent { get; set; }
 
     [JsonPropertyName("photo")]
     public string? Photo { get; set; }

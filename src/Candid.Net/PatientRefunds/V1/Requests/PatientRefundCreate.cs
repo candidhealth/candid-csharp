@@ -28,6 +28,12 @@ public record PatientRefundCreate
     [JsonPropertyName("refund_reason")]
     public RefundReason? RefundReason { get; set; }
 
+    /// <summary>
+    /// If true, the refund will be rejected if it would cause any account to be overdrafted. Defaults to false.
+    /// </summary>
+    [JsonPropertyName("raise_on_overdraft")]
+    public bool? RaiseOnOverdraft { get; set; }
+
     /// <inheritdoc />
     public override string ToString()
     {

@@ -145,8 +145,8 @@ public record EncounterOptional : IJsonOnDeserialized
     public DateOnly? LastMenstrualPeriodDate { get; set; }
 
     /// <summary>
-    /// 837i Loop2300, CLM-1300 Box 20
-    /// Code indicating the reason why a request was delayed
+    /// Code indicating the reason why a claim submission was delayed.
+    /// Corresponds to CLM-20 in the 837 specification (both professional and institutional).
     /// </summary>
     [JsonPropertyName("delay_reason_code")]
     public DelayReasonCode? DelayReasonCode { get; set; }

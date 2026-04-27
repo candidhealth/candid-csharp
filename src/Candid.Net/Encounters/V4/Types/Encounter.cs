@@ -124,6 +124,12 @@ public record Encounter : IJsonOnDeserialized
     [JsonPropertyName("other_operating_provider")]
     public EncounterProvider? OtherOperatingProvider { get; set; }
 
+    /// <summary>
+    /// The treating provider is the provider who treats the patient. This is only supported for professional encounters.
+    /// </summary>
+    [JsonPropertyName("treating_provider")]
+    public EncounterAdditionalProvider? TreatingProvider { get; set; }
+
     [JsonPropertyName("related_causes_information")]
     public RelatedCausesInformation? RelatedCausesInformation { get; set; }
 
@@ -331,6 +337,9 @@ public record Encounter : IJsonOnDeserialized
     [JsonPropertyName("next_responsible_party")]
     public NextResponsibleParty? NextResponsibleParty { get; set; }
 
+    [JsonPropertyName("organization_id")]
+    public string? OrganizationId { get; set; }
+
     /// <summary>
     /// A client-specified unique ID to associate with this encounter;
     /// for example, your internal encounter ID or a Dr. Chrono encounter ID.
@@ -473,8 +482,8 @@ public record Encounter : IJsonOnDeserialized
     public DateOnly? LastMenstrualPeriodDate { get; set; }
 
     /// <summary>
-    /// 837i Loop2300, CLM-1300 Box 20
-    /// Code indicating the reason why a request was delayed
+    /// Code indicating the reason why a claim submission was delayed.
+    /// Corresponds to CLM-20 in the 837 specification (both professional and institutional).
     /// </summary>
     [JsonPropertyName("delay_reason_code")]
     public DelayReasonCode? DelayReasonCode { get; set; }
