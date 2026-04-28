@@ -27,6 +27,10 @@ public readonly record struct BenefitType : IStringEnum
 
     public static readonly BenefitType Coinsurance = new(Values.Coinsurance);
 
+    public static readonly BenefitType NonCovered = new(Values.NonCovered);
+
+    public static readonly BenefitType Limitation = new(Values.Limitation);
+
     public BenefitType(string value)
     {
         Value = value;
@@ -93,5 +97,9 @@ public readonly record struct BenefitType : IStringEnum
         public const string Copay = "COPAY";
 
         public const string Coinsurance = "COINSURANCE";
+
+        public const string NonCovered = "NON_COVERED";
+
+        public const string Limitation = "LIMITATION";
     }
 }

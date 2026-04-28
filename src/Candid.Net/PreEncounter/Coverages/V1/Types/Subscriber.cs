@@ -25,6 +25,9 @@ public record Subscriber : IJsonOnDeserialized
     [JsonPropertyName("address")]
     public Common.Address? Address { get; set; }
 
+    [JsonPropertyName("employer_name")]
+    public string? EmployerName { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

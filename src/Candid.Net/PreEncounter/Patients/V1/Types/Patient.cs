@@ -246,6 +246,12 @@ public record Patient : IJsonOnDeserialized
     [JsonPropertyName("orcon")]
     public bool? Orcon { get; set; }
 
+    [JsonPropertyName("advanced_directives")]
+    public IEnumerable<AdvancedDirective>? AdvancedDirectives { get; set; }
+
+    [JsonPropertyName("hipaa_code")]
+    public string? HipaaCode { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

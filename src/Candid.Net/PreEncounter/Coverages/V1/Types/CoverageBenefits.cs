@@ -21,6 +21,9 @@ public record CoverageBenefits : IJsonOnDeserialized
     [JsonPropertyName("benefits_related_entities")]
     public IEnumerable<BenefitsRelatedEntity>? BenefitsRelatedEntities { get; set; }
 
+    [JsonPropertyName("non_covered_details")]
+    public IEnumerable<NonCoveredDetail>? NonCoveredDetails { get; set; }
+
     [JsonPropertyName("notes")]
     public string? Notes { get; set; }
 
