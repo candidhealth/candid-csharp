@@ -30,8 +30,7 @@ public record ExternalClaimSubmissionCreateOptional : IJsonOnDeserialized
     /// An empty list may be provided for cases where the claim originated in an external system but was never submitted to a payer.
     /// </summary>
     [JsonPropertyName("submission_records")]
-    public IEnumerable<ClaimSubmissionRecordCreateOptional> SubmissionRecords { get; set; } =
-        new List<ClaimSubmissionRecordCreateOptional>();
+    public IEnumerable<ClaimSubmissionRecordCreateOptional>? SubmissionRecords { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

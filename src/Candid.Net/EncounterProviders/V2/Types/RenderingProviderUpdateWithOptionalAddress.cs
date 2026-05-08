@@ -32,7 +32,7 @@ public record RenderingProviderUpdateWithOptionalAddress : IJsonOnDeserialized
     /// Secondary Identification
     /// </summary>
     [JsonPropertyName("secondary_identification")]
-    public ProviderSecondaryIdentification? SecondaryIdentification { get; set; }
+    public ProviderSecondaryIdentificationOptional? SecondaryIdentification { get; set; }
 
     /// <summary>
     /// If the provider is an individual, this should be set instead of organization name

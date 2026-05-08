@@ -19,7 +19,7 @@ public record IntakeQuestionOptional : IJsonOnDeserialized
     public string? Text { get; set; }
 
     [JsonPropertyName("responses")]
-    public IEnumerable<IntakeResponseAndFollowUps>? Responses { get; set; }
+    public IEnumerable<IntakeResponseAndFollowUpsOptional>? Responses { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

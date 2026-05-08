@@ -13,6 +13,30 @@ public record InsuranceCardCreateOptional : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    /// <summary>
+    /// Box 11 on the CMS-1500 claim form.
+    /// </summary>
+    [JsonPropertyName("group_number")]
+    public string? GroupNumber { get; set; }
+
+    /// <summary>
+    /// Box 11c on the CMS-1500 claim form.
+    /// </summary>
+    [JsonPropertyName("plan_name")]
+    public string? PlanName { get; set; }
+
+    [JsonPropertyName("plan_type")]
+    public SourceOfPaymentCode? PlanType { get; set; }
+
+    [JsonPropertyName("insurance_type")]
+    public global::Candid.Net.Commons.InsuranceTypeCode? InsuranceType { get; set; }
+
+    [JsonPropertyName("payer_plan_group_id")]
+    public string? PayerPlanGroupId { get; set; }
+
+    [JsonPropertyName("payer_address")]
+    public StreetAddressLongZipOptional? PayerAddress { get; set; }
+
     [JsonPropertyName("member_id")]
     public string? MemberId { get; set; }
 
@@ -39,30 +63,6 @@ public record InsuranceCardCreateOptional : IJsonOnDeserialized
 
     [JsonPropertyName("payer_plan_group_name")]
     public string? PayerPlanGroupName { get; set; }
-
-    /// <summary>
-    /// Box 11 on the CMS-1500 claim form.
-    /// </summary>
-    [JsonPropertyName("group_number")]
-    public string? GroupNumber { get; set; }
-
-    /// <summary>
-    /// Box 11c on the CMS-1500 claim form.
-    /// </summary>
-    [JsonPropertyName("plan_name")]
-    public string? PlanName { get; set; }
-
-    [JsonPropertyName("plan_type")]
-    public SourceOfPaymentCode? PlanType { get; set; }
-
-    [JsonPropertyName("insurance_type")]
-    public global::Candid.Net.Commons.InsuranceTypeCode? InsuranceType { get; set; }
-
-    [JsonPropertyName("payer_plan_group_id")]
-    public string? PayerPlanGroupId { get; set; }
-
-    [JsonPropertyName("payer_address")]
-    public StreetAddressLongZip? PayerAddress { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

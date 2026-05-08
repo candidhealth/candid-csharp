@@ -6,20 +6,17 @@ using Candid.Net.Core;
 namespace Candid.Net.Individual;
 
 [Serializable]
-public record PatientNonInsurancePayerInfoCreateOptional : IJsonOnDeserialized
+public record PatientClinicalTrialInfoCreateOptional : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
-    [JsonPropertyName("non_insurance_payer_id")]
-    public string? NonInsurancePayerId { get; set; }
+    [JsonPropertyName("clinical_trial_arm")]
+    public string? ClinicalTrialArm { get; set; }
 
-    [JsonPropertyName("member_id")]
-    public string? MemberId { get; set; }
-
-    [JsonPropertyName("clinical_trial_info")]
-    public IEnumerable<PatientClinicalTrialInfoCreateOptional>? ClinicalTrialInfo { get; set; }
+    [JsonPropertyName("clinical_trial_id")]
+    public string? ClinicalTrialId { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

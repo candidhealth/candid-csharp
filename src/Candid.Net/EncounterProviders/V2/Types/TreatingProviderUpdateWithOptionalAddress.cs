@@ -6,12 +6,21 @@ using Candid.Net.Core;
 
 namespace Candid.Net.EncounterProviders.V2;
 
+/// <summary>
+/// Update type for the treating provider with optional address fields. Used in contexts where address fields may be partially provided.
+/// </summary>
 [Serializable]
-public record InitialReferringProviderUpdateWithOptionalAddress : IJsonOnDeserialized
+public record TreatingProviderUpdateWithOptionalAddress : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
+
+    [JsonPropertyName("first_name")]
+    public string? FirstName { get; set; }
+
+    [JsonPropertyName("last_name")]
+    public string? LastName { get; set; }
 
     /// <summary>
     /// A National Provider Identifier is a unique 10-digit identification
@@ -24,31 +33,13 @@ public record InitialReferringProviderUpdateWithOptionalAddress : IJsonOnDeseria
     public string? TaxonomyCode { get; set; }
 
     [JsonPropertyName("address")]
-    public StreetAddressShortZipOptional? Address { get; set; }
-
-    [JsonPropertyName("qualifier")]
-    public QualifierCode? Qualifier { get; set; }
-
-    [JsonPropertyName("secondary_identification")]
-    public ReferringProviderSecondaryIdentificationOptional? SecondaryIdentification { get; set; }
+    public StreetAddressLongZipOptional? Address { get; set; }
 
     /// <summary>
-    /// If the provider is an individual, this should be set instead of organization name
+    /// The license type of the treating provider (e.g., MD, NP, PA, LCSW).
     /// </summary>
-    [JsonPropertyName("first_name")]
-    public string? FirstName { get; set; }
-
-    /// <summary>
-    /// If the provider is an individual, this should be set instead of organization name
-    /// </summary>
-    [JsonPropertyName("last_name")]
-    public string? LastName { get; set; }
-
-    /// <summary>
-    /// If the provider is an organization, this should be set instead of first + last name
-    /// </summary>
-    [JsonPropertyName("organization_name")]
-    public string? OrganizationName { get; set; }
+    [JsonPropertyName("license_type")]
+    public global::Candid.Net.OrganizationProviders.V2.LicenseType? LicenseType { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

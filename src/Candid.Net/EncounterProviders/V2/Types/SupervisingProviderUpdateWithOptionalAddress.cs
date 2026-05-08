@@ -27,7 +27,7 @@ public record SupervisingProviderUpdateWithOptionalAddress : IJsonOnDeserialized
     public StreetAddressShortZipOptional? Address { get; set; }
 
     [JsonPropertyName("secondary_identification")]
-    public SupervisingProviderSecondaryIdentification? SecondaryIdentification { get; set; }
+    public SupervisingProviderSecondaryIdentificationOptional? SecondaryIdentification { get; set; }
 
     /// <summary>
     /// If the provider is an individual, this should be set instead of organization name

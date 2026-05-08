@@ -12,6 +12,9 @@ public record Allocation : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    [JsonPropertyName("allocation_id")]
+    public string? AllocationId { get; set; }
+
     [JsonPropertyName("amount_cents")]
     public required int AmountCents { get; set; }
 
