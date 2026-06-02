@@ -83,9 +83,17 @@ public partial class V3Client
         {
             _query["status"] = request.Status.Value.Stringify();
         }
+        if (request.Statuses != null)
+        {
+            _query["statuses"] = request.Statuses;
+        }
         if (request.TaskType != null)
         {
             _query["task_type"] = request.TaskType.Value.Stringify();
+        }
+        if (request.TaskTypes != null)
+        {
+            _query["task_types"] = request.TaskTypes;
         }
         if (request.Categories != null)
         {

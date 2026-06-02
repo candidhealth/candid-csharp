@@ -28,6 +28,9 @@ public record PatientPaymentCreate
     [JsonPropertyName("payment_method_detail")]
     public PaymentMethodDetailCreate? PaymentMethodDetail { get; set; }
 
+    [JsonPropertyName("payment_source")]
+    public PatientPaymentCreateSource? PaymentSource { get; set; }
+
     [JsonPropertyName("source_internal_id")]
     public string? SourceInternalId { get; set; }
 

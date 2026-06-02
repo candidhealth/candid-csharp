@@ -19,8 +19,20 @@ public record GetAllTasksRequest
     [JsonIgnore]
     public global::Candid.Net.Tasks.Commons.TaskStatus? Status { get; set; }
 
+    /// <summary>
+    /// Only return tasks with a status that matches one in this comma-separated list.
+    /// </summary>
+    [JsonIgnore]
+    public string? Statuses { get; set; }
+
     [JsonIgnore]
     public TaskType? TaskType { get; set; }
+
+    /// <summary>
+    /// Only return tasks with a task_type that matches one in this comma-separated list.
+    /// </summary>
+    [JsonIgnore]
+    public string? TaskTypes { get; set; }
 
     /// <summary>
     /// Only return tasks with categories that match one in this comma-separated list.

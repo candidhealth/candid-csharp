@@ -1,26 +1,28 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Candid.Net;
-using Candid.Net.Commons;
 using Candid.Net.Core;
 
-namespace Candid.Net.PatientPayments.V4;
+namespace Candid.Net.BillingNotes.V2;
 
 [Serializable]
-public record PaymentMethodDetailCreate : IJsonOnDeserialized
+public record QueueMovedMetadata : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
-    [JsonPropertyName("payment_method")]
-    public required PaymentMethodCreate PaymentMethod { get; set; }
+    [JsonPropertyName("from_queue_id")]
+    public required string FromQueueId { get; set; }
 
-    [JsonPropertyName("collected_at_address")]
-    public StreetAddressShortZip? CollectedAtAddress { get; set; }
+    [JsonPropertyName("from_queue_name")]
+    public required string FromQueueName { get; set; }
 
-    [JsonPropertyName("organization_service_facility_id")]
-    public string? OrganizationServiceFacilityId { get; set; }
+    [JsonPropertyName("to_queue_id")]
+    public required string ToQueueId { get; set; }
+
+    [JsonPropertyName("to_queue_name")]
+    public required string ToQueueName { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

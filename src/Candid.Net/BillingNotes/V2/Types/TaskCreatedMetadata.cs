@@ -1,26 +1,22 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Candid.Net;
-using Candid.Net.Commons;
 using Candid.Net.Core;
 
-namespace Candid.Net.PatientPayments.V4;
+namespace Candid.Net.BillingNotes.V2;
 
 [Serializable]
-public record PaymentMethodDetailCreate : IJsonOnDeserialized
+public record TaskCreatedMetadata : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
-    [JsonPropertyName("payment_method")]
-    public required PaymentMethodCreate PaymentMethod { get; set; }
+    [JsonPropertyName("task_id")]
+    public required string TaskId { get; set; }
 
-    [JsonPropertyName("collected_at_address")]
-    public StreetAddressShortZip? CollectedAtAddress { get; set; }
-
-    [JsonPropertyName("organization_service_facility_id")]
-    public string? OrganizationServiceFacilityId { get; set; }
+    [JsonPropertyName("task_type")]
+    public required string TaskType { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

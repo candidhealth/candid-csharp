@@ -31,6 +31,12 @@ public record BillingNote : IJsonOnDeserialized
     [JsonPropertyName("author_name")]
     public string? AuthorName { get; set; }
 
+    [JsonPropertyName("billing_note_type")]
+    public BillingNoteType? BillingNoteType { get; set; }
+
+    [JsonPropertyName("billing_note_metadata")]
+    public BillingNoteMetadata? BillingNoteMetadata { get; set; }
+
     /// <summary>
     /// Empty string not allowed.
     /// </summary>

@@ -62,6 +62,12 @@ public record ChargeCaptureUpdate
     [JsonPropertyName("metadata")]
     public IEnumerable<SchemaInstance>? Metadata { get; set; }
 
+    /// <summary>
+    /// The HL7 message type that produced this write. Used to differentiate post-submission update behavior. Sent by HL7 producers (conduit); null for manual / script writes.
+    /// </summary>
+    [JsonPropertyName("hl7_message_type")]
+    public Hl7MessageType? Hl7MessageType { get; set; }
+
     /// <inheritdoc />
     public override string ToString()
     {

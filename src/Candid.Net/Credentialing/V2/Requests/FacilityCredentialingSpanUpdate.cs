@@ -1,5 +1,4 @@
 using System.Text.Json.Serialization;
-using Candid.Net.Commons;
 using Candid.Net.Core;
 
 namespace Candid.Net.Credentialing.V2;
@@ -30,12 +29,6 @@ public record FacilityCredentialingSpanUpdate
     /// </summary>
     [JsonPropertyName("end_date")]
     public DateOnly? EndDate { get; set; }
-
-    /// <summary>
-    /// The states covered by the credentialing span. A span may be national and cover all states.
-    /// </summary>
-    [JsonPropertyName("regions")]
-    public Regions? Regions { get; set; }
 
     /// <summary>
     /// Date that the credential paperwork was submitted.

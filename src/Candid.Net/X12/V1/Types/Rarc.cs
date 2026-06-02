@@ -2381,6 +2381,8 @@ public readonly record struct Rarc : IStringEnum
 
     public static readonly Rarc N911 = new(Values.N911);
 
+    public static readonly Rarc Unknown = new(Values.Unknown);
+
     public Rarc(string value)
     {
         Value = value;
@@ -4799,5 +4801,7 @@ public readonly record struct Rarc : IStringEnum
         public const string N910 = "N910";
 
         public const string N911 = "N911";
+
+        public const string Unknown = "UNKNOWN";
     }
 }

@@ -27,6 +27,8 @@ public readonly record struct PatientTransactionSource : IStringEnum
 
     public static readonly PatientTransactionSource Instamed = new(Values.Instamed);
 
+    public static readonly PatientTransactionSource SherpaHealth = new(Values.SherpaHealth);
+
     public PatientTransactionSource(string value)
     {
         Value = value;
@@ -93,5 +95,7 @@ public readonly record struct PatientTransactionSource : IStringEnum
         public const string Phreesia = "PHREESIA";
 
         public const string Instamed = "INSTAMED";
+
+        public const string SherpaHealth = "SHERPA_HEALTH";
     }
 }
