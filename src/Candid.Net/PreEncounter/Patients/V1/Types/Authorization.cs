@@ -64,6 +64,12 @@ public record Authorization : IJsonOnDeserialized
     [JsonPropertyName("service_facility")]
     public PatientServiceFacility? ServiceFacility { get; set; }
 
+    /// <summary>
+    /// When set, the authorization will only apply when at least one of these diagnosis codes is found on the claim/service lines (in addition to other criteria).
+    /// </summary>
+    [JsonPropertyName("dx_codes")]
+    public HashSet<string>? DxCodes { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

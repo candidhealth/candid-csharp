@@ -62,6 +62,12 @@ public record Appointment : IJsonOnDeserialized
     public AppointmentStatus? Status { get; set; }
 
     /// <summary>
+    /// The reason the appointment is NOT_READY. Must only be set when status is NOT_READY; it is cleared otherwise. MANUAL is the only value that may be set via the API.
+    /// </summary>
+    [JsonPropertyName("not_ready_reason")]
+    public NotReadyReason? NotReadyReason { get; set; }
+
+    /// <summary>
     /// The requested length of time allotted for the appointment. The units are in minutes.
     /// </summary>
     [JsonPropertyName("service_duration")]

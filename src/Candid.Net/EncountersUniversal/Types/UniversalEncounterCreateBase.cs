@@ -58,10 +58,16 @@ public record UniversalEncounterCreateBase : IJsonOnDeserialized
     public TreatingProvider? TreatingProvider { get; set; }
 
     /// <summary>
-    /// Encounter Service facility is typically the location a medical service was rendered, such as a provider office or hospital. For telehealth, service facility can represent the provider's location when the service was delivered (e.g., home), or the location where an in-person visit would have taken place, whichever is easier to identify. If the provider is in-network, service facility may be defined in payer contracts. Box 32 on the CMS-1500 claim form. There is no equivalent on the paper UB-04 claim form, but this field is equivalent to Loop 2310E Service Facility Location details on an 837i form, and is used when this is different to the entity identified as the Billing Provider. Note that for an in-network claim to be successfully adjudicated, the service facility address listed
+    /// Encounter Service facility is typically the location a medical service was rendered, such as a provider office or hospital. For telehealth, service facility can represent the provider's location when the service was delivered (e.g., home), or the location where an in-person visit would have taken place, whichever is easier to identify. If the provider is in-network, service facility may be defined in payer contracts. Box 32 on the CMS-1500 claim form. There is no equivalent on the paper UB-04 claim form, but this field is equivalent to Loop 2310E Service Facility Location details on an 837i form, and is used when this is different to the entity identified as the Billing Provider. Note that for an in-network claim to be successfully adjudicated, the service facility address listed. This field is mutually exclusive with service_facility_id — providing both will result in a 422 error.
     /// </summary>
     [JsonPropertyName("service_facility")]
     public EncounterServiceFacilityBase? ServiceFacility { get; set; }
+
+    /// <summary>
+    /// The ID of an existing Organization Service Facility to use for this encounter. The service facility's canonical data (name, address, NPI, etc.) will be populated automatically. If the value does not match an existing Organization Service Facility, the request will fail with a 422 error. This field is mutually exclusive with service_facility — providing both will result in a 422 error.
+    /// </summary>
+    [JsonPropertyName("service_facility_id")]
+    public string? ServiceFacilityId { get; set; }
 
     /// <summary>
     /// Subscriber_primary is required when responsible_party is INSURANCE_PAY (i.e. when the claim should be billed to insurance).

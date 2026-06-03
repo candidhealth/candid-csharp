@@ -25,6 +25,9 @@ public record LatestEligibilityCheck : IJsonOnDeserialized
     [JsonPropertyName("initiated_at")]
     public required DateTime InitiatedAt { get; set; }
 
+    [JsonPropertyName("errors")]
+    public IEnumerable<EligibilityCheckErrorDetails>? Errors { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

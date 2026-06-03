@@ -30,6 +30,9 @@ public record Address : IJsonOnDeserialized
     [JsonPropertyName("country")]
     public required string Country { get; set; }
 
+    [JsonPropertyName("county")]
+    public string? County { get; set; }
+
     [JsonPropertyName("period")]
     public Period? Period { get; set; }
 

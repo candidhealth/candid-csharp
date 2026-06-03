@@ -34,7 +34,7 @@ public record StediPayer : IJsonOnDeserialized
     public IEnumerable<string>? EmployerIdentificationNumbers { get; set; }
 
     [JsonPropertyName("payer_enrollment")]
-    public required object PayerEnrollment { get; set; }
+    public object? PayerEnrollment { get; set; }
 
     [JsonPropertyName("parent_payer_group")]
     public string? ParentPayerGroup { get; set; }

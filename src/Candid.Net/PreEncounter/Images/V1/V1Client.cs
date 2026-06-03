@@ -245,6 +245,22 @@ public partial class V1Client
         {
             _query["coverage_id"] = request.CoverageId;
         }
+        if (request.FileType != null)
+        {
+            _query["file_type"] = request.FileType;
+        }
+        if (request.PatientNotes != null)
+        {
+            _query["patient_notes"] = request.PatientNotes;
+        }
+        if (request.SortField != null)
+        {
+            _query["sort_field"] = request.SortField.Value.Stringify();
+        }
+        if (request.SortDirection != null)
+        {
+            _query["sort_direction"] = request.SortDirection.Value.Stringify();
+        }
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest

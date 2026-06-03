@@ -139,6 +139,12 @@ public record EncounterDeepOptional : IJsonOnDeserialized
     public EncounterServiceFacilityUpdateWithOptionalAddress? ServiceFacility { get; set; }
 
     /// <summary>
+    /// The ID of an existing Organization Service Facility to use for this encounter. The service facility's canonical data (name, address, NPI, etc.) will be populated automatically. If the value does not match an existing Organization Service Facility, the request will fail with a 422 error. This field is mutually exclusive with service_facility — providing both will result in a 422 error.
+    /// </summary>
+    [JsonPropertyName("service_facility_id")]
+    public string? ServiceFacilityId { get; set; }
+
+    /// <summary>
     /// The rendering provider is the practitioner -- physician, nurse practitioner, etc. -- performing the service. For telehealth services, the rendering provider performs the visit, asynchronous communication, or other service. The rendering provider address should generally be the same as the service facility address.
     /// </summary>
     [JsonPropertyName("rendering_provider")]
