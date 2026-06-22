@@ -19,6 +19,12 @@ public record MedicaidProviderIdentifier : IJsonOnDeserialized
     [JsonPropertyName("provider_number")]
     public required string ProviderNumber { get; set; }
 
+    /// <summary>
+    /// When set, this identifier applies only to the given service facility.
+    /// </summary>
+    [JsonPropertyName("organization_service_facility_id")]
+    public string? OrganizationServiceFacilityId { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

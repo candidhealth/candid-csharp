@@ -1,29 +1,19 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using Candid.Net;
-using Candid.Net.Commons;
 using Candid.Net.Core;
 
-namespace Candid.Net.Identifiers;
+namespace Candid.Net.PreEncounter.Appointments.V1;
 
 [Serializable]
-public record MedicareProviderIdentifier : IJsonOnDeserialized
+public record CountsResponse : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
-    [JsonPropertyName("state")]
-    public required State State { get; set; }
-
-    [JsonPropertyName("provider_number")]
-    public required string ProviderNumber { get; set; }
-
-    /// <summary>
-    /// When set, this identifier applies only to the given service facility.
-    /// </summary>
-    [JsonPropertyName("organization_service_facility_id")]
-    public string? OrganizationServiceFacilityId { get; set; }
+    [JsonPropertyName("not_ready_reason_counts")]
+    public Dictionary<NotReadyReason, int>? NotReadyReasonCounts { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

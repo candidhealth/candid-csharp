@@ -4640,7 +4640,7 @@ await client.FeeSchedules.V3.GetRateHistoryAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a
 
 Uploads a new fee schedule.
 
-Each rate may either be totally new as qualified by it's dimensions or a new version for an existing rate.
+Each rate may either be totally new as qualified by its dimensions or a new version for an existing rate.
 
 If adding a new version to an existing rate, the rate must be posted with the next version number (previous version + 1) or a EntityConflictError will
 be returned.
@@ -5536,7 +5536,7 @@ await client.ImportInvoice.V1.ImportInvoiceAsync(
 <dl>
 <dd>
 
-Returns all Invoices for the authenticated user's organziation with all filters applied.
+Returns all Invoices for the authenticated user's organization with all filters applied.
 </dd>
 </dl>
 </dd>
@@ -9854,6 +9854,66 @@ await client.PreEncounter.Appointments.V1.GetVisitsAsync(new VisitsRequest());
 </dl>
 </details>
 
+<details><summary><code>client.PreEncounter.Appointments.V1.<a href="/src/Candid.Net/PreEncounter/Appointments/V1/V1Client.cs">GetCountsAsync</a>(global::Candid.Net.PreEncounter.Appointments.V1.CountsRequest { ... }) -> global::Candid.Net.PreEncounter.Appointments.V1.CountsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets aggregate counts for the visits matching the given filters.
+
+The counts respect all provided filters but are independent of pagination, so this can be fetched
+once when filters change instead of on every page of `get_visits`.
+
+**IMPORTANT:** Like `get_visits`, this endpoint requires a date filter on `appointment.startTimestamp`
+to ensure acceptable query performance.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreEncounter.Appointments.V1.GetCountsAsync(new CountsRequest());
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `global::Candid.Net.PreEncounter.Appointments.V1.CountsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.PreEncounter.Appointments.V1.<a href="/src/Candid.Net/PreEncounter/Appointments/V1/V1Client.cs">GetAsync</a>(id) -> global::Candid.Net.PreEncounter.Appointments.V1.Appointment</code></summary>
 <dl>
 <dd>
@@ -11321,6 +11381,140 @@ await client.PreEncounter.EligibilityChecks.V1.GetMultiAsync(
 <dd>
 
 **request:** `global::Candid.Net.PreEncounter.EligibilityChecks.V1.EligibilityChecksGetMultiRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PreEncounter.EligibilityChecks.V1.<a href="/src/Candid.Net/PreEncounter/EligibilityChecks/V1/V1Client.cs">InsuranceDiscoveryAsync</a>(global::Candid.Net.PreEncounter.EligibilityChecks.V1.InsuranceDiscoveryRequest { ... }) -> global::Candid.Net.PreEncounter.EligibilityChecks.V1.InsuranceDiscoveryResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Sends an insurance discovery check to find potential coverage matches for a patient through Stedi.
+Given patient demographics, this endpoint discovers what insurance coverages exist for the patient.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreEncounter.EligibilityChecks.V1.InsuranceDiscoveryAsync(
+    new InsuranceDiscoveryRequest
+    {
+        Provider = new InsuranceDiscoveryProvider { Npi = "npi" },
+        Subscriber = new InsuranceDiscoverySubscriber
+        {
+            FirstName = "first_name",
+            LastName = "last_name",
+        },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `global::Candid.Net.PreEncounter.EligibilityChecks.V1.InsuranceDiscoveryRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PreEncounter.EligibilityChecks.V1.<a href="/src/Candid.Net/PreEncounter/EligibilityChecks/V1/V1Client.cs">CoordinationOfBenefitsAsync</a>(global::Candid.Net.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsRequest { ... }) -> global::Candid.Net.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Sends a coordination of benefits check through Stedi to determine whether a patient has
+coverage overlap across multiple payers and, if so, which payer is primary.
+Medicare and Medicare Advantage plans are not supported.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsAsync(
+    new CoordinationOfBenefitsRequest
+    {
+        TradingPartnerServiceId = "trading_partner_service_id",
+        Provider = new CobProvider { Npi = "npi" },
+        Subscriber = new CobSubscriber
+        {
+            FirstName = "first_name",
+            LastName = "last_name",
+            DateOfBirth = "date_of_birth",
+        },
+        Encounter = new CobEncounter(),
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `global::Candid.Net.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsRequest` 
     
 </dd>
 </dl>

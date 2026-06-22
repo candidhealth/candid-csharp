@@ -35,6 +35,14 @@ public readonly record struct PayerCategory : IStringEnum
 
     public static readonly PayerCategory AutoTpl = new(Values.AutoTpl);
 
+    public static readonly PayerCategory Lien = new(Values.Lien);
+
+    public static readonly PayerCategory Humana = new(Values.Humana);
+
+    public static readonly PayerCategory Molina = new(Values.Molina);
+
+    public static readonly PayerCategory OtherFacility = new(Values.OtherFacility);
+
     public PayerCategory(string value)
     {
         Value = value;
@@ -107,5 +115,13 @@ public readonly record struct PayerCategory : IStringEnum
         public const string OtherGovernment = "OTHER_GOVERNMENT";
 
         public const string AutoTpl = "AUTO_TPL";
+
+        public const string Lien = "LIEN";
+
+        public const string Humana = "HUMANA";
+
+        public const string Molina = "MOLINA";
+
+        public const string OtherFacility = "OTHER_FACILITY";
     }
 }

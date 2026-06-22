@@ -39,6 +39,12 @@ public record ExternalProvider : IJsonOnDeserialized
     [JsonPropertyName("fax")]
     public string? Fax { get; set; }
 
+    [JsonPropertyName("other_fax_numbers")]
+    public IEnumerable<string>? OtherFaxNumbers { get; set; }
+
+    [JsonPropertyName("emails")]
+    public IEnumerable<string>? Emails { get; set; }
+
     /// <summary>
     /// Associated service facilities for this provider.
     /// </summary>

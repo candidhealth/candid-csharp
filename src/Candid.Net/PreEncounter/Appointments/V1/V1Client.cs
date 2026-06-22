@@ -151,6 +151,65 @@ public partial class V1Client
     }
 
     /// <summary>
+    /// Gets aggregate counts for the visits matching the given filters.
+    ///
+    /// The counts respect all provided filters but are independent of pagination, so this can be fetched
+    /// once when filters change instead of on every page of `get_visits`.
+    ///
+    /// **IMPORTANT:** Like `get_visits`, this endpoint requires a date filter on `appointment.startTimestamp`
+    /// to ensure acceptable query performance.
+    /// </summary>
+    /// <example><code>
+    /// await client.PreEncounter.Appointments.V1.GetCountsAsync(new CountsRequest());
+    /// </code></example>
+    public async global::System.Threading.Tasks.Task<CountsResponse> GetCountsAsync(
+        CountsRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _query = new Dictionary<string, object>();
+        if (request.Filters != null)
+        {
+            _query["filters"] = request.Filters;
+        }
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Get,
+                    Path = "/appointments/v1/visits/counts",
+                    Query = _query,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<CountsResponse>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    /// <summary>
     /// Gets an appointment.
     /// </summary>
     /// <example><code>

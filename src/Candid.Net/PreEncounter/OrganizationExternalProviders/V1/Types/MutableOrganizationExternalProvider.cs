@@ -35,8 +35,17 @@ public record MutableOrganizationExternalProvider : IJsonOnDeserialized
     [JsonPropertyName("phone_number")]
     public string? PhoneNumber { get; set; }
 
+    [JsonPropertyName("other_phone_numbers")]
+    public IEnumerable<string>? OtherPhoneNumbers { get; set; }
+
     [JsonPropertyName("fax_number")]
     public string? FaxNumber { get; set; }
+
+    [JsonPropertyName("other_fax_numbers")]
+    public IEnumerable<string>? OtherFaxNumbers { get; set; }
+
+    [JsonPropertyName("emails")]
+    public IEnumerable<string>? Emails { get; set; }
 
     [JsonPropertyName("license_type")]
     public LicenseType? LicenseType { get; set; }

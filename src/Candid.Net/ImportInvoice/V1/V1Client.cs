@@ -93,7 +93,7 @@ public partial class V1Client
     }
 
     /// <summary>
-    /// Returns all Invoices for the authenticated user's organziation with all filters applied.
+    /// Returns all Invoices for the authenticated user's organization with all filters applied.
     /// </summary>
     /// <example><code>
     /// await client.ImportInvoice.V1.GetMultiAsync(new SearchImportedInvoicesRequest());

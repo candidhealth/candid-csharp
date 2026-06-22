@@ -37,6 +37,9 @@ public record InsuranceCard : IJsonOnDeserialized
     [JsonPropertyName("image_url_back")]
     public string? ImageUrlBack { get; set; }
 
+    [JsonPropertyName("payer_uuid")]
+    public string? PayerUuid { get; set; }
+
     /// <summary>
     /// Box 11 on the CMS-1500 claim form.
     /// </summary>

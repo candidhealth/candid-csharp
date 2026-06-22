@@ -515,4 +515,126 @@ public partial class V1Client
             );
         }
     }
+
+    /// <summary>
+    /// Sends an insurance discovery check to find potential coverage matches for a patient through Stedi.
+    /// Given patient demographics, this endpoint discovers what insurance coverages exist for the patient.
+    /// </summary>
+    /// <example><code>
+    /// await client.PreEncounter.EligibilityChecks.V1.InsuranceDiscoveryAsync(
+    ///     new InsuranceDiscoveryRequest
+    ///     {
+    ///         Provider = new InsuranceDiscoveryProvider { Npi = "npi" },
+    ///         Subscriber = new InsuranceDiscoverySubscriber
+    ///         {
+    ///             FirstName = "first_name",
+    ///             LastName = "last_name",
+    ///         },
+    ///     }
+    /// );
+    /// </code></example>
+    public async global::System.Threading.Tasks.Task<InsuranceDiscoveryResponse> InsuranceDiscoveryAsync(
+        InsuranceDiscoveryRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Post,
+                    Path = "/eligibility-checks/v1/insurance-discovery",
+                    Body = request,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<InsuranceDiscoveryResponse>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    /// <summary>
+    /// Sends a coordination of benefits check through Stedi to determine whether a patient has
+    /// coverage overlap across multiple payers and, if so, which payer is primary.
+    /// Medicare and Medicare Advantage plans are not supported.
+    /// </summary>
+    /// <example><code>
+    /// await client.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsAsync(
+    ///     new CoordinationOfBenefitsRequest
+    ///     {
+    ///         TradingPartnerServiceId = "trading_partner_service_id",
+    ///         Provider = new CobProvider { Npi = "npi" },
+    ///         Subscriber = new CobSubscriber
+    ///         {
+    ///             FirstName = "first_name",
+    ///             LastName = "last_name",
+    ///             DateOfBirth = "date_of_birth",
+    ///         },
+    ///         Encounter = new CobEncounter(),
+    ///     }
+    /// );
+    /// </code></example>
+    public async global::System.Threading.Tasks.Task<CoordinationOfBenefitsResponse> CoordinationOfBenefitsAsync(
+        CoordinationOfBenefitsRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Post,
+                    Path = "/eligibility-checks/v1/coordination-of-benefits",
+                    Body = request,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                return JsonUtils.Deserialize<CoordinationOfBenefitsResponse>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new CandidException("Failed to deserialize response", e);
+            }
+        }
+
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
 }

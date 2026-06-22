@@ -543,7 +543,7 @@ public readonly record struct ServiceFacilityType : IStringEnum
     );
 
     /// <summary>
-    /// Opthalmology clinic.
+    /// Ophthalmology clinic.
     /// </summary>
     public static readonly ServiceFacilityType OpthalmologyClinic = new(Values.OpthalmologyClinic);
 
@@ -1228,7 +1228,7 @@ public readonly record struct ServiceFacilityType : IStringEnum
         public const string PediatricOncologyClinic = "PEDHO";
 
         /// <summary>
-        /// Opthalmology clinic.
+        /// Ophthalmology clinic.
         /// </summary>
         public const string OpthalmologyClinic = "OPH";
 

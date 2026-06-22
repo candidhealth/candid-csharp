@@ -18,7 +18,7 @@ public readonly record struct ServiceFacilityStatus : IStringEnum
     public static readonly ServiceFacilityStatus Inactive = new(Values.Inactive);
 
     /// <summary>
-    /// TThe location is temporarily closed.
+    /// The location is temporarily closed.
     /// </summary>
     public static readonly ServiceFacilityStatus Suspended = new(Values.Suspended);
 
@@ -80,7 +80,7 @@ public readonly record struct ServiceFacilityStatus : IStringEnum
         public const string Inactive = "inactive";
 
         /// <summary>
-        /// TThe location is temporarily closed.
+        /// The location is temporarily closed.
         /// </summary>
         public const string Suspended = "suspended";
     }

@@ -25,7 +25,7 @@ public record UniversalEncounterCreateFromPreEncounter : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Describes the currently expected target form for this encounter.  This effects what validations and queues the form is processed under.
+    /// Describes the currently expected target form for this encounter.  This affects what validations and queues the form is processed under.
     /// </summary>
     [JsonPropertyName("submission_expectation")]
     public required EncounterSubmissionExpectation SubmissionExpectation { get; set; }

@@ -55,7 +55,7 @@ public record UniversalEncounterCreate : IJsonOnDeserialized
     public HealthCareCodeInformationCreate? HealthCareCodeInformation { get; set; }
 
     /// <summary>
-    /// Describes the currently expected target form for this encounter.  This can change later, but it orients this encounter in the pipeline and effects reporting.
+    /// Describes the currently expected target form for this encounter.  This can change later, but it orients this encounter in the pipeline and affects reporting.
     /// </summary>
     [JsonPropertyName("submission_expectation")]
     public required EncounterSubmissionExpectation SubmissionExpectation { get; set; }

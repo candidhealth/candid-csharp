@@ -48,12 +48,12 @@ public readonly record struct OccurrenceSpanCode : IStringEnum
     public static readonly OccurrenceSpanCode C77 = new(Values.C77);
 
     /// <summary>
-    /// SNF PROIR STAY DATES
+    /// SNF PRIOR STAY DATES
     /// </summary>
     public static readonly OccurrenceSpanCode C78 = new(Values.C78);
 
     /// <summary>
-    /// PRIOR SAME-SNF STAY DATES FOR PAYMENT BAN PRUPOSES
+    /// PRIOR SAME-SNF STAY DATES FOR PAYMENT BAN PURPOSES
     /// </summary>
     public static readonly OccurrenceSpanCode C80 = new(Values.C80);
 
@@ -180,12 +180,12 @@ public readonly record struct OccurrenceSpanCode : IStringEnum
         public const string C77 = "77";
 
         /// <summary>
-        /// SNF PROIR STAY DATES
+        /// SNF PRIOR STAY DATES
         /// </summary>
         public const string C78 = "78";
 
         /// <summary>
-        /// PRIOR SAME-SNF STAY DATES FOR PAYMENT BAN PRUPOSES
+        /// PRIOR SAME-SNF STAY DATES FOR PAYMENT BAN PURPOSES
         /// </summary>
         public const string C80 = "80";
 
