@@ -1,9 +1,9 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using Candid.Net;
-using Candid.Net.Core;
-using Candid.Net.PreEncounter.Coverages.V1;
-using Candid.Net.PreEncounter.Patients.V1;
+using global::Candid.Net;
+using global::Candid.Net.Core;
+using global::Candid.Net.PreEncounter.Coverages.V1;
+using global::Candid.Net.PreEncounter.Patients.V1;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 
 namespace Candid.Net.PreEncounter.Appointments.V1;
 
@@ -37,6 +37,12 @@ public record Visit : IJsonOnDeserialized
 
     [JsonPropertyName("secondary_coverage_status")]
     public CoverageStatus? SecondaryCoverageStatus { get; set; }
+
+    [JsonPropertyName("primary_payer_name")]
+    public string? PrimaryPayerName { get; set; }
+
+    [JsonPropertyName("primary_payer_plan_group_id")]
+    public string? PrimaryPayerPlanGroupId { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

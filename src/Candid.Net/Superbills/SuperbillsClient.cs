@@ -1,10 +1,10 @@
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.Superbills;
 
-public partial class SuperbillsClient
+public partial class SuperbillsClient : ISuperbillsClient
 {
-    private RawClient _client;
+    private readonly RawClient _client;
 
     internal SuperbillsClient(RawClient client)
     {
@@ -12,5 +12,5 @@ public partial class SuperbillsClient
         V1 = new global::Candid.Net.Superbills.V1.V1Client(_client);
     }
 
-    public global::Candid.Net.Superbills.V1.V1Client V1 { get; }
+    public global::Candid.Net.Superbills.V1.IV1Client V1 { get; }
 }

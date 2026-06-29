@@ -1,4 +1,4 @@
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.Diagnoses;
 
@@ -6,8 +6,10 @@ namespace Candid.Net.Diagnoses;
 /// This exception type will be thrown for any non-2XX API responses.
 /// </summary>
 [Serializable]
-public class DiagnosisNotFoundHttpError(DiagnosisNotFoundError body)
-    : CandidApiException("DiagnosisNotFoundHttpError", 404, body)
+public class DiagnosisNotFoundHttpError(
+    DiagnosisNotFoundError body,
+    global::Candid.Net.RawResponse? rawResponse = null
+) : CandidApiException("DiagnosisNotFoundHttpError", 404, body, rawResponse: rawResponse)
 {
     /// <summary>
     /// The body of the response that triggered the exception.

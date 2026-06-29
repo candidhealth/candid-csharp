@@ -1,10 +1,10 @@
 // ReSharper disable NullableWarningSuppressionIsUsed
 // ReSharper disable InconsistentNaming
 
-using System.Text.Json;
-using System.Text.Json.Nodes;
-using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
+using global::System.Text.Json;
+using global::System.Text.Json.Nodes;
+using global::System.Text.Json.Serialization;
 
 namespace Candid.Net.Contracts.V3;
 
@@ -184,15 +184,23 @@ public record ContractWithProvidersUnion
                 discriminatorElement.GetString()
                 ?? throw new JsonException("Discriminator property 'type' is null");
 
+            // Strip the discriminant property to prevent it from leaking into AdditionalProperties
+            var jsonObject = System.Text.Json.Nodes.JsonObject.Create(json);
+            jsonObject?.Remove("type");
+            var jsonWithoutDiscriminator =
+                jsonObject != null ? JsonSerializer.SerializeToElement(jsonObject, options) : json;
+
             var value = discriminator switch
             {
                 "professional" =>
-                    json.Deserialize<global::Candid.Net.Contracts.V3.ProfessionalContract?>(options)
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Contracts.V3.ProfessionalContract?>(
+                        options
+                    )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.Contracts.V3.ProfessionalContract"
                         ),
                 "institutional" =>
-                    json.Deserialize<global::Candid.Net.Contracts.V3.InstitutionalContract?>(
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Contracts.V3.InstitutionalContract?>(
                         options
                     )
                         ?? throw new JsonException(
@@ -218,6 +226,27 @@ public record ContractWithProvidersUnion
                 } ?? new JsonObject();
             json["type"] = value.Type;
             json.WriteTo(writer, options);
+        }
+
+        public override ContractWithProvidersUnion ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            global::System.Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new JsonException("The JSON property name could not be read as a string.");
+            return new ContractWithProvidersUnion(stringValue, stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            ContractWithProvidersUnion value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Type);
         }
     }
 

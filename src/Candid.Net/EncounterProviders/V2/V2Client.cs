@@ -1,32 +1,33 @@
-using System.Net.Http;
-using System.Text.Json;
-using System.Threading;
-using Candid.Net.Core;
+using global::Candid.Net;
+using global::Candid.Net.Core;
+using global::System.Text.Json;
 
 namespace Candid.Net.EncounterProviders.V2;
 
-public partial class V2Client
+public partial class V2Client : IV2Client
 {
-    private RawClient _client;
+    private readonly RawClient _client;
 
     internal V2Client(RawClient client)
     {
         _client = client;
     }
 
-    /// <example><code>
-    /// await client.EncounterProviders.V2.UpdateReferringProviderAsync(
-    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new ReferringProviderUpdate()
-    /// );
-    /// </code></example>
-    public async global::System.Threading.Tasks.Task<EncounterProvider> UpdateReferringProviderAsync(
+    private async global::System.Threading.Tasks.Task<
+        WithRawResponse<EncounterProvider>
+    > UpdateReferringProviderAsyncCore(
         string encounterId,
         ReferringProviderUpdate request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new global::Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -38,6 +39,7 @@ public partial class V2Client
                         ValueConvert.ToPathParameterString(encounterId)
                     ),
                     Body = request,
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -45,40 +47,72 @@ public partial class V2Client
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
-                return JsonUtils.Deserialize<EncounterProvider>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<EncounterProvider>(responseBody)!;
+                return new WithRawResponse<EncounterProvider>()
+                {
+                    Data = responseData,
+                    RawResponse = new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new CandidException("Failed to deserialize response", e);
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e,
+                    rawResponse: new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    }
+                );
             }
         }
-
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             throw new CandidApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
-                responseBody
+                responseBody,
+                rawResponse: new global::Candid.Net.RawResponse()
+                {
+                    StatusCode = response.Raw.StatusCode,
+                    Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                    Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                }
             );
         }
     }
 
-    /// <example><code>
-    /// await client.EncounterProviders.V2.UpdateInitialReferringProviderAsync(
-    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new InitialReferringProviderUpdate()
-    /// );
-    /// </code></example>
-    public async global::System.Threading.Tasks.Task<EncounterProvider> UpdateInitialReferringProviderAsync(
+    private async global::System.Threading.Tasks.Task<
+        WithRawResponse<EncounterProvider>
+    > UpdateInitialReferringProviderAsyncCore(
         string encounterId,
         InitialReferringProviderUpdate request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new global::Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -90,6 +124,7 @@ public partial class V2Client
                         ValueConvert.ToPathParameterString(encounterId)
                     ),
                     Body = request,
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -97,40 +132,72 @@ public partial class V2Client
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
-                return JsonUtils.Deserialize<EncounterProvider>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<EncounterProvider>(responseBody)!;
+                return new WithRawResponse<EncounterProvider>()
+                {
+                    Data = responseData,
+                    RawResponse = new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new CandidException("Failed to deserialize response", e);
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e,
+                    rawResponse: new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    }
+                );
             }
         }
-
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             throw new CandidApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
-                responseBody
+                responseBody,
+                rawResponse: new global::Candid.Net.RawResponse()
+                {
+                    StatusCode = response.Raw.StatusCode,
+                    Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                    Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                }
             );
         }
     }
 
-    /// <example><code>
-    /// await client.EncounterProviders.V2.UpdateSupervisingProviderAsync(
-    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new SupervisingProviderUpdate()
-    /// );
-    /// </code></example>
-    public async global::System.Threading.Tasks.Task<EncounterProvider> UpdateSupervisingProviderAsync(
+    private async global::System.Threading.Tasks.Task<
+        WithRawResponse<EncounterProvider>
+    > UpdateSupervisingProviderAsyncCore(
         string encounterId,
         SupervisingProviderUpdate request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new global::Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -142,6 +209,7 @@ public partial class V2Client
                         ValueConvert.ToPathParameterString(encounterId)
                     ),
                     Body = request,
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -149,40 +217,72 @@ public partial class V2Client
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
-                return JsonUtils.Deserialize<EncounterProvider>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<EncounterProvider>(responseBody)!;
+                return new WithRawResponse<EncounterProvider>()
+                {
+                    Data = responseData,
+                    RawResponse = new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new CandidException("Failed to deserialize response", e);
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e,
+                    rawResponse: new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    }
+                );
             }
         }
-
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             throw new CandidApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
-                responseBody
+                responseBody,
+                rawResponse: new global::Candid.Net.RawResponse()
+                {
+                    StatusCode = response.Raw.StatusCode,
+                    Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                    Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                }
             );
         }
     }
 
-    /// <example><code>
-    /// await client.EncounterProviders.V2.UpdateOrderingProviderAsync(
-    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new OrderingProviderUpdate()
-    /// );
-    /// </code></example>
-    public async global::System.Threading.Tasks.Task<EncounterProvider> UpdateOrderingProviderAsync(
+    private async global::System.Threading.Tasks.Task<
+        WithRawResponse<EncounterProvider>
+    > UpdateOrderingProviderAsyncCore(
         string serviceLineId,
         OrderingProviderUpdate request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new global::Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -194,6 +294,7 @@ public partial class V2Client
                         ValueConvert.ToPathParameterString(serviceLineId)
                     ),
                     Body = request,
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -201,40 +302,72 @@ public partial class V2Client
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
-                return JsonUtils.Deserialize<EncounterProvider>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<EncounterProvider>(responseBody)!;
+                return new WithRawResponse<EncounterProvider>()
+                {
+                    Data = responseData,
+                    RawResponse = new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new CandidException("Failed to deserialize response", e);
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e,
+                    rawResponse: new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    }
+                );
             }
         }
-
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             throw new CandidApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
-                responseBody
+                responseBody,
+                rawResponse: new global::Candid.Net.RawResponse()
+                {
+                    StatusCode = response.Raw.StatusCode,
+                    Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                    Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                }
             );
         }
     }
 
-    /// <example><code>
-    /// await client.EncounterProviders.V2.CreateReferringProviderAsync(
-    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new ReferringProvider { Npi = "npi" }
-    /// );
-    /// </code></example>
-    public async global::System.Threading.Tasks.Task<EncounterProvider> CreateReferringProviderAsync(
+    private async global::System.Threading.Tasks.Task<
+        WithRawResponse<EncounterProvider>
+    > CreateReferringProviderAsyncCore(
         string encounterId,
         ReferringProvider request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new global::Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -246,6 +379,7 @@ public partial class V2Client
                         ValueConvert.ToPathParameterString(encounterId)
                     ),
                     Body = request,
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -253,40 +387,72 @@ public partial class V2Client
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
-                return JsonUtils.Deserialize<EncounterProvider>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<EncounterProvider>(responseBody)!;
+                return new WithRawResponse<EncounterProvider>()
+                {
+                    Data = responseData,
+                    RawResponse = new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new CandidException("Failed to deserialize response", e);
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e,
+                    rawResponse: new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    }
+                );
             }
         }
-
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             throw new CandidApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
-                responseBody
+                responseBody,
+                rawResponse: new global::Candid.Net.RawResponse()
+                {
+                    StatusCode = response.Raw.StatusCode,
+                    Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                    Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                }
             );
         }
     }
 
-    /// <example><code>
-    /// await client.EncounterProviders.V2.CreateInitialReferringProviderAsync(
-    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new InitialReferringProvider { Npi = "npi" }
-    /// );
-    /// </code></example>
-    public async global::System.Threading.Tasks.Task<EncounterProvider> CreateInitialReferringProviderAsync(
+    private async global::System.Threading.Tasks.Task<
+        WithRawResponse<EncounterProvider>
+    > CreateInitialReferringProviderAsyncCore(
         string encounterId,
         InitialReferringProvider request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new global::Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -298,6 +464,7 @@ public partial class V2Client
                         ValueConvert.ToPathParameterString(encounterId)
                     ),
                     Body = request,
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -305,40 +472,72 @@ public partial class V2Client
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
-                return JsonUtils.Deserialize<EncounterProvider>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<EncounterProvider>(responseBody)!;
+                return new WithRawResponse<EncounterProvider>()
+                {
+                    Data = responseData,
+                    RawResponse = new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new CandidException("Failed to deserialize response", e);
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e,
+                    rawResponse: new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    }
+                );
             }
         }
-
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             throw new CandidApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
-                responseBody
+                responseBody,
+                rawResponse: new global::Candid.Net.RawResponse()
+                {
+                    StatusCode = response.Raw.StatusCode,
+                    Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                    Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                }
             );
         }
     }
 
-    /// <example><code>
-    /// await client.EncounterProviders.V2.CreateSupervisingProviderAsync(
-    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new SupervisingProvider { Npi = "npi" }
-    /// );
-    /// </code></example>
-    public async global::System.Threading.Tasks.Task<EncounterProvider> CreateSupervisingProviderAsync(
+    private async global::System.Threading.Tasks.Task<
+        WithRawResponse<EncounterProvider>
+    > CreateSupervisingProviderAsyncCore(
         string encounterId,
         SupervisingProvider request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new global::Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -350,6 +549,7 @@ public partial class V2Client
                         ValueConvert.ToPathParameterString(encounterId)
                     ),
                     Body = request,
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -357,40 +557,72 @@ public partial class V2Client
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
-                return JsonUtils.Deserialize<EncounterProvider>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<EncounterProvider>(responseBody)!;
+                return new WithRawResponse<EncounterProvider>()
+                {
+                    Data = responseData,
+                    RawResponse = new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new CandidException("Failed to deserialize response", e);
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e,
+                    rawResponse: new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    }
+                );
             }
         }
-
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             throw new CandidApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
-                responseBody
+                responseBody,
+                rawResponse: new global::Candid.Net.RawResponse()
+                {
+                    StatusCode = response.Raw.StatusCode,
+                    Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                    Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                }
             );
         }
     }
 
-    /// <example><code>
-    /// await client.EncounterProviders.V2.CreateOrderingProviderAsync(
-    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new OrderingProvider { Npi = "npi" }
-    /// );
-    /// </code></example>
-    public async global::System.Threading.Tasks.Task<EncounterProvider> CreateOrderingProviderAsync(
+    private async global::System.Threading.Tasks.Task<
+        WithRawResponse<EncounterProvider>
+    > CreateOrderingProviderAsyncCore(
         string serviceLineId,
         OrderingProvider request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new global::Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -402,6 +634,7 @@ public partial class V2Client
                         ValueConvert.ToPathParameterString(serviceLineId)
                     ),
                     Body = request,
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -409,38 +642,69 @@ public partial class V2Client
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
-                return JsonUtils.Deserialize<EncounterProvider>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<EncounterProvider>(responseBody)!;
+                return new WithRawResponse<EncounterProvider>()
+                {
+                    Data = responseData,
+                    RawResponse = new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new CandidException("Failed to deserialize response", e);
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e,
+                    rawResponse: new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    }
+                );
             }
         }
-
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             throw new CandidApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
-                responseBody
+                responseBody,
+                rawResponse: new global::Candid.Net.RawResponse()
+                {
+                    StatusCode = response.Raw.StatusCode,
+                    Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                    Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                }
             );
         }
     }
 
-    /// <example><code>
-    /// await client.EncounterProviders.V2.DeleteReferringProviderAsync(
-    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
-    /// );
-    /// </code></example>
-    public async global::System.Threading.Tasks.Task DeleteReferringProviderAsync(
+    private async global::System.Threading.Tasks.Task<RawResponse> DeleteReferringProviderAsyncCore(
         string encounterId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new global::Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -451,6 +715,7 @@ public partial class V2Client
                         "/api/encounter-providers/v2/{0}/referring-provider",
                         ValueConvert.ToPathParameterString(encounterId)
                     ),
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -458,29 +723,43 @@ public partial class V2Client
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            return;
+            return new global::Candid.Net.RawResponse()
+            {
+                StatusCode = response.Raw.StatusCode,
+                Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+            };
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             throw new CandidApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
-                responseBody
+                responseBody,
+                rawResponse: new global::Candid.Net.RawResponse()
+                {
+                    StatusCode = response.Raw.StatusCode,
+                    Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                    Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                }
             );
         }
     }
 
-    /// <example><code>
-    /// await client.EncounterProviders.V2.DeleteInitialReferringProviderAsync(
-    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
-    /// );
-    /// </code></example>
-    public async global::System.Threading.Tasks.Task DeleteInitialReferringProviderAsync(
+    private async global::System.Threading.Tasks.Task<RawResponse> DeleteInitialReferringProviderAsyncCore(
         string encounterId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new global::Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -491,6 +770,7 @@ public partial class V2Client
                         "/api/encounter-providers/v2/{0}/initial-referring-provider",
                         ValueConvert.ToPathParameterString(encounterId)
                     ),
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -498,29 +778,43 @@ public partial class V2Client
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            return;
+            return new global::Candid.Net.RawResponse()
+            {
+                StatusCode = response.Raw.StatusCode,
+                Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+            };
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             throw new CandidApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
-                responseBody
+                responseBody,
+                rawResponse: new global::Candid.Net.RawResponse()
+                {
+                    StatusCode = response.Raw.StatusCode,
+                    Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                    Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                }
             );
         }
     }
 
-    /// <example><code>
-    /// await client.EncounterProviders.V2.DeleteSupervisingProviderAsync(
-    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
-    /// );
-    /// </code></example>
-    public async global::System.Threading.Tasks.Task DeleteSupervisingProviderAsync(
+    private async global::System.Threading.Tasks.Task<RawResponse> DeleteSupervisingProviderAsyncCore(
         string encounterId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new global::Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -531,6 +825,7 @@ public partial class V2Client
                         "/api/encounter-providers/v2/{0}/supervising-provider",
                         ValueConvert.ToPathParameterString(encounterId)
                     ),
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -538,29 +833,43 @@ public partial class V2Client
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            return;
+            return new global::Candid.Net.RawResponse()
+            {
+                StatusCode = response.Raw.StatusCode,
+                Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+            };
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             throw new CandidApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
-                responseBody
+                responseBody,
+                rawResponse: new global::Candid.Net.RawResponse()
+                {
+                    StatusCode = response.Raw.StatusCode,
+                    Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                    Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                }
             );
         }
     }
 
-    /// <example><code>
-    /// await client.EncounterProviders.V2.DeleteOrderingProviderAsync(
-    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
-    /// );
-    /// </code></example>
-    public async global::System.Threading.Tasks.Task DeleteOrderingProviderAsync(
+    private async global::System.Threading.Tasks.Task<RawResponse> DeleteOrderingProviderAsyncCore(
         string serviceLineId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new global::Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -571,6 +880,7 @@ public partial class V2Client
                         "/api/encounter-providers/v2/{0}/ordering-provider",
                         ValueConvert.ToPathParameterString(serviceLineId)
                     ),
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -578,15 +888,246 @@ public partial class V2Client
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            return;
+            return new global::Candid.Net.RawResponse()
+            {
+                StatusCode = response.Raw.StatusCode,
+                Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+            };
         }
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             throw new CandidApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
-                responseBody
+                responseBody,
+                rawResponse: new global::Candid.Net.RawResponse()
+                {
+                    StatusCode = response.Raw.StatusCode,
+                    Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                    Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                }
             );
         }
+    }
+
+    /// <example><code>
+    /// await client.EncounterProviders.V2.UpdateReferringProviderAsync(
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///     new ReferringProviderUpdate()
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<EncounterProvider> UpdateReferringProviderAsync(
+        string encounterId,
+        ReferringProviderUpdate request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<EncounterProvider>(
+            UpdateReferringProviderAsyncCore(encounterId, request, options, cancellationToken)
+        );
+    }
+
+    /// <example><code>
+    /// await client.EncounterProviders.V2.UpdateInitialReferringProviderAsync(
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///     new InitialReferringProviderUpdate()
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<EncounterProvider> UpdateInitialReferringProviderAsync(
+        string encounterId,
+        InitialReferringProviderUpdate request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<EncounterProvider>(
+            UpdateInitialReferringProviderAsyncCore(
+                encounterId,
+                request,
+                options,
+                cancellationToken
+            )
+        );
+    }
+
+    /// <example><code>
+    /// await client.EncounterProviders.V2.UpdateSupervisingProviderAsync(
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///     new SupervisingProviderUpdate()
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<EncounterProvider> UpdateSupervisingProviderAsync(
+        string encounterId,
+        SupervisingProviderUpdate request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<EncounterProvider>(
+            UpdateSupervisingProviderAsyncCore(encounterId, request, options, cancellationToken)
+        );
+    }
+
+    /// <example><code>
+    /// await client.EncounterProviders.V2.UpdateOrderingProviderAsync(
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///     new OrderingProviderUpdate()
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<EncounterProvider> UpdateOrderingProviderAsync(
+        string serviceLineId,
+        OrderingProviderUpdate request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<EncounterProvider>(
+            UpdateOrderingProviderAsyncCore(serviceLineId, request, options, cancellationToken)
+        );
+    }
+
+    /// <example><code>
+    /// await client.EncounterProviders.V2.CreateReferringProviderAsync(
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///     new ReferringProvider { Npi = "npi" }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<EncounterProvider> CreateReferringProviderAsync(
+        string encounterId,
+        ReferringProvider request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<EncounterProvider>(
+            CreateReferringProviderAsyncCore(encounterId, request, options, cancellationToken)
+        );
+    }
+
+    /// <example><code>
+    /// await client.EncounterProviders.V2.CreateInitialReferringProviderAsync(
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///     new InitialReferringProvider { Npi = "npi" }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<EncounterProvider> CreateInitialReferringProviderAsync(
+        string encounterId,
+        InitialReferringProvider request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<EncounterProvider>(
+            CreateInitialReferringProviderAsyncCore(
+                encounterId,
+                request,
+                options,
+                cancellationToken
+            )
+        );
+    }
+
+    /// <example><code>
+    /// await client.EncounterProviders.V2.CreateSupervisingProviderAsync(
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///     new SupervisingProvider { Npi = "npi" }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<EncounterProvider> CreateSupervisingProviderAsync(
+        string encounterId,
+        SupervisingProvider request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<EncounterProvider>(
+            CreateSupervisingProviderAsyncCore(encounterId, request, options, cancellationToken)
+        );
+    }
+
+    /// <example><code>
+    /// await client.EncounterProviders.V2.CreateOrderingProviderAsync(
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///     new OrderingProvider { Npi = "npi" }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<EncounterProvider> CreateOrderingProviderAsync(
+        string serviceLineId,
+        OrderingProvider request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<EncounterProvider>(
+            CreateOrderingProviderAsyncCore(serviceLineId, request, options, cancellationToken)
+        );
+    }
+
+    /// <example><code>
+    /// await client.EncounterProviders.V2.DeleteReferringProviderAsync(
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
+    /// );
+    /// </code></example>
+    public WithRawResponseTask DeleteReferringProviderAsync(
+        string encounterId,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask(
+            DeleteReferringProviderAsyncCore(encounterId, options, cancellationToken)
+        );
+    }
+
+    /// <example><code>
+    /// await client.EncounterProviders.V2.DeleteInitialReferringProviderAsync(
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
+    /// );
+    /// </code></example>
+    public WithRawResponseTask DeleteInitialReferringProviderAsync(
+        string encounterId,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask(
+            DeleteInitialReferringProviderAsyncCore(encounterId, options, cancellationToken)
+        );
+    }
+
+    /// <example><code>
+    /// await client.EncounterProviders.V2.DeleteSupervisingProviderAsync(
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
+    /// );
+    /// </code></example>
+    public WithRawResponseTask DeleteSupervisingProviderAsync(
+        string encounterId,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask(
+            DeleteSupervisingProviderAsyncCore(encounterId, options, cancellationToken)
+        );
+    }
+
+    /// <example><code>
+    /// await client.EncounterProviders.V2.DeleteOrderingProviderAsync(
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
+    /// );
+    /// </code></example>
+    public WithRawResponseTask DeleteOrderingProviderAsync(
+        string serviceLineId,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask(
+            DeleteOrderingProviderAsyncCore(serviceLineId, options, cancellationToken)
+        );
     }
 }

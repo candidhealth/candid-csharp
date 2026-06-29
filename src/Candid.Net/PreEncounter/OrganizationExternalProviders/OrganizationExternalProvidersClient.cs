@@ -1,10 +1,10 @@
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.PreEncounter.OrganizationExternalProviders;
 
-public partial class OrganizationExternalProvidersClient
+public partial class OrganizationExternalProvidersClient : IOrganizationExternalProvidersClient
 {
-    private RawClient _client;
+    private readonly RawClient _client;
 
     internal OrganizationExternalProvidersClient(RawClient client)
     {
@@ -12,5 +12,5 @@ public partial class OrganizationExternalProvidersClient
         V1 = new global::Candid.Net.PreEncounter.OrganizationExternalProviders.V1.V1Client(_client);
     }
 
-    public global::Candid.Net.PreEncounter.OrganizationExternalProviders.V1.V1Client V1 { get; }
+    public global::Candid.Net.PreEncounter.OrganizationExternalProviders.V1.IV1Client V1 { get; }
 }

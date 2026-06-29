@@ -1,7 +1,7 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using Candid.Net;
-using Candid.Net.Core;
+using global::Candid.Net;
+using global::Candid.Net.Core;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 
 namespace Candid.Net.Diagnoses;
 
@@ -47,7 +47,7 @@ public record StandaloneDiagnosisCreate : IJsonOnDeserialized
     /// A "U" indicates that it is unknown whether the onset occurred prior to admission to the hospital or not.
     /// </summary>
     [JsonPropertyName("present_on_admission_indicator")]
-    public YesNoIndicator.YesNoIndicator? PresentOnAdmissionIndicator { get; set; }
+    public global::Candid.Net.YesNoIndicator.YesNoIndicator? PresentOnAdmissionIndicator { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

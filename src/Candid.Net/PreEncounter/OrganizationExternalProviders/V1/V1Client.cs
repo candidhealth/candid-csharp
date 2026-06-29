@@ -1,33 +1,32 @@
-using System.Net.Http;
-using System.Text.Json;
-using System.Threading;
-using Candid.Net.Core;
+using global::Candid.Net;
+using global::Candid.Net.Core;
+using global::System.Text.Json;
 
 namespace Candid.Net.PreEncounter.OrganizationExternalProviders.V1;
 
-public partial class V1Client
+public partial class V1Client : IV1Client
 {
-    private RawClient _client;
+    private readonly RawClient _client;
 
     internal V1Client(RawClient client)
     {
         _client = client;
     }
 
-    /// <summary>
-    /// Gets an organization external provider by ID.
-    /// </summary>
-    /// <example><code>
-    /// await client.PreEncounter.OrganizationExternalProviders.V1.GetAsync(
-    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
-    /// );
-    /// </code></example>
-    public async global::System.Threading.Tasks.Task<OrganizationExternalProvider> GetAsync(
+    private async global::System.Threading.Tasks.Task<
+        WithRawResponse<OrganizationExternalProvider>
+    > GetAsyncCore(
         string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new global::Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -38,6 +37,7 @@ public partial class V1Client
                         "/organization-external-providers/v1/{0}",
                         ValueConvert.ToPathParameterString(id)
                     ),
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -45,25 +45,487 @@ public partial class V1Client
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
-                return JsonUtils.Deserialize<OrganizationExternalProvider>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<OrganizationExternalProvider>(
+                    responseBody
+                )!;
+                return new WithRawResponse<OrganizationExternalProvider>()
+                {
+                    Data = responseData,
+                    RawResponse = new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new CandidException("Failed to deserialize response", e);
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e,
+                    rawResponse: new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    }
+                );
             }
         }
-
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             throw new CandidApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
-                responseBody
+                responseBody,
+                rawResponse: new global::Candid.Net.RawResponse()
+                {
+                    StatusCode = response.Raw.StatusCode,
+                    Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                    Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                }
             );
         }
+    }
+
+    private async global::System.Threading.Tasks.Task<
+        WithRawResponse<OrganizationExternalProviderPage>
+    > GetMultiAsyncCore(
+        OrganizationExternalProviderGetMultiRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _queryString = new global::Candid.Net.Core.QueryStringBuilder.Builder(capacity: 8)
+            .Add("limit", request.Limit)
+            .Add("page_token", request.PageToken)
+            .Add("sort_field", request.SortField)
+            .Add("sort_direction", request.SortDirection)
+            .Add("npi", request.Npi)
+            .Add("type", request.Type)
+            .Add("first_name", request.FirstName)
+            .Add("last_name", request.LastName)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new global::Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Get,
+                    Path = "/organization-external-providers/v1",
+                    QueryString = _queryString,
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<OrganizationExternalProviderPage>(
+                    responseBody
+                )!;
+                return new WithRawResponse<OrganizationExternalProviderPage>()
+                {
+                    Data = responseData,
+                    RawResponse = new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e,
+                    rawResponse: new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    }
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody,
+                rawResponse: new global::Candid.Net.RawResponse()
+                {
+                    StatusCode = response.Raw.StatusCode,
+                    Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                    Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                }
+            );
+        }
+    }
+
+    private async global::System.Threading.Tasks.Task<
+        WithRawResponse<OrganizationExternalProvider>
+    > CreateAsyncCore(
+        MutableOrganizationExternalProvider request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _headers = await new global::Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Post,
+                    Path = "/organization-external-providers/v1",
+                    Body = request,
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<OrganizationExternalProvider>(
+                    responseBody
+                )!;
+                return new WithRawResponse<OrganizationExternalProvider>()
+                {
+                    Data = responseData,
+                    RawResponse = new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e,
+                    rawResponse: new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    }
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody,
+                rawResponse: new global::Candid.Net.RawResponse()
+                {
+                    StatusCode = response.Raw.StatusCode,
+                    Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                    Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                }
+            );
+        }
+    }
+
+    private async global::System.Threading.Tasks.Task<
+        WithRawResponse<OrganizationExternalProvider>
+    > UpdateAsyncCore(
+        string id,
+        string version,
+        MutableOrganizationExternalProvider request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _headers = await new global::Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Put,
+                    Path = string.Format(
+                        "/organization-external-providers/v1/{0}/{1}",
+                        ValueConvert.ToPathParameterString(id),
+                        ValueConvert.ToPathParameterString(version)
+                    ),
+                    Body = request,
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<OrganizationExternalProvider>(
+                    responseBody
+                )!;
+                return new WithRawResponse<OrganizationExternalProvider>()
+                {
+                    Data = responseData,
+                    RawResponse = new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e,
+                    rawResponse: new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    }
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody,
+                rawResponse: new global::Candid.Net.RawResponse()
+                {
+                    StatusCode = response.Raw.StatusCode,
+                    Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                    Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                }
+            );
+        }
+    }
+
+    private async global::System.Threading.Tasks.Task<RawResponse> DeactivateAsyncCore(
+        string id,
+        string version,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _headers = await new global::Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Delete,
+                    Path = string.Format(
+                        "/organization-external-providers/v1/{0}/{1}",
+                        ValueConvert.ToPathParameterString(id),
+                        ValueConvert.ToPathParameterString(version)
+                    ),
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            return new global::Candid.Net.RawResponse()
+            {
+                StatusCode = response.Raw.StatusCode,
+                Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+            };
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody,
+                rawResponse: new global::Candid.Net.RawResponse()
+                {
+                    StatusCode = response.Raw.StatusCode,
+                    Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                    Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                }
+            );
+        }
+    }
+
+    private async global::System.Threading.Tasks.Task<
+        WithRawResponse<IEnumerable<OrganizationExternalProvider>>
+    > ScanAsyncCore(
+        OrganizationExternalProviderScanRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _queryString = new global::Candid.Net.Core.QueryStringBuilder.Builder(capacity: 2)
+            .Add("since", request.Since)
+            .Add("maxResults", request.MaxResults)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new global::Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Get,
+                    Path = "/organization-external-providers/v1/updates/scan",
+                    QueryString = _queryString,
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<IEnumerable<OrganizationExternalProvider>>(
+                    responseBody
+                )!;
+                return new WithRawResponse<IEnumerable<OrganizationExternalProvider>>()
+                {
+                    Data = responseData,
+                    RawResponse = new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e,
+                    rawResponse: new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    }
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody,
+                rawResponse: new global::Candid.Net.RawResponse()
+                {
+                    StatusCode = response.Raw.StatusCode,
+                    Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                    Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                }
+            );
+        }
+    }
+
+    /// <summary>
+    /// Gets an organization external provider by ID.
+    /// </summary>
+    /// <example><code>
+    /// await client.PreEncounter.OrganizationExternalProviders.V1.GetAsync(
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<OrganizationExternalProvider> GetAsync(
+        string id,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<OrganizationExternalProvider>(
+            GetAsyncCore(id, options, cancellationToken)
+        );
     }
 
     /// <summary>
@@ -74,79 +536,15 @@ public partial class V1Client
     ///     new OrganizationExternalProviderGetMultiRequest()
     /// );
     /// </code></example>
-    public async global::System.Threading.Tasks.Task<OrganizationExternalProviderPage> GetMultiAsync(
+    public WithRawResponseTask<OrganizationExternalProviderPage> GetMultiAsync(
         OrganizationExternalProviderGetMultiRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>();
-        if (request.Limit != null)
-        {
-            _query["limit"] = request.Limit.Value.ToString();
-        }
-        if (request.PageToken != null)
-        {
-            _query["page_token"] = request.PageToken;
-        }
-        if (request.SortField != null)
-        {
-            _query["sort_field"] = request.SortField;
-        }
-        if (request.SortDirection != null)
-        {
-            _query["sort_direction"] = request.SortDirection.Value.Stringify();
-        }
-        if (request.Npi != null)
-        {
-            _query["npi"] = request.Npi;
-        }
-        if (request.Type != null)
-        {
-            _query["type"] = request.Type.Value.Stringify();
-        }
-        if (request.FirstName != null)
-        {
-            _query["first_name"] = request.FirstName;
-        }
-        if (request.LastName != null)
-        {
-            _query["last_name"] = request.LastName;
-        }
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.Environment.PreEncounter,
-                    Method = HttpMethod.Get,
-                    Path = "/organization-external-providers/v1",
-                    Query = _query,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                return JsonUtils.Deserialize<OrganizationExternalProviderPage>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new CandidException("Failed to deserialize response", e);
-            }
-        }
-
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            throw new CandidApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
+        return new WithRawResponseTask<OrganizationExternalProviderPage>(
+            GetMultiAsyncCore(request, options, cancellationToken)
+        );
     }
 
     /// <summary>
@@ -170,46 +568,15 @@ public partial class V1Client
     ///     }
     /// );
     /// </code></example>
-    public async global::System.Threading.Tasks.Task<OrganizationExternalProvider> CreateAsync(
+    public WithRawResponseTask<OrganizationExternalProvider> CreateAsync(
         MutableOrganizationExternalProvider request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.Environment.PreEncounter,
-                    Method = HttpMethod.Post,
-                    Path = "/organization-external-providers/v1",
-                    Body = request,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                return JsonUtils.Deserialize<OrganizationExternalProvider>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new CandidException("Failed to deserialize response", e);
-            }
-        }
-
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            throw new CandidApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
+        return new WithRawResponseTask<OrganizationExternalProvider>(
+            CreateAsyncCore(request, options, cancellationToken)
+        );
     }
 
     /// <summary>
@@ -235,7 +602,7 @@ public partial class V1Client
     ///     }
     /// );
     /// </code></example>
-    public async global::System.Threading.Tasks.Task<OrganizationExternalProvider> UpdateAsync(
+    public WithRawResponseTask<OrganizationExternalProvider> UpdateAsync(
         string id,
         string version,
         MutableOrganizationExternalProvider request,
@@ -243,44 +610,9 @@ public partial class V1Client
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.Environment.PreEncounter,
-                    Method = HttpMethod.Put,
-                    Path = string.Format(
-                        "/organization-external-providers/v1/{0}/{1}",
-                        ValueConvert.ToPathParameterString(id),
-                        ValueConvert.ToPathParameterString(version)
-                    ),
-                    Body = request,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                return JsonUtils.Deserialize<OrganizationExternalProvider>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new CandidException("Failed to deserialize response", e);
-            }
-        }
-
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            throw new CandidApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
+        return new WithRawResponseTask<OrganizationExternalProvider>(
+            UpdateAsyncCore(id, version, request, options, cancellationToken)
+        );
     }
 
     /// <summary>
@@ -292,41 +624,16 @@ public partial class V1Client
     ///     "version"
     /// );
     /// </code></example>
-    public async global::System.Threading.Tasks.Task DeactivateAsync(
+    public WithRawResponseTask DeactivateAsync(
         string id,
         string version,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.Environment.PreEncounter,
-                    Method = HttpMethod.Delete,
-                    Path = string.Format(
-                        "/organization-external-providers/v1/{0}/{1}",
-                        ValueConvert.ToPathParameterString(id),
-                        ValueConvert.ToPathParameterString(version)
-                    ),
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            return;
-        }
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            throw new CandidApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
+        return new WithRawResponseTask(
+            DeactivateAsyncCore(id, version, options, cancellationToken)
+        );
     }
 
     /// <summary>
@@ -353,55 +660,14 @@ public partial class V1Client
     ///     }
     /// );
     /// </code></example>
-    public async global::System.Threading.Tasks.Task<
-        IEnumerable<OrganizationExternalProvider>
-    > ScanAsync(
+    public WithRawResponseTask<IEnumerable<OrganizationExternalProvider>> ScanAsync(
         OrganizationExternalProviderScanRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>();
-        _query["since"] = request.Since.ToString(Constants.DateTimeFormat);
-        if (request.MaxResults != null)
-        {
-            _query["maxResults"] = request.MaxResults.Value.ToString();
-        }
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.Environment.PreEncounter,
-                    Method = HttpMethod.Get,
-                    Path = "/organization-external-providers/v1/updates/scan",
-                    Query = _query,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                return JsonUtils.Deserialize<IEnumerable<OrganizationExternalProvider>>(
-                    responseBody
-                )!;
-            }
-            catch (JsonException e)
-            {
-                throw new CandidException("Failed to deserialize response", e);
-            }
-        }
-
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            throw new CandidApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
+        return new WithRawResponseTask<IEnumerable<OrganizationExternalProvider>>(
+            ScanAsyncCore(request, options, cancellationToken)
+        );
     }
 }

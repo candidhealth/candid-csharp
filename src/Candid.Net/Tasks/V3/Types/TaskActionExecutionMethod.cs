@@ -1,10 +1,10 @@
 // ReSharper disable NullableWarningSuppressionIsUsed
 // ReSharper disable InconsistentNaming
 
-using System.Text.Json;
-using System.Text.Json.Nodes;
-using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
+using global::System.Text.Json;
+using global::System.Text.Json.Nodes;
+using global::System.Text.Json.Serialization;
 
 namespace Candid.Net.Tasks.V3;
 
@@ -44,17 +44,17 @@ public record TaskActionExecutionMethod
     public bool IsCloseTask => Type == "close_task";
 
     /// <summary>
-    /// Returns the value as a <see cref="object"/> if <see cref="Type"/> is 'close_task', otherwise throws an exception.
+    /// Returns the value as a <see cref="object?"/> if <see cref="Type"/> is 'close_task', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'close_task'.</exception>
-    public object AsCloseTask() =>
+    public object? AsCloseTask() =>
         IsCloseTask
             ? Value!
             : throw new global::System.Exception(
                 "TaskActionExecutionMethod.Type is not 'close_task'"
             );
 
-    public T Match<T>(Func<object, T> onCloseTask, Func<string, object?, T> onUnknown_)
+    public T Match<T>(Func<object?, T> onCloseTask, Func<string, object?, T> onUnknown_)
     {
         return Type switch
         {
@@ -63,7 +63,7 @@ public record TaskActionExecutionMethod
         };
     }
 
-    public void Visit(Action<object> onCloseTask, Action<string, object?> onUnknown_)
+    public void Visit(Action<object?> onCloseTask, Action<string, object?> onUnknown_)
     {
         switch (Type)
         {
@@ -77,7 +77,7 @@ public record TaskActionExecutionMethod
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="object"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="object?"/> and returns true if successful.
     /// </summary>
     public bool TryAsCloseTask(out object? value)
     {
@@ -127,7 +127,7 @@ public record TaskActionExecutionMethod
 
             var value = discriminator switch
             {
-                "close_task" => new { },
+                "close_task" => null,
                 _ => json.Deserialize<object?>(options),
             };
             return new TaskActionExecutionMethod(discriminator, value);
@@ -148,6 +148,27 @@ public record TaskActionExecutionMethod
             json["type"] = value.Type;
             json.WriteTo(writer, options);
         }
+
+        public override TaskActionExecutionMethod ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            global::System.Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new JsonException("The JSON property name could not be read as a string.");
+            return new TaskActionExecutionMethod(stringValue, stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            TaskActionExecutionMethod value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Type);
+        }
     }
 
     /// <summary>
@@ -156,8 +177,8 @@ public record TaskActionExecutionMethod
     [Serializable]
     public record CloseTask
     {
-        internal object Value => new { };
+        internal object? Value => null;
 
-        public override string ToString() => Value.ToString() ?? "null";
+        public override string ToString() => Value?.ToString() ?? "null";
     }
 }

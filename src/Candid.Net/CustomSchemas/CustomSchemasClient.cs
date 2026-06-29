@@ -1,10 +1,10 @@
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.CustomSchemas;
 
-public partial class CustomSchemasClient
+public partial class CustomSchemasClient : ICustomSchemasClient
 {
-    private RawClient _client;
+    private readonly RawClient _client;
 
     internal CustomSchemasClient(RawClient client)
     {
@@ -12,5 +12,5 @@ public partial class CustomSchemasClient
         V1 = new global::Candid.Net.CustomSchemas.V1.V1Client(_client);
     }
 
-    public global::Candid.Net.CustomSchemas.V1.V1Client V1 { get; }
+    public global::Candid.Net.CustomSchemas.V1.IV1Client V1 { get; }
 }

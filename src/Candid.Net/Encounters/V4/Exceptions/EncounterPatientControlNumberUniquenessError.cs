@@ -1,4 +1,4 @@
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.Encounters.V4;
 
@@ -7,8 +7,15 @@ namespace Candid.Net.Encounters.V4;
 /// </summary>
 [Serializable]
 public class EncounterPatientControlNumberUniquenessError(
-    EncounterPatientControlNumberUniquenessErrorType body
-) : CandidApiException("EncounterPatientControlNumberUniquenessError", 422, body)
+    EncounterPatientControlNumberUniquenessErrorType body,
+    global::Candid.Net.RawResponse? rawResponse = null
+)
+    : CandidApiException(
+        "EncounterPatientControlNumberUniquenessError",
+        422,
+        body,
+        rawResponse: rawResponse
+    )
 {
     /// <summary>
     /// The body of the response that triggered the exception.

@@ -1,4 +1,4 @@
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.Diagnoses;
 
@@ -7,8 +7,15 @@ namespace Candid.Net.Diagnoses;
 /// </summary>
 [Serializable]
 public class ServiceLinesMustHaveAtLeastOneDiagnosisHttpError(
-    ServiceLinesMustHaveAtLeastOneDiagnosisError body
-) : CandidApiException("ServiceLinesMustHaveAtLeastOneDiagnosisHttpError", 422, body)
+    ServiceLinesMustHaveAtLeastOneDiagnosisError body,
+    global::Candid.Net.RawResponse? rawResponse = null
+)
+    : CandidApiException(
+        "ServiceLinesMustHaveAtLeastOneDiagnosisHttpError",
+        422,
+        body,
+        rawResponse: rawResponse
+    )
 {
     /// <summary>
     /// The body of the response that triggered the exception.

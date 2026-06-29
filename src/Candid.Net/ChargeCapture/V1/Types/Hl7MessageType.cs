@@ -1,9 +1,10 @@
-using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 
 namespace Candid.Net.ChargeCapture.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<Hl7MessageType>))]
+[JsonConverter(typeof(Hl7MessageType.Hl7MessageTypeSerializer))]
 [Serializable]
 public readonly record struct Hl7MessageType : IStringEnum
 {
@@ -53,6 +54,55 @@ public readonly record struct Hl7MessageType : IStringEnum
     public static explicit operator string(Hl7MessageType value) => value.Value;
 
     public static explicit operator Hl7MessageType(string value) => new(value);
+
+    internal class Hl7MessageTypeSerializer : JsonConverter<Hl7MessageType>
+    {
+        public override Hl7MessageType Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new Hl7MessageType(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            Hl7MessageType value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override Hl7MessageType ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new Hl7MessageType(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            Hl7MessageType value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

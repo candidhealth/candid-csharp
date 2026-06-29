@@ -1,8 +1,8 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using Candid.Net;
-using Candid.Net.Core;
-using Candid.Net.PreEncounter.Common;
+using global::Candid.Net;
+using global::Candid.Net.Core;
+using global::Candid.Net.PreEncounter.Common;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 
 namespace Candid.Net.PreEncounter.Coverages.V1;
 
@@ -23,7 +23,7 @@ public record Subscriber : IJsonOnDeserialized
     public required Sex BiologicalSex { get; set; }
 
     [JsonPropertyName("address")]
-    public Common.Address? Address { get; set; }
+    public global::Candid.Net.PreEncounter.Common.Address? Address { get; set; }
 
     [JsonPropertyName("employer_name")]
     public string? EmployerName { get; set; }

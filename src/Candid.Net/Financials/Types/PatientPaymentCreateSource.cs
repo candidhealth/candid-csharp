@@ -1,9 +1,10 @@
-using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 
 namespace Candid.Net.Financials;
 
-[JsonConverter(typeof(StringEnumSerializer<PatientPaymentCreateSource>))]
+[JsonConverter(typeof(PatientPaymentCreateSource.PatientPaymentCreateSourceSerializer))]
 [Serializable]
 public readonly record struct PatientPaymentCreateSource : IStringEnum
 {
@@ -53,6 +54,55 @@ public readonly record struct PatientPaymentCreateSource : IStringEnum
     public static explicit operator string(PatientPaymentCreateSource value) => value.Value;
 
     public static explicit operator PatientPaymentCreateSource(string value) => new(value);
+
+    internal class PatientPaymentCreateSourceSerializer : JsonConverter<PatientPaymentCreateSource>
+    {
+        public override PatientPaymentCreateSource Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new PatientPaymentCreateSource(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            PatientPaymentCreateSource value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override PatientPaymentCreateSource ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new PatientPaymentCreateSource(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            PatientPaymentCreateSource value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

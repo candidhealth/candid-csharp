@@ -1,10 +1,10 @@
 // ReSharper disable NullableWarningSuppressionIsUsed
 // ReSharper disable InconsistentNaming
 
-using System.Text.Json;
-using System.Text.Json.Nodes;
-using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
+using global::System.Text.Json;
+using global::System.Text.Json.Nodes;
+using global::System.Text.Json.Serialization;
 
 namespace Candid.Net.Invoices.V2;
 
@@ -97,10 +97,10 @@ public record InvoiceItemAttributionCreate
             );
 
     /// <summary>
-    /// Returns the value as a <see cref="object"/> if <see cref="Type"/> is 'unattributed', otherwise throws an exception.
+    /// Returns the value as a <see cref="object?"/> if <see cref="Type"/> is 'unattributed', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'unattributed'.</exception>
-    public object AsUnattributed() =>
+    public object? AsUnattributed() =>
         IsUnattributed
             ? Value!
             : throw new global::System.Exception(
@@ -110,7 +110,7 @@ public record InvoiceItemAttributionCreate
     public T Match<T>(
         Func<string, T> onServiceLineId,
         Func<string, T> onClaimId,
-        Func<object, T> onUnattributed,
+        Func<object?, T> onUnattributed,
         Func<string, object?, T> onUnknown_
     )
     {
@@ -126,7 +126,7 @@ public record InvoiceItemAttributionCreate
     public void Visit(
         Action<string> onServiceLineId,
         Action<string> onClaimId,
-        Action<object> onUnattributed,
+        Action<object?> onUnattributed,
         Action<string, object?> onUnknown_
     )
     {
@@ -176,7 +176,7 @@ public record InvoiceItemAttributionCreate
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="object"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="object?"/> and returns true if successful.
     /// </summary>
     public bool TryAsUnattributed(out object? value)
     {
@@ -235,10 +235,10 @@ public record InvoiceItemAttributionCreate
             var value = discriminator switch
             {
                 "service_line_id" => json.GetProperty("value").Deserialize<string?>(options)
-                ?? throw new JsonException("Failed to deserialize string"),
+                    ?? throw new JsonException("Failed to deserialize string"),
                 "claim_id" => json.GetProperty("value").Deserialize<string?>(options)
-                ?? throw new JsonException("Failed to deserialize string"),
-                "unattributed" => new { },
+                    ?? throw new JsonException("Failed to deserialize string"),
+                "unattributed" => null,
                 _ => json.Deserialize<object?>(options),
             };
             return new InvoiceItemAttributionCreate(discriminator, value);
@@ -266,6 +266,27 @@ public record InvoiceItemAttributionCreate
                 } ?? new JsonObject();
             json["type"] = value.Type;
             json.WriteTo(writer, options);
+        }
+
+        public override InvoiceItemAttributionCreate ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            global::System.Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new JsonException("The JSON property name could not be read as a string.");
+            return new InvoiceItemAttributionCreate(stringValue, stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            InvoiceItemAttributionCreate value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Type);
         }
     }
 
@@ -313,8 +334,8 @@ public record InvoiceItemAttributionCreate
     [Serializable]
     public record Unattributed
     {
-        internal object Value => new { };
+        internal object? Value => null;
 
-        public override string ToString() => Value.ToString() ?? "null";
+        public override string ToString() => Value?.ToString() ?? "null";
     }
 }

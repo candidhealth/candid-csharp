@@ -1,5 +1,5 @@
-using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
+using global::System.Text.Json.Serialization;
 
 namespace Candid.Net.Diagnoses;
 
@@ -38,7 +38,7 @@ public record DiagnosisUpdate
     /// A "U" indicates that it is unknown whether the onset occurred prior to admission to the hospital or not.
     /// </summary>
     [JsonPropertyName("present_on_admission_indicator")]
-    public YesNoIndicator.YesNoIndicator? PresentOnAdmissionIndicator { get; set; }
+    public global::Candid.Net.YesNoIndicator.YesNoIndicator? PresentOnAdmissionIndicator { get; set; }
 
     /// <inheritdoc />
     public override string ToString()

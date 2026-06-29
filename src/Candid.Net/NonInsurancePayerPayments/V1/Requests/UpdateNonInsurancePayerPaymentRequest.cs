@@ -1,6 +1,6 @@
-using System.Text.Json.Serialization;
-using Candid.Net.Core;
-using Candid.Net.Financials;
+using global::Candid.Net.Core;
+using global::Candid.Net.Financials;
+using global::System.Text.Json.Serialization;
 
 namespace Candid.Net.NonInsurancePayerPayments.V1;
 

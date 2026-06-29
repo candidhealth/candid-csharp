@@ -1,10 +1,10 @@
 // ReSharper disable NullableWarningSuppressionIsUsed
 // ReSharper disable InconsistentNaming
 
-using System.Text.Json;
-using System.Text.Json.Nodes;
-using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
+using global::System.Text.Json;
+using global::System.Text.Json.Nodes;
+using global::System.Text.Json.Serialization;
 
 namespace Candid.Net.Commons;
 
@@ -69,10 +69,10 @@ public record RemovableDateRangeOptionalEnd
             );
 
     /// <summary>
-    /// Returns the value as a <see cref="object"/> if <see cref="Type"/> is 'remove', otherwise throws an exception.
+    /// Returns the value as a <see cref="object?"/> if <see cref="Type"/> is 'remove', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'remove'.</exception>
-    public object AsRemove() =>
+    public object? AsRemove() =>
         IsRemove
             ? Value!
             : throw new global::System.Exception(
@@ -81,7 +81,7 @@ public record RemovableDateRangeOptionalEnd
 
     public T Match<T>(
         Func<global::Candid.Net.Commons.DateRangeOptionalEnd, T> onDateRange,
-        Func<object, T> onRemove,
+        Func<object?, T> onRemove,
         Func<string, object?, T> onUnknown_
     )
     {
@@ -95,7 +95,7 @@ public record RemovableDateRangeOptionalEnd
 
     public void Visit(
         Action<global::Candid.Net.Commons.DateRangeOptionalEnd> onDateRange,
-        Action<object> onRemove,
+        Action<object?> onRemove,
         Action<string, object?> onUnknown_
     )
     {
@@ -128,7 +128,7 @@ public record RemovableDateRangeOptionalEnd
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="object"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="object?"/> and returns true if successful.
     /// </summary>
     public bool TryAsRemove(out object? value)
     {
@@ -180,15 +180,22 @@ public record RemovableDateRangeOptionalEnd
                 discriminatorElement.GetString()
                 ?? throw new JsonException("Discriminator property 'type' is null");
 
+            // Strip the discriminant property to prevent it from leaking into AdditionalProperties
+            var jsonObject = System.Text.Json.Nodes.JsonObject.Create(json);
+            jsonObject?.Remove("type");
+            var jsonWithoutDiscriminator =
+                jsonObject != null ? JsonSerializer.SerializeToElement(jsonObject, options) : json;
+
             var value = discriminator switch
             {
-                "date_range" => json.Deserialize<global::Candid.Net.Commons.DateRangeOptionalEnd?>(
-                    options
-                )
-                    ?? throw new JsonException(
-                        "Failed to deserialize global::Candid.Net.Commons.DateRangeOptionalEnd"
-                    ),
-                "remove" => new { },
+                "date_range" =>
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Commons.DateRangeOptionalEnd?>(
+                        options
+                    )
+                        ?? throw new JsonException(
+                            "Failed to deserialize global::Candid.Net.Commons.DateRangeOptionalEnd"
+                        ),
+                "remove" => null,
                 _ => json.Deserialize<object?>(options),
             };
             return new RemovableDateRangeOptionalEnd(discriminator, value);
@@ -209,6 +216,27 @@ public record RemovableDateRangeOptionalEnd
                 } ?? new JsonObject();
             json["type"] = value.Type;
             json.WriteTo(writer, options);
+        }
+
+        public override RemovableDateRangeOptionalEnd ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            global::System.Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new JsonException("The JSON property name could not be read as a string.");
+            return new RemovableDateRangeOptionalEnd(stringValue, stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            RemovableDateRangeOptionalEnd value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Type);
         }
     }
 
@@ -238,8 +266,8 @@ public record RemovableDateRangeOptionalEnd
     [Serializable]
     public record Remove
     {
-        internal object Value => new { };
+        internal object? Value => null;
 
-        public override string ToString() => Value.ToString() ?? "null";
+        public override string ToString() => Value?.ToString() ?? "null";
     }
 }

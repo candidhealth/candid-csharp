@@ -1,4 +1,4 @@
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.Exports.V3;
 
@@ -6,8 +6,10 @@ namespace Candid.Net.Exports.V3;
 /// This exception type will be thrown for any non-2XX API responses.
 /// </summary>
 [Serializable]
-public class ExportFilesUnavailableError(string body)
-    : CandidApiException("ExportFilesUnavailableError", 503, body)
+public class ExportFilesUnavailableError(
+    string body,
+    global::Candid.Net.RawResponse? rawResponse = null
+) : CandidApiException("ExportFilesUnavailableError", 503, body, rawResponse: rawResponse)
 {
     /// <summary>
     /// The body of the response that triggered the exception.

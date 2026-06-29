@@ -1,4 +1,4 @@
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.Encounters.V4;
 
@@ -7,8 +7,15 @@ namespace Candid.Net.Encounters.V4;
 /// </summary>
 [Serializable]
 public class PayerPlanGroupPayerDoesNotMatchInsuranceCardHttpError(
-    PayerPlanGroupPayerDoesNotMatchInsuranceCardError body
-) : CandidApiException("PayerPlanGroupPayerDoesNotMatchInsuranceCardHttpError", 422, body)
+    PayerPlanGroupPayerDoesNotMatchInsuranceCardError body,
+    global::Candid.Net.RawResponse? rawResponse = null
+)
+    : CandidApiException(
+        "PayerPlanGroupPayerDoesNotMatchInsuranceCardHttpError",
+        422,
+        body,
+        rawResponse: rawResponse
+    )
 {
     /// <summary>
     /// The body of the response that triggered the exception.

@@ -1,59 +1,42 @@
-using System.Net.Http;
-using System.Text.Json;
-using System.Threading;
-using Candid.Net.Core;
+using global::Candid.Net;
+using global::Candid.Net.Core;
+using global::System.Text.Json;
 
 namespace Candid.Net.NonInsurancePayerPayments.V1;
 
-public partial class V1Client
+public partial class V1Client : IV1Client
 {
-    private RawClient _client;
+    private readonly RawClient _client;
 
     internal V1Client(RawClient client)
     {
         _client = client;
     }
 
-    /// <summary>
-    /// Returns all non-insurance payer payments
-    /// </summary>
-    /// <example><code>
-    /// await client.NonInsurancePayerPayments.V1.GetMultiAsync(
-    ///     new GetMultiNonInsurancePayerPaymentRequest()
-    /// );
-    /// </code></example>
-    public async global::System.Threading.Tasks.Task<NonInsurancePayerPaymentsPage> GetMultiAsync(
+    private async global::System.Threading.Tasks.Task<
+        WithRawResponse<NonInsurancePayerPaymentsPage>
+    > GetMultiAsyncCore(
         GetMultiNonInsurancePayerPaymentRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>();
-        _query["check_number"] = request.CheckNumber;
-        if (request.Limit != null)
-        {
-            _query["limit"] = request.Limit.Value.ToString();
-        }
-        if (request.NonInsurancePayerId != null)
-        {
-            _query["non_insurance_payer_id"] = request.NonInsurancePayerId;
-        }
-        if (request.InvoiceId != null)
-        {
-            _query["invoice_id"] = request.InvoiceId;
-        }
-        if (request.Sort != null)
-        {
-            _query["sort"] = request.Sort.Value.Stringify();
-        }
-        if (request.SortDirection != null)
-        {
-            _query["sort_direction"] = request.SortDirection.Value.Stringify();
-        }
-        if (request.PageToken != null)
-        {
-            _query["page_token"] = request.PageToken;
-        }
+        var _queryString = new global::Candid.Net.Core.QueryStringBuilder.Builder(capacity: 7)
+            .Add("limit", request.Limit)
+            .Add("non_insurance_payer_id", request.NonInsurancePayerId)
+            .Add("check_number", request.CheckNumber)
+            .Add("invoice_id", request.InvoiceId)
+            .Add("sort", request.Sort)
+            .Add("sort_direction", request.SortDirection)
+            .Add("page_token", request.PageToken)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new global::Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -61,7 +44,8 @@ public partial class V1Client
                     BaseUrl = _client.Options.Environment.CandidApi,
                     Method = HttpMethod.Get,
                     Path = "/api/non-insurance-payer-payments/v1",
-                    Query = _query,
+                    QueryString = _queryString,
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -69,39 +53,73 @@ public partial class V1Client
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
-                return JsonUtils.Deserialize<NonInsurancePayerPaymentsPage>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<NonInsurancePayerPaymentsPage>(
+                    responseBody
+                )!;
+                return new WithRawResponse<NonInsurancePayerPaymentsPage>()
+                {
+                    Data = responseData,
+                    RawResponse = new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new CandidException("Failed to deserialize response", e);
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e,
+                    rawResponse: new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    }
+                );
             }
         }
-
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             throw new CandidApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
-                responseBody
+                responseBody,
+                rawResponse: new global::Candid.Net.RawResponse()
+                {
+                    StatusCode = response.Raw.StatusCode,
+                    Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                    Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                }
             );
         }
     }
 
-    /// <summary>
-    /// Retrieves a previously created non-insurance payer payment by its `non_insurance_payer_payment_id`.
-    /// </summary>
-    /// <example><code>
-    /// await client.NonInsurancePayerPayments.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
-    /// </code></example>
-    public async global::System.Threading.Tasks.Task<NonInsurancePayerPayment> GetAsync(
+    private async global::System.Threading.Tasks.Task<
+        WithRawResponse<NonInsurancePayerPayment>
+    > GetAsyncCore(
         string nonInsurancePayerPaymentId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new global::Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -112,6 +130,7 @@ public partial class V1Client
                         "/api/non-insurance-payer-payments/v1/{0}",
                         ValueConvert.ToPathParameterString(nonInsurancePayerPaymentId)
                     ),
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -119,25 +138,312 @@ public partial class V1Client
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
-                return JsonUtils.Deserialize<NonInsurancePayerPayment>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<NonInsurancePayerPayment>(responseBody)!;
+                return new WithRawResponse<NonInsurancePayerPayment>()
+                {
+                    Data = responseData,
+                    RawResponse = new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new CandidException("Failed to deserialize response", e);
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e,
+                    rawResponse: new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    }
+                );
             }
         }
-
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             throw new CandidApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
-                responseBody
+                responseBody,
+                rawResponse: new global::Candid.Net.RawResponse()
+                {
+                    StatusCode = response.Raw.StatusCode,
+                    Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                    Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                }
             );
         }
+    }
+
+    private async global::System.Threading.Tasks.Task<
+        WithRawResponse<NonInsurancePayerPayment>
+    > CreateAsyncCore(
+        NonInsurancePayerPaymentCreate request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _headers = await new global::Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Post,
+                    Path = "/api/non-insurance-payer-payments/v1",
+                    Body = request,
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<NonInsurancePayerPayment>(responseBody)!;
+                return new WithRawResponse<NonInsurancePayerPayment>()
+                {
+                    Data = responseData,
+                    RawResponse = new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e,
+                    rawResponse: new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    }
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody,
+                rawResponse: new global::Candid.Net.RawResponse()
+                {
+                    StatusCode = response.Raw.StatusCode,
+                    Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                    Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                }
+            );
+        }
+    }
+
+    private async global::System.Threading.Tasks.Task<
+        WithRawResponse<NonInsurancePayerPayment>
+    > UpdateAsyncCore(
+        string nonInsurancePayerPaymentId,
+        UpdateNonInsurancePayerPaymentRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _headers = await new global::Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethodExtensions.Patch,
+                    Path = string.Format(
+                        "/api/non-insurance-payer-payments/v1/{0}",
+                        ValueConvert.ToPathParameterString(nonInsurancePayerPaymentId)
+                    ),
+                    Body = request,
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<NonInsurancePayerPayment>(responseBody)!;
+                return new WithRawResponse<NonInsurancePayerPayment>()
+                {
+                    Data = responseData,
+                    RawResponse = new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e,
+                    rawResponse: new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    }
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody,
+                rawResponse: new global::Candid.Net.RawResponse()
+                {
+                    StatusCode = response.Raw.StatusCode,
+                    Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                    Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                }
+            );
+        }
+    }
+
+    private async global::System.Threading.Tasks.Task<RawResponse> DeleteAsyncCore(
+        string nonInsurancePayerPaymentId,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _headers = await new global::Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Delete,
+                    Path = string.Format(
+                        "/api/non-insurance-payer-payments/v1/{0}",
+                        ValueConvert.ToPathParameterString(nonInsurancePayerPaymentId)
+                    ),
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            return new global::Candid.Net.RawResponse()
+            {
+                StatusCode = response.Raw.StatusCode,
+                Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+            };
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody,
+                rawResponse: new global::Candid.Net.RawResponse()
+                {
+                    StatusCode = response.Raw.StatusCode,
+                    Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                    Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                }
+            );
+        }
+    }
+
+    /// <summary>
+    /// Returns all non-insurance payer payments
+    /// </summary>
+    /// <example><code>
+    /// await client.NonInsurancePayerPayments.V1.GetMultiAsync(
+    ///     new GetMultiNonInsurancePayerPaymentRequest()
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<NonInsurancePayerPaymentsPage> GetMultiAsync(
+        GetMultiNonInsurancePayerPaymentRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<NonInsurancePayerPaymentsPage>(
+            GetMultiAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Retrieves a previously created non-insurance payer payment by its `non_insurance_payer_payment_id`.
+    /// </summary>
+    /// <example><code>
+    /// await client.NonInsurancePayerPayments.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+    /// </code></example>
+    public WithRawResponseTask<NonInsurancePayerPayment> GetAsync(
+        string nonInsurancePayerPaymentId,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<NonInsurancePayerPayment>(
+            GetAsyncCore(nonInsurancePayerPaymentId, options, cancellationToken)
+        );
     }
 
     /// <example><code>
@@ -170,46 +476,15 @@ public partial class V1Client
     ///     }
     /// );
     /// </code></example>
-    public async global::System.Threading.Tasks.Task<NonInsurancePayerPayment> CreateAsync(
+    public WithRawResponseTask<NonInsurancePayerPayment> CreateAsync(
         NonInsurancePayerPaymentCreate request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.Environment.CandidApi,
-                    Method = HttpMethod.Post,
-                    Path = "/api/non-insurance-payer-payments/v1",
-                    Body = request,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                return JsonUtils.Deserialize<NonInsurancePayerPayment>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new CandidException("Failed to deserialize response", e);
-            }
-        }
-
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            throw new CandidApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
+        return new WithRawResponseTask<NonInsurancePayerPayment>(
+            CreateAsyncCore(request, options, cancellationToken)
+        );
     }
 
     /// <example><code>
@@ -218,50 +493,16 @@ public partial class V1Client
     ///     new UpdateNonInsurancePayerPaymentRequest()
     /// );
     /// </code></example>
-    public async global::System.Threading.Tasks.Task<NonInsurancePayerPayment> UpdateAsync(
+    public WithRawResponseTask<NonInsurancePayerPayment> UpdateAsync(
         string nonInsurancePayerPaymentId,
         UpdateNonInsurancePayerPaymentRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.Environment.CandidApi,
-                    Method = HttpMethodExtensions.Patch,
-                    Path = string.Format(
-                        "/api/non-insurance-payer-payments/v1/{0}",
-                        ValueConvert.ToPathParameterString(nonInsurancePayerPaymentId)
-                    ),
-                    Body = request,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                return JsonUtils.Deserialize<NonInsurancePayerPayment>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new CandidException("Failed to deserialize response", e);
-            }
-        }
-
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            throw new CandidApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
+        return new WithRawResponseTask<NonInsurancePayerPayment>(
+            UpdateAsyncCore(nonInsurancePayerPaymentId, request, options, cancellationToken)
+        );
     }
 
     /// <summary>
@@ -270,38 +511,14 @@ public partial class V1Client
     /// <example><code>
     /// await client.NonInsurancePayerPayments.V1.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async global::System.Threading.Tasks.Task DeleteAsync(
+    public WithRawResponseTask DeleteAsync(
         string nonInsurancePayerPaymentId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.Environment.CandidApi,
-                    Method = HttpMethod.Delete,
-                    Path = string.Format(
-                        "/api/non-insurance-payer-payments/v1/{0}",
-                        ValueConvert.ToPathParameterString(nonInsurancePayerPaymentId)
-                    ),
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            return;
-        }
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            throw new CandidApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
+        return new WithRawResponseTask(
+            DeleteAsyncCore(nonInsurancePayerPaymentId, options, cancellationToken)
+        );
     }
 }

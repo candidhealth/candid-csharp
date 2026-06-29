@@ -1,10 +1,10 @@
 // ReSharper disable NullableWarningSuppressionIsUsed
 // ReSharper disable InconsistentNaming
 
-using System.Text.Json;
-using System.Text.Json.Nodes;
-using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
+using global::System.Text.Json;
+using global::System.Text.Json.Nodes;
+using global::System.Text.Json.Serialization;
 
 namespace Candid.Net.Users.V2;
 
@@ -180,15 +180,25 @@ public record UserMetadata
                 discriminatorElement.GetString()
                 ?? throw new JsonException("Discriminator property 'type' is null");
 
+            // Strip the discriminant property to prevent it from leaking into AdditionalProperties
+            var jsonObject = System.Text.Json.Nodes.JsonObject.Create(json);
+            jsonObject?.Remove("type");
+            var jsonWithoutDiscriminator =
+                jsonObject != null ? JsonSerializer.SerializeToElement(jsonObject, options) : json;
+
             var value = discriminator switch
             {
                 "machine_user_metadata" =>
-                    json.Deserialize<global::Candid.Net.Users.V2.MachineUserMetadata?>(options)
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Users.V2.MachineUserMetadata?>(
+                        options
+                    )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.Users.V2.MachineUserMetadata"
                         ),
                 "human_user_metadata" =>
-                    json.Deserialize<global::Candid.Net.Users.V2.HumanUserMetadata?>(options)
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Users.V2.HumanUserMetadata?>(
+                        options
+                    )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.Users.V2.HumanUserMetadata"
                         ),
@@ -212,6 +222,27 @@ public record UserMetadata
                 } ?? new JsonObject();
             json["type"] = value.Type;
             json.WriteTo(writer, options);
+        }
+
+        public override UserMetadata ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            global::System.Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new JsonException("The JSON property name could not be read as a string.");
+            return new UserMetadata(stringValue, stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            UserMetadata value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Type);
         }
     }
 

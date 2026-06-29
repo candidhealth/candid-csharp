@@ -1,4 +1,4 @@
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.Encounters.V4;
 
@@ -6,8 +6,10 @@ namespace Candid.Net.Encounters.V4;
 /// This exception type will be thrown for any non-2XX API responses.
 /// </summary>
 [Serializable]
-public class SchemaInstanceValidationHttpFailure(SchemaInstanceValidationFailure body)
-    : CandidApiException("SchemaInstanceValidationHttpFailure", 422, body)
+public class SchemaInstanceValidationHttpFailure(
+    SchemaInstanceValidationFailure body,
+    global::Candid.Net.RawResponse? rawResponse = null
+) : CandidApiException("SchemaInstanceValidationHttpFailure", 422, body, rawResponse: rawResponse)
 {
     /// <summary>
     /// The body of the response that triggered the exception.

@@ -1,10 +1,10 @@
 // ReSharper disable NullableWarningSuppressionIsUsed
 // ReSharper disable InconsistentNaming
 
-using System.Text.Json;
-using System.Text.Json.Nodes;
-using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
+using global::System.Text.Json;
+using global::System.Text.Json.Nodes;
+using global::System.Text.Json.Serialization;
 
 namespace Candid.Net.WriteOffs.V1;
 
@@ -234,11 +234,11 @@ public record InsuranceWriteOffTarget
             var value = discriminator switch
             {
                 "service_line_id" => json.GetProperty("value").Deserialize<string?>(options)
-                ?? throw new JsonException("Failed to deserialize string"),
+                    ?? throw new JsonException("Failed to deserialize string"),
                 "claim_id" => json.GetProperty("value").Deserialize<string?>(options)
-                ?? throw new JsonException("Failed to deserialize string"),
+                    ?? throw new JsonException("Failed to deserialize string"),
                 "billing_provider_id" => json.GetProperty("value").Deserialize<string?>(options)
-                ?? throw new JsonException("Failed to deserialize string"),
+                    ?? throw new JsonException("Failed to deserialize string"),
                 _ => json.Deserialize<object?>(options),
             };
             return new InsuranceWriteOffTarget(discriminator, value);
@@ -269,6 +269,27 @@ public record InsuranceWriteOffTarget
                 } ?? new JsonObject();
             json["type"] = value.Type;
             json.WriteTo(writer, options);
+        }
+
+        public override InsuranceWriteOffTarget ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            global::System.Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new JsonException("The JSON property name could not be read as a string.");
+            return new InsuranceWriteOffTarget(stringValue, stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            InsuranceWriteOffTarget value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Type);
         }
     }
 

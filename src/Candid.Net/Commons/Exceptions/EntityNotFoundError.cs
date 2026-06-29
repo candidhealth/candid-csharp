@@ -1,4 +1,4 @@
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.Commons;
 
@@ -6,8 +6,10 @@ namespace Candid.Net.Commons;
 /// This exception type will be thrown for any non-2XX API responses.
 /// </summary>
 [Serializable]
-public class EntityNotFoundError(EntityNotFoundErrorMessage body)
-    : CandidApiException("EntityNotFoundError", 404, body)
+public class EntityNotFoundError(
+    EntityNotFoundErrorMessage body,
+    global::Candid.Net.RawResponse? rawResponse = null
+) : CandidApiException("EntityNotFoundError", 404, body, rawResponse: rawResponse)
 {
     /// <summary>
     /// The body of the response that triggered the exception.

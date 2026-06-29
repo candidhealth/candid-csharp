@@ -1,8 +1,8 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using Candid.Net;
-using Candid.Net.Core;
-using Candid.Net.PreEncounter.Common;
+using global::Candid.Net;
+using global::Candid.Net.Core;
+using global::Candid.Net.PreEncounter.Common;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 
 namespace Candid.Net.PreEncounter.Appointments.V1;
 
@@ -62,10 +62,16 @@ public record Appointment : IJsonOnDeserialized
     public AppointmentStatus? Status { get; set; }
 
     /// <summary>
-    /// The reason the appointment is NOT_READY. Must only be set when status is NOT_READY; it is cleared otherwise. MANUAL is the only value that may be set via the API.
+    /// The reason the appointment is NOT_READY. Must only be set when status is NOT_READY; it is cleared otherwise. It is not recommended to change this value manually via API.
     /// </summary>
     [JsonPropertyName("not_ready_reason")]
     public NotReadyReason? NotReadyReason { get; set; }
+
+    /// <summary>
+    /// The method that set the appointment status to READY. It is not recommended to change this value manually via API. Must only be set when the status is READY or CHECKED_IN, it is cleared otherwise.
+    /// </summary>
+    [JsonPropertyName("ready_source")]
+    public ReadySource? ReadySource { get; set; }
 
     /// <summary>
     /// The requested length of time allotted for the appointment. The units are in minutes.

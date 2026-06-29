@@ -1,11 +1,11 @@
 // ReSharper disable NullableWarningSuppressionIsUsed
 // ReSharper disable InconsistentNaming
 
-using System.Text.Json;
-using System.Text.Json.Nodes;
-using System.Text.Json.Serialization;
-using Candid.Net.Commons;
-using Candid.Net.Core;
+using global::Candid.Net.Commons;
+using global::Candid.Net.Core;
+using global::System.Text.Json;
+using global::System.Text.Json.Nodes;
+using global::System.Text.Json.Serialization;
 
 namespace Candid.Net.NonInsurancePayers.V1;
 
@@ -59,10 +59,10 @@ public record NonInsurancePayerAddressUpdate
     public bool IsSet => Type == "set";
 
     /// <summary>
-    /// Returns the value as a <see cref="object"/> if <see cref="Type"/> is 'remove', otherwise throws an exception.
+    /// Returns the value as a <see cref="object?"/> if <see cref="Type"/> is 'remove', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'remove'.</exception>
-    public object AsRemove() =>
+    public object? AsRemove() =>
         IsRemove
             ? Value!
             : throw new global::System.Exception(
@@ -81,7 +81,7 @@ public record NonInsurancePayerAddressUpdate
             );
 
     public T Match<T>(
-        Func<object, T> onRemove,
+        Func<object?, T> onRemove,
         Func<StreetAddressShortZip?, T> onSet,
         Func<string, object?, T> onUnknown_
     )
@@ -95,7 +95,7 @@ public record NonInsurancePayerAddressUpdate
     }
 
     public void Visit(
-        Action<object> onRemove,
+        Action<object?> onRemove,
         Action<StreetAddressShortZip?> onSet,
         Action<string, object?> onUnknown_
     )
@@ -115,7 +115,7 @@ public record NonInsurancePayerAddressUpdate
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="object"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="object?"/> and returns true if successful.
     /// </summary>
     public bool TryAsRemove(out object? value)
     {
@@ -183,7 +183,7 @@ public record NonInsurancePayerAddressUpdate
 
             var value = discriminator switch
             {
-                "remove" => new { },
+                "remove" => null,
                 "set" => json.GetProperty("value").Deserialize<StreetAddressShortZip?>(options),
                 _ => json.Deserialize<object?>(options),
             };
@@ -209,6 +209,27 @@ public record NonInsurancePayerAddressUpdate
             json["type"] = value.Type;
             json.WriteTo(writer, options);
         }
+
+        public override NonInsurancePayerAddressUpdate ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            global::System.Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new JsonException("The JSON property name could not be read as a string.");
+            return new NonInsurancePayerAddressUpdate(stringValue, stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            NonInsurancePayerAddressUpdate value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Type);
+        }
     }
 
     /// <summary>
@@ -217,9 +238,9 @@ public record NonInsurancePayerAddressUpdate
     [Serializable]
     public record Remove
     {
-        internal object Value => new { };
+        internal object? Value => null;
 
-        public override string ToString() => Value.ToString() ?? "null";
+        public override string ToString() => Value?.ToString() ?? "null";
     }
 
     /// <summary>

@@ -1,8 +1,8 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using Candid.Net;
-using Candid.Net.ClinicalTrials.V1;
-using Candid.Net.Core;
+using global::Candid.Net;
+using global::Candid.Net.ClinicalTrials.V1;
+using global::Candid.Net.Core;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 
 namespace Candid.Net.Individual;
 

@@ -1,7 +1,7 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using Candid.Net;
-using Candid.Net.Core;
+using global::Candid.Net;
+using global::Candid.Net.Core;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 
 namespace Candid.Net.PatientPayments.V4;
 
@@ -11,6 +11,9 @@ public record CardPaymentMethodCreate : IJsonOnDeserialized
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
+
+    [JsonPropertyName("authorization_number")]
+    public string? AuthorizationNumber { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

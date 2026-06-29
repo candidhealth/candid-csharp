@@ -1,9 +1,10 @@
-using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 
 namespace Candid.Net.BillingNotes.V2;
 
-[JsonConverter(typeof(StringEnumSerializer<BillingNoteType>))]
+[JsonConverter(typeof(BillingNoteType.BillingNoteTypeSerializer))]
 [Serializable]
 public readonly record struct BillingNoteType : IStringEnum
 {
@@ -57,6 +58,55 @@ public readonly record struct BillingNoteType : IStringEnum
     public static explicit operator string(BillingNoteType value) => value.Value;
 
     public static explicit operator BillingNoteType(string value) => new(value);
+
+    internal class BillingNoteTypeSerializer : JsonConverter<BillingNoteType>
+    {
+        public override BillingNoteType Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new BillingNoteType(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            BillingNoteType value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override BillingNoteType ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new BillingNoteType(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            BillingNoteType value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

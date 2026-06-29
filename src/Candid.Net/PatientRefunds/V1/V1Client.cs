@@ -1,74 +1,46 @@
-using System.Net.Http;
-using System.Text.Json;
-using System.Threading;
-using Candid.Net.Core;
+using global::Candid.Net;
+using global::Candid.Net.Core;
+using global::System.Text.Json;
 
 namespace Candid.Net.PatientRefunds.V1;
 
-public partial class V1Client
+public partial class V1Client : IV1Client
 {
-    private RawClient _client;
+    private readonly RawClient _client;
 
     internal V1Client(RawClient client)
     {
         _client = client;
     }
 
-    /// <summary>
-    /// Returns all patient refunds satisfying the search criteria AND whose organization_id matches
-    /// the current organization_id of the authenticated user.
-    /// </summary>
-    /// <example><code>
-    /// await client.PatientRefunds.V1.GetMultiAsync(new GetMultiPatientRefundsRequest());
-    /// </code></example>
-    public async global::System.Threading.Tasks.Task<PatientRefundsPage> GetMultiAsync(
+    private async global::System.Threading.Tasks.Task<
+        WithRawResponse<PatientRefundsPage>
+    > GetMultiAsyncCore(
         GetMultiPatientRefundsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>();
-        _query["sources"] = request.Sources.Select(_value => _value.Stringify()).ToList();
-        if (request.Limit != null)
-        {
-            _query["limit"] = request.Limit.Value.ToString();
-        }
-        if (request.PatientExternalId != null)
-        {
-            _query["patient_external_id"] = request.PatientExternalId;
-        }
-        if (request.ClaimId != null)
-        {
-            _query["claim_id"] = request.ClaimId;
-        }
-        if (request.ServiceLineId != null)
-        {
-            _query["service_line_id"] = request.ServiceLineId;
-        }
-        if (request.BillingProviderId != null)
-        {
-            _query["billing_provider_id"] = request.BillingProviderId;
-        }
-        if (request.Unattributed != null)
-        {
-            _query["unattributed"] = JsonUtils.Serialize(request.Unattributed.Value);
-        }
-        if (request.InvoiceId != null)
-        {
-            _query["invoice_id"] = request.InvoiceId;
-        }
-        if (request.Sort != null)
-        {
-            _query["sort"] = request.Sort.Value.Stringify();
-        }
-        if (request.SortDirection != null)
-        {
-            _query["sort_direction"] = request.SortDirection.Value.Stringify();
-        }
-        if (request.PageToken != null)
-        {
-            _query["page_token"] = request.PageToken;
-        }
+        var _queryString = new global::Candid.Net.Core.QueryStringBuilder.Builder(capacity: 11)
+            .Add("limit", request.Limit)
+            .Add("patient_external_id", request.PatientExternalId)
+            .Add("claim_id", request.ClaimId)
+            .Add("service_line_id", request.ServiceLineId)
+            .Add("billing_provider_id", request.BillingProviderId)
+            .Add("unattributed", request.Unattributed)
+            .Add("invoice_id", request.InvoiceId)
+            .Add("sources", request.Sources)
+            .Add("sort", request.Sort)
+            .Add("sort_direction", request.SortDirection)
+            .Add("page_token", request.PageToken)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new global::Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -76,7 +48,8 @@ public partial class V1Client
                     BaseUrl = _client.Options.Environment.CandidApi,
                     Method = HttpMethod.Get,
                     Path = "/api/patient-refunds/v1",
-                    Query = _query,
+                    QueryString = _queryString,
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -84,39 +57,69 @@ public partial class V1Client
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
-                return JsonUtils.Deserialize<PatientRefundsPage>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<PatientRefundsPage>(responseBody)!;
+                return new WithRawResponse<PatientRefundsPage>()
+                {
+                    Data = responseData,
+                    RawResponse = new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new CandidException("Failed to deserialize response", e);
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e,
+                    rawResponse: new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    }
+                );
             }
         }
-
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             throw new CandidApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
-                responseBody
+                responseBody,
+                rawResponse: new global::Candid.Net.RawResponse()
+                {
+                    StatusCode = response.Raw.StatusCode,
+                    Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                    Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                }
             );
         }
     }
 
-    /// <summary>
-    /// Retrieves a previously created patient refund by its `patient_refund_id`.
-    /// </summary>
-    /// <example><code>
-    /// await client.PatientRefunds.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
-    /// </code></example>
-    public async global::System.Threading.Tasks.Task<PatientRefund> GetAsync(
+    private async global::System.Threading.Tasks.Task<WithRawResponse<PatientRefund>> GetAsyncCore(
         string patientRefundId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new global::Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -127,6 +130,7 @@ public partial class V1Client
                         "/api/patient-refunds/v1/{0}",
                         ValueConvert.ToPathParameterString(patientRefundId)
                     ),
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -134,25 +138,311 @@ public partial class V1Client
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             try
             {
-                return JsonUtils.Deserialize<PatientRefund>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<PatientRefund>(responseBody)!;
+                return new WithRawResponse<PatientRefund>()
+                {
+                    Data = responseData,
+                    RawResponse = new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new CandidException("Failed to deserialize response", e);
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e,
+                    rawResponse: new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    }
+                );
             }
         }
-
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
             throw new CandidApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
-                responseBody
+                responseBody,
+                rawResponse: new global::Candid.Net.RawResponse()
+                {
+                    StatusCode = response.Raw.StatusCode,
+                    Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                    Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                }
             );
         }
+    }
+
+    private async global::System.Threading.Tasks.Task<
+        WithRawResponse<PatientRefund>
+    > CreateAsyncCore(
+        PatientRefundCreate request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _headers = await new global::Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Post,
+                    Path = "/api/patient-refunds/v1",
+                    Body = request,
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<PatientRefund>(responseBody)!;
+                return new WithRawResponse<PatientRefund>()
+                {
+                    Data = responseData,
+                    RawResponse = new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e,
+                    rawResponse: new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    }
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody,
+                rawResponse: new global::Candid.Net.RawResponse()
+                {
+                    StatusCode = response.Raw.StatusCode,
+                    Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                    Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                }
+            );
+        }
+    }
+
+    private async global::System.Threading.Tasks.Task<
+        WithRawResponse<PatientRefund>
+    > UpdateAsyncCore(
+        string patientRefundId,
+        PatientRefundUpdate request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _headers = await new global::Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethodExtensions.Patch,
+                    Path = string.Format(
+                        "/api/patient-refunds/v1/{0}",
+                        ValueConvert.ToPathParameterString(patientRefundId)
+                    ),
+                    Body = request,
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<PatientRefund>(responseBody)!;
+                return new WithRawResponse<PatientRefund>()
+                {
+                    Data = responseData,
+                    RawResponse = new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e,
+                    rawResponse: new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    }
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody,
+                rawResponse: new global::Candid.Net.RawResponse()
+                {
+                    StatusCode = response.Raw.StatusCode,
+                    Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                    Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                }
+            );
+        }
+    }
+
+    private async global::System.Threading.Tasks.Task<RawResponse> DeleteAsyncCore(
+        string patientRefundId,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _headers = await new global::Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.CandidApi,
+                    Method = HttpMethod.Delete,
+                    Path = string.Format(
+                        "/api/patient-refunds/v1/{0}",
+                        ValueConvert.ToPathParameterString(patientRefundId)
+                    ),
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            return new global::Candid.Net.RawResponse()
+            {
+                StatusCode = response.Raw.StatusCode,
+                Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+            };
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody,
+                rawResponse: new global::Candid.Net.RawResponse()
+                {
+                    StatusCode = response.Raw.StatusCode,
+                    Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                    Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                }
+            );
+        }
+    }
+
+    /// <summary>
+    /// Returns all patient refunds satisfying the search criteria AND whose organization_id matches
+    /// the current organization_id of the authenticated user.
+    /// </summary>
+    /// <example><code>
+    /// await client.PatientRefunds.V1.GetMultiAsync(new GetMultiPatientRefundsRequest());
+    /// </code></example>
+    public WithRawResponseTask<PatientRefundsPage> GetMultiAsync(
+        GetMultiPatientRefundsRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<PatientRefundsPage>(
+            GetMultiAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Retrieves a previously created patient refund by its `patient_refund_id`.
+    /// </summary>
+    /// <example><code>
+    /// await client.PatientRefunds.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+    /// </code></example>
+    public WithRawResponseTask<PatientRefund> GetAsync(
+        string patientRefundId,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<PatientRefund>(
+            GetAsyncCore(patientRefundId, options, cancellationToken)
+        );
     }
 
     /// <summary>
@@ -190,46 +480,15 @@ public partial class V1Client
     ///     }
     /// );
     /// </code></example>
-    public async global::System.Threading.Tasks.Task<PatientRefund> CreateAsync(
+    public WithRawResponseTask<PatientRefund> CreateAsync(
         PatientRefundCreate request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.Environment.CandidApi,
-                    Method = HttpMethod.Post,
-                    Path = "/api/patient-refunds/v1",
-                    Body = request,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                return JsonUtils.Deserialize<PatientRefund>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new CandidException("Failed to deserialize response", e);
-            }
-        }
-
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            throw new CandidApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
+        return new WithRawResponseTask<PatientRefund>(
+            CreateAsyncCore(request, options, cancellationToken)
+        );
     }
 
     /// <summary>
@@ -241,50 +500,16 @@ public partial class V1Client
     ///     new PatientRefundUpdate()
     /// );
     /// </code></example>
-    public async global::System.Threading.Tasks.Task<PatientRefund> UpdateAsync(
+    public WithRawResponseTask<PatientRefund> UpdateAsync(
         string patientRefundId,
         PatientRefundUpdate request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.Environment.CandidApi,
-                    Method = HttpMethodExtensions.Patch,
-                    Path = string.Format(
-                        "/api/patient-refunds/v1/{0}",
-                        ValueConvert.ToPathParameterString(patientRefundId)
-                    ),
-                    Body = request,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                return JsonUtils.Deserialize<PatientRefund>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new CandidException("Failed to deserialize response", e);
-            }
-        }
-
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            throw new CandidApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
+        return new WithRawResponseTask<PatientRefund>(
+            UpdateAsyncCore(patientRefundId, request, options, cancellationToken)
+        );
     }
 
     /// <summary>
@@ -293,38 +518,14 @@ public partial class V1Client
     /// <example><code>
     /// await client.PatientRefunds.V1.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
     /// </code></example>
-    public async global::System.Threading.Tasks.Task DeleteAsync(
+    public WithRawResponseTask DeleteAsync(
         string patientRefundId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.Environment.CandidApi,
-                    Method = HttpMethod.Delete,
-                    Path = string.Format(
-                        "/api/patient-refunds/v1/{0}",
-                        ValueConvert.ToPathParameterString(patientRefundId)
-                    ),
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            return;
-        }
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            throw new CandidApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
+        return new WithRawResponseTask(
+            DeleteAsyncCore(patientRefundId, options, cancellationToken)
+        );
     }
 }

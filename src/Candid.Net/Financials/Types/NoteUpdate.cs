@@ -1,10 +1,10 @@
 // ReSharper disable NullableWarningSuppressionIsUsed
 // ReSharper disable InconsistentNaming
 
-using System.Text.Json;
-using System.Text.Json.Nodes;
-using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
+using global::System.Text.Json;
+using global::System.Text.Json.Nodes;
+using global::System.Text.Json.Serialization;
 
 namespace Candid.Net.Financials;
 
@@ -65,15 +65,15 @@ public record NoteUpdate
         IsSet ? (string)Value! : throw new global::System.Exception("NoteUpdate.Type is not 'set'");
 
     /// <summary>
-    /// Returns the value as a <see cref="object"/> if <see cref="Type"/> is 'remove', otherwise throws an exception.
+    /// Returns the value as a <see cref="object?"/> if <see cref="Type"/> is 'remove', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'remove'.</exception>
-    public object AsRemove() =>
+    public object? AsRemove() =>
         IsRemove ? Value! : throw new global::System.Exception("NoteUpdate.Type is not 'remove'");
 
     public T Match<T>(
         Func<string, T> onSet,
-        Func<object, T> onRemove,
+        Func<object?, T> onRemove,
         Func<string, object?, T> onUnknown_
     )
     {
@@ -87,7 +87,7 @@ public record NoteUpdate
 
     public void Visit(
         Action<string> onSet,
-        Action<object> onRemove,
+        Action<object?> onRemove,
         Action<string, object?> onUnknown_
     )
     {
@@ -120,7 +120,7 @@ public record NoteUpdate
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="object"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="object?"/> and returns true if successful.
     /// </summary>
     public bool TryAsRemove(out object? value)
     {
@@ -173,8 +173,8 @@ public record NoteUpdate
             var value = discriminator switch
             {
                 "set" => json.GetProperty("value").Deserialize<string?>(options)
-                ?? throw new JsonException("Failed to deserialize string"),
-                "remove" => new { },
+                    ?? throw new JsonException("Failed to deserialize string"),
+                "remove" => null,
                 _ => json.Deserialize<object?>(options),
             };
             return new NoteUpdate(discriminator, value);
@@ -198,6 +198,27 @@ public record NoteUpdate
                 } ?? new JsonObject();
             json["type"] = value.Type;
             json.WriteTo(writer, options);
+        }
+
+        public override NoteUpdate ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            global::System.Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new JsonException("The JSON property name could not be read as a string.");
+            return new NoteUpdate(stringValue, stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            NoteUpdate value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Type);
         }
     }
 
@@ -225,8 +246,8 @@ public record NoteUpdate
     [Serializable]
     public record Remove
     {
-        internal object Value => new { };
+        internal object? Value => null;
 
-        public override string ToString() => Value.ToString() ?? "null";
+        public override string ToString() => Value?.ToString() ?? "null";
     }
 }

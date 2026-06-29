@@ -1,9 +1,10 @@
-using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 
 namespace Candid.Net.PreEncounter.Images.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<ImageSortField>))]
+[JsonConverter(typeof(ImageSortField.ImageSortFieldSerializer))]
 [Serializable]
 public readonly record struct ImageSortField : IStringEnum
 {
@@ -57,6 +58,55 @@ public readonly record struct ImageSortField : IStringEnum
     public static explicit operator string(ImageSortField value) => value.Value;
 
     public static explicit operator ImageSortField(string value) => new(value);
+
+    internal class ImageSortFieldSerializer : JsonConverter<ImageSortField>
+    {
+        public override ImageSortField Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new ImageSortField(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            ImageSortField value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override ImageSortField ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new ImageSortField(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            ImageSortField value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

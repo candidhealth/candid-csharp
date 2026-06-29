@@ -1,9 +1,10 @@
-using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
 
 namespace Candid.Net.PreEncounter.OrganizationExternalProviders.V1;
 
-[JsonConverter(typeof(StringEnumSerializer<OrganizationExternalProviderType>))]
+[JsonConverter(typeof(OrganizationExternalProviderType.OrganizationExternalProviderTypeSerializer))]
 [Serializable]
 public readonly record struct OrganizationExternalProviderType : IStringEnum
 {
@@ -53,6 +54,56 @@ public readonly record struct OrganizationExternalProviderType : IStringEnum
     public static explicit operator string(OrganizationExternalProviderType value) => value.Value;
 
     public static explicit operator OrganizationExternalProviderType(string value) => new(value);
+
+    internal class OrganizationExternalProviderTypeSerializer
+        : JsonConverter<OrganizationExternalProviderType>
+    {
+        public override OrganizationExternalProviderType Read(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON value could not be read as a string."
+                );
+            return new OrganizationExternalProviderType(stringValue);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            OrganizationExternalProviderType value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WriteStringValue(value.Value);
+        }
+
+        public override OrganizationExternalProviderType ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new global::System.Exception(
+                    "The JSON property name could not be read as a string."
+                );
+            return new OrganizationExternalProviderType(stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            OrganizationExternalProviderType value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Value);
+        }
+    }
 
     /// <summary>
     /// Constant strings for enum values

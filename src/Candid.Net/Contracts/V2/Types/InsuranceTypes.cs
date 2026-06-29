@@ -1,10 +1,10 @@
 // ReSharper disable NullableWarningSuppressionIsUsed
 // ReSharper disable InconsistentNaming
 
-using System.Text.Json;
-using System.Text.Json.Nodes;
-using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
+using global::System.Text.Json;
+using global::System.Text.Json.Nodes;
+using global::System.Text.Json.Serialization;
 
 namespace Candid.Net.Contracts.V2;
 
@@ -72,19 +72,19 @@ public record InsuranceTypes
     public bool IsTheseApply => Type == "theseApply";
 
     /// <summary>
-    /// Returns the value as a <see cref="object"/> if <see cref="Type"/> is 'allApply', otherwise throws an exception.
+    /// Returns the value as a <see cref="object?"/> if <see cref="Type"/> is 'allApply', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'allApply'.</exception>
-    public object AsAllApply() =>
+    public object? AsAllApply() =>
         IsAllApply
             ? Value!
             : throw new global::System.Exception("InsuranceTypes.Type is not 'allApply'");
 
     /// <summary>
-    /// Returns the value as a <see cref="object"/> if <see cref="Type"/> is 'noneApply', otherwise throws an exception.
+    /// Returns the value as a <see cref="object?"/> if <see cref="Type"/> is 'noneApply', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'noneApply'.</exception>
-    public object AsNoneApply() =>
+    public object? AsNoneApply() =>
         IsNoneApply
             ? Value!
             : throw new global::System.Exception("InsuranceTypes.Type is not 'noneApply'");
@@ -99,8 +99,8 @@ public record InsuranceTypes
             : throw new global::System.Exception("InsuranceTypes.Type is not 'theseApply'");
 
     public T Match<T>(
-        Func<object, T> onAllApply,
-        Func<object, T> onNoneApply,
+        Func<object?, T> onAllApply,
+        Func<object?, T> onNoneApply,
         Func<HashSet<global::Candid.Net.Commons.InsuranceTypeCode>, T> onTheseApply,
         Func<string, object?, T> onUnknown_
     )
@@ -115,8 +115,8 @@ public record InsuranceTypes
     }
 
     public void Visit(
-        Action<object> onAllApply,
-        Action<object> onNoneApply,
+        Action<object?> onAllApply,
+        Action<object?> onNoneApply,
         Action<HashSet<global::Candid.Net.Commons.InsuranceTypeCode>> onTheseApply,
         Action<string, object?> onUnknown_
     )
@@ -139,7 +139,7 @@ public record InsuranceTypes
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="object"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="object?"/> and returns true if successful.
     /// </summary>
     public bool TryAsAllApply(out object? value)
     {
@@ -153,7 +153,7 @@ public record InsuranceTypes
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="object"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="object?"/> and returns true if successful.
     /// </summary>
     public bool TryAsNoneApply(out object? value)
     {
@@ -219,11 +219,11 @@ public record InsuranceTypes
 
             var value = discriminator switch
             {
-                "allApply" => new { },
-                "noneApply" => new { },
+                "allApply" => null,
+                "noneApply" => null,
                 "theseApply" => json.GetProperty("value")
                     .Deserialize<HashSet<global::Candid.Net.Commons.InsuranceTypeCode>?>(options)
-                ?? throw new JsonException(
+                    ?? throw new JsonException(
                         "Failed to deserialize HashSet<global::Candid.Net.Commons.InsuranceTypeCode>"
                     ),
                 _ => json.Deserialize<object?>(options),
@@ -251,6 +251,27 @@ public record InsuranceTypes
             json["type"] = value.Type;
             json.WriteTo(writer, options);
         }
+
+        public override InsuranceTypes ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            global::System.Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new JsonException("The JSON property name could not be read as a string.");
+            return new InsuranceTypes(stringValue, stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            InsuranceTypes value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Type);
+        }
     }
 
     /// <summary>
@@ -259,9 +280,9 @@ public record InsuranceTypes
     [Serializable]
     public record AllApply
     {
-        internal object Value => new { };
+        internal object? Value => null;
 
-        public override string ToString() => Value.ToString() ?? "null";
+        public override string ToString() => Value?.ToString() ?? "null";
     }
 
     /// <summary>
@@ -270,9 +291,9 @@ public record InsuranceTypes
     [Serializable]
     public record NoneApply
     {
-        internal object Value => new { };
+        internal object? Value => null;
 
-        public override string ToString() => Value.ToString() ?? "null";
+        public override string ToString() => Value?.ToString() ?? "null";
     }
 
     /// <summary>

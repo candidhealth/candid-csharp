@@ -1,10 +1,10 @@
 // ReSharper disable NullableWarningSuppressionIsUsed
 // ReSharper disable InconsistentNaming
 
-using System.Text.Json;
-using System.Text.Json.Nodes;
-using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
+using global::System.Text.Json;
+using global::System.Text.Json.Nodes;
+using global::System.Text.Json.Serialization;
 
 namespace Candid.Net.Financials;
 
@@ -142,10 +142,10 @@ public record AllocationTarget
             : throw new global::System.Exception("AllocationTarget.Type is not 'appointment'");
 
     /// <summary>
-    /// Returns the value as a <see cref="object"/> if <see cref="Type"/> is 'unattributed', otherwise throws an exception.
+    /// Returns the value as a <see cref="object?"/> if <see cref="Type"/> is 'unattributed', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'unattributed'.</exception>
-    public object AsUnattributed() =>
+    public object? AsUnattributed() =>
         IsUnattributed
             ? Value!
             : throw new global::System.Exception("AllocationTarget.Type is not 'unattributed'");
@@ -155,7 +155,7 @@ public record AllocationTarget
         Func<global::Candid.Net.Financials.ClaimAllocationTarget, T> onClaim,
         Func<global::Candid.Net.Financials.BillingProviderAllocationTarget, T> onBillingProviderId,
         Func<global::Candid.Net.Financials.AppointmentAllocationTarget, T> onAppointment,
-        Func<object, T> onUnattributed,
+        Func<object?, T> onUnattributed,
         Func<string, object?, T> onUnknown_
     )
     {
@@ -175,7 +175,7 @@ public record AllocationTarget
         Action<global::Candid.Net.Financials.ClaimAllocationTarget> onClaim,
         Action<global::Candid.Net.Financials.BillingProviderAllocationTarget> onBillingProviderId,
         Action<global::Candid.Net.Financials.AppointmentAllocationTarget> onAppointment,
-        Action<object> onUnattributed,
+        Action<object?> onUnattributed,
         Action<string, object?> onUnknown_
     )
     {
@@ -265,7 +265,7 @@ public record AllocationTarget
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="object"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="object?"/> and returns true if successful.
     /// </summary>
     public bool TryAsUnattributed(out object? value)
     {
@@ -324,36 +324,43 @@ public record AllocationTarget
                 discriminatorElement.GetString()
                 ?? throw new JsonException("Discriminator property 'type' is null");
 
+            // Strip the discriminant property to prevent it from leaking into AdditionalProperties
+            var jsonObject = System.Text.Json.Nodes.JsonObject.Create(json);
+            jsonObject?.Remove("type");
+            var jsonWithoutDiscriminator =
+                jsonObject != null ? JsonSerializer.SerializeToElement(jsonObject, options) : json;
+
             var value = discriminator switch
             {
                 "service_line" =>
-                    json.Deserialize<global::Candid.Net.Financials.ServiceLineAllocationTarget?>(
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Financials.ServiceLineAllocationTarget?>(
                         options
                     )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.Financials.ServiceLineAllocationTarget"
                         ),
-                "claim" => json.Deserialize<global::Candid.Net.Financials.ClaimAllocationTarget?>(
-                    options
-                )
-                    ?? throw new JsonException(
-                        "Failed to deserialize global::Candid.Net.Financials.ClaimAllocationTarget"
-                    ),
+                "claim" =>
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Financials.ClaimAllocationTarget?>(
+                        options
+                    )
+                        ?? throw new JsonException(
+                            "Failed to deserialize global::Candid.Net.Financials.ClaimAllocationTarget"
+                        ),
                 "billing_provider_id" =>
-                    json.Deserialize<global::Candid.Net.Financials.BillingProviderAllocationTarget?>(
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Financials.BillingProviderAllocationTarget?>(
                         options
                     )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.Financials.BillingProviderAllocationTarget"
                         ),
                 "appointment" =>
-                    json.Deserialize<global::Candid.Net.Financials.AppointmentAllocationTarget?>(
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Financials.AppointmentAllocationTarget?>(
                         options
                     )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.Financials.AppointmentAllocationTarget"
                         ),
-                "unattributed" => new { },
+                "unattributed" => null,
                 _ => json.Deserialize<object?>(options),
             };
             return new AllocationTarget(discriminator, value);
@@ -377,6 +384,27 @@ public record AllocationTarget
                 } ?? new JsonObject();
             json["type"] = value.Type;
             json.WriteTo(writer, options);
+        }
+
+        public override AllocationTarget ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            global::System.Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new JsonException("The JSON property name could not be read as a string.");
+            return new AllocationTarget(stringValue, stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            AllocationTarget value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Type);
         }
     }
 
@@ -468,8 +496,8 @@ public record AllocationTarget
     [Serializable]
     public record Unattributed
     {
-        internal object Value => new { };
+        internal object? Value => null;
 
-        public override string ToString() => Value.ToString() ?? "null";
+        public override string ToString() => Value?.ToString() ?? "null";
     }
 }

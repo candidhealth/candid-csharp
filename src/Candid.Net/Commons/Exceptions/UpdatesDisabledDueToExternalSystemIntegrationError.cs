@@ -1,4 +1,4 @@
-using Candid.Net.Core;
+using global::Candid.Net.Core;
 
 namespace Candid.Net.Commons;
 
@@ -7,8 +7,15 @@ namespace Candid.Net.Commons;
 /// </summary>
 [Serializable]
 public class UpdatesDisabledDueToExternalSystemIntegrationError(
-    UpdatesDisabledDueToExternalSystemIntegrationErrorMessage body
-) : CandidApiException("UpdatesDisabledDueToExternalSystemIntegrationError", 422, body)
+    UpdatesDisabledDueToExternalSystemIntegrationErrorMessage body,
+    global::Candid.Net.RawResponse? rawResponse = null
+)
+    : CandidApiException(
+        "UpdatesDisabledDueToExternalSystemIntegrationError",
+        422,
+        body,
+        rawResponse: rawResponse
+    )
 {
     /// <summary>
     /// The body of the response that triggered the exception.

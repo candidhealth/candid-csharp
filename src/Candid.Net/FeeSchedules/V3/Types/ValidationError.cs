@@ -1,10 +1,10 @@
 // ReSharper disable NullableWarningSuppressionIsUsed
 // ReSharper disable InconsistentNaming
 
-using System.Text.Json;
-using System.Text.Json.Nodes;
-using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
+using global::System.Text.Json;
+using global::System.Text.Json.Nodes;
+using global::System.Text.Json.Serialization;
 
 namespace Candid.Net.FeeSchedules.V3;
 
@@ -175,19 +175,19 @@ public record ValidationError
             );
 
     /// <summary>
-    /// Returns the value as a <see cref="object"/> if <see cref="Type"/> is 'duplicate_rate', otherwise throws an exception.
+    /// Returns the value as a <see cref="object?"/> if <see cref="Type"/> is 'duplicate_rate', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'duplicate_rate'.</exception>
-    public object AsDuplicateRate() =>
+    public object? AsDuplicateRate() =>
         IsDuplicateRate
             ? Value!
             : throw new global::System.Exception("ValidationError.Type is not 'duplicate_rate'");
 
     /// <summary>
-    /// Returns the value as a <see cref="object"/> if <see cref="Type"/> is 'empty_entries', otherwise throws an exception.
+    /// Returns the value as a <see cref="object?"/> if <see cref="Type"/> is 'empty_entries', otherwise throws an exception.
     /// </summary>
     /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'empty_entries'.</exception>
-    public object AsEmptyEntries() =>
+    public object? AsEmptyEntries() =>
         IsEmptyEntries
             ? Value!
             : throw new global::System.Exception("ValidationError.Type is not 'empty_entries'");
@@ -235,8 +235,8 @@ public record ValidationError
             global::Candid.Net.Commons.EntityNotFoundErrorMessage,
             T
         > onOrganizationProviderNotFound,
-        Func<object, T> onDuplicateRate,
-        Func<object, T> onEmptyEntries,
+        Func<object?, T> onDuplicateRate,
+        Func<object?, T> onEmptyEntries,
         Func<global::Candid.Net.Commons.EntityNotFoundErrorMessage, T> onPayerPlanGroupNotFound,
         Func<
             global::Candid.Net.FeeSchedules.V3.PayerPlanGroupDoesNotMatchRatePayerError,
@@ -274,8 +274,8 @@ public record ValidationError
         Action<global::Candid.Net.FeeSchedules.V3.OverlappingRateEntriesError> onOverlappingRateEntries,
         Action<global::Candid.Net.Commons.EntityConflictErrorMessage> onVersionConflict,
         Action<global::Candid.Net.Commons.EntityNotFoundErrorMessage> onOrganizationProviderNotFound,
-        Action<object> onDuplicateRate,
-        Action<object> onEmptyEntries,
+        Action<object?> onDuplicateRate,
+        Action<object?> onEmptyEntries,
         Action<global::Candid.Net.Commons.EntityNotFoundErrorMessage> onPayerPlanGroupNotFound,
         Action<global::Candid.Net.FeeSchedules.V3.PayerPlanGroupDoesNotMatchRatePayerError> onPayerPlanGroupDoesNotMatchRatePayer,
         Action<global::Candid.Net.Commons.EntityConflictErrorMessage> onPayerPlanGroupNetworkTypeMutualExclusion,
@@ -365,7 +365,7 @@ public record ValidationError
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="object"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="object?"/> and returns true if successful.
     /// </summary>
     public bool TryAsDuplicateRate(out object? value)
     {
@@ -379,7 +379,7 @@ public record ValidationError
     }
 
     /// <summary>
-    /// Attempts to cast the value to a <see cref="object"/> and returns true if successful.
+    /// Attempts to cast the value to a <see cref="object?"/> and returns true if successful.
     /// </summary>
     public bool TryAsEmptyEntries(out object? value)
     {
@@ -497,47 +497,53 @@ public record ValidationError
                 discriminatorElement.GetString()
                 ?? throw new JsonException("Discriminator property 'type' is null");
 
+            // Strip the discriminant property to prevent it from leaking into AdditionalProperties
+            var jsonObject = System.Text.Json.Nodes.JsonObject.Create(json);
+            jsonObject?.Remove("type");
+            var jsonWithoutDiscriminator =
+                jsonObject != null ? JsonSerializer.SerializeToElement(jsonObject, options) : json;
+
             var value = discriminator switch
             {
                 "overlapping_rate_entries" =>
-                    json.Deserialize<global::Candid.Net.FeeSchedules.V3.OverlappingRateEntriesError?>(
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.FeeSchedules.V3.OverlappingRateEntriesError?>(
                         options
                     )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.FeeSchedules.V3.OverlappingRateEntriesError"
                         ),
                 "version_conflict" =>
-                    json.Deserialize<global::Candid.Net.Commons.EntityConflictErrorMessage?>(
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Commons.EntityConflictErrorMessage?>(
                         options
                     )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.Commons.EntityConflictErrorMessage"
                         ),
                 "organization_provider_not_found" =>
-                    json.Deserialize<global::Candid.Net.Commons.EntityNotFoundErrorMessage?>(
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Commons.EntityNotFoundErrorMessage?>(
                         options
                     )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.Commons.EntityNotFoundErrorMessage"
                         ),
-                "duplicate_rate" => new { },
-                "empty_entries" => new { },
+                "duplicate_rate" => null,
+                "empty_entries" => null,
                 "payer_plan_group_not_found" =>
-                    json.Deserialize<global::Candid.Net.Commons.EntityNotFoundErrorMessage?>(
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Commons.EntityNotFoundErrorMessage?>(
                         options
                     )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.Commons.EntityNotFoundErrorMessage"
                         ),
                 "payer_plan_group_does_not_match_rate_payer" =>
-                    json.Deserialize<global::Candid.Net.FeeSchedules.V3.PayerPlanGroupDoesNotMatchRatePayerError?>(
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.FeeSchedules.V3.PayerPlanGroupDoesNotMatchRatePayerError?>(
                         options
                     )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.FeeSchedules.V3.PayerPlanGroupDoesNotMatchRatePayerError"
                         ),
                 "payer_plan_group_network_type_mutual_exclusion" =>
-                    json.Deserialize<global::Candid.Net.Commons.EntityConflictErrorMessage?>(
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Commons.EntityConflictErrorMessage?>(
                         options
                     )
                         ?? throw new JsonException(
@@ -582,6 +588,27 @@ public record ValidationError
                 } ?? new JsonObject();
             json["type"] = value.Type;
             json.WriteTo(writer, options);
+        }
+
+        public override ValidationError ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            global::System.Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new JsonException("The JSON property name could not be read as a string.");
+            return new ValidationError(stringValue, stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            ValidationError value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Type);
         }
     }
 
@@ -655,9 +682,9 @@ public record ValidationError
     [Serializable]
     public record DuplicateRate
     {
-        internal object Value => new { };
+        internal object? Value => null;
 
-        public override string ToString() => Value.ToString() ?? "null";
+        public override string ToString() => Value?.ToString() ?? "null";
     }
 
     /// <summary>
@@ -666,9 +693,9 @@ public record ValidationError
     [Serializable]
     public record EmptyEntries
     {
-        internal object Value => new { };
+        internal object? Value => null;
 
-        public override string ToString() => Value.ToString() ?? "null";
+        public override string ToString() => Value?.ToString() ?? "null";
     }
 
     /// <summary>

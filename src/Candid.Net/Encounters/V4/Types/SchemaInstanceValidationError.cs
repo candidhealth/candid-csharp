@@ -1,10 +1,10 @@
 // ReSharper disable NullableWarningSuppressionIsUsed
 // ReSharper disable InconsistentNaming
 
-using System.Text.Json;
-using System.Text.Json.Nodes;
-using System.Text.Json.Serialization;
-using Candid.Net.Core;
+using global::Candid.Net.Core;
+using global::System.Text.Json;
+using global::System.Text.Json.Nodes;
+using global::System.Text.Json.Serialization;
 
 namespace Candid.Net.Encounters.V4;
 
@@ -362,38 +362,44 @@ public record SchemaInstanceValidationError
                 discriminatorElement.GetString()
                 ?? throw new JsonException("Discriminator property 'type' is null");
 
+            // Strip the discriminant property to prevent it from leaking into AdditionalProperties
+            var jsonObject = System.Text.Json.Nodes.JsonObject.Create(json);
+            jsonObject?.Remove("type");
+            var jsonWithoutDiscriminator =
+                jsonObject != null ? JsonSerializer.SerializeToElement(jsonObject, options) : json;
+
             var value = discriminator switch
             {
                 "multiple_instances_for_schema" =>
-                    json.Deserialize<global::Candid.Net.Encounters.V4.MultipleInstancesForSchemaError?>(
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Encounters.V4.MultipleInstancesForSchemaError?>(
                         options
                     )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.Encounters.V4.MultipleInstancesForSchemaError"
                         ),
                 "value_does_not_match_key_type" =>
-                    json.Deserialize<global::Candid.Net.Encounters.V4.ValueDoesNotMatchKeyTypeError?>(
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Encounters.V4.ValueDoesNotMatchKeyTypeError?>(
                         options
                     )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.Encounters.V4.ValueDoesNotMatchKeyTypeError"
                         ),
                 "key_does_not_exist" =>
-                    json.Deserialize<global::Candid.Net.Encounters.V4.KeyDoesNotExistError?>(
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Encounters.V4.KeyDoesNotExistError?>(
                         options
                     )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.Encounters.V4.KeyDoesNotExistError"
                         ),
                 "schema_does_not_exist" =>
-                    json.Deserialize<global::Candid.Net.Encounters.V4.SchemaDoesNotExistError?>(
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Encounters.V4.SchemaDoesNotExistError?>(
                         options
                     )
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.Encounters.V4.SchemaDoesNotExistError"
                         ),
                 "schema_unauthorized_access" =>
-                    json.Deserialize<global::Candid.Net.Encounters.V4.SchemaUnauthorizedAccessError?>(
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.Encounters.V4.SchemaUnauthorizedAccessError?>(
                         options
                     )
                         ?? throw new JsonException(
@@ -431,6 +437,27 @@ public record SchemaInstanceValidationError
                 } ?? new JsonObject();
             json["type"] = value.Type;
             json.WriteTo(writer, options);
+        }
+
+        public override SchemaInstanceValidationError ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            global::System.Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new JsonException("The JSON property name could not be read as a string.");
+            return new SchemaInstanceValidationError(stringValue, stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            SchemaInstanceValidationError value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Type);
         }
     }
 
