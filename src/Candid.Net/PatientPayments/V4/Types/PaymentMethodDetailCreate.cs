@@ -22,6 +22,9 @@ public record PaymentMethodDetailCreate : IJsonOnDeserialized
     [JsonPropertyName("organization_service_facility_id")]
     public string? OrganizationServiceFacilityId { get; set; }
 
+    [JsonPropertyName("provider_info")]
+    public PaymentMethodProviderInfo? ProviderInfo { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

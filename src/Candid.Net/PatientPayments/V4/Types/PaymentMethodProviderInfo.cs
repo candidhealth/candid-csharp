@@ -1,5 +1,4 @@
 using global::Candid.Net;
-using global::Candid.Net.Commons;
 using global::Candid.Net.Core;
 using global::System.Text.Json;
 using global::System.Text.Json.Serialization;
@@ -7,20 +6,20 @@ using global::System.Text.Json.Serialization;
 namespace Candid.Net.PatientPayments.V4;
 
 [Serializable]
-public record PaymentMethodDetail : IJsonOnDeserialized
+public record PaymentMethodProviderInfo : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
-    [JsonPropertyName("payment_method")]
-    public required PaymentMethod PaymentMethod { get; set; }
+    [JsonPropertyName("npi")]
+    public string? Npi { get; set; }
 
-    [JsonPropertyName("collected_at_address")]
-    public StreetAddressShortZip? CollectedAtAddress { get; set; }
+    [JsonPropertyName("first_name")]
+    public string? FirstName { get; set; }
 
-    [JsonPropertyName("provider_info")]
-    public PaymentMethodProviderInfo? ProviderInfo { get; set; }
+    [JsonPropertyName("last_name")]
+    public string? LastName { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

@@ -75,6 +75,11 @@ public class GetTest : BaseMockServerTest
                   "city": "city",
                   "state": "AA",
                   "zip_code": "zip_code"
+                },
+                "provider_info": {
+                  "npi": "npi",
+                  "first_name": "first_name",
+                  "last_name": "last_name"
                 }
               }
             }
