@@ -440,7 +440,7 @@ public partial class V1Client : IV1Client
     }
 
     /// <summary>
-    /// Returns all payer plan groups matching filter criteria.
+    /// Returns all payer plans matching filter criteria.
     /// </summary>
     /// <example><code>
     /// await client.PayerPlanGroups.V1.GetMultiAsync(new PayerPlanGroupGetMultiRequest());
@@ -457,7 +457,7 @@ public partial class V1Client : IV1Client
     }
 
     /// <summary>
-    /// Return a plan group with a given ID.
+    /// Return a payer plan with a given ID.
     /// </summary>
     /// <example><code>
     /// await client.PayerPlanGroups.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
@@ -474,7 +474,7 @@ public partial class V1Client : IV1Client
     }
 
     /// <summary>
-    /// Create a payer plan group
+    /// Create a payer plan
     /// </summary>
     /// <example><code>
     /// await client.PayerPlanGroups.V1.CreateAsync(
@@ -498,7 +498,7 @@ public partial class V1Client : IV1Client
     }
 
     /// <summary>
-    /// Update any of the fields on a payer plan group
+    /// Update any of the fields on a payer plan
     /// </summary>
     /// <example><code>
     /// await client.PayerPlanGroups.V1.UpdateAsync(
@@ -524,7 +524,7 @@ public partial class V1Client : IV1Client
     }
 
     /// <summary>
-    /// Marks the payer plan group as deactivated
+    /// Marks the payer plan as deactivated
     /// </summary>
     /// <example><code>
     /// await client.PayerPlanGroups.V1.DeactivateAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");

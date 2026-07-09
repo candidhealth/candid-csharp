@@ -32,6 +32,10 @@ public record UniversalServiceLineCreateStandalone : IJsonOnDeserialized
     [JsonPropertyName("revenue_code")]
     public string? RevenueCode { get; set; }
 
+    /// <summary>
+    /// Pass `null` to create the service line as uncoded, which is valid for institutional (837i) claims that bill by
+    /// revenue code rather than a CPT/HCPCS code.
+    /// </summary>
     [JsonPropertyName("procedure_code")]
     public string? ProcedureCode { get; set; }
 

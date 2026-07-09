@@ -59,13 +59,13 @@ public record InsuranceCardCreateOptional : IJsonOnDeserialized
     public string? ImageUrlBack { get; set; }
 
     /// <summary>
-    /// Set to PAYER_PLAN_GROUP to use Payer Plan Groups for automatic payer resolution. See Payer Information documentation for details.
+    /// Set to PAYER_PLAN_GROUP to use Payer Plans for automatic payer resolution. See Payer Information documentation for details.
     /// </summary>
     [JsonPropertyName("emr_payer_crosswalk")]
     public EmrPayerCrosswalk? EmrPayerCrosswalk { get; set; }
 
     /// <summary>
-    /// When using emr_payer_crosswalk set to PAYER_PLAN_GROUP, specify the payer plan group name here. See Payer Information documentation for details.
+    /// When using emr_payer_crosswalk set to PAYER_PLAN_GROUP, specify the payer plan name here. See Payer Information documentation for details.
     /// </summary>
     [JsonPropertyName("payer_plan_group_name")]
     public string? PayerPlanGroupName { get; set; }

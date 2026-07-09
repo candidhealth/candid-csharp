@@ -6,7 +6,7 @@ using global::System.Text.Json.Serialization;
 namespace Candid.Net.FeeSchedules.V3;
 
 /// <summary>
-/// Match information for a payer plan group
+/// Match information for a payer plan
 /// </summary>
 [Serializable]
 public record MatchPayerPlanGroups : IJsonOnDeserialized

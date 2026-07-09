@@ -1,5 +1,5 @@
 {
-  "cliVersion": "5.44.3",
+  "cliVersion": "5.67.1",
   "generatorName": "fernapi/fern-csharp-sdk",
   "generatorVersion": "2.69.2",
   "generatorConfig": {
@@ -13,10 +13,10 @@
     "explicit-namespaces": true,
     "experimental-fully-qualified-namespaces": true
   },
-  "originGitCommit": "a538fe7169de379d367ab670f91808e6cbf43802",
+  "originGitCommit": "fe969f1d531c74cf0504a3285d6ec4061b5ffd7f",
   "originGitCommitIsDirty": true,
   "invokedBy": "ci",
-  "requestedVersion": "1.26.0",
+  "requestedVersion": "1.27.0",
   "ciProvider": "github",
-  "sdkVersion": "1.26.0"
+  "sdkVersion": "1.27.0"
 }

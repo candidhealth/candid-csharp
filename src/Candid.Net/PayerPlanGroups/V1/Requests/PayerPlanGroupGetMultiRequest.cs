@@ -56,7 +56,7 @@ public record PayerPlanGroupGetMultiRequest
     public string? PageToken { get; set; }
 
     /// <summary>
-    /// Filter to a specific organization's payer plan groups. If not provided, defaults to the requesting user's organization.
+    /// Filter to a specific organization's payer plans. If not provided, defaults to the requesting user's organization.
     /// </summary>
     [JsonIgnore]
     public string? OrganizationId { get; set; }

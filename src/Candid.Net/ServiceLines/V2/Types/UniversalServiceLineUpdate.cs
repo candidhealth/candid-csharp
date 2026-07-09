@@ -60,6 +60,8 @@ public record UniversalServiceLineUpdate : IJsonOnDeserialized
 
     /// <summary>
     /// If `procedure_code` is updated, and `charge_amount_cents` is not, then `charge_amount_cents` will be set by the system.
+    /// Pass `null` to uncode the service line, which is valid for institutional (837i) claims that bill by revenue code
+    /// rather than a CPT/HCPCS code.
     /// </summary>
     [JsonPropertyName("procedure_code")]
     public string? ProcedureCode { get; set; }

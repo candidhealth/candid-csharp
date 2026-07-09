@@ -161,6 +161,11 @@ public readonly record struct ProcedureModifier : IStringEnum
     public static readonly ProcedureModifier SixtySix = new(Values.SixtySix);
 
     /// <summary>
+    /// Discontinued Outpatient Hospital/Ambulatory Surgery Center (ASC) Procedure Prior to Administration of Anesthesia
+    /// </summary>
+    public static readonly ProcedureModifier SeventyThree = new(Values.SeventyThree);
+
+    /// <summary>
     /// Discontinued Outpatient Hospital/Ambulatory Surgery Center (ASC) Procedure After Administration of Anesthesia
     /// </summary>
     public static readonly ProcedureModifier SeventyFour = new(Values.SeventyFour);
@@ -2287,6 +2292,11 @@ public readonly record struct ProcedureModifier : IStringEnum
         /// Surgical Team
         /// </summary>
         public const string SixtySix = "66";
+
+        /// <summary>
+        /// Discontinued Outpatient Hospital/Ambulatory Surgery Center (ASC) Procedure Prior to Administration of Anesthesia
+        /// </summary>
+        public const string SeventyThree = "73";
 
         /// <summary>
         /// Discontinued Outpatient Hospital/Ambulatory Surgery Center (ASC) Procedure After Administration of Anesthesia

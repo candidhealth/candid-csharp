@@ -6,7 +6,7 @@ namespace Candid.Net.PayerPlanGroups.V1;
 public partial interface IV1Client
 {
     /// <summary>
-    /// Returns all payer plan groups matching filter criteria.
+    /// Returns all payer plans matching filter criteria.
     /// </summary>
     WithRawResponseTask<PayerPlanGroupPage> GetMultiAsync(
         PayerPlanGroupGetMultiRequest request,
@@ -15,7 +15,7 @@ public partial interface IV1Client
     );
 
     /// <summary>
-    /// Return a plan group with a given ID.
+    /// Return a payer plan with a given ID.
     /// </summary>
     WithRawResponseTask<PayerPlanGroup> GetAsync(
         string payerPlanGroupId,
@@ -24,7 +24,7 @@ public partial interface IV1Client
     );
 
     /// <summary>
-    /// Create a payer plan group
+    /// Create a payer plan
     /// </summary>
     WithRawResponseTask<PayerPlanGroup> CreateAsync(
         MutablePayerPlanGroup request,
@@ -33,7 +33,7 @@ public partial interface IV1Client
     );
 
     /// <summary>
-    /// Update any of the fields on a payer plan group
+    /// Update any of the fields on a payer plan
     /// </summary>
     WithRawResponseTask<PayerPlanGroup> UpdateAsync(
         string payerPlanGroupId,
@@ -43,7 +43,7 @@ public partial interface IV1Client
     );
 
     /// <summary>
-    /// Marks the payer plan group as deactivated
+    /// Marks the payer plan as deactivated
     /// </summary>
     WithRawResponseTask<PayerPlanGroup> DeactivateAsync(
         string payerPlanGroupId,

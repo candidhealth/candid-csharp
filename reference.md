@@ -8340,7 +8340,7 @@ await client.PatientRefunds.V1.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32
 <dl>
 <dd>
 
-Returns all payer plan groups matching filter criteria.
+Returns all payer plans matching filter criteria.
 </dd>
 </dl>
 </dd>
@@ -8394,7 +8394,7 @@ await client.PayerPlanGroups.V1.GetMultiAsync(new PayerPlanGroupGetMultiRequest(
 <dl>
 <dd>
 
-Return a plan group with a given ID.
+Return a payer plan with a given ID.
 </dd>
 </dl>
 </dd>
@@ -8448,7 +8448,7 @@ await client.PayerPlanGroups.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32")
 <dl>
 <dd>
 
-Create a payer plan group
+Create a payer plan
 </dd>
 </dl>
 </dd>
@@ -8509,7 +8509,7 @@ await client.PayerPlanGroups.V1.CreateAsync(
 <dl>
 <dd>
 
-Update any of the fields on a payer plan group
+Update any of the fields on a payer plan
 </dd>
 </dl>
 </dd>
@@ -8579,7 +8579,7 @@ await client.PayerPlanGroups.V1.UpdateAsync(
 <dl>
 <dd>
 
-Marks the payer plan group as deactivated
+Marks the payer plan as deactivated
 </dd>
 </dl>
 </dd>
