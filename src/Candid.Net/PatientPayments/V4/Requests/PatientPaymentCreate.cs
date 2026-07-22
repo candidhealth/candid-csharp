@@ -34,6 +34,14 @@ public record PatientPaymentCreate
     [JsonPropertyName("source_internal_id")]
     public string? SourceInternalId { get; set; }
 
+    /// <summary>
+    /// Optional restrictions constraining which claims this payment's credit can be
+    /// auto-allocated to (e.g. billing provider NPI). Restriction (type, value) pairs must be
+    /// unique. When omitted, the payment is unrestricted.
+    /// </summary>
+    [JsonPropertyName("allocation_restrictions")]
+    public IEnumerable<AllocationRestrictionCreate>? AllocationRestrictions { get; set; }
+
     /// <inheritdoc />
     public override string ToString()
     {

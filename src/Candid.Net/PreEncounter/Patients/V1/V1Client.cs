@@ -695,6 +695,99 @@ public partial class V1Client : IV1Client
         }
     }
 
+    private async global::System.Threading.Tasks.Task<
+        WithRawResponse<EligibilityTimelinePage>
+    > GetEligibilityTimelineAsyncCore(
+        string id,
+        GetEligibilityTimelineRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _queryString = new global::Candid.Net.Core.QueryStringBuilder.Builder(capacity: 5)
+            .Add("event_types", request.EventTypes)
+            .Add("coverage_id", request.CoverageId)
+            .Add("appointment_id", request.AppointmentId)
+            .Add("page_token", request.PageToken)
+            .Add("limit", request.Limit)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new global::Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Get,
+                    Path = string.Format(
+                        "/patients/v1/{0}/eligibility-timeline",
+                        ValueConvert.ToPathParameterString(id)
+                    ),
+                    QueryString = _queryString,
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<EligibilityTimelinePage>(responseBody)!;
+                return new WithRawResponse<EligibilityTimelinePage>()
+                {
+                    Data = responseData,
+                    RawResponse = new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e,
+                    rawResponse: new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    }
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody,
+                rawResponse: new global::Candid.Net.RawResponse()
+                {
+                    StatusCode = response.Raw.StatusCode,
+                    Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                    Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                }
+            );
+        }
+    }
+
     private async global::System.Threading.Tasks.Task<WithRawResponse<Patient>> UpdateAsyncCore(
         string id,
         string version,
@@ -1576,6 +1669,27 @@ public partial class V1Client : IV1Client
     {
         return new WithRawResponseTask<PatientCoverageSnapshot>(
             GetCoverageSnapshotAsyncCore(id, request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Gets a patient's eligibility audit timeline, newest-first.  Org-scoped and keyset-paginated.
+    /// </summary>
+    /// <example><code>
+    /// await client.PreEncounter.Patients.V1.GetEligibilityTimelineAsync(
+    ///     "id",
+    ///     new GetEligibilityTimelineRequest()
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<EligibilityTimelinePage> GetEligibilityTimelineAsync(
+        string id,
+        GetEligibilityTimelineRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<EligibilityTimelinePage>(
+            GetEligibilityTimelineAsyncCore(id, request, options, cancellationToken)
         );
     }
 

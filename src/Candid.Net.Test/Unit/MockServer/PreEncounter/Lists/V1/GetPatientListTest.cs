@@ -591,6 +591,7 @@ public class GetPatientListTest : BaseMockServerTest
                           "service_facility_id": "service_facility_id"
                         },
                         "dx_codes": [
+                          "dx_codes",
                           "dx_codes"
                         ]
                       },
@@ -619,6 +620,7 @@ public class GetPatientListTest : BaseMockServerTest
                           "service_facility_id": "service_facility_id"
                         },
                         "dx_codes": [
+                          "dx_codes",
                           "dx_codes"
                         ]
                       }
@@ -1962,6 +1964,7 @@ public class GetPatientListTest : BaseMockServerTest
                           "service_facility_id": "service_facility_id"
                         },
                         "dx_codes": [
+                          "dx_codes",
                           "dx_codes"
                         ]
                       },
@@ -1990,6 +1993,7 @@ public class GetPatientListTest : BaseMockServerTest
                           "service_facility_id": "service_facility_id"
                         },
                         "dx_codes": [
+                          "dx_codes",
                           "dx_codes"
                         ]
                       }

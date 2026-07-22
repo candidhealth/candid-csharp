@@ -51,6 +51,12 @@ public record Note : IJsonOnDeserialized
     [JsonPropertyName("value")]
     public required string Value { get; set; }
 
+    /// <summary>
+    /// Defaults to GENERAL when omitted.
+    /// </summary>
+    [JsonPropertyName("type")]
+    public NoteType? Type { get; set; }
+
     [JsonPropertyName("author_email")]
     public string? AuthorEmail { get; set; }
 

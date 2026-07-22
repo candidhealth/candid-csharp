@@ -15,6 +15,7 @@ public class ItemizeTest : BaseMockServerTest
             {
               "claim_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
               "patient_balance_cents": 1,
+              "organization_service_facility_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
               "claim_level_patient_payments": {
                 "total_payment_cents": 1,
                 "items": [

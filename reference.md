@@ -3375,7 +3375,7 @@ await client.EncounterSupplementalInformation.V1.CreateAsync(
     new CreateSupplementalInformationRequest
     {
         AttachmentReportTypeCode = ReportTypeCode.C03,
-        AttachmentTransmissionCode = ReportTransmissionCode.Cbm,
+        AttachmentTransmissionCode = ReportTransmissionCode.Caa,
         AttachmentInclusion = AttachmentInclusion.NotIncluded,
     }
 );
@@ -13709,6 +13709,71 @@ await client.PreEncounter.Patients.V1.GetCoverageSnapshotAsync(
 <dd>
 
 **request:** `GetCoverageSnapshotRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PreEncounter.Patients.V1.<a href="/src/Candid.Net/PreEncounter/Patients/V1/V1Client.cs">GetEligibilityTimelineAsync</a>(id, GetEligibilityTimelineRequest { ... }) -> WithRawResponseTask&lt;EligibilityTimelinePage&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets a patient's eligibility audit timeline, newest-first.  Org-scoped and keyset-paginated.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreEncounter.Patients.V1.GetEligibilityTimelineAsync(
+    "id",
+    new GetEligibilityTimelineRequest()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `GetEligibilityTimelineRequest` 
     
 </dd>
 </dl>

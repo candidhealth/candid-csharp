@@ -22,7 +22,7 @@ public partial class V4Client : IV4Client
         CancellationToken cancellationToken = default
     )
     {
-        var _queryString = new global::Candid.Net.Core.QueryStringBuilder.Builder(capacity: 17)
+        var _queryString = new global::Candid.Net.Core.QueryStringBuilder.Builder(capacity: 18)
             .Add("limit", request.Limit)
             .Add("claim_status", request.ClaimStatus)
             .Add("sort", request.Sort)
@@ -40,6 +40,7 @@ public partial class V4Client : IV4Client
             .Add("owner_of_next_action", request.OwnerOfNextAction)
             .Add("patient_external_id", request.PatientExternalId)
             .Add("include_merged_patient_data", request.IncludeMergedPatientData)
+            .Add("billing_provider_npis", request.BillingProviderNpis)
             .MergeAdditional(options?.AdditionalQueryParameters)
             .Build();
         var _headers = await new global::Candid.Net.Core.HeadersBuilder.Builder()

@@ -80,6 +80,16 @@ public partial interface IV1Client
     );
 
     /// <summary>
+    /// Gets a patient's eligibility audit timeline, newest-first.  Org-scoped and keyset-paginated.
+    /// </summary>
+    WithRawResponseTask<EligibilityTimelinePage> GetEligibilityTimelineAsync(
+        string id,
+        GetEligibilityTimelineRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// Updates a patient. The path must contain the next version number to prevent race conditions. For example, if the current version of the patient is n, you will need to send a request to this endpoint with `/{id}/n+1` to update the patient. Updating historic versions is not supported.
     /// </summary>
     WithRawResponseTask<Patient> UpdateAsync(

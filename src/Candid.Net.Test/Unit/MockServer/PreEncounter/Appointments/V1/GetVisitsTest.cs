@@ -587,6 +587,7 @@ public class GetVisitsTest : BaseMockServerTest
                           "service_facility_id": "service_facility_id"
                         },
                         "dx_codes": [
+                          "dx_codes",
                           "dx_codes"
                         ]
                       },
@@ -615,6 +616,7 @@ public class GetVisitsTest : BaseMockServerTest
                           "service_facility_id": "service_facility_id"
                         },
                         "dx_codes": [
+                          "dx_codes",
                           "dx_codes"
                         ]
                       }
@@ -810,7 +812,9 @@ public class GetVisitsTest : BaseMockServerTest
                   "primary_coverage_status": "ACTIVE",
                   "secondary_coverage_status": "ACTIVE",
                   "primary_payer_name": "primary_payer_name",
-                  "primary_payer_plan_group_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
+                  "primary_payer_plan_group_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+                  "secondary_payer_name": "secondary_payer_name",
+                  "secondary_payer_plan_group_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
                 },
                 {
                   "patient_id": "patient_id",
@@ -1384,6 +1388,7 @@ public class GetVisitsTest : BaseMockServerTest
                           "service_facility_id": "service_facility_id"
                         },
                         "dx_codes": [
+                          "dx_codes",
                           "dx_codes"
                         ]
                       },
@@ -1412,6 +1417,7 @@ public class GetVisitsTest : BaseMockServerTest
                           "service_facility_id": "service_facility_id"
                         },
                         "dx_codes": [
+                          "dx_codes",
                           "dx_codes"
                         ]
                       }
@@ -1607,7 +1613,9 @@ public class GetVisitsTest : BaseMockServerTest
                   "primary_coverage_status": "ACTIVE",
                   "secondary_coverage_status": "ACTIVE",
                   "primary_payer_name": "primary_payer_name",
-                  "primary_payer_plan_group_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
+                  "primary_payer_plan_group_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+                  "secondary_payer_name": "secondary_payer_name",
+                  "secondary_payer_plan_group_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
                 }
               ],
               "next_page_token": "next_page_token",

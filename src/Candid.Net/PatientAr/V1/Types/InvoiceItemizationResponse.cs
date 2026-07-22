@@ -24,6 +24,12 @@ public record InvoiceItemizationResponse : IJsonOnDeserialized
     [JsonPropertyName("patient_balance_cents")]
     public required int PatientBalanceCents { get; set; }
 
+    /// <summary>
+    /// The organization service facility ID from the claim's encounter.
+    /// </summary>
+    [JsonPropertyName("organization_service_facility_id")]
+    public string? OrganizationServiceFacilityId { get; set; }
+
     [JsonPropertyName("claim_level_patient_payments")]
     public required PatientPaymentInfo ClaimLevelPatientPayments { get; set; }
 

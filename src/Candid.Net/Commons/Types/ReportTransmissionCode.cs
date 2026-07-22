@@ -9,6 +9,11 @@ namespace Candid.Net.Commons;
 public readonly record struct ReportTransmissionCode : IStringEnum
 {
     /// <summary>
+    /// Available on Request at Provider Site
+    /// </summary>
+    public static readonly ReportTransmissionCode Caa = new(Values.Caa);
+
+    /// <summary>
     /// By Mail
     /// </summary>
     public static readonly ReportTransmissionCode Cbm = new(Values.Cbm);
@@ -119,6 +124,11 @@ public readonly record struct ReportTransmissionCode : IStringEnum
     [Serializable]
     public static class Values
     {
+        /// <summary>
+        /// Available on Request at Provider Site
+        /// </summary>
+        public const string Caa = "AA";
+
         /// <summary>
         /// By Mail
         /// </summary>

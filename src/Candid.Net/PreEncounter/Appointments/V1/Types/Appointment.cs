@@ -97,6 +97,9 @@ public record Appointment : IJsonOnDeserialized
     [JsonPropertyName("estimated_copay_cents")]
     public int? EstimatedCopayCents { get; set; }
 
+    /// <summary>
+    /// The estimated amount the patient will be responsible for paying at the time of service. This does not include the copay.
+    /// </summary>
     [JsonPropertyName("estimated_patient_responsibility_cents")]
     public int? EstimatedPatientResponsibilityCents { get; set; }
 

@@ -7,7 +7,7 @@ namespace Candid.Net.Credentialing.V2;
 public record FacilityCredentialingSpanUpdate
 {
     /// <summary>
-    /// The ID of the billing provider for which the service facility is covered by the credentialing span.
+    /// The ID of the billing provider for which the rendering provider is covered by the credentialing span.
     /// </summary>
     [JsonPropertyName("contracting_provider_id")]
     public required string ContractingProviderId { get; set; }

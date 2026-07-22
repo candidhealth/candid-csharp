@@ -44,6 +44,12 @@ public record Visit : IJsonOnDeserialized
     [JsonPropertyName("primary_payer_plan_group_id")]
     public string? PrimaryPayerPlanGroupId { get; set; }
 
+    [JsonPropertyName("secondary_payer_name")]
+    public string? SecondaryPayerName { get; set; }
+
+    [JsonPropertyName("secondary_payer_plan_group_id")]
+    public string? SecondaryPayerPlanGroupId { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

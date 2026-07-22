@@ -68,7 +68,7 @@ public record Authorization : IJsonOnDeserialized
     /// When set, the authorization will only apply when at least one of these diagnosis codes is found on the claim/service lines (in addition to other criteria).
     /// </summary>
     [JsonPropertyName("dx_codes")]
-    public HashSet<string>? DxCodes { get; set; }
+    public IEnumerable<string>? DxCodes { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

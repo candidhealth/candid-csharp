@@ -105,6 +105,12 @@ public record GetAllEncountersRequest
     [JsonIgnore]
     public bool? IncludeMergedPatientData { get; set; }
 
+    /// <summary>
+    /// Filter to encounters whose billing provider matches any of these NPIs.
+    /// </summary>
+    [JsonIgnore]
+    public IEnumerable<string> BillingProviderNpis { get; set; } = new List<string>();
+
     /// <inheritdoc />
     public override string ToString()
     {

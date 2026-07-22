@@ -3,32 +3,27 @@ using global::Candid.Net.Core;
 using global::System.Text.Json;
 using global::System.Text.Json.Serialization;
 
-namespace Candid.Net.PreEncounter.Notes.V1;
+namespace Candid.Net.PreEncounter.Patients.V1;
 
-/// <summary>
-/// An object representing a Note.
-/// </summary>
 [Serializable]
-public record MutableNote : IJsonOnDeserialized
+public record EligibilityTimelinePage : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
-    [JsonPropertyName("value")]
-    public required string Value { get; set; }
+    [JsonPropertyName("items")]
+    public IEnumerable<EligibilityTimelineEvent> Items { get; set; } =
+        new List<EligibilityTimelineEvent>();
 
-    /// <summary>
-    /// Defaults to GENERAL when omitted.
-    /// </summary>
-    [JsonPropertyName("type")]
-    public NoteType? Type { get; set; }
+    [JsonPropertyName("next_page_token")]
+    public string? NextPageToken { get; set; }
 
-    [JsonPropertyName("author_email")]
-    public string? AuthorEmail { get; set; }
+    [JsonPropertyName("prev_page_token")]
+    public string? PrevPageToken { get; set; }
 
-    [JsonPropertyName("author_name")]
-    public string? AuthorName { get; set; }
+    [JsonPropertyName("total")]
+    public required int Total { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

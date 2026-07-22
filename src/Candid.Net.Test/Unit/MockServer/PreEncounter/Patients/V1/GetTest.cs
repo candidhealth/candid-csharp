@@ -658,6 +658,7 @@ public class GetTest : BaseMockServerTest
                     "service_facility_id": "service_facility_id"
                   },
                   "dx_codes": [
+                    "dx_codes",
                     "dx_codes"
                   ]
                 },
@@ -686,6 +687,7 @@ public class GetTest : BaseMockServerTest
                     "service_facility_id": "service_facility_id"
                   },
                   "dx_codes": [
+                    "dx_codes",
                     "dx_codes"
                   ]
                 }

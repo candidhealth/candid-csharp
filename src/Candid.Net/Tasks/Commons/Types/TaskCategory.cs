@@ -132,6 +132,8 @@ public readonly record struct TaskCategory : IStringEnum
         Values.PayerConfigurationError
     );
 
+    public static readonly TaskCategory DowncodingReview = new(Values.DowncodingReview);
+
     public TaskCategory(string value)
     {
         Value = value;
@@ -312,5 +314,7 @@ public readonly record struct TaskCategory : IStringEnum
         public const string IncorrectReferringProviderInfo = "incorrect_referring_provider_info";
 
         public const string PayerConfigurationError = "payer_configuration_error";
+
+        public const string DowncodingReview = "downcoding_review";
     }
 }

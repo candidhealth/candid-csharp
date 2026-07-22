@@ -1832,12 +1832,12 @@ public class GetTest : BaseMockServerTest
               "claim_supplemental_information": [
                 {
                   "attachment_report_type_code": "03",
-                  "attachment_transmission_code": "BM",
+                  "attachment_transmission_code": "AA",
                   "attachment_control_number": "attachment_control_number"
                 },
                 {
                   "attachment_report_type_code": "03",
-                  "attachment_transmission_code": "BM",
+                  "attachment_transmission_code": "AA",
                   "attachment_control_number": "attachment_control_number"
                 }
               ],

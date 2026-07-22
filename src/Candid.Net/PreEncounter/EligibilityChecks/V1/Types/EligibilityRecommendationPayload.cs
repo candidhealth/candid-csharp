@@ -30,6 +30,17 @@ public record EligibilityRecommendationPayload
     }
 
     /// <summary>
+    /// Create an instance of EligibilityRecommendationPayload with <see cref="EligibilityRecommendationPayload.MedicaidManagedCare"/>.
+    /// </summary>
+    public EligibilityRecommendationPayload(
+        EligibilityRecommendationPayload.MedicaidManagedCare value
+    )
+    {
+        Type = "MEDICAID_MANAGED_CARE";
+        Value = value.Value;
+    }
+
+    /// <summary>
     /// Create an instance of EligibilityRecommendationPayload with <see cref="EligibilityRecommendationPayload.CoordinationOfBenefits"/>.
     /// </summary>
     public EligibilityRecommendationPayload(
@@ -77,6 +88,11 @@ public record EligibilityRecommendationPayload
     public bool IsMedicareAdvantage => Type == "MEDICARE_ADVANTAGE";
 
     /// <summary>
+    /// Returns true if <see cref="Type"/> is "MEDICAID_MANAGED_CARE"
+    /// </summary>
+    public bool IsMedicaidManagedCare => Type == "MEDICAID_MANAGED_CARE";
+
+    /// <summary>
     /// Returns true if <see cref="Type"/> is "COORDINATION_OF_BENEFITS"
     /// </summary>
     public bool IsCoordinationOfBenefits => Type == "COORDINATION_OF_BENEFITS";
@@ -101,6 +117,18 @@ public record EligibilityRecommendationPayload
                 Value!
             : throw new global::System.Exception(
                 "EligibilityRecommendationPayload.Type is not 'MEDICARE_ADVANTAGE'"
+            );
+
+    /// <summary>
+    /// Returns the value as a <see cref="global::Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation"/> if <see cref="Type"/> is 'MEDICAID_MANAGED_CARE', otherwise throws an exception.
+    /// </summary>
+    /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'MEDICAID_MANAGED_CARE'.</exception>
+    public global::Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation AsMedicaidManagedCare() =>
+        IsMedicaidManagedCare
+            ? (global::Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation)
+                Value!
+            : throw new global::System.Exception(
+                "EligibilityRecommendationPayload.Type is not 'MEDICAID_MANAGED_CARE'"
             );
 
     /// <summary>
@@ -145,6 +173,10 @@ public record EligibilityRecommendationPayload
             T
         > onMedicareAdvantage,
         Func<
+            global::Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation,
+            T
+        > onMedicaidManagedCare,
+        Func<
             global::Candid.Net.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsRecommendation,
             T
         > onCoordinationOfBenefits,
@@ -162,6 +194,7 @@ public record EligibilityRecommendationPayload
         return Type switch
         {
             "MEDICARE_ADVANTAGE" => onMedicareAdvantage(AsMedicareAdvantage()),
+            "MEDICAID_MANAGED_CARE" => onMedicaidManagedCare(AsMedicaidManagedCare()),
             "COORDINATION_OF_BENEFITS" => onCoordinationOfBenefits(AsCoordinationOfBenefits()),
             "COPAY_ESTIMATION" => onCopayEstimation(AsCopayEstimation()),
             "USER_CONFIGURED_PROMPTS" => onUserConfiguredPrompts(AsUserConfiguredPrompts()),
@@ -171,6 +204,7 @@ public record EligibilityRecommendationPayload
 
     public void Visit(
         Action<global::Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation> onMedicareAdvantage,
+        Action<global::Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation> onMedicaidManagedCare,
         Action<global::Candid.Net.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsRecommendation> onCoordinationOfBenefits,
         Action<global::Candid.Net.PreEncounter.EligibilityChecks.V1.CopayEstimationRecommendation> onCopayEstimation,
         Action<global::Candid.Net.PreEncounter.EligibilityChecks.V1.UserConfiguredPromptsRecommendation> onUserConfiguredPrompts,
@@ -181,6 +215,9 @@ public record EligibilityRecommendationPayload
         {
             case "MEDICARE_ADVANTAGE":
                 onMedicareAdvantage(AsMedicareAdvantage());
+                break;
+            case "MEDICAID_MANAGED_CARE":
+                onMedicaidManagedCare(AsMedicaidManagedCare());
                 break;
             case "COORDINATION_OF_BENEFITS":
                 onCoordinationOfBenefits(AsCoordinationOfBenefits());
@@ -205,6 +242,24 @@ public record EligibilityRecommendationPayload
     )
     {
         if (Type == "MEDICARE_ADVANTAGE")
+        {
+            value =
+                (global::Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation)
+                    Value!;
+            return true;
+        }
+        value = null;
+        return false;
+    }
+
+    /// <summary>
+    /// Attempts to cast the value to a <see cref="global::Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation"/> and returns true if successful.
+    /// </summary>
+    public bool TryAsMedicaidManagedCare(
+        out global::Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation? value
+    )
+    {
+        if (Type == "MEDICAID_MANAGED_CARE")
         {
             value =
                 (global::Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation)
@@ -276,6 +331,10 @@ public record EligibilityRecommendationPayload
     ) => new(value);
 
     public static implicit operator EligibilityRecommendationPayload(
+        EligibilityRecommendationPayload.MedicaidManagedCare value
+    ) => new(value);
+
+    public static implicit operator EligibilityRecommendationPayload(
         EligibilityRecommendationPayload.CoordinationOfBenefits value
     ) => new(value);
 
@@ -335,6 +394,13 @@ public record EligibilityRecommendationPayload
                         ?? throw new JsonException(
                             "Failed to deserialize global::Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation"
                         ),
+                "MEDICAID_MANAGED_CARE" =>
+                    jsonWithoutDiscriminator.Deserialize<global::Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation?>(
+                        options
+                    )
+                        ?? throw new JsonException(
+                            "Failed to deserialize global::Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation"
+                        ),
                 "COORDINATION_OF_BENEFITS" =>
                     jsonWithoutDiscriminator.Deserialize<global::Candid.Net.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsRecommendation?>(
                         options
@@ -371,6 +437,7 @@ public record EligibilityRecommendationPayload
                 value.Type switch
                 {
                     "MEDICARE_ADVANTAGE" => JsonSerializer.SerializeToNode(value.Value, options),
+                    "MEDICAID_MANAGED_CARE" => JsonSerializer.SerializeToNode(value.Value, options),
                     "COORDINATION_OF_BENEFITS" => JsonSerializer.SerializeToNode(
                         value.Value,
                         options
@@ -426,6 +493,28 @@ public record EligibilityRecommendationPayload
         public override string ToString() => Value.ToString() ?? "null";
 
         public static implicit operator EligibilityRecommendationPayload.MedicareAdvantage(
+            global::Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation value
+        ) => new(value);
+    }
+
+    /// <summary>
+    /// Discriminated union type for MEDICAID_MANAGED_CARE
+    /// </summary>
+    [Serializable]
+    public struct MedicaidManagedCare
+    {
+        public MedicaidManagedCare(
+            global::Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation value
+        )
+        {
+            Value = value;
+        }
+
+        internal global::Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation Value { get; set; }
+
+        public override string ToString() => Value.ToString() ?? "null";
+
+        public static implicit operator EligibilityRecommendationPayload.MedicaidManagedCare(
             global::Candid.Net.PreEncounter.EligibilityChecks.V1.MedicareAdvantageRecommendation value
         ) => new(value);
     }

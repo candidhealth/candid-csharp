@@ -347,7 +347,7 @@ public partial class V1Client : IV1Client
     ///     new CreateSupplementalInformationRequest
     ///     {
     ///         AttachmentReportTypeCode = ReportTypeCode.C03,
-    ///         AttachmentTransmissionCode = ReportTransmissionCode.Cbm,
+    ///         AttachmentTransmissionCode = ReportTransmissionCode.Caa,
     ///         AttachmentInclusion = AttachmentInclusion.NotIncluded,
     ///     }
     /// );
