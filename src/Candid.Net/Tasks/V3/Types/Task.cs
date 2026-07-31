@@ -76,6 +76,9 @@ public record Task : IJsonOnDeserialized
     [JsonPropertyName("configurable_rule_id")]
     public string? ConfigurableRuleId { get; set; }
 
+    [JsonPropertyName("persisted_rule_id")]
+    public string? PersistedRuleId { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

@@ -22,6 +22,9 @@ public record PayerPlanGroup : IJsonOnDeserialized
     [JsonPropertyName("is_active")]
     public required bool IsActive { get; set; }
 
+    [JsonPropertyName("organization_id")]
+    public required string OrganizationId { get; set; }
+
     [JsonPropertyName("plan_group_name")]
     public required string PlanGroupName { get; set; }
 

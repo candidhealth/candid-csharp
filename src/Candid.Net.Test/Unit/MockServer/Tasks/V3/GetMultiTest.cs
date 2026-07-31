@@ -58,7 +58,8 @@ public class GetMultiTest : BaseMockServerTest
                     }
                   ],
                   "category": "other",
-                  "configurable_rule_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
+                  "configurable_rule_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+                  "persisted_rule_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
                 },
                 {
                   "task_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
@@ -103,7 +104,8 @@ public class GetMultiTest : BaseMockServerTest
                     }
                   ],
                   "category": "other",
-                  "configurable_rule_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
+                  "configurable_rule_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+                  "persisted_rule_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
                 }
               ],
               "prev_page_token": "prev_page_token",

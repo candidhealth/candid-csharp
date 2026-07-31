@@ -33,19 +33,19 @@ public record OrganizationProviderCreateV2 : IJsonOnDeserialized
     public required bool IsBilling { get; set; }
 
     /// <summary>
-    /// The first name of the provider, if the provider is an individual.
+    /// The first name of the provider. Required when provider_type is INDIVIDUAL. Must not be set when provider_type is ORGANIZATION.
     /// </summary>
     [JsonPropertyName("first_name")]
     public string? FirstName { get; set; }
 
     /// <summary>
-    /// The last name of the provider, if the provider is an individual.
+    /// The last name of the provider. Required when provider_type is INDIVIDUAL. Must not be set when provider_type is ORGANIZATION.
     /// </summary>
     [JsonPropertyName("last_name")]
     public string? LastName { get; set; }
 
     /// <summary>
-    /// The name of the provider, if the provider is an organization.
+    /// The name of the provider. Required when provider_type is ORGANIZATION. Must not be set when provider_type is INDIVIDUAL.
     /// </summary>
     [JsonPropertyName("organization_name")]
     public string? OrganizationName { get; set; }
@@ -57,7 +57,7 @@ public record OrganizationProviderCreateV2 : IJsonOnDeserialized
     public required ProviderType ProviderType { get; set; }
 
     /// <summary>
-    /// If the provider has a contract with insurance, this must be the same tax ID given to the payer on an IRS W-9 form completed during contracting.
+    /// Required when is_billing is true. If the provider has a contract with insurance, this must be the same tax ID given to the payer on an IRS W-9 form completed during contracting.
     /// </summary>
     [JsonPropertyName("tax_id")]
     public string? TaxId { get; set; }

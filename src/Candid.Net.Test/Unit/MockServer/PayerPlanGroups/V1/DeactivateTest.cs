@@ -32,6 +32,7 @@ public class DeactivateTest : BaseMockServerTest
                 }
               },
               "is_active": true,
+              "organization_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
               "plan_group_name": "plan_group_name",
               "payer_uuid": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
               "plan_type": "09"

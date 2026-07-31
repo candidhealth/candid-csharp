@@ -28,6 +28,8 @@ public record GetEventScanRequest
     /// | `PreEncounter.Coverage.Updated` | When a patient's coverage has been updated |
     /// | `PreEncounter.Tag.Created` | When a new tag has been created for a patient |
     /// | `PreEncounter.Tag.Updated` | When a patient's tag has been updated |
+    /// | `CandidApi.OrganizationProvider.Created` | When a new organization provider has been created |
+    /// | `CandidApi.OrganizationProvider.Updated` | When an organization provider has been updated |
     /// </summary>
     [JsonIgnore]
     public IEnumerable<string> EventTypes { get; set; } = new List<string>();
