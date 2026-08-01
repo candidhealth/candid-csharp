@@ -9489,6 +9489,63 @@ await client.Tasks.V3.UpdateAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32", new Ta
 </dl>
 </details>
 
+## Users V2
+<details><summary><code>client.Users.V2.<a href="/src/Candid.Net/Users/V2/V2Client.cs">CreateM2MUserV2Async</a>(M2MUserCreateV2 { ... }) -> WithRawResponseTask&lt;M2MUserResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Provisions a machine-to-machine (M2M) API user. Requires `organization_id`.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Users.V2.CreateM2MUserV2Async(
+    new M2MUserCreateV2 { Name = "name", OrganizationId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `M2MUserCreateV2` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## WriteOffs V1
 <details><summary><code>client.WriteOffs.V1.<a href="/src/Candid.Net/WriteOffs/V1/V1Client.cs">GetMultiAsync</a>(GetMultiWriteOffsRequest { ... }) -> WithRawResponseTask&lt;WriteOffsPage&gt;</code></summary>
 <dl>

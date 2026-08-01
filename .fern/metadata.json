@@ -13,10 +13,10 @@
     "explicit-namespaces": true,
     "experimental-fully-qualified-namespaces": true
   },
-  "originGitCommit": "5b96c7326bf58ea279655fcf00e9b968bd99d493",
+  "originGitCommit": "076a5ba449206dc91e4285f326918a60b8b10a80",
   "originGitCommitIsDirty": true,
   "invokedBy": "ci",
-  "requestedVersion": "1.29.0",
+  "requestedVersion": "1.30.0",
   "ciProvider": "github",
-  "sdkVersion": "1.29.0"
+  "sdkVersion": "1.30.0"
 }
