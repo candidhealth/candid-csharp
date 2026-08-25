@@ -24,6 +24,9 @@ public record NonInsurancePayerUpdateRequest : IJsonOnDeserialized
     [JsonPropertyName("category")]
     public NonInsurancePayerCategoryUpdate? Category { get; set; }
 
+    [JsonPropertyName("payer_id")]
+    public NonInsurancePayerPayerIdUpdate? PayerId { get; set; }
+
     [JsonPropertyName("address")]
     public NonInsurancePayerAddressUpdate? Address { get; set; }
 

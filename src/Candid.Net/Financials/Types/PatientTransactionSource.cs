@@ -30,6 +30,8 @@ public readonly record struct PatientTransactionSource : IStringEnum
 
     public static readonly PatientTransactionSource SherpaHealth = new(Values.SherpaHealth);
 
+    public static readonly PatientTransactionSource Lockbox = new(Values.Lockbox);
+
     public PatientTransactionSource(string value)
     {
         Value = value;
@@ -147,5 +149,7 @@ public readonly record struct PatientTransactionSource : IStringEnum
         public const string Instamed = "INSTAMED";
 
         public const string SherpaHealth = "SHERPA_HEALTH";
+
+        public const string Lockbox = "LOCKBOX";
     }
 }

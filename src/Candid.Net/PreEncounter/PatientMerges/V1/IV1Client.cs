@@ -63,4 +63,14 @@ public partial interface IV1Client
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );
+
+    /// <summary>
+    /// Returns a page of patient merge records for the given MRNs. A merge is included
+    /// when the MRN matches either the alternative or the primary patient MRN.
+    /// </summary>
+    WithRawResponseTask<PatientMergePage> SearchAsync(
+        PatientMergeSearchRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
 }

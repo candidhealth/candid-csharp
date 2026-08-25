@@ -12127,6 +12127,391 @@ await client.PreEncounter.Lists.V1.GetAppointmentListAsync(new AppointmentsGetLi
 </dl>
 </details>
 
+## PreEncounter MetadataSchemas V1
+<details><summary><code>client.PreEncounter.MetadataSchemas.V1.<a href="/src/Candid.Net/PreEncounter/MetadataSchemas/V1/V1Client.cs">GetAsync</a>(id) -> WithRawResponseTask&lt;MetadataSchema&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets a custom metadata schema by MetadataSchemaId.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreEncounter.MetadataSchemas.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PreEncounter.MetadataSchemas.V1.<a href="/src/Candid.Net/PreEncounter/MetadataSchemas/V1/V1Client.cs">GetAllAsync</a>(GetAllMetadataSchemasRequest { ... }) -> WithRawResponseTask&lt;MetadataSchemaPage&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets all custom metadata schemas for the organization, ordered by name. Defaults to page size of 100.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreEncounter.MetadataSchemas.V1.GetAllAsync(new GetAllMetadataSchemasRequest());
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `GetAllMetadataSchemasRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PreEncounter.MetadataSchemas.V1.<a href="/src/Candid.Net/PreEncounter/MetadataSchemas/V1/V1Client.cs">CreateAsync</a>(MutableMetadataSchema { ... }) -> WithRawResponseTask&lt;MetadataSchema&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a new custom metadata schema. Schema names must be unique within an organization.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreEncounter.MetadataSchemas.V1.CreateAsync(
+    new MutableMetadataSchema
+    {
+        Name = "name",
+        Fields = new List<MetadataField>()
+        {
+            new MetadataField { Key = "key", Type = MetadataFieldType.String },
+            new MetadataField { Key = "key", Type = MetadataFieldType.String },
+        },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `MutableMetadataSchema` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PreEncounter.MetadataSchemas.V1.<a href="/src/Candid.Net/PreEncounter/MetadataSchemas/V1/V1Client.cs">UpdateAsync</a>(id, version, MutableMetadataSchema { ... }) -> WithRawResponseTask&lt;MetadataSchema&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates a custom metadata schema. Updates are additive only: new fields may be added but existing fields may not be removed or have their type changed, and ENUM field value lists may be extended but not shrunk. The path must contain the most recent version to prevent races.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreEncounter.MetadataSchemas.V1.UpdateAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    "version",
+    new MutableMetadataSchema
+    {
+        Name = "name",
+        Fields = new List<MetadataField>()
+        {
+            new MetadataField { Key = "key", Type = MetadataFieldType.String },
+            new MetadataField { Key = "key", Type = MetadataFieldType.String },
+        },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**version:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MutableMetadataSchema` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PreEncounter.MetadataSchemas.V1.<a href="/src/Candid.Net/PreEncounter/MetadataSchemas/V1/V1Client.cs">DeactivateAsync</a>(id, version) -> WithRawResponseTask</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Sets a custom metadata schema as deactivated. The path must contain the most recent version to prevent races.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreEncounter.MetadataSchemas.V1.DeactivateAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    "version"
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**version:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PreEncounter.MetadataSchemas.V1.<a href="/src/Candid.Net/PreEncounter/MetadataSchemas/V1/V1Client.cs">ReactivateAsync</a>(id, version) -> WithRawResponseTask</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Removes the deactivated flag for a custom metadata schema. The path must contain the most recent version to prevent races.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreEncounter.MetadataSchemas.V1.ReactivateAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    "version"
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**id:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**version:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## PreEncounter Notes V1
 <details><summary><code>client.PreEncounter.Notes.V1.<a href="/src/Candid.Net/PreEncounter/Notes/V1/V1Client.cs">GetAsync</a>(id) -> WithRawResponseTask&lt;Note&gt;</code></summary>
 <dl>
@@ -13067,6 +13452,66 @@ await client.PreEncounter.PatientMerges.V1.ScanAsync(
 <dd>
 
 **request:** `PatientMergeScanRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PreEncounter.PatientMerges.V1.<a href="/src/Candid.Net/PreEncounter/PatientMerges/V1/V1Client.cs">SearchAsync</a>(PatientMergeSearchRequest { ... }) -> WithRawResponseTask&lt;PatientMergePage&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a page of patient merge records for the given MRNs. A merge is included
+when the MRN matches either the alternative or the primary patient MRN.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreEncounter.PatientMerges.V1.SearchAsync(
+    new PatientMergeSearchRequest
+    {
+        Mrns = new List<string>() { "mrns", "mrns" },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `PatientMergeSearchRequest` 
     
 </dd>
 </dl>

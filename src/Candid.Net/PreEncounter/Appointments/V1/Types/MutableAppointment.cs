@@ -59,6 +59,12 @@ public record MutableAppointment : IJsonOnDeserialized
     public string? PlacerAppointmentId { get; set; }
 
     /// <summary>
+    /// The name of the upstream system that placed this appointment.
+    /// </summary>
+    [JsonPropertyName("placer_system_name")]
+    public string? PlacerSystemName { get; set; }
+
+    /// <summary>
     /// Attending physician information. The attending physician will be stored as the Current MD for the patient.
     /// </summary>
     [JsonPropertyName("attending_doctor")]

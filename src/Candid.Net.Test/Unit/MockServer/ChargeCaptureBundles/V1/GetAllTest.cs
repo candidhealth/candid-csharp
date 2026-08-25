@@ -567,6 +567,9 @@ public class GetAllTest : BaseMockServerTest
                     "appointment_type": "appointment_type",
                     "end_date_of_service": "2023-01-15",
                     "additional_information": "additional_information",
+                    "outside_lab": true,
+                    "outside_lab_charges_amount_cents": 1,
+                    "purchased_service_provider_npi": "purchased_service_provider_npi",
                     "service_authorization_exception_code": "1",
                     "admission_date": "2023-01-15",
                     "discharge_date": "2023-01-15",
@@ -576,7 +579,8 @@ public class GetAllTest : BaseMockServerTest
                     "patient_authorized_release": true,
                     "referral_number": "referral_number",
                     "secondary_payer_carrier_code": "secondary_payer_carrier_code"
-                  }
+                  },
+                  "most_recent_claim_preview_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
                 },
                 {
                   "id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
@@ -1130,6 +1134,9 @@ public class GetAllTest : BaseMockServerTest
                     "appointment_type": "appointment_type",
                     "end_date_of_service": "2023-01-15",
                     "additional_information": "additional_information",
+                    "outside_lab": true,
+                    "outside_lab_charges_amount_cents": 1,
+                    "purchased_service_provider_npi": "purchased_service_provider_npi",
                     "service_authorization_exception_code": "1",
                     "admission_date": "2023-01-15",
                     "discharge_date": "2023-01-15",
@@ -1139,7 +1146,8 @@ public class GetAllTest : BaseMockServerTest
                     "patient_authorized_release": true,
                     "referral_number": "referral_number",
                     "secondary_payer_carrier_code": "secondary_payer_carrier_code"
-                  }
+                  },
+                  "most_recent_claim_preview_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
                 }
               ],
               "prev_page_token": "prev_page_token",

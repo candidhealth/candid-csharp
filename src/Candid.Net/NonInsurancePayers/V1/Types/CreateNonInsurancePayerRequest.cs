@@ -32,6 +32,12 @@ public record CreateNonInsurancePayerRequest : IJsonOnDeserialized
     [JsonPropertyName("category")]
     public string? Category { get; set; }
 
+    /// <summary>
+    /// The identifier used to route claims to this payer. Required in order to submit an 837 to this payer. Must be between 2 and 80 characters.
+    /// </summary>
+    [JsonPropertyName("payer_id")]
+    public string? PayerId { get; set; }
+
     [JsonPropertyName("address")]
     public StreetAddressShortZip? Address { get; set; }
 

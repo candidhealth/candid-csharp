@@ -14,6 +14,8 @@ public readonly record struct CarveOutType : IStringEnum
 
     public static readonly CarveOutType Therapy = new(Values.Therapy);
 
+    public static readonly CarveOutType Other = new(Values.Other);
+
     public CarveOutType(string value)
     {
         Value = value;
@@ -115,5 +117,7 @@ public readonly record struct CarveOutType : IStringEnum
         public const string Medical = "MEDICAL";
 
         public const string Therapy = "THERAPY";
+
+        public const string Other = "OTHER";
     }
 }

@@ -216,6 +216,12 @@ public record MutablePatientWithMrn : IJsonOnDeserialized
     [JsonPropertyName("hipaa_code")]
     public string? HipaaCode { get; set; }
 
+    /// <summary>
+    /// Custom key/value metadata attached to this patient, grouped by the MetadataSchema that defines the keys' types. Configure schemas via the metadata-schemas API. Values are validated against the referenced schema on write.
+    /// </summary>
+    [JsonPropertyName("custom_metadata")]
+    public IEnumerable<CustomMetadataEntry>? CustomMetadata { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

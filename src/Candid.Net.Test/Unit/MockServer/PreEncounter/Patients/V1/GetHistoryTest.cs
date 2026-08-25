@@ -991,7 +991,25 @@ public class GetHistoryTest : BaseMockServerTest
                   "NONE",
                   "NONE"
                 ],
-                "hipaa_code": "hipaa_code"
+                "hipaa_code": "hipaa_code",
+                "custom_metadata": [
+                  {
+                    "metadata_schema_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+                    "key_value_pairs": {
+                      "key_value_pairs": {
+                        "key": "value"
+                      }
+                    }
+                  },
+                  {
+                    "metadata_schema_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+                    "key_value_pairs": {
+                      "key_value_pairs": {
+                        "key": "value"
+                      }
+                    }
+                  }
+                ]
               },
               {
                 "id": "id",
@@ -1971,7 +1989,25 @@ public class GetHistoryTest : BaseMockServerTest
                   "NONE",
                   "NONE"
                 ],
-                "hipaa_code": "hipaa_code"
+                "hipaa_code": "hipaa_code",
+                "custom_metadata": [
+                  {
+                    "metadata_schema_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+                    "key_value_pairs": {
+                      "key_value_pairs": {
+                        "key": "value"
+                      }
+                    }
+                  },
+                  {
+                    "metadata_schema_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+                    "key_value_pairs": {
+                      "key_value_pairs": {
+                        "key": "value"
+                      }
+                    }
+                  }
+                ]
               }
             ]
             """;

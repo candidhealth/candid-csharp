@@ -226,6 +226,12 @@ public readonly record struct LicenseType : IStringEnum
 
     public static readonly LicenseType Slpa = new(Values.Slpa);
 
+    public static readonly LicenseType EdD = new(Values.EdD);
+
+    public static readonly LicenseType Swt = new(Values.Swt);
+
+    public static readonly LicenseType Imft = new(Values.Imft);
+
     public LicenseType(string value)
     {
         Value = value;
@@ -539,5 +545,11 @@ public readonly record struct LicenseType : IStringEnum
         public const string Lssp = "LSSP";
 
         public const string Slpa = "SLPA";
+
+        public const string EdD = "EdD";
+
+        public const string Swt = "SWT";
+
+        public const string Imft = "IMFT";
     }
 }

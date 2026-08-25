@@ -46,6 +46,12 @@ public record ChargeCaptureClaimCreation : IJsonOnDeserialized
     [JsonPropertyName("encounter_creation_input")]
     public ChargeCaptureData? EncounterCreationInput { get; set; }
 
+    /// <summary>
+    /// The ID of the most recently created claim preview associated with this bundle, if any exists.
+    /// </summary>
+    [JsonPropertyName("most_recent_claim_preview_id")]
+    public string? MostRecentClaimPreviewId { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

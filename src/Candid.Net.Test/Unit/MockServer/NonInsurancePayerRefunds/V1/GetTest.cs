@@ -19,6 +19,7 @@ public class GetTest : BaseMockServerTest
                 "name": "name",
                 "description": "description",
                 "category": "category",
+                "payer_id": "payer_id",
                 "enabled": true,
                 "address": {
                   "zip_plus_four_code": "zip_plus_four_code",

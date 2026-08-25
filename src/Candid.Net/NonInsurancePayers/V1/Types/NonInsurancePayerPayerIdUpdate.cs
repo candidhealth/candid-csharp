@@ -1,0 +1,264 @@
+// ReSharper disable NullableWarningSuppressionIsUsed
+// ReSharper disable InconsistentNaming
+
+using global::Candid.Net.Core;
+using global::System.Text.Json;
+using global::System.Text.Json.Nodes;
+using global::System.Text.Json.Serialization;
+
+namespace Candid.Net.NonInsurancePayers.V1;
+
+[JsonConverter(typeof(NonInsurancePayerPayerIdUpdate.JsonConverter))]
+[Serializable]
+public record NonInsurancePayerPayerIdUpdate
+{
+    internal NonInsurancePayerPayerIdUpdate(string type, object? value)
+    {
+        Type = type;
+        Value = value;
+    }
+
+    /// <summary>
+    /// Create an instance of NonInsurancePayerPayerIdUpdate with <see cref="NonInsurancePayerPayerIdUpdate.Remove"/>.
+    /// </summary>
+    public NonInsurancePayerPayerIdUpdate(NonInsurancePayerPayerIdUpdate.Remove value)
+    {
+        Type = "remove";
+        Value = value.Value;
+    }
+
+    /// <summary>
+    /// Create an instance of NonInsurancePayerPayerIdUpdate with <see cref="NonInsurancePayerPayerIdUpdate.Set"/>.
+    /// </summary>
+    public NonInsurancePayerPayerIdUpdate(NonInsurancePayerPayerIdUpdate.Set value)
+    {
+        Type = "set";
+        Value = value.Value;
+    }
+
+    /// <summary>
+    /// Discriminant value
+    /// </summary>
+    [JsonPropertyName("type")]
+    public string Type { get; internal set; }
+
+    /// <summary>
+    /// Discriminated union value
+    /// </summary>
+    public object? Value { get; internal set; }
+
+    /// <summary>
+    /// Returns true if <see cref="Type"/> is "remove"
+    /// </summary>
+    public bool IsRemove => Type == "remove";
+
+    /// <summary>
+    /// Returns true if <see cref="Type"/> is "set"
+    /// </summary>
+    public bool IsSet => Type == "set";
+
+    /// <summary>
+    /// Returns the value as a <see cref="object?"/> if <see cref="Type"/> is 'remove', otherwise throws an exception.
+    /// </summary>
+    /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'remove'.</exception>
+    public object? AsRemove() =>
+        IsRemove
+            ? Value!
+            : throw new global::System.Exception(
+                "NonInsurancePayerPayerIdUpdate.Type is not 'remove'"
+            );
+
+    /// <summary>
+    /// Returns the value as a <see cref="string"/> if <see cref="Type"/> is 'set', otherwise throws an exception.
+    /// </summary>
+    /// <exception cref="Exception">Thrown when <see cref="Type"/> is not 'set'.</exception>
+    public string AsSet() =>
+        IsSet
+            ? (string)Value!
+            : throw new global::System.Exception(
+                "NonInsurancePayerPayerIdUpdate.Type is not 'set'"
+            );
+
+    public T Match<T>(
+        Func<object?, T> onRemove,
+        Func<string, T> onSet,
+        Func<string, object?, T> onUnknown_
+    )
+    {
+        return Type switch
+        {
+            "remove" => onRemove(AsRemove()),
+            "set" => onSet(AsSet()),
+            _ => onUnknown_(Type, Value),
+        };
+    }
+
+    public void Visit(
+        Action<object?> onRemove,
+        Action<string> onSet,
+        Action<string, object?> onUnknown_
+    )
+    {
+        switch (Type)
+        {
+            case "remove":
+                onRemove(AsRemove());
+                break;
+            case "set":
+                onSet(AsSet());
+                break;
+            default:
+                onUnknown_(Type, Value);
+                break;
+        }
+    }
+
+    /// <summary>
+    /// Attempts to cast the value to a <see cref="object?"/> and returns true if successful.
+    /// </summary>
+    public bool TryAsRemove(out object? value)
+    {
+        if (Type == "remove")
+        {
+            value = Value!;
+            return true;
+        }
+        value = null;
+        return false;
+    }
+
+    /// <summary>
+    /// Attempts to cast the value to a <see cref="string"/> and returns true if successful.
+    /// </summary>
+    public bool TryAsSet(out string? value)
+    {
+        if (Type == "set")
+        {
+            value = (string)Value!;
+            return true;
+        }
+        value = null;
+        return false;
+    }
+
+    public override string ToString() => JsonUtils.Serialize(this);
+
+    public static implicit operator NonInsurancePayerPayerIdUpdate(
+        NonInsurancePayerPayerIdUpdate.Set value
+    ) => new(value);
+
+    [Serializable]
+    internal sealed class JsonConverter : JsonConverter<NonInsurancePayerPayerIdUpdate>
+    {
+        public override bool CanConvert(global::System.Type typeToConvert) =>
+            typeof(NonInsurancePayerPayerIdUpdate).IsAssignableFrom(typeToConvert);
+
+        public override NonInsurancePayerPayerIdUpdate Read(
+            ref Utf8JsonReader reader,
+            global::System.Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var json = JsonElement.ParseValue(ref reader);
+            if (!json.TryGetProperty("type", out var discriminatorElement))
+            {
+                throw new JsonException("Missing discriminator property 'type'");
+            }
+            if (discriminatorElement.ValueKind != JsonValueKind.String)
+            {
+                if (discriminatorElement.ValueKind == JsonValueKind.Null)
+                {
+                    throw new JsonException("Discriminator property 'type' is null");
+                }
+
+                throw new JsonException(
+                    $"Discriminator property 'type' is not a string, instead is {discriminatorElement.ToString()}"
+                );
+            }
+
+            var discriminator =
+                discriminatorElement.GetString()
+                ?? throw new JsonException("Discriminator property 'type' is null");
+
+            var value = discriminator switch
+            {
+                "remove" => null,
+                "set" => json.GetProperty("value").Deserialize<string?>(options)
+                    ?? throw new JsonException("Failed to deserialize string"),
+                _ => json.Deserialize<object?>(options),
+            };
+            return new NonInsurancePayerPayerIdUpdate(discriminator, value);
+        }
+
+        public override void Write(
+            Utf8JsonWriter writer,
+            NonInsurancePayerPayerIdUpdate value,
+            JsonSerializerOptions options
+        )
+        {
+            JsonNode json =
+                value.Type switch
+                {
+                    "remove" => null,
+                    "set" => new JsonObject
+                    {
+                        ["value"] = JsonSerializer.SerializeToNode(value.Value, options),
+                    },
+                    _ => JsonSerializer.SerializeToNode(value.Value, options),
+                } ?? new JsonObject();
+            json["type"] = value.Type;
+            json.WriteTo(writer, options);
+        }
+
+        public override NonInsurancePayerPayerIdUpdate ReadAsPropertyName(
+            ref Utf8JsonReader reader,
+            global::System.Type typeToConvert,
+            JsonSerializerOptions options
+        )
+        {
+            var stringValue =
+                reader.GetString()
+                ?? throw new JsonException("The JSON property name could not be read as a string.");
+            return new NonInsurancePayerPayerIdUpdate(stringValue, stringValue);
+        }
+
+        public override void WriteAsPropertyName(
+            Utf8JsonWriter writer,
+            NonInsurancePayerPayerIdUpdate value,
+            JsonSerializerOptions options
+        )
+        {
+            writer.WritePropertyName(value.Type);
+        }
+    }
+
+    /// <summary>
+    /// Discriminated union type for remove
+    /// </summary>
+    [Serializable]
+    public record Remove
+    {
+        internal object? Value => null;
+
+        public override string ToString() => Value?.ToString() ?? "null";
+    }
+
+    /// <summary>
+    /// Discriminated union type for set
+    /// </summary>
+    [Serializable]
+    public record Set
+    {
+        public Set(string value)
+        {
+            Value = value;
+        }
+
+        internal string Value { get; set; }
+
+        public override string ToString() => Value;
+
+        public static implicit operator NonInsurancePayerPayerIdUpdate.Set(string value) =>
+            new(value);
+    }
+}

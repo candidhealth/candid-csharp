@@ -39,6 +39,7 @@ public class ScanTest : BaseMockServerTest
                   }
                 ],
                 "placer_appointment_id": "placer_appointment_id",
+                "placer_system_name": "placer_system_name",
                 "attending_doctor": {
                   "name": {
                     "family": "family",
@@ -164,6 +165,7 @@ public class ScanTest : BaseMockServerTest
                   }
                 ],
                 "placer_appointment_id": "placer_appointment_id",
+                "placer_system_name": "placer_system_name",
                 "attending_doctor": {
                   "name": {
                     "family": "family",

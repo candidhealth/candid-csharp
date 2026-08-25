@@ -220,6 +220,12 @@ public readonly record struct LicenseType : IStringEnum
 
     public static readonly LicenseType Lat = new(Values.Lat);
 
+    public static readonly LicenseType Ota = new(Values.Ota);
+
+    public static readonly LicenseType Lssp = new(Values.Lssp);
+
+    public static readonly LicenseType Slpa = new(Values.Slpa);
+
     public LicenseType(string value)
     {
         Value = value;
@@ -527,5 +533,11 @@ public readonly record struct LicenseType : IStringEnum
         public const string Atc = "ATC";
 
         public const string Lat = "LAT";
+
+        public const string Ota = "OTA";
+
+        public const string Lssp = "LSSP";
+
+        public const string Slpa = "SLPA";
     }
 }

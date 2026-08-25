@@ -1042,6 +1042,7 @@ public class CreateUniversalTest : BaseMockServerTest
                     "name": "name",
                     "description": "description",
                     "category": "category",
+                    "payer_id": "payer_id",
                     "enabled": true,
                     "address": {
                       "zip_plus_four_code": "zip_plus_four_code",
@@ -1075,6 +1076,7 @@ public class CreateUniversalTest : BaseMockServerTest
                     "name": "name",
                     "description": "description",
                     "category": "category",
+                    "payer_id": "payer_id",
                     "enabled": true,
                     "address": {
                       "zip_plus_four_code": "zip_plus_four_code",
@@ -1111,6 +1113,7 @@ public class CreateUniversalTest : BaseMockServerTest
                       "name": "name",
                       "description": "description",
                       "category": "category",
+                      "payer_id": "payer_id",
                       "enabled": true,
                       "address": {
                         "zip_plus_four_code": "zip_plus_four_code",
@@ -1171,6 +1174,7 @@ public class CreateUniversalTest : BaseMockServerTest
                       "name": "name",
                       "description": "description",
                       "category": "category",
+                      "payer_id": "payer_id",
                       "enabled": true,
                       "address": {
                         "zip_plus_four_code": "zip_plus_four_code",
@@ -1984,6 +1988,9 @@ public class CreateUniversalTest : BaseMockServerTest
               },
               "billable_status": "BILLABLE",
               "additional_information": "additional_information",
+              "outside_lab": true,
+              "outside_lab_charges_amount_cents": 1,
+              "purchased_service_provider_npi": "purchased_service_provider_npi",
               "service_authorization_exception_code": "1",
               "admission_date": "2023-01-15",
               "discharge_date": "2023-01-15",

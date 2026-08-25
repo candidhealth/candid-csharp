@@ -1,5 +1,6 @@
 using global::Candid.Net;
 using global::Candid.Net.Core;
+using global::Candid.Net.Users.V2;
 using global::System.Text.Json;
 using global::System.Text.Json.Serialization;
 
@@ -23,6 +24,18 @@ public record ProviderAttachment : IJsonOnDeserialized
 
     [JsonPropertyName("file_type")]
     public required ProviderAttachmentFileType FileType { get; set; }
+
+    [JsonPropertyName("description")]
+    public required string Description { get; set; }
+
+    [JsonPropertyName("content_type")]
+    public required string ContentType { get; set; }
+
+    [JsonPropertyName("created_at")]
+    public required DateTime CreatedAt { get; set; }
+
+    [JsonPropertyName("created_by")]
+    public required UserV2 CreatedBy { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

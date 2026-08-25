@@ -3,6 +3,7 @@ using global::Candid.Net.PreEncounter.Coverages;
 using global::Candid.Net.PreEncounter.EligibilityChecks;
 using global::Candid.Net.PreEncounter.Images;
 using global::Candid.Net.PreEncounter.Lists;
+using global::Candid.Net.PreEncounter.MetadataSchemas;
 using global::Candid.Net.PreEncounter.Notes;
 using global::Candid.Net.PreEncounter.OrganizationExternalProviders;
 using global::Candid.Net.PreEncounter.PatientMerges;
@@ -17,6 +18,7 @@ public partial interface IPreEncounterClient
     public IEligibilityChecksClient EligibilityChecks { get; }
     public IImagesClient Images { get; }
     public IListsClient Lists { get; }
+    public IMetadataSchemasClient MetadataSchemas { get; }
     public INotesClient Notes { get; }
     public IOrganizationExternalProvidersClient OrganizationExternalProviders { get; }
     public IPatientMergesClient PatientMerges { get; }

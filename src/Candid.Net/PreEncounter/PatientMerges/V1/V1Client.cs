@@ -403,6 +403,87 @@ public partial class V1Client : IV1Client
         }
     }
 
+    private async global::System.Threading.Tasks.Task<
+        WithRawResponse<PatientMergePage>
+    > SearchAsyncCore(
+        PatientMergeSearchRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _headers = await new global::Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Post,
+                    Path = "/patient-merge/v1/search",
+                    Body = request,
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<PatientMergePage>(responseBody)!;
+                return new WithRawResponse<PatientMergePage>()
+                {
+                    Data = responseData,
+                    RawResponse = new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e,
+                    rawResponse: new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    }
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody,
+                rawResponse: new global::Candid.Net.RawResponse()
+                {
+                    StatusCode = response.Raw.StatusCode,
+                    Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                    Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                }
+            );
+        }
+    }
+
     /// <summary>
     /// Creates a new patient merge record.
     /// </summary>
@@ -507,6 +588,29 @@ public partial class V1Client : IV1Client
     {
         return new WithRawResponseTask<IEnumerable<PatientMerge>>(
             ScanAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Returns a page of patient merge records for the given MRNs. A merge is included
+    /// when the MRN matches either the alternative or the primary patient MRN.
+    /// </summary>
+    /// <example><code>
+    /// await client.PreEncounter.PatientMerges.V1.SearchAsync(
+    ///     new PatientMergeSearchRequest
+    ///     {
+    ///         Mrns = new List&lt;string&gt;() { "mrns", "mrns" },
+    ///     }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<PatientMergePage> SearchAsync(
+        PatientMergeSearchRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<PatientMergePage>(
+            SearchAsyncCore(request, options, cancellationToken)
         );
     }
 }

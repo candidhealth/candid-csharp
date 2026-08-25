@@ -38,6 +38,12 @@ public readonly record struct NotReadyReason : IStringEnum
 
     public static readonly NotReadyReason NewCombo = new(Values.NewCombo);
 
+    public static readonly NotReadyReason NewInsurance = new(Values.NewInsurance);
+
+    public static readonly NotReadyReason PriorAppointmentNotReady = new(
+        Values.PriorAppointmentNotReady
+    );
+
     public static readonly NotReadyReason NoCoverage = new(Values.NoCoverage);
 
     public static readonly NotReadyReason Error = new(Values.Error);
@@ -161,6 +167,10 @@ public readonly record struct NotReadyReason : IStringEnum
         public const string EligibilityCheckFailedSecondary = "ELIGIBILITY_CHECK_FAILED_SECONDARY";
 
         public const string NewCombo = "NEW_COMBO";
+
+        public const string NewInsurance = "NEW_INSURANCE";
+
+        public const string PriorAppointmentNotReady = "PRIOR_APPOINTMENT_NOT_READY";
 
         public const string NoCoverage = "NO_COVERAGE";
 

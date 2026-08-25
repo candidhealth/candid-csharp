@@ -103,6 +103,27 @@ public record EncounterOptional : IJsonOnDeserialized
     public string? AdditionalInformation { get; set; }
 
     /// <summary>
+    /// Indicates whether lab services were performed outside the billing entity.
+    /// Box 20 (Yes/No) on the CMS-1500 claim form.
+    /// </summary>
+    [JsonPropertyName("outside_lab")]
+    public bool? OutsideLab { get; set; }
+
+    /// <summary>
+    /// The charges associated with outside lab services, in cents.
+    /// Box 20 (Charges) on the CMS-1500 claim form. Applicable when outside_lab is true.
+    /// </summary>
+    [JsonPropertyName("outside_lab_charges_amount_cents")]
+    public int? OutsideLabChargesAmountCents { get; set; }
+
+    /// <summary>
+    /// NPI of the provider that performed the outside lab service.
+    /// Box 20 on the CMS-1500 claim form. Required to record outside lab charges.
+    /// </summary>
+    [JsonPropertyName("purchased_service_provider_npi")]
+    public string? PurchasedServiceProviderNpi { get; set; }
+
+    /// <summary>
     /// 837p Loop2300 REF*4N
     /// Required when mandated by government law or regulation to obtain authorization for specific service(s) but, for the
     /// reasons listed in one of the enum values of ServiceAuthorizationExceptionCode, the service was performed without

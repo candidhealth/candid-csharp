@@ -30,6 +30,9 @@ public record EligibilityTimelineEvent : IJsonOnDeserialized
     [JsonPropertyName("appointment_id")]
     public string? AppointmentId { get; set; }
 
+    [JsonPropertyName("appointment_date")]
+    public DateTime? AppointmentDate { get; set; }
+
     [JsonPropertyName("timestamp")]
     public required DateTime Timestamp { get; set; }
 

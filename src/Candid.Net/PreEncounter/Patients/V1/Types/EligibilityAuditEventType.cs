@@ -28,6 +28,10 @@ public readonly record struct EligibilityAuditEventType : IStringEnum
         Values.EligCheckCompleted
     );
 
+    public static readonly EligibilityAuditEventType PatientTagsUpdated = new(
+        Values.PatientTagsUpdated
+    );
+
     public EligibilityAuditEventType(string value)
     {
         Value = value;
@@ -135,5 +139,7 @@ public readonly record struct EligibilityAuditEventType : IStringEnum
         public const string CoverageUpdated = "COVERAGE_UPDATED";
 
         public const string EligCheckCompleted = "ELIG_CHECK_COMPLETED";
+
+        public const string PatientTagsUpdated = "PATIENT_TAGS_UPDATED";
     }
 }
