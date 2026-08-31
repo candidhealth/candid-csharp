@@ -28,6 +28,12 @@ public record LatestEligibilityCheck : IJsonOnDeserialized
     [JsonPropertyName("errors")]
     public IEnumerable<EligibilityCheckErrorDetails>? Errors { get; set; }
 
+    /// <summary>
+    /// Fields where the payer's 271 response disagreed with what we sent on the request, surfaced from the check so consumers can detect that the eligibility response contradicted the coverage on file. Empty when the payer echoed everything we sent.
+    /// </summary>
+    [JsonPropertyName("request_corrections")]
+    public IEnumerable<RequestCorrection>? RequestCorrections { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

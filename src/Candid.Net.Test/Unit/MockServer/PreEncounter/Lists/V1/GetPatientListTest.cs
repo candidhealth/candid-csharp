@@ -944,6 +944,18 @@ public class GetPatientListTest : BaseMockServerTest
                       "errors": [
                         {},
                         {}
+                      ],
+                      "request_corrections": [
+                        {
+                          "property": "property",
+                          "request_value": "request_value",
+                          "corrected_value": "corrected_value"
+                        },
+                        {
+                          "property": "property",
+                          "request_value": "request_value",
+                          "corrected_value": "corrected_value"
+                        }
                       ]
                     },
                     "benefits": {
@@ -1103,6 +1115,18 @@ public class GetPatientListTest : BaseMockServerTest
                       "errors": [
                         {},
                         {}
+                      ],
+                      "request_corrections": [
+                        {
+                          "property": "property",
+                          "request_value": "request_value",
+                          "corrected_value": "corrected_value"
+                        },
+                        {
+                          "property": "property",
+                          "request_value": "request_value",
+                          "corrected_value": "corrected_value"
+                        }
                       ]
                     },
                     "benefits": {
@@ -1262,6 +1286,18 @@ public class GetPatientListTest : BaseMockServerTest
                       "errors": [
                         {},
                         {}
+                      ],
+                      "request_corrections": [
+                        {
+                          "property": "property",
+                          "request_value": "request_value",
+                          "corrected_value": "corrected_value"
+                        },
+                        {
+                          "property": "property",
+                          "request_value": "request_value",
+                          "corrected_value": "corrected_value"
+                        }
                       ]
                     },
                     "benefits": {
@@ -2336,6 +2372,18 @@ public class GetPatientListTest : BaseMockServerTest
                       "errors": [
                         {},
                         {}
+                      ],
+                      "request_corrections": [
+                        {
+                          "property": "property",
+                          "request_value": "request_value",
+                          "corrected_value": "corrected_value"
+                        },
+                        {
+                          "property": "property",
+                          "request_value": "request_value",
+                          "corrected_value": "corrected_value"
+                        }
                       ]
                     },
                     "benefits": {
@@ -2495,6 +2543,18 @@ public class GetPatientListTest : BaseMockServerTest
                       "errors": [
                         {},
                         {}
+                      ],
+                      "request_corrections": [
+                        {
+                          "property": "property",
+                          "request_value": "request_value",
+                          "corrected_value": "corrected_value"
+                        },
+                        {
+                          "property": "property",
+                          "request_value": "request_value",
+                          "corrected_value": "corrected_value"
+                        }
                       ]
                     },
                     "benefits": {
@@ -2654,6 +2714,18 @@ public class GetPatientListTest : BaseMockServerTest
                       "errors": [
                         {},
                         {}
+                      ],
+                      "request_corrections": [
+                        {
+                          "property": "property",
+                          "request_value": "request_value",
+                          "corrected_value": "corrected_value"
+                        },
+                        {
+                          "property": "property",
+                          "request_value": "request_value",
+                          "corrected_value": "corrected_value"
+                        }
                       ]
                     },
                     "benefits": {

@@ -5,12 +5,14 @@ using global::Candid.Net.ChargeCaptureBundles;
 using global::Candid.Net.Contracts;
 using global::Candid.Net.Credentialing;
 using global::Candid.Net.CustomSchemas;
+using global::Candid.Net.Dashboarding;
 using global::Candid.Net.Diagnoses;
 using global::Candid.Net.Eligibility;
 using global::Candid.Net.EncounterAttachments;
 using global::Candid.Net.EncounterProviders;
 using global::Candid.Net.Encounters;
 using global::Candid.Net.EncounterSupplementalInformation;
+using global::Candid.Net.EnterpriseConfig;
 using global::Candid.Net.Events;
 using global::Candid.Net.Exports;
 using global::Candid.Net.ExternalPaymentAccountConfig;
@@ -49,11 +51,13 @@ public partial interface ICandid
     public IContractsClient Contracts { get; }
     public ICredentialingClient Credentialing { get; }
     public ICustomSchemasClient CustomSchemas { get; }
+    public IDashboardingClient Dashboarding { get; }
     public IEligibilityClient Eligibility { get; }
     public IEncounterAttachmentsClient EncounterAttachments { get; }
     public IEncounterProvidersClient EncounterProviders { get; }
     public IEncounterSupplementalInformationClient EncounterSupplementalInformation { get; }
     public IEncountersClient Encounters { get; }
+    public IEnterpriseConfigClient EnterpriseConfig { get; }
     public IEventsClient Events { get; }
     public IExportsClient Exports { get; }
     public IExternalPaymentAccountConfigClient ExternalPaymentAccountConfig { get; }

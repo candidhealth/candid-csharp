@@ -61,7 +61,8 @@ public class UpdateTest : BaseMockServerTest
               ],
               "category": "other",
               "configurable_rule_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-              "persisted_rule_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
+              "persisted_rule_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+              "organization_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
             }
             """;
 

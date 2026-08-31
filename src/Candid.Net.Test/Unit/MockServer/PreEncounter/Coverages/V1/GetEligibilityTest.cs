@@ -121,7 +121,8 @@ public class GetEligibilityTest : BaseMockServerTest
                       "date_of_birth": "date_of_birth",
                       "gender": "gender",
                       "address": {}
-                    }
+                    },
+                    "trading_partner": "trading_partner"
                   },
                   "benefits": {
                     "plan_coverage": {

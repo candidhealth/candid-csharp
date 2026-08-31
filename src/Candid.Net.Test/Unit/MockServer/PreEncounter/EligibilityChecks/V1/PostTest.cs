@@ -146,7 +146,8 @@ public class PostTest : BaseMockServerTest
                       "country_code": "country_code",
                       "country_sub_division_code": "country_sub_division_code"
                     }
-                  }
+                  },
+                  "trading_partner": "trading_partner"
                 },
                 "benefits": {
                   "plan_coverage": {

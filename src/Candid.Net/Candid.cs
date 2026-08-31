@@ -7,12 +7,14 @@ using global::Candid.Net.Contracts;
 using global::Candid.Net.Core;
 using global::Candid.Net.Credentialing;
 using global::Candid.Net.CustomSchemas;
+using global::Candid.Net.Dashboarding;
 using global::Candid.Net.Diagnoses;
 using global::Candid.Net.Eligibility;
 using global::Candid.Net.EncounterAttachments;
 using global::Candid.Net.EncounterProviders;
 using global::Candid.Net.Encounters;
 using global::Candid.Net.EncounterSupplementalInformation;
+using global::Candid.Net.EnterpriseConfig;
 using global::Candid.Net.Events;
 using global::Candid.Net.Exports;
 using global::Candid.Net.ExternalPaymentAccountConfig;
@@ -55,7 +57,7 @@ public partial class Candid : ICandid
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Candid.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Candid.Net/1.31.0" },
+                { "User-Agent", "Candid.Net/1.32.0" },
             }
         );
         foreach (var header in platformHeaders)
@@ -83,11 +85,13 @@ public partial class Candid : ICandid
         Contracts = new ContractsClient(_client);
         Credentialing = new CredentialingClient(_client);
         CustomSchemas = new CustomSchemasClient(_client);
+        Dashboarding = new DashboardingClient(_client);
         Eligibility = new EligibilityClient(_client);
         EncounterAttachments = new EncounterAttachmentsClient(_client);
         EncounterProviders = new EncounterProvidersClient(_client);
         EncounterSupplementalInformation = new EncounterSupplementalInformationClient(_client);
         Encounters = new EncountersClient(_client);
+        EnterpriseConfig = new EnterpriseConfigClient(_client);
         Events = new EventsClient(_client);
         Exports = new ExportsClient(_client);
         ExternalPaymentAccountConfig = new ExternalPaymentAccountConfigClient(_client);
@@ -131,6 +135,8 @@ public partial class Candid : ICandid
 
     public ICustomSchemasClient CustomSchemas { get; }
 
+    public IDashboardingClient Dashboarding { get; }
+
     public IEligibilityClient Eligibility { get; }
 
     public IEncounterAttachmentsClient EncounterAttachments { get; }
@@ -140,6 +146,8 @@ public partial class Candid : ICandid
     public IEncounterSupplementalInformationClient EncounterSupplementalInformation { get; }
 
     public IEncountersClient Encounters { get; }
+
+    public IEnterpriseConfigClient EnterpriseConfig { get; }
 
     public IEventsClient Events { get; }
 

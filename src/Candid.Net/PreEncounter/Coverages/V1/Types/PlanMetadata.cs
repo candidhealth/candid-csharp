@@ -45,6 +45,12 @@ public record PlanMetadata : IJsonOnDeserialized
     [JsonPropertyName("dependent")]
     public ExpandedMemberInfo? Dependent { get; set; }
 
+    /// <summary>
+    /// The payer's own identifier as returned on the Stedi eligibility response (271) `tradingPartnerServiceId`. Reflects the payer's internal concept of their ID, which may differ from the ID Stedi routes on.
+    /// </summary>
+    [JsonPropertyName("trading_partner")]
+    public string? TradingPartner { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

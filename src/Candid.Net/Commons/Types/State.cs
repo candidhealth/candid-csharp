@@ -132,6 +132,11 @@ public readonly record struct State : IStringEnum
 
     public static readonly State Wy = new(Values.Wy);
 
+    /// <summary>
+    /// Indicates an international (non-US) address.
+    /// </summary>
+    public static readonly State Fc = new(Values.Fc);
+
     public State(string value)
     {
         Value = value;
@@ -349,5 +354,10 @@ public readonly record struct State : IStringEnum
         public const string Wi = "WI";
 
         public const string Wy = "WY";
+
+        /// <summary>
+        /// Indicates an international (non-US) address.
+        /// </summary>
+        public const string Fc = "FC";
     }
 }

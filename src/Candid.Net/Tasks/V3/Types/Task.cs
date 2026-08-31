@@ -79,6 +79,9 @@ public record Task : IJsonOnDeserialized
     [JsonPropertyName("persisted_rule_id")]
     public string? PersistedRuleId { get; set; }
 
+    [JsonPropertyName("organization_id")]
+    public string? OrganizationId { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

@@ -2398,6 +2398,75 @@ await client.CustomSchemas.V1.UpdateAsync(
 </dl>
 </details>
 
+## Dashboarding V1
+<details><summary><code>client.Dashboarding.V1.<a href="/src/Candid.Net/Dashboarding/V1/V1Client.cs">QueryMetricsAsync</a>(IEnumerable&lt;MetricQuery&gt; { ... }) -> WithRawResponseTask&lt;MetricsQueryResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieves values for one or more metrics. Each metric is computed independently, so a
+metric that cannot be resolved returns an `error` on its own result rather than failing
+the request.
+
+Each query reads current state by default. Count metrics also accept a `yesterday`
+snapshot, so day-over-day change is computed by querying both and taking the difference.
+
+See the [Metrics Reference](/docs/dashboarding-metrics) for the full catalog, including
+value types and staleness SLAs.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Dashboarding.V1.QueryMetricsAsync(
+    new List<MetricQuery>()
+    {
+        new MetricQuery { Metric = MetricName.PatientTotalBalanceV1 },
+        new MetricQuery { Metric = MetricName.PatientTotalBalanceV1 },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `IEnumerable<MetricQuery>` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Eligibility V2
 <details><summary><code>client.Eligibility.V2.<a href="/src/Candid.Net/Eligibility/V2/V2Client.cs">SubmitEligibilityCheckAvailityAsync</a>() -> WithRawResponseTask&lt;object&gt;</code></summary>
 <dl>
@@ -4116,6 +4185,32 @@ await client.Encounters.V4.UpdateAsync(
 
 **request:** `EncounterUpdate` 
     
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## EnterpriseConfig V1
+<details><summary><code>client.EnterpriseConfig.V1.<a href="/src/Candid.Net/EnterpriseConfig/V1/V1Client.cs">GetAsync</a>() -> WithRawResponseTask&lt;EnterprisePermissions&gt;</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.EnterpriseConfig.V1.GetAsync();
+```
 </dd>
 </dl>
 </dd>

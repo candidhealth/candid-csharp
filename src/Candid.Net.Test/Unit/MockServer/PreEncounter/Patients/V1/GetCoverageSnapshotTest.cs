@@ -1153,6 +1153,18 @@ public class GetCoverageSnapshotTest : BaseMockServerTest
                       "code?": "code?",
                       "followupAction?": "followupAction?"
                     }
+                  ],
+                  "request_corrections": [
+                    {
+                      "property": "property",
+                      "request_value": "request_value",
+                      "corrected_value": "corrected_value"
+                    },
+                    {
+                      "property": "property",
+                      "request_value": "request_value",
+                      "corrected_value": "corrected_value"
+                    }
                   ]
                 },
                 "benefits": {
@@ -1426,6 +1438,18 @@ public class GetCoverageSnapshotTest : BaseMockServerTest
                       "code?": "code?",
                       "followupAction?": "followupAction?"
                     }
+                  ],
+                  "request_corrections": [
+                    {
+                      "property": "property",
+                      "request_value": "request_value",
+                      "corrected_value": "corrected_value"
+                    },
+                    {
+                      "property": "property",
+                      "request_value": "request_value",
+                      "corrected_value": "corrected_value"
+                    }
                   ]
                 },
                 "benefits": {
@@ -1698,6 +1722,18 @@ public class GetCoverageSnapshotTest : BaseMockServerTest
                       "possibleResolutions?": "possibleResolutions?",
                       "code?": "code?",
                       "followupAction?": "followupAction?"
+                    }
+                  ],
+                  "request_corrections": [
+                    {
+                      "property": "property",
+                      "request_value": "request_value",
+                      "corrected_value": "corrected_value"
+                    },
+                    {
+                      "property": "property",
+                      "request_value": "request_value",
+                      "corrected_value": "corrected_value"
                     }
                   ]
                 },
@@ -1973,6 +2009,18 @@ public class GetCoverageSnapshotTest : BaseMockServerTest
                         "code?": "code?",
                         "followupAction?": "followupAction?"
                       }
+                    ],
+                    "request_corrections": [
+                      {
+                        "property": "property",
+                        "request_value": "request_value",
+                        "corrected_value": "corrected_value"
+                      },
+                      {
+                        "property": "property",
+                        "request_value": "request_value",
+                        "corrected_value": "corrected_value"
+                      }
                     ]
                   },
                   "benefits": {
@@ -2245,6 +2293,18 @@ public class GetCoverageSnapshotTest : BaseMockServerTest
                         "possibleResolutions?": "possibleResolutions?",
                         "code?": "code?",
                         "followupAction?": "followupAction?"
+                      }
+                    ],
+                    "request_corrections": [
+                      {
+                        "property": "property",
+                        "request_value": "request_value",
+                        "corrected_value": "corrected_value"
+                      },
+                      {
+                        "property": "property",
+                        "request_value": "request_value",
+                        "corrected_value": "corrected_value"
                       }
                     ]
                   },
