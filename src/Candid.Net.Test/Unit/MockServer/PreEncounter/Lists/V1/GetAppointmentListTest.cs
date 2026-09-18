@@ -78,6 +78,7 @@ public class GetAppointmentListTest : BaseMockServerTest
                           ],
                           "city": "city",
                           "state": "state",
+                          "administrative_area": "administrative_area",
                           "postal_code": "postal_code",
                           "country": "country",
                           "county": "county",
@@ -91,6 +92,7 @@ public class GetAppointmentListTest : BaseMockServerTest
                           ],
                           "city": "city",
                           "state": "state",
+                          "administrative_area": "administrative_area",
                           "postal_code": "postal_code",
                           "country": "country",
                           "county": "county",
@@ -125,6 +127,19 @@ public class GetAppointmentListTest : BaseMockServerTest
                     "patient_deposit_cents": 1,
                     "appointment_details": "appointment_details",
                     "checked_in_timestamp": "2024-01-15T09:30:00.000Z",
+                    "checked_out_timestamp": "2024-01-15T09:30:00.000Z",
+                    "appointment_reason_detail": {
+                      "diagnosis_codes": [
+                        "diagnosis_codes",
+                        "diagnosis_codes"
+                      ],
+                      "procedure_codes": [
+                        "procedure_codes",
+                        "procedure_codes"
+                      ]
+                    },
+                    "medical_necessity_verified": true,
+                    "prior_authorization_status": "NOT_REQUIRED",
                     "notes": "notes",
                     "location_resource_id": "location_resource_id",
                     "automated_eligibility_check_complete": true,
@@ -214,6 +229,7 @@ public class GetAppointmentListTest : BaseMockServerTest
                       ],
                       "city": "city",
                       "state": "state",
+                      "administrative_area": "administrative_area",
                       "postal_code": "postal_code",
                       "country": "country",
                       "county": "county",
@@ -231,6 +247,7 @@ public class GetAppointmentListTest : BaseMockServerTest
                         ],
                         "city": "city",
                         "state": "state",
+                        "administrative_area": "administrative_area",
                         "postal_code": "postal_code",
                         "country": "country",
                         "county": "county",
@@ -247,6 +264,7 @@ public class GetAppointmentListTest : BaseMockServerTest
                         ],
                         "city": "city",
                         "state": "state",
+                        "administrative_area": "administrative_area",
                         "postal_code": "postal_code",
                         "country": "country",
                         "county": "county",
@@ -334,6 +352,7 @@ public class GetAppointmentListTest : BaseMockServerTest
                             ],
                             "city": "city",
                             "state": "state",
+                            "administrative_area": "administrative_area",
                             "postal_code": "postal_code",
                             "country": "country",
                             "county": "county",
@@ -347,6 +366,7 @@ public class GetAppointmentListTest : BaseMockServerTest
                             ],
                             "city": "city",
                             "state": "state",
+                            "administrative_area": "administrative_area",
                             "postal_code": "postal_code",
                             "country": "country",
                             "county": "county",
@@ -398,6 +418,7 @@ public class GetAppointmentListTest : BaseMockServerTest
                             ],
                             "city": "city",
                             "state": "state",
+                            "administrative_area": "administrative_area",
                             "postal_code": "postal_code",
                             "country": "country",
                             "county": "county",
@@ -411,6 +432,7 @@ public class GetAppointmentListTest : BaseMockServerTest
                             ],
                             "city": "city",
                             "state": "state",
+                            "administrative_area": "administrative_area",
                             "postal_code": "postal_code",
                             "country": "country",
                             "county": "county",
@@ -462,6 +484,7 @@ public class GetAppointmentListTest : BaseMockServerTest
                             ],
                             "city": "city",
                             "state": "state",
+                            "administrative_area": "administrative_area",
                             "postal_code": "postal_code",
                             "country": "country",
                             "county": "county",
@@ -475,6 +498,7 @@ public class GetAppointmentListTest : BaseMockServerTest
                             ],
                             "city": "city",
                             "state": "state",
+                            "administrative_area": "administrative_area",
                             "postal_code": "postal_code",
                             "country": "country",
                             "county": "county",
@@ -541,6 +565,7 @@ public class GetAppointmentListTest : BaseMockServerTest
                             ],
                             "city": "city",
                             "state": "state",
+                            "administrative_area": "administrative_area",
                             "postal_code": "postal_code",
                             "country": "country",
                             "county": "county",
@@ -554,6 +579,7 @@ public class GetAppointmentListTest : BaseMockServerTest
                             ],
                             "city": "city",
                             "state": "state",
+                            "administrative_area": "administrative_area",
                             "postal_code": "postal_code",
                             "country": "country",
                             "county": "county",
@@ -663,6 +689,7 @@ public class GetAppointmentListTest : BaseMockServerTest
                         ],
                         "city": "city",
                         "state": "state",
+                        "administrative_area": "administrative_area",
                         "postal_code": "postal_code",
                         "country": "country",
                         "county": "county",
@@ -963,6 +990,7 @@ public class GetAppointmentListTest : BaseMockServerTest
                         ],
                         "city": "city",
                         "state": "state",
+                        "administrative_area": "administrative_area",
                         "postal_code": "postal_code",
                         "country": "country",
                         "county": "county",
@@ -999,6 +1027,7 @@ public class GetAppointmentListTest : BaseMockServerTest
                         ],
                         "city": "city",
                         "state": "state",
+                        "administrative_area": "administrative_area",
                         "postal_code": "postal_code",
                         "country": "country",
                         "county": "county",
@@ -1064,7 +1093,8 @@ public class GetAppointmentListTest : BaseMockServerTest
                           "request_value": "request_value",
                           "corrected_value": "corrected_value"
                         }
-                      ]
+                      ],
+                      "trading_partner": "trading_partner"
                     },
                     "benefits": {
                       "plan_coverage": {
@@ -1134,6 +1164,7 @@ public class GetAppointmentListTest : BaseMockServerTest
                         ],
                         "city": "city",
                         "state": "state",
+                        "administrative_area": "administrative_area",
                         "postal_code": "postal_code",
                         "country": "country",
                         "county": "county",
@@ -1170,6 +1201,7 @@ public class GetAppointmentListTest : BaseMockServerTest
                         ],
                         "city": "city",
                         "state": "state",
+                        "administrative_area": "administrative_area",
                         "postal_code": "postal_code",
                         "country": "country",
                         "county": "county",
@@ -1235,7 +1267,8 @@ public class GetAppointmentListTest : BaseMockServerTest
                           "request_value": "request_value",
                           "corrected_value": "corrected_value"
                         }
-                      ]
+                      ],
+                      "trading_partner": "trading_partner"
                     },
                     "benefits": {
                       "plan_coverage": {
@@ -1344,6 +1377,7 @@ public class GetAppointmentListTest : BaseMockServerTest
                           ],
                           "city": "city",
                           "state": "state",
+                          "administrative_area": "administrative_area",
                           "postal_code": "postal_code",
                           "country": "country",
                           "county": "county",
@@ -1357,6 +1391,7 @@ public class GetAppointmentListTest : BaseMockServerTest
                           ],
                           "city": "city",
                           "state": "state",
+                          "administrative_area": "administrative_area",
                           "postal_code": "postal_code",
                           "country": "country",
                           "county": "county",
@@ -1391,6 +1426,19 @@ public class GetAppointmentListTest : BaseMockServerTest
                     "patient_deposit_cents": 1,
                     "appointment_details": "appointment_details",
                     "checked_in_timestamp": "2024-01-15T09:30:00.000Z",
+                    "checked_out_timestamp": "2024-01-15T09:30:00.000Z",
+                    "appointment_reason_detail": {
+                      "diagnosis_codes": [
+                        "diagnosis_codes",
+                        "diagnosis_codes"
+                      ],
+                      "procedure_codes": [
+                        "procedure_codes",
+                        "procedure_codes"
+                      ]
+                    },
+                    "medical_necessity_verified": true,
+                    "prior_authorization_status": "NOT_REQUIRED",
                     "notes": "notes",
                     "location_resource_id": "location_resource_id",
                     "automated_eligibility_check_complete": true,
@@ -1480,6 +1528,7 @@ public class GetAppointmentListTest : BaseMockServerTest
                       ],
                       "city": "city",
                       "state": "state",
+                      "administrative_area": "administrative_area",
                       "postal_code": "postal_code",
                       "country": "country",
                       "county": "county",
@@ -1497,6 +1546,7 @@ public class GetAppointmentListTest : BaseMockServerTest
                         ],
                         "city": "city",
                         "state": "state",
+                        "administrative_area": "administrative_area",
                         "postal_code": "postal_code",
                         "country": "country",
                         "county": "county",
@@ -1513,6 +1563,7 @@ public class GetAppointmentListTest : BaseMockServerTest
                         ],
                         "city": "city",
                         "state": "state",
+                        "administrative_area": "administrative_area",
                         "postal_code": "postal_code",
                         "country": "country",
                         "county": "county",
@@ -1600,6 +1651,7 @@ public class GetAppointmentListTest : BaseMockServerTest
                             ],
                             "city": "city",
                             "state": "state",
+                            "administrative_area": "administrative_area",
                             "postal_code": "postal_code",
                             "country": "country",
                             "county": "county",
@@ -1613,6 +1665,7 @@ public class GetAppointmentListTest : BaseMockServerTest
                             ],
                             "city": "city",
                             "state": "state",
+                            "administrative_area": "administrative_area",
                             "postal_code": "postal_code",
                             "country": "country",
                             "county": "county",
@@ -1664,6 +1717,7 @@ public class GetAppointmentListTest : BaseMockServerTest
                             ],
                             "city": "city",
                             "state": "state",
+                            "administrative_area": "administrative_area",
                             "postal_code": "postal_code",
                             "country": "country",
                             "county": "county",
@@ -1677,6 +1731,7 @@ public class GetAppointmentListTest : BaseMockServerTest
                             ],
                             "city": "city",
                             "state": "state",
+                            "administrative_area": "administrative_area",
                             "postal_code": "postal_code",
                             "country": "country",
                             "county": "county",
@@ -1728,6 +1783,7 @@ public class GetAppointmentListTest : BaseMockServerTest
                             ],
                             "city": "city",
                             "state": "state",
+                            "administrative_area": "administrative_area",
                             "postal_code": "postal_code",
                             "country": "country",
                             "county": "county",
@@ -1741,6 +1797,7 @@ public class GetAppointmentListTest : BaseMockServerTest
                             ],
                             "city": "city",
                             "state": "state",
+                            "administrative_area": "administrative_area",
                             "postal_code": "postal_code",
                             "country": "country",
                             "county": "county",
@@ -1807,6 +1864,7 @@ public class GetAppointmentListTest : BaseMockServerTest
                             ],
                             "city": "city",
                             "state": "state",
+                            "administrative_area": "administrative_area",
                             "postal_code": "postal_code",
                             "country": "country",
                             "county": "county",
@@ -1820,6 +1878,7 @@ public class GetAppointmentListTest : BaseMockServerTest
                             ],
                             "city": "city",
                             "state": "state",
+                            "administrative_area": "administrative_area",
                             "postal_code": "postal_code",
                             "country": "country",
                             "county": "county",
@@ -1929,6 +1988,7 @@ public class GetAppointmentListTest : BaseMockServerTest
                         ],
                         "city": "city",
                         "state": "state",
+                        "administrative_area": "administrative_area",
                         "postal_code": "postal_code",
                         "country": "country",
                         "county": "county",
@@ -2229,6 +2289,7 @@ public class GetAppointmentListTest : BaseMockServerTest
                         ],
                         "city": "city",
                         "state": "state",
+                        "administrative_area": "administrative_area",
                         "postal_code": "postal_code",
                         "country": "country",
                         "county": "county",
@@ -2265,6 +2326,7 @@ public class GetAppointmentListTest : BaseMockServerTest
                         ],
                         "city": "city",
                         "state": "state",
+                        "administrative_area": "administrative_area",
                         "postal_code": "postal_code",
                         "country": "country",
                         "county": "county",
@@ -2330,7 +2392,8 @@ public class GetAppointmentListTest : BaseMockServerTest
                           "request_value": "request_value",
                           "corrected_value": "corrected_value"
                         }
-                      ]
+                      ],
+                      "trading_partner": "trading_partner"
                     },
                     "benefits": {
                       "plan_coverage": {
@@ -2400,6 +2463,7 @@ public class GetAppointmentListTest : BaseMockServerTest
                         ],
                         "city": "city",
                         "state": "state",
+                        "administrative_area": "administrative_area",
                         "postal_code": "postal_code",
                         "country": "country",
                         "county": "county",
@@ -2436,6 +2500,7 @@ public class GetAppointmentListTest : BaseMockServerTest
                         ],
                         "city": "city",
                         "state": "state",
+                        "administrative_area": "administrative_area",
                         "postal_code": "postal_code",
                         "country": "country",
                         "county": "county",
@@ -2501,7 +2566,8 @@ public class GetAppointmentListTest : BaseMockServerTest
                           "request_value": "request_value",
                           "corrected_value": "corrected_value"
                         }
-                      ]
+                      ],
+                      "trading_partner": "trading_partner"
                     },
                     "benefits": {
                       "plan_coverage": {

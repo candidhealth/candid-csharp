@@ -20,7 +20,7 @@ public record LatestEligibilityCheck : IJsonOnDeserialized
     public required string CheckId { get; set; }
 
     [JsonPropertyName("status")]
-    public required EligibilityStatus Status { get; set; }
+    public required global::Candid.Net.PreEncounter.EligibilityChecks.V1.EligibilityStatus Status { get; set; }
 
     [JsonPropertyName("initiated_at")]
     public required DateTime InitiatedAt { get; set; }
@@ -33,6 +33,12 @@ public record LatestEligibilityCheck : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("request_corrections")]
     public IEnumerable<RequestCorrection>? RequestCorrections { get; set; }
+
+    /// <summary>
+    /// The payer's own identifier as returned on the Stedi eligibility response (271) `tradingPartnerServiceId`, surfaced from the latest check's plan metadata so it is readable off the coverage. Can differ from the ID we submitted.
+    /// </summary>
+    [JsonPropertyName("trading_partner")]
+    public string? TradingPartner { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

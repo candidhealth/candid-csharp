@@ -56,7 +56,7 @@ public record Appointment : IJsonOnDeserialized
     public required DateTime StartTimestamp { get; set; }
 
     /// <summary>
-    /// Defaults to PENDING. If status is NOT_READY, work_queue must be set. If status is READY or CHECKED_IN, work_queue must be null. If status is CHECKED_IN, checked_in_timestamp must be set. If checked_in_timestamp is set, status must be CHECKED_IN.
+    /// Defaults to PENDING. If status is NOT_READY, work_queue must be set. If status is READY, CHECKED_OUT, or NO_SHOW, work_queue must be null. checked_in_timestamp must be set if and only if status is CHECKED_IN or CHECKED_OUT, and checked_out_timestamp must be set if and only if status is CHECKED_OUT.
     /// </summary>
     [JsonPropertyName("status")]
     public AppointmentStatus? Status { get; set; }
@@ -68,7 +68,7 @@ public record Appointment : IJsonOnDeserialized
     public NotReadyReason? NotReadyReason { get; set; }
 
     /// <summary>
-    /// The method that set the appointment status to READY. It is not recommended to change this value manually via API. Must only be set when the status is READY or CHECKED_IN, it is cleared otherwise.
+    /// The method that set the appointment status to READY. It is not recommended to change this value manually via API. Must only be set when the status is READY, CHECKED_IN, CHECKED_OUT or NO_SHOW, it is cleared otherwise.
     /// </summary>
     [JsonPropertyName("ready_source")]
     public ReadySource? ReadySource { get; set; }
@@ -116,10 +116,34 @@ public record Appointment : IJsonOnDeserialized
     public string? AppointmentDetails { get; set; }
 
     /// <summary>
-    /// The timestamp when the patient checked in for their appointment. If status is CHECKED_IN, checked_in_timestamp must be set. If checked_in_timestamp is set, status must be CHECKED_IN.
+    /// The timestamp when the patient checked in for their appointment. Must be set when status is CHECKED_IN or CHECKED_OUT, and must be unset otherwise.
     /// </summary>
     [JsonPropertyName("checked_in_timestamp")]
     public DateTime? CheckedInTimestamp { get; set; }
+
+    /// <summary>
+    /// The timestamp when the patient checked out of their appointment. Must be set when status is CHECKED_OUT, and must be unset otherwise.
+    /// </summary>
+    [JsonPropertyName("checked_out_timestamp")]
+    public DateTime? CheckedOutTimestamp { get; set; }
+
+    /// <summary>
+    /// The clinical context for the appointment.
+    /// </summary>
+    [JsonPropertyName("appointment_reason_detail")]
+    public AppointmentReasonDetail? AppointmentReasonDetail { get; set; }
+
+    /// <summary>
+    /// True if medical necessity for this appointment has been verified.
+    /// </summary>
+    [JsonPropertyName("medical_necessity_verified")]
+    public bool? MedicalNecessityVerified { get; set; }
+
+    /// <summary>
+    /// The prior authorization status for this appointment.
+    /// </summary>
+    [JsonPropertyName("prior_authorization_status")]
+    public PriorAuthorizationStatus? PriorAuthorizationStatus { get; set; }
 
     [JsonPropertyName("notes")]
     public string? Notes { get; set; }
@@ -137,7 +161,7 @@ public record Appointment : IJsonOnDeserialized
     public bool? AutomatedEligibilityCheckComplete { get; set; }
 
     /// <summary>
-    /// The work queue that the appointment belongs to. It is not recommended to change this value manually via API. If status is NOT_READY, work_queue must be set. If status is READY, work_queue must be null.
+    /// The work queue that the appointment belongs to. It is not recommended to change this value manually via API. If status is NOT_READY, work_queue must be set. If status is READY, CHECKED_OUT or NO_SHOW, work_queue must be null.
     /// </summary>
     [JsonPropertyName("work_queue")]
     public AppointmentWorkQueue? WorkQueue { get; set; }

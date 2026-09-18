@@ -27,6 +27,12 @@ public record NonInsurancePayerWriteOffCreate : IJsonOnDeserialized
     [JsonPropertyName("write_off_reason")]
     public required InsuranceWriteOffReason WriteOffReason { get; set; }
 
+    /// <summary>
+    /// An organization-specific sub-reason
+    /// </summary>
+    [JsonPropertyName("custom_write_off_reason")]
+    public string? CustomWriteOffReason { get; set; }
+
     [JsonPropertyName("amount_cents")]
     public required int AmountCents { get; set; }
 

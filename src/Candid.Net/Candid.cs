@@ -36,10 +36,12 @@ using global::Candid.Net.PatientRefunds;
 using global::Candid.Net.PayerPlanGroups;
 using global::Candid.Net.Payers;
 using global::Candid.Net.PreEncounter;
+using global::Candid.Net.PreServiceRules;
 using global::Candid.Net.ServiceLines;
 using global::Candid.Net.Superbills;
 using global::Candid.Net.Tasks;
 using global::Candid.Net.Users;
+using global::Candid.Net.Views;
 using global::Candid.Net.WriteOffs;
 
 namespace Candid.Net;
@@ -57,7 +59,7 @@ public partial class Candid : ICandid
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Candid.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Candid.Net/1.32.0" },
+                { "User-Agent", "Candid.Net/1.33.0" },
             }
         );
         foreach (var header in platformHeaders)
@@ -112,10 +114,12 @@ public partial class Candid : ICandid
         PatientRefunds = new PatientRefundsClient(_client);
         PayerPlanGroups = new PayerPlanGroupsClient(_client);
         Payers = new PayersClient(_client);
+        PreServiceRules = new PreServiceRulesClient(_client);
         ServiceLines = new ServiceLinesClient(_client);
         Superbills = new SuperbillsClient(_client);
         Tasks = new TasksClient(_client);
         Users = new UsersClient(_client);
+        Views = new ViewsClient(_client);
         WriteOffs = new WriteOffsClient(_client);
         PreEncounter = new PreEncounterClient(_client);
         Diagnoses = new DiagnosesClient(_client);
@@ -189,6 +193,8 @@ public partial class Candid : ICandid
 
     public IPayersClient Payers { get; }
 
+    public IPreServiceRulesClient PreServiceRules { get; }
+
     public IServiceLinesClient ServiceLines { get; }
 
     public ISuperbillsClient Superbills { get; }
@@ -196,6 +202,8 @@ public partial class Candid : ICandid
     public ITasksClient Tasks { get; }
 
     public IUsersClient Users { get; }
+
+    public IViewsClient Views { get; }
 
     public IWriteOffsClient WriteOffs { get; }
 

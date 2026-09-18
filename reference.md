@@ -2595,6 +2595,54 @@ await client.Eligibility.V2.SubmitEligibilityCheckAvailityPostAsync(
 </dl>
 </details>
 
+<details><summary><code>client.Eligibility.V2.<a href="/src/Candid.Net/Eligibility/V2/V2Client.cs">FindAvailityEligibilityResultsAsync</a>(FindAvailityEligibilityResultsRequest { ... }) -> WithRawResponseTask&lt;FindAvailityEligibilityResultsResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Eligibility.V2.FindAvailityEligibilityResultsAsync(
+    new FindAvailityEligibilityResultsRequest
+    {
+        MemberId = "member_id",
+        PayerId = "payer_id",
+        DateOfService = new DateTime(2024, 01, 15, 09, 30, 00, 000),
+        ProviderNpi = "provider_npi",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `FindAvailityEligibilityResultsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## EncounterAttachments V1
 <details><summary><code>client.EncounterAttachments.V1.<a href="/src/Candid.Net/EncounterAttachments/V1/V1Client.cs">GetAsync</a>(encounterId) -> WithRawResponseTask&lt;IEnumerable&lt;EncounterAttachment&gt;&gt;</code></summary>
 <dl>
@@ -9007,6 +9055,208 @@ await client.Payers.V4.GetAllAsync(new global::Candid.Net.Payers.V4.GetAllPayers
 </dl>
 </details>
 
+## PreServiceRules V1
+<details><summary><code>client.PreServiceRules.V1.<a href="/src/Candid.Net/PreServiceRules/V1/V1Client.cs">CreateEncounterRunAsync</a>(PreServiceEncounterRunCreate { ... }) -> WithRawResponseTask&lt;PreServiceRunCreateResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Submit a representation of an encounter to the Candid rules engine. Note that this encounter will not be created in Candid.
+Returns a run_id that can be polled via GET /runs/{run_id} to retrieve the results once complete.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreServiceRules.V1.CreateEncounterRunAsync(
+    new PreServiceEncounterRunCreate
+    {
+        Entity = new PreServiceEncounterCreate
+        {
+            ExternalId = "external_id",
+            PatientAuthorizedRelease = true,
+            BenefitsAssignedToProvider = true,
+            ProviderAcceptsAssignment = true,
+            Patient = new PatientCreate
+            {
+                ExternalId = "external_id",
+                DateOfBirth = new DateOnly(2023, 1, 15),
+                Address = new StreetAddressShortZip
+                {
+                    Address1 = "address1",
+                    City = "city",
+                    State = State.Aa,
+                    ZipCode = "zip_code",
+                },
+                FirstName = "first_name",
+                LastName = "last_name",
+                Gender = global::Candid.Net.Individual.Gender.Male,
+            },
+            ResponsibleParty = ResponsiblePartyType.InsurancePay,
+            BillingProvider = new BillingProvider
+            {
+                Address = new StreetAddressLongZip
+                {
+                    ZipPlusFourCode = "zip_plus_four_code",
+                    Address1 = "address1",
+                    City = "city",
+                    State = State.Aa,
+                    ZipCode = "zip_code",
+                },
+                TaxId = "tax_id",
+                Npi = "npi",
+            },
+            SubmissionExpectation = EncounterSubmissionExpectation.TargetProfessional,
+        },
+        PipelineId = "pipeline_id",
+        EnabledRuleIds = new List<string>()
+        {
+            "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+            "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        },
+        DisabledRuleIds = new List<string>()
+        {
+            "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+            "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        },
+        IdempotencyKey = "idempotency_key",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `PreServiceEncounterRunCreate` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PreServiceRules.V1.<a href="/src/Candid.Net/PreServiceRules/V1/V1Client.cs">GetRunAsync</a>(runId) -> WithRawResponseTask&lt;PreServiceRun&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve the result of a pre-service run. This endpoint supports long-polling.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreServiceRules.V1.GetRunAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**runId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PreServiceRules.V1.<a href="/src/Candid.Net/PreServiceRules/V1/V1Client.cs">GetPipelinesAsync</a>() -> WithRawResponseTask&lt;IEnumerable&lt;PreServicePipelineSummary&gt;&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List the pre-service pipelines available to the authenticated organization.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreServiceRules.V1.GetPipelinesAsync();
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## ServiceLines V2
 <details><summary><code>client.ServiceLines.V2.<a href="/src/Candid.Net/ServiceLines/V2/V2Client.cs">CreateAsync</a>(ServiceLineCreateStandalone { ... }) -> WithRawResponseTask&lt;ServiceLine&gt;</code></summary>
 <dl>
@@ -9630,6 +9880,73 @@ await client.Users.V2.CreateM2MUserV2Async(
 <dd>
 
 **request:** `M2MUserCreateV2` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Views Dynamic V1
+<details><summary><code>client.Views.Dynamic.V1.<a href="/src/Candid.Net/Views/Dynamic/V1/V1Client.cs">ResolveAsync</a>(claimDynamicViewId, ResolveDynamicView { ... }) -> WithRawResponseTask&lt;EncounterSummaryPage&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Resolves a dynamic view to the EncounterSummaries currently present in this view.
+Body parameters can include sorting controls.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Views.Dynamic.V1.ResolveAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new ResolveDynamicView()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**claimDynamicViewId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `ResolveDynamicView` 
     
 </dd>
 </dl>
@@ -11789,6 +12106,118 @@ await client.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsAsync(
 <dd>
 
 **request:** `CoordinationOfBenefitsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PreEncounter.EligibilityChecks.V1.<a href="/src/Candid.Net/PreEncounter/EligibilityChecks/V1/V1Client.cs">EncounterEligibilityAsync</a>(EncounterEligibilityHistoryRequest { ... }) -> WithRawResponseTask&lt;EncounterEligibilityResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns patient eligibility data regardless of clearinghouse. Uses the encounter id to get needed patient, date of service, etc data.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreEncounter.EligibilityChecks.V1.EncounterEligibilityAsync(
+    new EncounterEligibilityHistoryRequest { EncounterId = "encounter_id" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `EncounterEligibilityHistoryRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PreEncounter.EligibilityChecks.V1.<a href="/src/Candid.Net/PreEncounter/EligibilityChecks/V1/V1Client.cs">CreateEncounterEligibilityAsync</a>(EncounterEligibilityRequest { ... }) -> WithRawResponseTask&lt;EncounterEligibility&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Fetch an eligibility check for the patient for the date of service, npi, and payer
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreEncounter.EligibilityChecks.V1.CreateEncounterEligibilityAsync(
+    new EncounterEligibilityRequest { EncounterId = "encounter_id" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `EncounterEligibilityRequest` 
     
 </dd>
 </dl>

@@ -18,6 +18,7 @@ public class RevertTest : BaseMockServerTest
               "write_off_timestamp": "2024-01-15T09:30:00.000Z",
               "write_off_note": "write_off_note",
               "write_off_reason": "SMALL_BALANCE",
+              "custom_write_off_reason": "custom_write_off_reason",
               "patient_external_id": "patient_external_id",
               "claim_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
               "service_line_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",

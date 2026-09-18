@@ -21,6 +21,12 @@ public record PatientWriteOffCreate : IJsonOnDeserialized
     [JsonPropertyName("write_off_reason")]
     public required PatientWriteOffReason WriteOffReason { get; set; }
 
+    /// <summary>
+    /// An organization-specific sub-reason
+    /// </summary>
+    [JsonPropertyName("custom_write_off_reason")]
+    public string? CustomWriteOffReason { get; set; }
+
     [JsonPropertyName("service_line_id")]
     public required string ServiceLineId { get; set; }
 

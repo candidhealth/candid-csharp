@@ -53,4 +53,10 @@ public partial interface IV2Client
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );
+
+    WithRawResponseTask<FindAvailityEligibilityResultsResponse> FindAvailityEligibilityResultsAsync(
+        FindAvailityEligibilityResultsRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
 }

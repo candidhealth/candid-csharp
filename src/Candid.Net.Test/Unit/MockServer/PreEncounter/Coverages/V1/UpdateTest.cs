@@ -71,6 +71,7 @@ public class UpdateTest : BaseMockServerTest
                   ],
                   "city": "city",
                   "state": "state",
+                  "administrative_area": "administrative_area",
                   "postal_code": "postal_code",
                   "country": "country",
                   "county": "county",
@@ -110,6 +111,7 @@ public class UpdateTest : BaseMockServerTest
                   ],
                   "city": "city",
                   "state": "state",
+                  "administrative_area": "administrative_area",
                   "postal_code": "postal_code",
                   "country": "country",
                   "county": "county",
@@ -192,7 +194,8 @@ public class UpdateTest : BaseMockServerTest
                     "request_value": "request_value",
                     "corrected_value": "corrected_value"
                   }
-                ]
+                ],
+                "trading_partner": "trading_partner"
               },
               "benefits": {
                 "plan_coverage": {

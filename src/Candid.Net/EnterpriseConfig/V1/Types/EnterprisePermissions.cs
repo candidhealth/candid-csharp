@@ -27,6 +27,12 @@ public record EnterprisePermissions : IJsonOnDeserialized
     [JsonPropertyName("write_rules")]
     public required bool WriteRules { get; set; }
 
+    /// <summary>
+    /// Whether the requesting organization may create and manage cross customer rules.
+    /// </summary>
+    [JsonPropertyName("write_cross_customer_rules")]
+    public required bool WriteCrossCustomerRules { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

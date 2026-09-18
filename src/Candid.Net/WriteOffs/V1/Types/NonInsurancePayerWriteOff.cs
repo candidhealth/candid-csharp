@@ -31,6 +31,12 @@ public record NonInsurancePayerWriteOff : IJsonOnDeserialized
     [JsonPropertyName("write_off_reason")]
     public required InsuranceWriteOffReason WriteOffReason { get; set; }
 
+    /// <summary>
+    /// An organization-specific sub-reason
+    /// </summary>
+    [JsonPropertyName("custom_write_off_reason")]
+    public string? CustomWriteOffReason { get; set; }
+
     [JsonPropertyName("reverts_write_off_id")]
     public string? RevertsWriteOffId { get; set; }
 

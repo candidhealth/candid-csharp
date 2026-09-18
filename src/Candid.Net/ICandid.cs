@@ -34,10 +34,12 @@ using global::Candid.Net.PatientRefunds;
 using global::Candid.Net.PayerPlanGroups;
 using global::Candid.Net.Payers;
 using global::Candid.Net.PreEncounter;
+using global::Candid.Net.PreServiceRules;
 using global::Candid.Net.ServiceLines;
 using global::Candid.Net.Superbills;
 using global::Candid.Net.Tasks;
 using global::Candid.Net.Users;
+using global::Candid.Net.Views;
 using global::Candid.Net.WriteOffs;
 
 namespace Candid.Net;
@@ -78,10 +80,12 @@ public partial interface ICandid
     public IPatientRefundsClient PatientRefunds { get; }
     public IPayerPlanGroupsClient PayerPlanGroups { get; }
     public IPayersClient Payers { get; }
+    public IPreServiceRulesClient PreServiceRules { get; }
     public IServiceLinesClient ServiceLines { get; }
     public ISuperbillsClient Superbills { get; }
     public ITasksClient Tasks { get; }
     public IUsersClient Users { get; }
+    public IViewsClient Views { get; }
     public IWriteOffsClient WriteOffs { get; }
     public IPreEncounterClient PreEncounter { get; }
     public IDiagnosesClient Diagnoses { get; }

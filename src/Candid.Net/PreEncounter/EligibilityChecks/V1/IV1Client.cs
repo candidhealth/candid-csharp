@@ -98,4 +98,22 @@ public partial interface IV1Client
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );
+
+    /// <summary>
+    /// Returns patient eligibility data regardless of clearinghouse. Uses the encounter id to get needed patient, date of service, etc data.
+    /// </summary>
+    WithRawResponseTask<EncounterEligibilityResponse> EncounterEligibilityAsync(
+        EncounterEligibilityHistoryRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Fetch an eligibility check for the patient for the date of service, npi, and payer
+    /// </summary>
+    WithRawResponseTask<EncounterEligibility> CreateEncounterEligibilityAsync(
+        EncounterEligibilityRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
 }

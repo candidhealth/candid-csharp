@@ -14,7 +14,8 @@ public class GetTest : BaseMockServerTest
         const string mockResponse = """
             {
               "write_queues": true,
-              "write_rules": true
+              "write_rules": true,
+              "write_cross_customer_rules": true
             }
             """;
 

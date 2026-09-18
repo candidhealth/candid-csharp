@@ -16,6 +16,10 @@ public readonly record struct AppointmentStatus : IStringEnum
 
     public static readonly AppointmentStatus CheckedIn = new(Values.CheckedIn);
 
+    public static readonly AppointmentStatus CheckedOut = new(Values.CheckedOut);
+
+    public static readonly AppointmentStatus NoShow = new(Values.NoShow);
+
     public AppointmentStatus(string value)
     {
         Value = value;
@@ -119,5 +123,9 @@ public readonly record struct AppointmentStatus : IStringEnum
         public const string Ready = "READY";
 
         public const string CheckedIn = "CHECKED_IN";
+
+        public const string CheckedOut = "CHECKED_OUT";
+
+        public const string NoShow = "NO_SHOW";
     }
 }
