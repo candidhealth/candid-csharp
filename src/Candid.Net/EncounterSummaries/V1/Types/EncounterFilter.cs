@@ -157,6 +157,9 @@ public record EncounterFilter : IJsonOnDeserialized
     [JsonPropertyName("work_queue_id")]
     public SetFilter? WorkQueueId { get; set; }
 
+    [JsonPropertyName("work_queue_category")]
+    public WorkQueueCategorySetFilter? WorkQueueCategory { get; set; }
+
     [JsonPropertyName("days_in_queue")]
     public IntRangeFilter? DaysInQueue { get; set; }
 

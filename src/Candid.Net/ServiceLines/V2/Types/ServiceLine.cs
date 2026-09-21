@@ -105,6 +105,12 @@ public record ServiceLine : IJsonOnDeserialized
     [JsonPropertyName("procedure_code")]
     public required string ProcedureCode { get; set; }
 
+    /// <summary>
+    /// Represents and preserves the custom CPT code received on this service line. Custom CPT codes are specific to your organization and are used for rules and reporting purposes.
+    /// </summary>
+    [JsonPropertyName("custom_procedure_code")]
+    public string? CustomProcedureCode { get; set; }
+
     [JsonPropertyName("ordering_provider")]
     public EncounterProvider? OrderingProvider { get; set; }
 

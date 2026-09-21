@@ -645,6 +645,7 @@ public class CreateFromPreEncounterPatientTest : BaseMockServerTest
                     "state": "AA",
                     "zip_code": "zip_code"
                   },
+                  "qualifier": "DQ",
                   "secondary_identification": {
                     "reference_identification": "reference_identification",
                     "reference_identification_qualifier": "0B"

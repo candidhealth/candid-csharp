@@ -9,7 +9,7 @@ public partial interface IV1Client
     /// Submit a representation of an encounter to the Candid rules engine. Note that this encounter will not be created in Candid.
     /// Returns a run_id that can be polled via GET /runs/{run_id} to retrieve the results once complete.
     /// </summary>
-    WithRawResponseTask<PreServiceRunCreateResponse> CreateEncounterRunAsync(
+    WithRawResponseTask<string> CreateEncounterRunAsync(
         PreServiceEncounterRunCreate request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

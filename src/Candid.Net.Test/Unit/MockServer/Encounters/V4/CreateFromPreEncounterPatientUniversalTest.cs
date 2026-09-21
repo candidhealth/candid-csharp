@@ -236,6 +236,7 @@ public class CreateFromPreEncounterPatientUniversalTest : BaseMockServerTest
                       "place_of_service_code_as_submitted": "01",
                       "service_line_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
                       "procedure_code": "procedure_code",
+                      "custom_procedure_code": "custom_procedure_code",
                       "ordering_provider": {
                         "provider_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
                         "address": {
@@ -465,6 +466,7 @@ public class CreateFromPreEncounterPatientUniversalTest : BaseMockServerTest
                       "place_of_service_code_as_submitted": "01",
                       "service_line_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
                       "procedure_code": "procedure_code",
+                      "custom_procedure_code": "custom_procedure_code",
                       "ordering_provider": {
                         "provider_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
                         "address": {
@@ -716,6 +718,7 @@ public class CreateFromPreEncounterPatientUniversalTest : BaseMockServerTest
                       "place_of_service_code_as_submitted": "01",
                       "service_line_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
                       "procedure_code": "procedure_code",
+                      "custom_procedure_code": "custom_procedure_code",
                       "ordering_provider": {
                         "provider_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
                         "address": {
@@ -945,6 +948,7 @@ public class CreateFromPreEncounterPatientUniversalTest : BaseMockServerTest
                       "place_of_service_code_as_submitted": "01",
                       "service_line_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
                       "procedure_code": "procedure_code",
+                      "custom_procedure_code": "custom_procedure_code",
                       "ordering_provider": {
                         "provider_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
                         "address": {

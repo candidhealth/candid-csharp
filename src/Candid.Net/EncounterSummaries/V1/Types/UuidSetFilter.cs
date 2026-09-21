@@ -16,7 +16,7 @@ public record UuidSetFilter : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Defaults to in
+    /// Defaults to IN
     /// </summary>
     [JsonPropertyName("mode")]
     public UuidSetMatchMode? Mode { get; set; }

@@ -14,7 +14,7 @@ public partial class V1Client : IV1Client
     }
 
     private async global::System.Threading.Tasks.Task<
-        WithRawResponse<PreServiceRunCreateResponse>
+        WithRawResponse<string>
     > CreateEncounterRunAsyncCore(
         PreServiceEncounterRunCreate request,
         RequestOptions? options = null,
@@ -48,10 +48,8 @@ public partial class V1Client : IV1Client
                 .ConfigureAwait(false);
             try
             {
-                var responseData = JsonUtils.Deserialize<PreServiceRunCreateResponse>(
-                    responseBody
-                )!;
-                return new WithRawResponse<PreServiceRunCreateResponse>()
+                var responseData = JsonUtils.Deserialize<string>(responseBody)!;
+                return new WithRawResponse<string>()
                 {
                     Data = responseData,
                     RawResponse = new global::Candid.Net.RawResponse()
@@ -320,13 +318,13 @@ public partial class V1Client : IV1Client
     ///     }
     /// );
     /// </code></example>
-    public WithRawResponseTask<PreServiceRunCreateResponse> CreateEncounterRunAsync(
+    public WithRawResponseTask<string> CreateEncounterRunAsync(
         PreServiceEncounterRunCreate request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        return new WithRawResponseTask<PreServiceRunCreateResponse>(
+        return new WithRawResponseTask<string>(
             CreateEncounterRunAsyncCore(request, options, cancellationToken)
         );
     }

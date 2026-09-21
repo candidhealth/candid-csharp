@@ -39,6 +39,12 @@ public record ServiceLineCreateStandalone : IJsonOnDeserialized
     [JsonPropertyName("external_id")]
     public string? ExternalId { get; set; }
 
+    /// <summary>
+    /// Represents and preserves the custom CPT code received on this service line. Custom CPT codes are specific to your organization and are primarily used for rules and reporting purposes.
+    /// </summary>
+    [JsonPropertyName("custom_procedure_code")]
+    public string? CustomProcedureCode { get; set; }
+
     [JsonPropertyName("procedure_code")]
     public required string ProcedureCode { get; set; }
 

@@ -27,6 +27,12 @@ public record UniversalServiceLineCreateStandalone : IJsonOnDeserialized
     public string? DiagnosisIdThree { get; set; }
 
     /// <summary>
+    /// Represents and preserves the custom CPT code received on this service line. Custom CPT codes are specific to your organization and are primarily used for rules and reporting purposes.
+    /// </summary>
+    [JsonPropertyName("custom_procedure_code")]
+    public string? CustomProcedureCode { get; set; }
+
+    /// <summary>
     /// A 4 digit code that specifies facility department or type of service arrangement for institutional service line items (837i). This code is not required for professional claim billing (837p).
     /// </summary>
     [JsonPropertyName("revenue_code")]

@@ -9056,7 +9056,7 @@ await client.Payers.V4.GetAllAsync(new global::Candid.Net.Payers.V4.GetAllPayers
 </details>
 
 ## PreServiceRules V1
-<details><summary><code>client.PreServiceRules.V1.<a href="/src/Candid.Net/PreServiceRules/V1/V1Client.cs">CreateEncounterRunAsync</a>(PreServiceEncounterRunCreate { ... }) -> WithRawResponseTask&lt;PreServiceRunCreateResponse&gt;</code></summary>
+<details><summary><code>client.PreServiceRules.V1.<a href="/src/Candid.Net/PreServiceRules/V1/V1Client.cs">CreateEncounterRunAsync</a>(PreServiceEncounterRunCreate { ... }) -> WithRawResponseTask&lt;string&gt;</code></summary>
 <dl>
 <dd>
 

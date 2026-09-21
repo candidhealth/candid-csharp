@@ -1,22 +1,30 @@
 using global::Candid.Net;
 using global::Candid.Net.Core;
+using global::Candid.Net.WorkQueues.V2;
 using global::System.Text.Json;
 using global::System.Text.Json.Serialization;
 
-namespace Candid.Net.PreServiceRules.V1;
+namespace Candid.Net.EncounterSummaries.V1;
 
 /// <summary>
-/// Returned after a successful pre-service run submission.
+/// Filter on work queue category by matching against a set of allowed categories, with optional
+/// negation.
 /// </summary>
 [Serializable]
-public record PreServiceRunCreateResponse : IJsonOnDeserialized
+public record WorkQueueCategorySetFilter : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
-    [JsonPropertyName("run_id")]
-    public required string RunId { get; set; }
+    /// <summary>
+    /// Defaults to IN
+    /// </summary>
+    [JsonPropertyName("mode")]
+    public SetMatchMode? Mode { get; set; }
+
+    [JsonPropertyName("values")]
+    public IEnumerable<WorkQueueCategory> Values { get; set; } = new List<WorkQueueCategory>();
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

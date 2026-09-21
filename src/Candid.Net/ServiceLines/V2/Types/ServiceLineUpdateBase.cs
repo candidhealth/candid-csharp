@@ -49,6 +49,12 @@ public record ServiceLineUpdateBase : IJsonOnDeserialized
     public string? ProcedureCode { get; set; }
 
     /// <summary>
+    /// Updates and preserves the custom CPT code received on this service line. Custom CPT codes are specific to your organization and are used for rules and reporting purposes.
+    /// </summary>
+    [JsonPropertyName("custom_procedure_code")]
+    public string? CustomProcedureCode { get; set; }
+
+    /// <summary>
     /// String representation of a Decimal that can be parsed by most libraries.
     /// For professional claims, a ServiceLine quantity cannot contain more than one digit of precision
     /// (Example: 1.1 is valid, 1.11 is not). For institutional claims, a ServiceLine quantity cannot contain

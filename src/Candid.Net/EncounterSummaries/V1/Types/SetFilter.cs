@@ -16,7 +16,7 @@ public record SetFilter : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Defaults to in
+    /// Defaults to IN
     /// </summary>
     [JsonPropertyName("mode")]
     public SetMatchMode? Mode { get; set; }

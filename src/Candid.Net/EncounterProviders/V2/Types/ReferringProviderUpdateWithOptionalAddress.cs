@@ -26,6 +26,9 @@ public record ReferringProviderUpdateWithOptionalAddress : IJsonOnDeserialized
     [JsonPropertyName("address")]
     public StreetAddressShortZipOptional? Address { get; set; }
 
+    [JsonPropertyName("qualifier")]
+    public QualifierCode? Qualifier { get; set; }
+
     [JsonPropertyName("secondary_identification")]
     public ReferringProviderSecondaryIdentificationOptional? SecondaryIdentification { get; set; }
 
