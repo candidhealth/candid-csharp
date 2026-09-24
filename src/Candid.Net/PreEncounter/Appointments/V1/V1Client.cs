@@ -603,10 +603,15 @@ public partial class V1Client : IV1Client
     private async global::System.Threading.Tasks.Task<RawResponse> DeactivateAsyncCore(
         string id,
         string version,
+        AppointmentDeactivateRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _queryString = new global::Candid.Net.Core.QueryStringBuilder.Builder(capacity: 1)
+            .Add("cancellation_reason", request.CancellationReason)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
         var _headers = await new global::Candid.Net.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
             .Add(_client.Options.AdditionalHeaders)
@@ -624,6 +629,7 @@ public partial class V1Client : IV1Client
                         ValueConvert.ToPathParameterString(id),
                         ValueConvert.ToPathParameterString(version)
                     ),
+                    QueryString = _queryString,
                     Headers = _headers,
                     Options = options,
                 },
@@ -814,20 +820,25 @@ public partial class V1Client : IV1Client
     }
 
     /// <summary>
-    /// Sets an appointment as deactivated.  The path must contain the most recent version to prevent race conditions.  Deactivating historic versions is not supported. Subsequent updates via PUT to the appointment will "reactivate" the appointment and set the deactivated flag to false.
+    /// Sets an appointment as deactivated.  The path must contain the most recent version to prevent race conditions.  Deactivating historic versions is not supported. Subsequent updates via PUT to the appointment will "reactivate" the appointment, set the deactivated flag to false, and clear the cancellation reason.
     /// </summary>
     /// <example><code>
-    /// await client.PreEncounter.Appointments.V1.DeactivateAsync("id", "version");
+    /// await client.PreEncounter.Appointments.V1.DeactivateAsync(
+    ///     "id",
+    ///     "version",
+    ///     new AppointmentDeactivateRequest()
+    /// );
     /// </code></example>
     public WithRawResponseTask DeactivateAsync(
         string id,
         string version,
+        AppointmentDeactivateRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask(
-            DeactivateAsyncCore(id, version, options, cancellationToken)
+            DeactivateAsyncCore(id, version, request, options, cancellationToken)
         );
     }
 }

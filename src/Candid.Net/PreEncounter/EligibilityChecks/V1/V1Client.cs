@@ -1030,12 +1030,95 @@ public partial class V1Client : IV1Client
         }
     }
 
+    private async global::System.Threading.Tasks.Task<
+        WithRawResponse<EncounterEligibility>
+    > GetEligibilityCheckByIdAsyncCore(
+        string eligibilityCheckId,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _headers = await new global::Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Get,
+                    Path = string.Format(
+                        "/eligibility-checks/v1/{0}",
+                        ValueConvert.ToPathParameterString(eligibilityCheckId)
+                    ),
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<EncounterEligibility>(responseBody)!;
+                return new WithRawResponse<EncounterEligibility>()
+                {
+                    Data = responseData,
+                    RawResponse = new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e,
+                    rawResponse: new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    }
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody,
+                rawResponse: new global::Candid.Net.RawResponse()
+                {
+                    StatusCode = response.Raw.StatusCode,
+                    Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                    Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                }
+            );
+        }
+    }
+
     /// <summary>
     /// Sends real-time eligibility checks to payers through Stedi.
     /// </summary>
     /// <example><code>
     /// await client.PreEncounter.EligibilityChecks.V1.PostAsync(
-    ///     new EligibilityRequest
+    ///     new global::Candid.Net.PreEncounter.EligibilityChecks.V1.EligibilityRequest
     ///     {
     ///         PayerId = "payer_id",
     ///         Provider = new IndividualProvider { Npi = "npi" },
@@ -1059,15 +1142,15 @@ public partial class V1Client : IV1Client
     /// </summary>
     /// <example><code>
     /// await client.PreEncounter.EligibilityChecks.V1.BatchAsync(
-    ///     new List&lt;EligibilityRequest&gt;()
+    ///     new List&lt;global::Candid.Net.PreEncounter.EligibilityChecks.V1.EligibilityRequest&gt;()
     ///     {
-    ///         new EligibilityRequest
+    ///         new global::Candid.Net.PreEncounter.EligibilityChecks.V1.EligibilityRequest
     ///         {
     ///             PayerId = "payer_id",
     ///             Provider = new IndividualProvider { Npi = "npi" },
     ///             Subscriber = new MemberInfo { FirstName = "first_name", LastName = "last_name" },
     ///         },
-    ///         new EligibilityRequest
+    ///         new global::Candid.Net.PreEncounter.EligibilityChecks.V1.EligibilityRequest
     ///         {
     ///             PayerId = "payer_id",
     ///             Provider = new IndividualProvider { Npi = "npi" },
@@ -1316,6 +1399,23 @@ public partial class V1Client : IV1Client
     {
         return new WithRawResponseTask<EncounterEligibility>(
             CreateEncounterEligibilityAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Fetch an eligibility check by it's primary key
+    /// </summary>
+    /// <example><code>
+    /// await client.PreEncounter.EligibilityChecks.V1.GetEligibilityCheckByIdAsync("eligibility_check_id");
+    /// </code></example>
+    public WithRawResponseTask<EncounterEligibility> GetEligibilityCheckByIdAsync(
+        string eligibilityCheckId,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<EncounterEligibility>(
+            GetEligibilityCheckByIdAsyncCore(eligibilityCheckId, options, cancellationToken)
         );
     }
 }

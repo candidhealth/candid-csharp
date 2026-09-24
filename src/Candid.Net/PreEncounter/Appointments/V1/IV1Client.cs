@@ -88,11 +88,12 @@ public partial interface IV1Client
     );
 
     /// <summary>
-    /// Sets an appointment as deactivated.  The path must contain the most recent version to prevent race conditions.  Deactivating historic versions is not supported. Subsequent updates via PUT to the appointment will "reactivate" the appointment and set the deactivated flag to false.
+    /// Sets an appointment as deactivated.  The path must contain the most recent version to prevent race conditions.  Deactivating historic versions is not supported. Subsequent updates via PUT to the appointment will "reactivate" the appointment, set the deactivated flag to false, and clear the cancellation reason.
     /// </summary>
     WithRawResponseTask DeactivateAsync(
         string id,
         string version,
+        AppointmentDeactivateRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );

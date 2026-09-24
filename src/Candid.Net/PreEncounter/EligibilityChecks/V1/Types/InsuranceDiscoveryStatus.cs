@@ -12,6 +12,10 @@ public readonly record struct InsuranceDiscoveryStatus : IStringEnum
 
     public static readonly InsuranceDiscoveryStatus Complete = new(Values.Complete);
 
+    public static readonly InsuranceDiscoveryStatus Error = new(Values.Error);
+
+    public static readonly InsuranceDiscoveryStatus Unknown = new(Values.Unknown);
+
     public InsuranceDiscoveryStatus(string value)
     {
         Value = value;
@@ -111,5 +115,9 @@ public readonly record struct InsuranceDiscoveryStatus : IStringEnum
         public const string Pending = "PENDING";
 
         public const string Complete = "COMPLETE";
+
+        public const string Error = "ERROR";
+
+        public const string Unknown = "UNKNOWN";
     }
 }

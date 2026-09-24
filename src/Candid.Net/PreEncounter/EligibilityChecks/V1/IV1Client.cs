@@ -116,4 +116,13 @@ public partial interface IV1Client
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );
+
+    /// <summary>
+    /// Fetch an eligibility check by it's primary key
+    /// </summary>
+    WithRawResponseTask<EncounterEligibility> GetEligibilityCheckByIdAsync(
+        string eligibilityCheckId,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
 }

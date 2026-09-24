@@ -19,7 +19,7 @@ public record EncounterEligibility : IJsonOnDeserialized
     public required EligibilitySource Source { get; set; }
 
     [JsonPropertyName("dateOfService")]
-    public required DateTime DateOfService { get; set; }
+    public DateTime? DateOfService { get; set; }
 
     [JsonPropertyName("payerId")]
     public required string PayerId { get; set; }

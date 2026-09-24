@@ -1385,6 +1385,7 @@ public class UpdateUniversalTest : BaseMockServerTest
               },
               "property_casualty_claim_number": "property_casualty_claim_number",
               "accident_date": "2023-01-15",
+              "initial_treatment_date": "2023-01-15",
               "property_casualty_patient_identifier": {
                 "property_casualty_patient_identifier_qualifier": "1W",
                 "property_casualty_patient_identifier": "property_casualty_patient_identifier"

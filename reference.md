@@ -2468,6 +2468,55 @@ await client.Dashboarding.V1.QueryMetricsAsync(
 </details>
 
 ## Eligibility V2
+<details><summary><code>client.Eligibility.V2.<a href="/src/Candid.Net/Eligibility/V2/V2Client.cs">CreateAvailityEligibilityCheckAsync</a>(EligibilityRequest { ... }) -> WithRawResponseTask&lt;string&gt;</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Eligibility.V2.CreateAvailityEligibilityCheckAsync(
+    new global::Candid.Net.Eligibility.V2.EligibilityRequest
+    {
+        MemberId = "member_id",
+        PayerId = "payer_id",
+        ProviderNpi = "provider_npi",
+        DateOfService = new DateTime(2024, 01, 15, 09, 30, 00, 000),
+        ServiceTypeCodes = new List<string>() { "service_type_codes", "service_type_codes" },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `EligibilityRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.Eligibility.V2.<a href="/src/Candid.Net/Eligibility/V2/V2Client.cs">SubmitEligibilityCheckAvailityAsync</a>() -> WithRawResponseTask&lt;object&gt;</code></summary>
 <dl>
 <dd>
@@ -2632,6 +2681,46 @@ await client.Eligibility.V2.FindAvailityEligibilityResultsAsync(
 <dd>
 
 **request:** `FindAvailityEligibilityResultsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Eligibility.V2.<a href="/src/Candid.Net/Eligibility/V2/V2Client.cs">GetByIdAsync</a>(eligibilityCheckId) -> WithRawResponseTask&lt;AvailityEligibilityResult&gt;</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Eligibility.V2.GetByIdAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**eligibilityCheckId:** `string` 
     
 </dd>
 </dl>
@@ -10749,7 +10838,7 @@ await client.PreEncounter.Appointments.V1.ScanAsync(
 </dl>
 </details>
 
-<details><summary><code>client.PreEncounter.Appointments.V1.<a href="/src/Candid.Net/PreEncounter/Appointments/V1/V1Client.cs">DeactivateAsync</a>(id, version) -> WithRawResponseTask</code></summary>
+<details><summary><code>client.PreEncounter.Appointments.V1.<a href="/src/Candid.Net/PreEncounter/Appointments/V1/V1Client.cs">DeactivateAsync</a>(id, version, AppointmentDeactivateRequest { ... }) -> WithRawResponseTask</code></summary>
 <dl>
 <dd>
 
@@ -10761,7 +10850,7 @@ await client.PreEncounter.Appointments.V1.ScanAsync(
 <dl>
 <dd>
 
-Sets an appointment as deactivated.  The path must contain the most recent version to prevent race conditions.  Deactivating historic versions is not supported. Subsequent updates via PUT to the appointment will "reactivate" the appointment and set the deactivated flag to false.
+Sets an appointment as deactivated.  The path must contain the most recent version to prevent race conditions.  Deactivating historic versions is not supported. Subsequent updates via PUT to the appointment will "reactivate" the appointment, set the deactivated flag to false, and clear the cancellation reason.
 </dd>
 </dl>
 </dd>
@@ -10776,7 +10865,11 @@ Sets an appointment as deactivated.  The path must contain the most recent versi
 <dd>
 
 ```csharp
-await client.PreEncounter.Appointments.V1.DeactivateAsync("id", "version");
+await client.PreEncounter.Appointments.V1.DeactivateAsync(
+    "id",
+    "version",
+    new AppointmentDeactivateRequest()
+);
 ```
 </dd>
 </dl>
@@ -10800,6 +10893,14 @@ await client.PreEncounter.Appointments.V1.DeactivateAsync("id", "version");
 <dd>
 
 **version:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `AppointmentDeactivateRequest` 
     
 </dd>
 </dl>
@@ -11491,6 +11592,121 @@ await client.PreEncounter.Coverages.V1.GetEligibilityAsync(
 </dl>
 </details>
 
+<details><summary><code>client.PreEncounter.Coverages.V1.<a href="/src/Candid.Net/PreEncounter/Coverages/V1/V1Client.cs">CheckInsuranceDiscoveryAsync</a>(CheckInsuranceDiscoveryRequest { ... }) -> WithRawResponseTask&lt;InsuranceDiscoveryCheckMetadata&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Initiates an insurance discovery check. Returns the metadata of the check if successfully initiated.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreEncounter.Coverages.V1.CheckInsuranceDiscoveryAsync(
+    new CheckInsuranceDiscoveryRequest
+    {
+        PatientId = "patient_id",
+        DateOfService = new DateOnly(2023, 1, 15),
+        Npi = "npi",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `CheckInsuranceDiscoveryRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PreEncounter.Coverages.V1.<a href="/src/Candid.Net/PreEncounter/Coverages/V1/V1Client.cs">GetInsuranceDiscoveryAsync</a>(checkId) -> WithRawResponseTask&lt;AsyncInsuranceDiscoveryCheckResult&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets the insurance discovery of a patient if successful.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreEncounter.Coverages.V1.GetInsuranceDiscoveryAsync("check_id");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**checkId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## PreEncounter EligibilityChecks V1
 <details><summary><code>client.PreEncounter.EligibilityChecks.V1.<a href="/src/Candid.Net/PreEncounter/EligibilityChecks/V1/V1Client.cs">PostAsync</a>(EligibilityRequest { ... }) -> WithRawResponseTask&lt;EligibilityCheck&gt;</code></summary>
 <dl>
@@ -11520,7 +11736,7 @@ Sends real-time eligibility checks to payers through Stedi.
 
 ```csharp
 await client.PreEncounter.EligibilityChecks.V1.PostAsync(
-    new EligibilityRequest
+    new global::Candid.Net.PreEncounter.EligibilityChecks.V1.EligibilityRequest
     {
         PayerId = "payer_id",
         Provider = new IndividualProvider { Npi = "npi" },
@@ -11581,15 +11797,15 @@ Sends a batch of eligibility checks to payers through Stedi.
 
 ```csharp
 await client.PreEncounter.EligibilityChecks.V1.BatchAsync(
-    new List<EligibilityRequest>()
+    new List<global::Candid.Net.PreEncounter.EligibilityChecks.V1.EligibilityRequest>()
     {
-        new EligibilityRequest
+        new global::Candid.Net.PreEncounter.EligibilityChecks.V1.EligibilityRequest
         {
             PayerId = "payer_id",
             Provider = new IndividualProvider { Npi = "npi" },
             Subscriber = new MemberInfo { FirstName = "first_name", LastName = "last_name" },
         },
-        new EligibilityRequest
+        new global::Candid.Net.PreEncounter.EligibilityChecks.V1.EligibilityRequest
         {
             PayerId = "payer_id",
             Provider = new IndividualProvider { Npi = "npi" },
@@ -12218,6 +12434,60 @@ await client.PreEncounter.EligibilityChecks.V1.CreateEncounterEligibilityAsync(
 <dd>
 
 **request:** `EncounterEligibilityRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PreEncounter.EligibilityChecks.V1.<a href="/src/Candid.Net/PreEncounter/EligibilityChecks/V1/V1Client.cs">GetEligibilityCheckByIdAsync</a>(eligibilityCheckId) -> WithRawResponseTask&lt;EncounterEligibility&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Fetch an eligibility check by it's primary key
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreEncounter.EligibilityChecks.V1.GetEligibilityCheckByIdAsync("eligibility_check_id");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**eligibilityCheckId:** `string` 
     
 </dd>
 </dl>

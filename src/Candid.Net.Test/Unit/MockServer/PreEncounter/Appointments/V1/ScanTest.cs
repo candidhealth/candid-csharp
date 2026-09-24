@@ -154,7 +154,8 @@ public class ScanTest : BaseMockServerTest
                 "notes": "notes",
                 "location_resource_id": "location_resource_id",
                 "automated_eligibility_check_complete": true,
-                "work_queue": "EMERGENT_ISSUE"
+                "work_queue": "EMERGENT_ISSUE",
+                "cancellation_reason": "cancellation_reason"
               },
               {
                 "id": "id",
@@ -295,7 +296,8 @@ public class ScanTest : BaseMockServerTest
                 "notes": "notes",
                 "location_resource_id": "location_resource_id",
                 "automated_eligibility_check_complete": true,
-                "work_queue": "EMERGENT_ISSUE"
+                "work_queue": "EMERGENT_ISSUE",
+                "cancellation_reason": "cancellation_reason"
               }
             ]
             """;

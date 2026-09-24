@@ -61,9 +61,9 @@ public class BatchTest : BaseMockServerTest
             );
 
         var response = await Client.PreEncounter.EligibilityChecks.V1.BatchAsync(
-            new List<EligibilityRequest>()
+            new List<global::Candid.Net.PreEncounter.EligibilityChecks.V1.EligibilityRequest>()
             {
-                new EligibilityRequest
+                new global::Candid.Net.PreEncounter.EligibilityChecks.V1.EligibilityRequest
                 {
                     PayerId = "payer_id",
                     Provider = new IndividualProvider { Npi = "npi" },
@@ -73,7 +73,7 @@ public class BatchTest : BaseMockServerTest
                         LastName = "last_name",
                     },
                 },
-                new EligibilityRequest
+                new global::Candid.Net.PreEncounter.EligibilityChecks.V1.EligibilityRequest
                 {
                     PayerId = "payer_id",
                     Provider = new IndividualProvider { Npi = "npi" },

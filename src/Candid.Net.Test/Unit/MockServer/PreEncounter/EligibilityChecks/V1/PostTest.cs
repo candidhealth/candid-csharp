@@ -305,7 +305,7 @@ public class PostTest : BaseMockServerTest
             );
 
         var response = await Client.PreEncounter.EligibilityChecks.V1.PostAsync(
-            new EligibilityRequest
+            new global::Candid.Net.PreEncounter.EligibilityChecks.V1.EligibilityRequest
             {
                 PayerId = "payer_id",
                 Provider = new IndividualProvider { Npi = "npi" },

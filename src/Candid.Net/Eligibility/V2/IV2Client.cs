@@ -5,6 +5,12 @@ namespace Candid.Net.Eligibility.V2;
 
 public partial interface IV2Client
 {
+    WithRawResponseTask<string> CreateAvailityEligibilityCheckAsync(
+        EligibilityRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
+
     /// <summary>
     /// &lt;Tip&gt;Candid is deprecating support for this endpoint. It is instead recommended to use [Candid's Stedi passthrough endpoint](https://docs.joincandidhealth.com/api-reference/pre-encounter/eligibility-checks/v-1/post).
     /// For assistance with the transition, please reference the [Transitioning to Candid's New Eligibility Endpoint](https://support.joincandidhealth.com/hc/en-us/articles/34918552872980) document in the Candid Support Center.&lt;/Tip&gt;
@@ -56,6 +62,12 @@ public partial interface IV2Client
 
     WithRawResponseTask<FindAvailityEligibilityResultsResponse> FindAvailityEligibilityResultsAsync(
         FindAvailityEligibilityResultsRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
+
+    WithRawResponseTask<AvailityEligibilityResult> GetByIdAsync(
+        string eligibilityCheckId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );

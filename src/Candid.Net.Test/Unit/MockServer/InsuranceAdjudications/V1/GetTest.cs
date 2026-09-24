@@ -184,7 +184,25 @@ public class GetTest : BaseMockServerTest
                     ]
                   }
                 ]
-              }
+              },
+              "provider_level_adjustments": [
+                {
+                  "provider_identifier": "provider_identifier",
+                  "adjustment_identifier": "adjustment_identifier",
+                  "adjustment_code": "50",
+                  "adjustment_amount_cents": 1,
+                  "payee_npi": "payee_npi",
+                  "payee_tin": "payee_tin"
+                },
+                {
+                  "provider_identifier": "provider_identifier",
+                  "adjustment_identifier": "adjustment_identifier",
+                  "adjustment_code": "50",
+                  "adjustment_amount_cents": 1,
+                  "payee_npi": "payee_npi",
+                  "payee_tin": "payee_tin"
+                }
+              ]
             }
             """;
 

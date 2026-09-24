@@ -1,5 +1,6 @@
 using global::Candid.Net;
 using global::Candid.Net.Core;
+using global::Candid.Net.Eras;
 using global::System.Text.Json;
 using global::System.Text.Json.Serialization;
 
@@ -33,6 +34,10 @@ public record InsuranceAdjudication : IJsonOnDeserialized
     [JsonPropertyName("claims")]
     public Dictionary<string, IEnumerable<ClaimAdjudication>> Claims { get; set; } =
         new Dictionary<string, IEnumerable<ClaimAdjudication>>();
+
+    [JsonPropertyName("provider_level_adjustments")]
+    public IEnumerable<ProviderLevelAdjustment> ProviderLevelAdjustments { get; set; } =
+        new List<ProviderLevelAdjustment>();
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

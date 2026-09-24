@@ -166,6 +166,12 @@ public record Appointment : IJsonOnDeserialized
     [JsonPropertyName("work_queue")]
     public AppointmentWorkQueue? WorkQueue { get; set; }
 
+    /// <summary>
+    /// The reason the appointment was cancelled. This value cannot be set on create or update; it is only set by the deactivate endpoint, and is cleared if the appointment is reactivated.
+    /// </summary>
+    [JsonPropertyName("cancellation_reason")]
+    public string? CancellationReason { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

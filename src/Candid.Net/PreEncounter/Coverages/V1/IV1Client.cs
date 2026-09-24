@@ -115,4 +115,22 @@ public partial interface IV1Client
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );
+
+    /// <summary>
+    /// Initiates an insurance discovery check. Returns the metadata of the check if successfully initiated.
+    /// </summary>
+    WithRawResponseTask<InsuranceDiscoveryCheckMetadata> CheckInsuranceDiscoveryAsync(
+        CheckInsuranceDiscoveryRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Gets the insurance discovery of a patient if successful.
+    /// </summary>
+    WithRawResponseTask<AsyncInsuranceDiscoveryCheckResult> GetInsuranceDiscoveryAsync(
+        string checkId,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
 }

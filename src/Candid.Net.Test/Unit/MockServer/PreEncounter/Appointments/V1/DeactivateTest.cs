@@ -1,3 +1,4 @@
+using global::Candid.Net.PreEncounter.Appointments.V1;
 using global::Candid.Net.Test.Unit.MockServer;
 using NUnit.Framework;
 
@@ -20,7 +21,11 @@ public class DeactivateTest : BaseMockServerTest
             .RespondWith(WireMock.ResponseBuilders.Response.Create().WithStatusCode(200));
 
         Assert.DoesNotThrowAsync(async () =>
-            await Client.PreEncounter.Appointments.V1.DeactivateAsync("id", "version")
+            await Client.PreEncounter.Appointments.V1.DeactivateAsync(
+                "id",
+                "version",
+                new AppointmentDeactivateRequest()
+            )
         );
     }
 }

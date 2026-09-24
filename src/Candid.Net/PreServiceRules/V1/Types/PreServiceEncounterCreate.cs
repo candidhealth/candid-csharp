@@ -296,6 +296,12 @@ public record PreServiceEncounterCreate : IJsonOnDeserialized
     public DateOnly? AccidentDate { get; set; }
 
     /// <summary>
+    /// 837p Loop2300 DTP*454, CMS1500 Box 15.
+    /// </summary>
+    [JsonPropertyName("initial_treatment_date")]
+    public DateOnly? InitialTreatmentDate { get; set; }
+
+    /// <summary>
     /// Patient identifier for Property and Casualty claims. 837p Loop 2010CA.
     /// </summary>
     [JsonPropertyName("property_casualty_patient_identifier")]
