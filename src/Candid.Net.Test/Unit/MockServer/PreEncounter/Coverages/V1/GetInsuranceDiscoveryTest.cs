@@ -30,6 +30,72 @@ public class GetInsuranceDiscoveryTest : BaseMockServerTest
                     "key": "value"
                   }
                 ],
+                "parsed_items": [
+                  {
+                    "confidence": {
+                      "level": "REVIEW_NEEDED",
+                      "reason": "reason"
+                    },
+                    "eligibility_status": "ACTIVE",
+                    "plan_metadata": {
+                      "payer_name": "payer_name",
+                      "insurance_type": "insurance_type",
+                      "insurance_type_code": "insurance_type_code",
+                      "plan_name": "plan_name",
+                      "member_id": "member_id",
+                      "group_number": "group_number",
+                      "start_date": "2023-01-15",
+                      "end_date": "2023-01-15",
+                      "plan_dates": [],
+                      "subscriber": {},
+                      "dependent": {},
+                      "trading_partner": "trading_partner"
+                    },
+                    "benefits": {
+                      "plan_coverage": {},
+                      "service_specific_coverage": [],
+                      "benefits_related_entities": [
+                        {},
+                        {}
+                      ],
+                      "non_covered_details": [],
+                      "notes": "notes",
+                      "autoUpdatedEligibilityCheckId": "autoUpdatedEligibilityCheckId"
+                    }
+                  },
+                  {
+                    "confidence": {
+                      "level": "REVIEW_NEEDED",
+                      "reason": "reason"
+                    },
+                    "eligibility_status": "ACTIVE",
+                    "plan_metadata": {
+                      "payer_name": "payer_name",
+                      "insurance_type": "insurance_type",
+                      "insurance_type_code": "insurance_type_code",
+                      "plan_name": "plan_name",
+                      "member_id": "member_id",
+                      "group_number": "group_number",
+                      "start_date": "2023-01-15",
+                      "end_date": "2023-01-15",
+                      "plan_dates": [],
+                      "subscriber": {},
+                      "dependent": {},
+                      "trading_partner": "trading_partner"
+                    },
+                    "benefits": {
+                      "plan_coverage": {},
+                      "service_specific_coverage": [],
+                      "benefits_related_entities": [
+                        {},
+                        {}
+                      ],
+                      "non_covered_details": [],
+                      "notes": "notes",
+                      "autoUpdatedEligibilityCheckId": "autoUpdatedEligibilityCheckId"
+                    }
+                  }
+                ],
                 "coverages_found": 1,
                 "errors": [
                   {

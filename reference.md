@@ -11604,7 +11604,7 @@ await client.PreEncounter.Coverages.V1.GetEligibilityAsync(
 <dl>
 <dd>
 
-Initiates an insurance discovery check. Returns the metadata of the check if successfully initiated.
+Initiates an insurance discovery check via patientId. Returns the metadata of the check if successfully initiated. Prefer to use the eligibilityChecks insurance-discovery api as it will allow long running discovery requests to complete.
 </dd>
 </dl>
 </dd>
@@ -11653,6 +11653,126 @@ await client.PreEncounter.Coverages.V1.CheckInsuranceDiscoveryAsync(
 </dl>
 </details>
 
+<details><summary><code>client.PreEncounter.Coverages.V1.<a href="/src/Candid.Net/PreEncounter/Coverages/V1/V1Client.cs">CheckInsuranceDiscoveryPassthroughAsync</a>(InsuranceDiscoveryRequest { ... }) -> WithRawResponseTask&lt;InsuranceDiscoveryCheckMetadata&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Initiates an insurance discovery check. Returns the metadata of the check if successfully initiated.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreEncounter.Coverages.V1.CheckInsuranceDiscoveryPassthroughAsync(
+    new InsuranceDiscoveryRequest
+    {
+        Provider = new InsuranceDiscoveryProvider { Npi = "npi" },
+        Subscriber = new InsuranceDiscoverySubscriber
+        {
+            FirstName = "first_name",
+            LastName = "last_name",
+        },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `InsuranceDiscoveryRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PreEncounter.Coverages.V1.<a href="/src/Candid.Net/PreEncounter/Coverages/V1/V1Client.cs">GetInsuranceDiscoveryCheckMetadataAsync</a>(GetInsuranceDiscoveryCheckMetadataRequest { ... }) -> WithRawResponseTask&lt;IEnumerable&lt;InsuranceDiscoveryCheckMetadata&gt;&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns insurance discovery check metadata, filterable by patient.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreEncounter.Coverages.V1.GetInsuranceDiscoveryCheckMetadataAsync(
+    new GetInsuranceDiscoveryCheckMetadataRequest { PatientId = "patient_id" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `GetInsuranceDiscoveryCheckMetadataRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.PreEncounter.Coverages.V1.<a href="/src/Candid.Net/PreEncounter/Coverages/V1/V1Client.cs">GetInsuranceDiscoveryAsync</a>(checkId) -> WithRawResponseTask&lt;AsyncInsuranceDiscoveryCheckResult&gt;</code></summary>
 <dl>
 <dd>
@@ -11665,7 +11785,7 @@ await client.PreEncounter.Coverages.V1.CheckInsuranceDiscoveryAsync(
 <dl>
 <dd>
 
-Gets the insurance discovery of a patient if successful.
+Gets the insurance discovery of a check id if successful.
 </dd>
 </dl>
 </dd>
@@ -12015,74 +12135,6 @@ await client.PreEncounter.EligibilityChecks.V1.RecommendationAsync(
 </dl>
 </details>
 
-<details><summary><code>client.PreEncounter.EligibilityChecks.V1.<a href="/src/Candid.Net/PreEncounter/EligibilityChecks/V1/V1Client.cs">CreateRecommendationAsync</a>(PostEligibilityRecommendationRequest { ... }) -> WithRawResponseTask&lt;EligibilityRecommendation&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Create an eligibiilty recommendation based on the request.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.PreEncounter.EligibilityChecks.V1.CreateRecommendationAsync(
-    new PostEligibilityRecommendationRequest
-    {
-        EligibilityCheckId = "eligibility_check_id",
-        Patient = new EligibilityRecommendationPatientInfo(),
-        Recommendation = new EligibilityRecommendationPayload(
-            new EligibilityRecommendationPayload.MedicareAdvantage(
-                new MedicareAdvantageRecommendation
-                {
-                    Payload = new MedicareAdvantageRecommendationPayload(),
-                }
-            )
-        ),
-    }
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `PostEligibilityRecommendationRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.PreEncounter.EligibilityChecks.V1.<a href="/src/Candid.Net/PreEncounter/EligibilityChecks/V1/V1Client.cs">VoteRecommendationAsync</a>(recommendationId, version, Vote { ... }) -> WithRawResponseTask&lt;EligibilityRecommendation&gt;</code></summary>
 <dl>
 <dd>
@@ -12146,48 +12198,6 @@ await client.PreEncounter.EligibilityChecks.V1.VoteRecommendationAsync(
 <dd>
 
 **request:** `Vote` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.PreEncounter.EligibilityChecks.V1.<a href="/src/Candid.Net/PreEncounter/EligibilityChecks/V1/V1Client.cs">GetMultiAsync</a>(EligibilityChecksGetMultiRequest { ... }) -> WithRawResponseTask&lt;EligibilityCheckPage&gt;</code></summary>
-<dl>
-<dd>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.PreEncounter.EligibilityChecks.V1.GetMultiAsync(
-    new EligibilityChecksGetMultiRequest()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `EligibilityChecksGetMultiRequest` 
     
 </dd>
 </dl>
@@ -12322,172 +12332,6 @@ await client.PreEncounter.EligibilityChecks.V1.CoordinationOfBenefitsAsync(
 <dd>
 
 **request:** `CoordinationOfBenefitsRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.PreEncounter.EligibilityChecks.V1.<a href="/src/Candid.Net/PreEncounter/EligibilityChecks/V1/V1Client.cs">EncounterEligibilityAsync</a>(EncounterEligibilityHistoryRequest { ... }) -> WithRawResponseTask&lt;EncounterEligibilityResponse&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns patient eligibility data regardless of clearinghouse. Uses the encounter id to get needed patient, date of service, etc data.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.PreEncounter.EligibilityChecks.V1.EncounterEligibilityAsync(
-    new EncounterEligibilityHistoryRequest { EncounterId = "encounter_id" }
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `EncounterEligibilityHistoryRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.PreEncounter.EligibilityChecks.V1.<a href="/src/Candid.Net/PreEncounter/EligibilityChecks/V1/V1Client.cs">CreateEncounterEligibilityAsync</a>(EncounterEligibilityRequest { ... }) -> WithRawResponseTask&lt;EncounterEligibility&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Fetch an eligibility check for the patient for the date of service, npi, and payer
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.PreEncounter.EligibilityChecks.V1.CreateEncounterEligibilityAsync(
-    new EncounterEligibilityRequest { EncounterId = "encounter_id" }
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `EncounterEligibilityRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.PreEncounter.EligibilityChecks.V1.<a href="/src/Candid.Net/PreEncounter/EligibilityChecks/V1/V1Client.cs">GetEligibilityCheckByIdAsync</a>(eligibilityCheckId) -> WithRawResponseTask&lt;EncounterEligibility&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Fetch an eligibility check by it's primary key
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.PreEncounter.EligibilityChecks.V1.GetEligibilityCheckByIdAsync("eligibility_check_id");
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**eligibilityCheckId:** `string` 
     
 </dd>
 </dl>

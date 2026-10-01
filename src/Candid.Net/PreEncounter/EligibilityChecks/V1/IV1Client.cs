@@ -53,27 +53,12 @@ public partial interface IV1Client
     );
 
     /// <summary>
-    /// Create an eligibiilty recommendation based on the request.
-    /// </summary>
-    WithRawResponseTask<EligibilityRecommendation> CreateRecommendationAsync(
-        PostEligibilityRecommendationRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <summary>
     /// Submit user feedback on an eligibility recommendation. The path must contain the next version number to prevent race conditions. For example, if the current version of the recommendation is n, you will need to send a request to this endpoint with `/{recommendation_id}/{n+1}/vote` to update the vote.
     /// </summary>
     WithRawResponseTask<EligibilityRecommendation> VoteRecommendationAsync(
         string recommendationId,
         string version,
         Vote request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    );
-
-    WithRawResponseTask<EligibilityCheckPage> GetMultiAsync(
-        EligibilityChecksGetMultiRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );
@@ -95,33 +80,6 @@ public partial interface IV1Client
     /// </summary>
     WithRawResponseTask<CoordinationOfBenefitsResponse> CoordinationOfBenefitsAsync(
         CoordinationOfBenefitsRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <summary>
-    /// Returns patient eligibility data regardless of clearinghouse. Uses the encounter id to get needed patient, date of service, etc data.
-    /// </summary>
-    WithRawResponseTask<EncounterEligibilityResponse> EncounterEligibilityAsync(
-        EncounterEligibilityHistoryRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <summary>
-    /// Fetch an eligibility check for the patient for the date of service, npi, and payer
-    /// </summary>
-    WithRawResponseTask<EncounterEligibility> CreateEncounterEligibilityAsync(
-        EncounterEligibilityRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <summary>
-    /// Fetch an eligibility check by it's primary key
-    /// </summary>
-    WithRawResponseTask<EncounterEligibility> GetEligibilityCheckByIdAsync(
-        string eligibilityCheckId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );

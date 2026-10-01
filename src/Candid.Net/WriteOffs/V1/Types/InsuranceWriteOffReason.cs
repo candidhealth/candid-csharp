@@ -10,6 +10,8 @@ public readonly record struct InsuranceWriteOffReason : IStringEnum
 {
     public static readonly InsuranceWriteOffReason SmallBalance = new(Values.SmallBalance);
 
+    public static readonly InsuranceWriteOffReason OonWriteOff = new(Values.OonWriteOff);
+
     public static readonly InsuranceWriteOffReason NoAuthorizationReferral = new(
         Values.NoAuthorizationReferral
     );
@@ -163,6 +165,8 @@ public readonly record struct InsuranceWriteOffReason : IStringEnum
     public static class Values
     {
         public const string SmallBalance = "SMALL_BALANCE";
+
+        public const string OonWriteOff = "OON_WRITE_OFF";
 
         public const string NoAuthorizationReferral = "NO_AUTHORIZATION_REFERRAL";
 

@@ -28,17 +28,13 @@ public class QueryMetricsTest : BaseMockServerTest
               "results": [
                 {
                   "metric": "patient_total_balance_v1",
-                  "value": {
-                    "key": "value"
-                  },
+                  "value": 1.1,
                   "snapshot": "today",
                   "error": "error"
                 },
                 {
                   "metric": "patient_total_balance_v1",
-                  "value": {
-                    "key": "value"
-                  },
+                  "value": 1.1,
                   "snapshot": "today",
                   "error": "error"
                 }

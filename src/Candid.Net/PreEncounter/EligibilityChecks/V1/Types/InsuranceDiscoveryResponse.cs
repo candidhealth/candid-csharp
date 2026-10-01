@@ -35,6 +35,9 @@ public record InsuranceDiscoveryResponse : IJsonOnDeserialized
     [JsonPropertyName("items")]
     public IEnumerable<object>? Items { get; set; }
 
+    [JsonPropertyName("parsed_items")]
+    public IEnumerable<ParsedDiscoveryItem>? ParsedItems { get; set; }
+
     /// <summary>
     /// The number of potential coverage matches found. 0 if no matching coverage was found.
     /// </summary>

@@ -1,19 +1,29 @@
 using global::Candid.Net;
 using global::Candid.Net.Core;
+using global::Candid.Net.PreEncounter.Coverages.V1;
 using global::System.Text.Json;
 using global::System.Text.Json.Serialization;
 
 namespace Candid.Net.PreEncounter.EligibilityChecks.V1;
 
 [Serializable]
-public record EncounterEligibilityRequest : IJsonOnDeserialized
+public record ParsedDiscoveryItem : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
-    [JsonPropertyName("encounter_id")]
-    public required string EncounterId { get; set; }
+    [JsonPropertyName("confidence")]
+    public Confidence? Confidence { get; set; }
+
+    [JsonPropertyName("eligibility_status")]
+    public required EligibilityStatus EligibilityStatus { get; set; }
+
+    [JsonPropertyName("plan_metadata")]
+    public PlanMetadata? PlanMetadata { get; set; }
+
+    [JsonPropertyName("benefits")]
+    public CoverageBenefits? Benefits { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

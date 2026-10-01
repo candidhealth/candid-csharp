@@ -923,6 +923,176 @@ public partial class V1Client : IV1Client
     }
 
     private async global::System.Threading.Tasks.Task<
+        WithRawResponse<InsuranceDiscoveryCheckMetadata>
+    > CheckInsuranceDiscoveryPassthroughAsyncCore(
+        InsuranceDiscoveryRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _headers = await new global::Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Post,
+                    Path = "/coverages/v1/insurance-discovery-passthrough",
+                    Body = request,
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<InsuranceDiscoveryCheckMetadata>(
+                    responseBody
+                )!;
+                return new WithRawResponse<InsuranceDiscoveryCheckMetadata>()
+                {
+                    Data = responseData,
+                    RawResponse = new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e,
+                    rawResponse: new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    }
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody,
+                rawResponse: new global::Candid.Net.RawResponse()
+                {
+                    StatusCode = response.Raw.StatusCode,
+                    Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                    Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                }
+            );
+        }
+    }
+
+    private async global::System.Threading.Tasks.Task<
+        WithRawResponse<IEnumerable<InsuranceDiscoveryCheckMetadata>>
+    > GetInsuranceDiscoveryCheckMetadataAsyncCore(
+        GetInsuranceDiscoveryCheckMetadataRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _queryString = new global::Candid.Net.Core.QueryStringBuilder.Builder(capacity: 1)
+            .Add("patient_id", request.PatientId)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new global::Candid.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.Environment.PreEncounter,
+                    Method = HttpMethod.Get,
+                    Path = "/coverages/v1/insurance-discovery/check-metadata",
+                    QueryString = _queryString,
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            try
+            {
+                var responseData = JsonUtils.Deserialize<
+                    IEnumerable<InsuranceDiscoveryCheckMetadata>
+                >(responseBody)!;
+                return new WithRawResponse<IEnumerable<InsuranceDiscoveryCheckMetadata>>()
+                {
+                    Data = responseData,
+                    RawResponse = new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new CandidApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e,
+                    rawResponse: new global::Candid.Net.RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    }
+                );
+            }
+        }
+        {
+            var responseBody = await response
+                .Raw.Content.ReadAsStringAsync(cancellationToken)
+                .ConfigureAwait(false);
+            throw new CandidApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody,
+                rawResponse: new global::Candid.Net.RawResponse()
+                {
+                    StatusCode = response.Raw.StatusCode,
+                    Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                    Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                }
+            );
+        }
+    }
+
+    private async global::System.Threading.Tasks.Task<
         WithRawResponse<AsyncInsuranceDiscoveryCheckResult>
     > GetInsuranceDiscoveryAsyncCore(
         string checkId,
@@ -1273,7 +1443,7 @@ public partial class V1Client : IV1Client
     }
 
     /// <summary>
-    /// Initiates an insurance discovery check. Returns the metadata of the check if successfully initiated.
+    /// Initiates an insurance discovery check via patientId. Returns the metadata of the check if successfully initiated. Prefer to use the eligibilityChecks insurance-discovery api as it will allow long running discovery requests to complete.
     /// </summary>
     /// <example><code>
     /// await client.PreEncounter.Coverages.V1.CheckInsuranceDiscoveryAsync(
@@ -1297,7 +1467,55 @@ public partial class V1Client : IV1Client
     }
 
     /// <summary>
-    /// Gets the insurance discovery of a patient if successful.
+    /// Initiates an insurance discovery check. Returns the metadata of the check if successfully initiated.
+    /// </summary>
+    /// <example><code>
+    /// await client.PreEncounter.Coverages.V1.CheckInsuranceDiscoveryPassthroughAsync(
+    ///     new InsuranceDiscoveryRequest
+    ///     {
+    ///         Provider = new InsuranceDiscoveryProvider { Npi = "npi" },
+    ///         Subscriber = new InsuranceDiscoverySubscriber
+    ///         {
+    ///             FirstName = "first_name",
+    ///             LastName = "last_name",
+    ///         },
+    ///     }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<InsuranceDiscoveryCheckMetadata> CheckInsuranceDiscoveryPassthroughAsync(
+        InsuranceDiscoveryRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<InsuranceDiscoveryCheckMetadata>(
+            CheckInsuranceDiscoveryPassthroughAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Returns insurance discovery check metadata, filterable by patient.
+    /// </summary>
+    /// <example><code>
+    /// await client.PreEncounter.Coverages.V1.GetInsuranceDiscoveryCheckMetadataAsync(
+    ///     new GetInsuranceDiscoveryCheckMetadataRequest { PatientId = "patient_id" }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<
+        IEnumerable<InsuranceDiscoveryCheckMetadata>
+    > GetInsuranceDiscoveryCheckMetadataAsync(
+        GetInsuranceDiscoveryCheckMetadataRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<IEnumerable<InsuranceDiscoveryCheckMetadata>>(
+            GetInsuranceDiscoveryCheckMetadataAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Gets the insurance discovery of a check id if successful.
     /// </summary>
     /// <example><code>
     /// await client.PreEncounter.Coverages.V1.GetInsuranceDiscoveryAsync("check_id");

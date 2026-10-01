@@ -2011,6 +2011,16 @@ public readonly record struct ProcedureModifier : IStringEnum
     public static readonly ProcedureModifier W3 = new(Values.W3);
 
     /// <summary>
+    /// Work conditioning
+    /// </summary>
+    public static readonly ProcedureModifier Wc = new(Values.Wc);
+
+    /// <summary>
+    /// Work hardening
+    /// </summary>
+    public static readonly ProcedureModifier Wh = new(Values.Wh);
+
+    /// <summary>
     /// Episodic/Focused Services - Reported by a specialty focused clinician who provides care that is time-limited
     /// </summary>
     public static readonly ProcedureModifier X4 = new(Values.X4);
@@ -4142,6 +4152,16 @@ public readonly record struct ProcedureModifier : IStringEnum
         /// The treatment was approved under the workers’ compensation plan
         /// </summary>
         public const string W3 = "W3";
+
+        /// <summary>
+        /// Work conditioning
+        /// </summary>
+        public const string Wc = "WC";
+
+        /// <summary>
+        /// Work hardening
+        /// </summary>
+        public const string Wh = "WH";
 
         /// <summary>
         /// Episodic/Focused Services - Reported by a specialty focused clinician who provides care that is time-limited

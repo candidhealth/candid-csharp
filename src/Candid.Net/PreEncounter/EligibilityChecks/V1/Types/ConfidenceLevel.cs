@@ -4,19 +4,15 @@ using global::System.Text.Json.Serialization;
 
 namespace Candid.Net.PreEncounter.EligibilityChecks.V1;
 
-[JsonConverter(typeof(EligibilitySource.EligibilitySourceSerializer))]
+[JsonConverter(typeof(ConfidenceLevel.ConfidenceLevelSerializer))]
 [Serializable]
-public readonly record struct EligibilitySource : IStringEnum
+public readonly record struct ConfidenceLevel : IStringEnum
 {
-    public static readonly EligibilitySource Stedi = new(Values.Stedi);
+    public static readonly ConfidenceLevel ReviewNeeded = new(Values.ReviewNeeded);
 
-    public static readonly EligibilitySource Availity = new(Values.Availity);
+    public static readonly ConfidenceLevel High = new(Values.High);
 
-    public static readonly EligibilitySource PhoneAgent = new(Values.PhoneAgent);
-
-    public static readonly EligibilitySource BrowserAgent = new(Values.BrowserAgent);
-
-    public EligibilitySource(string value)
+    public ConfidenceLevel(string value)
     {
         Value = value;
     }
@@ -29,9 +25,9 @@ public readonly record struct EligibilitySource : IStringEnum
     /// <summary>
     /// Create a string enum with the given value.
     /// </summary>
-    public static EligibilitySource FromCustom(string value)
+    public static ConfidenceLevel FromCustom(string value)
     {
-        return new EligibilitySource(value);
+        return new ConfidenceLevel(value);
     }
 
     public bool Equals(string? other)
@@ -47,19 +43,19 @@ public readonly record struct EligibilitySource : IStringEnum
         return Value;
     }
 
-    public static bool operator ==(EligibilitySource value1, string value2) =>
+    public static bool operator ==(ConfidenceLevel value1, string value2) =>
         value1.Value.Equals(value2);
 
-    public static bool operator !=(EligibilitySource value1, string value2) =>
+    public static bool operator !=(ConfidenceLevel value1, string value2) =>
         !value1.Value.Equals(value2);
 
-    public static explicit operator string(EligibilitySource value) => value.Value;
+    public static explicit operator string(ConfidenceLevel value) => value.Value;
 
-    public static explicit operator EligibilitySource(string value) => new(value);
+    public static explicit operator ConfidenceLevel(string value) => new(value);
 
-    internal class EligibilitySourceSerializer : JsonConverter<EligibilitySource>
+    internal class ConfidenceLevelSerializer : JsonConverter<ConfidenceLevel>
     {
-        public override EligibilitySource Read(
+        public override ConfidenceLevel Read(
             ref Utf8JsonReader reader,
             Type typeToConvert,
             JsonSerializerOptions options
@@ -70,19 +66,19 @@ public readonly record struct EligibilitySource : IStringEnum
                 ?? throw new global::System.Exception(
                     "The JSON value could not be read as a string."
                 );
-            return new EligibilitySource(stringValue);
+            return new ConfidenceLevel(stringValue);
         }
 
         public override void Write(
             Utf8JsonWriter writer,
-            EligibilitySource value,
+            ConfidenceLevel value,
             JsonSerializerOptions options
         )
         {
             writer.WriteStringValue(value.Value);
         }
 
-        public override EligibilitySource ReadAsPropertyName(
+        public override ConfidenceLevel ReadAsPropertyName(
             ref Utf8JsonReader reader,
             Type typeToConvert,
             JsonSerializerOptions options
@@ -93,12 +89,12 @@ public readonly record struct EligibilitySource : IStringEnum
                 ?? throw new global::System.Exception(
                     "The JSON property name could not be read as a string."
                 );
-            return new EligibilitySource(stringValue);
+            return new ConfidenceLevel(stringValue);
         }
 
         public override void WriteAsPropertyName(
             Utf8JsonWriter writer,
-            EligibilitySource value,
+            ConfidenceLevel value,
             JsonSerializerOptions options
         )
         {
@@ -112,12 +108,8 @@ public readonly record struct EligibilitySource : IStringEnum
     [Serializable]
     public static class Values
     {
-        public const string Stedi = "STEDI";
+        public const string ReviewNeeded = "REVIEW_NEEDED";
 
-        public const string Availity = "AVAILITY";
-
-        public const string PhoneAgent = "PHONE_AGENT";
-
-        public const string BrowserAgent = "BROWSER_AGENT";
+        public const string High = "HIGH";
     }
 }

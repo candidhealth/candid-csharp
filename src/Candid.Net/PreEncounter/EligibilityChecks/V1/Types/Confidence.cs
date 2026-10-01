@@ -6,14 +6,17 @@ using global::System.Text.Json.Serialization;
 namespace Candid.Net.PreEncounter.EligibilityChecks.V1;
 
 [Serializable]
-public record EncounterEligibilityResponse : IJsonOnDeserialized
+public record Confidence : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
-    [JsonPropertyName("items")]
-    public IEnumerable<EncounterEligibility> Items { get; set; } = new List<EncounterEligibility>();
+    [JsonPropertyName("level")]
+    public ConfidenceLevel? Level { get; set; }
+
+    [JsonPropertyName("reason")]
+    public string? Reason { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

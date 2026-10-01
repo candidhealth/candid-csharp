@@ -158,6 +158,7 @@ public record PreServiceEncounterCreate : IJsonOnDeserialized
     /// <summary>
     /// The practitioner performing the service.
     /// For telehealth services, the rendering provider performs the visit or asynchronous communication.
+    /// Required on professional claims; not required on institutional claims.
     /// </summary>
     [JsonPropertyName("rendering_provider")]
     public RenderingProvider? RenderingProvider { get; set; }

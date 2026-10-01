@@ -1,13 +1,13 @@
 using global::Candid.Net.Core;
 using global::System.Text.Json.Serialization;
 
-namespace Candid.Net.PreEncounter.EligibilityChecks.V1;
+namespace Candid.Net.PreEncounter.Coverages.V1;
 
 [Serializable]
-public record EncounterEligibilityHistoryRequest
+public record GetInsuranceDiscoveryCheckMetadataRequest
 {
     [JsonIgnore]
-    public required string EncounterId { get; set; }
+    public required string PatientId { get; set; }
 
     /// <inheritdoc />
     public override string ToString()

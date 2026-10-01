@@ -26,6 +26,9 @@ public record ReferringProvider : IJsonOnDeserialized
     [JsonPropertyName("address")]
     public StreetAddressLongZip? Address { get; set; }
 
+    /// <summary>
+    /// Deprecated. This field will be removed in a future release.
+    /// </summary>
     [JsonPropertyName("qualifier")]
     public QualifierCode? Qualifier { get; set; }
 

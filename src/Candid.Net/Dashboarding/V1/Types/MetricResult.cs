@@ -19,10 +19,13 @@ public record MetricResult : IJsonOnDeserialized
     public required MetricName Metric { get; set; }
 
     /// <summary>
-    /// The metric value type.
+    /// The metric value. Null alongside a null `error` when the metric resolved but has nothing
+    /// to report, which is distinct from a zero. Counts and amounts report `0` when the
+    /// underlying set is empty; ages and rates report null, because there is no claim to age and
+    /// no volume to take a rate over.
     /// </summary>
     [JsonPropertyName("value")]
-    public object? Value { get; set; }
+    public double? Value { get; set; }
 
     /// <summary>
     /// The `snapshot` value sent on the request.
