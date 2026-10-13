@@ -836,6 +836,7 @@ public partial class V1Client : IV1Client
     /// <summary>
     /// Sends an insurance discovery check to find potential coverage matches for a patient through Stedi.
     /// Given patient demographics, this endpoint discovers what insurance coverages exist for the patient.
+    /// We recommend using the coverages check_insurance_discovery_passthrough API, as it allows long-running discovery requests to complete.
     /// </summary>
     /// <example><code>
     /// await client.PreEncounter.EligibilityChecks.V1.InsuranceDiscoveryAsync(

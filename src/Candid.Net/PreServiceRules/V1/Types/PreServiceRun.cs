@@ -28,6 +28,12 @@ public record PreServiceRun : IJsonOnDeserialized
     public required string EntityExternalId { get; set; }
 
     /// <summary>
+    /// The submitted entity. Only set if the request asked for it via `include_initial_entity_state`.
+    /// </summary>
+    [JsonPropertyName("initial_entity_state")]
+    public Dictionary<string, object?>? InitialEntityState { get; set; }
+
+    /// <summary>
     /// Recommended edits to the submitted entity.
     /// </summary>
     [JsonPropertyName("edits")]

@@ -2486,6 +2486,7 @@ await client.Eligibility.V2.CreateAvailityEligibilityCheckAsync(
     {
         MemberId = "member_id",
         PayerId = "payer_id",
+        PayerName = "payer_name",
         ProviderNpi = "provider_npi",
         DateOfService = new DateTime(2024, 01, 15, 09, 30, 00, 000),
         ServiceTypeCodes = new List<string>() { "service_type_codes", "service_type_codes" },
@@ -9178,53 +9179,85 @@ await client.PreServiceRules.V1.CreateEncounterRunAsync(
     {
         Entity = new PreServiceEncounterCreate
         {
-            ExternalId = "external_id",
+            ExternalId = "enc-123",
             PatientAuthorizedRelease = true,
             BenefitsAssignedToProvider = true,
             ProviderAcceptsAssignment = true,
+            ResponsibleParty = ResponsiblePartyType.InsurancePay,
+            SubmissionExpectation = EncounterSubmissionExpectation.TargetProfessional,
+            DateOfService = new DateOnly(2026, 10, 15),
             Patient = new PatientCreate
             {
-                ExternalId = "external_id",
-                DateOfBirth = new DateOnly(2023, 1, 15),
+                ExternalId = "p-456",
+                FirstName = "Jane",
+                LastName = "Doe",
+                Gender = global::Candid.Net.Individual.Gender.Female,
+                DateOfBirth = new DateOnly(1960, 1, 1),
                 Address = new StreetAddressShortZip
                 {
-                    Address1 = "address1",
-                    City = "city",
-                    State = State.Aa,
-                    ZipCode = "zip_code",
+                    Address1 = "1 Main St",
+                    City = "Fairfax",
+                    State = State.Va,
+                    ZipCode = "22031",
                 },
-                FirstName = "first_name",
-                LastName = "last_name",
-                Gender = global::Candid.Net.Individual.Gender.Male,
             },
-            ResponsibleParty = ResponsiblePartyType.InsurancePay,
+            RenderingProvider = new RenderingProvider
+            {
+                FirstName = "Ada",
+                LastName = "Lovelace",
+                Npi = "1234567893",
+            },
             BillingProvider = new BillingProvider
             {
+                Npi = "1558375857",
+                TaxId = "202265068",
+                OrganizationName = "Example Clinic",
                 Address = new StreetAddressLongZip
                 {
-                    ZipPlusFourCode = "zip_plus_four_code",
-                    Address1 = "address1",
-                    City = "city",
-                    State = State.Aa,
-                    ZipCode = "zip_code",
+                    Address1 = "1 Main St",
+                    City = "Fairfax",
+                    State = State.Va,
+                    ZipCode = "22031",
+                    ZipPlusFourCode = "4634",
                 },
-                TaxId = "tax_id",
-                Npi = "npi",
             },
-            SubmissionExpectation = EncounterSubmissionExpectation.TargetProfessional,
+            SubscriberPrimary = new SubscriberCreate
+            {
+                FirstName = "Jane",
+                LastName = "Doe",
+                Gender = global::Candid.Net.Individual.Gender.Female,
+                PatientRelationshipToSubscriberCode = PatientRelationshipToInsuredCodeAll.Self,
+                InsuranceCard = new InsuranceCardCreate
+                {
+                    MemberId = "123456789",
+                    PayerName = "Example Payer",
+                    PayerId = "12345",
+                },
+            },
+            HealthCareCodeInformation = new HealthCareCodeInformationCreate
+            {
+                PrincipalDiagnosis = new PrincipalDiagnosisNew
+                {
+                    PrimaryDiagnosisCode = "Z01.411",
+                    PrincipalDiagnosisCodeQualifier = PrincipalDiagnosisCodeQualifier.Cabk,
+                },
+            },
+            ServiceLines = new List<UniversalServiceLineCreate>()
+            {
+                new UniversalServiceLineCreate
+                {
+                    ProcedureCode = "99213",
+                    Quantity = "1",
+                    Units = ServiceLineUnits.Un,
+                    ChargeAmountCents = 20600,
+                    DiagnosisPointers = new List<int>() { 0 },
+                },
+            },
         },
-        PipelineId = "pipeline_id",
-        EnabledRuleIds = new List<string>()
-        {
-            "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-            "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-        },
-        DisabledRuleIds = new List<string>()
-        {
-            "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-            "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-        },
-        IdempotencyKey = "idempotency_key",
+        PipelineId = "pre-service-claim-athena",
+        EnabledRuleIds = new List<string>() { },
+        DisabledRuleIds = new List<string>() { },
+        IdempotencyKey = "enc-123-run-1",
     }
 );
 ```
@@ -9253,7 +9286,7 @@ await client.PreServiceRules.V1.CreateEncounterRunAsync(
 </dl>
 </details>
 
-<details><summary><code>client.PreServiceRules.V1.<a href="/src/Candid.Net/PreServiceRules/V1/V1Client.cs">GetRunAsync</a>(runId) -> WithRawResponseTask&lt;PreServiceRun&gt;</code></summary>
+<details><summary><code>client.PreServiceRules.V1.<a href="/src/Candid.Net/PreServiceRules/V1/V1Client.cs">GetRunAsync</a>(runId, GetPreServiceRunRequest { ... }) -> WithRawResponseTask&lt;PreServiceRun&gt;</code></summary>
 <dl>
 <dd>
 
@@ -9280,7 +9313,10 @@ Retrieve the result of a pre-service run. This endpoint supports long-polling.
 <dd>
 
 ```csharp
-await client.PreServiceRules.V1.GetRunAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+await client.PreServiceRules.V1.GetRunAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new GetPreServiceRunRequest()
+);
 ```
 </dd>
 </dl>
@@ -9296,6 +9332,14 @@ await client.PreServiceRules.V1.GetRunAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc3
 <dd>
 
 **runId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `GetPreServiceRunRequest` 
     
 </dd>
 </dl>
@@ -11604,7 +11648,7 @@ await client.PreEncounter.Coverages.V1.GetEligibilityAsync(
 <dl>
 <dd>
 
-Initiates an insurance discovery check via patientId. Returns the metadata of the check if successfully initiated. Prefer to use the eligibilityChecks insurance-discovery api as it will allow long running discovery requests to complete.
+Initiates an insurance discovery check via patientId. Returns the metadata of the check if successfully initiated.
 </dd>
 </dl>
 </dd>
@@ -11665,7 +11709,7 @@ await client.PreEncounter.Coverages.V1.CheckInsuranceDiscoveryAsync(
 <dl>
 <dd>
 
-Initiates an insurance discovery check. Returns the metadata of the check if successfully initiated.
+Initiates an insurance discovery check. Returns the metadata of the check if successfully initiated. We recommend using this API over the eligibilityChecks insurance-discovery API, as it allows long-running discovery requests to complete.
 </dd>
 </dl>
 </dd>
@@ -12223,6 +12267,7 @@ await client.PreEncounter.EligibilityChecks.V1.VoteRecommendationAsync(
 
 Sends an insurance discovery check to find potential coverage matches for a patient through Stedi.
 Given patient demographics, this endpoint discovers what insurance coverages exist for the patient.
+We recommend using the coverages check_insurance_discovery_passthrough API, as it allows long-running discovery requests to complete.
 </dd>
 </dl>
 </dd>

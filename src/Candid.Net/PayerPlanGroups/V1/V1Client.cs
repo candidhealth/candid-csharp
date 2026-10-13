@@ -21,9 +21,10 @@ public partial class V1Client : IV1Client
         CancellationToken cancellationToken = default
     )
     {
-        var _queryString = new global::Candid.Net.Core.QueryStringBuilder.Builder(capacity: 12)
+        var _queryString = new global::Candid.Net.Core.QueryStringBuilder.Builder(capacity: 13)
             .Add("plan_group_name", request.PlanGroupName)
             .Add("payer_uuid", request.PayerUuid)
+            .Add("payer_group_id", request.PayerGroupId)
             .Add("payer_id", request.PayerId)
             .Add("plan_type", request.PlanType)
             .Add("is_active", request.IsActive)

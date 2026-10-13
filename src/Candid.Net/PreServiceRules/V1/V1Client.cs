@@ -98,10 +98,15 @@ public partial class V1Client : IV1Client
         WithRawResponse<PreServiceRun>
     > GetRunAsyncCore(
         string runId,
+        GetPreServiceRunRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _queryString = new global::Candid.Net.Core.QueryStringBuilder.Builder(capacity: 1)
+            .Add("include_initial_entity_state", request.IncludeInitialEntityState)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
         var _headers = await new global::Candid.Net.Core.HeadersBuilder.Builder()
             .Add(_client.Options.Headers)
             .Add(_client.Options.AdditionalHeaders)
@@ -118,6 +123,7 @@ public partial class V1Client : IV1Client
                         "/api/pre-service/v1/runs/{0}",
                         ValueConvert.ToPathParameterString(runId)
                     ),
+                    QueryString = _queryString,
                     Headers = _headers,
                     Options = options,
                 },
@@ -268,53 +274,85 @@ public partial class V1Client : IV1Client
     ///     {
     ///         Entity = new PreServiceEncounterCreate
     ///         {
-    ///             ExternalId = "external_id",
+    ///             ExternalId = "enc-123",
     ///             PatientAuthorizedRelease = true,
     ///             BenefitsAssignedToProvider = true,
     ///             ProviderAcceptsAssignment = true,
+    ///             ResponsibleParty = ResponsiblePartyType.InsurancePay,
+    ///             SubmissionExpectation = EncounterSubmissionExpectation.TargetProfessional,
+    ///             DateOfService = new DateOnly(2026, 10, 15),
     ///             Patient = new PatientCreate
     ///             {
-    ///                 ExternalId = "external_id",
-    ///                 DateOfBirth = new DateOnly(2023, 1, 15),
+    ///                 ExternalId = "p-456",
+    ///                 FirstName = "Jane",
+    ///                 LastName = "Doe",
+    ///                 Gender = global::Candid.Net.Individual.Gender.Female,
+    ///                 DateOfBirth = new DateOnly(1960, 1, 1),
     ///                 Address = new StreetAddressShortZip
     ///                 {
-    ///                     Address1 = "address1",
-    ///                     City = "city",
-    ///                     State = State.Aa,
-    ///                     ZipCode = "zip_code",
+    ///                     Address1 = "1 Main St",
+    ///                     City = "Fairfax",
+    ///                     State = State.Va,
+    ///                     ZipCode = "22031",
     ///                 },
-    ///                 FirstName = "first_name",
-    ///                 LastName = "last_name",
-    ///                 Gender = global::Candid.Net.Individual.Gender.Male,
     ///             },
-    ///             ResponsibleParty = ResponsiblePartyType.InsurancePay,
+    ///             RenderingProvider = new RenderingProvider
+    ///             {
+    ///                 FirstName = "Ada",
+    ///                 LastName = "Lovelace",
+    ///                 Npi = "1234567893",
+    ///             },
     ///             BillingProvider = new BillingProvider
     ///             {
+    ///                 Npi = "1558375857",
+    ///                 TaxId = "202265068",
+    ///                 OrganizationName = "Example Clinic",
     ///                 Address = new StreetAddressLongZip
     ///                 {
-    ///                     ZipPlusFourCode = "zip_plus_four_code",
-    ///                     Address1 = "address1",
-    ///                     City = "city",
-    ///                     State = State.Aa,
-    ///                     ZipCode = "zip_code",
+    ///                     Address1 = "1 Main St",
+    ///                     City = "Fairfax",
+    ///                     State = State.Va,
+    ///                     ZipCode = "22031",
+    ///                     ZipPlusFourCode = "4634",
     ///                 },
-    ///                 TaxId = "tax_id",
-    ///                 Npi = "npi",
     ///             },
-    ///             SubmissionExpectation = EncounterSubmissionExpectation.TargetProfessional,
+    ///             SubscriberPrimary = new SubscriberCreate
+    ///             {
+    ///                 FirstName = "Jane",
+    ///                 LastName = "Doe",
+    ///                 Gender = global::Candid.Net.Individual.Gender.Female,
+    ///                 PatientRelationshipToSubscriberCode = PatientRelationshipToInsuredCodeAll.Self,
+    ///                 InsuranceCard = new InsuranceCardCreate
+    ///                 {
+    ///                     MemberId = "123456789",
+    ///                     PayerName = "Example Payer",
+    ///                     PayerId = "12345",
+    ///                 },
+    ///             },
+    ///             HealthCareCodeInformation = new HealthCareCodeInformationCreate
+    ///             {
+    ///                 PrincipalDiagnosis = new PrincipalDiagnosisNew
+    ///                 {
+    ///                     PrimaryDiagnosisCode = "Z01.411",
+    ///                     PrincipalDiagnosisCodeQualifier = PrincipalDiagnosisCodeQualifier.Cabk,
+    ///                 },
+    ///             },
+    ///             ServiceLines = new List&lt;UniversalServiceLineCreate&gt;()
+    ///             {
+    ///                 new UniversalServiceLineCreate
+    ///                 {
+    ///                     ProcedureCode = "99213",
+    ///                     Quantity = "1",
+    ///                     Units = ServiceLineUnits.Un,
+    ///                     ChargeAmountCents = 20600,
+    ///                     DiagnosisPointers = new List&lt;int&gt;() { 0 },
+    ///                 },
+    ///             },
     ///         },
-    ///         PipelineId = "pipeline_id",
-    ///         EnabledRuleIds = new List&lt;string&gt;()
-    ///         {
-    ///             "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///             "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         },
-    ///         DisabledRuleIds = new List&lt;string&gt;()
-    ///         {
-    ///             "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///             "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///         },
-    ///         IdempotencyKey = "idempotency_key",
+    ///         PipelineId = "pre-service-claim-athena",
+    ///         EnabledRuleIds = new List&lt;string&gt;() { },
+    ///         DisabledRuleIds = new List&lt;string&gt;() { },
+    ///         IdempotencyKey = "enc-123-run-1",
     ///     }
     /// );
     /// </code></example>
@@ -333,16 +371,20 @@ public partial class V1Client : IV1Client
     /// Retrieve the result of a pre-service run. This endpoint supports long-polling.
     /// </summary>
     /// <example><code>
-    /// await client.PreServiceRules.V1.GetRunAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+    /// await client.PreServiceRules.V1.GetRunAsync(
+    ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    ///     new GetPreServiceRunRequest()
+    /// );
     /// </code></example>
     public WithRawResponseTask<PreServiceRun> GetRunAsync(
         string runId,
+        GetPreServiceRunRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<PreServiceRun>(
-            GetRunAsyncCore(runId, options, cancellationToken)
+            GetRunAsyncCore(runId, request, options, cancellationToken)
         );
     }
 

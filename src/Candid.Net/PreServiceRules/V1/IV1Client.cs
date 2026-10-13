@@ -20,6 +20,7 @@ public partial interface IV1Client
     /// </summary>
     WithRawResponseTask<PreServiceRun> GetRunAsync(
         string runId,
+        GetPreServiceRunRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );

@@ -426,6 +426,7 @@ public partial class V2Client : IV2Client
     ///     {
     ///         MemberId = "member_id",
     ///         PayerId = "payer_id",
+    ///         PayerName = "payer_name",
     ///         ProviderNpi = "provider_npi",
     ///         DateOfService = new DateTime(2024, 01, 15, 09, 30, 00, 000),
     ///         ServiceTypeCodes = new List&lt;string&gt;() { "service_type_codes", "service_type_codes" },

@@ -1443,7 +1443,7 @@ public partial class V1Client : IV1Client
     }
 
     /// <summary>
-    /// Initiates an insurance discovery check via patientId. Returns the metadata of the check if successfully initiated. Prefer to use the eligibilityChecks insurance-discovery api as it will allow long running discovery requests to complete.
+    /// Initiates an insurance discovery check via patientId. Returns the metadata of the check if successfully initiated.
     /// </summary>
     /// <example><code>
     /// await client.PreEncounter.Coverages.V1.CheckInsuranceDiscoveryAsync(
@@ -1467,7 +1467,7 @@ public partial class V1Client : IV1Client
     }
 
     /// <summary>
-    /// Initiates an insurance discovery check. Returns the metadata of the check if successfully initiated.
+    /// Initiates an insurance discovery check. Returns the metadata of the check if successfully initiated. We recommend using this API over the eligibilityChecks insurance-discovery API, as it allows long-running discovery requests to complete.
     /// </summary>
     /// <example><code>
     /// await client.PreEncounter.Coverages.V1.CheckInsuranceDiscoveryPassthroughAsync(

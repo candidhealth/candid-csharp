@@ -101,6 +101,12 @@ public record EncounterSummary : IJsonOnDeserialized
     [JsonPropertyName("primary_member_id")]
     public string? PrimaryMemberId { get; set; }
 
+    /// <summary>
+    /// Box 23 on the CMS-1500 claim form or Form Locator 63 on a UB-04 claim form.
+    /// </summary>
+    [JsonPropertyName("prior_authorization_number")]
+    public string? PriorAuthorizationNumber { get; set; }
+
     [JsonPropertyName("sum_allowed_amount_cents")]
     public required int SumAllowedAmountCents { get; set; }
 

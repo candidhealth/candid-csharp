@@ -16,6 +16,7 @@ public class CreateAvailityEligibilityCheckTest : BaseMockServerTest
             {
               "member_id": "member_id",
               "payer_id": "payer_id",
+              "payer_name": "payer_name",
               "provider_npi": "provider_npi",
               "date_of_service": "2024-01-15T09:30:00.000Z",
               "service_type_codes": [
@@ -49,6 +50,7 @@ public class CreateAvailityEligibilityCheckTest : BaseMockServerTest
             {
                 MemberId = "member_id",
                 PayerId = "payer_id",
+                PayerName = "payer_name",
                 ProviderNpi = "provider_npi",
                 DateOfService = DateTime.Parse(
                     "2024-01-15T09:30:00.000Z",

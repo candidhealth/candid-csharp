@@ -21,6 +21,9 @@ public record EligibilityRequest : IJsonOnDeserialized
     [JsonPropertyName("payer_id")]
     public required string PayerId { get; set; }
 
+    [JsonPropertyName("payer_name")]
+    public required string PayerName { get; set; }
+
     [JsonPropertyName("provider_npi")]
     public required string ProviderNpi { get; set; }
 
@@ -29,6 +32,21 @@ public record EligibilityRequest : IJsonOnDeserialized
 
     [JsonPropertyName("service_type_codes")]
     public IEnumerable<string> ServiceTypeCodes { get; set; } = new List<string>();
+
+    [JsonPropertyName("patient_gender")]
+    public string? PatientGender { get; set; }
+
+    [JsonPropertyName("patient_first_name")]
+    public string? PatientFirstName { get; set; }
+
+    [JsonPropertyName("patient_last_name")]
+    public string? PatientLastName { get; set; }
+
+    [JsonPropertyName("patient_date_of_birth")]
+    public DateTime? PatientDateOfBirth { get; set; }
+
+    [JsonPropertyName("patient_state")]
+    public string? PatientState { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

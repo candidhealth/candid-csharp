@@ -13,6 +13,12 @@ public record PayerPlanGroupGetMultiRequest
     [JsonIgnore]
     public IEnumerable<string> PayerUuid { get; set; } = new List<string>();
 
+    /// <summary>
+    /// Filter to payer plans under the provided payer group.
+    /// </summary>
+    [JsonIgnore]
+    public string? PayerGroupId { get; set; }
+
     [JsonIgnore]
     public IEnumerable<string> PayerId { get; set; } = new List<string>();
 

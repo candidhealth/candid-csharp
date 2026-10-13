@@ -1,3 +1,4 @@
+using global::Candid.Net.PreServiceRules.V1;
 using global::Candid.Net.Test.Unit.MockServer;
 using global::Candid.Net.Test.Utils;
 using NUnit.Framework;
@@ -16,6 +17,11 @@ public class GetRunTest : BaseMockServerTest
               "run_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
               "created_at": "2024-01-15T09:30:00.000Z",
               "entity_external_id": "entity_external_id",
+              "initial_entity_state": {
+                "initial_entity_state": {
+                  "key": "value"
+                }
+              },
               "edits": {
                 "edits": {
                   "key": "value"
@@ -50,7 +56,8 @@ public class GetRunTest : BaseMockServerTest
             );
 
         var response = await Client.PreServiceRules.V1.GetRunAsync(
-            "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
+            "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+            new GetPreServiceRunRequest()
         );
         JsonAssert.AreEqual(response, mockResponse);
     }
