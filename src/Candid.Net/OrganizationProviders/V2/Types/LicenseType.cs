@@ -232,6 +232,8 @@ public readonly record struct LicenseType : IStringEnum
 
     public static readonly LicenseType Imft = new(Values.Imft);
 
+    public static readonly LicenseType Rt = new(Values.Rt);
+
     public LicenseType(string value)
     {
         Value = value;
@@ -551,5 +553,7 @@ public readonly record struct LicenseType : IStringEnum
         public const string Swt = "SWT";
 
         public const string Imft = "IMFT";
+
+        public const string Rt = "RT";
     }
 }

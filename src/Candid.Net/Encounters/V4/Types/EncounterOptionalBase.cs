@@ -1,0 +1,200 @@
+using global::Candid.Net;
+using global::Candid.Net.Commons;
+using global::Candid.Net.Core;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
+
+namespace Candid.Net.Encounters.V4;
+
+[Serializable]
+public record EncounterOptionalBase : IJsonOnDeserialized
+{
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
+    /// <summary>
+    /// Whether this patient has authorized insurance payments to be made to you, not them. If false, patient may receive reimbursement. Box 13 on the CMS-1500 claim form or Form Locator 53 on a UB-04 claim form.
+    /// </summary>
+    [JsonPropertyName("benefits_assigned_to_provider")]
+    public bool? BenefitsAssignedToProvider { get; set; }
+
+    /// <summary>
+    /// Box 23 on the CMS-1500 claim form or Form Locator 63 on a UB-04 claim form.
+    /// </summary>
+    [JsonPropertyName("prior_authorization_number")]
+    public string? PriorAuthorizationNumber { get; set; }
+
+    /// <summary>
+    /// A client-specified unique ID to associate with this encounter;
+    /// for example, your internal encounter ID or a Dr. Chrono encounter ID.
+    /// This field should not contain PHI.
+    /// </summary>
+    [JsonPropertyName("external_id")]
+    public string? ExternalId { get; set; }
+
+    /// <summary>
+    /// Date formatted as YYYY-MM-DD; eg: 2019-08-24.
+    /// This date must be the local date in the timezone where the service occurred.
+    /// Box 24a on the CMS-1500 claim form or Form Locator 45 on the UB-04 claim form.
+    /// If service occurred over a range of dates, this should be the start date.
+    /// If service lines have distinct date_of_service values, updating the encounter's date_of_service will fail. If all service line date_of_service values are the same, updating the encounter's date_of_service will update all service line date_of_service values.
+    /// </summary>
+    [JsonPropertyName("date_of_service")]
+    public DateOnly? DateOfService { get; set; }
+
+    /// <summary>
+    /// Defines if the Encounter is to be billed by Candid to the responsible_party. Examples for when this should be set to NOT_BILLABLE include if the Encounter has not occurred yet or if there is no intention of ever billing the responsible_party.
+    /// </summary>
+    [JsonPropertyName("billable_status")]
+    public BillableStatusType? BillableStatus { get; set; }
+
+    /// <summary>
+    /// Defines the party to be billed with the initial balance owed on the claim. Use SELF_PAY if you intend to bill self pay/cash pay.
+    /// </summary>
+    [JsonPropertyName("responsible_party")]
+    public ResponsiblePartyType? ResponsibleParty { get; set; }
+
+    /// <summary>
+    /// Whether you have accepted the patient's authorization for insurance payments to be made to you, not them. Box 27 on the CMS-1500 claim form. There is no exact equivalent of this field on a UB-04 claim, however contributes to the concept of Form Locator 53.
+    /// </summary>
+    [JsonPropertyName("provider_accepts_assignment")]
+    public bool? ProviderAcceptsAssignment { get; set; }
+
+    /// <summary>
+    /// Whether or not this was a synchronous or asynchronous encounter. Asynchronous encounters occur when providers and patients communicate online using forms, instant messaging, or other pre-recorded digital mediums. Synchronous encounters occur in live, real-time settings where the patient interacts directly with the provider, such as over video or a phone call.
+    /// </summary>
+    [JsonPropertyName("synchronicity")]
+    public SynchronicityType? Synchronicity { get; set; }
+
+    /// <summary>
+    /// Box 24B on the CMS-1500 claim form. 837p Loop2300, CLM-05-1. 02 for telemedicine, 11 for in-person. Full list [here](https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set).
+    /// </summary>
+    [JsonPropertyName("place_of_service_code")]
+    public FacilityTypeCode? PlaceOfServiceCode { get; set; }
+
+    /// <summary>
+    /// Human-readable description of the appointment type (ex: "Acupuncture - Headaches").
+    /// </summary>
+    [JsonPropertyName("appointment_type")]
+    public string? AppointmentType { get; set; }
+
+    /// <summary>
+    /// Date formatted as YYYY-MM-DD; eg: 2019-08-25.
+    /// This date must be the local date in the timezone where the service occurred.
+    /// If omitted, the Encounter is assumed to be for a single day.
+    /// Must not be temporally before the date_of_service field.
+    /// If service lines have distinct end_date_of_service values, updating the encounter's end_date_of_service will fail. If all service line end_date_of_service values are the same, updating the encounter's end_date_of_service will update all service line date_of_service values.
+    /// </summary>
+    [JsonPropertyName("end_date_of_service")]
+    public DateOnly? EndDateOfService { get; set; }
+
+    /// <summary>
+    /// Defines additional information on the claim needed by the payer.
+    /// Box 19 on the CMS-1500 claim form or Form Locator 80 on a UB-04 claim form.
+    /// </summary>
+    [JsonPropertyName("additional_information")]
+    public string? AdditionalInformation { get; set; }
+
+    /// <summary>
+    /// Indicates whether lab services were performed outside the billing entity.
+    /// Box 20 (Yes/No) on the CMS-1500 claim form.
+    /// </summary>
+    [JsonPropertyName("outside_lab")]
+    public bool? OutsideLab { get; set; }
+
+    /// <summary>
+    /// The charges associated with outside lab services, in cents.
+    /// Box 20 (Charges) on the CMS-1500 claim form. Applicable when outside_lab is true.
+    /// </summary>
+    [JsonPropertyName("outside_lab_charges_amount_cents")]
+    public int? OutsideLabChargesAmountCents { get; set; }
+
+    /// <summary>
+    /// NPI of the provider that performed the outside lab service.
+    /// Box 20 on the CMS-1500 claim form. Required to record outside lab charges.
+    /// </summary>
+    [JsonPropertyName("purchased_service_provider_npi")]
+    public string? PurchasedServiceProviderNpi { get; set; }
+
+    /// <summary>
+    /// 837p Loop2300 REF*4N
+    /// Required when mandated by government law or regulation to obtain authorization for specific service(s) but, for the
+    /// reasons listed in one of the enum values of ServiceAuthorizationExceptionCode, the service was performed without
+    /// obtaining the authorization.
+    /// </summary>
+    [JsonPropertyName("service_authorization_exception_code")]
+    public ServiceAuthorizationExceptionCode? ServiceAuthorizationExceptionCode { get; set; }
+
+    /// <summary>
+    /// 837p Loop2300 DTP*435, CMS-1500 Box 18 or UB-04 Form Locator 12.
+    /// Required on all ambulance claims when the patient was known to be admitted to the hospital.
+    /// OR
+    /// Required on all claims involving inpatient medical visits.
+    /// </summary>
+    [JsonPropertyName("admission_date")]
+    public DateOnly? AdmissionDate { get; set; }
+
+    /// <summary>
+    /// 837p Loop2300 DTP*096, CMS-1500 Box 18 Required for inpatient claims when the patient was discharged from the facility and the discharge date is known. Not used on an institutional claim.
+    /// </summary>
+    [JsonPropertyName("discharge_date")]
+    public DateOnly? DischargeDate { get; set; }
+
+    /// <summary>
+    /// 837p Loop2300 DTP*431, CMS-1500 Box 14
+    /// Required for the initial medical service or visit performed in response to a medical emergency when the date is available and is different than the date of service.
+    /// OR
+    /// This date is the onset of acute symptoms for the current illness or condition.
+    ///  For UB-04 claims, this is populated separately via occurrence codes.
+    /// </summary>
+    [JsonPropertyName("onset_of_current_illness_or_symptom_date")]
+    public DateOnly? OnsetOfCurrentIllnessOrSymptomDate { get; set; }
+
+    /// <summary>
+    /// 837p Loop2300 DTP*484, CMS-1500 Box 14
+    /// Required when, in the judgment of the provider, the services on this claim are related to the patient's pregnancy.de
+    /// This field is populated separately via occurrence codes for UB-04 claim forms.
+    /// </summary>
+    [JsonPropertyName("last_menstrual_period_date")]
+    public DateOnly? LastMenstrualPeriodDate { get; set; }
+
+    /// <summary>
+    /// Code indicating the reason why a claim submission was delayed.
+    /// Corresponds to CLM-20 in the 837 specification (both professional and institutional).
+    /// </summary>
+    [JsonPropertyName("delay_reason_code")]
+    public DelayReasonCode? DelayReasonCode { get; set; }
+
+    /// <summary>
+    /// Whether this patient has authorized the release of medical information
+    /// for billing purpose.
+    /// Box 12 on the CMS-1500 claim form  or Form Locator 52 on a UB-04 claim form.
+    /// </summary>
+    [JsonPropertyName("patient_authorized_release")]
+    public bool? PatientAuthorizedRelease { get; set; }
+
+    /// <summary>
+    /// Refers to REF*9F on the 837p. Value cannot be greater than 50 characters.
+    /// </summary>
+    [JsonPropertyName("referral_number")]
+    public string? ReferralNumber { get; set; }
+
+    /// <summary>
+    /// When Medicaid is billed as the secondary payer the Carrier Code is used to identify the primary payer. This is required for certain states.
+    /// </summary>
+    [JsonPropertyName("secondary_payer_carrier_code")]
+    public string? SecondaryPayerCarrierCode { get; set; }
+
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
+}

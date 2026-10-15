@@ -14,7 +14,7 @@ public class GetByChargeCaptureExternalIdTest : BaseMockServerTest
         const string mockResponse = """
             [
               {
-                "attachment_type": "DOCUMENTATION",
+                "attachment_type": "APPEAL_LETTER",
                 "attachment_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
                 "file_name": "file_name",
                 "description": "description",
@@ -22,7 +22,7 @@ public class GetByChargeCaptureExternalIdTest : BaseMockServerTest
                 "authed_url": "authed_url"
               },
               {
-                "attachment_type": "DOCUMENTATION",
+                "attachment_type": "APPEAL_LETTER",
                 "attachment_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
                 "file_name": "file_name",
                 "description": "description",

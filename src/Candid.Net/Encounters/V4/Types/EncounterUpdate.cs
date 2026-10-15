@@ -190,6 +190,12 @@ public record EncounterUpdate : IJsonOnDeserialized
     public PropertyCasualtyPatientIdentifierUpdate? PropertyCasualtyPatientIdentifier { get; set; }
 
     /// <summary>
+    /// Names of tags that should be on the encounter.  Note all tags on encounter will be overridden with this list.
+    /// </summary>
+    [JsonPropertyName("tag_ids")]
+    public IEnumerable<string>? TagIds { get; set; }
+
+    /// <summary>
     /// Whether this patient has authorized insurance payments to be made to you, not them. If false, patient may receive reimbursement. Box 13 on the CMS-1500 claim form or Form Locator 53 on a UB-04 claim form.
     /// </summary>
     [JsonPropertyName("benefits_assigned_to_provider")]
@@ -218,12 +224,6 @@ public record EncounterUpdate : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("date_of_service")]
     public DateOnly? DateOfService { get; set; }
-
-    /// <summary>
-    /// Names of tags that should be on the encounter.  Note all tags on encounter will be overridden with this list.
-    /// </summary>
-    [JsonPropertyName("tag_ids")]
-    public IEnumerable<string>? TagIds { get; set; }
 
     /// <summary>
     /// Defines if the Encounter is to be billed by Candid to the responsible_party. Examples for when this should be set to NOT_BILLABLE include if the Encounter has not occurred yet or if there is no intention of ever billing the responsible_party.

@@ -8,11 +8,41 @@ namespace Candid.Net.EncounterAttachments.V1;
 [Serializable]
 public readonly record struct EncounterAttachmentType : IStringEnum
 {
+    public static readonly EncounterAttachmentType AppealLetter = new(Values.AppealLetter);
+
+    public static readonly EncounterAttachmentType Certification = new(Values.Certification);
+
+    public static readonly EncounterAttachmentType ConsentForm = new(Values.ConsentForm);
+
     public static readonly EncounterAttachmentType Documentation = new(Values.Documentation);
 
     public static readonly EncounterAttachmentType Eob = new(Values.Eob);
 
+    public static readonly EncounterAttachmentType JustificationOfAdmission = new(
+        Values.JustificationOfAdmission
+    );
+
+    public static readonly EncounterAttachmentType LaboratoryResults = new(
+        Values.LaboratoryResults
+    );
+
+    public static readonly EncounterAttachmentType MedicalRecordAttachment = new(
+        Values.MedicalRecordAttachment
+    );
+
+    public static readonly EncounterAttachmentType OperativeNote = new(Values.OperativeNote);
+
     public static readonly EncounterAttachmentType Other = new(Values.Other);
+
+    public static readonly EncounterAttachmentType PhysicalTherapyNote = new(
+        Values.PhysicalTherapyNote
+    );
+
+    public static readonly EncounterAttachmentType ReferralForm = new(Values.ReferralForm);
+
+    public static readonly EncounterAttachmentType SupportDataForClaim = new(
+        Values.SupportDataForClaim
+    );
 
     public EncounterAttachmentType(string value)
     {
@@ -110,10 +140,30 @@ public readonly record struct EncounterAttachmentType : IStringEnum
     [Serializable]
     public static class Values
     {
+        public const string AppealLetter = "APPEAL_LETTER";
+
+        public const string Certification = "CERTIFICATION";
+
+        public const string ConsentForm = "CONSENT_FORM";
+
         public const string Documentation = "DOCUMENTATION";
 
         public const string Eob = "EOB";
 
+        public const string JustificationOfAdmission = "JUSTIFICATION_OF_ADMISSION";
+
+        public const string LaboratoryResults = "LABORATORY_RESULTS";
+
+        public const string MedicalRecordAttachment = "MEDICAL_RECORD_ATTACHMENT";
+
+        public const string OperativeNote = "OPERATIVE_NOTE";
+
         public const string Other = "OTHER";
+
+        public const string PhysicalTherapyNote = "PHYSICAL_THERAPY_NOTE";
+
+        public const string ReferralForm = "REFERRAL_FORM";
+
+        public const string SupportDataForClaim = "SUPPORT_DATA_FOR_CLAIM";
     }
 }

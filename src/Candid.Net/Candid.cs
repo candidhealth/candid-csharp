@@ -17,6 +17,7 @@ using global::Candid.Net.EncounterSupplementalInformation;
 using global::Candid.Net.EnterpriseConfig;
 using global::Candid.Net.Events;
 using global::Candid.Net.Exports;
+using global::Candid.Net.ExternalConsolidatedRemit;
 using global::Candid.Net.ExternalPaymentAccountConfig;
 using global::Candid.Net.FeeSchedules;
 using global::Candid.Net.Guarantor;
@@ -59,7 +60,7 @@ public partial class Candid : ICandid
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Candid.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Candid.Net/1.36.0" },
+                { "User-Agent", "Candid.Net/1.37.0" },
             }
         );
         foreach (var header in platformHeaders)
@@ -96,6 +97,7 @@ public partial class Candid : ICandid
         EnterpriseConfig = new EnterpriseConfigClient(_client);
         Events = new EventsClient(_client);
         Exports = new ExportsClient(_client);
+        ExternalConsolidatedRemit = new ExternalConsolidatedRemitClient(_client);
         ExternalPaymentAccountConfig = new ExternalPaymentAccountConfigClient(_client);
         FeeSchedules = new FeeSchedulesClient(_client);
         Guarantor = new GuarantorClient(_client);
@@ -156,6 +158,8 @@ public partial class Candid : ICandid
     public IEventsClient Events { get; }
 
     public IExportsClient Exports { get; }
+
+    public IExternalConsolidatedRemitClient ExternalConsolidatedRemit { get; }
 
     public IExternalPaymentAccountConfigClient ExternalPaymentAccountConfig { get; }
 

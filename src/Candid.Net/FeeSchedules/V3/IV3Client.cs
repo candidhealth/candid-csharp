@@ -25,6 +25,21 @@ public partial interface IV3Client
     );
 
     /// <summary>
+    /// Gets the rate that matches each of a list of dimension points, using the same matching as the service line match endpoint.
+    /// Useful for showing rates before a service line exists in Candid.
+    ///
+    /// Results are returned in request order, one per point. A point with no matching rate has a null `match`.
+    ///
+    /// An omitted optional dimension only matches rates that have no restriction on that dimension. CPT codes are matched
+    /// case-insensitively, and ZIP codes are matched on their first 5 digits.
+    /// </summary>
+    WithRawResponseTask<IEnumerable<BatchMatchResult>> BatchMatchAsync(
+        IEnumerable<BatchMatchPoint> request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// Gets a list of dimensions with their rates. The rates returned will always be the most recent versions of those rates.
     /// </summary>
     WithRawResponseTask<RatesPage> GetMultiAsync(

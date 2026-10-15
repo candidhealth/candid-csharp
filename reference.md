@@ -4532,6 +4532,136 @@ await client.Exports.V3.GetExportsAsync(
 </dl>
 </details>
 
+## ExternalConsolidatedRemit V1
+<details><summary><code>client.ExternalConsolidatedRemit.V1.<a href="/src/Candid.Net/ExternalConsolidatedRemit/V1/V1Client.cs">GetEraPaymentsAsync</a>(consolidatedRemitId) -> WithRawResponseTask&lt;ExternalConsolidatedRemitEraPaymentsResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns metadata for every ERA payment (835 transaction set) associated with a
+consolidated remit, including the source ERA document for each, and indicates which ERA
+payment is currently elected as primary.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.ExternalConsolidatedRemit.V1.GetEraPaymentsAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**consolidatedRemitId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.ExternalConsolidatedRemit.V1.<a href="/src/Candid.Net/ExternalConsolidatedRemit/V1/V1Client.cs">GetTransactionsAsync</a>(consolidatedRemitId, GetExternalConsolidatedRemitTransactionsRequest { ... }) -> WithRawResponseTask&lt;ExternalConsolidatedRemitTransactionPage&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Paginated, combined list of InsurancePayment and InsuranceAdjustment transactions posted
+from a consolidated remit's ERA payments - covering service-payment-driven and
+payment-bundle-driven activity of both kinds, and both the posted and voided sides of each
+(see is_void). Each item is discriminated by type; fields common to both transaction types
+are always present alongside the type-specific ones. One combined, single-cursor
+pagination stream rather than two separate endpoints - filter to a single type with
+transaction_type if you only care about one.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.ExternalConsolidatedRemit.V1.GetTransactionsAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new GetExternalConsolidatedRemitTransactionsRequest()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**consolidatedRemitId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `GetExternalConsolidatedRemitTransactionsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## ExternalPaymentAccountConfig V1
 <details><summary><code>client.ExternalPaymentAccountConfig.V1.<a href="/src/Candid.Net/ExternalPaymentAccountConfig/V1/V1Client.cs">GetMultiAsync</a>(GetExternalPaymentAccountConfigsRequest { ... }) -> WithRawResponseTask&lt;ExternalPaymentAccountConfigPage&gt;</code></summary>
 <dl>
@@ -4684,6 +4814,84 @@ await client.FeeSchedules.V3.TestMatchAsync(
 <dd>
 
 **rateId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.FeeSchedules.V3.<a href="/src/Candid.Net/FeeSchedules/V3/V3Client.cs">BatchMatchAsync</a>(IEnumerable&lt;BatchMatchPoint&gt; { ... }) -> WithRawResponseTask&lt;IEnumerable&lt;BatchMatchResult&gt;&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Gets the rate that matches each of a list of dimension points, using the same matching as the service line match endpoint.
+Useful for showing rates before a service line exists in Candid.
+
+Results are returned in request order, one per point. A point with no matching rate has a null `match`.
+
+An omitted optional dimension only matches rates that have no restriction on that dimension. CPT codes are matched
+case-insensitively, and ZIP codes are matched on their first 5 digits.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.FeeSchedules.V3.BatchMatchAsync(
+    new List<BatchMatchPoint>()
+    {
+        new BatchMatchPoint
+        {
+            PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+            OrganizationBillingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+            CptCode = "cpt_code",
+            DateOfService = new DateOnly(2023, 1, 15),
+        },
+        new BatchMatchPoint
+        {
+            PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+            OrganizationBillingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+            CptCode = "cpt_code",
+            DateOfService = new DateOnly(2023, 1, 15),
+        },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `IEnumerable<BatchMatchPoint>` 
     
 </dd>
 </dl>

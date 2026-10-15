@@ -15,6 +15,7 @@ using global::Candid.Net.EncounterSupplementalInformation;
 using global::Candid.Net.EnterpriseConfig;
 using global::Candid.Net.Events;
 using global::Candid.Net.Exports;
+using global::Candid.Net.ExternalConsolidatedRemit;
 using global::Candid.Net.ExternalPaymentAccountConfig;
 using global::Candid.Net.FeeSchedules;
 using global::Candid.Net.Guarantor;
@@ -62,6 +63,7 @@ public partial interface ICandid
     public IEnterpriseConfigClient EnterpriseConfig { get; }
     public IEventsClient Events { get; }
     public IExportsClient Exports { get; }
+    public IExternalConsolidatedRemitClient ExternalConsolidatedRemit { get; }
     public IExternalPaymentAccountConfigClient ExternalPaymentAccountConfig { get; }
     public IFeeSchedulesClient FeeSchedules { get; }
     public IGuarantorClient Guarantor { get; }

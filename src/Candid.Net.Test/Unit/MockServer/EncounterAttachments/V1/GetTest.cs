@@ -15,7 +15,7 @@ public class GetTest : BaseMockServerTest
             [
               {
                 "encounter_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-                "attachment_type": "DOCUMENTATION",
+                "attachment_type": "APPEAL_LETTER",
                 "created_at": "2024-01-15T09:30:00.000Z",
                 "created_by": {
                   "user_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
@@ -43,7 +43,7 @@ public class GetTest : BaseMockServerTest
               },
               {
                 "encounter_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-                "attachment_type": "DOCUMENTATION",
+                "attachment_type": "APPEAL_LETTER",
                 "created_at": "2024-01-15T09:30:00.000Z",
                 "created_by": {
                   "user_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",

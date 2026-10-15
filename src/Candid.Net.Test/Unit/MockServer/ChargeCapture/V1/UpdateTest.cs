@@ -720,14 +720,14 @@ public class UpdateTest : BaseMockServerTest
                   "property_casualty_patient_identifier_qualifier": "1W",
                   "property_casualty_patient_identifier": "property_casualty_patient_identifier"
                 },
-                "benefits_assigned_to_provider": true,
-                "prior_authorization_number": "prior_authorization_number",
-                "external_id": "external_id",
-                "date_of_service": "2023-01-15",
                 "tag_ids": [
                   "tag_ids",
                   "tag_ids"
                 ],
+                "benefits_assigned_to_provider": true,
+                "prior_authorization_number": "prior_authorization_number",
+                "external_id": "external_id",
+                "date_of_service": "2023-01-15",
                 "billable_status": "BILLABLE",
                 "responsible_party": "INSURANCE_PAY",
                 "provider_accepts_assignment": true,
