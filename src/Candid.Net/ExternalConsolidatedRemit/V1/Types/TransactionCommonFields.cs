@@ -42,7 +42,11 @@ public record TransactionCommonFields : IJsonOnDeserialized
     public required TargetType TargetType { get; set; }
 
     /// <summary>
-    /// The specific organization/provider/external_provider/claim/service_line/appointment id, per target_type.
+    /// Identifies the target, per target_type - the same value as target_id on the corresponding insurance AR event:
+    /// - ORGANIZATION: the organization id
+    /// - PROVIDER / EXTERNAL_PROVIDER: the provider's NPI
+    /// - CLAIM: the claim id
+    /// - SERVICE_LINE: the service line id
     /// </summary>
     [JsonPropertyName("target_id")]
     public required string TargetId { get; set; }

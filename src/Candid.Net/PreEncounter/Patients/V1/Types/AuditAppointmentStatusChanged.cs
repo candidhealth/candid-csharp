@@ -22,6 +22,9 @@ public record AuditAppointmentStatusChanged : IJsonOnDeserialized
     [JsonPropertyName("not_ready_reason")]
     public NotReadyReason? NotReadyReason { get; set; }
 
+    [JsonPropertyName("ready_reason")]
+    public ReadyReason? ReadyReason { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

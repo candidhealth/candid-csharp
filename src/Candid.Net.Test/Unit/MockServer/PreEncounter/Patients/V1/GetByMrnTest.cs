@@ -808,7 +808,9 @@ public class GetByMrnTest : BaseMockServerTest
                     "cptCodes",
                     "cptCodes"
                   ],
-                  "applyForAllCptCodes": true
+                  "applyForAllCptCodes": true,
+                  "payer_id": "payer_id",
+                  "payer_name": "payer_name"
                 },
                 {
                   "provider": {
@@ -913,7 +915,9 @@ public class GetByMrnTest : BaseMockServerTest
                     "cptCodes",
                     "cptCodes"
                   ],
-                  "applyForAllCptCodes": true
+                  "applyForAllCptCodes": true,
+                  "payer_id": "payer_id",
+                  "payer_name": "payer_name"
                 }
               ],
               "primary_service_facility_id": "primary_service_facility_id",

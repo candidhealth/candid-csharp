@@ -32,6 +32,10 @@ public readonly record struct EligibilityAuditEventType : IStringEnum
         Values.PatientTagsUpdated
     );
 
+    public static readonly EligibilityAuditEventType PatientSelfPayUpdated = new(
+        Values.PatientSelfPayUpdated
+    );
+
     public EligibilityAuditEventType(string value)
     {
         Value = value;
@@ -141,5 +145,7 @@ public readonly record struct EligibilityAuditEventType : IStringEnum
         public const string EligCheckCompleted = "ELIG_CHECK_COMPLETED";
 
         public const string PatientTagsUpdated = "PATIENT_TAGS_UPDATED";
+
+        public const string PatientSelfPayUpdated = "PATIENT_SELF_PAY_UPDATED";
     }
 }

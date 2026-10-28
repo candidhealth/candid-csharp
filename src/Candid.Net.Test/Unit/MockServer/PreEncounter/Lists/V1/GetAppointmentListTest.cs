@@ -28,6 +28,7 @@ public class GetAppointmentListTest : BaseMockServerTest
                     "status": "PENDING",
                     "not_ready_reason": "INACTIVE_PRIMARY",
                     "ready_source": "MANUAL",
+                    "ready_reason": "REVIEWED_RTE",
                     "service_duration": 1,
                     "services": [
                       {
@@ -142,6 +143,26 @@ public class GetAppointmentListTest : BaseMockServerTest
                     "prior_authorization_status": "NOT_REQUIRED",
                     "notes": "notes",
                     "location_resource_id": "location_resource_id",
+                    "rooms": [
+                      {
+                        "placer_room_id": "placer_room_id",
+                        "name": "name"
+                      },
+                      {
+                        "placer_room_id": "placer_room_id",
+                        "name": "name"
+                      }
+                    ],
+                    "devices": [
+                      {
+                        "placer_device_id": "placer_device_id",
+                        "name": "name"
+                      },
+                      {
+                        "placer_device_id": "placer_device_id",
+                        "name": "name"
+                      }
+                    ],
                     "automated_eligibility_check_complete": true,
                     "work_queue": "EMERGENT_ISSUE",
                     "cancellation_reason": "cancellation_reason"
@@ -815,7 +836,9 @@ public class GetAppointmentListTest : BaseMockServerTest
                           "cptCodes",
                           "cptCodes"
                         ],
-                        "applyForAllCptCodes": true
+                        "applyForAllCptCodes": true,
+                        "payer_id": "payer_id",
+                        "payer_name": "payer_name"
                       },
                       {
                         "provider": {
@@ -870,7 +893,9 @@ public class GetAppointmentListTest : BaseMockServerTest
                           "cptCodes",
                           "cptCodes"
                         ],
-                        "applyForAllCptCodes": true
+                        "applyForAllCptCodes": true,
+                        "payer_id": "payer_id",
+                        "payer_name": "payer_name"
                       }
                     ],
                     "primary_service_facility_id": "primary_service_facility_id",
@@ -1328,6 +1353,7 @@ public class GetAppointmentListTest : BaseMockServerTest
                     "status": "PENDING",
                     "not_ready_reason": "INACTIVE_PRIMARY",
                     "ready_source": "MANUAL",
+                    "ready_reason": "REVIEWED_RTE",
                     "service_duration": 1,
                     "services": [
                       {
@@ -1442,6 +1468,26 @@ public class GetAppointmentListTest : BaseMockServerTest
                     "prior_authorization_status": "NOT_REQUIRED",
                     "notes": "notes",
                     "location_resource_id": "location_resource_id",
+                    "rooms": [
+                      {
+                        "placer_room_id": "placer_room_id",
+                        "name": "name"
+                      },
+                      {
+                        "placer_room_id": "placer_room_id",
+                        "name": "name"
+                      }
+                    ],
+                    "devices": [
+                      {
+                        "placer_device_id": "placer_device_id",
+                        "name": "name"
+                      },
+                      {
+                        "placer_device_id": "placer_device_id",
+                        "name": "name"
+                      }
+                    ],
                     "automated_eligibility_check_complete": true,
                     "work_queue": "EMERGENT_ISSUE",
                     "cancellation_reason": "cancellation_reason"
@@ -2115,7 +2161,9 @@ public class GetAppointmentListTest : BaseMockServerTest
                           "cptCodes",
                           "cptCodes"
                         ],
-                        "applyForAllCptCodes": true
+                        "applyForAllCptCodes": true,
+                        "payer_id": "payer_id",
+                        "payer_name": "payer_name"
                       },
                       {
                         "provider": {
@@ -2170,7 +2218,9 @@ public class GetAppointmentListTest : BaseMockServerTest
                           "cptCodes",
                           "cptCodes"
                         ],
-                        "applyForAllCptCodes": true
+                        "applyForAllCptCodes": true,
+                        "payer_id": "payer_id",
+                        "payer_name": "payer_name"
                       }
                     ],
                     "primary_service_facility_id": "primary_service_facility_id",

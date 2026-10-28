@@ -398,6 +398,25 @@ public class CreateTest : BaseMockServerTest
                       "last_name": "last_name",
                       "organization_name": "organization_name"
                     },
+                    "rendering_provider": {
+                      "npi": "npi",
+                      "taxonomy_code": "taxonomy_code",
+                      "address": {
+                        "zip_plus_four_code": "zip_plus_four_code",
+                        "address1": "address1",
+                        "address2": "address2",
+                        "city": "city",
+                        "state": "AA",
+                        "zip_code": "zip_code"
+                      },
+                      "secondary_identification": {
+                        "reference_identification": "reference_identification",
+                        "reference_identification_qualifier": "0B"
+                      },
+                      "first_name": "first_name",
+                      "last_name": "last_name",
+                      "organization_name": "organization_name"
+                    },
                     "test_results": [
                       {
                         "value": 1.1,
@@ -452,6 +471,25 @@ public class CreateTest : BaseMockServerTest
                         "city": "city",
                         "state": "AA",
                         "zip_code": "zip_code"
+                      },
+                      "first_name": "first_name",
+                      "last_name": "last_name",
+                      "organization_name": "organization_name"
+                    },
+                    "rendering_provider": {
+                      "npi": "npi",
+                      "taxonomy_code": "taxonomy_code",
+                      "address": {
+                        "zip_plus_four_code": "zip_plus_four_code",
+                        "address1": "address1",
+                        "address2": "address2",
+                        "city": "city",
+                        "state": "AA",
+                        "zip_code": "zip_code"
+                      },
+                      "secondary_identification": {
+                        "reference_identification": "reference_identification",
+                        "reference_identification_qualifier": "0B"
                       },
                       "first_name": "first_name",
                       "last_name": "last_name",

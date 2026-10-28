@@ -1,6 +1,7 @@
 using global::Candid.Net;
 using global::Candid.Net.Commons;
 using global::Candid.Net.Core;
+using global::Candid.Net.EncounterProviders.V2;
 using global::System.Text.Json;
 using global::System.Text.Json.Serialization;
 
@@ -30,6 +31,12 @@ public record ServiceLineUpdateBase : IJsonOnDeserialized
 
     [JsonPropertyName("denial_reason")]
     public ServiceLineDenialReason? DenialReason { get; set; }
+
+    /// <summary>
+    /// If set, overrides the claim-level rendering provider for this service line on the 837-P. If not set, the claim-level rendering provider is used.
+    /// </summary>
+    [JsonPropertyName("rendering_provider")]
+    public RenderingProviderUpdate? RenderingProvider { get; set; }
 
     /// <summary>
     /// 837p Loop2300, SV105. This enum is not used or required in 837i claims. If your organization does not intend to submit claims with a different place of service at the service line level, this field should not be populated. 02 for telemedicine, 11 for in-person. Full list [here](https://www.cms.gov/Medicare/Coding/place-of-service-codes/Place_of_Service_Code_Set).

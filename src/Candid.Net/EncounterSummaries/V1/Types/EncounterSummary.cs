@@ -1,4 +1,5 @@
 using global::Candid.Net;
+using global::Candid.Net.ClaimAppeals.V1;
 using global::Candid.Net.Claims;
 using global::Candid.Net.ClinicalTrials.V1;
 using global::Candid.Net.Commons;
@@ -31,6 +32,12 @@ public record EncounterSummary : IJsonOnDeserialized
 
     [JsonPropertyName("claim_status")]
     public required ClaimStatus ClaimStatus { get; set; }
+
+    /// <summary>
+    /// The status of the claim's most recent appeal. Unset if the claim has no appeals.
+    /// </summary>
+    [JsonPropertyName("claim_appeal_status")]
+    public ClaimAppealStatus? ClaimAppealStatus { get; set; }
 
     [JsonPropertyName("billing_provider_npi")]
     public required string BillingProviderNpi { get; set; }

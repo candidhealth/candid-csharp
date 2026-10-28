@@ -270,6 +270,29 @@ public class CreateUniversalTest : BaseMockServerTest
                         "last_name": "last_name",
                         "organization_name": "organization_name"
                       },
+                      "rendering_provider": {
+                        "provider_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+                        "address": {
+                          "zip_plus_four_code": "zip_plus_four_code",
+                          "address1": "address1",
+                          "address2": "address2",
+                          "city": "city",
+                          "state": "AA",
+                          "zip_code": "zip_code"
+                        },
+                        "tax_id": "tax_id",
+                        "npi": "npi",
+                        "taxonomy_code": "taxonomy_code",
+                        "qualifier": "DQ",
+                        "provider_commercial_license_type": "0",
+                        "secondary_identification": {
+                          "reference_identification": "reference_identification",
+                          "reference_identification_qualifier": "0B"
+                        },
+                        "first_name": "first_name",
+                        "last_name": "last_name",
+                        "organization_name": "organization_name"
+                      },
                       "revenue_code": "revenue_code",
                       "quantity": "quantity",
                       "units": "MJ",
@@ -478,6 +501,29 @@ public class CreateUniversalTest : BaseMockServerTest
                       "procedure_code": "procedure_code",
                       "custom_procedure_code": "custom_procedure_code",
                       "ordering_provider": {
+                        "provider_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+                        "address": {
+                          "zip_plus_four_code": "zip_plus_four_code",
+                          "address1": "address1",
+                          "address2": "address2",
+                          "city": "city",
+                          "state": "AA",
+                          "zip_code": "zip_code"
+                        },
+                        "tax_id": "tax_id",
+                        "npi": "npi",
+                        "taxonomy_code": "taxonomy_code",
+                        "qualifier": "DQ",
+                        "provider_commercial_license_type": "0",
+                        "secondary_identification": {
+                          "reference_identification": "reference_identification",
+                          "reference_identification_qualifier": "0B"
+                        },
+                        "first_name": "first_name",
+                        "last_name": "last_name",
+                        "organization_name": "organization_name"
+                      },
+                      "rendering_provider": {
                         "provider_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
                         "address": {
                           "zip_plus_four_code": "zip_plus_four_code",
@@ -752,6 +798,29 @@ public class CreateUniversalTest : BaseMockServerTest
                         "last_name": "last_name",
                         "organization_name": "organization_name"
                       },
+                      "rendering_provider": {
+                        "provider_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+                        "address": {
+                          "zip_plus_four_code": "zip_plus_four_code",
+                          "address1": "address1",
+                          "address2": "address2",
+                          "city": "city",
+                          "state": "AA",
+                          "zip_code": "zip_code"
+                        },
+                        "tax_id": "tax_id",
+                        "npi": "npi",
+                        "taxonomy_code": "taxonomy_code",
+                        "qualifier": "DQ",
+                        "provider_commercial_license_type": "0",
+                        "secondary_identification": {
+                          "reference_identification": "reference_identification",
+                          "reference_identification_qualifier": "0B"
+                        },
+                        "first_name": "first_name",
+                        "last_name": "last_name",
+                        "organization_name": "organization_name"
+                      },
                       "revenue_code": "revenue_code",
                       "quantity": "quantity",
                       "units": "MJ",
@@ -960,6 +1029,29 @@ public class CreateUniversalTest : BaseMockServerTest
                       "procedure_code": "procedure_code",
                       "custom_procedure_code": "custom_procedure_code",
                       "ordering_provider": {
+                        "provider_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+                        "address": {
+                          "zip_plus_four_code": "zip_plus_four_code",
+                          "address1": "address1",
+                          "address2": "address2",
+                          "city": "city",
+                          "state": "AA",
+                          "zip_code": "zip_code"
+                        },
+                        "tax_id": "tax_id",
+                        "npi": "npi",
+                        "taxonomy_code": "taxonomy_code",
+                        "qualifier": "DQ",
+                        "provider_commercial_license_type": "0",
+                        "secondary_identification": {
+                          "reference_identification": "reference_identification",
+                          "reference_identification_qualifier": "0B"
+                        },
+                        "first_name": "first_name",
+                        "last_name": "last_name",
+                        "organization_name": "organization_name"
+                      },
+                      "rendering_provider": {
                         "provider_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
                         "address": {
                           "zip_plus_four_code": "zip_plus_four_code",

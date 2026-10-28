@@ -16,6 +16,8 @@ public readonly record struct Primitive : IStringEnum
 
     public static readonly Primitive String = new(Values.String);
 
+    public static readonly Primitive Date = new(Values.Date);
+
     public Primitive(string value)
     {
         Value = value;
@@ -117,5 +119,7 @@ public readonly record struct Primitive : IStringEnum
         public const string Integer = "INTEGER";
 
         public const string String = "STRING";
+
+        public const string Date = "DATE";
     }
 }

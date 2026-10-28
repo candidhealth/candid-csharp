@@ -16,6 +16,20 @@ public readonly record struct CarveOutType : IStringEnum
 
     public static readonly CarveOutType Other = new(Values.Other);
 
+    public static readonly CarveOutType Aba = new(Values.Aba);
+
+    public static readonly CarveOutType Fwc = new(Values.Fwc);
+
+    public static readonly CarveOutType Ot = new(Values.Ot);
+
+    public static readonly CarveOutType Slp = new(Values.Slp);
+
+    public static readonly CarveOutType Pt = new(Values.Pt);
+
+    public static readonly CarveOutType Eeg = new(Values.Eeg);
+
+    public static readonly CarveOutType Ces = new(Values.Ces);
+
     public CarveOutType(string value)
     {
         Value = value;
@@ -119,5 +133,19 @@ public readonly record struct CarveOutType : IStringEnum
         public const string Therapy = "THERAPY";
 
         public const string Other = "OTHER";
+
+        public const string Aba = "ABA";
+
+        public const string Fwc = "FWC";
+
+        public const string Ot = "OT";
+
+        public const string Slp = "SLP";
+
+        public const string Pt = "PT";
+
+        public const string Eeg = "EEG";
+
+        public const string Ces = "CES";
     }
 }

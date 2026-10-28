@@ -115,6 +115,12 @@ public record ServiceLine : IJsonOnDeserialized
     public EncounterProvider? OrderingProvider { get; set; }
 
     /// <summary>
+    /// If set, overrides the claim-level rendering provider for this service line on the 837-P. If not set, the claim-level rendering provider is used.
+    /// </summary>
+    [JsonPropertyName("rendering_provider")]
+    public EncounterProvider? RenderingProvider { get; set; }
+
+    /// <summary>
     /// A 4 digit code that specifies facility department or type of service arrangement for institutional service line items (837i). This code is not required for professional claim billing (837p).
     /// </summary>
     [JsonPropertyName("revenue_code")]

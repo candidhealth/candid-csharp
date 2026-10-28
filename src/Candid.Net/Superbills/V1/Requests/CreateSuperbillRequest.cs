@@ -43,6 +43,12 @@ public record CreateSuperbillRequest
     [JsonPropertyName("include_merged_patient_data")]
     public bool? IncludeMergedPatientData { get; set; }
 
+    /// <summary>
+    /// If true, adjustment, insurance paid, patient responsibility, and balance amounts are shown for claims that are not yet finalized, reflecting their current state. These amounts may change as remaining payers adjudicate. Defaults to false, which shows these amounts only for finalized claims.
+    /// </summary>
+    [JsonPropertyName("include_unfinalized_claim_financials")]
+    public bool? IncludeUnfinalizedClaimFinancials { get; set; }
+
     /// <inheritdoc />
     public override string ToString()
     {

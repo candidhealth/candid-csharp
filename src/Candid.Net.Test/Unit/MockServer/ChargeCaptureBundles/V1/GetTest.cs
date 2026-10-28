@@ -409,6 +409,15 @@ public class GetTest : BaseMockServerTest
                       "last_name": "last_name",
                       "organization_name": "organization_name"
                     },
+                    "rendering_provider": {
+                      "npi": "npi",
+                      "taxonomy_code": "taxonomy_code",
+                      "address": {},
+                      "secondary_identification": {},
+                      "first_name": "first_name",
+                      "last_name": "last_name",
+                      "organization_name": "organization_name"
+                    },
                     "test_results": [
                       {
                         "value": 1.1,
@@ -457,6 +466,15 @@ public class GetTest : BaseMockServerTest
                       "npi": "npi",
                       "taxonomy_code": "taxonomy_code",
                       "address": {},
+                      "first_name": "first_name",
+                      "last_name": "last_name",
+                      "organization_name": "organization_name"
+                    },
+                    "rendering_provider": {
+                      "npi": "npi",
+                      "taxonomy_code": "taxonomy_code",
+                      "address": {},
+                      "secondary_identification": {},
                       "first_name": "first_name",
                       "last_name": "last_name",
                       "organization_name": "organization_name"

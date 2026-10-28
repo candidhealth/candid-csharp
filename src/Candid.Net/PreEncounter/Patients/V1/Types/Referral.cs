@@ -40,6 +40,15 @@ public record Referral : IJsonOnDeserialized
     [JsonPropertyName("applyForAllCptCodes")]
     public bool? ApplyForAllCptCodes { get; set; }
 
+    /// <summary>
+    /// When set, the referral will only apply to claims for this payer.
+    /// </summary>
+    [JsonPropertyName("payer_id")]
+    public string? PayerId { get; set; }
+
+    [JsonPropertyName("payer_name")]
+    public string? PayerName { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

@@ -309,6 +309,7 @@ public class GetAllTest : BaseMockServerTest
                         "date_of_service": "2023-01-15",
                         "end_date_of_service": "2023-01-15",
                         "ordering_provider": {},
+                        "rendering_provider": {},
                         "test_results": [
                           {},
                           {}
@@ -339,6 +340,7 @@ public class GetAllTest : BaseMockServerTest
                         "date_of_service": "2023-01-15",
                         "end_date_of_service": "2023-01-15",
                         "ordering_provider": {},
+                        "rendering_provider": {},
                         "test_results": [
                           {},
                           {}
@@ -878,6 +880,7 @@ public class GetAllTest : BaseMockServerTest
                         "date_of_service": "2023-01-15",
                         "end_date_of_service": "2023-01-15",
                         "ordering_provider": {},
+                        "rendering_provider": {},
                         "test_results": [
                           {},
                           {}
@@ -908,6 +911,7 @@ public class GetAllTest : BaseMockServerTest
                         "date_of_service": "2023-01-15",
                         "end_date_of_service": "2023-01-15",
                         "ordering_provider": {},
+                        "rendering_provider": {},
                         "test_results": [
                           {},
                           {}

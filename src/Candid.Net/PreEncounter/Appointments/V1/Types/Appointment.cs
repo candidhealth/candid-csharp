@@ -74,6 +74,12 @@ public record Appointment : IJsonOnDeserialized
     public ReadySource? ReadySource { get; set; }
 
     /// <summary>
+    /// Why the appointment was marked READY. May be set when moving the appointment to READY, or to change the reason while it is READY; omitting it keeps the current value. Must only be set when the status is READY, CHECKED_IN, CHECKED_OUT or NO_SHOW, it is cleared otherwise.
+    /// </summary>
+    [JsonPropertyName("ready_reason")]
+    public ReadyReason? ReadyReason { get; set; }
+
+    /// <summary>
     /// The requested length of time allotted for the appointment. The units are in minutes.
     /// </summary>
     [JsonPropertyName("service_duration")]
@@ -153,6 +159,18 @@ public record Appointment : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("location_resource_id")]
     public string? LocationResourceId { get; set; }
+
+    /// <summary>
+    /// The rooms booked for the appointment.
+    /// </summary>
+    [JsonPropertyName("rooms")]
+    public IEnumerable<AppointmentRoom>? Rooms { get; set; }
+
+    /// <summary>
+    /// The devices booked for the appointment.
+    /// </summary>
+    [JsonPropertyName("devices")]
+    public IEnumerable<AppointmentDevice>? Devices { get; set; }
 
     /// <summary>
     /// True if the automated eligibility check has been completed. It is not recommended to change this value manually via API. This refers explicitly to the automated eligibility check that occurs a specific number of days before the appointment.

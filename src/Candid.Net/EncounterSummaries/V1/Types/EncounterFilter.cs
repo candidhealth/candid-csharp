@@ -127,6 +127,13 @@ public record EncounterFilter : IJsonOnDeserialized
     [JsonPropertyName("claim_status")]
     public SetFilter? ClaimStatus { get; set; }
 
+    /// <summary>
+    /// Filter on the status of the claim's most recent appeal. Values must be claim appeal statuses.
+    /// Claims without an appeal never match, including with not_in.
+    /// </summary>
+    [JsonPropertyName("claim_appeal_status")]
+    public SetFilter? ClaimAppealStatus { get; set; }
+
     [JsonPropertyName("external_id")]
     public StringFilter? ExternalId { get; set; }
 
