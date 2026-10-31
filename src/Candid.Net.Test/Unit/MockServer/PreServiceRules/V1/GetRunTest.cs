@@ -37,7 +37,8 @@ public class GetRunTest : BaseMockServerTest
               ],
               "error": {
                 "message": "message"
-              }
+              },
+              "status": "IN_PROGRESS"
             }
             """;
 

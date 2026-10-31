@@ -155,6 +155,8 @@ public readonly record struct ProcedureModifier : IStringEnum
     /// </summary>
     public static readonly ProcedureModifier SixtyThree = new(Values.SixtyThree);
 
+    public static readonly ProcedureModifier SixtyFive = new(Values.SixtyFive);
+
     /// <summary>
     /// Surgical Team
     /// </summary>
@@ -300,6 +302,8 @@ public readonly record struct ProcedureModifier : IStringEnum
     /// </summary>
     public static readonly ProcedureModifier Ab = new(Values.Ab);
 
+    public static readonly ProcedureModifier Ac = new(Values.Ac);
+
     /// <summary>
     /// Medical supervision by a physician: more than four concurrent anesthesia procedures
     /// </summary>
@@ -384,6 +388,8 @@ public readonly record struct ProcedureModifier : IStringEnum
     /// Item furnished in conjunction with parenteral enteral nutrition (pen) services
     /// </summary>
     public static readonly ProcedureModifier Ba = new(Values.Ba);
+
+    public static readonly ProcedureModifier Bg = new(Values.Bg);
 
     /// <summary>
     /// Special acquisition of blood and blood products
@@ -509,6 +515,10 @@ public readonly record struct ProcedureModifier : IStringEnum
     /// Oral health assessment by a licensed health professional other than a dentist
     /// </summary>
     public static readonly ProcedureModifier Da = new(Values.Da);
+
+    public static readonly ProcedureModifier Dr = new(Values.Dr);
+
+    public static readonly ProcedureModifier Dx = new(Values.Dx);
 
     /// <summary>
     /// Upper left, eyelid
@@ -1295,6 +1305,8 @@ public readonly record struct ProcedureModifier : IStringEnum
     /// </summary>
     public static readonly ProcedureModifier Mh = new(Values.Mh);
 
+    public static readonly ProcedureModifier Mr = new(Values.Mr);
+
     /// <summary>
     /// Six month maintenance and servicing fee for parts and labor, not covered under any manufacturer or supplier warranty
     /// </summary>
@@ -1329,6 +1341,8 @@ public readonly record struct ProcedureModifier : IStringEnum
     /// New durable medical equipment purchase
     /// </summary>
     public static readonly ProcedureModifier Nu = new(Values.Nu);
+
+    public static readonly ProcedureModifier Oh = new(Values.Oh);
 
     /// <summary>
     /// A normal healthy patient
@@ -1860,6 +1874,8 @@ public readonly record struct ProcedureModifier : IStringEnum
     /// </summary>
     public static readonly ProcedureModifier Tw = new(Values.Tw);
 
+    public static readonly ProcedureModifier Tz = new(Values.Tz);
+
     /// <summary>
     /// Medicaid level of care 1, as defined by each state
     /// </summary>
@@ -2298,6 +2314,8 @@ public readonly record struct ProcedureModifier : IStringEnum
         /// </summary>
         public const string SixtyThree = "63";
 
+        public const string SixtyFive = "65";
+
         /// <summary>
         /// Surgical Team
         /// </summary>
@@ -2443,6 +2461,8 @@ public readonly record struct ProcedureModifier : IStringEnum
         /// </summary>
         public const string Ab = "AB";
 
+        public const string Ac = "AC";
+
         /// <summary>
         /// Medical supervision by a physician: more than four concurrent anesthesia procedures
         /// </summary>
@@ -2527,6 +2547,8 @@ public readonly record struct ProcedureModifier : IStringEnum
         /// Item furnished in conjunction with parenteral enteral nutrition (pen) services
         /// </summary>
         public const string Ba = "BA";
+
+        public const string Bg = "BG";
 
         /// <summary>
         /// Special acquisition of blood and blood products
@@ -2652,6 +2674,10 @@ public readonly record struct ProcedureModifier : IStringEnum
         /// Oral health assessment by a licensed health professional other than a dentist
         /// </summary>
         public const string Da = "DA";
+
+        public const string Dr = "DR";
+
+        public const string Dx = "DX";
 
         /// <summary>
         /// Upper left, eyelid
@@ -3438,6 +3464,8 @@ public readonly record struct ProcedureModifier : IStringEnum
         /// </summary>
         public const string Mh = "MH";
 
+        public const string Mr = "MR";
+
         /// <summary>
         /// Six month maintenance and servicing fee for parts and labor, not covered under any manufacturer or supplier warranty
         /// </summary>
@@ -3472,6 +3500,8 @@ public readonly record struct ProcedureModifier : IStringEnum
         /// New durable medical equipment purchase
         /// </summary>
         public const string Nu = "NU";
+
+        public const string Oh = "OH";
 
         /// <summary>
         /// A normal healthy patient
@@ -4002,6 +4032,8 @@ public readonly record struct ProcedureModifier : IStringEnum
         /// Back-up equipment
         /// </summary>
         public const string Tw = "TW";
+
+        public const string Tz = "TZ";
 
         /// <summary>
         /// Medicaid level of care 1, as defined by each state

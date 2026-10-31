@@ -51,6 +51,12 @@ public record PreServiceRun : IJsonOnDeserialized
     [JsonPropertyName("error")]
     public PreServiceError? Error { get; set; }
 
+    /// <summary>
+    /// Current state of the run
+    /// </summary>
+    [JsonPropertyName("status")]
+    public required PreServiceRunStatus Status { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 
