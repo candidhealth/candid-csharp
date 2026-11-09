@@ -147,6 +147,7 @@ public class CreateTest : BaseMockServerTest
               },
               "estimated_copay_cents": 1,
               "estimated_patient_responsibility_cents": 1,
+              "estimated_patient_responsibility_note": "estimated_patient_responsibility_note",
               "patient_deposit_cents": 1,
               "appointment_details": "appointment_details",
               "checked_in_timestamp": "2024-01-15T09:30:00.000Z",

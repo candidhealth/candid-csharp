@@ -115,6 +115,12 @@ public record Appointment : IJsonOnDeserialized
     [JsonPropertyName("estimated_patient_responsibility_cents")]
     public int? EstimatedPatientResponsibilityCents { get; set; }
 
+    /// <summary>
+    /// A note explaining estimated_patient_responsibility_cents
+    /// </summary>
+    [JsonPropertyName("estimated_patient_responsibility_note")]
+    public string? EstimatedPatientResponsibilityNote { get; set; }
+
     [JsonPropertyName("patient_deposit_cents")]
     public int? PatientDepositCents { get; set; }
 

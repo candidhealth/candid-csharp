@@ -288,6 +288,7 @@ public class CreateTest : BaseMockServerTest
                       ],
                       "has_epsdt_indicator": true,
                       "has_family_planning_indicator": true,
+                      "has_emergency_indicator": true,
                       "note": "note",
                       "prior_authorization_number": "prior_authorization_number",
                       "external_id": "external_id"
@@ -541,6 +542,7 @@ public class CreateTest : BaseMockServerTest
                       ],
                       "has_epsdt_indicator": true,
                       "has_family_planning_indicator": true,
+                      "has_emergency_indicator": true,
                       "note": "note",
                       "prior_authorization_number": "prior_authorization_number",
                       "external_id": "external_id"
@@ -816,6 +818,7 @@ public class CreateTest : BaseMockServerTest
                       ],
                       "has_epsdt_indicator": true,
                       "has_family_planning_indicator": true,
+                      "has_emergency_indicator": true,
                       "note": "note",
                       "prior_authorization_number": "prior_authorization_number",
                       "external_id": "external_id"
@@ -1069,6 +1072,7 @@ public class CreateTest : BaseMockServerTest
                       ],
                       "has_epsdt_indicator": true,
                       "has_family_planning_indicator": true,
+                      "has_emergency_indicator": true,
                       "note": "note",
                       "prior_authorization_number": "prior_authorization_number",
                       "external_id": "external_id"

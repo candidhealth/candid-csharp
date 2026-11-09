@@ -183,6 +183,15 @@ public record ServiceLine : IJsonOnDeserialized
     public bool? HasFamilyPlanningIndicator { get; set; }
 
     /// <summary>
+    /// Maps to SV1-09 on the 837-P and Box 24C on the CMS-1500.
+    /// If the value is true, the box will be populated with "Y". Otherwise, the box will not be populated.
+    /// If any service line on a claim has this set, Box 16A (Emergency Related) is marked on the NY Medicaid 150003 claim form.
+    /// This is not used on an 837i.
+    /// </summary>
+    [JsonPropertyName("has_emergency_indicator")]
+    public bool? HasEmergencyIndicator { get; set; }
+
+    /// <summary>
     /// Maps to NTE02 loop 2400 on the EDI 837.
     /// </summary>
     [JsonPropertyName("note")]

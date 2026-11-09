@@ -1,4 +1,3 @@
-using global::Candid.Net.Credentialing.V2;
 using global::Candid.Net.Test.Unit.MockServer;
 using global::Candid.Net.Test.Utils;
 using NUnit.Framework;
@@ -211,7 +210,7 @@ public class UpdateTest : BaseMockServerTest
 
         var response = await Client.Credentialing.V2.UpdateAsync(
             "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-            new ProviderCredentialingSpanUpdate()
+            new global::Candid.Net.Credentialing.V2.ProviderCredentialingSpanUpdate()
         );
         JsonAssert.AreEqual(response, mockResponse);
     }

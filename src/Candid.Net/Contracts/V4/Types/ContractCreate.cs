@@ -1,0 +1,89 @@
+using global::Candid.Net;
+using global::Candid.Net.Commons;
+using global::Candid.Net.Contracts.V2;
+using global::Candid.Net.Core;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
+
+namespace Candid.Net.Contracts.V4;
+
+[Serializable]
+public record ContractCreate : IJsonOnDeserialized
+{
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
+    /// <summary>
+    /// The type of contract
+    /// </summary>
+    [JsonPropertyName("contract_type")]
+    public required ContractType ContractType { get; set; }
+
+    /// <summary>
+    /// The UUID of the provider under agreement to the contract
+    /// </summary>
+    [JsonPropertyName("contracting_provider_id")]
+    public required string ContractingProviderId { get; set; }
+
+    /// <summary>
+    /// The payer or payer group under agreement to the contract
+    /// </summary>
+    [JsonPropertyName("contract_payer")]
+    public required ContractCreatePayer ContractPayer { get; set; }
+
+    /// <summary>
+    /// The starting day upon which the contract is effective
+    /// </summary>
+    [JsonPropertyName("effective_date")]
+    public required string EffectiveDate { get; set; }
+
+    /// <summary>
+    /// An optional end day upon which the contract expires
+    /// </summary>
+    [JsonPropertyName("expiration_date")]
+    public string? ExpirationDate { get; set; }
+
+    /// <summary>
+    /// The state(s) to which the contract's coverage extends.
+    /// It may also be set to "national" for the entirety of the US.
+    /// </summary>
+    [JsonPropertyName("regions")]
+    public required Regions Regions { get; set; }
+
+    [JsonPropertyName("contract_status")]
+    public ContractStatus? ContractStatus { get; set; }
+
+    [JsonPropertyName("authorized_signatory")]
+    public AuthorizedSignatory? AuthorizedSignatory { get; set; }
+
+    /// <summary>
+    /// The commercial plan insurance types this contract applies.
+    /// </summary>
+    [JsonPropertyName("commercial_insurance_types")]
+    public required InsuranceTypes CommercialInsuranceTypes { get; set; }
+
+    /// <summary>
+    /// The Medicare plan insurance types this contract applies.
+    /// </summary>
+    [JsonPropertyName("medicare_insurance_types")]
+    public required InsuranceTypes MedicareInsuranceTypes { get; set; }
+
+    /// <summary>
+    /// The Medicaid plan insurance types this contract applies.
+    /// </summary>
+    [JsonPropertyName("medicaid_insurance_types")]
+    public required InsuranceTypes MedicaidInsuranceTypes { get; set; }
+
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
+}

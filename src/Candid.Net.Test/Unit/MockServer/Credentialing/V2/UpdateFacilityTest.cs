@@ -1,4 +1,3 @@
-using global::Candid.Net.Credentialing.V2;
 using global::Candid.Net.Test.Unit.MockServer;
 using global::Candid.Net.Test.Utils;
 using NUnit.Framework;
@@ -166,7 +165,7 @@ public class UpdateFacilityTest : BaseMockServerTest
 
         var response = await Client.Credentialing.V2.UpdateFacilityAsync(
             "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-            new FacilityCredentialingSpanUpdate
+            new global::Candid.Net.Credentialing.V2.FacilityCredentialingSpanUpdate
             {
                 ContractingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
             }

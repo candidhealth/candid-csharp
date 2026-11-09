@@ -37,7 +37,8 @@ public class ListAttachmentsTest : BaseMockServerTest
                   "user_metadata": {
                     "type": "machine_user_metadata",
                     "name": "name"
-                  }
+                  },
+                  "is_system": true
                 }
               },
               {
@@ -64,7 +65,8 @@ public class ListAttachmentsTest : BaseMockServerTest
                   "user_metadata": {
                     "type": "machine_user_metadata",
                     "name": "name"
-                  }
+                  },
+                  "is_system": true
                 }
               }
             ]

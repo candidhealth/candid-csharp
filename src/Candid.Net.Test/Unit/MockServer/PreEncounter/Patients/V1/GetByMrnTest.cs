@@ -641,7 +641,8 @@ public class GetByMrnTest : BaseMockServerTest
                     "start": "2023-01-15",
                     "end": "2023-01-15"
                   }
-                }
+                },
+                "relationship": "SELF"
               },
               "self_pay": true,
               "authorizations": [

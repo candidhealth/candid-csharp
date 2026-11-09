@@ -82,6 +82,12 @@ public record Task : IJsonOnDeserialized
     [JsonPropertyName("organization_id")]
     public string? OrganizationId { get; set; }
 
+    /// <summary>
+    /// The ID of the user that created the task.
+    /// </summary>
+    [JsonPropertyName("created_by")]
+    public string? CreatedBy { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

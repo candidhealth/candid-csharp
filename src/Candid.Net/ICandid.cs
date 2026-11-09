@@ -32,6 +32,7 @@ using global::Candid.Net.OrganizationServiceFacilities;
 using global::Candid.Net.PatientAr;
 using global::Candid.Net.PatientPayments;
 using global::Candid.Net.PatientRefunds;
+using global::Candid.Net.PayerGroups;
 using global::Candid.Net.PayerPlanGroups;
 using global::Candid.Net.Payers;
 using global::Candid.Net.PreEncounter;
@@ -80,6 +81,7 @@ public partial interface ICandid
     public IPatientArClient PatientAr { get; }
     public IPatientPaymentsClient PatientPayments { get; }
     public IPatientRefundsClient PatientRefunds { get; }
+    public IPayerGroupsClient PayerGroups { get; }
     public IPayerPlanGroupsClient PayerPlanGroups { get; }
     public IPayersClient Payers { get; }
     public IPreServiceRulesClient PreServiceRules { get; }

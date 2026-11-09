@@ -28,6 +28,12 @@ public record Guarantor : IJsonOnDeserialized
     [JsonPropertyName("address")]
     public required global::Candid.Net.PreEncounter.Common.Address Address { get; set; }
 
+    /// <summary>
+    /// The patient's relationship to the guarantor.
+    /// </summary>
+    [JsonPropertyName("relationship")]
+    public Relationship? Relationship { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

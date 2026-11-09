@@ -1,4 +1,3 @@
-using global::Candid.Net.Credentialing.V2;
 using global::Candid.Net.Test.Unit.MockServer;
 using global::Candid.Net.Test.Utils;
 using NUnit.Framework;
@@ -288,7 +287,7 @@ public class GetAllFacilitiesTest : BaseMockServerTest
             );
 
         var response = await Client.Credentialing.V2.GetAllFacilitiesAsync(
-            new GetAllFacilityCredentialingSpansRequest()
+            new global::Candid.Net.Credentialing.V2.GetAllFacilityCredentialingSpansRequest()
         );
         JsonAssert.AreEqual(response, mockResponse);
     }

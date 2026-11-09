@@ -1161,15 +1161,15 @@ Creates a new contract within the user's current organization
 
 ```csharp
 await client.Contracts.V3.CreateAsync(
-    new ContractCreateUnion(
-        new ContractCreateUnion.Professional(
-            new ProfessionalContractCreate
+    new global::Candid.Net.Contracts.V3.ContractCreateUnion(
+        new global::Candid.Net.Contracts.V3.ContractCreateUnion.Professional(
+            new global::Candid.Net.Contracts.V3.ProfessionalContractCreate
             {
                 RenderingProviderIds = new HashSet<string>()
                 {
                     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
                 },
-                ContractType = ContractType.Professional,
+                ContractType = global::Candid.Net.Contracts.V3.ContractType.Professional,
                 ContractingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
                 PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
                 EffectiveDate = "effective_date",
@@ -1269,7 +1269,11 @@ await client.Contracts.V3.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
 ```csharp
 await client.Contracts.V3.UpdateAsync(
     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    new ContractUpdateUnion(new ContractUpdateUnion.Professional(new ProfessionalContractUpdate()))
+    new global::Candid.Net.Contracts.V3.ContractUpdateUnion(
+        new global::Candid.Net.Contracts.V3.ContractUpdateUnion.Professional(
+            new global::Candid.Net.Contracts.V3.ProfessionalContractUpdate()
+        )
+    )
 );
 ```
 </dd>
@@ -1320,7 +1324,7 @@ await client.Contracts.V3.UpdateAsync(
 ```csharp
 await client.Contracts.V3.GetContractProvidersAsync(
     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    new GetContractProvidersRequest()
+    new global::Candid.Net.Contracts.V3.GetContractProvidersRequest()
 );
 ```
 </dd>
@@ -1450,7 +1454,7 @@ Appends a list of rendering provider IDs to the contract. Provider IDs already o
 ```csharp
 await client.Contracts.V3.AddContractProvidersAsync(
     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    new AddContractProvidersRequest
+    new global::Candid.Net.Contracts.V3.AddContractProvidersRequest
     {
         RenderingProviderIds = new HashSet<string>() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
     }
@@ -1518,7 +1522,7 @@ Removes the specified rendering provider IDs from the contract. Returns a 404 if
 ```csharp
 await client.Contracts.V3.RemoveContractProvidersAsync(
     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    new RemoveContractProvidersRequest
+    new global::Candid.Net.Contracts.V3.RemoveContractProvidersRequest
     {
         RenderingProviderIds = new HashSet<string>() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
     }
@@ -1572,7 +1576,7 @@ await client.Contracts.V3.RemoveContractProvidersAsync(
 ```csharp
 await client.Contracts.V3.CreateContractServiceFacilityAsync(
     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    new ContractServiceFacilityCreate
+    new global::Candid.Net.Contracts.V3.ContractServiceFacilityCreate
     {
         ServiceFacilityId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
         ProviderIds = new HashSet<string>() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
@@ -1628,7 +1632,7 @@ await client.Contracts.V3.CreateContractServiceFacilityAsync(
 await client.Contracts.V3.UpdateContractServiceFacilityAsync(
     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    new ContractServiceFacilityUpdate()
+    new global::Candid.Net.Contracts.V3.ContractServiceFacilityUpdate()
 );
 ```
 </dd>
@@ -1672,6 +1676,811 @@ await client.Contracts.V3.UpdateContractServiceFacilityAsync(
 </dl>
 </details>
 
+## Contracts V4
+<details><summary><code>client.Contracts.V4.<a href="/src/Candid.Net/Contracts/V4/V4Client.cs">GetAsync</a>(contractId) -> WithRawResponseTask&lt;ContractWithProvidersUnion&gt;</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Contracts.V4.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**contractId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Contracts.V4.<a href="/src/Candid.Net/Contracts/V4/V4Client.cs">GetMultiAsync</a>(GetMultiContractsRequest { ... }) -> WithRawResponseTask&lt;ContractsPage&gt;</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Contracts.V4.GetMultiAsync(
+    new global::Candid.Net.Contracts.V4.GetMultiContractsRequest()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `GetMultiContractsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Contracts.V4.<a href="/src/Candid.Net/Contracts/V4/V4Client.cs">CreateAsync</a>(ContractCreateUnion { ... }) -> WithRawResponseTask&lt;ContractWithProvidersUnion&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a new contract within the user's current organization
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Contracts.V4.CreateAsync(
+    new global::Candid.Net.Contracts.V4.ContractCreateUnion(
+        new global::Candid.Net.Contracts.V4.ContractCreateUnion.Professional(
+            new global::Candid.Net.Contracts.V4.ProfessionalContractCreate
+            {
+                ContractType = global::Candid.Net.Contracts.V4.ContractType.Professional,
+                ContractingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+                ContractPayer = new ContractCreatePayer(
+                    new global::Candid.Net.Contracts.V4.ContractCreatePayer.PayerUuid(
+                        "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
+                    )
+                ),
+                EffectiveDate = "effective_date",
+                Regions = new Regions(
+                    new Regions.States(
+                        new RegionStates
+                        {
+                            States = new List<State>() { State.Aa, State.Aa },
+                        }
+                    )
+                ),
+                CommercialInsuranceTypes = new InsuranceTypes(new InsuranceTypes.AllApply()),
+                MedicareInsuranceTypes = new InsuranceTypes(new InsuranceTypes.AllApply()),
+                MedicaidInsuranceTypes = new InsuranceTypes(new InsuranceTypes.AllApply()),
+            }
+        )
+    )
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ContractCreateUnion` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Contracts.V4.<a href="/src/Candid.Net/Contracts/V4/V4Client.cs">DeleteAsync</a>(contractId) -> WithRawResponseTask</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Contracts.V4.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**contractId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Contracts.V4.<a href="/src/Candid.Net/Contracts/V4/V4Client.cs">UpdateAsync</a>(contractId, ContractUpdateUnion { ... }) -> WithRawResponseTask&lt;ContractWithProvidersUnion&gt;</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Contracts.V4.UpdateAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new global::Candid.Net.Contracts.V4.ContractUpdateUnion(
+        new global::Candid.Net.Contracts.V4.ContractUpdateUnion.Professional(
+            new global::Candid.Net.Contracts.V4.ProfessionalContractUpdate()
+        )
+    )
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**contractId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `ContractUpdateUnion` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Contracts.V4.<a href="/src/Candid.Net/Contracts/V4/V4Client.cs">GetContractProvidersAsync</a>(contractId, GetContractProvidersRequest { ... }) -> WithRawResponseTask&lt;ContractProvidersPage&gt;</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Contracts.V4.GetContractProvidersAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new global::Candid.Net.Contracts.V4.GetContractProvidersRequest()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**contractId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `GetContractProvidersRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Contracts.V4.<a href="/src/Candid.Net/Contracts/V4/V4Client.cs">AddContractProvidersAsync</a>(contractId, AddContractProvidersRequest { ... }) -> WithRawResponseTask&lt;AddContractProvidersResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Appends a list of rendering provider IDs to the contract. Provider IDs already on the contract are silently ignored.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Contracts.V4.AddContractProvidersAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new global::Candid.Net.Contracts.V4.AddContractProvidersRequest
+    {
+        RenderingProviderIds = new HashSet<string>() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**contractId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `AddContractProvidersRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Contracts.V4.<a href="/src/Candid.Net/Contracts/V4/V4Client.cs">RemoveContractProvidersAsync</a>(contractId, RemoveContractProvidersRequest { ... }) -> WithRawResponseTask&lt;ContractProviderCount&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Removes the specified rendering provider IDs from the contract. Returns a 404 if any of the provided IDs are not currently in the contract.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Contracts.V4.RemoveContractProvidersAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new global::Candid.Net.Contracts.V4.RemoveContractProvidersRequest
+    {
+        RenderingProviderIds = new HashSet<string>() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**contractId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `RemoveContractProvidersRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Contracts.V4.<a href="/src/Candid.Net/Contracts/V4/V4Client.cs">CreateContractServiceFacilityAsync</a>(contractId, ContractServiceFacilityCreate { ... }) -> WithRawResponseTask&lt;ContractServiceFacility&gt;</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Contracts.V4.CreateContractServiceFacilityAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new global::Candid.Net.Contracts.V4.ContractServiceFacilityCreate
+    {
+        ServiceFacilityId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        ProviderIds = new HashSet<string>() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**contractId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `ContractServiceFacilityCreate` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Contracts.V4.<a href="/src/Candid.Net/Contracts/V4/V4Client.cs">UpdateContractServiceFacilityAsync</a>(contractId, contractServiceFacilityId, ContractServiceFacilityUpdate { ... }) -> WithRawResponseTask&lt;ContractServiceFacility&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deprecated. This endpoint is a temporary holdover from Contracts V3 and will be removed in a future release.
+Use the dedicated service facility provider endpoints to manage providers
+(GET/POST/DELETE /api/contracts/v4/{contract_id}/service-facilities/{contract_service_facility_id}/providers).
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Contracts.V4.UpdateContractServiceFacilityAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new global::Candid.Net.Contracts.V4.ContractServiceFacilityUpdate()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**contractId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**contractServiceFacilityId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `ContractServiceFacilityUpdate` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Contracts.V4.<a href="/src/Candid.Net/Contracts/V4/V4Client.cs">GetContractServiceFacilityProvidersAsync</a>(contractId, contractServiceFacilityId, GetContractServiceFacilityProvidersRequest { ... }) -> WithRawResponseTask&lt;ContractProvidersPage&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a paginated list of providers associated with a contract service facility.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Contracts.V4.GetContractServiceFacilityProvidersAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new GetContractServiceFacilityProvidersRequest()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**contractId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**contractServiceFacilityId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `GetContractServiceFacilityProvidersRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Contracts.V4.<a href="/src/Candid.Net/Contracts/V4/V4Client.cs">AddContractServiceFacilityProvidersAsync</a>(contractId, contractServiceFacilityId, AddContractServiceFacilityProvidersRequest { ... }) -> WithRawResponseTask&lt;AddContractServiceFacilityProvidersResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Appends provider IDs to the contract service facility. Provider IDs already on the facility are silently ignored.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Contracts.V4.AddContractServiceFacilityProvidersAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new AddContractServiceFacilityProvidersRequest
+    {
+        ProviderIds = new HashSet<string>() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**contractId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**contractServiceFacilityId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `AddContractServiceFacilityProvidersRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Contracts.V4.<a href="/src/Candid.Net/Contracts/V4/V4Client.cs">RemoveContractServiceFacilityProvidersAsync</a>(contractId, contractServiceFacilityId, RemoveContractServiceFacilityProvidersRequest { ... }) -> WithRawResponseTask&lt;ContractServiceFacilityProviderCount&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Removes the specified provider IDs from the contract service facility. Returns a 404 if any of the provided IDs are not currently associated.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Contracts.V4.RemoveContractServiceFacilityProvidersAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new RemoveContractServiceFacilityProvidersRequest
+    {
+        ProviderIds = new HashSet<string>() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**contractId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**contractServiceFacilityId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `RemoveContractServiceFacilityProvidersRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Credentialing V2
 <details><summary><code>client.Credentialing.V2.<a href="/src/Candid.Net/Credentialing/V2/V2Client.cs">CreateFacilityAsync</a>(FacilityCredentialingSpanCreate { ... }) -> WithRawResponseTask&lt;FacilityCredentialingSpan&gt;</code></summary>
 <dl>
@@ -1687,7 +2496,7 @@ await client.Contracts.V3.UpdateContractServiceFacilityAsync(
 
 ```csharp
 await client.Credentialing.V2.CreateFacilityAsync(
-    new FacilityCredentialingSpanCreate
+    new global::Candid.Net.Credentialing.V2.FacilityCredentialingSpanCreate
     {
         ServiceFacilityId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
         ContractingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
@@ -1773,7 +2582,9 @@ await client.Credentialing.V2.GetFacilityAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9f
 <dd>
 
 ```csharp
-await client.Credentialing.V2.GetAllFacilitiesAsync(new GetAllFacilityCredentialingSpansRequest());
+await client.Credentialing.V2.GetAllFacilitiesAsync(
+    new global::Candid.Net.Credentialing.V2.GetAllFacilityCredentialingSpansRequest()
+);
 ```
 </dd>
 </dl>
@@ -1869,7 +2680,7 @@ await client.Credentialing.V2.DeleteFacilityAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7
 ```csharp
 await client.Credentialing.V2.UpdateFacilityAsync(
     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    new FacilityCredentialingSpanUpdate
+    new global::Candid.Net.Credentialing.V2.FacilityCredentialingSpanUpdate
     {
         ContractingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     }
@@ -1922,7 +2733,7 @@ await client.Credentialing.V2.UpdateFacilityAsync(
 
 ```csharp
 await client.Credentialing.V2.CreateAsync(
-    new ProviderCredentialingSpanCreate
+    new global::Candid.Net.Credentialing.V2.ProviderCredentialingSpanCreate
     {
         RenderingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
         ContractingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
@@ -2016,7 +2827,9 @@ await client.Credentialing.V2.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
 <dd>
 
 ```csharp
-await client.Credentialing.V2.GetAllAsync(new GetAllProviderCredentialingSpansRequest());
+await client.Credentialing.V2.GetAllAsync(
+    new global::Candid.Net.Credentialing.V2.GetAllProviderCredentialingSpansRequest()
+);
 ```
 </dd>
 </dl>
@@ -2112,7 +2925,492 @@ await client.Credentialing.V2.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
 ```csharp
 await client.Credentialing.V2.UpdateAsync(
     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    new ProviderCredentialingSpanUpdate()
+    new global::Candid.Net.Credentialing.V2.ProviderCredentialingSpanUpdate()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerCredentialingId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `ProviderCredentialingSpanUpdate` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Credentialing V3
+<details><summary><code>client.Credentialing.V3.<a href="/src/Candid.Net/Credentialing/V3/V3Client.cs">CreateFacilityAsync</a>(FacilityCredentialingSpanCreate { ... }) -> WithRawResponseTask&lt;FacilityCredentialingSpan&gt;</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Credentialing.V3.CreateFacilityAsync(
+    new global::Candid.Net.Credentialing.V3.FacilityCredentialingSpanCreate
+    {
+        ServiceFacilityId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        ContractingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        CredentialingPayer = new CredentialingCreatePayer(
+            new global::Candid.Net.Credentialing.V3.CredentialingCreatePayer.PayerUuid(
+                "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
+            )
+        ),
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `FacilityCredentialingSpanCreate` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Credentialing.V3.<a href="/src/Candid.Net/Credentialing/V3/V3Client.cs">GetFacilityAsync</a>(facilityCredentialingId) -> WithRawResponseTask&lt;FacilityCredentialingSpan&gt;</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Credentialing.V3.GetFacilityAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**facilityCredentialingId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Credentialing.V3.<a href="/src/Candid.Net/Credentialing/V3/V3Client.cs">GetAllFacilitiesAsync</a>(GetAllFacilityCredentialingSpansRequest { ... }) -> WithRawResponseTask&lt;FacilityCredentialingSpanPage&gt;</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Credentialing.V3.GetAllFacilitiesAsync(
+    new global::Candid.Net.Credentialing.V3.GetAllFacilityCredentialingSpansRequest()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `GetAllFacilityCredentialingSpansRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Credentialing.V3.<a href="/src/Candid.Net/Credentialing/V3/V3Client.cs">DeleteFacilityAsync</a>(facilityCredentialingId) -> WithRawResponseTask</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Soft deletes a credentialing span rate from the system.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Credentialing.V3.DeleteFacilityAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**facilityCredentialingId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Credentialing.V3.<a href="/src/Candid.Net/Credentialing/V3/V3Client.cs">UpdateFacilityAsync</a>(facilityCredentialingId, FacilityCredentialingSpanUpdate { ... }) -> WithRawResponseTask&lt;FacilityCredentialingSpan&gt;</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Credentialing.V3.UpdateFacilityAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new global::Candid.Net.Credentialing.V3.FacilityCredentialingSpanUpdate()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**facilityCredentialingId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `FacilityCredentialingSpanUpdate` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Credentialing.V3.<a href="/src/Candid.Net/Credentialing/V3/V3Client.cs">CreateAsync</a>(ProviderCredentialingSpanCreate { ... }) -> WithRawResponseTask&lt;ProviderCredentialingSpan&gt;</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Credentialing.V3.CreateAsync(
+    new global::Candid.Net.Credentialing.V3.ProviderCredentialingSpanCreate
+    {
+        RenderingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        ContractingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+        CredentialingPayer = new CredentialingCreatePayer(
+            new global::Candid.Net.Credentialing.V3.CredentialingCreatePayer.PayerUuid(
+                "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
+            )
+        ),
+        Regions = new Regions(
+            new Regions.States(
+                new RegionStates
+                {
+                    States = new List<State>() { State.Aa, State.Aa },
+                }
+            )
+        ),
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ProviderCredentialingSpanCreate` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Credentialing.V3.<a href="/src/Candid.Net/Credentialing/V3/V3Client.cs">GetAsync</a>(providerCredentialingId) -> WithRawResponseTask&lt;ProviderCredentialingSpan&gt;</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Credentialing.V3.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerCredentialingId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Credentialing.V3.<a href="/src/Candid.Net/Credentialing/V3/V3Client.cs">GetAllAsync</a>(GetAllProviderCredentialingSpansRequest { ... }) -> WithRawResponseTask&lt;ProviderCredentialingSpanPage&gt;</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Credentialing.V3.GetAllAsync(
+    new global::Candid.Net.Credentialing.V3.GetAllProviderCredentialingSpansRequest()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `GetAllProviderCredentialingSpansRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Credentialing.V3.<a href="/src/Candid.Net/Credentialing/V3/V3Client.cs">DeleteAsync</a>(providerCredentialingId) -> WithRawResponseTask</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Soft deletes a credentialing span rate from the system.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Credentialing.V3.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**providerCredentialingId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Credentialing.V3.<a href="/src/Candid.Net/Credentialing/V3/V3Client.cs">UpdateAsync</a>(providerCredentialingId, ProviderCredentialingSpanUpdate { ... }) -> WithRawResponseTask&lt;ProviderCredentialingSpan&gt;</code></summary>
+<dl>
+<dd>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Credentialing.V3.UpdateAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new global::Candid.Net.Credentialing.V3.ProviderCredentialingSpanUpdate()
 );
 ```
 </dd>
@@ -8890,6 +10188,236 @@ await client.PatientRefunds.V1.DeleteAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32
 </dl>
 </details>
 
+## PayerGroups V1
+<details><summary><code>client.PayerGroups.V1.<a href="/src/Candid.Net/PayerGroups/V1/V1Client.cs">GetMultiAsync</a>(PayerGroupGetMultiRequest { ... }) -> WithRawResponseTask&lt;PayerGroupPage&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns all payer groups matching filter criteria.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PayerGroups.V1.GetMultiAsync(new PayerGroupGetMultiRequest());
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `PayerGroupGetMultiRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PayerGroups.V1.<a href="/src/Candid.Net/PayerGroups/V1/V1Client.cs">GetAsync</a>(payerGroupId) -> WithRawResponseTask&lt;PayerGroup&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Return a payer group with a given ID.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PayerGroups.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**payerGroupId:** `string` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PayerGroups.V1.<a href="/src/Candid.Net/PayerGroups/V1/V1Client.cs">CreateAsync</a>(CreatePayerGroupRequest { ... }) -> WithRawResponseTask&lt;PayerGroup&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create a payer group. When `payer_plan_group_ids` is provided, moves those plans into
+the new group atomically (same transaction). On any failure the group is not created
+and no plans are moved.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PayerGroups.V1.CreateAsync(new CreatePayerGroupRequest { Name = "name" });
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `CreatePayerGroupRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PayerGroups.V1.<a href="/src/Candid.Net/PayerGroups/V1/V1Client.cs">UpdateAsync</a>(payerGroupId, MutablePayerGroup { ... }) -> WithRawResponseTask&lt;PayerGroup&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update the name of a payer group
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PayerGroups.V1.UpdateAsync(
+    "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
+    new MutablePayerGroup { Name = "name" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**payerGroupId:** `string` 
+    
+</dd>
+</dl>
+
+<dl>
+<dd>
+
+**request:** `MutablePayerGroup` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## PayerPlanGroups V1
 <details><summary><code>client.PayerPlanGroups.V1.<a href="/src/Candid.Net/PayerPlanGroups/V1/V1Client.cs">GetMultiAsync</a>(PayerPlanGroupGetMultiRequest { ... }) -> WithRawResponseTask&lt;PayerPlanGroupPage&gt;</code></summary>
 <dl>
@@ -9011,7 +10539,9 @@ await client.PayerPlanGroups.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32")
 <dl>
 <dd>
 
-Create a payer plan
+Create a payer plan.
+
+Note: If your org does not have access to Payer Plans, you cannot use APIs to create Payer Plans.
 </dd>
 </dl>
 </dd>
@@ -9072,7 +10602,9 @@ await client.PayerPlanGroups.V1.CreateAsync(
 <dl>
 <dd>
 
-Update any of the fields on a payer plan
+Update any of the fields on a payer plan.
+
+Note: If your org does not have access to Payer Plans, you cannot use APIs to update Payer Plans.
 </dd>
 </dl>
 </dd>
@@ -9142,7 +10674,9 @@ await client.PayerPlanGroups.V1.UpdateAsync(
 <dl>
 <dd>
 
-Marks the payer plan as deactivated
+Marks the payer plan as deactivated.
+
+Note: If your org does not have access to Payer Plans, you cannot use APIs to deactivate Payer Plans.
 </dd>
 </dl>
 </dd>

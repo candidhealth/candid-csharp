@@ -1,6 +1,5 @@
 using global::Candid.Net.Commons;
 using global::Candid.Net.Contracts.V2;
-using global::Candid.Net.Contracts.V3;
 using global::Candid.Net.Test.Unit.MockServer;
 using global::Candid.Net.Test.Utils;
 using NUnit.Framework;
@@ -156,15 +155,15 @@ public class CreateTest : BaseMockServerTest
             );
 
         var response = await Client.Contracts.V3.CreateAsync(
-            new ContractCreateUnion(
-                new ContractCreateUnion.Professional(
-                    new ProfessionalContractCreate
+            new global::Candid.Net.Contracts.V3.ContractCreateUnion(
+                new global::Candid.Net.Contracts.V3.ContractCreateUnion.Professional(
+                    new global::Candid.Net.Contracts.V3.ProfessionalContractCreate
                     {
                         RenderingProviderIds = new HashSet<string>()
                         {
                             "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
                         },
-                        ContractType = ContractType.Professional,
+                        ContractType = global::Candid.Net.Contracts.V3.ContractType.Professional,
                         ContractingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
                         PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
                         EffectiveDate = "effective_date",

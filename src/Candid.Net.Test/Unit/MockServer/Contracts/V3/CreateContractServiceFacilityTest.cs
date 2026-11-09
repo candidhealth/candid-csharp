@@ -1,4 +1,3 @@
-using global::Candid.Net.Contracts.V3;
 using global::Candid.Net.Test.Unit.MockServer;
 using global::Candid.Net.Test.Utils;
 using NUnit.Framework;
@@ -51,7 +50,7 @@ public class CreateContractServiceFacilityTest : BaseMockServerTest
 
         var response = await Client.Contracts.V3.CreateContractServiceFacilityAsync(
             "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-            new ContractServiceFacilityCreate
+            new global::Candid.Net.Contracts.V3.ContractServiceFacilityCreate
             {
                 ServiceFacilityId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
                 ProviderIds = new HashSet<string>() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },

@@ -1,5 +1,4 @@
 using global::Candid.Net.Commons;
-using global::Candid.Net.Credentialing.V2;
 using global::Candid.Net.Test.Unit.MockServer;
 using global::Candid.Net.Test.Utils;
 using NUnit.Framework;
@@ -220,7 +219,7 @@ public class CreateTest : BaseMockServerTest
             );
 
         var response = await Client.Credentialing.V2.CreateAsync(
-            new ProviderCredentialingSpanCreate
+            new global::Candid.Net.Credentialing.V2.ProviderCredentialingSpanCreate
             {
                 RenderingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
                 ContractingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",

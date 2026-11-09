@@ -1,6 +1,5 @@
 using global::Candid.Net;
 using global::Candid.Net.Core;
-using global::Candid.Net.Credentialing.V2;
 using global::System.Text.Json;
 using global::System.Text.Json.Serialization;
 
@@ -20,8 +19,8 @@ public record ContractProviderCredentialing : IJsonOnDeserialized
     public required global::Candid.Net.OrganizationProviders.V2.OrganizationProvider Provider { get; set; }
 
     [JsonPropertyName("credentialing_spans")]
-    public IEnumerable<ProviderCredentialingSpan> CredentialingSpans { get; set; } =
-        new List<ProviderCredentialingSpan>();
+    public IEnumerable<global::Candid.Net.Credentialing.V2.ProviderCredentialingSpan> CredentialingSpans { get; set; } =
+        new List<global::Candid.Net.Credentialing.V2.ProviderCredentialingSpan>();
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

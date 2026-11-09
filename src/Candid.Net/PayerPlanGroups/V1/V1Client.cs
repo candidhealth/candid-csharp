@@ -475,7 +475,9 @@ public partial class V1Client : IV1Client
     }
 
     /// <summary>
-    /// Create a payer plan
+    /// Create a payer plan.
+    ///
+    /// Note: If your org does not have access to Payer Plans, you cannot use APIs to create Payer Plans.
     /// </summary>
     /// <example><code>
     /// await client.PayerPlanGroups.V1.CreateAsync(
@@ -499,7 +501,9 @@ public partial class V1Client : IV1Client
     }
 
     /// <summary>
-    /// Update any of the fields on a payer plan
+    /// Update any of the fields on a payer plan.
+    ///
+    /// Note: If your org does not have access to Payer Plans, you cannot use APIs to update Payer Plans.
     /// </summary>
     /// <example><code>
     /// await client.PayerPlanGroups.V1.UpdateAsync(
@@ -525,7 +529,9 @@ public partial class V1Client : IV1Client
     }
 
     /// <summary>
-    /// Marks the payer plan as deactivated
+    /// Marks the payer plan as deactivated.
+    ///
+    /// Note: If your org does not have access to Payer Plans, you cannot use APIs to deactivate Payer Plans.
     /// </summary>
     /// <example><code>
     /// await client.PayerPlanGroups.V1.DeactivateAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32");

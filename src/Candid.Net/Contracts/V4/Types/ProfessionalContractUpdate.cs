@@ -1,0 +1,70 @@
+using global::Candid.Net;
+using global::Candid.Net.Contracts.V2;
+using global::Candid.Net.Core;
+using global::System.Text.Json;
+using global::System.Text.Json.Serialization;
+
+namespace Candid.Net.Contracts.V4;
+
+[Serializable]
+public record ProfessionalContractUpdate : IJsonOnDeserialized
+{
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
+    /// <summary>
+    /// Deprecated. This field is a temporary holdover from Contracts V3 and will be removed in a future release.
+    /// Use the dedicated providers endpoints to manage rendering providers
+    /// (GET/POST/DELETE /api/contracts/v4/{contract_id}/providers).
+    /// Attempting to set this property will raise an error if the contract already has more than 4,000 rendering providers.
+    /// </summary>
+    [JsonPropertyName("rendering_provider_ids")]
+    public HashSet<string>? RenderingProviderIds { get; set; }
+
+    /// <summary>
+    /// The starting day upon which the contract is effective
+    /// </summary>
+    [JsonPropertyName("effective_date")]
+    public string? EffectiveDate { get; set; }
+
+    /// <summary>
+    /// An optional end day upon which the contract expires
+    /// </summary>
+    [JsonPropertyName("expiration_date")]
+    public DateUpdate? ExpirationDate { get; set; }
+
+    /// <summary>
+    /// If present, the contract's rendering providers will be patched to this exact
+    /// value, overriding what was set before.
+    /// </summary>
+    [JsonPropertyName("regions")]
+    public RegionsUpdate? Regions { get; set; }
+
+    [JsonPropertyName("contract_status")]
+    public ContractStatus? ContractStatus { get; set; }
+
+    [JsonPropertyName("authorized_signatory")]
+    public AuthorizedSignatoryUpdate? AuthorizedSignatory { get; set; }
+
+    [JsonPropertyName("commercial_insurance_types")]
+    public InsuranceTypes? CommercialInsuranceTypes { get; set; }
+
+    [JsonPropertyName("medicare_insurance_types")]
+    public InsuranceTypes? MedicareInsuranceTypes { get; set; }
+
+    [JsonPropertyName("medicaid_insurance_types")]
+    public InsuranceTypes? MedicaidInsuranceTypes { get; set; }
+
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
+}

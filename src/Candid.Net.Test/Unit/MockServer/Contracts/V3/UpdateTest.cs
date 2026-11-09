@@ -1,4 +1,3 @@
-using global::Candid.Net.Contracts.V3;
 using global::Candid.Net.Test.Unit.MockServer;
 using global::Candid.Net.Test.Utils;
 using NUnit.Framework;
@@ -132,8 +131,10 @@ public class UpdateTest : BaseMockServerTest
 
         var response = await Client.Contracts.V3.UpdateAsync(
             "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-            new ContractUpdateUnion(
-                new ContractUpdateUnion.Professional(new ProfessionalContractUpdate())
+            new global::Candid.Net.Contracts.V3.ContractUpdateUnion(
+                new global::Candid.Net.Contracts.V3.ContractUpdateUnion.Professional(
+                    new global::Candid.Net.Contracts.V3.ProfessionalContractUpdate()
+                )
             )
         );
         JsonAssert.AreEqual(response, mockResponse);

@@ -27,7 +27,8 @@ public class UserV2Test
                 "first_name": "John",
                 "last_name": "Doe",
                 "email": "john.doe@example.com"
-              }
+              },
+              "is_system": false
             }
             """;
         var expectedObject = new UserV2
@@ -52,6 +53,7 @@ public class UserV2Test
                     }
                 )
             ),
+            IsSystem = false,
         };
         var deserializedObject = JsonUtils.Deserialize<UserV2>(json);
         Assert.That(deserializedObject, Is.EqualTo(expectedObject).UsingDefaults());
@@ -75,7 +77,8 @@ public class UserV2Test
                 "first_name": "John",
                 "last_name": "Doe",
                 "email": "john.doe@example.com"
-              }
+              },
+              "is_system": false
             }
             """;
         JsonAssert.Roundtrips<UserV2>(inputJson);

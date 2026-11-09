@@ -33,7 +33,8 @@ public class GetTest : BaseMockServerTest
                   "user_metadata": {
                     "type": "machine_user_metadata",
                     "name": "name"
-                  }
+                  },
+                  "is_system": true
                 },
                 "attachment_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
                 "file_name": "file_name",
@@ -61,7 +62,8 @@ public class GetTest : BaseMockServerTest
                   "user_metadata": {
                     "type": "machine_user_metadata",
                     "name": "name"
-                  }
+                  },
+                  "is_system": true
                 },
                 "attachment_id": "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
                 "file_name": "file_name",

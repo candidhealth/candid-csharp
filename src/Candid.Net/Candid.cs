@@ -34,6 +34,7 @@ using global::Candid.Net.OrganizationServiceFacilities;
 using global::Candid.Net.PatientAr;
 using global::Candid.Net.PatientPayments;
 using global::Candid.Net.PatientRefunds;
+using global::Candid.Net.PayerGroups;
 using global::Candid.Net.PayerPlanGroups;
 using global::Candid.Net.Payers;
 using global::Candid.Net.PreEncounter;
@@ -60,7 +61,7 @@ public partial class Candid : ICandid
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Candid.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Candid.Net/1.39.0" },
+                { "User-Agent", "Candid.Net/1.40.0" },
             }
         );
         foreach (var header in platformHeaders)
@@ -114,6 +115,7 @@ public partial class Candid : ICandid
         PatientAr = new PatientArClient(_client);
         PatientPayments = new PatientPaymentsClient(_client);
         PatientRefunds = new PatientRefundsClient(_client);
+        PayerGroups = new PayerGroupsClient(_client);
         PayerPlanGroups = new PayerPlanGroupsClient(_client);
         Payers = new PayersClient(_client);
         PreServiceRules = new PreServiceRulesClient(_client);
@@ -192,6 +194,8 @@ public partial class Candid : ICandid
     public IPatientPaymentsClient PatientPayments { get; }
 
     public IPatientRefundsClient PatientRefunds { get; }
+
+    public IPayerGroupsClient PayerGroups { get; }
 
     public IPayerPlanGroupsClient PayerPlanGroups { get; }
 

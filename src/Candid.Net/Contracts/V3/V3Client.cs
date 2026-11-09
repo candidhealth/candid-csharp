@@ -972,15 +972,15 @@ public partial class V3Client : IV3Client
     /// </summary>
     /// <example><code>
     /// await client.Contracts.V3.CreateAsync(
-    ///     new ContractCreateUnion(
-    ///         new ContractCreateUnion.Professional(
-    ///             new ProfessionalContractCreate
+    ///     new global::Candid.Net.Contracts.V3.ContractCreateUnion(
+    ///         new global::Candid.Net.Contracts.V3.ContractCreateUnion.Professional(
+    ///             new global::Candid.Net.Contracts.V3.ProfessionalContractCreate
     ///             {
     ///                 RenderingProviderIds = new HashSet&lt;string&gt;()
     ///                 {
     ///                     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///                 },
-    ///                 ContractType = ContractType.Professional,
+    ///                 ContractType = global::Candid.Net.Contracts.V3.ContractType.Professional,
     ///                 ContractingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///                 PayerUuid = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///                 EffectiveDate = "effective_date",
@@ -1026,7 +1026,11 @@ public partial class V3Client : IV3Client
     /// <example><code>
     /// await client.Contracts.V3.UpdateAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new ContractUpdateUnion(new ContractUpdateUnion.Professional(new ProfessionalContractUpdate()))
+    ///     new global::Candid.Net.Contracts.V3.ContractUpdateUnion(
+    ///         new global::Candid.Net.Contracts.V3.ContractUpdateUnion.Professional(
+    ///             new global::Candid.Net.Contracts.V3.ProfessionalContractUpdate()
+    ///         )
+    ///     )
     /// );
     /// </code></example>
     public WithRawResponseTask<ContractWithProvidersUnion> UpdateAsync(
@@ -1044,7 +1048,7 @@ public partial class V3Client : IV3Client
     /// <example><code>
     /// await client.Contracts.V3.GetContractProvidersAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new GetContractProvidersRequest()
+    ///     new global::Candid.Net.Contracts.V3.GetContractProvidersRequest()
     /// );
     /// </code></example>
     public WithRawResponseTask<ContractProvidersPage> GetContractProvidersAsync(
@@ -1091,7 +1095,7 @@ public partial class V3Client : IV3Client
     /// <example><code>
     /// await client.Contracts.V3.AddContractProvidersAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new AddContractProvidersRequest
+    ///     new global::Candid.Net.Contracts.V3.AddContractProvidersRequest
     ///     {
     ///         RenderingProviderIds = new HashSet&lt;string&gt;() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
     ///     }
@@ -1115,7 +1119,7 @@ public partial class V3Client : IV3Client
     /// <example><code>
     /// await client.Contracts.V3.RemoveContractProvidersAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new RemoveContractProvidersRequest
+    ///     new global::Candid.Net.Contracts.V3.RemoveContractProvidersRequest
     ///     {
     ///         RenderingProviderIds = new HashSet&lt;string&gt;() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
     ///     }
@@ -1136,7 +1140,7 @@ public partial class V3Client : IV3Client
     /// <example><code>
     /// await client.Contracts.V3.CreateContractServiceFacilityAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new ContractServiceFacilityCreate
+    ///     new global::Candid.Net.Contracts.V3.ContractServiceFacilityCreate
     ///     {
     ///         ServiceFacilityId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///         ProviderIds = new HashSet&lt;string&gt;() { "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32" },
@@ -1159,7 +1163,7 @@ public partial class V3Client : IV3Client
     /// await client.Contracts.V3.UpdateContractServiceFacilityAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new ContractServiceFacilityUpdate()
+    ///     new global::Candid.Net.Contracts.V3.ContractServiceFacilityUpdate()
     /// );
     /// </code></example>
     public WithRawResponseTask<ContractServiceFacility> UpdateContractServiceFacilityAsync(

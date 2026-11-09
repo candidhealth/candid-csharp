@@ -806,7 +806,7 @@ public partial class V2Client : IV2Client
 
     /// <example><code>
     /// await client.Credentialing.V2.CreateFacilityAsync(
-    ///     new FacilityCredentialingSpanCreate
+    ///     new global::Candid.Net.Credentialing.V2.FacilityCredentialingSpanCreate
     ///     {
     ///         ServiceFacilityId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///         ContractingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
@@ -840,7 +840,9 @@ public partial class V2Client : IV2Client
     }
 
     /// <example><code>
-    /// await client.Credentialing.V2.GetAllFacilitiesAsync(new GetAllFacilityCredentialingSpansRequest());
+    /// await client.Credentialing.V2.GetAllFacilitiesAsync(
+    ///     new global::Candid.Net.Credentialing.V2.GetAllFacilityCredentialingSpansRequest()
+    /// );
     /// </code></example>
     public WithRawResponseTask<FacilityCredentialingSpanPage> GetAllFacilitiesAsync(
         GetAllFacilityCredentialingSpansRequest request,
@@ -873,7 +875,7 @@ public partial class V2Client : IV2Client
     /// <example><code>
     /// await client.Credentialing.V2.UpdateFacilityAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new FacilityCredentialingSpanUpdate
+    ///     new global::Candid.Net.Credentialing.V2.FacilityCredentialingSpanUpdate
     ///     {
     ///         ContractingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///     }
@@ -893,7 +895,7 @@ public partial class V2Client : IV2Client
 
     /// <example><code>
     /// await client.Credentialing.V2.CreateAsync(
-    ///     new ProviderCredentialingSpanCreate
+    ///     new global::Candid.Net.Credentialing.V2.ProviderCredentialingSpanCreate
     ///     {
     ///         RenderingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
     ///         ContractingProviderId = "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
@@ -935,7 +937,9 @@ public partial class V2Client : IV2Client
     }
 
     /// <example><code>
-    /// await client.Credentialing.V2.GetAllAsync(new GetAllProviderCredentialingSpansRequest());
+    /// await client.Credentialing.V2.GetAllAsync(
+    ///     new global::Candid.Net.Credentialing.V2.GetAllProviderCredentialingSpansRequest()
+    /// );
     /// </code></example>
     public WithRawResponseTask<ProviderCredentialingSpanPage> GetAllAsync(
         GetAllProviderCredentialingSpansRequest request,
@@ -968,7 +972,7 @@ public partial class V2Client : IV2Client
     /// <example><code>
     /// await client.Credentialing.V2.UpdateAsync(
     ///     "d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32",
-    ///     new ProviderCredentialingSpanUpdate()
+    ///     new global::Candid.Net.Credentialing.V2.ProviderCredentialingSpanUpdate()
     /// );
     /// </code></example>
     public WithRawResponseTask<ProviderCredentialingSpan> UpdateAsync(

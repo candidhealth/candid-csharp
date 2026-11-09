@@ -24,6 +24,12 @@ public record UserV2 : IJsonOnDeserialized
     [JsonPropertyName("user_metadata")]
     public required UserMetadata UserMetadata { get; set; }
 
+    /// <summary>
+    /// Whether this is a Candid system user (automation), not a person or customer integration.
+    /// </summary>
+    [JsonPropertyName("is_system")]
+    public required bool IsSystem { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 
