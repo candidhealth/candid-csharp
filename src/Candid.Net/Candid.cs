@@ -52,7 +52,11 @@ public partial class Candid : ICandid
 {
     private readonly RawClient _client;
 
-    public Candid(string clientId, string clientSecret, ClientOptions? clientOptions = null)
+    public Candid(
+        string? clientId = null,
+        string? clientSecret = null,
+        ClientOptions? clientOptions = null
+    )
     {
         clientOptions ??= new ClientOptions();
         var platformHeaders = new Headers(
@@ -61,7 +65,7 @@ public partial class Candid : ICandid
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Candid.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Candid.Net/1.40.0" },
+                { "User-Agent", "Candid.Net/1.41.0" },
             }
         );
         foreach (var header in platformHeaders)

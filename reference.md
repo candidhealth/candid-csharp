@@ -7614,6 +7614,9 @@ await client.InsuranceRefunds.V1.GetAsync("d5e9c84f-c2b2-4bf4-b4b0-7ffd7a9ffc32"
 <dl>
 <dd>
 
+Deprecated: insurance refunds should come from the payer's ERA, so that every insurance allocation is linked
+to the ERA service payment it records. This endpoint will be removed in a future release.
+
 Creates a new insurance refund record and returns the newly created `InsuranceRefund` object.
 The allocations can describe whether the refund is being applied toward a specific service line,
 claim, or billing provider.
@@ -7766,6 +7769,8 @@ await client.InsuranceRefunds.V1.UpdateAsync(
 
 <dl>
 <dd>
+
+Deprecated: deleting insurance refunds is not supported, and this endpoint will be removed in a future release.
 
 Deletes the insurance refund record matching the provided `insurance_refund_id`.
 If the matching record's organization_id does not match the authenticated user's
