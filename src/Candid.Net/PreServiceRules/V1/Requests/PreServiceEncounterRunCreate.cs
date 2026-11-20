@@ -31,7 +31,7 @@ public record PreServiceEncounterRunCreate
     public IEnumerable<string> DisabledRuleIds { get; set; } = new List<string>();
 
     /// <summary>
-    /// Prevents multiple rule runs from being dispatched in response to duplicate requests.
+    /// Prevents multiple rule runs from being dispatched in response to duplicate requests. A request whose key matches a completed run returns that run, and one that matches a run still in progress returns a 409 with a Retry-After header. If the earlier run failed, the request runs again and returns a new run ID. Reusing a key with a different request body returns a 422.
     /// </summary>
     [JsonPropertyName("idempotency_key")]
     public required string IdempotencyKey { get; set; }

@@ -12,6 +12,10 @@ public readonly record struct ClaimAppealStatus : IStringEnum
 
     public static readonly ClaimAppealStatus Preparing = new(Values.Preparing);
 
+    public static readonly ClaimAppealStatus ReadyForReview = new(Values.ReadyForReview);
+
+    public static readonly ClaimAppealStatus NeedsAttention = new(Values.NeedsAttention);
+
     public static readonly ClaimAppealStatus Submitted = new(Values.Submitted);
 
     public static readonly ClaimAppealStatus RequiresAdditionalInfo = new(
@@ -125,6 +129,10 @@ public readonly record struct ClaimAppealStatus : IStringEnum
         public const string Appealable = "appealable";
 
         public const string Preparing = "preparing";
+
+        public const string ReadyForReview = "ready_for_review";
+
+        public const string NeedsAttention = "needs_attention";
 
         public const string Submitted = "submitted";
 

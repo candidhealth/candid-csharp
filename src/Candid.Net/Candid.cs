@@ -65,7 +65,7 @@ public partial class Candid : ICandid
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Candid.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Candid.Net/1.41.0" },
+                { "User-Agent", "Candid.Net/1.41.1" },
             }
         );
         foreach (var header in platformHeaders)
